@@ -7,11 +7,11 @@ GO
 SET ANSI_PADDING ON
 GO
 
-IF EXISTS(SELECT * FROM sys.objects WHERE type='P' AND name='.USP_PREP_REC_INV_IN') 
-     DROP PROCEDURE [USP_PREP_REC_INV_IN] 
+IF EXISTS(SELECT * FROM sys.objects WHERE type='P' AND name='.USP_PREP_REC_INV_OUT') 
+     DROP PROCEDURE [USP_PREP_REC_INV_OUT] 
 GO
 
-CREATE PROCEDURE [dbo].[USP_PREP_REC_INV_IN] 
+CREATE PROCEDURE [dbo].[USP_PREP_REC_INV_OUT] 
 (
 	@IS_FRZ BIT,
 	@IS_BC BIT
@@ -58,15 +58,7 @@ BEGIN
 			)
 		END
 
-		--记录需要更新库存明细的ID和VERSION
-		UPDATE #TMP_REC_INV_IN_INPUT SET INV_BN_ID = B.INV_BN_ID, VER = B.VER
-		FROM #TMP_REC_INV_IN_INPUT AS A INNER JOIN INV_BN AS B ON B.PT_NO = A.PT_NO 
-															 AND B.LOC_CD = A.LOC_CD
-															 AND B.QLTY_TP = A.QLTY_TP
-															 AND B.IS_FRZ = @IS_FRZ
-															 AND B.IS_BC = @IS_BC
-															 AND B.IS_TR = 0
-															 AND B.IS_CNMT = A.IS_CNMT
+		--判断是否允许负库存
 	END TRY
 	BEGIN CATCH
 		SET @ERROR_MSG = N'程序执行时发生错误:' + ERROR_MESSAGE() + N'，行数：' + ERROR_LINE()
