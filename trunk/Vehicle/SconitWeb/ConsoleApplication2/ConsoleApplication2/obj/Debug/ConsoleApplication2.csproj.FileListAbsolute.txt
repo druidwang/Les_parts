@@ -1,0 +1,6 @@
+F:\Test\src\MVC5.0\SconitWeb\ConsoleApplication2\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe.config
+F:\Test\src\MVC5.0\SconitWeb\ConsoleApplication2\ConsoleApplication2\bin\Debug\ConsoleApplication2.exe
+F:\Test\src\MVC5.0\SconitWeb\ConsoleApplication2\ConsoleApplication2\bin\Debug\ConsoleApplication2.pdb
+F:\Test\src\MVC5.0\SconitWeb\ConsoleApplication2\ConsoleApplication2\obj\Debug\ConsoleApplication2.csprojResolveAssemblyReference.cache
+F:\Test\src\MVC5.0\SconitWeb\ConsoleApplication2\ConsoleApplication2\obj\Debug\ConsoleApplication2.exe
+F:\Test\src\MVC5.0\SconitWeb\ConsoleApplication2\ConsoleApplication2\obj\Debug\ConsoleApplication2.pdb

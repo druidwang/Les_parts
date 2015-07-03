@@ -1,0 +1,10 @@
+D:\Test\src\Core.5.0.0\PrintModel\bin\Debug\com.Sconit.PrintModel.dll
+D:\Test\src\Core.5.0.0\PrintModel\bin\Debug\com.Sconit.PrintModel.pdb
+D:\Test\src\Core.5.0.0\PrintModel\obj\Debug\PrintModel.csprojResolveAssemblyReference.cache
+D:\Test\src\Core.5.0.0\PrintModel\obj\Debug\com.Sconit.PrintModel.dll
+D:\Test\src\Core.5.0.0\PrintModel\obj\Debug\com.Sconit.PrintModel.pdb
+F:\Test\src\Core.5.0.0\PrintModel\bin\Debug\com.Sconit.PrintModel.dll
+F:\Test\src\Core.5.0.0\PrintModel\bin\Debug\com.Sconit.PrintModel.pdb
+F:\Test\src\Core.5.0.0\PrintModel\obj\Debug\com.Sconit.PrintModel.dll
+F:\Test\src\Core.5.0.0\PrintModel\obj\Debug\com.Sconit.PrintModel.pdb
+F:\Test\src\Core.5.0.0\PrintModel\obj\Debug\PrintModel.csprojResolveAssemblyReference.cache

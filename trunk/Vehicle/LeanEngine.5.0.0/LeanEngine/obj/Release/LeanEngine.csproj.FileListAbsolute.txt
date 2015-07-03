@@ -1,0 +1,6 @@
+D:\GIT\Sconit\Sconit5\branch\Shenya\src\LeanEngine.5.0.0\LeanEngine\bin\Release\com.Sconit.LeanEngine.dll
+D:\GIT\Sconit\Sconit5\branch\Shenya\src\LeanEngine.5.0.0\LeanEngine\bin\Release\com.Sconit.LeanEngine.pdb
+D:\GIT\Sconit\Sconit5\branch\Shenya\src\LeanEngine.5.0.0\LeanEngine\bin\Release\AutoMapper.dll
+D:\GIT\Sconit\Sconit5\branch\Shenya\src\LeanEngine.5.0.0\LeanEngine\obj\Release\LeanEngine.csprojResolveAssemblyReference.cache
+D:\GIT\Sconit\Sconit5\branch\Shenya\src\LeanEngine.5.0.0\LeanEngine\obj\Release\com.Sconit.LeanEngine.dll
+D:\GIT\Sconit\Sconit5\branch\Shenya\src\LeanEngine.5.0.0\LeanEngine\obj\Release\com.Sconit.LeanEngine.pdb

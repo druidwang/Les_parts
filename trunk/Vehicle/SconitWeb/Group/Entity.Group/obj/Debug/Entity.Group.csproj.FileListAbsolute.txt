@@ -1,0 +1,5 @@
+F:\Test\src\MVC5.0\SconitWeb\Group\Entity.Group\bin\Debug\com.Sconit.Entity.Group.dll
+F:\Test\src\MVC5.0\SconitWeb\Group\Entity.Group\bin\Debug\com.Sconit.Entity.Group.pdb
+F:\Test\src\MVC5.0\SconitWeb\Group\Entity.Group\obj\Debug\Entity.Group.csprojResolveAssemblyReference.cache
+F:\Test\src\MVC5.0\SconitWeb\Group\Entity.Group\obj\Debug\com.Sconit.Entity.Group.dll
+F:\Test\src\MVC5.0\SconitWeb\Group\Entity.Group\obj\Debug\com.Sconit.Entity.Group.pdb

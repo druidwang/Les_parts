@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "ListUsers";
+}
+
+<h2>ListUsers</h2>
+
+<div id="example" class="k-content">
+
+    <div class="demo-section">
+        <div id="grid"></div>
+    </div>
+</div>
+
+<script>
+        $("#grid").kendoGrid({
+            dataSource: {
+                transport: {
+                    read: {
+                        url: "/home/GetUsers",
+                        dataType: "json",
+                        type: "post"
+                    }
+                },
+                pageSize: 5
+            },
+            selectable: "multiple cell",
+            pageable: true,
+            sortable: true,
+            scrollable: false,
+            columns: [
+                {
+                    field: "Code",
+                    title: "Code",
+                    width: 120,
+                    //template: "#: Code #",
+                    template: '@Html.ActionLink("#= Code #", "Edit", "User", new { ID = "<#= Id #>" }, null)'
+                },
+                {
+                    field: "Password",
+                    title: "Password",
+                    width: 140
+                },
+                {
+                    field: "FirstName",
+                    title: "FirstName",
+                    width: 220
+                }
+            ]
+        });
+</script>
