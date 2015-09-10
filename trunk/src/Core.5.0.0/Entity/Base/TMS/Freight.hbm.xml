@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="com.Sconit.Entity.TMS.Freight, com.Sconit.Entity" table="TMS_Freight" lazy="false">
+    <id name="FreightNo" column="FreightNo" type="String" unsaved-value="null" >
+      <generator class="assigned" />
+    </id>
+    <version name="Version" column="Version" type="Int32" />
+    <property name="Carrier" column="Carrier" type="String" length="50" />
+    <property name="Currency" column="Currency" type="String" length="50" />
+    <property name="BillAddr" column="BillAddr" type="String" length="50" />
+    <property name="CarrierDesc" column="CarrierDesc" type="String" length="255" />
+    <property name="WaybillNo" column="WaybillNo" type="String" length="50" />
+    <property name="ShipFrom" column="ShipFrom" type="String" length="50" />
+    <property name="ShipFromDesc" column="ShipFromDesc" type="String" length="255" />
+    <property name="ShipTo" column="ShipTo" type="String" length="50" />
+    <property name="ShipToDesc" column="ShipToDesc" type="String" length="255" />
+    <property name="Reason" column="Reason" type="String" length="600" />
+    <property name="Remark" column="Remark" type="String" length="600" />
+    <property name="Comment" column="Comment" type="String" length="600" />
+    <property name="FreightNumber" column="Freight" type="Decimal"  />
+    <property name="Status" column="Status" type="String" length="50" />
+    <property name="CreateDate" column="CreateDate" type="DateTime"  />
+    <property name="CreateUserNm" column="CreateUserNm" type="String" length="255" />
+    <property name="CreateUser" column="CreateUser" type="String" length="50" />
+    <property name="LastModifyDate" column="LastModifyDate" type="DateTime"  />
+    <property name="LastModifyUser" column="LastModifyUser" type="String" length="50" />
+    <property name="LastModifyUserNm" column="LastModifyUserNm" type="String" length="255" />
+    <property name="CancelDate" column="CancelDate" type="DateTime"  />
+    <property name="CancelUserNm" column="CancelUserNm" type="String" length="255" />
+    <property name="CancelUser" column="CancelUser" type="String" length="50" />
+    <property name="SubmitDate" column="SubmitDate" type="DateTime"  />
+    <property name="SubmitUser" column="SubmitUser" type="String" length="50" />
+    <property name="SubmitUserNm" column="SubmitUserNm" type="String" length="255" />
+    <property name="CloseDate" column="CloseDate" type="DateTime"  />
+    <property name="CloseUser" column="CloseUser" type="String" length="50" />
+    <property name="CloseUserNm" column="CloseUserNm" type="String" length="255" />
+  </class>
+</hibernate-mapping>

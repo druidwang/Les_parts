@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="com.Sconit.Entity.TMS.TFlowDet, com.Sconit.Entity" table="TMS_FlowDet" lazy="false">
+    <id name="Id" column="Id" type="Int32" unsaved-value="0" >
+      <generator class="identity" />
+    </id>
+    <property name="Flow" column="Flow" type="String" length="50" />
+    <property name="Seq" column="Seq" type="Int32"  />
+    <property name="PriceList" column="PriceList" type="String" length="50" />
+    <property name="PricingMethod" column="PricingMethod" type="String" length="20" />
+    <property name="Category" column="Category" type="String" length="20" />
+    <property name="Carrier" column="Carrier" type="String" length="50" />
+    <property name="CarrierDesc" column="CarrierDesc" type="String" length="255" />
+    <property name="RoundUpOpt" column="RoundUpOpt" type="Int32" />
+    <property name="Currency" column="Currency" type="String" length="50" />
+    <property name="BillAddr" column="BillAddr" type="String" length="50" />
+    <property name="Tonnage" column="Tonnage" type="String" length="50" />
+  </class>
+</hibernate-mapping>

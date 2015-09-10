@@ -1,0 +1,42 @@
+RoleType 系统、自定义
+UserType 系统、Normal
+--ItemType
+FlowType 采购、销售、生产、客供、委外、移库
+Language 中文、英文 可新增
+address Type 货运 开票
+LocationType 普通、检验、不合格
+BomDet.StructureType 正常、 虚结构
+BomDet.BackFlushMethod 收货回冲、投料回冲
+WorkingCalendar 工作、休息
+HuTemplate
+LotTemplate
+OrderTemplate
+AsnTemplate
+ReceiptTemplate
+FlowMstr.Type       
+PricelistType  采购、销售
+FlowMstr.RecGapTo 差异，调整发货方库存
+Flow.CheckDetOpt 需要吗？
+Flow.BillTerm 收货结算、检验结算、上/下线结算
+FLow.CreateBarcodeOpt  发货创建条码、收货创建条码
+Flow.BarCodeOpt   不支持（数量）、批号、Hu
+Flow.MRPOpt
+QualityStatus 普通、待验、不合格
+RoundUpOpt
+FlowBindType/OrderBindType
+OrderType/SubType
+OrderStatus
+OrderPriority
+TimeUnit
+IpType Nml、Gap
+IpStatus
+HuStatus
+PlanBill.Type  采购、销售
+BillDet.SubType Nml、Red
+IntervalType:日时分秒
+JobTrigger.Status Start\Pause
+JobRunLog.Status Success/Fail/In-Process
+StockTake.Type 全盘、抽盘
+StockTake.Status
+StockTake.GroupBy bin loc
+PickList.Status

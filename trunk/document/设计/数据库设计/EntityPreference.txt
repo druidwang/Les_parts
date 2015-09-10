@@ -1,0 +1,8 @@
+默认语言  ???
+Session缓存查询条件数量
+每页记录条数
+零件AutoComplete FilterMode  StartsWith/Contains  零件输入框字符匹配模式（1代表匹配开头，2代表匹配任意）
+零件AutoComplete MinimumChars 1/2/3   零件输入框输入多少字符开始匹配Combox start filter after key in how many characters
+
+
+

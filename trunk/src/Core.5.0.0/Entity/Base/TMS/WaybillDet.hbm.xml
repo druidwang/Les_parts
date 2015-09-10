@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="com.Sconit.Entity.TMS.WaybillDet, com.Sconit.Entity" table="TMS_WaybillDet" lazy="false">
+    <id name="Id" column="Id" type="Int32" unsaved-value="0" >
+      <generator class="identity" />
+    </id>
+    <property name="Seq" column="Seq" type="Int32" />
+    <property name="WaybillNo" column="WaybillNo" type="String" length="50" />
+    <property name="FrontWaybillNo" column="FrontWaybillNo" type="String" length="50" />
+    <property name="IpNo" column="IpNo" type="String" length="50" />
+    <property name="PalletQty" column="PalletQty" type="Decimal"  />
+    <property name="Volume" column="Volume" type="Decimal"  />
+    <property name="UnitPack" column="UnitPack" type="Decimal"  />
+    <property name="PartyFromDesc" column="PartyFromDesc" type="String" length="255" />
+    <property name="PartyFrom" column="PartyFrom" type="String" length="50" />
+    <property name="PartyTo" column="PartyTo" type="String" length="50" />
+    <property name="PartyToDesc" column="PartyToDesc" type="String" length="255" />
+    <property name="DepartTime" column="DepartTime" type="DateTime"  />
+    <property name="ArriveTime" column="ArriveTime" type="DateTime"  />
+    <property name="CreateUserNm" column="CreateUserNm" type="String" length="255" />
+    <property name="CreateUser" column="CreateUser" type="String" length="50" />
+    <property name="ShipFrom" column="ShipFrom" type="String" length="50" />
+    <property name="ShipFromDesc" column="ShipFromDesc" type="String" length="255" />
+    <property name="ShipTo" column="ShipTo" type="String" length="50" />
+    <property name="ShipToDesc" column="ShipToDesc" type="String" length="255" />
+    <property name="Status" column="Status" type="String" length="50" />
+    <property name="Dock" column="Dock" type="String" length="50" />
+    <property name="Remark" column="Remark" type="String" length="255" />
+    <property name="Weight" column="Weight" type="Decimal"  />
+  </class>
+</hibernate-mapping>

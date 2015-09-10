@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="com.Sconit.Entity.TMS.TFlow, com.Sconit.Entity" table="TMS_FlowMstr" lazy="false">
+    <id name="Code" column="Code" type="String" unsaved-value="null" >
+      <generator class="assigned" />
+    </id>
+    <property name="Desc" column="Desc_" type="String" length="255" />
+    <property name="IsActive" column="IsActive" type="Boolean"  />
+    <property name="IsAutoStart" column="IsAutoStart" type="Boolean"  />
+    <property name="StartDutyCycle" column="StartDutyCycle" type="Decimal" />
+    <property name="IsAutoRelease" column="IsAutoRelease" type="Boolean"  />
+    <property name="IsMorePlace" column="IsMorePlace" type="Boolean"  />
+    <property name="IsASN" column="IsASN" type="Boolean"  />
+    <property name="ShipFrom" column="ShipFrom" type="String" length="50" />
+    <property name="ShipFromDesc" column="ShipFromDesc" type="String" length="255" />
+    <property name="ShipTo" column="ShipTo" type="String" length="50" />
+    <property name="ShipToDesc" column="ShipToDesc" type="String" length="255" />
+    <property name="PalletVolume" column="PalletVolume" type="Decimal"  />
+    <property name="CreateUserNm" column="CreateUserNm" type="String" length="255" />
+    <property name="CreateUser" column="CreateUser" type="String" length="50" />
+    <property name="CreateDate" column="CreateDate" type="DateTime"  />
+    <property name="LastModifyUserNm" column="LastModifyUserNm" type="String" length="255" />
+    <property name="LastModifyUser" column="LastModifyUser" type="String" length="50" />
+    <property name="LastModifyDate" column="LastModifyDate" type="DateTime"  />
+  </class>
+</hibernate-mapping>
