@@ -11,115 +11,60 @@ namespace com.Sconit.Entity.TMS
     {
         #region O/R Mapping Properties
 		
-		private string _code;
-		public string Code
-		{
-			get
-			{
-				return _code;
-			}
-			set
-			{
-				_code = value;
-			}
-		}
-		private string _desc;
+        public string Code
+        {
+            get;
+            set;
+        }
+
 		public string Desc
 		{
-			get
-			{
-				return _desc;
-			}
-			set
-			{
-				_desc = value;
-			}
+            get;
+            set;
 		}
+
         public Decimal Weight { get; set; }
 
-		private Decimal _volume;
 		public Decimal Volume
 		{
-			get
-			{
-				return _volume;
-			}
-			set
-			{
-				_volume = value;
-			}
+            get;
+            set;
 		}
-		private string _createUserNm;
+
 		public string CreateUserNm
 		{
-			get
-			{
-				return _createUserNm;
-			}
-			set
-			{
-				_createUserNm = value;
-			}
+            get;
+            set;
 		}
-		private string _createUser;
+
 		public string CreateUser
 		{
-			get
-			{
-				return _createUser;
-			}
-			set
-			{
-				_createUser = value;
-			}
+            get;
+            set;
 		}
-		private DateTime _createDate;
+
 		public DateTime CreateDate
 		{
-			get
-			{
-				return _createDate;
-			}
-			set
-			{
-				_createDate = value;
-			}
+            get;
+            set;
 		}
-		private string _lastModifyUserNm;
+
 		public string LastModifyUserNm
 		{
-			get
-			{
-				return _lastModifyUserNm;
-			}
-			set
-			{
-				_lastModifyUserNm = value;
-			}
+            get;
+            set;
 		}
-		private string _lastModifyUser;
+
 		public string LastModifyUser
 		{
-			get
-			{
-				return _lastModifyUser;
-			}
-			set
-			{
-				_lastModifyUser = value;
-			}
+            get;
+            set;
 		}
-		private DateTime _lastModifyDate;
+
 		public DateTime LastModifyDate
 		{
-			get
-			{
-				return _lastModifyDate;
-			}
-			set
-			{
-				_lastModifyDate = value;
-			}
+            get;
+            set;
 		}
         
         #endregion

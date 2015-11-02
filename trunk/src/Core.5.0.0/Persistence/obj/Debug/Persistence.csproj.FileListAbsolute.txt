@@ -22,3 +22,15 @@ D:\src\Les_parts\trunk\src\Core.5.0.0\Persistence\bin\Debug\Iesi.Collections.dll
 D:\src\Les_parts\trunk\src\Core.5.0.0\Persistence\obj\Debug\Persistence.csprojResolveAssemblyReference.cache
 D:\src\Les_parts\trunk\src\Core.5.0.0\Persistence\obj\Debug\com.Sconit.Persistence.dll
 D:\src\Les_parts\trunk\src\Core.5.0.0\Persistence\obj\Debug\com.Sconit.Persistence.pdb
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Persistence\bin\Debug\com.Sconit.Persistence.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Persistence\bin\Debug\com.Sconit.Persistence.pdb
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Persistence\bin\Debug\Castle.Core.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Persistence\bin\Debug\Castle.Facilities.NHibernateIntegration.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Persistence\bin\Debug\Castle.Windsor.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Persistence\bin\Debug\NHibernate.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Persistence\bin\Debug\Castle.Services.Transaction.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Persistence\bin\Debug\log4net.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Persistence\bin\Debug\Iesi.Collections.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Persistence\obj\Debug\Persistence.csprojResolveAssemblyReference.cache
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Persistence\obj\Debug\com.Sconit.Persistence.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Persistence\obj\Debug\com.Sconit.Persistence.pdb

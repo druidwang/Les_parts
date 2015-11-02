@@ -11,233 +11,118 @@ namespace com.Sconit.Entity.TMS
     {
         #region O/R Mapping Properties
 		
-		private string _freightNo;
 		public string FreightNo
 		{
-			get
-			{
-				return _freightNo;
-			}
-			set
-			{
-				_freightNo = value;
-			}
+            get;
+            set;
 		}
-        private string _billAddr;
+
         public string BillAddr
         {
-            get
-            {
-                return _billAddr;
-            }
-            set
-            {
-                _billAddr = value;
-            }
+            get;
+            set;
         }
-		private string _carrier;
+
 		public string Carrier
 		{
-			get
-			{
-				return _carrier;
-			}
-			set
-			{
-				_carrier = value;
-			}
+            get;
+            set;
 		}
-		private string _waybillNo;
+
 		public string WaybillNo
 		{
-			get
-			{
-				return _waybillNo;
-			}
-			set
-			{
-				_waybillNo = value;
-			}
+            get;
+            set;
 		}
-		private string _shipFrom;
+
 		public string ShipFrom
 		{
-			get
-			{
-				return _shipFrom;
-			}
-			set
-			{
-				_shipFrom = value;
-			}
+            get;
+            set;
 		}
-		private string _shipTo;
+
 		public string ShipTo
 		{
-			get
-			{
-				return _shipTo;
-			}
-			set
-			{
-				_shipTo = value;
-			}
+            get;
+            set;
 		}
-		private string _reason;
+
 		public string Reason
 		{
-			get
-			{
-				return _reason;
-			}
-			set
-			{
-				_reason = value;
-			}
+            get;
+            set;
 		}
-		private string _remark;
+
 		public string Remark
 		{
-			get
-			{
-				return _remark;
-			}
-			set
-			{
-				_remark = value;
-			}
+            get;
+            set;
 		}
-		private Decimal _freightNumber;
+
 		public Decimal FreightNumber
 		{
-			get
-			{
-                return _freightNumber;
-			}
-			set
-			{
-                _freightNumber = value;
-			}
+            get;
+            set;
 		}
-		private string _status;
+
 		public string Status
 		{
-			get
-			{
-				return _status;
-			}
-			set
-			{
-				_status = value;
-			}
+            get;
+            set;
 		}
-		private DateTime _createDate;
+
 		public DateTime CreateDate
 		{
-			get
-			{
-				return _createDate;
-			}
-			set
-			{
-				_createDate = value;
-			}
+            get;
+            set;
 		}
-		private string _createUserNm;
+
 		public string CreateUserNm
 		{
-			get
-			{
-				return _createUserNm;
-			}
-			set
-			{
-				_createUserNm = value;
-			}
+            get;
+            set;
 		}
-		private string _createUser;
+
 		public string CreateUser
 		{
-			get
-			{
-				return _createUser;
-			}
-			set
-			{
-				_createUser = value;
-			}
+            get;
+            set;
 		}
-		private DateTime _lastModifyDate;
+
 		public DateTime LastModifyDate
 		{
-			get
-			{
-				return _lastModifyDate;
-			}
-			set
-			{
-				_lastModifyDate = value;
-			}
+            get;
+            set;
 		}
-		private string _lastModifyUser;
+
 		public string LastModifyUser
 		{
-			get
-			{
-				return _lastModifyUser;
-			}
-			set
-			{
-				_lastModifyUser = value;
-			}
+            get;
+            set;
 		}
-		private string _lastModifyUserNm;
+
 		public string LastModifyUserNm
 		{
-			get
-			{
-				return _lastModifyUserNm;
-			}
-			set
-			{
-				_lastModifyUserNm = value;
-			}
+            get;
+            set;
 		}
-		private DateTime? _cancelDate;
+
 		public DateTime? CancelDate
 		{
-			get
-			{
-				return _cancelDate;
-			}
-			set
-			{
-				_cancelDate = value;
-			}
+            get;
+            set;
 		}
-		private string _cancelUserNm;
+
 		public string CancelUserNm
 		{
-			get
-			{
-				return _cancelUserNm;
-			}
-			set
-			{
-				_cancelUserNm = value;
-			}
+            get;
+            set;
 		}
-		private string _cancelUser;
+
 		public string CancelUser
 		{
-			get
-			{
-				return _cancelUser;
-			}
-			set
-			{
-				_cancelUser = value;
-			}
+            get;
+            set;
 		}
         public DateTime? SubmitDate { get; set; }
         public string SubmitUser { get; set; }
@@ -252,17 +137,10 @@ namespace com.Sconit.Entity.TMS
         public string CarrierDesc { get; set; }
         public string Comment { get; set; }
 
-        private Int32 _version;
         public Int32 Version
         {
-            get
-            {
-                return _version;
-            }
-            set
-            {
-                _version = value;
-            }
+            get;
+            set;
         }
         #endregion
 

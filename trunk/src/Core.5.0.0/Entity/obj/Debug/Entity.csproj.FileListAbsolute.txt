@@ -16,3 +16,12 @@ D:\src\Les_parts\trunk\src\Core.5.0.0\Entity\bin\Debug\zh-CN\com.Sconit.Globaliz
 D:\src\Les_parts\trunk\src\Core.5.0.0\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
 D:\src\Les_parts\trunk\src\Core.5.0.0\Entity\obj\Debug\com.Sconit.Entity.dll
 D:\src\Les_parts\trunk\src\Core.5.0.0\Entity\obj\Debug\com.Sconit.Entity.pdb
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Entity\bin\Debug\com.Sconit.Entity.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Entity\bin\Debug\com.Sconit.Entity.pdb
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Entity\bin\Debug\com.Sconit.Globalization.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Entity\bin\Debug\com.Sconit.Globalization.pdb
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Entity\bin\Debug\en-US\com.Sconit.Globalization.resources.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Entity\bin\Debug\zh-CN\com.Sconit.Globalization.resources.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Entity\obj\Debug\Entity.csprojResolveAssemblyReference.cache
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Entity\obj\Debug\com.Sconit.Entity.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\Entity\obj\Debug\com.Sconit.Entity.pdb
