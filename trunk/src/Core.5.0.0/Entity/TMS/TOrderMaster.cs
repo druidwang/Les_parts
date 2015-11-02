@@ -2,10 +2,9 @@ using System;
 
 //TODO: Add other using statements here
 
-namespace com.Sconit.Entity.TMS
+namespace com.Sconit.TMS
 {
- 
-    public partial class TFlowDet 
+    public partial class TOrderMaster
     {
         #region Non O/R Mapping Properties
 

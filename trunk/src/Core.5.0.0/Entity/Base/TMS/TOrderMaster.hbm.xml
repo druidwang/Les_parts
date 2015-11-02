@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+ 	<class name="com.Sconit.Entity.TMS.TOrderMaster, com.Sconit.Entity" table="T_OrderMstr" lazy="false">
+		<id name="OrderNo" column="OrderNo" type="String" unsaved-value="null" >
+      		<generator class="assigned" />
+        </id>
+		<version name="Version" column="Version" type="Int32" />	
+		<property name="FreightNo" column="FreightNo" type="String" length="50"/>	
+		<property name="PalletQty" column="PalletQty" type="Decimal"/>	
+		<property name="ActPalletQty" column="ActPalletQty" type="Decimal"/>	
+		<property name="Tonnage" column="Tonnage" type="String" length="50"/>	
+		<property name="LoadRate" column="LoadRate" type="Decimal"/>	
+		<property name="PalletVolume" column="PalletVolume" type="Decimal"/>	
+		<property name="TonnageVolume" column="TonnageVolume" type="Decimal"/>	
+		<property name="ActVolume" column="ActVolume" type="Decimal"/>	
+		<property name="ActUnitPack" column="ActUnitPack" type="Decimal"/>	
+		<property name="UnitPack" column="UnitPack" type="Decimal"/>	
+		<property name="Volume" column="Volume" type="Decimal"/>	
+		<property name="RefNo" column="RefNo" type="String" length="50"/>	
+		<property name="ExtNo" column="ExtNo" type="String" length="255"/>	
+		<property name="StartTime" column="StartTime" type="DateTime"/>	
+		<property name="WinTime" column="WinTime" type="DateTime"/>	
+		<property name="Status" column="Status" type="String" length="50"/>	
+		<property name="Type" column="Type" type="String" length="50"/>	
+		<property name="Category" column="Category" type="String" length="50"/>	
+		<property name="CarrierDesc" column="CarrierDesc" type="String" length="255"/>	
+		<property name="Carrier" column="Carrier" type="String" length="50"/>	
+		<property name="BillAddr" column="BillAddr" type="String" length="50"/>	
+		<property name="FlowCurrency" column="FlowCurrency" type="String" length="50"/>	
+		<property name="Currency" column="Currency" type="String" length="50"/>	
+		<property name="PriceList" column="PriceList" type="String" length="50"/>	
+		<property name="ShipFromDesc" column="ShipFromDesc" type="String" length="255"/>	
+		<property name="ShipFrom" column="ShipFrom" type="String" length="50"/>	
+		<property name="ShipToDesc" column="ShipToDesc" type="String" length="255"/>	
+		<property name="ShipTo" column="ShipTo" type="String" length="50"/>	
+		<property name="AuthVehicle" column="AuthVehicle" type="Boolean"/>	
+		<property name="Vehicle" column="Vehicle" type="String" length="50"/>	
+		<property name="DriverDesc" column="DriverDesc" type="String" length="255"/>	
+		<property name="AuthDriver" column="AuthDriver" type="Boolean"/>	
+		<property name="Driver" column="Driver" type="String" length="50"/>	
+		<property name="SettleTime" column="SettleTime" type="DateTime"/>	
+		<property name="Remark" column="Remark" type="String" length="600"/>	
+		<property name="IsFreeCharge" column="IsFreeCharge" type="Boolean"/>	
+		<property name="Freight" column="Freight" type="Decimal"/>	
+		<property name="IsProvEst" column="IsProvEst" type="Boolean"/>	
+		<property name="PricingMethod" column="PricingMethod" type="String" length="20"/>	
+		<property name="RoundUpOpt" column="RoundUpOpt" type="Int32"/>	
+		<property name="MinPrice" column="MinPrice" type="Decimal"/>	
+		<property name="SendFee" column="SendFee" type="Decimal"/>	
+		<property name="InOutFee" column="InOutFee" type="Decimal"/>	
+		<property name="ServiceFee" column="ServiceFee" type="Decimal"/>	
+		<property name="UnitPrice" column="UnitPrice" type="Decimal"/>	
+		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
+		<property name="CreateUserName" column="CreateUserNm" type="String" length="255" update="false"/>	
+		<property name="CreateUserId" column="CreateUser" type="String" length="50" update="false"/>	
+		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>	
+		<property name="LastModifyUserId" column="LastModifyUser" type="String" length="50"/>	
+		<property name="LastModifyUserName" column="LastModifyUserNm" type="String" length="255"/>	
+		<property name="CancelDate" column="CancelDate" type="DateTime"/>	
+		<property name="CancelUserName" column="CancelUserNm" type="String" length="255"/>	
+		<property name="CancelUser" column="CancelUser" type="String" length="50"/>	
+		<property name="SubmitDate" column="SubmitDate" type="DateTime"/>	
+		<property name="SubmitUser" column="SubmitUser" type="String" length="50"/>	
+		<property name="SubmitUserName" column="SubmitUserNm" type="String" length="255"/>	
+		<property name="StartDate" column="StartDate" type="DateTime"/>	
+		<property name="StartUserName" column="StartUserNm" type="String" length="255"/>	
+		<property name="StartUser" column="StartUser" type="String" length="50"/>	
+		<property name="CompleteDate" column="CompleteDate" type="DateTime"/>	
+		<property name="CompleteUser" column="CompleteUser" type="String" length="50"/>	
+		<property name="CompleteUserName" column="CompleteUserNm" type="String" length="255"/>	
+		<property name="CloseUserName" column="CloseUserNm" type="String" length="255"/>	
+		<property name="CloseDate" column="CloseDate" type="DateTime"/>	
+		<property name="CloseUser" column="CloseUser" type="String" length="50"/>	
+		<property name="VoidDate" column="VoidDate" type="DateTime"/>	
+		<property name="VoidUserName" column="VoidUserNm" type="String" length="255"/>	
+		<property name="VoidUser" column="VoidUser" type="String" length="50"/>	
+		<property name="IsAutoStart" column="IsAutoStart" type="Boolean"/>	
+		<property name="IsAutoRelease" column="IsAutoRelease" type="Boolean"/>	
+		<property name="SubType" column="SubType" type="String" length="50"/>	
+		<property name="ActVolume2" column="ActVolume2" type="Decimal"/>	
+		<property name="Weight" column="Weight" type="Decimal"/>	
+		<property name="ActWeight" column="ActWeight" type="Decimal"/>	
+		<property name="MaxPrice" column="MaxPrice" type="Decimal"/>	
+		<property name="Phone" column="Phone" type="String" length="50"/>	
+		<property name="IsAutoComplete" column="IsAutoComplete" type="Boolean"/>	
+		<property name="IsASN" column="IsASN" type="Boolean"/>	
+		<property name="TonnageWeight" column="TonnageWeight" type="Decimal"/>	
+		<property name="ItemQty" column="ItemQty" type="Decimal"/>	
+  	</class>
+</hibernate-mapping>

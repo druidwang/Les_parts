@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+ 	<class name="com.Sconit.Entity.TMS.TTonnage, com.Sconit.Entity" table="T_Tonnage" lazy="false">
+		<id name="Code" column="Code" type="String" unsaved-value="null" >
+      		<generator class="assigned" />
+        </id>
+		<property name="Desc" column="Desc" type="String" length="255"/>	
+		<property name="Volume" column="Volume" type="Decimal"/>	
+		<property name="CreateUserName" column="CreateUserNm" type="String" length="255" update="false"/>	
+		<property name="CreateUserId" column="CreateUser" type="String" length="50" update="false"/>	
+		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
+		<property name="LastModifyUserName" column="LastModifyUserNm" type="String" length="255"/>	
+		<property name="LastModifyUserId" column="LastModifyUser" type="String" length="50"/>	
+		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>	
+		<property name="Weight" column="Weight" type="Decimal"/>	
+  	</class>
+</hibernate-mapping>

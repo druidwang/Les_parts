@@ -1,0 +1,4 @@
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\PrintModel\bin\Debug\com.Sconit.PrintModel.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\PrintModel\bin\Debug\com.Sconit.PrintModel.pdb
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\PrintModel\obj\Debug\com.Sconit.PrintModel.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\PrintModel\obj\Debug\com.Sconit.PrintModel.pdb

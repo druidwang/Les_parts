@@ -4,8 +4,7 @@ using System;
 
 namespace com.Sconit.Entity.TMS
 {
-  
-    public partial class TPriceList 
+    public partial class TPriceList
     {
         #region Non O/R Mapping Properties
 
