@@ -349,7 +349,25 @@ namespace Resources.MD {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
+        ///   Looks up a localized string similar to Userd by customer.
+        /// </summary>
+        public static string Party_Errors_Exists_Code_UserdByCustomer {
+            get {
+                return ResourceManager.GetString("Party_Errors_Exists_Code_UserdByCustomer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Userd by region.
+        /// </summary>
+        public static string Party_Errors_Exists_Code_UserdByRegion {
+            get {
+                return ResourceManager.GetString("Party_Errors_Exists_Code_UserdByRegion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Userd by supplier.
         /// </summary>
         public static string Party_Errors_Exists_Code_UserdBySupplier {
             get {

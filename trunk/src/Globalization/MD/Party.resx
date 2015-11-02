@@ -213,8 +213,14 @@
   <data name="Party_Edit_Title" xml:space="preserve">
     <value>Edit Party</value>
   </data>
+  <data name="Party_Errors_Exists_Code_UserdByCustomer" xml:space="preserve">
+    <value>Userd by customer</value>
+  </data>
+  <data name="Party_Errors_Exists_Code_UserdByRegion" xml:space="preserve">
+    <value>Userd by region</value>
+  </data>
   <data name="Party_Errors_Exists_Code_UserdBySupplier" xml:space="preserve">
-    <value />
+    <value>Userd by supplier</value>
   </data>
   <data name="Party_IsActive" xml:space="preserve">
     <value>IsActive</value>

@@ -1,0 +1,8 @@
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\CodeSmith\bin\Debug\com.Sconit.CodeSmith.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\CodeSmith\bin\Debug\com.Sconit.CodeSmith.pdb
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\CodeSmith\obj\Debug\CodeSmith.csprojResolveAssemblyReference.cache
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\CodeSmith\obj\Debug\com.Sconit.CodeSmith.MappingPropertyEditorForm.resources
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\CodeSmith\obj\Debug\com.Sconit.CodeSmith.Properties.Resources.resources
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\CodeSmith\obj\Debug\CodeSmith.csproj.GenerateResource.Cache
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\CodeSmith\obj\Debug\com.Sconit.CodeSmith.dll
+F:\GIT\Transport\Les_parts\trunk\src\Core.5.0.0\CodeSmith\obj\Debug\com.Sconit.CodeSmith.pdb

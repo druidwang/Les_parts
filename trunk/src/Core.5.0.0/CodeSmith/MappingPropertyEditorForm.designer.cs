@@ -31,13 +31,6 @@ namespace com.Sconit.CodeSmith
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.dgvMapping = new System.Windows.Forms.DataGridView();
-            this.lblMessage = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.connBT = new System.Windows.Forms.Button();
-            this.tableCB = new System.Windows.Forms.ComboBox();
-            this.connTB = new System.Windows.Forms.TextBox();
             this.colIsPK = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colIsUnique = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colPKGenerator = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -53,6 +46,13 @@ namespace com.Sconit.CodeSmith
             this.colOne2ManyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOne2ManyInverse = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colOne2ManyLazy = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.lblMessage = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.connBT = new System.Windows.Forms.Button();
+            this.tableCB = new System.Windows.Forms.ComboBox();
+            this.connTB = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMapping)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -104,87 +104,21 @@ namespace com.Sconit.CodeSmith
             this.dgvMapping.RowTemplate.Height = 23;
             this.dgvMapping.Size = new System.Drawing.Size(1284, 567);
             this.dgvMapping.TabIndex = 3;
-            this.dgvMapping.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvMapping_RowsAdded);
             this.dgvMapping.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgvMapping_DataError);
-            // 
-            // lblMessage
-            // 
-            this.lblMessage.AutoSize = true;
-            this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(51, 137);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(0, 12);
-            this.lblMessage.TabIndex = 4;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(64, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 12);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Connection:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(94, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 12);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Table:";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.connBT);
-            this.groupBox1.Controls.Add(this.tableCB);
-            this.groupBox1.Location = new System.Drawing.Point(43, 4);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(690, 88);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Configuration";
-            // 
-            // connBT
-            // 
-            this.connBT.Location = new System.Drawing.Point(592, 17);
-            this.connBT.Name = "connBT";
-            this.connBT.Size = new System.Drawing.Size(69, 23);
-            this.connBT.TabIndex = 9;
-            this.connBT.Text = "Connect";
-            this.connBT.UseVisualStyleBackColor = true;
-            this.connBT.Click += new System.EventHandler(this.connBT_Click);
-            // 
-            // tableCB
-            // 
-            this.tableCB.FormattingEnabled = true;
-            this.tableCB.Location = new System.Drawing.Point(93, 49);
-            this.tableCB.Name = "tableCB";
-            this.tableCB.Size = new System.Drawing.Size(209, 20);
-            this.tableCB.TabIndex = 0;
-            this.tableCB.SelectedIndexChanged += new System.EventHandler(this.tableCB_SelectedIndexChanged);
-            // 
-            // connTB
-            // 
-            this.connTB.Location = new System.Drawing.Point(136, 22);
-            this.connTB.Name = "connTB";
-            this.connTB.Size = new System.Drawing.Size(491, 21);
-            this.connTB.TabIndex = 8;
-            this.connTB.Text = "data source=10.20.96.66;user id=sconittest;password=sconittest;database=sconit5_test";
+            this.dgvMapping.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvMapping_RowsAdded);
             // 
             // colIsPK
             // 
             this.colIsPK.DataPropertyName = "IsPK";
             this.colIsPK.HeaderText = "Is PK";
             this.colIsPK.Name = "colIsPK";
-            this.colIsPK.Width = 41;
+            this.colIsPK.Width = 26;
             // 
             // colIsUnique
             // 
             this.colIsUnique.HeaderText = "Is Unique";
             this.colIsUnique.Name = "colIsUnique";
-            this.colIsUnique.Width = 65;
+            this.colIsUnique.Width = 59;
             // 
             // colPKGenerator
             // 
@@ -281,6 +215,72 @@ namespace com.Sconit.CodeSmith
             this.colOne2ManyLazy.HeaderText = "One2Many Lazy";
             this.colOne2ManyLazy.Name = "colOne2ManyLazy";
             this.colOne2ManyLazy.Width = 59;
+            // 
+            // lblMessage
+            // 
+            this.lblMessage.AutoSize = true;
+            this.lblMessage.ForeColor = System.Drawing.Color.Red;
+            this.lblMessage.Location = new System.Drawing.Point(51, 137);
+            this.lblMessage.Name = "lblMessage";
+            this.lblMessage.Size = new System.Drawing.Size(0, 12);
+            this.lblMessage.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Location = new System.Drawing.Point(64, 27);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 12);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Connection:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(94, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 12);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Table:";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.connBT);
+            this.groupBox1.Controls.Add(this.tableCB);
+            this.groupBox1.Location = new System.Drawing.Point(43, 4);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(690, 88);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Configuration";
+            // 
+            // connBT
+            // 
+            this.connBT.Location = new System.Drawing.Point(592, 17);
+            this.connBT.Name = "connBT";
+            this.connBT.Size = new System.Drawing.Size(69, 23);
+            this.connBT.TabIndex = 9;
+            this.connBT.Text = "Connect";
+            this.connBT.UseVisualStyleBackColor = true;
+            this.connBT.Click += new System.EventHandler(this.connBT_Click);
+            // 
+            // tableCB
+            // 
+            this.tableCB.FormattingEnabled = true;
+            this.tableCB.Location = new System.Drawing.Point(93, 49);
+            this.tableCB.Name = "tableCB";
+            this.tableCB.Size = new System.Drawing.Size(209, 20);
+            this.tableCB.TabIndex = 0;
+            this.tableCB.SelectedIndexChanged += new System.EventHandler(this.tableCB_SelectedIndexChanged);
+            // 
+            // connTB
+            // 
+            this.connTB.Location = new System.Drawing.Point(136, 22);
+            this.connTB.Name = "connTB";
+            this.connTB.Size = new System.Drawing.Size(491, 21);
+            this.connTB.TabIndex = 8;
+            this.connTB.Text = "data source=localhost\\sql2008;user id=sa;password=P@ssw0rd;database=Les_Parts";
             // 
             // MappingPropertyEditorForm
             // 
