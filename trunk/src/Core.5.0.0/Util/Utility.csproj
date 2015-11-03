@@ -217,7 +217,6 @@
     <Compile Include="ServiceLocator.cs" />
     <Compile Include="SMTPHelper.cs" />
     <Compile Include="SystemHelper.cs" />
-    <Compile Include="TMSHelper.cs" />
     <Compile Include="WebConstants.cs" />
     <Compile Include="XlsHelper.cs" />
   </ItemGroup>

@@ -4,20 +4,22 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.TMS
 {
     [Serializable]
-    public partial class Tonnage : EntityBase
+    public partial class TransportFlowMaster : EntityBase
     {
         #region O/R Mapping Properties
 		
 		public string Code { get; set; }
         public string Description { get; set; }
-		public Decimal LoadVolume { get; set; }
+		public Boolean IsActive { get; set; }
+		public Boolean IsAutoStart { get; set; }
+        public Boolean IsAutoRelease { get; set; }
+        public Decimal MinLoadRate { get; set; }
 		public string CreateUserName { get; set; }
 		public string CreateUserId { get; set; }
 		public DateTime CreateDate { get; set; }
 		public string LastModifyUserName { get; set; }
 		public string LastModifyUserId { get; set; }
 		public DateTime LastModifyDate { get; set; }
-		public Decimal LoadWeight { get; set; }
         
         #endregion
 
@@ -35,7 +37,7 @@ namespace com.Sconit.Entity.TMS
 
         public override bool Equals(object obj)
         {
-            Tonnage another = obj as Tonnage;
+            TransportFlowMaster another = obj as TransportFlowMaster;
 
             if (another == null)
             {

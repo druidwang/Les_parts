@@ -156,8 +156,8 @@
   <data name="Vehicle_Fax" xml:space="preserve">
     <value>Fax</value>
   </data>
-  <data name="Vehicle_IdentityCard" xml:space="preserve">
-    <value>IdentityCard</value>
+  <data name="Vehicle_IdNumber" xml:space="preserve">
+    <value>IdNumber</value>
   </data>
   <data name="Vehicle_MobilePhone" xml:space="preserve">
     <value>MobilePhone</value>

@@ -18,7 +18,6 @@ namespace com.Sconit.Web.Controllers.TMS
     using com.Sconit.Entity.TMS;
     using com.Sconit.Utility;
 
-
     public class CarrierController : WebAppBaseController
     {
         #region 承运商

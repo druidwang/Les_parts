@@ -10,7 +10,7 @@
         {
             columns.Bound(o => o.Code).ClientTemplate(Html.ActionLink("<#= Code #>", "Edit", "Driver", new { ID = "<#= Code #>" }, null).ToString());
             columns.Bound(o => o.Name);
-            columns.Bound(o => o.IdentityCard);
+            columns.Bound(o => o.IdNumber);
             columns.Bound(o => o.MobilePhone);
             columns.Bound(o => o.Phone);
             columns.Bound(o => o.CreateUserName);

@@ -144,8 +144,8 @@
   <data name="Driver_Fax" xml:space="preserve">
     <value>Fax</value>
   </data>
-  <data name="Driver_IdentityCard" xml:space="preserve">
-    <value>IdentityCard</value>
+  <data name="Driver_IdNumber" xml:space="preserve">
+    <value>Id Number</value>
   </data>
   <data name="Driver_MobilePhone" xml:space="preserve">
     <value>MobilePhone</value>

@@ -5026,14 +5026,17 @@
     <EmbeddedResource Include="TMS\Driver.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Driver.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TMS\Driver.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Driver.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TMS\Driver.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Driver.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TMS\Mileage.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -5062,14 +5065,17 @@
     <EmbeddedResource Include="TMS\Vehicle.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Vehicle.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TMS\Vehicle.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Vehicle.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TMS\Vehicle.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Vehicle.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Visualization.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

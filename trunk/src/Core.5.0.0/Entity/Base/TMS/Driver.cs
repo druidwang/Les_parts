@@ -37,8 +37,8 @@ namespace com.Sconit.Entity.TMS
         [Display(Name = "Driver_Fax", ResourceType = typeof(Resources.TMS.Driver))]
         public string Fax { get; set; }
 
-        [Display(Name = "Driver_IdentityCard", ResourceType = typeof(Resources.TMS.Driver))]
-        public string IdentityCard { get; set; }
+        [Display(Name = "Driver_IdNumber", ResourceType = typeof(Resources.TMS.Driver))]
+        public string IdNumber { get; set; }
 
         [Display(Name = "Driver_Address", ResourceType = typeof(Resources.TMS.Driver))]
         public string Address { get; set; }

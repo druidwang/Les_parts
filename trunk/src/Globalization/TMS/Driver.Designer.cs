@@ -142,11 +142,11 @@ namespace Resources.TMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IdentityCard.
+        ///   Looks up a localized string similar to Id Number.
         /// </summary>
-        public static string Driver_IdentityCard {
+        public static string Driver_IdNumber {
             get {
-                return ResourceManager.GetString("Driver_IdentityCard", resourceCulture);
+                return ResourceManager.GetString("Driver_IdNumber", resourceCulture);
             }
         }
         

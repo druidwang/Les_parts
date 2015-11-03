@@ -11,7 +11,7 @@
 		<property name="Address" column="Address" type="String" length="255" />	
 		<property name="PostCode" column="PostCode" type="String" length="50" />	
 		<property name="Fax" column="Fax" type="String" length="50" />	
-		<property name="IdentityCard" column="IdentityCard" type="String" length="50" />
+		<property name="IdNumber" column="IdNumber" type="String" length="50" />
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="50" update="false"/>

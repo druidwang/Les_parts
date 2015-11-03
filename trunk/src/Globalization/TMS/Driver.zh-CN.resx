@@ -144,7 +144,7 @@
   <data name="Driver_Fax" xml:space="preserve">
     <value>传真</value>
   </data>
-  <data name="Driver_IdentityCard" xml:space="preserve">
+  <data name="Driver_IdNumber" xml:space="preserve">
     <value>身份证</value>
   </data>
   <data name="Driver_MobilePhone" xml:space="preserve">

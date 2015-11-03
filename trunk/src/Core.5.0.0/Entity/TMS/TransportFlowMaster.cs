@@ -4,19 +4,12 @@ using System;
 
 namespace com.Sconit.Entity.TMS
 {
-
-    public partial class Driver
+    public partial class TransportFlowMaster
     {
         #region Non O/R Mapping Properties
 
         //TODO: Add Non O/R Mapping Properties here. 
-        public string Desc
-        {
-            get
-            {
-                return this.Name + this.IdNumber;
-            }
-        }
+
         #endregion
     }
 }
