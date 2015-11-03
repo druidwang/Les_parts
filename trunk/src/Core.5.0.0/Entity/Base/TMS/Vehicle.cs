@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.TMS
 {
     [Serializable]
-    public partial class Vechile : EntityBase
+    public partial class Vehicle : EntityBase
     {
         #region O/R Mapping Properties
 		
@@ -43,7 +43,7 @@ namespace com.Sconit.Entity.TMS
 
         public override bool Equals(object obj)
         {
-            Vechile another = obj as Vechile;
+            Vehicle another = obj as Vehicle;
 
             if (another == null)
             {

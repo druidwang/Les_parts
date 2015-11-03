@@ -4,7 +4,7 @@ using System;
 
 namespace com.Sconit.Entity.TMS
 {
-    public partial class Vechile
+    public partial class Mileage
     {
         #region Non O/R Mapping Properties
 

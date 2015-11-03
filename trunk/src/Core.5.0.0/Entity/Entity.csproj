@@ -263,7 +263,7 @@
     <Compile Include="Base\TMS\TransportPriceList.cs" />
     <Compile Include="Base\TMS\TransportPriceListDetail.cs" />
     <Compile Include="Base\TMS\Tonnage.cs" />
-    <Compile Include="Base\TMS\Vechile.cs" />
+    <Compile Include="Base\TMS\Vehicle.cs" />
     <Compile Include="Base\VIEW\HuStatus.cs" />
     <Compile Include="Base\VIEW\LocationDetailView.cs" />
     <Compile Include="Base\VIEW\UserPermissionView.cs" />
@@ -615,7 +615,7 @@
     <Compile Include="TMS\TransportPriceList.cs" />
     <Compile Include="TMS\TransportPriceListDetail.cs" />
     <Compile Include="TMS\Tonnage.cs" />
-    <Compile Include="TMS\Vechile.cs" />
+    <Compile Include="TMS\Vehicle.cs" />
     <Compile Include="VIEW\BillIOB.cs" />
     <Compile Include="VIEW\ExReport.cs" />
     <Compile Include="VIEW\HuStatus.cs" />
@@ -893,7 +893,7 @@
     <Content Include="Base\TMS\TransportPriceList.hbm.xml" />
     <Content Include="Base\TMS\TransportPriceListDetail.hbm.xml" />
     <Content Include="Base\TMS\Tonnage.hbm.xml" />
-    <Content Include="Base\TMS\Vechile.hbm.xml" />
+    <Content Include="Base\TMS\Vehicle.hbm.xml" />
     <EmbeddedResource Include="Base\TMS\Driver.hbm.xml" />
     <EmbeddedResource Include="Base\PRD\SmallSparePartChk.hbm.xml" />
     <EmbeddedResource Include="Base\MD\SwitchTrading.hbm.xml" />

@@ -363,7 +363,7 @@
     <Compile Include="Controllers\SYS\TriggerController.cs" />
     <Compile Include="Controllers\TMS\CarrierController.cs" />
     <Compile Include="Controllers\TMS\DriverController.cs" />
-    <Compile Include="Controllers\TMS\VechileController.cs" />
+    <Compile Include="Controllers\TMS\VehicleController.cs" />
     <Compile Include="Controllers\WebAppBaseController.cs" />
     <Compile Include="Filters\**\*.cs" />
     <Compile Include="Global.asax.cs">
@@ -2452,18 +2452,12 @@
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\Driver\New.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\Driver\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\Driver\_SearchResult.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportAddress\Edit.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportAddress\Index.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportAddress\List.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportAddress\New.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportAddress\_Search.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportAddress\_SearchResult.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vechile\Edit.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vechile\Index.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vechile\List.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vechile\New.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vechile\_Search.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vechile\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vehicle\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vehicle\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vehicle\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vehicle\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vehicle\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vehicle\_SearchResult.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

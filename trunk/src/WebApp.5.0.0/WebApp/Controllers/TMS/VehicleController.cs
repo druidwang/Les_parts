@@ -22,7 +22,7 @@ namespace com.Sconit.Web.Controllers.TMS
     /// <summary>
     /// This controller response to control the Vehicle.
     /// </summary>
-    public class VechileController : WebAppBaseController
+    public class VehicleController : WebAppBaseController
     {
         /// <summary>
         /// hql to get count of the vehicle
@@ -76,7 +76,7 @@ namespace com.Sconit.Web.Controllers.TMS
         public ActionResult _AjaxList(GridCommand command, VehicleSearchModel searchModel)
         {
             SearchStatementModel searchStatementModel = this.PrepareSearchStatement(command, searchModel);
-            return PartialView(GetAjaxPageData<Vechile>(searchStatementModel, command));
+            return PartialView(GetAjaxPageData<Vehicle>(searchStatementModel, command));
         }
 
         /// <summary>
@@ -96,23 +96,23 @@ namespace com.Sconit.Web.Controllers.TMS
         /// <returns>return the result view</returns>
         [HttpPost]
         [SconitAuthorize(Permissions = "Url_Vehicle_Edit")]
-        public ActionResult New(Vechile vechile)
+        public ActionResult New(Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
-                if (base.genericMgr.FindAll<long>(duiplicateVerifyStatement, new object[] { vechile.Code })[0] > 0)
+                if (base.genericMgr.FindAll<long>(duiplicateVerifyStatement, new object[] { vehicle.Code })[0] > 0)
                 {
-                    SaveErrorMessage(Resources.SYS.ErrorMessage.Errors_Existing_Code, vechile.Code);
+                    SaveErrorMessage(Resources.SYS.ErrorMessage.Errors_Existing_Code, vehicle.Code);
                 }
                 else
                 {
-                    base.genericMgr.Create(vechile);
+                    base.genericMgr.Create(vehicle);
                     SaveSuccessMessage(Resources.TMS.Vehicle.Vehicle_Added);
-                    return RedirectToAction("Edit/" + vechile.Code);
+                    return RedirectToAction("Edit/" + vehicle.Code);
                 }
             }
 
-            return View(vechile);
+            return View(vehicle);
         }
 
         /// <summary>
@@ -130,8 +130,8 @@ namespace com.Sconit.Web.Controllers.TMS
             }
             else
             {
-                Vechile Vehicle = base.genericMgr.FindById<Vechile>(id);
-                return View(Vehicle);
+                Vehicle vehicle = base.genericMgr.FindById<Vehicle>(id);
+                return View(vehicle);
             }
         }
 
@@ -141,15 +141,15 @@ namespace com.Sconit.Web.Controllers.TMS
         /// <param name="vehicle">Vehicle Model</param>
         /// <returns>return the result view</returns>
         [SconitAuthorize(Permissions = "Url_Vehicle_Edit")]
-        public ActionResult Edit(Vechile vechile)
+        public ActionResult Edit(Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
-                base.genericMgr.Update(vechile);
+                base.genericMgr.Update(vehicle);
                 SaveSuccessMessage(Resources.TMS.Vehicle.Vehicle_Updated);
             }
 
-            return View(vechile);
+            return View(vehicle);
         }
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace com.Sconit.Web.Controllers.TMS
             }
             else
             {
-                base.genericMgr.DeleteById<Vechile>(code);
+                base.genericMgr.DeleteById<Vehicle>(code);
                 SaveSuccessMessage(Resources.TMS.Vehicle.Vehicle_Deleted);
                 return RedirectToAction("List");
             }
