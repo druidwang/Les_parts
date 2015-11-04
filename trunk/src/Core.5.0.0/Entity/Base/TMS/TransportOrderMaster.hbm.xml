@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+ 	<class name="com.Sconit.Entity.TMS.TransportOrderMaster, com.Sconit.Entity" table="TMS_OrderMstr" lazy="false">
+		<id name="OrderNo" column="OrderNo" type="String" unsaved-value="null" >
+      		<generator class="assigned" />
+        </id>
+		<version name="Version" column="Version" type="Int32" />	
+		<property name="ExternalOrderNo" column="ExtOrderNo" type="String" length="50"/>	
+		<property name="ReferenceOrderNo" column="RefOrderNo" type="String" length="50"/>	
+		<property name="Flow" column="Flow" type="String" length="50"/>	
+		<property name="FlowDescription" column="FlowDesc" type="String" length="255"/>	
+		<property name="Status" column="Status" type="Int16"/>	
+		<property name="Carrier" column="Carrier" type="String" length="50"/>	
+		<property name="CarrierName" column="CarrierNm" type="String" length="255"/>	
+		<property name="Vehicle" column="Vehicle" type="String" length="50"/>	
+		<property name="Tonnage" column="Tonnage" type="String" length="50"/>	
+		<property name="DrivingNo" column="DrivingNo" type="String" length="50"/>	
+		<property name="Driver" column="Driver" type="String" length="50"/>	
+		<many-to-one name="DriverMobilePhone" column="DriverMobilePhone" class=", com.Sconit.Entity.Entity" cascade="none" lazy="proxy" />
+		<property name="LoadVolume" column="LoadVolume" type="Decimal"/>	
+		<property name="LoadWeight" column="LoadWeight" type="Decimal"/>	
+		<property name="MinLoadRate" column="MinLoadRate" type="Decimal"/>	
+		<property name="IsAutoSubmit" column="IsAutoSubmit" type="Boolean"/>	
+		<property name="IsAutoStart" column="IsAutoStart" type="Boolean"/>	
+		<property name="ShipFrom" column="ShipFrom" type="String" length="50"/>	
+		<property name="ShipFromAddress" column="ShipFromAddr" type="String" length="255"/>	
+		<property name="ShipTo" column="ShipTo" type="String" length="50"/>	
+		<property name="ShipToAddress" column="ShipToAddr" type="String" length="255"/>	
+		<property name="TransportMode" column="TransMode" type="Int16"/>	
+		<property name="PriceList" column="PriceList" type="String" length="50"/>	
+		<property name="BillAddress" column="BillAddr" type="String" length="50"/>	
+		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
+		<property name="CreateUserId" column="CreateUser" type="String" length="50" update="false"/>	
+		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
+		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>	
+		<property name="LastModifyUserId" column="LastModifyUser" type="String" length="50"/>	
+		<property name="LastModifyUserName" column="LastModifyUserNm" type="String" length="100"/>	
+		<property name="SubmitDate" column="SubmitDate" type="DateTime"/>	
+		<property name="SubmitUser" column="SubmitUser" type="String" length="50"/>	
+		<property name="SubmitUserName" column="SubmitUserNm" type="String" length="100"/>	
+		<property name="StartDate" column="StartDate" type="DateTime"/>	
+		<property name="StartUser" column="StartUser" type="String" length="50"/>	
+		<property name="StartUserName" column="StartUserNm" type="String" length="100"/>	
+		<property name="CloseDate" column="CloseDate" type="DateTime"/>	
+		<property name="CloseUserName" column="CloseUserNm" type="String" length="100"/>	
+		<property name="CloseUser" column="CloseUser" type="String" length="50"/>	
+		<property name="CancelDate" column="CancelDate" type="DateTime"/>	
+		<property name="CancelUser" column="CancelUser" type="String" length="50"/>	
+		<property name="CancelUserName" column="CancelUserNm" type="String" length="100"/>	
+  	</class>
+</hibernate-mapping>
