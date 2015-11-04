@@ -43,6 +43,8 @@ namespace com.Sconit.Entity.TMS
         [Display(Name = "Driver_Address", ResourceType = typeof(Resources.TMS.Driver))]
         public string Address { get; set; }
 
+        public string LicenseNo { get; set; }
+
         public Int32 CreateUserId { get; set; }
         [Display(Name = "Driver_CreateUserName", ResourceType = typeof(Resources.TMS.Driver))]
         public string CreateUserName { get; set; }

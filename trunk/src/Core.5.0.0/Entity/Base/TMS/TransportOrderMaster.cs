@@ -20,7 +20,7 @@ namespace com.Sconit.Entity.TMS
 		public string Tonnage { get; set; }
 		public string DrivingNo { get; set; }
 		public string Driver { get; set; }
-		public  DriverMobilePhone { get; set; }
+		public string DriverMobilePhone { get; set; }
 		public Decimal? LoadVolume { get; set; }
 		public Decimal? LoadWeight { get; set; }
 		public Decimal? MinLoadRate { get; set; }
@@ -30,7 +30,7 @@ namespace com.Sconit.Entity.TMS
 		public string ShipFromAddress { get; set; }
 		public string ShipTo { get; set; }
 		public string ShipToAddress { get; set; }
-		public Int16 TransportMode { get; set; }
+		public com.Sconit.CodeMaster.TransportMode TransportMode { get; set; }
 		public string PriceList { get; set; }
 		public string BillAddress { get; set; }
 		public DateTime CreateDate { get; set; }

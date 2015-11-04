@@ -16,8 +16,8 @@
 		<property name="Tonnage" column="Tonnage" type="String" length="50"/>	
 		<property name="DrivingNo" column="DrivingNo" type="String" length="50"/>	
 		<property name="Driver" column="Driver" type="String" length="50"/>	
-		<many-to-one name="DriverMobilePhone" column="DriverMobilePhone" class=", com.Sconit.Entity.Entity" cascade="none" lazy="proxy" />
-		<property name="LoadVolume" column="LoadVolume" type="Decimal"/>	
+		<many-to-one name="DriverMobilePhone" column="DriverMobilePhone" type="String" length="50"/>
+        <property name="LoadVolume" column="LoadVolume" type="Decimal"/>	
 		<property name="LoadWeight" column="LoadWeight" type="Decimal"/>	
 		<property name="MinLoadRate" column="MinLoadRate" type="Decimal"/>	
 		<property name="IsAutoSubmit" column="IsAutoSubmit" type="Boolean"/>	

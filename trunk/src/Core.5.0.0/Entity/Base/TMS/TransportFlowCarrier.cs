@@ -11,7 +11,7 @@ namespace com.Sconit.Entity.TMS
 		public Int32 Id { get; set; }
 		public string Flow { get; set; }
 		public Int32 Sequence { get; set; }
-        public string TransportMode { get; set; }
+        public com.Sconit.CodeMaster.TransportMode TransportMode { get; set; }
 		public string Carrier { get; set; }
         public string CarrierName { get; set; }
         public string PriceList { get; set; }

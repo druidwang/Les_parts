@@ -1206,4 +1206,11 @@ namespace com.Sconit.CodeMaster
         Complete = 5,
         Close = 6,
     }
+
+    public enum TransportMode
+    {
+        Land = 0,
+        Sea = 1,
+        Air = 2
+    }
 }

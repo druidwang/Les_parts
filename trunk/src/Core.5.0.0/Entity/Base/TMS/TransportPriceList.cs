@@ -10,7 +10,7 @@ namespace com.Sconit.Entity.TMS
 		
 		public string Code { get; set; }
 		public string Description { get; set; }
-        public string TransportMode { get; set; }
+        public com.Sconit.CodeMaster.TransportMode TransportMode { get; set; }
         public string Carrier { get; set; }
         public string CarrierName { get; set; }
 		public Boolean IsActive { get; set; }

@@ -11,7 +11,7 @@ namespace com.Sconit.Entity.TMS
 		public string Code { get; set; }
 		public string Description { get; set; }
 		public string DrivingNo { get; set; }
-		public string Owner { get; set; }
+        public string Carrier { get; set; }
 		public string Phone { get; set; }
         public string MobilePhone { get; set; }
         public string VIN { get; set; }

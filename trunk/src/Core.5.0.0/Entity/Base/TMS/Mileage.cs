@@ -10,7 +10,7 @@ namespace com.Sconit.Entity.TMS
 		
 		public Int32 Id { get; set; }
 		public string Description { get; set; }
-		public Int16? TransportMode { get; set; }
+        public com.Sconit.CodeMaster.TransportMode TransportMode { get; set; }
 		public string ShipFrom { get; set; }
 		public string ShipFromDescription { get; set; }
 		public string ShipTo { get; set; }
