@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using com.Sconit.CodeMaster;
 
 namespace com.Sconit.Entity.TMS
 {
@@ -13,7 +14,7 @@ namespace com.Sconit.Entity.TMS
 		public string ReferenceOrderNo { get; set; }
 		public string Flow { get; set; }
 		public string FlowDescription { get; set; }
-		public Int16? Status { get; set; }
+        public TransportStatus Status { get; set; }
 		public string Carrier { get; set; }
 		public string CarrierName { get; set; }
 		public string Vehicle { get; set; }

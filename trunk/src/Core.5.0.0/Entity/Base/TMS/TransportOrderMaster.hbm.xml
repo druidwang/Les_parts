@@ -9,7 +9,7 @@
 		<property name="ReferenceOrderNo" column="RefOrderNo" type="String" length="50"/>	
 		<property name="Flow" column="Flow" type="String" length="50"/>	
 		<property name="FlowDescription" column="FlowDesc" type="String" length="255"/>	
-		<property name="Status" column="Status" type="Int16"/>	
+		<property name="Status" column="Status" />	
 		<property name="Carrier" column="Carrier" type="String" length="50"/>	
 		<property name="CarrierName" column="CarrierNm" type="String" length="255"/>	
 		<property name="Vehicle" column="Vehicle" type="String" length="50"/>	
@@ -26,7 +26,7 @@
 		<property name="ShipFromAddress" column="ShipFromAddr" type="String" length="255"/>	
 		<property name="ShipTo" column="ShipTo" type="String" length="50"/>	
 		<property name="ShipToAddress" column="ShipToAddr" type="String" length="255"/>	
-		<property name="TransportMode" column="TransMode" type="Int16"/>	
+		<property name="TransportMode" column="TransMode" />	
 		<property name="PriceList" column="PriceList" type="String" length="50"/>	
 		<property name="BillAddress" column="BillAddr" type="String" length="50"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	

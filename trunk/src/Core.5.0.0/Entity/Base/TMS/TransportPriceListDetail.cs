@@ -14,7 +14,7 @@ namespace com.Sconit.Entity.TMS
         public string ShipFromDescription { get; set; }
         public string ShipTo { get; set; }
         public string ShipToDescription { get; set; }
-        public Int16 PricingMethod { get; set; }
+        public com.Sconit.CodeMaster.TransportPricingMethod PricingMethod { get; set; }
         public DateTime StartDate { get; set; }
 		public DateTime? EndDate { get; set; }
 		public string Currency { get; set; }

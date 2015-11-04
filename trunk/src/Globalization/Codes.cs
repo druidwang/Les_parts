@@ -1213,4 +1213,22 @@ namespace com.Sconit.CodeMaster
         Sea = 1,
         Air = 2
     }
+
+    public enum TransportStatus
+    {
+        Create = 0,
+        Submit = 1,
+        InProcess = 2,
+        Close = 3,
+        Cancel = 4,
+    }
+
+    public enum TransportPricingMethod
+    {
+        Chartered = 0,
+        Distance = 1,
+        Weight = 2,
+        Volumn = 3,
+        LadderVolumn = 4
+    }
 }
