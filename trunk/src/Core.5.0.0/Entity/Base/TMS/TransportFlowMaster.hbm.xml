@@ -4,7 +4,7 @@
 		<id name="Code" column="Code" type="String" unsaved-value="null" >
       		<generator class="assigned" />
         </id>
-		<property name="Description" column="Desc" type="String" length="255"/>	
+		<property name="Description" column="Desc1" type="String" length="255"/>	
 		<property name="IsActive" column="IsActive" type="Boolean"/>	
 		<property name="IsAutoStart" column="IsAutoStart" type="Boolean"/>
         <property name="IsAutoRelease" column="IsAutoRelease" type="Boolean"/>

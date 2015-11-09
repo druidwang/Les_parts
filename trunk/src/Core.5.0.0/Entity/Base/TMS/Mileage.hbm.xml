@@ -4,7 +4,7 @@
 		<id name="Id" column="Id" type="Int32" unsaved-value="0" >
       		<generator class="identity" />
         </id>
-		<property name="Description" column="Desc" type="String" length="255"/>	
+		<property name="Description" column="Desc1" type="String" length="255"/>	
 		<property name="TransportMode" column="TransMode" />	
 		<property name="ShipFrom" column="ShipFrom" type="String" length="50"/>	
 		<property name="ShipFromDescription" column="ShipFromDesc" type="String" length="255"/>	

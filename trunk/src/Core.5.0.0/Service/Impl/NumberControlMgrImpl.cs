@@ -13,6 +13,7 @@ using com.Sconit.Entity.MD;
 using com.Sconit.Entity.BIL;
 using com.Sconit.Entity;
 using com.Sconit.Entity.Exception;
+using com.Sconit.Entity.TMS;
 
 namespace com.Sconit.Service.Impl
 {
@@ -537,6 +538,15 @@ namespace com.Sconit.Service.Impl
             string numberSuffix = GetNextSequence(prefix);
             numberSuffix = numberSuffix.PadLeft(10, '0');
             return prefix + numberSuffix;
+        }
+        #endregion
+
+        #region 获取运输单号
+        public string GetTransportOrderNo(TransportOrderMaster transportOrderMaster)
+        {
+            string numberSuffix = GetNextSequence(BusinessConstants.NUMBERCONTROL_TRANSPORTATION);
+            numberSuffix = numberSuffix.PadLeft(10, '0');
+            return "T" + numberSuffix;
         }
         #endregion
 
