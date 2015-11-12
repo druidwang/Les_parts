@@ -2550,6 +2550,39 @@
 
         #endregion
 
+        #region Carrier Combox
+        public ActionResult _CarrierComboBox(string controlName, string controlId, string selectedValue, bool? isChange, bool? enable, bool? checkPermission)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.IsChange = isChange;
+            ViewBag.Enable = enable;
+            ViewBag.CheckPermission = checkPermission;
+
+            IList<Carrier> customerList = new List<Carrier>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+                customerList = queryMgr.FindAll<Carrier>(selectEqCustomerStatement, selectedValue);
+            }
+            return PartialView(new SelectList(customerList, "Code", "CodeDescription", selectedValue));
+        }
+
+        public ActionResult _AjaxLoadingCarrier(string text, bool checkPermission)
+        {
+            string hql = "from Carrier as c where c.Code like ? and c.IsActive = ?";
+            IList<object> paraList = new List<object>();
+            paraList.Add(text + "%");
+            paraList.Add(true);
+            User user = SecurityContextHolder.Get();
+            IList<Carrier> customerList = queryMgr.FindAll<Carrier>(hql, paraList.ToArray());
+            if (checkPermission)
+            {
+                customerList = customerList.Where(p => user.CustomerPermissions.Contains(p.Code)).Take(maxRow).ToList();
+            }
+            return new JsonResult { Data = new SelectList(customerList, "Code", "CodeDescription", text) };
+        }
+        #endregion
+
         #region Operation
         public ActionResult _OperationDropDownList(string controlName, string controlId, string selectedValue, string Routing, int? CurrentOperation, bool? enable)
         {
