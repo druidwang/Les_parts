@@ -14,7 +14,7 @@
         <property name="IdNumber" column="IdNumber" type="String" length="50" />
         <property name="LicenseNo" column="LicenseNo" type="String" length="50" />
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>
-		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>
+		<property name="CreateUserId" column="CreateUser" type="Int32"/>
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="50" update="false"/>
 		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"  />
 		<property name="LastModifyUserId" column="LastModifyUser" type="Int32" />

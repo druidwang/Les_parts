@@ -15,13 +15,14 @@
 		<property name="Vehicle" column="Vehicle" type="String" length="50"/>	
 		<property name="Tonnage" column="Tonnage" type="String" length="50"/>	
 		<property name="DrivingNo" column="DrivingNo" type="String" length="50"/>	
-		<property name="Driver" column="Driver" type="String" length="50"/>	
-		<many-to-one name="DriverMobilePhone" column="DriverMobilePhone" type="String" length="50"/>
+		<property name="Driver" column="Driver" type="String" length="50"/>
+        <property name="DriverMobilePhone" column="DriverMobilePhone" type="String" length="50"/>
         <property name="LoadVolume" column="LoadVolume" type="Decimal"/>	
 		<property name="LoadWeight" column="LoadWeight" type="Decimal"/>	
 		<property name="MinLoadRate" column="MinLoadRate" type="Decimal"/>	
-		<property name="IsAutoSubmit" column="IsAutoSubmit" type="Boolean"/>	
-		<property name="IsAutoStart" column="IsAutoStart" type="Boolean"/>	
+		<property name="IsAutoRelease" column="IsAutoRelease" type="Boolean"/>
+        <property name="IsAutoStart" column="IsAutoStart" type="Boolean"/>
+        <property name="MultiSitePick" column="MultiSitePick" type="Boolean"/>	
 		<property name="ShipFrom" column="ShipFrom" type="String" length="50"/>	
 		<property name="ShipFromAddress" column="ShipFromAddr" type="String" length="255"/>	
 		<property name="ShipTo" column="ShipTo" type="String" length="50"/>	
@@ -30,22 +31,23 @@
 		<property name="PriceList" column="PriceList" type="String" length="50"/>	
 		<property name="BillAddress" column="BillAddr" type="String" length="50"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
-		<property name="CreateUserId" column="CreateUser" type="String" length="50" update="false"/>	
+		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>	
-		<property name="LastModifyUserId" column="LastModifyUser" type="String" length="50"/>	
+		<property name="LastModifyUserId" column="LastModifyUser" type="Int32"/>	
 		<property name="LastModifyUserName" column="LastModifyUserNm" type="String" length="100"/>	
 		<property name="SubmitDate" column="SubmitDate" type="DateTime"/>	
-		<property name="SubmitUser" column="SubmitUser" type="String" length="50"/>	
+		<property name="SubmitUserId" column="SubmitUser" type="Int32"/>	
 		<property name="SubmitUserName" column="SubmitUserNm" type="String" length="100"/>	
 		<property name="StartDate" column="StartDate" type="DateTime"/>	
-		<property name="StartUser" column="StartUser" type="String" length="50"/>	
+		<property name="StartUserId" column="StartUser" type="Int32"/>	
 		<property name="StartUserName" column="StartUserNm" type="String" length="100"/>	
 		<property name="CloseDate" column="CloseDate" type="DateTime"/>	
 		<property name="CloseUserName" column="CloseUserNm" type="String" length="100"/>	
-		<property name="CloseUser" column="CloseUser" type="String" length="50"/>	
+		<property name="CloseUserId" column="CloseUser" type="Int32"/>	
 		<property name="CancelDate" column="CancelDate" type="DateTime"/>	
-		<property name="CancelUser" column="CancelUser" type="String" length="50"/>	
-		<property name="CancelUserName" column="CancelUserNm" type="String" length="100"/>	
-  	</class>
+		<property name="CancelUserId" column="CancelUser" type="Int32"/>	
+		<property name="CancelUserName" column="CancelUserNm" type="String" length="100"/>
+        <property name="LicenseNo" column="LicenseNo" type="String" length="50"/>
+    </class>
 </hibernate-mapping>

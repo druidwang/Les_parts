@@ -10,10 +10,10 @@
         <property name="CarrierName" column="CarrierNm" type="String" length="100"/>	
 		<property name="IsActive" column="IsActive" type="Boolean"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="255" update="false"/>	
-		<property name="CreateUserId" column="CreateUser" type="String" length="50" update="false"/>	
+		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
 		<property name="LastModifyUserName" column="LastModifyUserNm" type="String" length="255"/>	
-		<property name="LastModifyUserId" column="LastModifyUser" type="String" length="50"/>	
+		<property name="LastModifyUserId" column="LastModifyUser" type="Int32"/>	
 		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>	
   	</class>
 </hibernate-mapping>

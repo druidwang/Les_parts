@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.TMS
 {
     [Serializable]
-    public partial class TransportFlowRoute : EntityBase
+    public partial class TransportFlowRoute : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
 		
@@ -14,10 +14,10 @@ namespace com.Sconit.Entity.TMS
         public string ShipAddress { get; set; }
         public string ShipAddressDescription { get; set; }
 		public string CreateUserName { get; set; }
-		public string CreateUserId { get; set; }
+        public Int32 CreateUserId { get; set; }
 		public DateTime CreateDate { get; set; }
 		public string LastModifyUserName { get; set; }
-		public string LastModifyUserId { get; set; }
+        public Int32 LastModifyUserId { get; set; }
 		public DateTime LastModifyDate { get; set; }
         
         #endregion

@@ -96,6 +96,7 @@
     <Compile Include="AutoMapperInstaller.cs" />
     <Compile Include="BaseMgr.cs" />
     <Compile Include="Impl\TaskMgrImpl.cs" />
+    <Compile Include="Impl\TransportMgrImple.cs" />
     <Compile Include="IMrp\BaseMrpMgr.cs" />
     <Compile Include="Impl\CustomizationMgrImpl.cs" />
     <Compile Include="ICustomizationMgr.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="IStockTakeMgr.cs" />
     <Compile Include="ISystemMgr.cs" />
     <Compile Include="ITaskMgr.cs" />
+    <Compile Include="ITransportMgr.cs" />
     <Compile Include="IVehicleInFactoryMgr.cs" />
     <Compile Include="IWorkingCalendarMgr.cs" />
     <Compile Include="IMrp\IMrpMgr.cs" />

@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.TMS
 {
     [Serializable]
-    public partial class Driver : EntityBase,IAuditable
+    public partial class Driver : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
 
