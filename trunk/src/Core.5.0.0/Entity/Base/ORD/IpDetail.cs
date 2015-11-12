@@ -161,6 +161,10 @@ namespace com.Sconit.Entity.ORD
         [Export(ExportName = "DistributionIpDetail", ExportSeq =30, ExportTitle = "IpMaster_Flow", ExportTitleResourceType = typeof(Resources.ORD.IpMaster))] 
         [Export(ExportName = "ProcumentIpDetail", ExportSeq = 40, ExportTitle = "IpMaster_Flow", ExportTitleResourceType = typeof(Resources.ORD.IpMaster))] 
         public string Flow { get; set; }
+
+        public Decimal PalletLotSize { get; set; }
+        public Decimal PackageVolumn { get; set; }
+        public Decimal PackageWeight { get; set; }
         #endregion
 
 		public override int GetHashCode()

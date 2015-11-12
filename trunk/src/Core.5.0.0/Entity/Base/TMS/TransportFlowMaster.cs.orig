@@ -23,24 +23,36 @@ namespace com.Sconit.Entity.TMS
 
         [Display(Name = "TransportFlowMaster_IsAutoRelease", ResourceType = typeof(Resources.TMS.TransportFlow))]
         public Boolean IsAutoRelease { get; set; }
+<<<<<<< HEAD
 
         [Display(Name = "TransportFlowMaster_MinLoadRate", ResourceType = typeof(Resources.TMS.TransportFlow))]
+=======
+        public Boolean MultiSitePick { get; set; }
+>>>>>>> bbf23ee8cc4acd49e895aed44fe85c8fccb906d3
         public Decimal MinLoadRate { get; set; }
 
         [Display(Name = "Common_CreateUserName", ResourceType = typeof(Resources.SYS.Global))]
 		public string CreateUserName { get; set; }
+<<<<<<< HEAD
 
 		public string CreateUserId { get; set; }
 
         [Display(Name = "Common_CreateDate", ResourceType = typeof(Resources.SYS.Global))]
+=======
+        public Int32 CreateUserId { get; set; }
+>>>>>>> bbf23ee8cc4acd49e895aed44fe85c8fccb906d3
 		public DateTime CreateDate { get; set; }
 
         [Display(Name = "Common_LastModifyUserName", ResourceType = typeof(Resources.SYS.Global))]
 		public string LastModifyUserName { get; set; }
+<<<<<<< HEAD
 
 		public string LastModifyUserId { get; set; }
 
         [Display(Name = "Common_LastModifyDate", ResourceType = typeof(Resources.SYS.Global))]
+=======
+        public Int32 LastModifyUserId { get; set; }
+>>>>>>> bbf23ee8cc4acd49e895aed44fe85c8fccb906d3
 		public DateTime LastModifyDate { get; set; }
         
         #endregion

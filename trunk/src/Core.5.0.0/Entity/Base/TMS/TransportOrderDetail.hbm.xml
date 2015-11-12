@@ -7,8 +7,9 @@
 		<version name="Version" column="Version" type="Int32" />	
 		<property name="OrderNo" column="OrderNo" type="String" length="50"/>	
 		<property name="Sequence" column="Seq" type="Int32"/>	
-		<property name="IpNo" column="IpNo" type="String" length="50"/>	
-		<property name="OrderRouteId" column="OrderRouteId" type="Int32"/>	
+		<property name="IpNo" column="IpNo" type="String" length="50"/>
+        <property name="OrderRouteFrom" column="OrderRouteFrom" type="Int32"/>
+        <property name="OrderRouteTo" column="OrderRouteTo" type="Int32"/>	
 		<property name="EstPalletQty" column="EstPalletQty" type="Int32"/>	
 		<property name="PalletQty" column="PalletQty" type="Int32"/>	
 		<property name="EstVolume" column="EstVolume" type="Decimal"/>	
@@ -22,19 +23,27 @@
 		<property name="PartyFrom" column="PartyFrom" type="String" length="50"/>	
 		<property name="PartyFromName" column="PartyFromNm" type="String" length="100"/>	
 		<property name="PartyTo" column="PartyTo" type="String" length="50"/>	
-		<property name="PartyToName" column="PartyToNm" type="String" length="100"/>	
-		<property name="ShipFrom" column="ShipFrom" type="String" length="50"/>	
-		<property name="ShipFromAddress" column="ShipFromAddr" type="String" length="255"/>	
-		<property name="ShipTo" column="ShipTo" type="String" length="50"/>	
-		<property name="ShipToAddress" column="ShipToAddr" type="String" length="255"/>	
-		<property name="Dock" column="Dock" type="String" length="50"/>	
+		<property name="PartyToName" column="PartyToNm" type="String" length="100"/>
+        <property name="ShipFrom" column="ShipFrom" type="String" length="50" />
+        <property name="ShipFromAddress" column="ShipFromAddr" type="String" length="256" />
+        <property name="ShipFromTel" column="ShipFromTel" type="String" length="50" />
+        <property name="ShipFromCell" column="ShipFromCell" type="String" length="50" />
+        <property name="ShipFromFax" column="ShipFromFax" type="String" length="50" />
+        <property name="ShipFromContact" column="ShipFromContact" type="String" length="50" />
+        <property name="ShipTo" column="ShipTo" type="String" length="50" />
+        <property name="ShipToAddress" column="ShipToAddr" type="String" length="256" />
+        <property name="ShipToTel" column="ShipToTel" type="String" length="50" />
+        <property name="ShipToCell" column="ShipToCell" type="String" length="50" />
+        <property name="ShipToFax" column="ShipToFax" type="String" length="50" />
+        <property name="ShipToContact" column="ShipToContact" type="String" length="50" />
+        <property name="Dock" column="Dock" type="String" length="100" />
 		<property name="Distance" column="Distance" type="Decimal"/>	
 		<property name="IsReceived" column="IsRec" type="Boolean"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
-		<property name="CreateUserId" column="CreateUser" type="String" length="50" update="false"/>	
+		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="255" update="false"/>	
 		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>	
-		<property name="LastModifyUserId" column="LastModifyUser" type="String" length="50"/>	
+		<property name="LastModifyUserId" column="LastModifyUser" type="Int32"/>	
 		<property name="LastModifyUserName" column="LastModifyUserNm" type="String" length="255"/>	
   	</class>
 </hibernate-mapping>

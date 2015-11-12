@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.TMS
 {
     [Serializable]
-    public partial class TransportOrderDetail : EntityBase
+    public partial class TransportOrderDetail : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
 		
@@ -12,8 +12,9 @@ namespace com.Sconit.Entity.TMS
 		public string OrderNo { get; set; }
 		public Int32 Sequence { get; set; }
 		public string IpNo { get; set; }
-		public Int32? OrderRouteId { get; set; }
-		public Int32? EstPalletQty { get; set; }
+        public Int32 OrderRouteFrom { get; set; }
+        public Int32 OrderRouteTo { get; set; }
+        public Int32? EstPalletQty { get; set; }
 		public Int32? PalletQty { get; set; }
 		public Decimal? EstVolume { get; set; }
 		public Decimal? Volume { get; set; }
@@ -27,18 +28,26 @@ namespace com.Sconit.Entity.TMS
 		public string PartyFromName { get; set; }
 		public string PartyTo { get; set; }
 		public string PartyToName { get; set; }
-		public string ShipFrom { get; set; }
-		public string ShipFromAddress { get; set; }
-		public string ShipTo { get; set; }
-		public string ShipToAddress { get; set; }
-		public string Dock { get; set; }
+        public string ShipFrom { get; set; }
+        public string ShipFromAddress { get; set; }
+        public string ShipFromTel { get; set; }
+        public string ShipFromCell { get; set; }
+        public string ShipFromFax { get; set; }
+        public string ShipFromContact { get; set; }
+        public string ShipTo { get; set; }
+        public string ShipToAddress { get; set; }
+        public string ShipToTel { get; set; }
+        public string ShipToCell { get; set; }
+        public string ShipToFax { get; set; }
+        public string ShipToContact { get; set; }
+        public string Dock { get; set; }
 		public Decimal? Distance { get; set; }
 		public Boolean IsReceived { get; set; }
 		public DateTime CreateDate { get; set; }
-		public string CreateUserId { get; set; }
+        public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
 		public DateTime LastModifyDate { get; set; }
-		public string LastModifyUserId { get; set; }
+        public Int32 LastModifyUserId { get; set; }
 		public string LastModifyUserName { get; set; }
 		public Int32 Version { get; set; }
         

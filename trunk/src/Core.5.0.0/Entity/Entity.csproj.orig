@@ -895,20 +895,30 @@
     <EmbeddedResource Include="Base\Report\CustReportDetail.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Base\ORD\KBOrderBomDetail.xml" />
-    <Content Include="Base\TMS\Mileage.hbm.xml" />
+<<<<<<< HEAD
+    <EmbeddedResource Include="Base\TMS\TransportFlowCarrier.hbm.xml" />
+    <EmbeddedResource Include="Base\TMS\TransportFlowMaster.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Base\TMS\TransportFlowRoute.hbm.xml" />
+    <EmbeddedResource Include="Base\TMS\TransportPriceList.hbm.xml" />
+    <EmbeddedResource Include="Base\TMS\TransportPriceListDetail.hbm.xml" />
+    <EmbeddedResource Include="Base\TMS\Tonnage.hbm.xml" />
+    <EmbeddedResource Include="Base\TMS\Vehicle.hbm.xml" />
+=======
+    <Content Include="Base\ORD\KBOrderBomDetail.xml" />
     <Content Include="Base\TMS\Mileage.hbm.xml" />
+    <Content Include="Base\TMS\TransportFlowCarrier.hbm.xml" />
+    <Content Include="Base\TMS\TransportFlowMaster.hbm.xml" />
+    <Content Include="Base\TMS\TransportFlowRoute.hbm.xml" />
     <Content Include="Base\TMS\TransportOrderDetail.hbm.xml" />
     <Content Include="Base\TMS\TransportOrderMaster.hbm.xml" />
     <Content Include="Base\TMS\TransportOrderRoute.hbm.xml" />
-    <EmbeddedResource Include="Base\TMS\Vehicle.hbm.xml" />
     <Content Include="Base\TMS\TransportPriceList.hbm.xml" />
     <Content Include="Base\TMS\TransportPriceListDetail.hbm.xml" />
     <Content Include="Base\TMS\Tonnage.hbm.xml" />
     <Content Include="Base\TMS\Vehicle.hbm.xml" />
+>>>>>>> bbf23ee8cc4acd49e895aed44fe85c8fccb906d3
     <EmbeddedResource Include="Base\TMS\Driver.hbm.xml" />
     <EmbeddedResource Include="Base\PRD\SmallSparePartChk.hbm.xml" />
     <EmbeddedResource Include="Base\MD\SwitchTrading.hbm.xml" />

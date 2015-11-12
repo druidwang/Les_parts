@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.TMS
 {
     [Serializable]
-    public partial class TransportFlowRoute : EntityBase, IAuditable
+    public partial class TransportFlowCarrier : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
 		
@@ -16,11 +16,20 @@ namespace com.Sconit.Entity.TMS
         [Display(Name = "TransportFlow_Sequence", ResourceType = typeof(Resources.TMS.TransportFlow))]
 		public Int32 Sequence { get; set; }
 
-        [Display(Name = "TransportFlowRoute_ShipAddress", ResourceType = typeof(Resources.TMS.TransportFlow))]
-        public string ShipAddress { get; set; }
+        public com.Sconit.CodeMaster.TransportMode TransportMode { get; set; }
 
-        [Display(Name = "TransportFlowRoute_ShipAddressDescription", ResourceType = typeof(Resources.TMS.TransportFlow))]
-        public string ShipAddressDescription { get; set; }
+        [Display(Name = "TransportFlowCarrier_Carrier", ResourceType = typeof(Resources.TMS.TransportFlow))]
+		public string Carrier { get; set; }
+
+        [Display(Name = "TransportFlowCarrier_CarrierName", ResourceType = typeof(Resources.TMS.TransportFlow))]
+        public string CarrierName { get; set; }
+
+        [Display(Name = "TransportFlowCarrier_PriceList", ResourceType = typeof(Resources.TMS.TransportFlow))]
+        public string PriceList { get; set; }
+
+        [Display(Name = "TransportFlowCarrier_BillAddress", ResourceType = typeof(Resources.TMS.TransportFlow))]
+		public string BillAddress { get; set; }
+<<<<<<< HEAD
 
         [Display(Name = "Common_CreateUserName", ResourceType = typeof(Resources.SYS.Global))]
         public string CreateUserName { get; set; }
@@ -37,6 +46,14 @@ namespace com.Sconit.Entity.TMS
 
         [Display(Name = "Common_LastModifyDate", ResourceType = typeof(Resources.SYS.Global))]
         public DateTime LastModifyDate { get; set; }
+=======
+		public string CreateUserName { get; set; }
+        public Int32 CreateUserId { get; set; }
+		public DateTime CreateDate { get; set; }
+		public string LastModifyUserName { get; set; }
+        public Int32 LastModifyUserId { get; set; }
+		public DateTime LastModifyDate { get; set; }
+>>>>>>> bbf23ee8cc4acd49e895aed44fe85c8fccb906d3
         
         #endregion
 
@@ -54,7 +71,7 @@ namespace com.Sconit.Entity.TMS
 
         public override bool Equals(object obj)
         {
-            TransportFlowRoute another = obj as TransportFlowRoute;
+            TransportFlowCarrier another = obj as TransportFlowCarrier;
 
             if (another == null)
             {

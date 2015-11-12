@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.TMS
 {
     [Serializable]
-    public partial class TransportOrderRoute : EntityBase
+    public partial class TransportOrderRoute : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
 		
@@ -12,7 +12,7 @@ namespace com.Sconit.Entity.TMS
 		public string OrderNo { get; set; }
 		public Int32 Sequence { get; set; }
 		public string ShipAddress { get; set; }
-		public string ShipAddrDescription { get; set; }
+        public string ShipAddressDescription { get; set; }
 		public Decimal? Distance { get; set; }
 		public DateTime? EstDepartTime { get; set; }
 		public DateTime? EstArriveTime { get; set; }
@@ -25,13 +25,13 @@ namespace com.Sconit.Entity.TMS
 		public Decimal? LoadRate { get; set; }
 		public Decimal? WeightRate { get; set; }
 		public DateTime CreateDate { get; set; }
-		public string CreateUserId { get; set; }
+        public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
 		public DateTime LastModifyDate { get; set; }
-		public string LastModifyUserId { get; set; }
+        public Int32 LastModifyUserId { get; set; }
 		public string LastModifyUserName { get; set; }
 		public Int32 Version { get; set; }
-        
+        public Boolean IsArrive { get; set; }
         #endregion
 
 		public override int GetHashCode()

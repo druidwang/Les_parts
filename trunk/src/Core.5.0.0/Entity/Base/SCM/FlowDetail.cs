@@ -188,6 +188,10 @@ namespace com.Sconit.Entity.SCM
         public string ExtraLocationTo { get; set; }
         [Display(Name = "FlowDetail_ExtraLocationFrom", ResourceType = typeof(Resources.SCM.FlowDetail))]
         public string ExtraLocationFrom { get; set; }
+
+        public Decimal PalletLotSize { get; set; }
+        public Decimal PackageVolumn { get; set; }
+        public Decimal PackageWeight { get; set; }
         #endregion
 
         public override int GetHashCode()

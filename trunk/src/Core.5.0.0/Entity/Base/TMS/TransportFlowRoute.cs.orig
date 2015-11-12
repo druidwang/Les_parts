@@ -21,6 +21,7 @@ namespace com.Sconit.Entity.TMS
 
         [Display(Name = "TransportFlowRoute_ShipAddressDescription", ResourceType = typeof(Resources.TMS.TransportFlow))]
         public string ShipAddressDescription { get; set; }
+<<<<<<< HEAD
 
         [Display(Name = "Common_CreateUserName", ResourceType = typeof(Resources.SYS.Global))]
         public string CreateUserName { get; set; }
@@ -37,6 +38,14 @@ namespace com.Sconit.Entity.TMS
 
         [Display(Name = "Common_LastModifyDate", ResourceType = typeof(Resources.SYS.Global))]
         public DateTime LastModifyDate { get; set; }
+=======
+		public string CreateUserName { get; set; }
+        public Int32 CreateUserId { get; set; }
+		public DateTime CreateDate { get; set; }
+		public string LastModifyUserName { get; set; }
+        public Int32 LastModifyUserId { get; set; }
+		public DateTime LastModifyDate { get; set; }
+>>>>>>> bbf23ee8cc4acd49e895aed44fe85c8fccb906d3
         
         #endregion
 

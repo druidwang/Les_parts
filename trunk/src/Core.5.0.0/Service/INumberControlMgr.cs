@@ -7,6 +7,7 @@ using com.Sconit.Entity.SCM;
 using com.Sconit.Entity.CUST;
 using com.Sconit.Entity.MD;
 using com.Sconit.Entity.BIL;
+using com.Sconit.Entity.TMS;
 
 namespace com.Sconit.Service
 {
@@ -41,6 +42,8 @@ namespace com.Sconit.Service
         string GetKanBanCardNo();
 
         string GetBillNo(BillMaster billMaster);
+
+        string GetTransportOrderNo(TransportOrderMaster transportOrderMaster);
 
         IDictionary<string, decimal> GetHuId(FlowDetail flowDetail);
 
