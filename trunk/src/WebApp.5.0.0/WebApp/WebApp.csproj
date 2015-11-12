@@ -363,6 +363,7 @@
     <Compile Include="Controllers\SYS\TriggerController.cs" />
     <Compile Include="Controllers\TMS\CarrierController.cs" />
     <Compile Include="Controllers\TMS\DriverController.cs" />
+    <Compile Include="Controllers\TMS\TransportFlowController.cs" />
     <Compile Include="Controllers\TMS\VehicleController.cs" />
     <Compile Include="Controllers\WebAppBaseController.cs" />
     <Compile Include="Filters\**\*.cs" />
@@ -540,6 +541,7 @@
     <Compile Include="Models\SearchModels\TMS\CarrierSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\DriverSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\TransportAddressSearchModel.cs" />
+    <Compile Include="Models\SearchModels\TMS\TransportFlowSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\VehicleSearchModel.cs" />
     <Compile Include="Pluming\**\*.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2458,6 +2460,25 @@
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vehicle\New.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vehicle\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\Vehicle\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_Binded.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_Binding.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_BindingEdit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_BindingNew.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_Detail.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_DetailEdit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_DetailNew.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_DetailSearch.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_DetailSearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\_Strategy.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\List.cshtml" />
+    <Content Include="Views\Common\_CarrierComboBox.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CarrierGridForeignKey.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

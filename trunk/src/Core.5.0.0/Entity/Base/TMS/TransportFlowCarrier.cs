@@ -9,19 +9,42 @@ namespace com.Sconit.Entity.TMS
         #region O/R Mapping Properties
 		
 		public Int32 Id { get; set; }
+
+        [Display(Name = "TransportFlowMaster_Code", ResourceType = typeof(Resources.TMS.TransportFlow))]
 		public string Flow { get; set; }
+
+        [Display(Name = "TransportFlow_Sequence", ResourceType = typeof(Resources.TMS.TransportFlow))]
 		public Int32 Sequence { get; set; }
+
         public com.Sconit.CodeMaster.TransportMode TransportMode { get; set; }
+
+        [Display(Name = "TransportFlowCarrier_Carrier", ResourceType = typeof(Resources.TMS.TransportFlow))]
 		public string Carrier { get; set; }
+
+        [Display(Name = "TransportFlowCarrier_CarrierName", ResourceType = typeof(Resources.TMS.TransportFlow))]
         public string CarrierName { get; set; }
+
+        [Display(Name = "TransportFlowCarrier_PriceList", ResourceType = typeof(Resources.TMS.TransportFlow))]
         public string PriceList { get; set; }
+
+        [Display(Name = "TransportFlowCarrier_BillAddress", ResourceType = typeof(Resources.TMS.TransportFlow))]
 		public string BillAddress { get; set; }
-		public string CreateUserName { get; set; }
-		public string CreateUserId { get; set; }
-		public DateTime CreateDate { get; set; }
-		public string LastModifyUserName { get; set; }
-		public string LastModifyUserId { get; set; }
-		public DateTime LastModifyDate { get; set; }
+
+        [Display(Name = "Common_CreateUserName", ResourceType = typeof(Resources.SYS.Global))]
+        public string CreateUserName { get; set; }
+
+        public string CreateUserId { get; set; }
+
+        [Display(Name = "Common_CreateDate", ResourceType = typeof(Resources.SYS.Global))]
+        public DateTime CreateDate { get; set; }
+
+        [Display(Name = "Common_LastModifyUserName", ResourceType = typeof(Resources.SYS.Global))]
+        public string LastModifyUserName { get; set; }
+
+        public string LastModifyUserId { get; set; }
+
+        [Display(Name = "Common_LastModifyDate", ResourceType = typeof(Resources.SYS.Global))]
+        public DateTime LastModifyDate { get; set; }
         
         #endregion
 

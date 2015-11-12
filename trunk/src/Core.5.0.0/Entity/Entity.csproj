@@ -257,9 +257,13 @@
     <Compile Include="Base\SYS\SNRule.cs" />
     <Compile Include="Base\SYS\SNRuleExt.cs" />
     <Compile Include="Base\TMS\Driver.cs" />
+    <Compile Include="Base\TMS\Mileage.cs" />
     <Compile Include="Base\TMS\TransportFlowCarrier.cs" />
     <Compile Include="Base\TMS\TransportFlowMaster.cs" />
     <Compile Include="Base\TMS\TransportFlowRoute.cs" />
+    <Compile Include="Base\TMS\TransportOrderDetail.cs" />
+    <Compile Include="Base\TMS\TransportOrderMaster.cs" />
+    <Compile Include="Base\TMS\TransportOrderRoute.cs" />
     <Compile Include="Base\TMS\TransportPriceList.cs" />
     <Compile Include="Base\TMS\TransportPriceListDetail.cs" />
     <Compile Include="Base\TMS\Tonnage.cs" />
@@ -609,9 +613,13 @@
     <Compile Include="SYS\SNRule.cs" />
     <Compile Include="TMSConstants.cs" />
     <Compile Include="TMS\Driver.cs" />
+    <Compile Include="TMS\Mileage.cs" />
     <Compile Include="TMS\TransportFlowCarrier.cs" />
     <Compile Include="TMS\TransportFlowMaster.cs" />
     <Compile Include="TMS\TransportFlowRouting.cs" />
+    <Compile Include="TMS\TransportOrderDetail.cs" />
+    <Compile Include="TMS\TransportOrderMaster.cs" />
+    <Compile Include="TMS\TransportOrderRoute.cs" />
     <Compile Include="TMS\TransportPriceList.cs" />
     <Compile Include="TMS\TransportPriceListDetail.cs" />
     <Compile Include="TMS\Tonnage.cs" />
@@ -887,9 +895,16 @@
     <EmbeddedResource Include="Base\Report\CustReportDetail.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Base\TMS\TransportFlowCarrier.hbm.xml" />
-    <Content Include="Base\TMS\TransportFlowMaster.hbm.xml" />
-    <Content Include="Base\TMS\TransportFlowRoute.hbm.xml" />
+    <Content Include="Base\ORD\KBOrderBomDetail.xml" />
+    <Content Include="Base\TMS\Mileage.hbm.xml" />
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\TMS\TransportFlowRoute.hbm.xml" />
+    <Content Include="Base\TMS\Mileage.hbm.xml" />
+    <Content Include="Base\TMS\TransportOrderDetail.hbm.xml" />
+    <Content Include="Base\TMS\TransportOrderMaster.hbm.xml" />
+    <Content Include="Base\TMS\TransportOrderRoute.hbm.xml" />
+    <EmbeddedResource Include="Base\TMS\Vehicle.hbm.xml" />
     <Content Include="Base\TMS\TransportPriceList.hbm.xml" />
     <Content Include="Base\TMS\TransportPriceListDetail.hbm.xml" />
     <Content Include="Base\TMS\Tonnage.hbm.xml" />

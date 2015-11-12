@@ -268,6 +268,10 @@ namespace com.Sconit.Entity.ORD
         [Export(ExportName = "DistributionReturnOrderDetail", ExportSeq = 140)]
         [Display(Name = "Hu_Remark", ResourceType = typeof(Resources.INV.Hu))]
         public string Remark { get; set; }
+
+        public Decimal PalletLotSize { get; set; }
+        public Decimal PackageVolumn { get; set; }
+        public Decimal PackageWeight { get; set; }
         #endregion
 
         public override int GetHashCode()

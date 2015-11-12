@@ -40,16 +40,19 @@
     }
 
     function onLocationDataBinding(e) {
+        debugger;
         e.data = {
             "Region": $("#Region").val(),
             "checkRegion": true
         };
     }
     function onLocationDataBound() {
+        debugger;
         $("tr.t-no-data td").html("@Resources.GridLocalization.NoRecords");
     }
 
     function Location_DataBinding(e) {
+        debugger;
         e.data = {
             "Region": $("#Region").val(),
             "checkRegion": true

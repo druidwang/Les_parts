@@ -5,7 +5,7 @@ using com.Sconit.CodeMaster;
 namespace com.Sconit.Entity.TMS
 {
     [Serializable]
-    public partial class TransportOrderMaster : EntityBase
+    public partial class TransportOrderMaster : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
 		
@@ -25,9 +25,10 @@ namespace com.Sconit.Entity.TMS
 		public Decimal? LoadVolume { get; set; }
 		public Decimal? LoadWeight { get; set; }
 		public Decimal? MinLoadRate { get; set; }
-		public Boolean? IsAutoSubmit { get; set; }
-		public Boolean? IsAutoStart { get; set; }
-		public string ShipFrom { get; set; }
+		public Boolean IsAutoRelease { get; set; }
+		public Boolean IsAutoStart { get; set; }
+        public Boolean MultiSitePick { get; set; }
+        public string ShipFrom { get; set; }
 		public string ShipFromAddress { get; set; }
 		public string ShipTo { get; set; }
 		public string ShipToAddress { get; set; }
@@ -35,24 +36,25 @@ namespace com.Sconit.Entity.TMS
 		public string PriceList { get; set; }
 		public string BillAddress { get; set; }
 		public DateTime CreateDate { get; set; }
-		public string CreateUserId { get; set; }
+        public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
 		public DateTime LastModifyDate { get; set; }
-		public string LastModifyUserId { get; set; }
+        public Int32 LastModifyUserId { get; set; }
 		public string LastModifyUserName { get; set; }
 		public DateTime? SubmitDate { get; set; }
-		public string SubmitUser { get; set; }
+        public Int32 SubmitUserId { get; set; }
 		public string SubmitUserName { get; set; }
 		public DateTime? StartDate { get; set; }
-		public string StartUser { get; set; }
+        public Int32 StartUserId { get; set; }
 		public string StartUserName { get; set; }
 		public DateTime? CloseDate { get; set; }
 		public string CloseUserName { get; set; }
-		public string CloseUser { get; set; }
+        public Int32 CloseUserId { get; set; }
 		public DateTime? CancelDate { get; set; }
-		public string CancelUser { get; set; }
+        public Int32 CancelUserId { get; set; }
 		public string CancelUserName { get; set; }
 		public Int32? Version { get; set; }
+        public string LicenseNo { get; set; }
         
         #endregion
 

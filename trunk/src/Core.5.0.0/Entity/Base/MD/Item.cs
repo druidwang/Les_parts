@@ -129,6 +129,9 @@ namespace com.Sconit.Entity.MD
         [Display(Name = "Item_Division", ResourceType = typeof(Resources.MD.Item))]
         public string Division { get; set; }
 
+        public Decimal PalletLotSize { get; set; }
+        public Decimal PackageVolumn { get; set; }
+        public Decimal PackageWeight { get; set; }
         #endregion
 
         public override int GetHashCode()

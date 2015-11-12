@@ -2742,6 +2742,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityPreference.zh-CN.resx</DependentUpon>
     </Compile>
+    <Compile Include="TMS\TransportFlow.Designer.cs">
+      <DependentUpon>TransportFlow.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="TMS\TransportFlow.en-US.Designer.cs">
+      <DependentUpon>TransportFlow.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="TMS\TransportFlow.zh-CN.Designer.cs">
+      <DependentUpon>TransportFlow.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="TMS\Driver.Designer.cs">
       <DependentUpon>Driver.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5021,6 +5036,21 @@
     <EmbeddedResource Include="Report\LocationDetailIOB.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LocationDetailIOB.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMS\TransportFlow.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TransportFlow.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMS\TransportFlow.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TransportFlow.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMS\TransportFlow.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TransportFlow.zh-CN.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TMS\Driver.en-US.resx">
