@@ -540,6 +540,7 @@
     <Compile Include="Models\SearchModels\SYS\EntityPreferenceSearchModel.cs" />
     <Compile Include="Models\SearchModels\SYS\SNRuleSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\CarrierSearchModel.cs" />
+    <Compile Include="Models\SearchModels\TMS\TransportPriceListDetSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\DriverSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\TransportAddressSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\TransportFlowSearchModel.cs" />

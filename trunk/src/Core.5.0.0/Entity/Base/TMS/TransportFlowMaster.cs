@@ -45,7 +45,6 @@ namespace com.Sconit.Entity.TMS
 
         [Display(Name = "Common_LastModifyDate", ResourceType = typeof(Resources.SYS.Global))]
 		public DateTime LastModifyDate { get; set; }
-        public Boolean MultiSitePick { get; set; }
 
         #endregion
 
@@ -74,37 +73,5 @@ namespace com.Sconit.Entity.TMS
             	return (this.Code == another.Code);
             }
         } 
-    }
-	
-}
-
-        #endregion
-
-		public override int GetHashCode()
-        {
-			if (Code != null)
-            {
-                return Code.GetHashCode();
-            }
-            else
-            {
-                return base.GetHashCode();
-            }
-        }
-
-        public override bool Equals(object obj)
-        {
-            TransportFlowMaster another = obj as TransportFlowMaster;
-
-            if (another == null)
-            {
-                return false;
-            }
-            else
-            {
-            	return (this.Code == another.Code);
-            }
-        } 
-    }
-	
+    }	
 }
