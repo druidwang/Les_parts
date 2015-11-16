@@ -24,6 +24,9 @@ namespace com.Sconit.Entity.TMS
         [Display(Name = "TransportFlowMaster_IsAutoRelease", ResourceType = typeof(Resources.TMS.TransportFlow))]
         public Boolean IsAutoRelease { get; set; }
 
+        [Display(Name = "TransportFlowMaster_MultiSitePick", ResourceType = typeof(Resources.TMS.TransportFlow))]
+        public Boolean MultiSitePick { get; set; }
+
         [Display(Name = "TransportFlowMaster_MinLoadRate", ResourceType = typeof(Resources.TMS.TransportFlow))]
         public Decimal MinLoadRate { get; set; }
 
@@ -38,11 +41,10 @@ namespace com.Sconit.Entity.TMS
         [Display(Name = "Common_LastModifyUserName", ResourceType = typeof(Resources.SYS.Global))]
 		public string LastModifyUserName { get; set; }
 
-        public Int32 LastModifyUserId { get; set; }
+		public Int32 LastModifyUserId { get; set; }
 
         [Display(Name = "Common_LastModifyDate", ResourceType = typeof(Resources.SYS.Global))]
 		public DateTime LastModifyDate { get; set; }
-        public Boolean MultiSitePick { get; set; }
 
         #endregion
 
@@ -71,6 +73,5 @@ namespace com.Sconit.Entity.TMS
             	return (this.Code == another.Code);
             }
         } 
-    }
-	
+    }	
 }

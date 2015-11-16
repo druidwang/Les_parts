@@ -117,73 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Vehicle_Added" xml:space="preserve">
-    <value>Vehicle Added</value>
+  <data name="TransportPriceListDetail_Currency" xml:space="preserve">
+    <value>币种</value>
   </data>
-  <data name="Vehicle_Address" xml:space="preserve">
-    <value>Address</value>
+  <data name="TransportPriceListDetail_DeliveryFee" xml:space="preserve">
+    <value>提送费</value>
   </data>
-  <data name="Vehicle_Carrier" xml:space="preserve">
-    <value>Carrier</value>
+  <data name="TransportPriceListDetail_EndDate" xml:space="preserve">
+    <value>结束日期</value>
   </data>
-  <data name="Vehicle_Code" xml:space="preserve">
-    <value>Code</value>
+  <data name="TransportPriceListDetail_EndQty" xml:space="preserve">
+    <value>结束数量</value>
   </data>
-  <data name="Vehicle_CreateDate" xml:space="preserve">
-    <value>CreateDate</value>
+  <data name="TransportPriceListDetail_IsProvEst" xml:space="preserve">
+    <value>暂估价</value>
   </data>
-  <data name="Vehicle_CreateUserName" xml:space="preserve">
-    <value>CreateUserName</value>
+  <data name="TransportPriceListDetail_LoadingFee" xml:space="preserve">
+    <value>卸货费</value>
   </data>
-  <data name="Vehicle_Deleted" xml:space="preserve">
-    <value>Driver Deleted</value>
+  <data name="TransportPriceListDetail_MaxPrice" xml:space="preserve">
+    <value>最高运费</value>
   </data>
-  <data name="Vehicle_Description" xml:space="preserve">
-    <value>Description</value>
+  <data name="TransportPriceListDetail_MinPrice" xml:space="preserve">
+    <value>最低运费</value>
   </data>
-  <data name="Vehicle_Driver" xml:space="preserve">
-    <value>Driver</value>
+  <data name="TransportPriceListDetail_PriceList" xml:space="preserve">
+    <value>价格单</value>
   </data>
-  <data name="Vehicle_DrivingNo" xml:space="preserve">
-    <value>DrivingNo</value>
+  <data name="TransportPriceListDetail_PricingMethod" xml:space="preserve">
+    <value>计价方式</value>
   </data>
-  <data name="Vehicle_Edit_Title" xml:space="preserve">
-    <value>Edit Title</value>
+  <data name="TransportPriceListDetail_ServiceFee" xml:space="preserve">
+    <value>服务费</value>
   </data>
-  <data name="Vehicle_Email" xml:space="preserve">
-    <value>Email</value>
+  <data name="TransportPriceListDetail_ShipFrom" xml:space="preserve">
+    <value>始发地</value>
   </data>
-  <data name="Vehicle_EngineNo" xml:space="preserve">
-    <value>EngineNo</value>
+  <data name="TransportPriceListDetail_ShipFromDescription" xml:space="preserve">
+    <value>始发地名称</value>
   </data>
-  <data name="Vehicle_Fax" xml:space="preserve">
-    <value>Fax</value>
+  <data name="TransportPriceListDetail_ShipTo" xml:space="preserve">
+    <value>目的地</value>
   </data>
-  <data name="Vehicle_IdNumber" xml:space="preserve">
-    <value>IdNumber</value>
+  <data name="TransportPriceListDetail_ShipToDescription" xml:space="preserve">
+    <value>目的地名称</value>
   </data>
-  <data name="Vehicle_MobilePhone" xml:space="preserve">
-    <value>MobilePhone</value>
+  <data name="TransportPriceListDetail_StartDate" xml:space="preserve">
+    <value>起始日期</value>
   </data>
-  <data name="Vehicle_Name" xml:space="preserve">
-    <value>Name</value>
+  <data name="TransportPriceListDetail_StartQty" xml:space="preserve">
+    <value>起始数量</value>
   </data>
-  <data name="Vehicle_New_Title" xml:space="preserve">
-    <value>New Title</value>
+  <data name="TransportPriceListDetail_Tonnage" xml:space="preserve">
+    <value>吨位</value>
   </data>
-  <data name="Vehicle_Owner" xml:space="preserve">
-    <value>Owner</value>
+  <data name="TransportPriceListDetail_UnitPrice" xml:space="preserve">
+    <value>单价</value>
   </data>
-  <data name="Vehicle_Phone" xml:space="preserve">
-    <value>Phone</value>
+  <data name="TransportPriceList_Carrier" xml:space="preserve">
+    <value>承运商代码</value>
   </data>
-  <data name="Vehicle_Tonnage" xml:space="preserve">
-    <value>Tonnage</value>
+  <data name="TransportPriceList_CarrierName" xml:space="preserve">
+    <value>承运商名称</value>
   </data>
-  <data name="Vehicle_Updated" xml:space="preserve">
-    <value>Driver Updated</value>
+  <data name="TransportPriceList_Code" xml:space="preserve">
+    <value>代码</value>
   </data>
-  <data name="Vehicle_VIN" xml:space="preserve">
-    <value>VIN</value>
+  <data name="TransportPriceList_Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="TransportPriceList_IsActive" xml:space="preserve">
+    <value>可用</value>
+  </data>
+  <data name="TransportPriceList_TransportMode" xml:space="preserve">
+    <value>运输方式</value>
   </data>
 </root>

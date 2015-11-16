@@ -364,6 +364,7 @@
     <Compile Include="Controllers\TMS\CarrierController.cs" />
     <Compile Include="Controllers\TMS\DriverController.cs" />
     <Compile Include="Controllers\TMS\TransportFlowController.cs" />
+    <Compile Include="Controllers\TMS\TransportPriceListController.cs" />
     <Compile Include="Controllers\TMS\VehicleController.cs" />
     <Compile Include="Controllers\WebAppBaseController.cs" />
     <Compile Include="Filters\**\*.cs" />
@@ -539,9 +540,11 @@
     <Compile Include="Models\SearchModels\SYS\EntityPreferenceSearchModel.cs" />
     <Compile Include="Models\SearchModels\SYS\SNRuleSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\CarrierSearchModel.cs" />
+    <Compile Include="Models\SearchModels\TMS\TransportPriceListDetSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\DriverSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\TransportAddressSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\TransportFlowSearchModel.cs" />
+    <Compile Include="Models\SearchModels\TMS\TransportPriceListSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\VehicleSearchModel.cs" />
     <Compile Include="Pluming\**\*.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -2479,6 +2482,18 @@
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportFlow\List.cshtml" />
     <Content Include="Views\Common\_CarrierComboBox.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\CarrierGridForeignKey.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_PriceListDetail.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_PriceListDetailEdit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_PriceListDetailList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_PriceListDetailNew.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_PriceListDetailResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_SearchResult.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

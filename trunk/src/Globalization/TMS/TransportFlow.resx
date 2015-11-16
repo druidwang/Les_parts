@@ -150,6 +150,9 @@
   <data name="TransportFlowMaster_MinLoadRate" xml:space="preserve">
     <value>放行配载率</value>
   </data>
+  <data name="TransportFlowMaster_MultiSitePick" xml:space="preserve">
+    <value>多点提货</value>
+  </data>
   <data name="TransportFlowRoute_ShipAddress" xml:space="preserve">
     <value>货运地址代码</value>
   </data>
@@ -164,5 +167,8 @@
   </data>
   <data name="TransportFlow_Sequence" xml:space="preserve">
     <value>序号</value>
+  </data>
+  <data name="TransportFlow_Title" xml:space="preserve">
+    <value>运输路线</value>
   </data>
 </root>
