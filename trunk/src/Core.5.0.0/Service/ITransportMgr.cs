@@ -14,13 +14,10 @@ namespace com.Sconit.Service
 
         void AddTransportOrderDetail(string orderNo, IList<string> ipNoList);
 
-
         void DeleteTransportOrderRoute(string orderNo, int transportOrderRouteId);
-
 
         void DeleteTransportOrderDetail(string orderNo, IList<string> ipNoList);
 
         void ReleaseTransportOrderMaster(TransportOrderMaster transportOrderMaster);
-
     }
 }
