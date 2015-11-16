@@ -123,6 +123,9 @@
   <data name="Vehicle_Address" xml:space="preserve">
     <value>Address</value>
   </data>
+  <data name="Vehicle_Carrier" xml:space="preserve">
+    <value>Carrier</value>
+  </data>
   <data name="Vehicle_Code" xml:space="preserve">
     <value>Code</value>
   </data>

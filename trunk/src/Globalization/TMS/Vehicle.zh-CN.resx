@@ -123,6 +123,9 @@
   <data name="Vehicle_Address" xml:space="preserve">
     <value>车主地址</value>
   </data>
+  <data name="Vehicle_Carrier" xml:space="preserve">
+    <value>承运商</value>
+  </data>
   <data name="Vehicle_Code" xml:space="preserve">
     <value>车牌号</value>
   </data>
