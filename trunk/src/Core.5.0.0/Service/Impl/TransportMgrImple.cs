@@ -467,6 +467,13 @@ namespace com.Sconit.Service.Impl
             }
         }
 
+        [Transaction(TransactionMode.Requires)]
+        public void ReleaseTransportOrderMaster(string orderNo)
+        {
+
+        }
+
+        [Transaction(TransactionMode.Requires)]
         public void ReleaseTransportOrderMaster(TransportOrderMaster transportOrderMaster)
         {
 
