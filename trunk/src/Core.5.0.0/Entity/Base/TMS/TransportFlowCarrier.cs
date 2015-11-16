@@ -33,7 +33,7 @@ namespace com.Sconit.Entity.TMS
         [Display(Name = "Common_CreateUserName", ResourceType = typeof(Resources.SYS.Global))]
         public string CreateUserName { get; set; }
 
-        public string CreateUserId { get; set; }
+        public Int32 CreateUserId { get; set; }
 
         [Display(Name = "Common_CreateDate", ResourceType = typeof(Resources.SYS.Global))]
         public DateTime CreateDate { get; set; }
@@ -41,7 +41,7 @@ namespace com.Sconit.Entity.TMS
         [Display(Name = "Common_LastModifyUserName", ResourceType = typeof(Resources.SYS.Global))]
         public string LastModifyUserName { get; set; }
 
-        public string LastModifyUserId { get; set; }
+        public Int32 LastModifyUserId { get; set; }
 
         [Display(Name = "Common_LastModifyDate", ResourceType = typeof(Resources.SYS.Global))]
         public DateTime LastModifyDate { get; set; }

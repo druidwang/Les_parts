@@ -1,30 +1,38 @@
-﻿@using com.Sconit.Web.Models.SearchModels.BIL
+﻿@using com.Sconit.Web.Models.SearchModels.TMS
 @using com.Sconit.Entity.SYS;
 <fieldset>
-    @using (Html.BeginForm("List", "ProcurementPriceList"))
+    @using (Html.BeginForm("List", "TransportPriceList"))
     {   
         <div class="search">
             <div class="search-label">
+                <label for="PriceListMaster_Code">
+                    @Resources.TMS.TransportPriceList.TransportPriceList_Code
+                </label>
+            </div>
+            <div class="search-field">
+                @Html.TextBox("Code", TempData["TransportPriceListSearchModel"] != null ? ((TransportPriceListSearchModel)TempData["TransportPriceListSearchModel"]).Code : string.Empty)
+            </div>
+            <div class="search-label">
                 <label for="PriceListMaster_Party">
-                    @Resources.BIL.PriceListMaster.PriceListMaster_Party
+                    @Resources.TMS.TransportPriceList.TransportPriceList_Carrier
                 </label>
             </div>
             <div class="search-field">
                @{
-               Html.RenderAction("_SupplierComboBox", "Common", 
-                   new { 
-                       controlName = "Party",
-                       selectedValue = TempData["PriceListMasterSearchModel"] != null ? ((PriceListMasterSearchModel)TempData["PriceListMasterSearchModel"]).Party : string.Empty
+               Html.RenderAction("_CarrierComboBox", "Common", 
+                   new {
+                       controlName = "Carrier",
+                       selectedValue = TempData["TransportPriceListSearchModel"] != null ? ((TransportPriceListSearchModel)TempData["TransportPriceListSearchModel"]).Carrier : string.Empty
                });
             }
             </div>
             <div class="search-label">
-                <label for="PriceListMaster_Code">
-                    @Resources.BIL.PriceListMaster.PriceListMaster_Code
+                <label for="FlowMaster_FirstName">
+                    @Resources.TMS.TransportPriceList.TransportPriceList_IsActive
                 </label>
             </div>
             <div class="search-field">
-                @Html.TextBox("Code", TempData["PriceListMasterSearchModel"] != null ? ((PriceListMasterSearchModel)TempData["PriceListMasterSearchModel"]).Code : string.Empty)
+                 @Html.CheckBox("IsActive", TempData["TransportPriceListSearchModel"] != null ? ((TransportPriceListSearchModel)TempData["TransportPriceListSearchModel"]).IsActive : true)
             </div>
         </div>
         <div class="search-footer">
@@ -34,11 +42,11 @@
             <button type="submit" id="btnExport">
                 @Resources.SYS.Global.Button_Export</button>
 
-             @Html.Button(Resources.SYS.Global.Button_New, "Url_ProcurementPriceList_Edit", new Dictionary<string, string>()
+             @Html.Button(Resources.SYS.Global.Button_New, "Url_TransportPriceList_Edit", new Dictionary<string, string>()
 	        {
 	            {"type", "button"},
 	            {"id", "btnNew"},
-                {"onclick","location.href='"+Url.Content("~/ProcurementPriceList/New/") +"'"}
+                {"onclick","location.href='"+Url.Content("~/TransportPriceList/New/") +"'"}
 	        })
         </div>
 

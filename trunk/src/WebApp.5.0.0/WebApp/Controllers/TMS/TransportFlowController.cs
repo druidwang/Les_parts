@@ -140,36 +140,20 @@ namespace com.Sconit.Web.Controllers.TMS
         [SconitAuthorize(Permissions = "Url_TransportFlow_Edit")]
         public ActionResult New(TransportFlowMaster flow)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    if (this.genericMgr.FindAll<long>("select count(*) from FlowMaster as f where f.Code = ?", flow.Code)[0] > 0)
-            //    {
-            //        base.SaveErrorMessage(Resources.SYS.ErrorMessage.Errors_Existing_Code, flow.Code);
-            //    }
-            //    else if (string.IsNullOrEmpty(flow.PartyFrom))
-            //    {
-            //        base.SaveErrorMessage(Resources.SYS.ErrorMessage.Errors_Common_FieldRequired, Resources.SCM.FlowMaster.FlowMaster_TransferPartyFrom);
-            //    }
-            //    else if (string.IsNullOrEmpty(flow.PartyTo))
-            //    {
-            //        base.SaveErrorMessage(Resources.SYS.ErrorMessage.Errors_Common_FieldRequired, Resources.SCM.FlowMaster.FlowMaster_TransferPartyTo);
-            //    }
-            //    else if (string.IsNullOrEmpty(flow.LocationFrom))
-            //    {
-            //        base.SaveErrorMessage(Resources.SYS.ErrorMessage.Errors_Common_FieldRequired, Resources.SCM.FlowMaster.FlowMaster_LocationFrom);
-            //    }
-            //    else if (string.IsNullOrEmpty(flow.LocationTo))
-            //    {
-            //        base.SaveErrorMessage(Resources.SYS.ErrorMessage.Errors_Common_FieldRequired, Resources.SCM.FlowMaster.FlowMaster_LocationTo);
-            //    }
-            //    else if (string.IsNullOrEmpty(flow.ShipFrom))
-            //    {
-            //        base.SaveErrorMessage(Resources.SYS.ErrorMessage.Errors_Common_FieldRequired, Resources.SCM.FlowMaster.FlowMaster_ShipFrom);
-            //    }
-            //    else if (string.IsNullOrEmpty(flow.ShipTo))
-            //    {
-            //        base.SaveErrorMessage(Resources.SYS.ErrorMessage.Errors_Common_FieldRequired, Resources.SCM.FlowMaster.FlowMaster_ShipTo);
-            //    }
+            if (ModelState.IsValid)
+            {
+                if (this.genericMgr.FindAll<long>("select count(*) from TransportFlowMaster as f where f.Code = ?", flow.Code)[0] > 0)
+                 {
+                     base.SaveErrorMessage(Resources.SYS.ErrorMessage.Errors_Existing_Code, flow.Code);
+                 }
+                else
+                {
+                    this.genericMgr.Create(flow);
+                    SaveSuccessMessage(Resources.SCM.FlowMaster.FlowMaster_Added);
+                    return RedirectToAction("Edit/" + flow.Code);
+                }
+            }
+
             //    else
             //    {
             //        flow.FlowStrategy = com.Sconit.CodeMaster.FlowStrategy.Manual;
