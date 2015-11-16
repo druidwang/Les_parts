@@ -897,8 +897,6 @@
   <ItemGroup>
     <Content Include="Base\ORD\KBOrderBomDetail.xml" />
     <Content Include="Base\TMS\Mileage.hbm.xml" />
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Base\TMS\TransportFlowRoute.hbm.xml" />
     <Content Include="Base\TMS\Mileage.hbm.xml" />
     <Content Include="Base\TMS\TransportOrderDetail.hbm.xml" />
