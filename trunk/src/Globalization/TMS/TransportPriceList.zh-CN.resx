@@ -117,61 +117,79 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="String1" xml:space="preserve">
-    <value />
+  <data name="TransportPriceListDetail_Currency" xml:space="preserve">
+    <value>币种</value>
   </data>
-  <data name="TransportFlowCarrier_BillAddress" xml:space="preserve">
-    <value>账单地址</value>
+  <data name="TransportPriceListDetail_DeliveryFee" xml:space="preserve">
+    <value>提送费</value>
   </data>
-  <data name="TransportFlowCarrier_Carrier" xml:space="preserve">
-    <value>承运商代码</value>
+  <data name="TransportPriceListDetail_EndDate" xml:space="preserve">
+    <value>结束日期</value>
   </data>
-  <data name="TransportFlowCarrier_CarrierName" xml:space="preserve">
-    <value>承运商名称</value>
+  <data name="TransportPriceListDetail_EndQty" xml:space="preserve">
+    <value>结束数量</value>
   </data>
-  <data name="TransportFlowCarrier_PriceList" xml:space="preserve">
+  <data name="TransportPriceListDetail_IsProvEst" xml:space="preserve">
+    <value>暂估价</value>
+  </data>
+  <data name="TransportPriceListDetail_LoadingFee" xml:space="preserve">
+    <value>卸货费</value>
+  </data>
+  <data name="TransportPriceListDetail_MaxPrice" xml:space="preserve">
+    <value>最高运费</value>
+  </data>
+  <data name="TransportPriceListDetail_MinPrice" xml:space="preserve">
+    <value>最低运费</value>
+  </data>
+  <data name="TransportPriceListDetail_PriceList" xml:space="preserve">
     <value>价格单</value>
   </data>
-  <data name="TransportFlowCarrier_TransportMode" xml:space="preserve">
-    <value>运输方式</value>
+  <data name="TransportPriceListDetail_PricingMethod" xml:space="preserve">
+    <value>计价方式</value>
   </data>
-  <data name="TransportFlowMaster_Code" xml:space="preserve">
-    <value>路线代码</value>
+  <data name="TransportPriceListDetail_ServiceFee" xml:space="preserve">
+    <value>服务费</value>
   </data>
-  <data name="TransportFlowMaster_Description" xml:space="preserve">
-    <value>路线描述</value>
+  <data name="TransportPriceListDetail_ShipFrom" xml:space="preserve">
+    <value>始发地</value>
   </data>
-  <data name="TransportFlowMaster_IsActive" xml:space="preserve">
+  <data name="TransportPriceListDetail_ShipFromDescription" xml:space="preserve">
+    <value>始发地名称</value>
+  </data>
+  <data name="TransportPriceListDetail_ShipTo" xml:space="preserve">
+    <value>目的地</value>
+  </data>
+  <data name="TransportPriceListDetail_ShipToDescription" xml:space="preserve">
+    <value>目的地名称</value>
+  </data>
+  <data name="TransportPriceListDetail_StartDate" xml:space="preserve">
+    <value>起始日期</value>
+  </data>
+  <data name="TransportPriceListDetail_StartQty" xml:space="preserve">
+    <value>起始数量</value>
+  </data>
+  <data name="TransportPriceListDetail_Tonnage" xml:space="preserve">
+    <value>吨位</value>
+  </data>
+  <data name="TransportPriceListDetail_UnitPrice" xml:space="preserve">
+    <value>单价</value>
+  </data>
+  <data name="TransportPriceList_Carrier" xml:space="preserve">
+    <value>承运商代码</value>
+  </data>
+  <data name="TransportPriceList_CarrierName" xml:space="preserve">
+    <value>承运商名称</value>
+  </data>
+  <data name="TransportPriceList_Code" xml:space="preserve">
+    <value>代码</value>
+  </data>
+  <data name="TransportPriceList_Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="TransportPriceList_IsActive" xml:space="preserve">
     <value>可用</value>
   </data>
-  <data name="TransportFlowMaster_IsAutoRelease" xml:space="preserve">
-    <value>自动释放</value>
-  </data>
-  <data name="TransportFlowMaster_IsAutoStart" xml:space="preserve">
-    <value>自动开始</value>
-  </data>
-  <data name="TransportFlowMaster_MinLoadRate" xml:space="preserve">
-    <value>放行配载率</value>
-  </data>
-  <data name="TransportFlowMaster_MultiSitePick" xml:space="preserve">
-    <value>多点提货</value>
-  </data>
-  <data name="TransportFlowRoute_ShipAddress" xml:space="preserve">
-    <value>货运地址代码</value>
-  </data>
-  <data name="TransportFlowRoute_ShipAddressDescription" xml:space="preserve">
-    <value>货运地址描述</value>
-  </data>
-  <data name="TransportFlow_FlowCarrier" xml:space="preserve">
-    <value>承运商</value>
-  </data>
-  <data name="TransportFlow_FlowStation" xml:space="preserve">
-    <value>运输站点</value>
-  </data>
-  <data name="TransportFlow_Sequence" xml:space="preserve">
-    <value>序号</value>
-  </data>
-  <data name="TransportFlow_Title" xml:space="preserve">
-    <value>运输路线</value>
+  <data name="TransportPriceList_TransportMode" xml:space="preserve">
+    <value>运输方式</value>
   </data>
 </root>

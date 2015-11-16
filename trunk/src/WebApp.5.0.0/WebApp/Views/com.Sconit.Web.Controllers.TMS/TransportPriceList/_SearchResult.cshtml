@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<com.Sconit.Entity.BIL.PriceListMaster>
+@model IEnumerable<com.Sconit.Entity.TMS.TransportPriceList>
 <fieldset>
     @(Html.Telerik().Grid(Model)
         .Name("PriceListMasterGrid")
@@ -9,11 +9,13 @@
         })
         .Columns(columns => 
         {
-            columns.Bound(o => o.Code).ClientTemplate(Html.ActionLink("<#= Code #>", "Edit", "ProcurementPriceList", new { ID = "<#= Code #>" }, null).ToString());
-            columns.Bound(o => o.Party);
-            columns.Bound(o => o.PartyName).Title(Resources.BIL.PriceListMaster.PriceListMaster_PartyName);
-            columns.Bound(o => o.Currency);
-            columns.Bound(o => o.InterfacePriceTypeDesc);
+            columns.Bound(o => o.Code).ClientTemplate(Html.ActionLink("<#= Code #>", "Edit", "TransportPriceList", new { ID = "<#= Code #>" }, null).ToString());
+            columns.Bound(o => o.Description);
+            columns.Bound(o => o.Carrier);
+            columns.Bound(o => o.CarrierName);
+            
+            columns.Bound(o => o.CreateUserName);
+            columns.Bound(o => o.CreateDate);
             //columns.Bound(o => o.Tax);
             //columns.Bound(o => o.IsIncludeTax)
                 //.ClientTemplate("<input type='checkbox' disabled='disabled' name='IsIncludeTax' <#= IsIncludeTax? checked='checked' : '' #> />"); 
@@ -29,7 +31,7 @@
             })
         .Scrollable(c => c.Enabled(false))
         .EnableCustomBinding(true)
-                        .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "ProcurementPriceList"))
+                        .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "TransportPriceList"))
         .ClientEvents(events => events.OnDataBinding("PriceListMasterGrid_OnDataBinding"))
         .Pageable(settings => 
         {
@@ -47,10 +49,7 @@
         function PriceListMasterGrid_OnDataBinding(e) {
             e.data = {
                 Code: $('#Code').val(),
-                Party: $('#Party').val(),
-                Currency: $('#Currency').val(),
-                Tax: $('#Tax').val(),
-                IsIncludeTax: $('#IsIncludeTax').is(':checked'),
+                Carrier: $('#Carrier').val(),
                 IsActive: $('#IsActive').is(':checked')
             };
         } 

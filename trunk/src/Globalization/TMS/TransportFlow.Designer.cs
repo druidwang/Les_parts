@@ -88,6 +88,15 @@ namespace Resources.TMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 运输路线.
+        /// </summary>
+        public static string TransportFlow_Title {
+            get {
+                return ResourceManager.GetString("TransportFlow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 账单地址.
         /// </summary>
         public static string TransportFlowCarrier_BillAddress {
@@ -183,6 +192,15 @@ namespace Resources.TMS {
         public static string TransportFlowMaster_MinLoadRate {
             get {
                 return ResourceManager.GetString("TransportFlowMaster_MinLoadRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 多点提货.
+        /// </summary>
+        public static string TransportFlowMaster_MultiSitePick {
+            get {
+                return ResourceManager.GetString("TransportFlowMaster_MultiSitePick", resourceCulture);
             }
         }
         

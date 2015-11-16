@@ -10,6 +10,8 @@ using com.Sconit.Web.Models;
 using com.Sconit.Entity.BIL;
 using com.Sconit.Entity.MD;
 using System.Web.Routing;
+using com.Sconit.Web.Models.SearchModels.TMS;
+using Resources.TMS;
 
 namespace com.Sconit.Web.Controllers.TMS
 {
@@ -67,7 +69,7 @@ namespace com.Sconit.Web.Controllers.TMS
         /// <returns>return to the result action</returns>
         [GridAction]
         [SconitAuthorize(Permissions = "Url_TransportPriceList_View")]
-        public ActionResult List(GridCommand command, PriceListMasterSearchModel searchModel)
+        public ActionResult List(GridCommand command, TransportPriceListSearchModel searchModel)
         {
             SearchCacheModel searchCacheModel = this.ProcessSearchModel(command, searchModel);
             if (searchCacheModel.isBack == true)
@@ -86,18 +88,11 @@ namespace com.Sconit.Web.Controllers.TMS
         /// <returns>return to the result action</returns>
         [GridAction(EnableCustomBinding = true)]
         [SconitAuthorize(Permissions = "Url_TransportPriceList_View")]
-        public ActionResult _AjaxList(GridCommand command, PriceListMasterSearchModel searchModel)
+        public ActionResult _AjaxList(GridCommand command, TransportPriceListSearchModel searchModel)
         {
             this.GetCommand(ref command, searchModel);
             SearchStatementModel searchStatementModel = this.PrepareSearchStatement(command, searchModel);
-            GridModel<PriceListMaster> PriceListMasterLists = GetAjaxPageData<PriceListMaster>(searchStatementModel, command);
-            foreach (var PriceListMasterList in PriceListMasterLists.Data)
-            {
-                if (!string.IsNullOrWhiteSpace(PriceListMasterList.Party))
-                {
-                    PriceListMasterList.PartyName = this.genericMgr.FindById<Party>(PriceListMasterList.Party).Name;
-                }
-            }
+            GridModel<TransportPriceList> PriceListMasterLists = GetAjaxPageData<TransportPriceList>(searchStatementModel, command);
             return PartialView(PriceListMasterLists);
         }
 
@@ -471,14 +466,15 @@ namespace com.Sconit.Web.Controllers.TMS
         /// <param name="command">Telerik GridCommand</param>
         /// <param name="searchModel">PriceListMaster Search Model</param>
         /// <returns>Search Statement</returns>
-        private SearchStatementModel PrepareSearchStatement(GridCommand command, PriceListMasterSearchModel searchModel)
+        private SearchStatementModel PrepareSearchStatement(GridCommand command, TransportPriceListSearchModel searchModel)
         {
-            string whereStatement = "where p.Type='1'";
+            string whereStatement = string.Empty;
 
             IList<object> param = new List<object>();
 
             HqlStatementHelper.AddLikeStatement("Code", searchModel.Code, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
-            HqlStatementHelper.AddEqStatement("Party", searchModel.Party, "p", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("Carrier", searchModel.Carrier, "p", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("IsActive", searchModel.IsActive, "f", ref whereStatement, param);
 
             if (command.SortDescriptors.Count > 0)
             {

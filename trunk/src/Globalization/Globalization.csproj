@@ -2802,6 +2802,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TransportAddress.zh-CN.resx</DependentUpon>
     </Compile>
+    <Compile Include="TMS\TransportPriceList.Designer.cs" />
+    <Compile Include="TMS\TransportPriceList.en-US.Designer.cs" />
+    <Compile Include="TMS\TransportPriceList.zh-CN.Designer.cs" />
     <Compile Include="TMS\Vehicle.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -5092,6 +5095,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TransportAddress.zh-CN.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="TMS\TransportPriceList.en-US.resx" />
+    <EmbeddedResource Include="TMS\TransportPriceList.resx" />
+    <EmbeddedResource Include="TMS\TransportPriceList.zh-CN.resx" />
     <EmbeddedResource Include="TMS\Vehicle.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Vehicle.en-US.Designer.cs</LastGenOutput>
