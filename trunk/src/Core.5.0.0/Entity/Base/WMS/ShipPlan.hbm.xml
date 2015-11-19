@@ -5,8 +5,10 @@
       		<generator class="identity" />
         </id>
 		<version name="Version" column="Version" type="Int32" />	
-		<property name="Flow" column="Flow" type="String" length="50"/>	
-		<property name="OrderNo" column="OrderNo" type="String" length="50"/>	
+		<property name="Flow" column="Flow" type="String" length="50"/>
+        <property name="OrderNo" column="OrderNo" type="String" length="50"/>
+        <property name="OrderSequence" column="OrderSeq" type="Int32"/>
+        <property name="OrderDetailId" column="OrderDetId" type="Int32"/>
 		<property name="StartTime" column="StartTime" type="DateTime"/>	
 		<property name="WindowTime" column="WindowTime" type="DateTime"/>	
 		<property name="Item" column="Item" type="String" length="50"/>	
@@ -36,13 +38,17 @@
 		<property name="ShipToContact" column="ShipToContact" type="String" length="50"/>	
 		<property name="LocationFrom" column="LocFrom" type="String" length="50"/>	
 		<property name="LocationFromName" column="LocFromNm" type="String" length="100"/>	
-		<property name="Dock" column="Dock" type="String" length="50"/>	
-		<property name="IsActive" column="IsActive" type="Boolean"/>	
+		<property name="Dock" column="Dock" type="String" length="50"/>
+        <property name="IsOccupyInventory" column="IsOccupyInv" type="Boolean"/>
+        <property name="IsActive" column="IsActive" type="Boolean"/>
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
 		<property name="LastModifyUserId" column="LastModifyUser" type="Int32"/>	
 		<property name="LastModifyUserName" column="LastModifyUserNm" type="String" length="100"/>	
-		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>	
-  	</class>
+		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>
+        <property name="CloseUserId" column="CloseUser" type="Int32"/>
+        <property name="CloseUserName" column="CloseUserNm" type="String" length="100"/>
+        <property name="CloseDate" column="CloseDate" type="DateTime"/>
+    </class>
 </hibernate-mapping>
