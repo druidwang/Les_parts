@@ -133,7 +133,7 @@ CREATE TABLE [dbo].[WMS_PickTask](
 	[PickGroup] [varchar](50) NULL,
 	[PickUserId] [int] NULL,
 	[PickUserNm] [varchar](100) NULL,
-	[StartTime] [datetime] NULL,
+	[StartTime] [datetime] NOT NULL,
 	[WinTime] [datetime] NOT NULL,
 	[IsActive] [bit] NOT NULL,
 	[CreateUser] [int] NOT NULL,
@@ -156,5 +156,61 @@ GO
 
 SET ANSI_PADDING OFF
 GO
+
+/****** Object:  Table [dbo].[WMS_PickResult]    Script Date: 2015/11/19 14:28:07 ******/
+DROP TABLE [dbo].[WMS_PickResult]
+GO
+
+/****** Object:  Table [dbo].[WMS_PickResult]    Script Date: 2015/11/19 14:28:07 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[WMS_PickResult](
+	[Id] [int] NOT NULL,
+	[PickTaskId] [int] NOT NULL,
+	[OrderNo] [varchar](50) NULL,
+	[OrderSeq] [int] NULL,
+	[ShipPlanId] [int] NULL,
+	[Item] [varchar](50) NOT NULL,
+	[ItemDesc] [varchar](100) NOT NULL,
+	[RefItemCode] [varchar](50) NULL,
+	[Uom] [varchar](5) NOT NULL,
+	[BaseUom] [varchar](5) NOT NULL,
+	[UC] [decimal](18, 8) NOT NULL,
+	[UCDesc] [varchar](50) NULL,
+	[PickQty] [decimal](18, 8) NOT NULL,
+	[Loc] [varchar](50) NOT NULL,
+	[Area] [varchar](50) NULL,
+	[Bin] [varchar](50) NULL,
+	[LotNo] [varchar](50) NULL,
+	[HuId] [varchar](50) NULL,
+	[PickBy] [tinyint] NOT NULL,
+	[PickUserId] [int] NOT NULL,
+	[PickUserNm] [varchar](100) NOT NULL,
+	[PickDate] [datetime] NOT NULL,
+	[CreateUser] [int] NOT NULL,
+	[CreateUserNm] [varchar](100) NOT NULL,
+	[CreateDate] [datetime] NOT NULL,
+	[IsCancel] [bit] NOT NULL,
+	[CancelUser] [int] NOT NULL,
+	[CancelUserNm] [varchar](100) NOT NULL,
+	[CancelDate] [datetime] NOT NULL,
+ CONSTRAINT [PK_WMS_PickResult] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
 
 

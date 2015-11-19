@@ -1232,4 +1232,11 @@ namespace com.Sconit.CodeMaster
         Volumn = 3,
         LadderVolumn = 4
     }
+
+    public enum PickBy
+    {
+        Qty = 0,
+        LotNo = 1,
+        Hu = 2
+    }
 }
