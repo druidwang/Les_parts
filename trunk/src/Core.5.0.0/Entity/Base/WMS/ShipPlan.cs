@@ -11,7 +11,9 @@ namespace com.Sconit.Entity.WMS
 		public Int32 Id { get; set; }
 		public string Flow { get; set; }
 		public string OrderNo { get; set; }
-		public DateTime StartTime { get; set; }
+        public Int32 OrderSequence { get; set; }
+        public Int32 OrderDetailId { get; set; }
+        public DateTime StartTime { get; set; }
 		public DateTime? WindowTime { get; set; }
 		public string Item { get; set; }
 		public string ItemDescription { get; set; }
@@ -41,13 +43,17 @@ namespace com.Sconit.Entity.WMS
 		public string LocationFrom { get; set; }
 		public string LocationFromName { get; set; }
 		public string Dock { get; set; }
-		public Boolean IsActive { get; set; }
+        public Boolean IsOccupyInventory { get; set; }
+        public Boolean IsActive { get; set; }
 		public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
 		public DateTime CreateDate { get; set; }
 		public Int32 LastModifyUserId { get; set; }
 		public string LastModifyUserName { get; set; }
 		public DateTime LastModifyDate { get; set; }
+        public Int32? CloseUserId { get; set; }
+        public string CloseName { get; set; }
+        public DateTime? CloseDate { get; set; }
 		public Int32 Version { get; set; }
         
         #endregion
