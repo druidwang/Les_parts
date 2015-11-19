@@ -12,9 +12,9 @@ namespace com.Sconit.Entity.WMS
 		public Decimal PickLeadTime { get; set; }
 		public Decimal RepackLeadTime { get; set; }
 		public Decimal SpreadLeadTime { get; set; }
-        public Decimal EmergencePickLeadTime { get; set; }
-        public Decimal EmergenceRepackLeadTime { get; set; }
-        public Decimal EmergenceSpreadLeadTime { get; set; }
+        public Decimal EmergentPickLeadTime { get; set; }
+        public Decimal EmergentRepackLeadTime { get; set; }
+        public Decimal EmergentSpreadLeadTime { get; set; }
 		public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
 		public DateTime CreateDate { get; set; }

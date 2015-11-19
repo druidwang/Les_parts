@@ -7,9 +7,9 @@
 		<property name="PickLeadTime" column="PickLeadTime" type="Decimal"/>	
 		<property name="RepackLeadTime" column="RepackLeadTime" type="Decimal"/>	
 		<property name="SpreadLeadTime" column="SpreadLeadTime" type="Decimal"/>
-        <property name="EmergencePickLeadTime" column="EmPickLeadTime" type="Decimal"/>
-        <property name="EmergenceRepackLeadTime" column="EmRepackLeadTime" type="Decimal"/>
-        <property name="EmergenceSpreadLeadTime" column="EmSpreadLeadTime" type="Decimal"/>
+        <property name="EmergentPickLeadTime" column="EmPickLeadTime" type="Decimal"/>
+        <property name="EmergentRepackLeadTime" column="EmRepackLeadTime" type="Decimal"/>
+        <property name="EmergentSpreadLeadTime" column="EmSpreadLeadTime" type="Decimal"/>
         <property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
