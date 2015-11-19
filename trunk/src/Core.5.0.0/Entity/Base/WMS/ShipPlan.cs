@@ -24,6 +24,7 @@ namespace com.Sconit.Entity.WMS
 		public string UCDescription { get; set; }
 		public Decimal OrderQty { get; set; }
 		public Decimal ShipQty { get; set; }
+        public com.Sconit.CodeMaster.OrderPriority Priority { get; set; }
 		public string PartyFrom { get; set; }
 		public string PartyFromName { get; set; }
 		public string PartyTo { get; set; }

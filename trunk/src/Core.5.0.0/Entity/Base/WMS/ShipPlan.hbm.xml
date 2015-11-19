@@ -19,8 +19,9 @@
 		<property name="UnitCount" column="UC" type="Decimal"/>	
 		<property name="UCDescription" column="UCDesc" type="String" length="50"/>	
 		<property name="OrderQty" column="OrderQty" type="Decimal"/>	
-		<property name="ShipQty" column="ShipQty" type="Decimal"/>	
-		<property name="PartyFrom" column="PartyFrom" type="String" length="50"/>	
+		<property name="ShipQty" column="ShipQty" type="Decimal"/>
+        <property name="Priority" column="Priority" />
+        <property name="PartyFrom" column="PartyFrom" type="String" length="50"/>	
 		<property name="PartyFromName" column="PartyFromNm" type="String" length="100"/>	
 		<property name="PartyTo" column="PartyTo" type="String" length="50"/>	
 		<property name="PartyToName" column="PartyToNm" type="String" length="100"/>	
