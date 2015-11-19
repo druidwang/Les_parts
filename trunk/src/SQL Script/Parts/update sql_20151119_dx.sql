@@ -12,11 +12,13 @@ alter table WMS_ShipPlan add CloseDate datetime
 go
 alter table MD_Location add PickScheduleNo varchar(50)
 go
-/****** Object:  Table [dbo].[WMS_PickSchedule]    Script Date: 2015/11/19 13:26:39 ******/
+
+
+/****** Object:  Table [dbo].[WMS_PickSchedule]    Script Date: 2015/11/19 13:49:24 ******/
 DROP TABLE [dbo].[WMS_PickSchedule]
 GO
 
-/****** Object:  Table [dbo].[WMS_PickSchedule]    Script Date: 2015/11/19 13:26:39 ******/
+/****** Object:  Table [dbo].[WMS_PickSchedule]    Script Date: 2015/11/19 13:49:24 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -31,6 +33,9 @@ CREATE TABLE [dbo].[WMS_PickSchedule](
 	[PickLeadTime] [decimal](18, 8) NOT NULL,
 	[RepackLeadTime] [decimal](18, 8) NOT NULL,
 	[SpreadLeadTime] [decimal](18, 8) NOT NULL,
+	[EmPickLeadTime] [decimal](18, 8) NOT NULL,
+	[EmRepackLeadTime] [decimal](18, 8) NOT NULL,
+	[EmSpreadLeadTime] [decimal](18, 8) NOT NULL,
 	[CreateUser] [int] NOT NULL,
 	[CreateUserNm] [varchar](100) NOT NULL,
 	[CreateDate] [datetime] NOT NULL,
@@ -47,6 +52,7 @@ GO
 
 SET ANSI_PADDING OFF
 GO
+
 
 
 /****** Object:  Table [dbo].[WMS_PickWinTime]    Script Date: 2015/11/19 13:26:54 ******/
@@ -86,3 +92,5 @@ SET ANSI_PADDING OFF
 GO
 
 
+alter table WMS_ShipPlan add [Priority] tinyint not null
+go
