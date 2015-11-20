@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.WMS
 {
     [Serializable]
-    public partial class PickTask : EntityBase
+    public partial class PickTask : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
 		

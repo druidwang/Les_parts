@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.WMS
 {
     [Serializable]
-    public partial class ShipPlan : EntityBase
+    public partial class ShipPlan : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
 		
@@ -54,7 +54,7 @@ namespace com.Sconit.Entity.WMS
 		public string LastModifyUserName { get; set; }
 		public DateTime LastModifyDate { get; set; }
         public Int32? CloseUserId { get; set; }
-        public string CloseName { get; set; }
+        public string CloseUserName { get; set; }
         public DateTime? CloseDate { get; set; }
 		public Int32 Version { get; set; }
         

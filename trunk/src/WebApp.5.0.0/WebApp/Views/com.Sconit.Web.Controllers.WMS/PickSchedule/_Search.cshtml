@@ -1,0 +1,40 @@
+﻿@using com.Sconit.Entity.WMS
+@using com.Sconit.Web.Models.SearchModels.WMS
+<fieldset>
+    @using (Html.BeginForm("List", "PickSchedule"))
+    {   
+        <div class="search">
+            <div class="search-label">
+                <label for="PickSchedule_Code">
+                    @Resources.WMS.PickSchedule.PickSchedule_PickScheduleNo
+                </label>
+            </div>
+            <div class="search-field">
+                @Html.TextBox("Code", TempData["PickScheduleSearchModel"] != null ? ((PickScheduleSearchModel)TempData["PickScheduleSearchModel"]).Code : string.Empty)
+            </div>
+             <div class="search-label">
+              
+            </div>
+            <div class="search-field">
+               
+            </div>
+             
+
+        </div>
+        <div class="search-footer">
+         @Html.Hidden("isFromList", true)
+                @Html.Button(Resources.SYS.Global.Button_Search, "Url_PickSchedule_View", new Dictionary<string, string>()
+	{
+	    {"type", "submit"},
+	    {"id", "btnSearch"}
+	})
+            @Html.Button(Resources.SYS.Global.Button_New, "Url_PickSchedule_Edit", new Dictionary<string, string>()
+	{
+	    {"type", "button"},
+	    {"id", "btnNew"},
+        {"onclick","location.href='"+@Url.Content("~/PickSchedule/New")+"'"}
+	})
+        </div>
+
+    }
+</fieldset>
