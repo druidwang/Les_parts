@@ -4,33 +4,18 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.WMS
 {
     [Serializable]
-    public partial class PickTask : EntityBase
+    public partial class RepackTask : EntityBase
     {
         #region O/R Mapping Properties
 		
 		public Int32 Id { get; set; }
-        public com.Sconit.CodeMaster.OrderPriority Priority { get; set; }
-		public string Item { get; set; }
-		public string ItemDescription { get; set; }
-		public string ReferenceItemCode { get; set; }
-		public string Uom { get; set; }
-		public string BaseUom { get; set; }
-        public Decimal UnitQty { get; set; }
-        public Decimal UnitCount { get; set; }
-		public string UCDescription { get; set; }
-		public Decimal OrderQty { get; set; }
-		public Decimal PickQty { get; set; }
 		public string Location { get; set; }
-		public string Area { get; set; }
-		public string Bin { get; set; }
-		public string LotNo { get; set; }
-		public string HuId { get; set; }
-        public com.Sconit.CodeMaster.PickBy PickBy { get; set; }
-		public string PickGroup { get; set; }
-		public Int32? PickUserId { get; set; }
-		public string PickUserName { get; set; }
+		public Int16 Priority { get; set; }
+		public string RepackGroup { get; set; }
+		public Int32? RepackUserId { get; set; }
+		public string RepackUserName { get; set; }
 		public DateTime StartTime { get; set; }
-		public DateTime WinTime { get; set; }
+		public DateTime WindowTime { get; set; }
 		public Boolean IsActive { get; set; }
 		public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
@@ -59,7 +44,7 @@ namespace com.Sconit.Entity.WMS
 
         public override bool Equals(object obj)
         {
-            PickTask another = obj as PickTask;
+            RepackTask another = obj as RepackTask;
 
             if (another == null)
             {
