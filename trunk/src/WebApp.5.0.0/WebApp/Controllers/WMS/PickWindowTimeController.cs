@@ -1,5 +1,5 @@
 ﻿
-namespace com.Sconit.Web.Controllers.TMS
+namespace com.Sconit.Web.Controllers.WMS
 {
 
     using System;
@@ -14,26 +14,19 @@ namespace com.Sconit.Web.Controllers.TMS
     using Telerik.Web.Mvc;
     using System.Web.Routing;
     using com.Sconit.Web.Models;
-    using com.Sconit.Web.Models.SearchModels.MD;
-    using com.Sconit.Entity.TMS;
     using com.Sconit.Utility;
+    using com.Sconit.Web.Models.SearchModels.WMS;
     using com.Sconit.Entity.WMS;
 
     public class PickWindowTimeController : WebAppBaseController
     {
-        #region 承运商
-      
-        private static string selectCountStatement = "select count(*) from PickWindowTime as c";
+        #region 拣货窗口时间
 
-        private static string selectCountRegionStatement = "select count(*) from Region as r where r.Code = ?";
+        private static string selectCountStatement = "select count(*) from PickWindowTime as p";
 
-        private static string selectCountSupplierStatement = "select count(*) from Supplier as s where s.Code = ?";
+        private static string selectStatement = "select p from PickWindowTime as p";
 
-        private static string selectCountCustomerStatement = "select count(*) from Customer as c where c.Code = ?";
-
-        private static string selectStatement = "select c from PickWindowTime as c";
-
-        private static string selectCountPickWindowTimeStatement = "select count(*) from PickWindowTime as s where s.Code = ?";
+        private static string selectCountPickWindowTimeStatement = "select count(*) from PickWindowTime as s where s.PickScheduleNo = ? and s.ShiftCode = ?";
 
 
         [SconitAuthorize(Permissions = "Url_PickWindowTime_View")]
@@ -50,7 +43,7 @@ namespace com.Sconit.Web.Controllers.TMS
         /// <returns></returns>
         [GridAction]
         [SconitAuthorize(Permissions = "Url_PickWindowTime_View")]
-        public ActionResult List(GridCommand command, PartySearchModel searchModel)
+        public ActionResult List(GridCommand command, PickWindowTimeSearchModel searchModel)
         {
             SearchCacheModel searchCacheModel = this.ProcessSearchModel(command, searchModel);
             ViewBag.PageSize = base.ProcessPageSize(command.PageSize);
@@ -65,7 +58,7 @@ namespace com.Sconit.Web.Controllers.TMS
         /// <returns></returns>
         [GridAction(EnableCustomBinding = true)]
         [SconitAuthorize(Permissions = "Url_PickWindowTime_View")]
-        public ActionResult _AjaxList(GridCommand command, PartySearchModel searchModel)
+        public ActionResult _AjaxList(GridCommand command, PickWindowTimeSearchModel searchModel)
         {
             SearchStatementModel searchStatementModel = PrepareSearchStatement(command, searchModel);
             return PartialView(GetAjaxPageData<PickWindowTime>(searchStatementModel, command));
@@ -88,19 +81,23 @@ namespace com.Sconit.Web.Controllers.TMS
         /// <returns></returns>
         [HttpPost]
         [SconitAuthorize(Permissions = "Url_PickWindowTime_Edit")]
-        public ActionResult New(PickWindowTime PickWindowTime)
+        public ActionResult New(PickWindowTime pickWindowTime)
         {
             if (ModelState.IsValid)
             {
                 //判断描述不能重复
-                if (base.genericMgr.FindAll<long>(selectCountPickWindowTimeStatement, new object[] { PickWindowTime.PickScheduleNo,PickWindowTime.ShiftCode })[0] > 0)
+                if (base.genericMgr.FindAll<long>(selectCountPickWindowTimeStatement, new object[] { pickWindowTime.PickScheduleNo,pickWindowTime.ShiftCode})[0] > 0)
                 {
-                    base.SaveErrorMessage(Resources.MD.Party.Party_Supplier_Errors_Existing_Code, PickWindowTime.PickScheduleNo);
+                    base.SaveErrorMessage(Resources.WMS.PickWindowTime.PickWindowTime_Errors_Existing_PickScheduleNoAndTime, pickWindowTime.PickScheduleNo,pickWindowTime.ShiftCode);
                 }
-              
+                genericMgr.Create(pickWindowTime);
+                SaveSuccessMessage(Resources.WMS.PickWindowTime.PickWindowTime_Added);
+                return RedirectToAction("Edit/" + pickWindowTime.Id);
             }
-            return View(PickWindowTime);
+            return View(pickWindowTime);
         }
+
+
 
         /// <summary>
         /// 
@@ -109,36 +106,17 @@ namespace com.Sconit.Web.Controllers.TMS
         /// <returns></returns>
         [HttpGet]
         [SconitAuthorize(Permissions = "Url_PickWindowTime_Edit")]
-        public ActionResult Edit(string Id)
+        public ActionResult Edit(string id)
         {
 
-            if (string.IsNullOrEmpty(Id))
-            {
-                return HttpNotFound();
-            }
-
-            return View("Edit", "", Id);
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [SconitAuthorize(Permissions = "Url_PickWindowTime_Edit")]
-        public ActionResult _Edit(string Id)
-        {
-
-            if (string.IsNullOrEmpty(Id))
+            if (string.IsNullOrEmpty(id))
             {
                 return HttpNotFound();
             }
             else
             {
-                ViewBag.PartyCode = Id;
-                PickWindowTime PickWindowTime = base.genericMgr.FindById<PickWindowTime>(Id);
-                return PartialView(PickWindowTime);
+                PickWindowTime pickWindowTime = base.genericMgr.FindById<PickWindowTime>(Convert.ToInt32(id));
+                return View(pickWindowTime);
             }
 
         }
@@ -150,22 +128,16 @@ namespace com.Sconit.Web.Controllers.TMS
         /// <returns></returns>
         [HttpPost]
         [SconitAuthorize(Permissions = "Url_PickWindowTime_Edit")]
-        public ActionResult _Edit(PickWindowTime PickWindowTime)
+        public ActionResult Edit(PickWindowTime pickWindowTime)
         {
 
             if (ModelState.IsValid)
             {
-                base.genericMgr.Update(PickWindowTime);
-               // SaveSuccessMessage(Resources.MD.Party.Party_PickWindowTime_Updated);
+                base.genericMgr.Update(pickWindowTime);
+                SaveSuccessMessage(Resources.WMS.PickWindowTime.PickWindowTime_Updated);
             }
 
-            TempData["TabIndex"] = 0;
-            return new RedirectToRouteResult(new RouteValueDictionary  
-                                                   { 
-                                                       { "action", "_Edit" }, 
-                                                       { "controller", "PickWindowTime" } ,
-                                                       { "Id", PickWindowTime.Id }
-                                                   });
+            return View(pickWindowTime);
         }
 
         [SconitAuthorize(Permissions = "Url_PickWindowTime_Delete")]
@@ -178,16 +150,17 @@ namespace com.Sconit.Web.Controllers.TMS
             else
             {
                 base.genericMgr.DeleteById<PickWindowTime>(id);
-                //SaveSuccessMessage(Resources.MD.Party.Party_PickWindowTime_Deleted);
+                SaveSuccessMessage(Resources.WMS.PickWindowTime.PickWindowTime_Deleted);
                 return RedirectToAction("List");
             }
         }
-        private SearchStatementModel PrepareSearchStatement(GridCommand command, PartySearchModel searchModel)
+        private SearchStatementModel PrepareSearchStatement(GridCommand command, PickWindowTimeSearchModel searchModel)
         {
             string whereStatement = string.Empty;
             IList<object> param = new List<object>();
-            HqlStatementHelper.AddLikeStatement("Code", searchModel.Code, HqlStatementHelper.LikeMatchMode.Start, "c", ref whereStatement, param);
-            HqlStatementHelper.AddLikeStatement("Name", searchModel.Name, HqlStatementHelper.LikeMatchMode.Start, "c", ref whereStatement, param);
+            HqlStatementHelper.AddLikeStatement("PickScheduleNo", searchModel.PickScheduleNo, HqlStatementHelper.LikeMatchMode.Start, "c", ref whereStatement, param);
+            HqlStatementHelper.AddLikeStatement("ShiftCode", searchModel.ShiftCode, HqlStatementHelper.LikeMatchMode.Start, "c", ref whereStatement, param);
+
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
             SearchStatementModel searchStatementModel = new SearchStatementModel();
             searchStatementModel.SelectCountStatement = selectCountStatement;
@@ -199,6 +172,6 @@ namespace com.Sconit.Web.Controllers.TMS
         }
         #endregion
 
-      
+
     }
 }

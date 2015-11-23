@@ -1,24 +1,22 @@
 ﻿
-@model IEnumerable<com.Sconit.Entity.MD.Currency>
+@model IEnumerable<com.Sconit.Entity.WMS.PickWindowTime>
 <fieldset>
     @(Html.Telerik().Grid(Model)
-        .Name("CurrencyGrid")
+        .Name("PickWindowTimeGrid")
         .DataKeys(keys =>
         {
-            keys.Add(p => p.Code);
+            keys.Add(p => p.Id);
         })
         .Columns(columns =>
         {
-            columns.Bound(o => o.Code).ClientTemplate(Html.ActionLink("<#= Code #>", "Edit", "Currency", new { ID = "<#= Code #>" }, null).ToString());
-            columns.Bound(o => o.Name);
-            columns.Bound(o => o.IsBase)
-            .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsBase' <#= IsBase? checked='checked' : '' #> />"); 
+            columns.Bound(o => o.PickScheduleNo).ClientTemplate(Html.ActionLink("<#= PickScheduleNo #>", "Edit", "PickWindowTime", new { id = "<#= Id #>" }, null).ToString());
+            columns.Bound(o => o.ShiftCode);
+            columns.Bound(o => o.WindowTime);
                 })
-      
             .Scrollable(c => c.Enabled(false))
             .EnableCustomBinding(true)
-            .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "Currency"))
-            .ClientEvents(events => events.OnDataBinding("CurrencyGrid_OnDataBinding"))
+            .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "PickWindowTime"))
+            .ClientEvents(events => events.OnDataBinding("PickWindowTimeGrid_OnDataBinding"))
             .Pageable(settings =>
             {
                 settings.Total(ViewBag.Total != null ? ViewBag.Total : 0);
@@ -32,10 +30,9 @@
             .Resizable(resizing => resizing.Columns(true))
             )
     <script type="text/javascript">
-        function CurrencyGrid_OnDataBinding(e) {
+        function PickWindowTimeGrid_OnDataBinding(e) {
             e.data = {
-                Code: $('#Code').val(),
-                Name: $('#Name').val()
+                PickWindowTimeNo: $('#PickScheduleNo').val()
             };
         } 
     </script>

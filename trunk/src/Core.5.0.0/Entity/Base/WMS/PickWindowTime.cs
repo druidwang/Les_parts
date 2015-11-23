@@ -9,8 +9,19 @@ namespace com.Sconit.Entity.WMS
         #region O/R Mapping Properties
 		
 		public Int32 Id { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "Errors_Common_FieldRequired", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
+        [StringLength(50, ErrorMessageResourceName = "Errors_Common_FieldLengthExceed", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
+        [Display(Name = "PickWindowTime_PickScheduleNo", ResourceType = typeof(Resources.WMS.PickWindowTime))]
 		public string PickScheduleNo { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "Errors_Common_FieldRequired", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
+        [StringLength(50, ErrorMessageResourceName = "Errors_Common_FieldLengthExceed", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
+        [Display(Name = "PickWindowTime_ShiftCode", ResourceType = typeof(Resources.WMS.PickWindowTime))]
 		public string ShiftCode { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "Errors_Common_FieldRequired", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
+        [Display(Name = "PickWindowTime_WindowTime", ResourceType = typeof(Resources.WMS.PickWindowTime))]
 		public string WindowTime { get; set; }
 		public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }

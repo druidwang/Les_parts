@@ -117,49 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PickSchedule_Added" xml:space="preserve">
-    <value>拣货策略新增成功</value>
+  <data name="PickWindowTime_Added" xml:space="preserve">
+    <value>拣货窗口时间新增成功</value>
   </data>
-  <data name="PickSchedule_CreateDate" xml:space="preserve">
+  <data name="PickWindowTime_CreateDate" xml:space="preserve">
     <value>创建日期</value>
   </data>
-  <data name="PickSchedule_CreateUserName" xml:space="preserve">
+  <data name="PickWindowTime_CreateUserName" xml:space="preserve">
     <value>创建人</value>
   </data>
-  <data name="PickSchedule_Deleted" xml:space="preserve">
-    <value>拣货策略删除成功</value>
+  <data name="PickWindowTime_Deleted" xml:space="preserve">
+    <value>拣货窗口日期删除成功</value>
   </data>
-  <data name="PickSchedule_Edit_Title" xml:space="preserve">
+  <data name="PickWindowTime_Edit_Title" xml:space="preserve">
     <value>编辑</value>
   </data>
-  <data name="PickSchedule_EmergentPickLeadTime" xml:space="preserve">
-    <value>拣货紧急提前期（小时）</value>
+  <data name="PickWindowTime_Errors_Existing_PickScheduleNoAndTime" xml:space="preserve">
+    <value>拣货窗口时间已存在，拣货策略代码{0}，拣货窗口时间{1}</value>
   </data>
-  <data name="PickSchedule_EmergentRepackLeadTime" xml:space="preserve">
-    <value>翻包紧急提前期（小时）</value>
-  </data>
-  <data name="PickSchedule_EmergentSpreadLeadTime" xml:space="preserve">
-    <value>分拨紧急提前期（小时）</value>
-  </data>
-  <data name="PickSchedule_Errors_Existing_PickScheduleNo" xml:space="preserve">
-    <value>拣货策略代码已存在</value>
-  </data>
-  <data name="PickSchedule_New_Title" xml:space="preserve">
+  <data name="PickWindowTime_New_Title" xml:space="preserve">
     <value>新增</value>
   </data>
-  <data name="PickSchedule_PickLeadTime" xml:space="preserve">
-    <value>拣货提前期（小时）</value>
+  <data name="PickWindowTime_PickScheduleNo" xml:space="preserve">
+    <value>拣货策略代码</value>
   </data>
-  <data name="PickSchedule_PickScheduleNo" xml:space="preserve">
-    <value>编号</value>
+  <data name="PickWindowTime_ShiftCode" xml:space="preserve">
+    <value>班次</value>
   </data>
-  <data name="PickSchedule_RepackLeadTime" xml:space="preserve">
-    <value>翻包提前期（小时）</value>
+  <data name="PickWindowTime_Updated" xml:space="preserve">
+    <value>拣货窗口时间更新成功</value>
   </data>
-  <data name="PickSchedule_SpreadLeadTime" xml:space="preserve">
-    <value>分拨提前期（小时）</value>
+  <data name="PickWindowTime_WindowTime" xml:space="preserve">
+    <value>窗口时间</value>
   </data>
-  <data name="PickSchedule_Updated" xml:space="preserve">
-    <value>拣货策略更新成功</value>
+  <data name="PickWindowTime_WinTimeToolTip" xml:space="preserve">
+    <value>格式: 窗口时间1|窗口时间2，如：08:00|10:30|15:30</value>
+    <comment>格式: 窗口时间1|窗口时间2，如：08:00|10:30|15:30</comment>
   </data>
 </root>
