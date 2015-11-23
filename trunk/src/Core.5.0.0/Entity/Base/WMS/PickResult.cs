@@ -18,7 +18,8 @@ namespace com.Sconit.Entity.WMS
 		public string ReferenceItemCode { get; set; }
 		public string Uom { get; set; }
 		public string BaseUom { get; set; }
-		public Decimal UnitCount { get; set; }
+        public Decimal UnitQty { get; set; }
+        public Decimal UnitCount { get; set; }
 		public string UCDescription { get; set; }
 		public Decimal PickQty { get; set; }
 		public string Location { get; set; }
