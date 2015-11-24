@@ -161,6 +161,7 @@
     <Compile Include="IReceiptMgr.cs" />
     <Compile Include="IRoutingMgr.cs" />
     <Compile Include="ISecurityMgr.cs" />
+    <Compile Include="IShipPlanMgr.cs" />
     <Compile Include="ISQLocationDetailMgr.cs" />
     <Compile Include="IStockTakeMgr.cs" />
     <Compile Include="ISystemMgr.cs" />
