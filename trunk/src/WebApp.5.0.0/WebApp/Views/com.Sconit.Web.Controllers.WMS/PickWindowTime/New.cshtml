@@ -3,7 +3,18 @@
 @{
     Html.RenderAction("_SiteMapPath", "Common", new { MenuContent = "Url_PickWindowTime_View" });
 }
+<script type="text/javascript">
+      function Shift_DataBinding(e) {
+        e.data = {
+          
+        }
+    }
+    function PickSchedule_DataBinding(e) {
+        e.data = {
 
+        }
+    }
+</script>
 @using (Html.BeginForm())
 {
     <fieldset>
@@ -13,14 +24,27 @@
                @Html.LabelFor(model => model.PickScheduleNo)
             </div>
             <div class="editor-field-2">
-                @Html.EditorFor(model => model.PickScheduleNo)
-                @Html.ValidationMessageFor(model => model.PickScheduleNo)
+               @{
+    Html.RenderAction("_PickScheduleComboBox", "Common", new
+    {
+        controlName = "PickScheduleNo",
+
+        selectedValue = Model != null ? Model.PickScheduleNo : string.Empty
+    });
+            }
             </div>
             <div class="editor-label-2">
                 @Html.LabelFor(model => model.ShiftCode)
             </div>
             <div class="editor-field-2">
-                @Html.EditorFor(model => model.ShiftCode)
+                 @{
+    Html.RenderAction("_ShiftComboBox", "Common", new
+    {
+        controlName = "ShiftCode",
+  
+        selectedValue = Model != null ? Model.ShiftCode : string.Empty
+    });
+            }
             </div>
             <div class="editor-label-2">
                 <label>@Resources.WMS.PickWindowTime.PickWindowTime_WindowTime</label>
