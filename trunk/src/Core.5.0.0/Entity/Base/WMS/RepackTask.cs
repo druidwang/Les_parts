@@ -9,8 +9,18 @@ namespace com.Sconit.Entity.WMS
         #region O/R Mapping Properties
 		
 		public Int32 Id { get; set; }
+        public string Item { get; set; }
+        public string ItemDescription { get; set; }
+        public string ReferenceItemCode { get; set; }
+        public string Uom { get; set; }
+        public string BaseUom { get; set; }
+        public Decimal UnitQty { get; set; }
+        public Decimal UnitCount { get; set; }
+        public string UCDescription { get; set; }
+        public Decimal Qty { get; set; }
+        public Decimal RepackQty { get; set; }
 		public string Location { get; set; }
-		public Int16 Priority { get; set; }
+		public CodeMaster.OrderPriority Priority { get; set; }
 		public string RepackGroup { get; set; }
 		public Int32? RepackUserId { get; set; }
 		public string RepackUserName { get; set; }
