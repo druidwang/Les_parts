@@ -18,6 +18,9 @@ namespace com.Sconit.Service
 
         void DeleteTransportOrderDetail(string orderNo, IList<string> ipNoList);
 
-        void ReleaseTransportOrderMaster(TransportOrderMaster transportOrderMaster);
+        void ReleaseTransportOrderMaster(string orderNo);
+
+        void StartTransportOrderMaster(string orderNo);
+
     }
 }
