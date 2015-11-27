@@ -43,14 +43,14 @@
             @Html.DisplayFor(model => model.CarrierName)
             @Html.HiddenFor(model => model.CarrierName)
         </div>
-               <div class="editor-label-2">
+        <div class="editor-label-2">
              @Html.LabelFor(model => model.TransportMode)
         </div>
         <div class="editor-field-2">
         @{
             Html.RenderAction("_CodeMasterDropDownList", "Common", new
             {
-                code = com.Sconit.CodeMaster.CodeMaster.UserType,
+                code = com.Sconit.CodeMaster.CodeMaster.TransportMode,
                 controlName = "Type",
                 selectedValue =(int)Model.TransportMode
             });

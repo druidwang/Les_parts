@@ -9,6 +9,21 @@ namespace com.Sconit.Entity.TMS
     {
         #region Non O/R Mapping Properties
 
+        public string CodeDescription
+        {
+            get 
+            {
+                if (string.IsNullOrEmpty(this.Name))
+                {
+                    return this.Code;
+                }
+                else
+                { 
+                    return this.Code + "[" + this.Name + "]";
+                }
+            }
+        }
+
         //TODO: Add Non O/R Mapping Properties here. 
         public string Desc
         {

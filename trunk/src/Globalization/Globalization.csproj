@@ -2742,6 +2742,36 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityPreference.zh-CN.resx</DependentUpon>
     </Compile>
+    <Compile Include="TMS\TransportOrder.Designer.cs">
+      <DependentUpon>TransportOrder.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="TMS\TransportOrder.en-US.Designer.cs">
+      <DependentUpon>TransportOrder.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="TMS\TransportOrder.zh-CN.Designer.cs">
+      <DependentUpon>TransportOrder.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="TMS\Tonnage.Designer.cs">
+      <DependentUpon>Tonnage.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="TMS\Tonnage.en-US.Designer.cs">
+      <DependentUpon>Tonnage.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="TMS\Tonnage.zh-CN.Designer.cs">
+      <DependentUpon>Tonnage.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="TMS\TransportFlow.Designer.cs">
       <DependentUpon>TransportFlow.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5039,6 +5069,36 @@
     <EmbeddedResource Include="Report\LocationDetailIOB.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>LocationDetailIOB.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMS\TransportOrder.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TransportOrder.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMS\TransportOrder.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TransportOrder.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMS\TransportOrder.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TransportOrder.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMS\Tonnage.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Tonnage.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMS\Tonnage.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Tonnage.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TMS\Tonnage.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Tonnage.zh-CN.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TMS\TransportFlow.en-US.resx">

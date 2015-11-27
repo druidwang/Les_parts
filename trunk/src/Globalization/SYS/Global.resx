@@ -420,4 +420,28 @@
   <data name="Button_Assign" xml:space="preserve">
     <value>Assign</value>
   </data>
+  <data name="Common_CancelDate" xml:space="preserve">
+    <value>取消日期</value>
+  </data>
+  <data name="Common_CancelUserName" xml:space="preserve">
+    <value>取消用户</value>
+  </data>
+  <data name="Common_CloseDate" xml:space="preserve">
+    <value>关闭日期</value>
+  </data>
+  <data name="Common_CloseUserName" xml:space="preserve">
+    <value>关闭用户</value>
+  </data>
+  <data name="Common_StartDate" xml:space="preserve">
+    <value>开始日期</value>
+  </data>
+  <data name="Common_StartUserName" xml:space="preserve">
+    <value>开始用户</value>
+  </data>
+  <data name="Common_SubmitDate" xml:space="preserve">
+    <value>提交日期</value>
+  </data>
+  <data name="Common_SubmitUserName" xml:space="preserve">
+    <value>提交用户</value>
+  </data>
 </root>

@@ -35,6 +35,7 @@
     using System.Collections;
     using com.Sconit.Entity.SI.SAP;
     using com.Sconit.Entity.ISI;
+    using com.Sconit.Entity.TMS;
     public class CommonController : WebAppBaseController
     {
         #region
@@ -2273,6 +2274,107 @@
                 }
             }
             return flowList;
+        }
+        #endregion
+
+        #region Flow
+        public ActionResult _TransportFlowComboBox(string controlName, string controlId, string selectedValue,
+            int? type, bool? isChange, bool? enable,bool? coupled, bool? includeBlankOption)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Enable = enable;
+            ViewBag.Type = type;
+            ViewBag.IsChange = isChange;
+            ViewBag.Coupled = coupled;
+            ViewBag.IncludeBlankOption = includeBlankOption;
+
+            List<FlowMaster> flowList = new List<FlowMaster>();
+            if (!string.IsNullOrWhiteSpace(selectedValue))
+            {
+                flowList.AddRange(this.genericMgr.FindAll<FlowMaster>("from FlowMaster where Code like ? ", selectedValue + "%"));
+            }
+            return PartialView(new SelectList(flowList, "Code", "CodeDescription", selectedValue));
+        }
+
+        public ActionResult _AjaxLoadingTransportFlow(string text, int? type, bool? includeBlankOption)
+        {
+            IList<TransportFlowMaster> flowList = this.genericMgr.FindAll<TransportFlowMaster>("from TransportFlowMaster t where t.Code like ?", text+"%");
+            if (includeBlankOption.HasValue && includeBlankOption.Value)
+            {
+                flowList.Insert(0, new TransportFlowMaster());
+            }
+            return new JsonResult { Data = new SelectList(flowList, "Code", "CodeDescription") };
+        }
+
+        public ActionResult _DriverComboBox(string controlName, string controlId, string selectedValue, bool? enable)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Enable = enable;
+
+            IList<Driver> driverList = new List<Driver>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+                driverList = queryMgr.FindAll<Driver>("from Driver d where d.Code like ?", selectedValue);
+            }
+            return PartialView(new SelectList(driverList, "Code", "CodeDescription", selectedValue));
+        }
+
+        public ActionResult _AjaxLoadingDriver(string text, string vehicle, bool? includeBlankOption)
+        {
+            IList<Driver> driverList = new List<Driver>();
+            if (!string.IsNullOrEmpty(vehicle))
+            {
+                driverList = this.genericMgr.FindAll<Driver>("select d from Driver d, Vehicle v where d.Code=v.Driver and v.Code=?", vehicle.Trim());
+            }
+            else
+            {
+                driverList = this.genericMgr.FindAll<Driver>("from Driver d where d.Code like ?", text + "%");
+            }
+            if (includeBlankOption.HasValue && includeBlankOption.Value)
+            {
+                driverList.Insert(0, new Driver());
+            }
+            return new JsonResult { Data = new SelectList(driverList, "Code", "CodeDescription", text) };
+        }
+
+        public ActionResult _AjaxLoadingVehicle(string text, bool? includeBlankOption)
+        {
+            IList<Vehicle> vehicleList = this.genericMgr.FindAll<Vehicle>("from Vehicle v where v.Code like ?", text + "%");
+            if (includeBlankOption.HasValue && includeBlankOption.Value)
+            {
+                vehicleList.Insert(0, new Vehicle());
+            }
+            return new JsonResult { Data = new SelectList(vehicleList, "Code", "CodeDescription") };
+        }
+
+        public ActionResult _AjaxLoadingTonnage(string text, string vehicle, bool? includeBlankOption)
+        {
+            IList<Tonnage> tonnageList = new List<Tonnage>();
+            if (!string.IsNullOrEmpty(vehicle))
+            {
+                tonnageList = this.genericMgr.FindAll<Tonnage>("select t from Tonnage t, Vehicle v where t.Code=v.Tonnage and v.Code=?", vehicle.Trim());
+            }
+            else
+            {
+                tonnageList = this.genericMgr.FindAll<Tonnage>("from Tonnage t where t.Code like ?", text + "%");
+            }  
+            if (includeBlankOption.HasValue && includeBlankOption.Value)
+            {
+                tonnageList.Insert(0, new Tonnage());
+            }
+            return new JsonResult { Data = new SelectList(tonnageList, "Code", "CodeDescription", text) };
+        }
+
+        public ActionResult _AjaxLoadingTransportPriceList(string text, bool? includeBlankOption)
+        {
+            IList<TransportPriceList> transportPriceListList = this.genericMgr.FindAll<TransportPriceList>("from TransportPriceList t where t.Code like ?", text + "%");
+            if (includeBlankOption.HasValue && includeBlankOption.Value)
+            {
+                transportPriceListList.Insert(0, new TransportPriceList());
+            }
+            return new JsonResult { Data = new SelectList(transportPriceListList, "Code", "CodeDescription") };
         }
         #endregion
 

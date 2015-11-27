@@ -325,37 +325,46 @@ namespace com.Sconit.Utility
             {
                 return;
             }
-            string fieldValue = null;
-            foreach (object obj in fieldValues)
+            int i = 0;
+            foreach (object fieldValue in fieldValues)
             {
-                fieldValue = fieldValue == null ? Convert.ToString(obj) : fieldValue + "," + Convert.ToString(obj);
+                if (fieldValue.GetType() != typeof(string) || !string.IsNullOrWhiteSpace((string)fieldValue))
+                {
+                    if (i == 0)
+                    {
+                        if (!string.IsNullOrWhiteSpace(fieldAlias))
+                        {
+                            fieldName = fieldAlias + "." + fieldName;
+                        }
+                        if (whereStatement == string.Empty)
+                        {
+                            whereStatement = " where " + fieldName + " in (?";
+                        }
+                        else
+                        {
+                            whereStatement += " and " + fieldName + " in (?";
+                        }
+                    }
+                    else
+                    {
+                        whereStatement += ",?";
+                    }
+
+                    if (fieldValue.GetType() == typeof(string))
+                    {
+                        param.Add(fieldValue.ToString().Trim());
+                    }
+                    else
+                    {
+                        param.Add(fieldValue);
+                    }
+                }
+                ++i;
             }
-            if (fieldValue.GetType() != typeof(string) || !string.IsNullOrWhiteSpace((string)fieldValue))
+            if (!string.IsNullOrEmpty(whereStatement))
             {
-                if (!string.IsNullOrWhiteSpace(fieldAlias))
-                {
-                    fieldName = fieldAlias + "." + fieldName;
-                }
-
-                if (whereStatement == string.Empty)
-                {
-                    whereStatement = " where " + fieldName + " in (?)";
-                }
-                else
-                {
-                    whereStatement += " and " + fieldName + " in (?)";
-                }
-
-                if (fieldValue.GetType() == typeof(string))
-                {
-                    param.Add(fieldValue.ToString().Trim());
-                }
-                else
-                {
-                    param.Add(fieldValue);
-                }
+                whereStatement += ")";
             }
-
         }
 
     }

@@ -14,8 +14,10 @@
             columns.Bound(o => o.Code).ClientTemplate(Html.ActionLink("<#= Code #>", "Edit", "TransportFlow", new { ID = "<#= Code #>" }, null).ToString());
             columns.Bound(o => o.Description);
             columns.Bound(o => o.MinLoadRate);
+            columns.Bound(o => o.MultiSitePick)
+                .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsActive' <#= IsActive? checked='checked' : '' #> />");
             columns.Bound(o => o.IsActive)
-                .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsActive' <#= IsActive? checked='checked' : '' #> />"); ;
+                .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsActive' <#= IsActive? checked='checked' : '' #> />"); 
         })
         .CellAction(cell =>
             {

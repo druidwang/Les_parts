@@ -772,6 +772,42 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 取消日期.
+        /// </summary>
+        public static string Common_CancelDate {
+            get {
+                return ResourceManager.GetString("Common_CancelDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 取消用户.
+        /// </summary>
+        public static string Common_CancelUserName {
+            get {
+                return ResourceManager.GetString("Common_CancelUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 关闭日期.
+        /// </summary>
+        public static string Common_CloseDate {
+            get {
+                return ResourceManager.GetString("Common_CloseDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 关闭用户.
+        /// </summary>
+        public static string Common_CloseUserName {
+            get {
+                return ResourceManager.GetString("Common_CloseUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Date.
         /// </summary>
         public static string Common_CreateDate {
@@ -835,11 +871,47 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 开始日期.
+        /// </summary>
+        public static string Common_StartDate {
+            get {
+                return ResourceManager.GetString("Common_StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Start Time.
         /// </summary>
         public static string Common_StartTime {
             get {
                 return ResourceManager.GetString("Common_StartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 开始用户.
+        /// </summary>
+        public static string Common_StartUserName {
+            get {
+                return ResourceManager.GetString("Common_StartUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 提交日期.
+        /// </summary>
+        public static string Common_SubmitDate {
+            get {
+                return ResourceManager.GetString("Common_SubmitDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 提交用户.
+        /// </summary>
+        public static string Common_SubmitUserName {
+            get {
+                return ResourceManager.GetString("Common_SubmitUserName", resourceCulture);
             }
         }
         

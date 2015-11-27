@@ -792,6 +792,7 @@ namespace com.Sconit.CodeMaster
         TaskType,
         TaskStatus,
         TransportMode,
+        TransportStatus
     }
 
     public enum MessageType

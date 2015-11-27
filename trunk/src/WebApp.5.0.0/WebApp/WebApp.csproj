@@ -362,6 +362,8 @@
     <Compile Include="Controllers\SYS\SNRuleController.cs" />
     <Compile Include="Controllers\SYS\TriggerController.cs" />
     <Compile Include="Controllers\TMS\CarrierController.cs" />
+    <Compile Include="Controllers\TMS\TransportOrderController.cs" />
+    <Compile Include="Controllers\TMS\TonnageController.cs" />
     <Compile Include="Controllers\TMS\DriverController.cs" />
     <Compile Include="Controllers\TMS\TransportFlowController.cs" />
     <Compile Include="Controllers\TMS\TransportPriceListController.cs" />
@@ -540,6 +542,7 @@
     <Compile Include="Models\SearchModels\SYS\EntityPreferenceSearchModel.cs" />
     <Compile Include="Models\SearchModels\SYS\SNRuleSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\CarrierSearchModel.cs" />
+    <Compile Include="Models\SearchModels\TMS\TransportOrderSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\TransportPriceListDetSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\DriverSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\TransportAddressSearchModel.cs" />
@@ -2494,6 +2497,38 @@
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_PriceListDetailResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Tonnage\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Tonnage\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Tonnage\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Tonnage\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Tonnage\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\Tonnage\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_DetailSearch.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_OrderDetailList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_OrderDetailListFromPlan.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_SearchDetailResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_SearchReturnDetailResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\BatchProcessIndex.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\BatchProcessList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\BatchProcessSearch.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\BatchProcessSearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\DetailIndex.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\DetailList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\NewFromPlan.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\QuickNew.cshtml" />
+    <Content Include="Views\Common\_TransportFlowComboBox.cshtml" />
+    <Content Include="Views\Common\_DriverComboBox.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_ASNBinding.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_RoutingBinding.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\IpNoTemplate.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_SelectASN.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

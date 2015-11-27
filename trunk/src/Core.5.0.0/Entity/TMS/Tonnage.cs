@@ -4,10 +4,23 @@ using System;
 
 namespace com.Sconit.Entity.TMS
 {
-    public partial class TTonnage
+    public partial class Tonnage
     {
         #region Non O/R Mapping Properties
-
+        public string CodeDescription
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.Description))
+                {
+                    return this.Code;
+                }
+                else
+                {
+                    return this.Code + "[" + this.Description + "]";
+                }
+            }
+        }
         //TODO: Add Non O/R Mapping Properties here. 
 
         #endregion
