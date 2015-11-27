@@ -8,6 +8,7 @@ using com.Sconit.Entity.Exception;
 using com.Sconit.Entity.MD;
 using com.Sconit.CodeMaster;
 using com.Sconit.Entity.ORD;
+using com.Sconit.Entity;
 
 namespace com.Sconit.Service.Impl
 {
@@ -470,13 +471,159 @@ namespace com.Sconit.Service.Impl
         [Transaction(TransactionMode.Requires)]
         public void ReleaseTransportOrderMaster(string orderNo)
         {
+            #region 必输字段校验
+            if (string.IsNullOrWhiteSpace(orderNo))
+            {
+                throw new BusinessException("运单号不能为空。");
+            }
+            #endregion
 
+            #region 加载运单
+            TransportOrderMaster transportOrderMaster = this.genericMgr.FindAll<TransportOrderMaster>("from TransportOrderMaster where OrderNo = ?", orderNo).SingleOrDefault();
+
+            if (transportOrderMaster == null)
+            {
+                throw new BusinessException("运单号{0}不存在。", orderNo);
+            }
+
+            transportOrderMaster.TransportOrderRouteList = this.genericMgr.FindAll<TransportOrderRoute>("from TransportOrderRoute where OrderNo = ? order by Sequence", orderNo);
+            transportOrderMaster.TransportOrderDetailList = this.genericMgr.FindAll<TransportOrderDetail>("from TransportOrderDetail where OrderNo = ?", orderNo);
+            #endregion
+
+            ReleaseTransportOrderMaster(transportOrderMaster);
+        }
+        
+        private void ReleaseTransportOrderMaster(TransportOrderMaster transportOrderMaster)
+        {
+            #region 运单校验
+            if (transportOrderMaster.Status != TransportStatus.Create)
+            {
+                throw new BusinessException("运单{0}不是创建状态不能释放。", transportOrderMaster.OrderNo);
+            }
+
+            if (transportOrderMaster.TransportOrderRouteList.Count < 2)
+            {
+                throw new BusinessException("运单{0}至少应该包含2个运输站点。", transportOrderMaster.OrderNo);
+            }
+
+            if (!transportOrderMaster.MultiSitePick && transportOrderMaster.TransportOrderDetailList.Count == 0)
+            {
+                throw new BusinessException("运单{0}没有添加ASN。", transportOrderMaster.OrderNo);
+            }
+
+            if (string.IsNullOrWhiteSpace(transportOrderMaster.Carrier))
+            {
+                throw new BusinessException("运单{0}的承运商不能为空。", transportOrderMaster.OrderNo);
+            }
+
+            if (transportOrderMaster.TransportMode == TransportMode.Land)
+            {
+                if (string.IsNullOrWhiteSpace(transportOrderMaster.Vehicle))
+                {
+                    throw new BusinessException("运单{0}的运输工具不能为空。", transportOrderMaster.OrderNo);
+                }
+
+                if (string.IsNullOrWhiteSpace(transportOrderMaster.Driver))
+                {
+                    throw new BusinessException("运单{0}的驾驶员不能为空。", transportOrderMaster.OrderNo);
+                }
+
+                if (!transportOrderMaster.MultiSitePick 
+                    && transportOrderMaster.MinLoadRate.HasValue
+                    && string.IsNullOrWhiteSpace(transportOrderMaster.Tonnage))
+                {
+                    throw new BusinessException("运输工具{0}的吨位不能为空。", transportOrderMaster.Vehicle);
+                }
+            }
+
+            Carrier carrier = this.genericMgr.FindAll<Carrier>("from Carrier where Code = ?", transportOrderMaster.Carrier).SingleOrDefault();
+
+            if (carrier == null)
+            {
+                throw new BusinessException("承运商代码{0}不存在。", transportOrderMaster.Carrier);
+            }
+
+            #region 计算装载率
+
+            #endregion
+            #endregion
+
+            #region 确定运输站点
+            if (!transportOrderMaster.MultiSitePick)
+            {
+                IList<TransportOrderRoute> removeTransportOrderRouteList = new List<TransportOrderRoute>();
+                IList<TransportOrderRoute> targetTransportOrderRouteList = new List<TransportOrderRoute>();
+
+                int seq = 2;
+                foreach (TransportOrderRoute transportOrderRoute in transportOrderMaster.TransportOrderRouteList)
+                {
+                    if (transportOrderRoute.Sequence == 1)
+                    {
+                        //不能更改始发站点
+                        continue;
+                    }
+
+                    if (transportOrderMaster.TransportOrderDetailList.Where(d => d.ShipFrom == transportOrderRoute.ShipAddress
+                        || d.ShipTo == transportOrderRoute.ShipAddress).Count() > 0)
+                    {
+                        transportOrderRoute.Sequence = seq++;
+                        targetTransportOrderRouteList.Add(transportOrderRoute);
+                    }
+                    else
+                    {
+                        removeTransportOrderRouteList.Add(transportOrderRoute);
+                    }
+                }
+
+                if (targetTransportOrderRouteList.Count <= 1) 
+                {
+                    throw new BusinessException("运单{0}的站点不行小于2个。", transportOrderMaster.OrderNo);
+                }
+
+                transportOrderMaster.TransportOrderRouteList = targetTransportOrderRouteList;
+
+                foreach (TransportOrderRoute transportOrderRoute in transportOrderMaster.TransportOrderRouteList)
+                {
+                    this.genericMgr.Update(transportOrderRoute);
+                }
+
+                foreach (TransportOrderRoute removeTransportOrderRoute in removeTransportOrderRouteList)
+                {
+                    this.genericMgr.Delete(removeTransportOrderRoute);
+                }
+            }
+            #endregion
+
+            #region 释放运单
+            transportOrderMaster.ShipFrom = transportOrderMaster.TransportOrderRouteList.First().ShipAddress;
+            transportOrderMaster.ShipFromAddress = transportOrderMaster.TransportOrderRouteList.First().ShipAddressDescription;
+            transportOrderMaster.ShipTo = transportOrderMaster.TransportOrderRouteList.Last().ShipAddress;
+            transportOrderMaster.ShipToAddress = transportOrderMaster.TransportOrderRouteList.Last().ShipAddressDescription;
+            transportOrderMaster.CurrentArriveSiteId = transportOrderMaster.TransportOrderRouteList.First().Id;
+            transportOrderMaster.CurrentArriveShipAddress = transportOrderMaster.TransportOrderRouteList.First().ShipAddress;
+            transportOrderMaster.CurrentArriveShipAddressDescription = transportOrderMaster.TransportOrderRouteList.First().ShipAddressDescription;
+            transportOrderMaster.Status = TransportStatus.Submit;
+            transportOrderMaster.SubmitDate = DateTime.Now;
+            transportOrderMaster.SubmitUserId = SecurityContextHolder.Get().Id;
+            transportOrderMaster.SubmitUserName = SecurityContextHolder.Get().FullName;
+
+            this.genericMgr.Update(transportOrderMaster);
+            #endregion
+
+            if (transportOrderMaster.IsAutoStart)
+            {
+                StartTransportOrderMaster(transportOrderMaster);
+            }
         }
 
-        [Transaction(TransactionMode.Requires)]
-        public void ReleaseTransportOrderMaster(TransportOrderMaster transportOrderMaster)
+        public void StartTransportOrderMaster(String orderNo)
         {
+            throw new NotImplementedException();
+        }
 
+        public void StartTransportOrderMaster(TransportOrderMaster transportOrderMaster)
+        {
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -638,5 +785,8 @@ namespace com.Sconit.Service.Impl
             }
         }
         #endregion
+
+
+       
     }
 }

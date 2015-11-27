@@ -2905,6 +2905,51 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Visualization.zh-CN.resx</DependentUpon>
     </Compile>
+    <Compile Include="WMS\PickResult.Designer.cs">
+      <DependentUpon>PickResult.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\PickResult.en-US.Designer.cs">
+      <DependentUpon>PickResult.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\PickResult.zh-CN.Designer.cs">
+      <DependentUpon>PickResult.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\PickWindowTime.Designer.cs">
+      <DependentUpon>PickWindowTime.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\PickWindowTime.en-US.Designer.cs">
+      <DependentUpon>PickWindowTime.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\PickWindowTime.zh-CN.Designer.cs">
+      <DependentUpon>PickWindowTime.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\PickSchedule.Designer.cs">
+      <DependentUpon>PickSchedule.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\PickSchedule.en-US.Designer.cs">
+      <DependentUpon>PickSchedule.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\PickSchedule.zh-CN.Designer.cs">
+      <DependentUpon>PickSchedule.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ACC\PermissionGroup.en-US.resx">
@@ -5339,6 +5384,51 @@
     <EmbeddedResource Include="View\Visualization.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Visualization.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\PickResult.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PickResult.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\PickResult.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PickResult.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\PickResult.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PickResult.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\PickWindowTime.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PickWindowTime.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\PickWindowTime.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PickWindowTime.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\PickWindowTime.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PickWindowTime.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\PickSchedule.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PickSchedule.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\PickSchedule.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PickSchedule.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\PickSchedule.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PickSchedule.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

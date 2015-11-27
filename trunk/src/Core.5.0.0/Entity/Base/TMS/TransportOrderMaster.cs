@@ -103,6 +103,9 @@ namespace com.Sconit.Entity.TMS
 		public Int32? Version { get; set; }
         [Display(Name = "TransportOrderMaster_LicenseNo", ResourceType = typeof(Resources.TMS.TransportOrder))]
         public string LicenseNo { get; set; }
+        public Int32? CurrentArriveSiteId { get; set; }
+        public string CurrentArriveShipAddress { get; set; }
+        public string CurrentArriveShipAddressDescription { get; set; }
         
         #endregion
 

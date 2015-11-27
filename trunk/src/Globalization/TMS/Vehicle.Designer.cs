@@ -79,6 +79,15 @@ namespace Resources.TMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Carrier.
+        /// </summary>
+        public static string Vehicle_Carrier {
+            get {
+                return ResourceManager.GetString("Vehicle_Carrier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Code.
         /// </summary>
         public static string Vehicle_Code {

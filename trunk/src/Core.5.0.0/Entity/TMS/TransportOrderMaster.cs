@@ -10,8 +10,9 @@ namespace com.Sconit.Entity.TMS
     {
         #region Non O/R Mapping Properties
 
-        //TODO: Add Non O/R Mapping Properties here. 
-        [CodeDetailDescriptionAttribute(CodeMaster = com.Sconit.CodeMaster.CodeMaster.TransportMode, ValueField = "TransportMode")]
+        public IList<TransportOrderRoute> TransportOrderRouteList { get; set; }
+        public IList<TransportOrderDetail> TransportOrderDetailList { get; set; }
+
         [Display(Name = "TransportOrderMaster_TransportMode", ResourceType = typeof(Resources.TMS.TransportOrder))]
         public string TransportModeDescription { get; set; }
 

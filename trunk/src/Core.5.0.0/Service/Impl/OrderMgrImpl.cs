@@ -2374,23 +2374,6 @@ namespace com.Sconit.Service.Impl
                 genericMgr.Update(orderMaster);
                 #endregion
 
-                #region SIH客户化程序
-                #region KIT单更新关键件是否扫描字段
-                //string itemTraceHql = "select it.Item From ItemTrace as it";
-                //IList<string> itemTraceList = this.genericMgr.FindAll<string>(itemTraceHql);
-                //TryLoadOrderDetails(orderMaster);
-                //foreach (OrderDetail orderDetail in orderMaster.OrderDetails)
-                //{
-                //    bool isScanHu = itemTraceList.Contains(orderDetail.Item);
-                //    if (isScanHu)
-                //    {
-                //        orderDetail.IsScanHu = isScanHu;
-                //        this.genericMgr.Update(orderDetail);
-                //    }
-                //}
-                #endregion
-                #endregion
-
                 #region 发送打印
                 this.AsyncSendPrintData(orderMaster);
                 #endregion
@@ -2402,8 +2385,11 @@ namespace com.Sconit.Service.Impl
                 }
                 #endregion
 
-                #region 自动捡货/发货/收货
-                //AutoShipAndReceive(orderMaster);
+                #region 生成发货任务
+                if (!(orderMaster.IsQuick || orderMaster.IsAutoStart))
+                {
+
+                }
                 #endregion
 
                 #region 触发订单释放事件
@@ -2424,14 +2410,6 @@ namespace com.Sconit.Service.Impl
                 throw new BusinessException(Resources.ORD.OrderMaster.Errors_StatusErrorWhenRelease,
                     orderMaster.OrderNo, systemMgr.GetCodeDetailDescription(com.Sconit.CodeMaster.CodeMaster.OrderStatus, ((int)orderMaster.Status).ToString()));
             }
-
-            //string loc = systemMgr.GetEntityPreferenceValue(Entity.SYS.EntityPreference.CodeEnum.WMSAnjiRegion);
-            //if (orderMaster.PartyFrom.Equals(loc, StringComparison.OrdinalIgnoreCase) && orderMaster.OrderStrategy != CodeMaster.FlowStrategy.SEQ)
-            //{
-            //    //this.genericMgr.FlushSession();
-            //    //AsyncRecourdMessageQueue(MethodNameType.CreateOrder, orderMaster.OrderNo);
-            //    this.CreateMessageQueue("CreateOrder", orderMaster.OrderNo);
-            //}
         }
 
         private Dictionary<string, Location> GetLocationDic(OrderMaster orderMaster)

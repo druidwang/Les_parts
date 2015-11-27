@@ -36,6 +36,7 @@
     using com.Sconit.Entity.SI.SAP;
     using com.Sconit.Entity.ISI;
     using com.Sconit.Entity.TMS;
+    using com.Sconit.Entity.WMS;
     public class CommonController : WebAppBaseController
     {
         #region
@@ -3593,6 +3594,44 @@
         }
         #endregion
 
+        #region _PickScheduleComboBox
+        public ActionResult _PickScheduleComboBox(string controlName, string controlId, string selectedValue, bool? enable, bool? includeBlankOption, bool? isChange)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Enable = enable;
+            ViewBag.IncludeBlankOption = includeBlankOption;
+            ViewBag.IsChange = isChange;
+            IList<PickSchedule> pickScheduleList = new List<PickSchedule>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+                pickScheduleList = queryMgr.FindAll<PickSchedule>(" from PickSchedule p where p.PickScheduleNo=? ", selectedValue);
+            }
+            return PartialView(new SelectList(pickScheduleList, "PickScheduleNo", "PickScheduleNo", selectedValue));
+        }
+
+        public ActionResult _PickScheduleAjaxLoading(string text,  bool? includeBlankOption)
+        {
+            IList<PickSchedule> pickScheduleList = new List<PickSchedule>();
+            FlowMaster flowMstr = new FlowMaster();
+
+            string sql = @" from PickSchedule as p where p.PickScheduleNo like ? ";
+            string codeLike ="%" + text + "%";
+
+            pickScheduleList = queryMgr.FindAll<PickSchedule>(sql, codeLike);
+
+            if (includeBlankOption.HasValue && includeBlankOption.Value)
+            {
+                pickScheduleList.Insert(0, new PickSchedule());
+            }
+            return new JsonResult
+            {
+                Data = new SelectList(pickScheduleList, "PickScheduleNo", "PickScheduleNo")
+            };
+        }
+        #endregion
+
+        
         #region PlanNo
         public ActionResult _PlanNoComboBox(string controlName, string controlId, string selectedValue,
             bool? enable, bool? coupled, string flow, string dateIndex)

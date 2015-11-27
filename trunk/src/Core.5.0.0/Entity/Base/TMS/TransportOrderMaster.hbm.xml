@@ -49,5 +49,8 @@
 		<property name="CancelUserId" column="CancelUser" type="Int32"/>	
 		<property name="CancelUserName" column="CancelUserNm" type="String" length="100"/>
         <property name="LicenseNo" column="LicenseNo" type="String" length="50"/>
+        <property name="CurrentArriveSiteId" column="CurrArriveSiteId" type="Int32"/>
+        <property name="CurrentArriveShipAddress" column="CurrArriveShipAddr" type="String" length="50"/>
+        <property name="CurrentArriveShipAddressDescription" column="CurrArriveShipAddrDesc" type="String" length="255"/>
     </class>
 </hibernate-mapping>

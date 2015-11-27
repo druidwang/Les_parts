@@ -369,6 +369,10 @@
     <Compile Include="Controllers\TMS\TransportPriceListController.cs" />
     <Compile Include="Controllers\TMS\VehicleController.cs" />
     <Compile Include="Controllers\WebAppBaseController.cs" />
+    <Compile Include="Controllers\WMS\PickResultController.cs" />
+    <Compile Include="Controllers\WMS\PickWindowTimeController.cs" />
+    <Compile Include="Controllers\WMS\PickScheduleController.cs" />
+
     <Compile Include="Filters\**\*.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -399,6 +403,9 @@
     <Compile Include="Models\SearchModels\MRP\MrpExWorkHourSearchModel.cs" />
     <Compile Include="Models\ORD\ScheduleView.cs" />
     <Compile Include="Models\ORD\WebOrderDetail.cs" />
+    <Compile Include="Models\SearchModels\WMS\PickResultSearchModel.cs" />
+    <Compile Include="Models\SearchModels\WMS\PickWindowTimeSearchModel.cs" />
+    <Compile Include="Models\SearchModels\WMS\PickScheduleSearchModel.cs" />
     <Compile Include="Models\ReportModels\HistoryInventorySearchModel.cs" />
     <Compile Include="Models\ReportModels\InventoryAgeSearchModel.cs" />
     <Compile Include="Models\ReportModels\PPMModel.cs" />
@@ -673,6 +680,25 @@
     <Content Include="Content\2012.2.607\Office2010Blue\slider-h.gif" />
     <Content Include="Content\2012.2.607\Office2010Blue\slider-v.gif" />
     <Content Include="Content\2012.2.607\Office2010Blue\sprite-vertical.png" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickWindowTime\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickWindowTime\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickWindowTime\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickWindowTime\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickWindowTime\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickWindowTime\List.cshtml" />
+    <Content Include="Views\Common\_PickScheduleComboBox.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\List.cshtml" />
+
     <Content Include="Content\2012.2.607\Office2010Blue\sprite.png" />
     <Content Include="Content\2012.2.607\Office2010Silver\editor.png" />
     <Content Include="Content\2012.2.607\Office2010Silver\gradient.png" />
