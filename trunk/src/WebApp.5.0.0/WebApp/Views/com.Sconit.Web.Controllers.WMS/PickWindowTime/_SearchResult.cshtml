@@ -32,7 +32,9 @@
     <script type="text/javascript">
         function PickWindowTimeGrid_OnDataBinding(e) {
             e.data = {
-                PickWindowTimeNo: $('#PickScheduleNo').val()
+                PickScheduleNo: $('#PickScheduleNo').val(),
+                ShiftCode: $('#ShiftCode').val(),
+                WindowTime: $('#WindowTime').val()
             };
         } 
     </script>

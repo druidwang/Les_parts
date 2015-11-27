@@ -367,6 +367,9 @@
     <Compile Include="Controllers\TMS\TransportPriceListController.cs" />
     <Compile Include="Controllers\TMS\VehicleController.cs" />
     <Compile Include="Controllers\WebAppBaseController.cs" />
+    <Compile Include="Controllers\WMS\PickResultController.cs" />
+    <Compile Include="Controllers\WMS\PickWindowTimeController.cs" />
+    <Compile Include="Controllers\WMS\PickScheduleController.cs" />
     <Compile Include="Filters\**\*.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -546,6 +549,9 @@
     <Compile Include="Models\SearchModels\TMS\TransportFlowSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\TransportPriceListSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\VehicleSearchModel.cs" />
+    <Compile Include="Models\SearchModels\WMS\PickResultSearchModel.cs" />
+    <Compile Include="Models\SearchModels\WMS\PickWindowTimeSearchModel.cs" />
+    <Compile Include="Models\SearchModels\WMS\PickScheduleSearchModel.cs" />
     <Compile Include="Pluming\**\*.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -2494,6 +2500,24 @@
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_PriceListDetailResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportPriceList\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickWindowTime\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickWindowTime\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickWindowTime\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickWindowTime\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickWindowTime\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickWindowTime\List.cshtml" />
+    <Content Include="Views\Common\_PickScheduleComboBox.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\List.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>
