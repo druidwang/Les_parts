@@ -158,8 +158,8 @@ namespace com.Sconit.Web.Controllers.WMS
         {
             string whereStatement = string.Empty;
             IList<object> param = new List<object>();
-            HqlStatementHelper.AddLikeStatement("PickScheduleNo", searchModel.PickScheduleNo, HqlStatementHelper.LikeMatchMode.Start, "c", ref whereStatement, param);
-            HqlStatementHelper.AddLikeStatement("ShiftCode", searchModel.ShiftCode, HqlStatementHelper.LikeMatchMode.Start, "c", ref whereStatement, param);
+            HqlStatementHelper.AddLikeStatement("PickScheduleNo", searchModel.PickScheduleNo, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
+            HqlStatementHelper.AddLikeStatement("ShiftCode", searchModel.ShiftCode, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
 
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
             SearchStatementModel searchStatementModel = new SearchStatementModel();

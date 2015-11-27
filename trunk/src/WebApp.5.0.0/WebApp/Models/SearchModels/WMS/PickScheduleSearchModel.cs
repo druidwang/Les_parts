@@ -7,6 +7,6 @@ namespace com.Sconit.Web.Models.SearchModels.WMS
 {
     public class PickScheduleSearchModel : SearchModelBase
     {
-        public string Code { get; set; }
+        public string PickScheduleNo { get; set; } 
     }
 }
