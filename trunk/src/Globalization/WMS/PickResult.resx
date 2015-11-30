@@ -147,6 +147,9 @@
   <data name="PickResult_HuId" xml:space="preserve">
     <value>HuId</value>
   </data>
+  <data name="PickResult_IsActive" xml:space="preserve">
+    <value>IsActive</value>
+  </data>
   <data name="PickResult_Item" xml:space="preserve">
     <value>Item Code</value>
   </data>

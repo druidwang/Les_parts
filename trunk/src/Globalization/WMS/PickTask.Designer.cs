@@ -22,14 +22,14 @@ namespace Resources.WMS {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class PickResult {
+    public class PickTask {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal PickResult() {
+        internal PickTask() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources.WMS {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.WMS.PickResult", typeof(PickResult).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.WMS.PickTask", typeof(PickTask).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,225 +63,216 @@ namespace Resources.WMS {
         /// <summary>
         ///   Looks up a localized string similar to Area.
         /// </summary>
-        public static string PickResult_Area {
+        public static string PickTask_Area {
             get {
-                return ResourceManager.GetString("PickResult_Area", resourceCulture);
+                return ResourceManager.GetString("PickTask_Area", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to BaseUom.
         /// </summary>
-        public static string PickResult_BaseUom {
+        public static string PickTask_BaseUom {
             get {
-                return ResourceManager.GetString("PickResult_BaseUom", resourceCulture);
+                return ResourceManager.GetString("PickTask_BaseUom", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Bin.
         /// </summary>
-        public static string PickResult_Bin {
+        public static string PickTask_Bin {
             get {
-                return ResourceManager.GetString("PickResult_Bin", resourceCulture);
+                return ResourceManager.GetString("PickTask_Bin", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to CancelDate.
         /// </summary>
-        public static string PickResult_CancelDate {
+        public static string PickTask_CancelDate {
             get {
-                return ResourceManager.GetString("PickResult_CancelDate", resourceCulture);
+                return ResourceManager.GetString("PickTask_CancelDate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to CancelUserName.
         /// </summary>
-        public static string PickResult_CancelUserName {
+        public static string PickTask_CancelUserName {
             get {
-                return ResourceManager.GetString("PickResult_CancelUserName", resourceCulture);
+                return ResourceManager.GetString("PickTask_CancelUserName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Create Date.
         /// </summary>
-        public static string PickResult_CreateDate {
+        public static string PickTask_CreateDate {
             get {
-                return ResourceManager.GetString("PickResult_CreateDate", resourceCulture);
+                return ResourceManager.GetString("PickTask_CreateDate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Create User Name.
         /// </summary>
-        public static string PickResult_CreateUserName {
+        public static string PickTask_CreateUserName {
             get {
-                return ResourceManager.GetString("PickResult_CreateUserName", resourceCulture);
+                return ResourceManager.GetString("PickTask_CreateUserName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to DateFrom.
         /// </summary>
-        public static string PickResult_DateFrom {
+        public static string PickTask_DateFrom {
             get {
-                return ResourceManager.GetString("PickResult_DateFrom", resourceCulture);
+                return ResourceManager.GetString("PickTask_DateFrom", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DateTo.
+        ///   Looks up a localized string similar to EndDate.
         /// </summary>
-        public static string PickResult_DateTo {
+        public static string PickTask_DateTo {
             get {
-                return ResourceManager.GetString("PickResult_DateTo", resourceCulture);
+                return ResourceManager.GetString("PickTask_DateTo", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to HuId.
         /// </summary>
-        public static string PickResult_HuId {
+        public static string PickTask_HuId {
             get {
-                return ResourceManager.GetString("PickResult_HuId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to IsActive.
-        /// </summary>
-        public static string PickResult_IsActive {
-            get {
-                return ResourceManager.GetString("PickResult_IsActive", resourceCulture);
+                return ResourceManager.GetString("PickTask_HuId", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Item Code.
         /// </summary>
-        public static string PickResult_Item {
+        public static string PickTask_Item {
             get {
-                return ResourceManager.GetString("PickResult_Item", resourceCulture);
+                return ResourceManager.GetString("PickTask_Item", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Item Description.
         /// </summary>
-        public static string PickResult_ItemDescription {
+        public static string PickTask_ItemDescription {
             get {
-                return ResourceManager.GetString("PickResult_ItemDescription", resourceCulture);
+                return ResourceManager.GetString("PickTask_ItemDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Location.
         /// </summary>
-        public static string PickResult_Location {
+        public static string PickTask_Location {
             get {
-                return ResourceManager.GetString("PickResult_Location", resourceCulture);
+                return ResourceManager.GetString("PickTask_Location", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to LotNo.
         /// </summary>
-        public static string PickResult_LotNo {
+        public static string PickTask_LotNo {
             get {
-                return ResourceManager.GetString("PickResult_LotNo", resourceCulture);
+                return ResourceManager.GetString("PickTask_LotNo", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to OrderNo.
         /// </summary>
-        public static string PickResult_OrderNo {
+        public static string PickTask_OrderNo {
             get {
-                return ResourceManager.GetString("PickResult_OrderNo", resourceCulture);
+                return ResourceManager.GetString("PickTask_OrderNo", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to OrderSequence.
         /// </summary>
-        public static string PickResult_OrderSequence {
+        public static string PickTask_OrderSequence {
             get {
-                return ResourceManager.GetString("PickResult_OrderSequence", resourceCulture);
+                return ResourceManager.GetString("PickTask_OrderSequence", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to PickDate.
         /// </summary>
-        public static string PickResult_PickDate {
+        public static string PickTask_PickDate {
             get {
-                return ResourceManager.GetString("PickResult_PickDate", resourceCulture);
+                return ResourceManager.GetString("PickTask_PickDate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to PickQty.
         /// </summary>
-        public static string PickResult_PickQty {
+        public static string PickTask_PickQty {
             get {
-                return ResourceManager.GetString("PickResult_PickQty", resourceCulture);
+                return ResourceManager.GetString("PickTask_PickQty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to PickUserName.
         /// </summary>
-        public static string PickResult_PickUserName {
+        public static string PickTask_PickUserName {
             get {
-                return ResourceManager.GetString("PickResult_PickUserName", resourceCulture);
+                return ResourceManager.GetString("PickTask_PickUserName", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ReferenceItemCode.
         /// </summary>
-        public static string PickResult_ReferenceItemCode {
+        public static string PickTask_ReferenceItemCode {
             get {
-                return ResourceManager.GetString("PickResult_ReferenceItemCode", resourceCulture);
+                return ResourceManager.GetString("PickTask_ReferenceItemCode", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to UCDescription.
         /// </summary>
-        public static string PickResult_UCDescription {
+        public static string PickTask_UCDescription {
             get {
-                return ResourceManager.GetString("PickResult_UCDescription", resourceCulture);
+                return ResourceManager.GetString("PickTask_UCDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to UnitCount.
         /// </summary>
-        public static string PickResult_UnitCount {
+        public static string PickTask_UnitCount {
             get {
-                return ResourceManager.GetString("PickResult_UnitCount", resourceCulture);
+                return ResourceManager.GetString("PickTask_UnitCount", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to UnitQty.
         /// </summary>
-        public static string PickResult_UnitQty {
+        public static string PickTask_UnitQty {
             get {
-                return ResourceManager.GetString("PickResult_UnitQty", resourceCulture);
+                return ResourceManager.GetString("PickTask_UnitQty", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Uom.
         /// </summary>
-        public static string PickResult_Uom {
+        public static string PickTask_Uom {
             get {
-                return ResourceManager.GetString("PickResult_Uom", resourceCulture);
+                return ResourceManager.GetString("PickTask_Uom", resourceCulture);
             }
         }
     }

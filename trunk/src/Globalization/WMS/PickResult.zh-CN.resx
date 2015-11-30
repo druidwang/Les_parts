@@ -147,6 +147,9 @@
   <data name="PickResult_HuId" xml:space="preserve">
     <value>条码</value>
   </data>
+  <data name="PickResult_IsActive" xml:space="preserve">
+    <value>是否有效</value>
+  </data>
   <data name="PickResult_Item" xml:space="preserve">
     <value>物料代码</value>
   </data>

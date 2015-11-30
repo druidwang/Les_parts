@@ -369,10 +369,11 @@
     <Compile Include="Controllers\TMS\TransportPriceListController.cs" />
     <Compile Include="Controllers\TMS\VehicleController.cs" />
     <Compile Include="Controllers\WebAppBaseController.cs" />
+    <Compile Include="Controllers\WMS\RepackTaskController.cs" />
+    <Compile Include="Controllers\WMS\PickTaskController.cs" />
     <Compile Include="Controllers\WMS\PickResultController.cs" />
     <Compile Include="Controllers\WMS\PickWindowTimeController.cs" />
     <Compile Include="Controllers\WMS\PickScheduleController.cs" />
-
     <Compile Include="Filters\**\*.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -403,6 +404,8 @@
     <Compile Include="Models\SearchModels\MRP\MrpExWorkHourSearchModel.cs" />
     <Compile Include="Models\ORD\ScheduleView.cs" />
     <Compile Include="Models\ORD\WebOrderDetail.cs" />
+    <Compile Include="Models\SearchModels\WMS\PickTaskSearchModel.cs" />
+    <Compile Include="Models\SearchModels\WMS\RepackTaskSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickResultSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickWindowTimeSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickScheduleSearchModel.cs" />
@@ -698,7 +701,6 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\Edit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\List.cshtml" />
-
     <Content Include="Content\2012.2.607\Office2010Blue\sprite.png" />
     <Content Include="Content\2012.2.607\Office2010Silver\editor.png" />
     <Content Include="Content\2012.2.607\Office2010Silver\gradient.png" />
@@ -2555,6 +2557,16 @@
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_RoutingBinding.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\IpNoTemplate.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_SelectASN.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\Index.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

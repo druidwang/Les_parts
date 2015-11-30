@@ -1,6 +1,7 @@
 using System;
 using com.Sconit.Entity.SYS;
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 //TODO: Add other using statements here
 

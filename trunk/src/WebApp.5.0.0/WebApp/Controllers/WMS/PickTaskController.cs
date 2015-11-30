@@ -18,15 +18,15 @@ namespace com.Sconit.Web.Controllers.WMS
     using com.Sconit.Web.Models.SearchModels.WMS;
     using com.Sconit.Entity.WMS;
 
-    public class PickResultController : WebAppBaseController
+    public class PickTaskController : WebAppBaseController
     {
-        #region 拣货结果
+        #region 拣货任务
       
-        private static string selectCountStatement = "select count(*) from PickResult as p";
+        private static string selectCountStatement = "select count(*) from PickTask as p";
 
-        private static string selectStatement = "select p from PickResult as p";
+        private static string selectStatement = "select p from PickTask as p";
 
-        [SconitAuthorize(Permissions = "Url_PickResult_View")]
+        [SconitAuthorize(Permissions = "Url_PickTask_View")]
         public ActionResult Index()
         {
             return View();
@@ -39,8 +39,8 @@ namespace com.Sconit.Web.Controllers.WMS
         /// <param name="searchModel"></param>
         /// <returns></returns>
         [GridAction]
-        [SconitAuthorize(Permissions = "Url_PickResult_View")]
-        public ActionResult List(GridCommand command, PickResultSearchModel searchModel)
+        [SconitAuthorize(Permissions = "Url_PickTask_View")]
+        public ActionResult List(GridCommand command, PickTaskSearchModel searchModel)
         {
             SearchCacheModel searchCacheModel = this.ProcessSearchModel(command, searchModel);
             ViewBag.PageSize = base.ProcessPageSize(command.PageSize);
@@ -54,18 +54,18 @@ namespace com.Sconit.Web.Controllers.WMS
         /// <param name="searchModel"></param>
         /// <returns></returns>
         [GridAction(EnableCustomBinding = true)]
-        [SconitAuthorize(Permissions = "Url_PickResult_View")]
-        public ActionResult _AjaxList(GridCommand command, PickResultSearchModel searchModel)
+        [SconitAuthorize(Permissions = "Url_PickTask_View")]
+        public ActionResult _AjaxList(GridCommand command, PickTaskSearchModel searchModel)
         {
             SearchStatementModel searchStatementModel = PrepareSearchStatement(command, searchModel);
-            return PartialView(GetAjaxPageData<PickResult>(searchStatementModel, command));
+            return PartialView(GetAjaxPageData<PickTask>(searchStatementModel, command));
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        [SconitAuthorize(Permissions = "Url_PickResult_Edit")]
+        [SconitAuthorize(Permissions = "Url_PickTask_Edit")]
         public ActionResult New()
         {
             return View();
@@ -78,7 +78,7 @@ namespace com.Sconit.Web.Controllers.WMS
         /// <param name="Id"></param>
         /// <returns></returns>
         [HttpGet]
-        [SconitAuthorize(Permissions = "Url_PickResult_Edit")]
+        [SconitAuthorize(Permissions = "Url_PickTask_Edit")]
         public ActionResult Edit(string id)
         {
 
@@ -88,17 +88,17 @@ namespace com.Sconit.Web.Controllers.WMS
             }
             else
             {
-                PickResult pickSchedule = base.genericMgr.FindById<PickResult>(id);
+                PickTask pickSchedule = base.genericMgr.FindById<PickTask>(id);
                 return View(pickSchedule);
             }
 
         }
 
-        private SearchStatementModel PrepareSearchStatement(GridCommand command, PickResultSearchModel searchModel)
+        private SearchStatementModel PrepareSearchStatement(GridCommand command, PickTaskSearchModel searchModel)
         {
             string whereStatement = string.Empty;
             IList<object> param = new List<object>();
-            HqlStatementHelper.AddLikeStatement("OrderNo", searchModel.OrderNo, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("PickUser", searchModel.PickUser, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Location", searchModel.Location,  "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "p", ref whereStatement, param);
 
