@@ -70,7 +70,7 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BaseUom.
+        ///   Looks up a localized string similar to Base Uom.
         /// </summary>
         public static string PickTask_BaseUom {
             get {
@@ -88,20 +88,20 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CancelDate.
+        ///   Looks up a localized string similar to CLose Date.
         /// </summary>
-        public static string PickTask_CancelDate {
+        public static string PickTask_CloseDate {
             get {
-                return ResourceManager.GetString("PickTask_CancelDate", resourceCulture);
+                return ResourceManager.GetString("PickTask_CloseDate", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to CancelUserName.
+        ///   Looks up a localized string similar to Close User.
         /// </summary>
-        public static string PickTask_CancelUserName {
+        public static string PickTask_CloseUserName {
             get {
-                return ResourceManager.GetString("PickTask_CancelUserName", resourceCulture);
+                return ResourceManager.GetString("PickTask_CloseUserName", resourceCulture);
             }
         }
         
@@ -115,7 +115,7 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create User Name.
+        ///   Looks up a localized string similar to Create User.
         /// </summary>
         public static string PickTask_CreateUserName {
             get {
@@ -124,7 +124,7 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DateFrom.
+        ///   Looks up a localized string similar to Date From.
         /// </summary>
         public static string PickTask_DateFrom {
             get {
@@ -133,7 +133,7 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to EndDate.
+        ///   Looks up a localized string similar to Date To.
         /// </summary>
         public static string PickTask_DateTo {
             get {
@@ -151,7 +151,16 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Item Code.
+        ///   Looks up a localized string similar to Is Active.
+        /// </summary>
+        public static string PickTask_IsActive {
+            get {
+                return ResourceManager.GetString("PickTask_IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Item.
         /// </summary>
         public static string PickTask_Item {
             get {
@@ -187,25 +196,16 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OrderNo.
+        ///   Looks up a localized string similar to OrderQty.
         /// </summary>
-        public static string PickTask_OrderNo {
+        public static string PickTask_OrderQty {
             get {
-                return ResourceManager.GetString("PickTask_OrderNo", resourceCulture);
+                return ResourceManager.GetString("PickTask_OrderQty", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to OrderSequence.
-        /// </summary>
-        public static string PickTask_OrderSequence {
-            get {
-                return ResourceManager.GetString("PickTask_OrderSequence", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to PickDate.
+        ///   Looks up a localized string similar to Pick Date.
         /// </summary>
         public static string PickTask_PickDate {
             get {
@@ -214,7 +214,7 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PickQty.
+        ///   Looks up a localized string similar to Pick Qty.
         /// </summary>
         public static string PickTask_PickQty {
             get {
@@ -223,7 +223,7 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PickUserName.
+        ///   Looks up a localized string similar to Pick User.
         /// </summary>
         public static string PickTask_PickUserName {
             get {
@@ -232,7 +232,7 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to ReferenceItemCode.
+        ///   Looks up a localized string similar to Reference Item.
         /// </summary>
         public static string PickTask_ReferenceItemCode {
             get {
@@ -241,7 +241,16 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UCDescription.
+        ///   Looks up a localized string similar to StartTime.
+        /// </summary>
+        public static string PickTask_StartTime {
+            get {
+                return ResourceManager.GetString("PickTask_StartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UC Description.
         /// </summary>
         public static string PickTask_UCDescription {
             get {
@@ -250,7 +259,7 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UnitCount.
+        ///   Looks up a localized string similar to Unit Count.
         /// </summary>
         public static string PickTask_UnitCount {
             get {
@@ -259,7 +268,7 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UnitQty.
+        ///   Looks up a localized string similar to Unit Qty.
         /// </summary>
         public static string PickTask_UnitQty {
             get {
@@ -273,6 +282,15 @@ namespace Resources.WMS {
         public static string PickTask_Uom {
             get {
                 return ResourceManager.GetString("PickTask_Uom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WindowTime.
+        /// </summary>
+        public static string PickTask_WindowTime {
+            get {
+                return ResourceManager.GetString("PickTask_WindowTime", resourceCulture);
             }
         }
     }

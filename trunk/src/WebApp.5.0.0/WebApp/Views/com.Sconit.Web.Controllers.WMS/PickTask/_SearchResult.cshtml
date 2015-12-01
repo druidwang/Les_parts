@@ -19,11 +19,10 @@
             columns.Bound(o => o.Bin);
             columns.Bound(o => o.LotNo);
             columns.Bound(o => o.HuId);
-            columns.Bound(o=>o.PickQty);
-            columns.Bound(o => o.OrderNo);
-            columns.Bound(o => o.OrderSequence); 
+            columns.Bound(o => o.StartTime);
+            columns.Bound(o => o.WinTime);
+            columns.Bound(o=> o.PickQty);
             columns.Bound(o => o.PickUserName);
-            columns.Bound(o => o.PickDate);
                 })
       
             .Scrollable(c => c.Enabled(false))

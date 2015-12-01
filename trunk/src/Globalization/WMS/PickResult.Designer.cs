@@ -250,6 +250,15 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to StartTime.
+        /// </summary>
+        public static string PickResult_StartTime {
+            get {
+                return ResourceManager.GetString("PickResult_StartTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to UCDescription.
         /// </summary>
         public static string PickResult_UCDescription {
@@ -282,6 +291,15 @@ namespace Resources.WMS {
         public static string PickResult_Uom {
             get {
                 return ResourceManager.GetString("PickResult_Uom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WindowTime.
+        /// </summary>
+        public static string PickResult_WindowTime {
+            get {
+                return ResourceManager.GetString("PickResult_WindowTime", resourceCulture);
             }
         }
     }
