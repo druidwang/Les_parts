@@ -39,15 +39,17 @@
             @Html.Hidden("isFromList", true)
             <button type="submit" id="btnSearch">
                 @Resources.SYS.Global.Button_Search</button>
+            <button type="button" id="btnNew" onclick="location.href='@Url.Content("~/TransportPriceList/New")'">
+                @Resources.SYS.Global.Button_New</button>
             <button type="submit" id="btnExport">
                 @Resources.SYS.Global.Button_Export</button>
 
-             @Html.Button(Resources.SYS.Global.Button_New, "Url_TransportPriceList_Edit", new Dictionary<string, string>()
+@*             @Html.Button(Resources.SYS.Global.Button_New, "Url_TransportPriceList_Edit", new Dictionary<string, string>()
 	        {
 	            {"type", "button"},
 	            {"id", "btnNew"},
                 {"onclick","location.href='"+Url.Content("~/TransportPriceList/New/") +"'"}
-	        })
+	        })*@
         </div>
 
     }

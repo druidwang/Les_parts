@@ -15,6 +15,22 @@ namespace com.Sconit.Entity.TMS
         [CodeDetailDescriptionAttribute(CodeMaster = com.Sconit.CodeMaster.CodeMaster.TransportMode, ValueField = "TransportMode")]
         [Display(Name = "TransportPriceList_TransportMode", ResourceType = typeof(Resources.TMS.TransportPriceList))]
         public string TransportModeDescription { get; set; }
+
+
+        public string CodeDescription
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(this.Description))
+                {
+                    return this.Code;
+                }
+                else
+                {
+                    return this.Code + "[" + this.Description + "]";
+                }
+            }
+        }
         #endregion
     }
 }

@@ -7,7 +7,7 @@
 		<property name="Description" column="Desc1" type="String" length="255"/>	
 		<property name="IsAutoStart" column="IsAutoStart" type="Boolean"/>
         <property name="IsAutoRelease" column="IsAutoRelease" type="Boolean"/>
-        <property name="MultiSitePick" column="MultiSitePick" type="Decimal"/>
+        <property name="MultiSitePick" column="MultiSitePick" type="Boolean"/>
         <property name="CreateUserName" column="CreateUserNm" type="String" length="255" update="false"/>	
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	

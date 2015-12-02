@@ -7,48 +7,100 @@ namespace com.Sconit.Entity.WMS
     public partial class PickTask : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
-		
-		public Int32 Id { get; set; }
+
+        public Int32 Id { get; set; }
         public com.Sconit.CodeMaster.OrderPriority Priority { get; set; }
-		public string Item { get; set; }
-		public string ItemDescription { get; set; }
-		public string ReferenceItemCode { get; set; }
-		public string Uom { get; set; }
-		public string BaseUom { get; set; }
+
+        [Display(Name = "PickTask_Item", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string Item { get; set; }
+
+        [Display(Name = "PickTask_ItemDescription", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string ItemDescription { get; set; }
+
+        [Display(Name = "PickTask_ReferenceItemCode", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string ReferenceItemCode { get; set; }
+
+        [Display(Name = "PickTask_Uom", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string Uom { get; set; }
+
+        [Display(Name = "PickTask_BaseUom", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string BaseUom { get; set; }
+
+        [Display(Name = "PickTask_UnitQty", ResourceType = typeof(Resources.WMS.PickTask))]
         public Decimal UnitQty { get; set; }
+
+        [Display(Name = "PickTask_UnitCount", ResourceType = typeof(Resources.WMS.PickTask))]
         public Decimal UnitCount { get; set; }
-		public string UCDescription { get; set; }
-		public Decimal OrderQty { get; set; }
-		public Decimal PickQty { get; set; }
-		public string Location { get; set; }
-		public string Area { get; set; }
-		public string Bin { get; set; }
-		public string LotNo { get; set; }
-		public string HuId { get; set; }
-        public com.Sconit.CodeMaster.PickBy PickBy { get; set; }
-		public string PickGroup { get; set; }
-		public Int32? PickUserId { get; set; }
-		public string PickUserName { get; set; }
-		public DateTime StartTime { get; set; }
-		public DateTime WinTime { get; set; }
+
+        [Display(Name = "PickTask_UCDescription", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string UCDescription { get; set; }
+
+        [Display(Name = "PickTask_OrderQty", ResourceType = typeof(Resources.WMS.PickTask))]
+        public Decimal OrderQty { get; set; }
+
+        [Display(Name = "PickTask_PickQty", ResourceType = typeof(Resources.WMS.PickTask))]
+        public Decimal PickQty { get; set; }
+
+        [Display(Name = "PickTask_Location", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string Location { get; set; }
+
+        [Display(Name = "PickTask_Area", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string Area { get; set; }
+
+        [Display(Name = "PickTask_Bin", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string Bin { get; set; }
+
+        [Display(Name = "PickTask_LotNo", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string LotNo { get; set; }
+
+        [Display(Name = "PickTask_HuId", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string HuId { get; set; }
+
         public Boolean IsPickHu { get; set; }
+
+        [Display(Name = "PickTask_PickBy", ResourceType = typeof(Resources.WMS.PickTask))]
+        public com.Sconit.CodeMaster.PickBy PickBy { get; set; }
+
+        [Display(Name = "PickTask_PickGroup", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string PickGroup { get; set; }
+        public Int32? PickUserId { get; set; }
+
+        [Display(Name = "PickTask_PickUserName", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string PickUserName { get; set; }
+
+
+        [Display(Name = "PickTask_StartTime", ResourceType = typeof(Resources.WMS.PickTask))]
+        public DateTime StartTime { get; set; }
+
+        [Display(Name = "PickTask_WindowTime", ResourceType = typeof(Resources.WMS.PickTask))]
+        public DateTime WinTime { get; set; }
+
+        [Display(Name = "PickTask_IsActive", ResourceType = typeof(Resources.WMS.PickTask))]
         public Boolean IsActive { get; set; }
-		public Int32 CreateUserId { get; set; }
-		public string CreateUserName { get; set; }
-		public DateTime CreateDate { get; set; }
-		public Int32 LastModifyUserId { get; set; }
-		public string LastModifyUserName { get; set; }
-		public DateTime LastModifyDate { get; set; }
-		public Int32? CloseUser { get; set; }
-		public string CloseUserName { get; set; }
-		public DateTime? CloseDate { get; set; }
-		public Int32 Version { get; set; }
-        
+        public Int32 CreateUserId { get; set; }
+
+        [Display(Name = "PickTask_CreateUserName", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string CreateUserName { get; set; }
+
+        [Display(Name = "PickTask_CreateDate", ResourceType = typeof(Resources.WMS.PickTask))]
+        public DateTime CreateDate { get; set; }
+        public Int32 LastModifyUserId { get; set; }
+        public string LastModifyUserName { get; set; }
+        public DateTime LastModifyDate { get; set; }
+        public Int32? CloseUser { get; set; }
+
+        [Display(Name = "PickTask_CloseUserName", ResourceType = typeof(Resources.WMS.PickTask))]
+        public string CloseUserName { get; set; }
+
+        [Display(Name = "PickTask_CloseDate", ResourceType = typeof(Resources.WMS.PickTask))]
+        public DateTime? CloseDate { get; set; }
+        public Int32 Version { get; set; }
+
         #endregion
 
-		public override int GetHashCode()
+        public override int GetHashCode()
         {
-			if (Id != 0)
+            if (Id != 0)
             {
                 return Id.GetHashCode();
             }
@@ -68,9 +120,9 @@ namespace com.Sconit.Entity.WMS
             }
             else
             {
-            	return (this.Id == another.Id);
+                return (this.Id == another.Id);
             }
-        } 
+        }
     }
-	
+
 }

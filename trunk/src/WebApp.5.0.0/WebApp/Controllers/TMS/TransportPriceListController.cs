@@ -113,7 +113,7 @@ namespace com.Sconit.Web.Controllers.TMS
         /// <returns>return to edit view</returns>
         [HttpPost]
         [SconitAuthorize(Permissions = "Url_TransportPriceList_Edit")]
-        public ActionResult New(PriceListMaster priceListMaster)
+        public ActionResult New(com.Sconit.Entity.TMS.TransportPriceList priceListMaster)
         {
             if (ModelState.IsValid)
             {
@@ -123,17 +123,10 @@ namespace com.Sconit.Web.Controllers.TMS
                 }
                 else
                 {
-                    if (this.genericMgr.FindAll<Supplier>("from Supplier where Code=?", priceListMaster.Party).Count < 1)
-                    {
-                        SaveErrorMessage(Resources.BIL.PriceListMaster.Errors_NotExisting_Party);
-                    }
-                    else
-                    {
-                        priceListMaster.Type = com.Sconit.CodeMaster.PriceListType.Procuement;
-                        this.genericMgr.CreateWithTrim(priceListMaster);
-                        SaveSuccessMessage(Resources.BIL.PriceListMaster.PriceListMaster_Added);
-                        return RedirectToAction("Edit/" + priceListMaster.Code);
-                    }
+                    this.genericMgr.CreateWithTrim(priceListMaster);
+                    SaveSuccessMessage(Resources.BIL.PriceListMaster.PriceListMaster_Added);
+                    return RedirectToAction("Edit/" + priceListMaster.Code);
+
                 }
             }
 
@@ -474,7 +467,7 @@ namespace com.Sconit.Web.Controllers.TMS
 
             HqlStatementHelper.AddLikeStatement("Code", searchModel.Code, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Carrier", searchModel.Carrier, "p", ref whereStatement, param);
-            HqlStatementHelper.AddEqStatement("IsActive", searchModel.IsActive, "f", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("IsActive", searchModel.IsActive, "p", ref whereStatement, param);
 
             if (command.SortDescriptors.Count > 0)
             {
