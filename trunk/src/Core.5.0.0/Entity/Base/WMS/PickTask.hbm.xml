@@ -25,8 +25,9 @@
 		<property name="PickUserId" column="PickUserId" type="Int32"/>	
 		<property name="PickUserName" column="PickUserNm" type="String" length="100"/>	
 		<property name="StartTime" column="StartTime" type="DateTime"/>	
-		<property name="WinTime" column="WinTime" type="DateTime"/>	
-		<property name="IsActive" column="IsActive" type="Boolean"/>	
+		<property name="WinTime" column="WinTime" type="DateTime"/>
+        <property name="IsPickHu" column="IsPickHu" type="Boolean"/>
+        <property name="IsActive" column="IsActive" type="Boolean"/>	
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	

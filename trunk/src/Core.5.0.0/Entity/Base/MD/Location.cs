@@ -49,6 +49,8 @@ namespace com.Sconit.Entity.MD
 		public Int32 LastModifyUserId { get; set; }
 		public string LastModifyUserName { get; set; }
 		public DateTime LastModifyDate { get; set; }
+        public Boolean IsSpread { get; set; }
+        public com.Sconit.CodeMaster.PickBy PickBy { get; set; }
         
         #endregion
 

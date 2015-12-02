@@ -1236,8 +1236,7 @@ namespace com.Sconit.CodeMaster
 
     public enum PickBy
     {
-        Qty = 0,
-        LotNo = 1,
-        Hu = 2
+        LotNo = 0,
+        Hu = 1
     }
 }

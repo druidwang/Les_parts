@@ -160,6 +160,15 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is Ship Scan Hu.
+        /// </summary>
+        public static string ShipPlan_IsShipScanHu {
+            get {
+                return ResourceManager.GetString("ShipPlan_IsShipScanHu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Item.
         /// </summary>
         public static string ShipPlan_Item {
@@ -273,6 +282,24 @@ namespace Resources.WMS {
         public static string ShipPlan_PartyToName {
             get {
                 return ResourceManager.GetString("ShipPlan_PartyToName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Picked Qty.
+        /// </summary>
+        public static string ShipPlan_PickedQty {
+            get {
+                return ResourceManager.GetString("ShipPlan_PickedQty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pick Qty.
+        /// </summary>
+        public static string ShipPlan_PickQty {
+            get {
+                return ResourceManager.GetString("ShipPlan_PickQty", resourceCulture);
             }
         }
         
@@ -421,20 +448,20 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UC Description.
-        /// </summary>
-        public static string ShipPlan_UCDescription {
-            get {
-                return ResourceManager.GetString("ShipPlan_UCDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Unit Count.
         /// </summary>
         public static string ShipPlan_UnitCount {
             get {
                 return ResourceManager.GetString("ShipPlan_UnitCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unit Count Description.
+        /// </summary>
+        public static string ShipPlan_UnitCountDescription {
+            get {
+                return ResourceManager.GetString("ShipPlan_UnitCountDescription", resourceCulture);
             }
         }
         

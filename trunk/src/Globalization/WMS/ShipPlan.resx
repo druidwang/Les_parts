@@ -150,6 +150,9 @@
   <data name="ShipPlan_IsOccupyInventory" xml:space="preserve">
     <value>IsOccupyInventory</value>
   </data>
+  <data name="ShipPlan_IsShipScanHu" xml:space="preserve">
+    <value>Is Ship Scan Hu</value>
+  </data>
   <data name="ShipPlan_Item" xml:space="preserve">
     <value>Item</value>
   </data>
@@ -188,6 +191,12 @@
   </data>
   <data name="ShipPlan_PartyToName" xml:space="preserve">
     <value>PartyToName</value>
+  </data>
+  <data name="ShipPlan_PickedQty" xml:space="preserve">
+    <value>Picked Qty</value>
+  </data>
+  <data name="ShipPlan_PickQty" xml:space="preserve">
+    <value>Pick Qty</value>
   </data>
   <data name="ShipPlan_Priority" xml:space="preserve">
     <value>Priority</value>
@@ -237,11 +246,11 @@
   <data name="ShipPlan_StartTime" xml:space="preserve">
     <value>StartTime</value>
   </data>
-  <data name="ShipPlan_UCDescription" xml:space="preserve">
-    <value>UC Description</value>
-  </data>
   <data name="ShipPlan_UnitCount" xml:space="preserve">
     <value>Unit Count</value>
+  </data>
+  <data name="ShipPlan_UnitCountDescription" xml:space="preserve">
+    <value>Unit Count Description</value>
   </data>
   <data name="ShipPlan_UnitQty" xml:space="preserve">
     <value>Unit Qty</value>

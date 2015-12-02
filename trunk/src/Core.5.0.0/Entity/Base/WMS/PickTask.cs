@@ -56,6 +56,8 @@ namespace com.Sconit.Entity.WMS
         [Display(Name = "PickTask_HuId", ResourceType = typeof(Resources.WMS.PickTask))]
         public string HuId { get; set; }
 
+        public Boolean IsPickHu { get; set; }
+
         [Display(Name = "PickTask_PickBy", ResourceType = typeof(Resources.WMS.PickTask))]
         public com.Sconit.CodeMaster.PickBy PickBy { get; set; }
 

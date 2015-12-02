@@ -24,7 +24,7 @@ namespace com.Sconit.Entity.WMS
         public DateTime StartTime { get; set; }
 
         [Display(Name = "ShipPlan_WindowTime", ResourceType = typeof(Resources.WMS.ShipPlan))]
-        public DateTime? WindowTime { get; set; }
+        public DateTime WindowTime { get; set; }
 
         [Display(Name = "ShipPlan_Item", ResourceType = typeof(Resources.WMS.ShipPlan))]
         public string Item { get; set; }
@@ -47,8 +47,8 @@ namespace com.Sconit.Entity.WMS
         [Display(Name = "ShipPlan_UnitCount", ResourceType = typeof(Resources.WMS.ShipPlan))]
         public Decimal UnitCount { get; set; }
 
-        [Display(Name = "ShipPlan_UCDescription", ResourceType = typeof(Resources.WMS.ShipPlan))]
-        public string UCDescription { get; set; }
+        [Display(Name = "ShipPlan_UnitCountDescription", ResourceType = typeof(Resources.WMS.ShipPlan))]
+        public string UnitCountDescription { get; set; }
 
         [Display(Name = "ShipPlan_OrderQty", ResourceType = typeof(Resources.WMS.ShipPlan))]
         public Decimal OrderQty { get; set; }
@@ -56,6 +56,11 @@ namespace com.Sconit.Entity.WMS
         [Display(Name = "ShipPlan_ShipQty", ResourceType = typeof(Resources.WMS.ShipPlan))]
         public Decimal ShipQty { get; set; }
 
+        [Display(Name = "ShipPlan_PickQty", ResourceType = typeof(Resources.WMS.ShipPlan))]
+        public Decimal PickQty { get; set; }
+
+        [Display(Name = "ShipPlan_PickedQty", ResourceType = typeof(Resources.WMS.ShipPlan))]
+        public Decimal PickedQty { get; set; }
 
         [Display(Name = "ShipPlan_Priority", ResourceType = typeof(Resources.WMS.ShipPlan))]
         public com.Sconit.CodeMaster.OrderPriority Priority { get; set; }
@@ -118,6 +123,9 @@ namespace com.Sconit.Entity.WMS
 
         [Display(Name = "ShipPlan_IsOccupyInventory", ResourceType = typeof(Resources.WMS.ShipPlan))]
         public Boolean IsOccupyInventory { get; set; }
+
+        [Display(Name = "ShipPlan_IsShipScanHu", ResourceType = typeof(Resources.WMS.ShipPlan))]
+        public Boolean IsShipScanHu { get; set; }
 
         [Display(Name = "ShipPlan_IsActive", ResourceType = typeof(Resources.WMS.ShipPlan))]
         public Boolean IsActive { get; set; }
