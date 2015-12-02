@@ -95,6 +95,7 @@
   <ItemGroup>
     <Compile Include="AutoMapperInstaller.cs" />
     <Compile Include="BaseMgr.cs" />
+    <Compile Include="Impl\ShipPlanMgrImpl.cs" />
     <Compile Include="Impl\TaskMgrImpl.cs" />
     <Compile Include="Impl\TransportMgrImple.cs" />
     <Compile Include="IMrp\BaseMrpMgr.cs" />
@@ -104,6 +105,7 @@
     <Compile Include="Impl\Mrp\MrpOrderMgrImpl.cs" />
     <Compile Include="Impl\Mrp\PlanMgrImpl.cs" />
     <Compile Include="Impl\Mrp\RccpMgrImpl.cs" />
+    <Compile Include="IPickTaskMgr.cs" />
     <Compile Include="IShipmentMgr.cs" />
     <Compile Include="IBillMgr.cs" />
     <Compile Include="IBomMgr.cs" />

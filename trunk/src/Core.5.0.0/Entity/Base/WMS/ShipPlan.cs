@@ -14,7 +14,7 @@ namespace com.Sconit.Entity.WMS
         public Int32 OrderSequence { get; set; }
         public Int32 OrderDetailId { get; set; }
         public DateTime StartTime { get; set; }
-		public DateTime? WindowTime { get; set; }
+		public DateTime WindowTime { get; set; }
 		public string Item { get; set; }
 		public string ItemDescription { get; set; }
 		public string ReferenceItemCode { get; set; }
@@ -22,8 +22,9 @@ namespace com.Sconit.Entity.WMS
 		public string BaseUom { get; set; }
         public Decimal UnitQty { get; set; }
         public Decimal UnitCount { get; set; }
-		public string UCDescription { get; set; }
-		public Decimal OrderQty { get; set; }
+        public string UnitCountDescription { get; set; }
+        public Decimal OrderQty { get; set; }
+        public Decimal PickQty { get; set; }
 		public Decimal ShipQty { get; set; }
         public com.Sconit.CodeMaster.OrderPriority Priority { get; set; }
 		public string PartyFrom { get; set; }
@@ -47,6 +48,7 @@ namespace com.Sconit.Entity.WMS
 		public string Dock { get; set; }
         public Boolean IsOccupyInventory { get; set; }
         public Boolean IsActive { get; set; }
+        public Boolean IsShipScanHu { get; set; }
 		public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
 		public DateTime CreateDate { get; set; }

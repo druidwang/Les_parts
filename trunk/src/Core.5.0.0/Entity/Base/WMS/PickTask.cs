@@ -31,7 +31,8 @@ namespace com.Sconit.Entity.WMS
 		public string PickUserName { get; set; }
 		public DateTime StartTime { get; set; }
 		public DateTime WinTime { get; set; }
-		public Boolean IsActive { get; set; }
+        public Boolean IsPickHu { get; set; }
+        public Boolean IsActive { get; set; }
 		public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
 		public DateTime CreateDate { get; set; }
