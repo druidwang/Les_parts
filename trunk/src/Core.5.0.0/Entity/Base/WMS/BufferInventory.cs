@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using com.Sconit.CodeMaster;
 
 namespace com.Sconit.Entity.WMS
 {
@@ -11,7 +12,7 @@ namespace com.Sconit.Entity.WMS
 		public Int32 Id { get; set; }
 		public string Location { get; set; }
 		public string Dock { get; set; }
-		public Int16 IOType { get; set; }
+        public IOType IOType { get; set; }
 		public string Item { get; set; }
 		public string Uom { get; set; }
 		public Decimal UnitCount { get; set; }
