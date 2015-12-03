@@ -60,7 +60,7 @@
                 </label>
             </div>
             <div class="search-field">
-                @Html.TextBox("PickTask_PickUserName", TempData["PickTaskSearchModel"] != null ? ((PickTaskSearchModel)TempData["PickTaskSearchModel"]).PickUser : string.Empty)
+                @Html.TextBox("PickUserName", TempData["PickTaskSearchModel"] != null ? ((PickTaskSearchModel)TempData["PickTaskSearchModel"]).PickUser : string.Empty)
             </div>
              <div class="search-label">
                 <label for="PickTask_IsActive">

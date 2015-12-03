@@ -369,6 +369,7 @@
     <Compile Include="Controllers\TMS\TransportPriceListController.cs" />
     <Compile Include="Controllers\TMS\VehicleController.cs" />
     <Compile Include="Controllers\WebAppBaseController.cs" />
+    <Compile Include="Controllers\WMS\ShipPlanController.cs" />
     <Compile Include="Controllers\WMS\RepackTaskController.cs" />
     <Compile Include="Controllers\WMS\PickTaskController.cs" />
     <Compile Include="Controllers\WMS\PickResultController.cs" />
@@ -404,6 +405,7 @@
     <Compile Include="Models\SearchModels\MRP\MrpExWorkHourSearchModel.cs" />
     <Compile Include="Models\ORD\ScheduleView.cs" />
     <Compile Include="Models\ORD\WebOrderDetail.cs" />
+    <Compile Include="Models\SearchModels\WMS\ShipPlanSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickTaskSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\RepackTaskSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickResultSearchModel.cs" />
@@ -2567,6 +2569,11 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_SearchResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\Edit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Index.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>
