@@ -16,3 +16,6 @@ go
 
 alter table MD_Location add PickBy bit
 go
+
+alter table WMS_ShipPlan add PickedQty decimal(18, 8)
+go
