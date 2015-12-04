@@ -20,9 +20,9 @@
             columns.Bound(o => o.UnitCountDescription);
             columns.Bound(o => o.StartTime);
             columns.Bound(o => o.WindowTime);
-            columns.Bound(o => o.OrderQty);
-            columns.Bound(o => o.ShipQty);
-                })
+            columns.Bound(o => o.DiaplayOrderQty);
+            columns.Bound(o => o.DiaplayPickQty);         
+        })
       
             .Scrollable(c => c.Enabled(false))
             .EnableCustomBinding(true)

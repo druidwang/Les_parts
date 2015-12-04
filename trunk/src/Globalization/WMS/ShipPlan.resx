@@ -261,4 +261,10 @@
   <data name="ShipPlan_WindowTime" xml:space="preserve">
     <value>WindowTime</value>
   </data>
+  <data name="ShipPlan_DiaplayOrderQty" xml:space="preserve">
+    <value>DiaplayOrderQty</value>
+  </data>
+  <data name="ShipPlan_DiaplayPickQty" xml:space="preserve">
+    <value>DiaplayPickQty</value>
+  </data>
 </root>

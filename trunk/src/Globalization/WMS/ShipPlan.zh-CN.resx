@@ -261,4 +261,10 @@
   <data name="ShipPlan_WindowTime" xml:space="preserve">
     <value>窗口时间</value>
   </data>
+  <data name="ShipPlan_DiaplayOrderQty" xml:space="preserve">
+    <value>发货数/订单数</value>
+  </data>
+  <data name="ShipPlan_DiaplayPickQty" xml:space="preserve">
+    <value>已拣数/拣货数</value>
+  </data>
 </root>

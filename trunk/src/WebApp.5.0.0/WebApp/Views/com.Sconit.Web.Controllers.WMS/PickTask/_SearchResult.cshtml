@@ -28,7 +28,7 @@
             .Scrollable(c => c.Enabled(false))
             .EnableCustomBinding(true)
             .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "PickTask"))
-            .ClientEvents(events => events.OnDataBinding("PickTaskGrid_OnDataBinding"))
+                    .ClientEvents(events => events.OnDataBinding("ShipPlanMasterGrid_OnDataBinding"))
             .Pageable(settings =>
             {
                 settings.Total(ViewBag.Total != null ? ViewBag.Total : 0);
