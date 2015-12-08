@@ -17,7 +17,6 @@
             }
         }
         $("#checkAll").attr("checked", $checkRecords.length == $("input[name='checkedRecords']:checked").length ? true : false);
-        $("#btnAssign").attr("style", showButton ? "display:inline" : "display:none");
     }
 
     function PickTaskGrid_OnDataBinding(e) {
@@ -32,10 +31,38 @@
 </script>
 <fieldset>
     <legend>@Resources.WMS.PickTask.PickTask_Assign_Title</legend>
-    @(
-       
+ <div class="search-footer">
+        <table>
+            <tr>
+                <td>
+                    <label>
+                        @Resources.WMS.PickTask.PickTask_AssignUser
+                    </label>
+                </td>
+                <td>
+                     @{
+        Html.RenderAction("_UserComboBox", "Common",
+         new
+         {
+             ControlName = "AssignUser"
+         });
+                }
+                </td>
+                <td id="tdCarrayOver">
+                    @Html.Button(Resources.SYS.Global.Button_Assign, "Url_PickTask_Assign", new Dictionary<string, string>()
+	            {
+	                {"type", "button"},
+	                {"id", "btnAssign"},
+                    {"needconfirm","true"},
+                    {"onclick","assignCheckedPickTasks()"}
+	            })
+                </td>
+            </tr>
+        </table>
+    </div>
+    @(   
  Html.Telerik().Grid(Model)
-                  .Name("ShipPlanGrid")
+          .Name("PickTaskGrid")
           .DataKeys(keys =>
           {
               keys.Add(p => p.Id);
@@ -57,13 +84,12 @@
              columns.Bound(o => o.HuId);
              columns.Bound(o => o.StartTime);
              columns.Bound(o => o.WinTime);
-             columns.Bound(o => o.PickQty);
-             columns.Bound(o => o.PickUserName);      
+             columns.Bound(o => o.PickQty);    
           })
 
           .Scrollable(c => c.Enabled(false))
         .EnableCustomBinding(true)
-                .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxShipPlanList", "PickTask"))
+                        .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxAssignPlanList", "PickTask"))
                                           .ClientEvents(events => events.OnDataBinding("PickTaskGrid_OnDataBinding"))
         .Pageable(settings =>
         {
@@ -73,4 +99,6 @@
         .Sortable()
         .Resizable(resizing => resizing.Columns(true))
     )
+
+   
 </fieldset>

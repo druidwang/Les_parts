@@ -218,7 +218,7 @@ namespace com.Sconit.Web.Controllers.WMS
         public ActionResult _AjaxAssignPlanList(GridCommand command, PickTaskSearchModel searchModel)
         {
             SearchStatementModel searchStatementModel = PrepareAssignSearchStatement(command, searchModel);
-            return PartialView(GetAjaxPageData<ShipPlan>(searchStatementModel, command));
+            return PartialView(GetAjaxPageData<PickTask>(searchStatementModel, command));
         }
 
         /// <summary>
@@ -226,10 +226,19 @@ namespace com.Sconit.Web.Controllers.WMS
         /// </summary>
         /// <returns></returns>
         [SconitAuthorize(Permissions = "Url_PickTask_Assign")]
-        public ActionResult Assign(String checkedPickTasks)
+        public ActionResult Assign(String checkedPickTasks,String assignUser)
         {
             try
             {
+                //if (String.IsNullOrEmpty(checkedPickTasks))
+                //{
+
+                //}
+                //if(String.IsNullOrEmpty(assignUser))
+                //{
+
+                //}
+
                 IList<ShipPlan> shipPlanList = new List<ShipPlan>();
                 if (!string.IsNullOrEmpty(checkedPickTasks))
                 {
@@ -280,7 +289,7 @@ namespace com.Sconit.Web.Controllers.WMS
             {
                 HqlStatementHelper.AddGeStatement("CreateDate", searchModel.DateFrom, "p", ref whereStatement, param);
             }
-            else if (searchModel.DateTo != null )
+            if (searchModel.DateTo != null )
             {
                 HqlStatementHelper.AddLeStatement("CreateDate", searchModel.DateTo, "p", ref whereStatement, param);
             }
@@ -329,16 +338,18 @@ namespace com.Sconit.Web.Controllers.WMS
             IList<object> param = new List<object>();
             HqlStatementHelper.AddEqStatement("Location", searchModel.Location, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "p", ref whereStatement, param);
-            whereStatement += " and p.PickUserId is null "; 
+           
 
             if (searchModel.DateFrom != null)
             {
                 HqlStatementHelper.AddGeStatement("CreateDate", searchModel.DateFrom, "p", ref whereStatement, param);
             }
-            else if (searchModel.DateTo != null)
+            if (searchModel.DateTo != null)
             {
                 HqlStatementHelper.AddLeStatement("CreateDate", searchModel.DateTo, "p", ref whereStatement, param);
             }
+
+            whereStatement += " and p.PickUserId is null "; 
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
             SearchStatementModel searchStatementModel = new SearchStatementModel();
             searchStatementModel.SelectCountStatement = selectCountStatement;

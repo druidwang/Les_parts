@@ -79,6 +79,15 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AssignUser.
+        /// </summary>
+        public static string PickTask_AssignUser {
+            get {
+                return ResourceManager.GetString("PickTask_AssignUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Base Uom.
         /// </summary>
         public static string PickTask_BaseUom {
