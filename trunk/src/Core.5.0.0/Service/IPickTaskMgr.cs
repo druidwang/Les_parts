@@ -8,7 +8,6 @@ namespace com.Sconit.Service
 {
     public interface IPickTaskMgr
     {
-        IList<PickTask> CreatePickTask(IList<ShipPlan> shipPlanList);
-
+        IList<PickTask> CreatePickTask(IDictionary<int, decimal> shipPlanIdAndQtyDic);
     }
 }
