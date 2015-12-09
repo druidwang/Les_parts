@@ -56,6 +56,8 @@ namespace com.Sconit.Entity.WMS
         [Display(Name = "ShipPlan_ShipQty", ResourceType = typeof(Resources.WMS.ShipPlan))]
         public Decimal ShipQty { get; set; }
 
+        public Decimal LockQty { get; set; }
+
         [Display(Name = "ShipPlan_PickQty", ResourceType = typeof(Resources.WMS.ShipPlan))]
         public Decimal PickQty { get; set; }
 
