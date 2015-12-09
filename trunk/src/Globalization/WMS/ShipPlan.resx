@@ -267,4 +267,7 @@
   <data name="ShipPlan_DiaplayPickQty" xml:space="preserve">
     <value>DiaplayPickQty</value>
   </data>
+  <data name="ShipPlan_Ship_Title" xml:space="preserve">
+    <value>Ship</value>
+  </data>
 </root>

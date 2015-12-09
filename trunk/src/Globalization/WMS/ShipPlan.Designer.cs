@@ -340,6 +340,15 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ship.
+        /// </summary>
+        public static string ShipPlan_Ship_Title {
+            get {
+                return ResourceManager.GetString("ShipPlan_Ship_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ShipFrom.
         /// </summary>
         public static string ShipPlan_ShipFrom {

@@ -2586,6 +2586,10 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_AssignList.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\AssignIndex.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\AssignList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_ShipList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_ShipSearch.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\ShipIndex.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\ShipList.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>
