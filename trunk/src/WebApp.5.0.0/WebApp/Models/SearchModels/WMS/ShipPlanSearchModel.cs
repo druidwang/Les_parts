@@ -14,5 +14,6 @@ namespace com.Sconit.Web.Models.SearchModels.WMS
         public string Flow { get; set; }
         public string PartyFrom { get; set; }
         public string PartyTo { get; set; }
+        public Boolean IsActive { get; set; }
     }
 }

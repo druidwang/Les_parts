@@ -1,7 +1,50 @@
 ﻿@using com.Sconit.Entity.WMS
 @using com.Sconit.Web.Models.SearchModels.WMS
+<script type="text/javascript">
+    function assignCheckedPickTasks() {
+        var $checkRecords = $("input[name='checkedRecords']");
+
+        var checkedPickTasks = "";
+        var assignUser = "";
+        for (var i = 0; i < $checkRecords.length; i++) {
+            if ($checkRecords[i].checked) {
+                if (checkedPickTasks == "") {
+                    checkedPickTasks = $checkRecords[i].value;
+                } else {
+                    checkedPickTasks += "," + $checkRecords[i].value;
+                }
+            }
+        }
+
+        assignUser = $("#AssignUser").val();
+        if (checkedPickTasks == "") {
+            alert('请选择一条记录');
+            return;
+        }
+
+        if (assignUser == "") {
+            alert('分派用户不能为空');
+            return;
+        }
+        var data = {
+            "checkedPickTasks": checkedPickTasks,
+            "assignUser":assignUser
+        };
+        $.ajax({
+            type: "Post",
+            dataType: "html",
+            url: "/PickTask/Assign/",
+            data: data,
+            cache: false,
+            success: function (data, textStatus) {
+                var $tGrid = $("#content");
+                $($tGrid).html(data);
+            }
+        });
+    }
+</script>
 <fieldset>
-    @using (Html.BeginForm("List", "PickTask"))
+    @using (Html.BeginForm("AssignList", "PickTask"))
     {   
         <div class="search">
             <div class="search-label">
@@ -54,31 +97,11 @@
 .Value(TempData["PickTaskSearchModel"] != null ? ((PickTaskSearchModel)TempData["PickTaskSearchModel"]).DateTo : System.DateTime.Today.AddDays(0))
                 .HtmlAttributes(new { style = "margin-bottom: 1.3em;width:200px" }))
             </div>
-           <div class="search-label">
-                <label for="PickTask_PickUserName">
-                    @Resources.WMS.PickTask.PickTask_PickUserName
-                </label>
-            </div>
-            <div class="search-field">
-                @Html.TextBox("PickUserName", TempData["PickTaskSearchModel"] != null ? ((PickTaskSearchModel)TempData["PickTaskSearchModel"]).PickUser : string.Empty)
-            </div>
-             <div class="search-label">
-                <label for="PickTask_IsActive">
-                    @Resources.WMS.PickTask.PickTask_IsActive
-                </label>
-            </div>
-            <div class="search-field">
-                @Html.CheckBox("IsActive", TempData["PickTaskSearchModel"] != null ? ((PickTaskSearchModel)TempData["PickTaskSearchModel"]).IsActive : true)
-            </div>
         </div>
         <div class="search-footer">
             @Html.Hidden("isFromList", true)
-            @Html.Button(Resources.SYS.Global.Button_Search, "Url_PickTask_View", new Dictionary<string, string>()
-	{
-	    {"type", "submit"},
-	    {"id", "btnSearch"}
-	})
+            <button type="submit" id="btnSearch">
+                @Resources.SYS.Global.Button_Search</button>
         </div>
-
     }
 </fieldset>

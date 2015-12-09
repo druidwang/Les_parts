@@ -124,6 +124,24 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DiaplayOrderQty.
+        /// </summary>
+        public static string ShipPlan_DiaplayOrderQty {
+            get {
+                return ResourceManager.GetString("ShipPlan_DiaplayOrderQty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DiaplayPickQty.
+        /// </summary>
+        public static string ShipPlan_DiaplayPickQty {
+            get {
+                return ResourceManager.GetString("ShipPlan_DiaplayPickQty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dock.
         /// </summary>
         public static string ShipPlan_Dock {

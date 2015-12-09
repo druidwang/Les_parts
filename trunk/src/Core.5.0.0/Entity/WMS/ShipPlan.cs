@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 //TODO: Add other using statements here
 
@@ -8,8 +9,23 @@ namespace com.Sconit.Entity.WMS
     {
         #region Non O/R Mapping Properties
 
-        //TODO: Add Non O/R Mapping Properties here. 
+        [Display(Name = "ShipPlan_DiaplayOrderQty", ResourceType = typeof(Resources.WMS.ShipPlan))]
+        public string DiaplayOrderQty
+        {
+            get
+            {
+                return this.ShipQty.ToString("F0") + "/" + this.OrderQty.ToString("F0");
+            }
+        }
 
+        [Display(Name = "ShipPlan_DiaplayPickQty", ResourceType = typeof(Resources.WMS.ShipPlan))]
+        public string DiaplayPickQty
+        {
+            get
+            {
+                return this.PickedQty.ToString("F0") + "/" + this.PickQty.ToString("F0");
+            }
+        }
         #endregion
     }
 }

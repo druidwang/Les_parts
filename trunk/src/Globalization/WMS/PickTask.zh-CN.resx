@@ -120,6 +120,12 @@
   <data name="PickTask_Area" xml:space="preserve">
     <value>库区</value>
   </data>
+  <data name="PickTask_AssignUser" xml:space="preserve">
+    <value>分配用户</value>
+  </data>
+  <data name="PickTask_Assign_Title" xml:space="preserve">
+    <value>分派</value>
+  </data>
   <data name="PickTask_BaseUom" xml:space="preserve">
     <value>基本单位</value>
   </data>
@@ -161,6 +167,9 @@
   </data>
   <data name="PickTask_LotNo" xml:space="preserve">
     <value>批号</value>
+  </data>
+  <data name="PickTask_New_Title" xml:space="preserve">
+    <value>创建拣货任务</value>
   </data>
   <data name="PickTask_OrderQty" xml:space="preserve">
     <value>订单数</value>

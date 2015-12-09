@@ -70,6 +70,24 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assign.
+        /// </summary>
+        public static string PickTask_Assign_Title {
+            get {
+                return ResourceManager.GetString("PickTask_Assign_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AssignUser.
+        /// </summary>
+        public static string PickTask_AssignUser {
+            get {
+                return ResourceManager.GetString("PickTask_AssignUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Base Uom.
         /// </summary>
         public static string PickTask_BaseUom {
@@ -192,6 +210,15 @@ namespace Resources.WMS {
         public static string PickTask_LotNo {
             get {
                 return ResourceManager.GetString("PickTask_LotNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New.
+        /// </summary>
+        public static string PickTask_New_Title {
+            get {
+                return ResourceManager.GetString("PickTask_New_Title", resourceCulture);
             }
         }
         

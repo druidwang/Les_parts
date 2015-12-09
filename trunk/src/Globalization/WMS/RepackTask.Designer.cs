@@ -61,6 +61,24 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assign.
+        /// </summary>
+        public static string RepackTask_Assign_Title {
+            get {
+                return ResourceManager.GetString("RepackTask_Assign_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AssignUser.
+        /// </summary>
+        public static string RepackTask_AssignUser {
+            get {
+                return ResourceManager.GetString("RepackTask_AssignUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to BaseUom.
         /// </summary>
         public static string RepackTask_BaseUom {

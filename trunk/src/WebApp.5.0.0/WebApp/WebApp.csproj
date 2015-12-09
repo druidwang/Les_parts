@@ -2574,6 +2574,18 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_SearchResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Edit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\NewIndex.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\_NewSearch.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\_NewList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\NewList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\_AssignList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\_AssignSearch.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\AssignIndex.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\AssignList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_AssignSearch.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_AssignList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\AssignIndex.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\AssignList.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>
