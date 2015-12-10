@@ -18,6 +18,7 @@ namespace com.Sconit.Web.Controllers.WMS
     using com.Sconit.Web.Models.SearchModels.WMS;
     using com.Sconit.Entity.WMS;
     using com.Sconit.Entity.Exception;
+    using com.Sconit.Service.Impl;
 
     public class PickTaskController : WebAppBaseController
     {
@@ -31,6 +32,8 @@ namespace com.Sconit.Web.Controllers.WMS
 
         private static string selectShipPlanStatement = "select p from ShipPlan as p";
 
+
+        public IPickTaskMgr pickTaskMgr { get; set; }
 
         #region 查询
         [SconitAuthorize(Permissions = "Url_PickTask_View")]
@@ -147,28 +150,17 @@ namespace com.Sconit.Web.Controllers.WMS
         {
             try
             {
-                IList<ShipPlan> shipPlanList = new List<ShipPlan>();
+                IDictionary<int, decimal> shipPlanIdAndQtyDic = new Dictionary<int, decimal>();
                 if (!string.IsNullOrEmpty(checkedShipPlans))
                 {
-
                     string[] idArray = checkedShipPlans.Split(',');
-                
-
                     for (int i = 0; i < idArray.Count(); i++)
                     {
-                        
                             ShipPlan sp = genericMgr.FindById<ShipPlan>(Convert.ToInt32(idArray[i]));
-
-                            shipPlanList.Add(sp);
-                        
+                            shipPlanIdAndQtyDic.Add(sp.Id, sp.ToPickQty);  
                     }
                 }
-                //if (orderDetailList.Count() == 0)
-                //{
-                //    throw new BusinessException(Resources.EXT.ControllerLan.Con_ReceiveDetailCanNotBeEmpty);
-                //}
-
-                //orderMgr.ReceiveOrder(orderDetailList);
+                pickTaskMgr.CreatePickTask(shipPlanIdAndQtyDic);
                 object obj = new { SuccessMessage = string.Format(Resources.ORD.OrderMaster.OrderMaster_Received, checkedShipPlans), SuccessData = checkedShipPlans };
                 return Json(obj);
 
@@ -318,7 +310,7 @@ namespace com.Sconit.Web.Controllers.WMS
             {
                 HqlStatementHelper.AddGeStatement("CreateDate", searchModel.DateFrom, "p", ref whereStatement, param);
             }
-            else if (searchModel.DateTo != null)
+            if (searchModel.DateTo != null)
             {
                 HqlStatementHelper.AddLeStatement("CreateDate", searchModel.DateTo, "p", ref whereStatement, param);
             }
