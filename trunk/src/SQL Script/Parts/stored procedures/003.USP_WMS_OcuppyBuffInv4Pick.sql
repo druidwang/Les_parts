@@ -59,7 +59,8 @@ BEGIN
 		Uom varchar(5),
 		UC decimal(18, 8),
 		Qty decimal(18, 8),
-		UnitQty decimal(18, 8)
+		UnitQty decimal(18, 8),
+		OccupyShipPlanId int
 	)
 
 	begin try
@@ -138,10 +139,21 @@ BEGIN
 				from #tempPickTarget_003 as pt
 				inner join WMS_BuffInv as bi on pt.Item = bi.Item and pt.Loc = bi.Loc
 				inner join INV_Hu as hu on bi.HuId = hu.HuId
+				left join WMS_BuffOccupy as bo on bi.Id = bo.BuffInvId
 				where bi.Qty > 0 and bi.IOType = 1  --目前只考虑发货缓存区，不考虑收货缓冲区（越库操作）
-				and bi.LockStatus in (0, 1)  --只考虑未被占用和翻箱占用的库存
+				and bo.Id is null
 
-				
+				select sp.LocFrom, sp.Item, sp.Uom, sp.UC, SUM((sp.LockQty - sp.ShipQty) * sp.UnitQty - ISNULL(occ.Qty, 0)) as RemainLockQty, SUM((sp.PickedQty - sp.ShipQty) * sp.UnitQty - ISNULL(occ.Qty, 0)) as RemainPickedQty --转换为库存单位
+				from WMS_ShipPlan as sp
+				inner join #tempPickTarget_003 as pt on sp.LocFrom = pt.Loc and sp.Item = pt.Item
+				left join (select bo.ShipPlanId, SUM(bi.Qty) as Qty from #tempPickTarget_003 as pt
+							inner join WMS_BuffInv as bi on pt.Item = bi.Item and pt.Loc = bi.Loc
+							inner join WMS_BuffOccupy as bo on bi.Id = bo.BuffInvId
+							where bi.Qty > 0 and bi.IOType = 1) as occ on sp.Id = occ.ShipPlanId
+				where sp.IsActive = 1 and sp.IsShipScanHu = 1 and sp.PickedQty > sp.ShipQty
+
+
+
 			end
 		end try
 		begin catch
