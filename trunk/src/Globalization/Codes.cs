@@ -1246,4 +1246,11 @@ namespace com.Sconit.CodeMaster
         LotNo = 0,
         Hu = 1
     }
+
+    public enum PickGroupType
+    {
+        Ship = 0,
+        Pick = 1,
+        Repack = 2
+    }
 }
