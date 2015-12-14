@@ -1,10 +1,13 @@
 ﻿@model IEnumerable<com.Sconit.Entity.ORD.IpMaster>
-
+@{
+    var routeList = (List<com.Sconit.Entity.TMS.TransportFlowRoute>)ViewBag.RouteList;
+    
+}
 <fieldset> 
         <div class="search">
             <div class="search-label">
                 <label for="OrderMaster_CreateUserName">
-                    @Resources.TMS.TransportOrder.TransportOrderMaster_OrderNo
+                    送货单号
                 </label>
             </div>
             <div class="search-field">
@@ -15,18 +18,30 @@
 
             <div class="search-label">
                 <label for="OrderMaster_CreateUserName">
-
+                    目的地址
                 </label>
             </div>
             <div class="search-field">
-
-            @Html.Hidden("MultiStations")
+                <div>
+                <select id="MultiSelectStations" name="MultiSelectStations" multiple="multiple">
+                    @{
+                        if (routeList != null)
+                        {
+                            foreach (var r in routeList)
+                            {
+                                <option value="@r.Id" selected ="selected" >@r.ShipAddress</option>
+                            }
+                        }
+                    }
+                </select>
+                </div>
+                @Html.Hidden("MultiStations")
             </div>
         </div>
         <div class="search-footer">
             <button type="button" id="btnSearch" onclick="Search()">
                 @Resources.SYS.Global.Button_Search</button>
-            <button type="button" id="btnConfirm">
+            <button type="button" id="btnConfirm" onclick="Confirm()">
                 @Resources.SYS.Global.Button_Confirm</button>
         </div>
 </fieldset>
@@ -40,7 +55,7 @@
         .Columns(columns =>
         {
             columns.Bound(o => o.CheckIpNo)
-                .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' value='<#= IpNo #>'   onClick='showButtons()' />")
+                .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' value='<#= IpNo #>'  />")
                 .HeaderTemplate("<input type='checkbox' id='checkAll' name='checkAll' />")
                 .Width(36).HtmlAttributes(new { style = "text-align:center" });
             columns.Bound(o => o.IpNo);
@@ -76,24 +91,23 @@
 
 
 <script>
-    $(function () {
-        $('#MultiSelectStations').multiselect({
-            noneSelectedText: "选择站点...",
-            selectedText: "已选#个站点",
-            checkAllText: "全选",
-            uncheckAllText: "取消全选",
-            selectedList: 0,
-            click: function (event, ui) {
-                $('#MultiStations').attr("value", getMultiStations());
-            },
-            checkAll: function () {
-                $('#MultiStations').attr("value", getMultiStations());
-            },
-            uncheckAll: function () {
-                $('#MultiStations').attr("value", getMultiStations());
-            }
-        });
+    $('#MultiSelectStations').multiselect({
+        noneSelectedText: "选择站点...",
+        selectedText: "已选#个站点",
+        checkAllText: "全选",
+        uncheckAllText: "取消全选",
+        selectedList: 0,
+        click: function (event, ui) {
+            $('#MultiStations').attr("value", getMultiStations());
+        },
+        checkAll: function () {
+            $('#MultiStations').attr("value", getMultiStations());
+        },
+        uncheckAll: function () {
+            $('#MultiStations').attr("value", getMultiStations());
+        }
     });
+
 
     function getMultiStations() {
         var m = "";
@@ -114,7 +128,8 @@
     function IpOrderMasterGrid_OnDataBinding(e) {
         e.data = {
             ipNo: $("#IpNo").val(),
-            stations:$("#MultiStations").val()
+            stations:$("#MultiStations").val(),
+            flow: $("#Flow").val()
         }
     }
 
@@ -122,6 +137,34 @@
     function Search() {
         var grid = $("#IpOrderMasterGrid").data("tGrid");
         grid.ajaxRequest();
+    }
+
+    function Confirm() {
+        var $checkRecords = $("input[name='checkedRecords']");
+        var checkedIpNos = "";
+        for (var i = 0; i < $checkRecords.length; i++) {
+            if ($checkRecords[i].checked) {
+                if (checkedIpNos == "") {
+                    checkedIpNos = $checkRecords[i].value;
+                } else {
+                    checkedIpNos += "," + $checkRecords[i].value;
+                }
+            }
+        }
+        if (checkedIpNos == "") {
+            alert('Must Check One');
+            return;
+        }
+
+        var data = {
+            "checkedIpNos": checkedIpNos,
+            "stations": $("#MultiStations").val()
+        };
+
+        var detailWindow = $("#SelectASNWindow").data("tWindow");
+        detailWindow.close();
+        var grid = $("#OrderDetailGrid").data("tGrid");
+        grid.ajaxRequest(data);
     }
 
 </script>

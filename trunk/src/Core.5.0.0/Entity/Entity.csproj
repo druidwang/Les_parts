@@ -268,9 +268,7 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Base\WMS\PickWindowTime.hbm.xml" />
-    <EmbeddedResource Include="Base\WMS\RepackIn.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\RepackOccupy.hbm.xml" />
-    <EmbeddedResource Include="Base\WMS\RepackOut.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\RepackTask.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\ShipPlan.hbm.xml" />
     <EmbeddedResource Include="MRP\Base\MD\FlowClassify.hbm.xml" />

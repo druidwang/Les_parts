@@ -38,6 +38,7 @@ namespace com.Sconit.SmartDevice
             this.btnPickList = new System.Windows.Forms.Button();
             this.btnReceive = new System.Windows.Forms.Button();
             this.tabProduction = new System.Windows.Forms.TabPage();
+            this.btnSpChk = new System.Windows.Forms.Button();
             this.btnAnDon = new System.Windows.Forms.Button();
             this.btnMaterialIn = new System.Windows.Forms.Button();
             this.btnFiReceipt = new System.Windows.Forms.Button();
@@ -68,12 +69,14 @@ namespace com.Sconit.SmartDevice
             this.btnLogOff = new System.Windows.Forms.Button();
             this.tbKeyCode = new System.Windows.Forms.TextBox();
             this.lblUserStatus = new System.Windows.Forms.Label();
-            this.btnSpChk = new System.Windows.Forms.Button();
+            this.tabWMS = new System.Windows.Forms.TabPage();
+            this.btnPickGoods = new System.Windows.Forms.Button();
             this.tabModuleSelect.SuspendLayout();
             this.tabProcurement.SuspendLayout();
             this.tabProduction.SuspendLayout();
             this.tabInventory.SuspendLayout();
             this.tabQuality.SuspendLayout();
+            this.tabWMS.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabModuleSelect
@@ -82,6 +85,7 @@ namespace com.Sconit.SmartDevice
             this.tabModuleSelect.Controls.Add(this.tabProduction);
             this.tabModuleSelect.Controls.Add(this.tabInventory);
             this.tabModuleSelect.Controls.Add(this.tabQuality);
+            this.tabModuleSelect.Controls.Add(this.tabWMS);
             this.tabModuleSelect.Location = new System.Drawing.Point(3, 13);
             this.tabModuleSelect.Name = "tabModuleSelect";
             this.tabModuleSelect.SelectedIndex = 0;
@@ -180,6 +184,16 @@ namespace com.Sconit.SmartDevice
             this.tabProduction.Name = "tabProduction";
             this.tabProduction.Size = new System.Drawing.Size(226, 195);
             this.tabProduction.Text = "生产";
+            // 
+            // btnSpChk
+            // 
+            this.btnSpChk.Location = new System.Drawing.Point(16, 95);
+            this.btnSpChk.Name = "btnSpChk";
+            this.btnSpChk.Size = new System.Drawing.Size(98, 20);
+            this.btnSpChk.TabIndex = 13;
+            this.btnSpChk.Text = "4.小料配料检查";
+            this.btnSpChk.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnSpChk.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
             // btnAnDon
             // 
@@ -326,14 +340,7 @@ namespace com.Sconit.SmartDevice
             this.btnDevanning.Name = "btnDevanning";
             this.btnDevanning.Size = new System.Drawing.Size(100, 20);
             this.btnDevanning.TabIndex = 6;
-            if (user.Permissions.ToList().Select(p => p.PermissionCode).Contains("Client_UnPackAllowCs"))
-            {
-                this.btnDevanning.Text = "6.拆箱含寄售";
-            }
-            else
-            {
-                this.btnDevanning.Text = "6.拆箱不含寄售";
-            }
+            this.btnDevanning.Text = "6.拆箱含寄售";
             this.btnDevanning.Click += new System.EventHandler(this.UCModuleSelect_Click);
             this.btnDevanning.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
@@ -501,15 +508,21 @@ namespace com.Sconit.SmartDevice
             this.lblUserStatus.Size = new System.Drawing.Size(215, 20);
             this.lblUserStatus.Text = "当前用户:";
             // 
-            // btnSpChk
+            // tabWMS
             // 
-            this.btnSpChk.Location = new System.Drawing.Point(16, 95);
-            this.btnSpChk.Name = "btnSpChk";
-            this.btnSpChk.Size = new System.Drawing.Size(98, 20);
-            this.btnSpChk.TabIndex = 13;
-            this.btnSpChk.Text = "4.小料配料检查";
-            this.btnSpChk.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnSpChk.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            this.tabWMS.Controls.Add(this.btnPickGoods);
+            this.tabWMS.Location = new System.Drawing.Point(4, 25);
+            this.tabWMS.Name = "tabWMS";
+            this.tabWMS.Size = new System.Drawing.Size(226, 195);
+            this.tabWMS.Text = "高级仓库";
+            // 
+            // btnPickGoods
+            // 
+            this.btnPickGoods.Location = new System.Drawing.Point(5, 16);
+            this.btnPickGoods.Name = "btnPickGoods";
+            this.btnPickGoods.Size = new System.Drawing.Size(90, 20);
+            this.btnPickGoods.TabIndex = 2;
+            this.btnPickGoods.Text = "1.拣货";
             // 
             // UCModuleSelect
             // 
@@ -528,6 +541,7 @@ namespace com.Sconit.SmartDevice
             this.tabProduction.ResumeLayout(false);
             this.tabInventory.ResumeLayout(false);
             this.tabQuality.ResumeLayout(false);
+            this.tabWMS.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -574,5 +588,7 @@ namespace com.Sconit.SmartDevice
         private System.Windows.Forms.Button btnAging;
         private System.Windows.Forms.Label lblUserStatus;
         private System.Windows.Forms.Button btnSpChk;
+        private System.Windows.Forms.TabPage tabWMS;
+        private System.Windows.Forms.Button btnPickGoods;
     }
 }

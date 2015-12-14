@@ -31,6 +31,8 @@
 
     public class TransportOrderController : WebAppBaseController
     {
+        private static List<TransportOrderRoute> userOrderRoutes = new List<TransportOrderRoute>();
+
         private static string selectCountStatement = "select count(*) from TransportOrderMaster as o";
         private static string selectStatement = "select o from TransportOrderMaster as o";
         private static string selectFlowDetailStatement = "select f from FlowDetail as f where f.Flow = ? order by f.Sequence asc,f.Id asc";
@@ -45,6 +47,7 @@
         //public IFlowMgr flowMgr { get; set; }
         //public IReportGen reportGen { get; set; }
         //public IItemMgr itemMgr { get; set; }
+        public ITransportMgr transportMgr { get; set; }
 
         public TransportOrderController()
         {
@@ -130,27 +133,75 @@
         }
 
 
-        public ActionResult _ASNBinding()
+        public ActionResult _ASNBinding(string flow)
         {
+            ViewBag.Flow = flow;
             return PartialView();
         }
 
         [GridAction(EnableCustomBinding = true)]
-        public ActionResult _LoadOrderDetail()
+        public ActionResult _LoadOrderDetail(string checkedIpNos,string orderNo,string flow)
         {
             IList<TransportOrderDetail> transOrderDetailList = new List<TransportOrderDetail>();
-            transOrderDetailList.Add(new TransportOrderDetail { Sequence = 1 });
+            string[] checkedIpNoArray = new string[]{};
+            if (!string.IsNullOrEmpty(checkedIpNos))
+            {
+                checkedIpNoArray = checkedIpNos.Split(',');
+            }
+            if (checkedIpNoArray == null || checkedIpNoArray.Length == 0)
+            {
+                transOrderDetailList.Add(new TransportOrderDetail { Sequence = 1 });
+            }
+            else
+            {
+                DetachedCriteria criteria = DetachedCriteria.For<IpDetail>();
+                criteria.Add(Expression.In("IpNo", checkedIpNoArray));
+                IList<IpDetail> ipDetailList = genericMgr.FindAll<IpDetail>(criteria);
+                int i = 1;
+                foreach (var ipNo in checkedIpNoArray)
+                {
+                    transOrderDetailList.Add(new TransportOrderDetail { Sequence = i, IpNo = ipNo });
+                    ++i;
+                }
+
+            }
             return PartialView(new GridModel(transOrderDetailList));
         }
-
+        
         public ActionResult _SelectASN(string flow)
         {
+            var routeList = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute t where t.Flow=?", flow);
+            ViewBag.RouteList = routeList;
             return PartialView();
         }
 
-        [GridAction(EnableCustomBinding = true)]
-        public ActionResult _AjaxIpList(GridCommand command, string ipNo, string stations)
+        public ActionResult _SelectedASN(string checkedIpNos)
         {
+            string[] checkedIpNoArray = checkedIpNos.Split(',');
+            DetachedCriteria criteria = DetachedCriteria.For<OrderDetail>();
+            criteria.Add(Expression.In("IpNo", checkedIpNoArray));
+            IList<IpDetail> ipDetailList = genericMgr.FindAll<IpDetail>(criteria);
+            return View();
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        public ActionResult _AjaxIpList(GridCommand command, string flow, string ipNo, string stations)
+        {
+            if (string.IsNullOrEmpty(stations))
+            {
+                var routeList = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute t where t.Flow=?", flow);
+                foreach (var route in routeList)
+                {
+                    if (string.IsNullOrEmpty(stations))
+                    {
+                        stations += route.ShipAddress;
+                    }
+                    else
+                    {
+                        stations += "," + route.ShipAddress;
+                    }
+                }
+            }
             SearchStatementModel searchStatementModel = PrepareSearchIpStatement(command, ipNo, stations);
             return PartialView(GetAjaxPageData<IpMaster>(searchStatementModel, command));
         }
@@ -177,12 +228,133 @@
             return searchStatementModel;
         }
 
-        public ActionResult _RoutingBinding()
+        public ActionResult _RouteBinding()
         {
+            Guid guid = Guid.NewGuid();
+            ViewBag.Guid = guid.ToString();
             return PartialView();
         }
 
+        [GridAction(EnableCustomBinding = true)]
+        public ActionResult _LoadOrderRoute(string orderNo,string flow, string guid)
+        {
+            IList<TransportOrderRoute> transOrderRouteList = new List<TransportOrderRoute>();
+            if (string.IsNullOrEmpty(orderNo))
+            {
+                var i = 0;
+                var flowRouteList = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute tfr where tfr.Flow=?", flow);
+                foreach (var flowRoute in flowRouteList)
+                {
+                    TransportOrderRoute orderRoute = new TransportOrderRoute();
+                    orderRoute.Sequence = flowRoute.Sequence;
+                    orderRoute.ShipAddress = flowRoute.ShipAddress;
+                    orderRoute.ShipAddressDescription = flowRoute.ShipAddressDescription;
+                    orderRoute.Id = ++i;
+                    orderRoute.TempId = Guid.Parse(guid);
+                    transOrderRouteList.Add(orderRoute);
+                }
+                userOrderRoutes.AddRange(transOrderRouteList);
+            }
+            return PartialView(new GridModel(transOrderRouteList));
+        }
 
+        [GridAction]
+        [SconitAuthorize(Permissions = "Url_TransportFlow_View")]
+        public ActionResult _UpdateOrderRoute(GridCommand command, TransportOrderRoute orderRoute, string guid)
+        {
+            var duplicatSeq = userOrderRoutes.Where(r => r.Sequence == orderRoute.Sequence && r.TempId == orderRoute.TempId);
+            if (duplicatSeq != null && duplicatSeq.Count() > 1)
+            {
+                base.SaveErrorMessage("序号不可以重复，修改失败");
+                return PartialView();
+            }
+            else
+            {
+                var updateOrderRoute = userOrderRoutes.Where(r => r.Id == orderRoute.Id && r.TempId == orderRoute.TempId).FirstOrDefault();
+                updateOrderRoute.Sequence = orderRoute.Sequence;
+                updateOrderRoute.ShipAddress = orderRoute.ShipAddress;
+                updateOrderRoute.ShipAddressDescription = orderRoute.ShipAddressDescription;
+            }
+            GridModel<TransportOrderRoute> GridModel = new GridModel<TransportOrderRoute>();
+            GridModel.Total = userOrderRoutes.Where(r => r.TempId == orderRoute.TempId).Count();
+
+            var result = userOrderRoutes.Where(r => r.TempId == orderRoute.TempId);
+            GridModel.Data = result;
+            return PartialView(GridModel);
+        }
+
+        [GridAction]
+        [SconitAuthorize(Permissions = "Url_TransportFlow_View")]
+        public ActionResult _InsertOrderRoute(GridCommand command, TransportOrderRoute orderRoute, string guid)
+        {
+            var duplicatSeq = userOrderRoutes.Where(r => r.Sequence == orderRoute.Sequence && r.TempId == orderRoute.TempId);
+            if (duplicatSeq != null && duplicatSeq.Count() > 1)
+            {
+                base.SaveErrorMessage("序号不可以重复，修改失败");
+                return PartialView();
+            }
+            else
+            {
+                var updateOrderRoute = new TransportOrderRoute();
+                updateOrderRoute.Sequence = orderRoute.Sequence;
+                updateOrderRoute.ShipAddress = orderRoute.ShipAddress;
+                updateOrderRoute.ShipAddressDescription = orderRoute.ShipAddressDescription;
+                updateOrderRoute.TempId = Guid.Parse(guid);
+                userOrderRoutes.Add(updateOrderRoute);
+            }
+            GridModel<TransportOrderRoute> GridModel = new GridModel<TransportOrderRoute>();
+            GridModel.Total = userOrderRoutes.Where(r => r.TempId == Guid.Parse(guid)).Count();
+
+            var result = userOrderRoutes.Where(r => r.TempId == Guid.Parse(guid));
+            GridModel.Data = result;
+            return PartialView(GridModel);
+        }
+
+        [GridAction]
+        [SconitAuthorize(Permissions = "Url_TransportFlow_View")]
+        public ActionResult _DeleteOrderRoute(int? Id, string guid)
+        {
+            if (!Id.HasValue)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                var data = userOrderRoutes.Where(r => r.Id == Id.Value && r.TempId == Guid.Parse(guid)).FirstOrDefault();
+                userOrderRoutes.Remove(data);
+                GridModel<TransportOrderRoute> GridModel = new GridModel<TransportOrderRoute>();
+                GridModel.Total = userOrderRoutes.Where(r => r.TempId == Guid.Parse(guid)).Count();
+
+                var result = userOrderRoutes.Where(r => r.TempId == Guid.Parse(guid));
+                GridModel.Data = result;
+                return PartialView(GridModel);
+            }
+            return PartialView();
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        [GridAction]
+        public ActionResult CreateOrder(TransportOrderMaster order, List<String> ipNos, List<Int32> routeSeqs, List<String> routeAddrs, string guid)
+        {
+            var orderRoutes = new Dictionary<int,string>();
+            if (routeSeqs != null && routeSeqs.Count > 0)
+            {
+                for (int i = 0; i < routeSeqs.Count; ++i)
+                {
+                    orderRoutes.Add(routeSeqs[i], routeAddrs[i]);
+                }
+            }
+            else
+            {
+                var flowRoutes = this.genericMgr.FindAll<TransportFlowRoute>(order.Flow);
+                for (int i = 0; i < flowRoutes.Count; ++i)
+                {
+                    orderRoutes.Add(flowRoutes[i].Sequence, flowRoutes[i].ShipAddress);
+                }
+            }
+            transportMgr.CreateTransportOrder(order, orderRoutes, ipNos);
+            return Json(null);
+        }
 
         [AcceptVerbs(HttpVerbs.Post)]
         [GridAction]

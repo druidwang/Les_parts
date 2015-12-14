@@ -2,7 +2,7 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
  	<class name="com.Sconit.Entity.TMS.TransportPriceListDetail, com.Sconit.Entity" table="TMS_PriceListDet" lazy="false">
 		<id name="Id" column="Id" type="Int32" unsaved-value="0" >
-      		<generator class="increment" />
+      		<generator class="identity" />
         </id>
 		<property name="PriceList" column="PriceList" type="String" length="50"/>
         <property name="ShipFrom" column="ShipFrom" type="String" length="50"/>

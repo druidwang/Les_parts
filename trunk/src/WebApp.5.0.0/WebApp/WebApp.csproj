@@ -372,7 +372,6 @@
     <Compile Include="Controllers\WMS\PickResultController.cs" />
     <Compile Include="Controllers\WMS\PickWindowTimeController.cs" />
     <Compile Include="Controllers\WMS\PickScheduleController.cs" />
-
     <Compile Include="Filters\**\*.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -698,7 +697,6 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\Edit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\List.cshtml" />
-
     <Content Include="Content\2012.2.607\Office2010Blue\sprite.png" />
     <Content Include="Content\2012.2.607\Office2010Silver\editor.png" />
     <Content Include="Content\2012.2.607\Office2010Silver\gradient.png" />
@@ -2552,9 +2550,10 @@
     <Content Include="Views\Common\_TransportFlowComboBox.cshtml" />
     <Content Include="Views\Common\_DriverComboBox.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_ASNBinding.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_RoutingBinding.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_RouteBinding.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\IpNoTemplate.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_SelectASN.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AddressGridTemplater.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -3866,7 +3865,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>2012</DevelopmentServerPort>
+          <DevelopmentServerPort>2015</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>
