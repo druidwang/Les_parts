@@ -67,7 +67,5 @@ namespace com.Sconit.Web.Pluming
             var nameSpace = controllerContext.Controller.GetType().Namespace;
             return base.FileExists(controllerContext, virtualPath.Replace("%1", nameSpace));
         }
-
-
     }
 }

@@ -1,0 +1,107 @@
+﻿@using com.Sconit.Entity.WMS
+@using com.Sconit.Web.Models.SearchModels.WMS
+<script type="text/javascript">
+    function assignCheckedPickTasks() {
+        var $checkRecords = $("input[name='checkedRecords']");
+
+        var checkedPickTasks = "";
+        var assignUser = "";
+        for (var i = 0; i < $checkRecords.length; i++) {
+            if ($checkRecords[i].checked) {
+                if (checkedPickTasks == "") {
+                    checkedPickTasks = $checkRecords[i].value;
+                } else {
+                    checkedPickTasks += "," + $checkRecords[i].value;
+                }
+            }
+        }
+
+        assignUser = $("#AssignUser").val();
+        if (checkedPickTasks == "") {
+            alert('请选择一条记录');
+            return;
+        }
+
+        if (assignUser == "") {
+            alert('分派用户不能为空');
+            return;
+        }
+        var data = {
+            "checkedPickTasks": checkedPickTasks,
+            "assignUser":assignUser
+        };
+        $.ajax({
+            type: "Post",
+            dataType: "html",
+            url: "/PickTask/Assign/",
+            data: data,
+            cache: false,
+            success: function (data, textStatus) {
+                var $tGrid = $("#content");
+                $($tGrid).html(data);
+            }
+        });
+    }
+</script>
+<fieldset>
+    @using (Html.BeginForm("AssignList", "PickTask"))
+    {   
+        <div class="search">
+            <div class="search-label">
+                <label for="PickTask_Item">
+                    @Resources.WMS.PickTask.PickTask_Item
+                </label>
+            </div>
+            <div class="search-field">
+                @{
+        Html.RenderAction("_ItemComboBox", "Common",
+            new
+            {
+                controlName = "Item",
+                selectedValue = TempData["PickTaskSearchModel"] != null ? ((PickTaskSearchModel)TempData["PickTaskSearchModel"]).Item : string.Empty
+            });
+                }
+            </div>
+            <div class="search-label">
+                <label for="PickTask_OrderNo">
+                    @Resources.WMS.PickTask.PickTask_Location
+                </label>
+            </div>
+            <div class="search-field">
+                @{
+        Html.RenderAction("_LocationComboBox", "Common",
+            new
+            {
+                controlName = "Location",
+                selectedValue = TempData["PickTaskSearchModel"] != null ? ((PickTaskSearchModel)TempData["PickTaskSearchModel"]).Location : string.Empty
+            });
+                }
+            </div>
+            <div class="search-label">
+                <label for="PickTask_DateFrom">
+                    @Resources.WMS.PickTask.PickTask_DateFrom
+                </label>
+            </div>
+            <div class="search-field">
+                @(Html.Telerik().DatePicker().Name("DateFrom")
+.Value(TempData["PickTaskSearchModel"] != null ? ((PickTaskSearchModel)TempData["PickTaskSearchModel"]).DateFrom : System.DateTime.Today.AddDays(-7))
+                .HtmlAttributes(new { style = "margin-bottom: 1.3em;width:200px" }))
+            </div>
+            <div class="search-label">
+                <label for="OrderMaster_DateTo">
+                    @Resources.ORD.OrderMaster.OrderMaster_DateTo
+                </label>
+            </div>
+            <div class="search-field">
+                @(Html.Telerik().DatePicker().Name("DateTo")
+.Value(TempData["PickTaskSearchModel"] != null ? ((PickTaskSearchModel)TempData["PickTaskSearchModel"]).DateTo : System.DateTime.Today.AddDays(0))
+                .HtmlAttributes(new { style = "margin-bottom: 1.3em;width:200px" }))
+            </div>
+        </div>
+        <div class="search-footer">
+            @Html.Hidden("isFromList", true)
+            <button type="submit" id="btnSearch">
+                @Resources.SYS.Global.Button_Search</button>
+        </div>
+    }
+</fieldset>

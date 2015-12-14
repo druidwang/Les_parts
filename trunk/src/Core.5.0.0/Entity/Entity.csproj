@@ -260,17 +260,19 @@
     <EmbeddedResource Include="Base\TMS\Vehicle.hbm.xml" />
     <EmbeddedResource Include="Base\VIEW\LocationDetailView.hbm.xml" />
     <EmbeddedResource Include="Base\VIEW\UserPermissionView.hbm.xml" />
-    <EmbeddedResource Include="Base\WMS\BufferInventory.hbm.xml" />
+    <EmbeddedResource Include="Base\WMS\BufferInventory.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\WMS\BufferOccupy.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PickResult.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PickSchedule.hbm.xml" />
-    <EmbeddedResource Include="Base\WMS\PickTask.hbm.xml">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Base\WMS\PickTask.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PickWindowTime.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\RepackOccupy.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\RepackTask.hbm.xml" />
-    <EmbeddedResource Include="Base\WMS\ShipPlan.hbm.xml" />
+    <EmbeddedResource Include="Base\WMS\ShipPlan.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="MRP\Base\MD\FlowClassify.hbm.xml" />
     <EmbeddedResource Include="MRP\Base\MD\HuTo.hbm.xml" />
     <EmbeddedResource Include="MRP\Base\MD\HuToMapping.hbm.xml" />

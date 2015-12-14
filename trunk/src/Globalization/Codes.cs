@@ -792,7 +792,8 @@ namespace com.Sconit.CodeMaster
         TaskType,
         TaskStatus,
         TransportMode,
-        TransportStatus
+        TransportStatus,
+        IOType,
     }
 
     public enum MessageType
@@ -824,6 +825,12 @@ namespace com.Sconit.CodeMaster
     }
 
     public enum TransactionIOType
+    {
+        In = 0,
+        Out = 1
+    }
+
+    public enum IOType
     {
         In = 0,
         Out = 1
@@ -1236,8 +1243,14 @@ namespace com.Sconit.CodeMaster
 
     public enum PickBy
     {
-        Qty = 0,
-        LotNo = 1,
-        Hu = 2
+        LotNo = 0,
+        Hu = 1
+    }
+
+    public enum PickGroupType
+    {
+        Ship = 0,
+        Pick = 1,
+        Repack = 2
     }
 }

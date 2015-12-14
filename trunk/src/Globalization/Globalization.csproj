@@ -2905,6 +2905,51 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Visualization.zh-CN.resx</DependentUpon>
     </Compile>
+    <Compile Include="WMS\ShipPlan.Designer.cs">
+      <DependentUpon>ShipPlan.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\ShipPlan.en-US.Designer.cs">
+      <DependentUpon>ShipPlan.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\ShipPlan.zh-CN.Designer.cs">
+      <DependentUpon>ShipPlan.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\RepackTask.Designer.cs">
+      <DependentUpon>RepackTask.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\RepackTask.en-US.Designer.cs">
+      <DependentUpon>RepackTask.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\RepackTask.zh-CN.Designer.cs">
+      <DependentUpon>RepackTask.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\PickTask.Designer.cs">
+      <DependentUpon>PickTask.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\PickTask.en-US.Designer.cs">
+      <DependentUpon>PickTask.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\PickTask.zh-CN.Designer.cs">
+      <DependentUpon>PickTask.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="WMS\PickResult.Designer.cs">
       <DependentUpon>PickResult.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5384,6 +5429,51 @@
     <EmbeddedResource Include="View\Visualization.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Visualization.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\ShipPlan.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShipPlan.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\ShipPlan.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShipPlan.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\ShipPlan.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShipPlan.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\RepackTask.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RepackTask.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\RepackTask.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RepackTask.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\RepackTask.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>RepackTask.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\PickTask.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PickTask.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\PickTask.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PickTask.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\PickTask.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>PickTask.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WMS\PickResult.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

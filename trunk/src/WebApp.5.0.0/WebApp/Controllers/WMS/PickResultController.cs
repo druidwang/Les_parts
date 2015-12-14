@@ -99,7 +99,7 @@ namespace com.Sconit.Web.Controllers.WMS
             string whereStatement = string.Empty;
             IList<object> param = new List<object>();
             HqlStatementHelper.AddLikeStatement("OrderNo", searchModel.OrderNo, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
-            HqlStatementHelper.AddEqStatement("OrderNo", searchModel.Location,  "p", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("Location", searchModel.Location,  "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "p", ref whereStatement, param);
 
             if (searchModel.DateFrom != null)
