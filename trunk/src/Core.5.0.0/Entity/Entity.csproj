@@ -338,6 +338,11 @@
       <Name>Globalization</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Base\WMS\PickGroup.hbm.xml" />
+    <EmbeddedResource Include="Base\WMS\PickRule.hbm.xml" />
+    <EmbeddedResource Include="Base\WMS\PickUser.hbm.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>

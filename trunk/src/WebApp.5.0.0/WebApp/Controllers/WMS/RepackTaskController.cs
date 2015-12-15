@@ -210,7 +210,7 @@ namespace com.Sconit.Web.Controllers.WMS
 
         private SearchStatementModel PrepareAssignSearchStatement(GridCommand command, RepackTaskSearchModel searchModel)
         {
-            string whereStatement = string.Empty;
+            string whereStatement = " where p.RepackUserId is null "; 
             IList<object> param = new List<object>();
             HqlStatementHelper.AddEqStatement("Location", searchModel.Location, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "p", ref whereStatement, param);
@@ -225,7 +225,7 @@ namespace com.Sconit.Web.Controllers.WMS
                 HqlStatementHelper.AddLeStatement("CreateDate", searchModel.DateTo, "p", ref whereStatement, param);
             }
 
-            whereStatement += " and p.RepackUserId is null "; 
+          
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
             SearchStatementModel searchStatementModel = new SearchStatementModel();
             searchStatementModel.SelectCountStatement = selectCountStatement;

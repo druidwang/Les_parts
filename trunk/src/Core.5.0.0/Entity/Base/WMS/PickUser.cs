@@ -4,28 +4,41 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.WMS
 {
     [Serializable]
-    public partial class PickUser : EntityBase
+    public partial class PickUser : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
-		
-		public Int32 Id { get; set; }
-		public string PickGroupCode { get; set; }
-		public Int32? PickUser { get; set; }
-		public string PickUserName { get; set; }
-		public Boolean IsActive { get; set; }
-		public Int32 CreateUserId { get; set; }
-		public string CreateUserName { get; set; }
-		public DateTime CreateDate { get; set; }
-		public Int32 LastModifyUserId { get; set; }
-		public string LastModifyUserName { get; set; }
-		public DateTime LastModifyDate { get; set; }
-		public Int32 Version { get; set; }
-        
+
+        public Int32 Id { get; set; }
+
+        [Display(Name = "PickUser_PickGroupCode", ResourceType = typeof(Resources.WMS.PickUser))]
+        public string PickGroupCode { get; set; }
+        public Int32? PickUserId { get; set; }
+
+        [Display(Name = "PickUser_PickUserName", ResourceType = typeof(Resources.WMS.PickUser))]
+        public string PickUserName { get; set; }
+
+        [Display(Name = "PickUser_IsActive", ResourceType = typeof(Resources.WMS.PickUser))]
+        public Boolean IsActive { get; set; }
+        public Int32 CreateUserId { get; set; }
+
+        [Display(Name = "PickUser_CreateUserName", ResourceType = typeof(Resources.WMS.PickUser))]
+        public string CreateUserName { get; set; }
+
+        [Display(Name = "PickUser_CreateDate", ResourceType = typeof(Resources.WMS.PickUser))]
+        public DateTime CreateDate { get; set; }
+        public Int32 LastModifyUserId { get; set; }
+
+        [Display(Name = "PickUser_LastModifyUserName", ResourceType = typeof(Resources.WMS.PickUser))]
+        public string LastModifyUserName { get; set; }
+
+        [Display(Name = "PickUser_LastModifyDate", ResourceType = typeof(Resources.WMS.PickUser))]
+        public DateTime LastModifyDate { get; set; }
+
         #endregion
 
-		public override int GetHashCode()
+        public override int GetHashCode()
         {
-			if (Id != 0)
+            if (Id != 0)
             {
                 return Id.GetHashCode();
             }
@@ -45,9 +58,9 @@ namespace com.Sconit.Entity.WMS
             }
             else
             {
-            	return (this.Id == another.Id);
+                return (this.Id == another.Id);
             }
-        } 
+        }
     }
-	
+
 }

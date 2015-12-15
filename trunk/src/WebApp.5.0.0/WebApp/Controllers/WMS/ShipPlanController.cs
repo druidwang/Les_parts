@@ -172,7 +172,7 @@ namespace com.Sconit.Web.Controllers.WMS
 
         private SearchStatementModel PrepareShipSearchStatement(GridCommand command, ShipPlanSearchModel searchModel)
         {
-            string whereStatement = string.Empty;
+            string whereStatement = " where p.PickedQty > p.ShipQty "; 
             IList<object> param = new List<object>();
             HqlStatementHelper.AddEqStatement("OrderNo", searchModel.OrderNo, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Flow", searchModel.Flow, "p", ref whereStatement, param);
@@ -189,7 +189,7 @@ namespace com.Sconit.Web.Controllers.WMS
                 HqlStatementHelper.AddLeStatement("CreateDate", searchModel.DateTo, "p", ref whereStatement, param);
             }
 
-            whereStatement += " and p.PickedQty > p.ShipQty "; 
+        
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
             SearchStatementModel searchStatementModel = new SearchStatementModel();
             searchStatementModel.SelectCountStatement = selectCountStatement;
