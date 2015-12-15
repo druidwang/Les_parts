@@ -8,7 +8,7 @@ namespace com.Sconit.Service
 {
     public interface ITransportMgr
     {
-        string CreateTransportOrder(TransportOrderMaster transportOrderMaster, IList<string> ipNoList);
+        string CreateTransportOrder(TransportOrderMaster transportOrderMaster, IDictionary<int, string> shipAddressDic, IList<string> ipNoList);
 
         void AddTransportOrderRoute(string orderNo, int seq, string shipAddress);
 

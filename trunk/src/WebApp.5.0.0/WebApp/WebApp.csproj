@@ -2560,9 +2560,11 @@
     <Content Include="Views\Common\_TransportFlowComboBox.cshtml" />
     <Content Include="Views\Common\_DriverComboBox.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_ASNBinding.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_RoutingBinding.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_RouteBinding.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\IpNoTemplate.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportOrder\_SelectASN.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AddressGridTemplater.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\AddressGridTemplater.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\_SearchResult.cshtml" />
@@ -3925,7 +3927,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>False</AutoAssignPort>
-          <DevelopmentServerPort>2012</DevelopmentServerPort>
+          <DevelopmentServerPort>2015</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

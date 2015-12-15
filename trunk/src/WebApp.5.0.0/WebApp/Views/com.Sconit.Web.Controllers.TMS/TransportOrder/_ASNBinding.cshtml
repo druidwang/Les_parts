@@ -2,7 +2,7 @@
 
 <div class="editor">
       @(Html.Telerik().Grid<com.Sconit.Entity.TMS.TransportOrderDetail>()
-                .Name("FlowRouteGrid")
+                .Name("OrderDetailGrid")
                 .Editable(editing => editing.Mode(GridEditMode.InCell))
                 .ToolBar(commands =>
                 {
@@ -13,11 +13,11 @@
                 {
                     keys.Add(p => p.Id);
                 })
-                .DataBinding(dataBinding => dataBinding.Ajax().Select("_LoadOrderDetail", "TransportOrder", new { flow = "" }))
+                .DataBinding(dataBinding => dataBinding.Ajax().Select("_LoadOrderDetail", "TransportOrder"))
                 .Columns(columns =>
                 {
                     columns.Bound(o => o.Sequence).ClientTemplate(Html.ActionLink("<#= Sequence #>", "RouteEdit", "TransportFlow", new { ID = "<#= Id #>" }, null).ToString()).Width(50);
-                    columns.Bound(o => o.IpNo).Width(150).EditorTemplateName("IpNoTemplate").ClientTemplate("<input id='IpNo' name='IpNo' style='width:100px;' value='' />");
+                    columns.Bound(o => o.IpNo).Width(150).EditorTemplateName("IpNoTemplate");
                     columns.Bound(o => o.ShipFrom).ReadOnly(true);
                     columns.Bound(o => o.ShipTo).ReadOnly(true);
                     columns.Bound(o => o.Dock).ReadOnly(true);
@@ -30,7 +30,7 @@
                         commands.Delete();
                     }).Width(150);
                 })
-                .ClientEvents(events => events.OnError("TelerikGridView_OnError"))
+                        .ClientEvents(events => events.OnError("TelerikGridView_OnError").OnDataBinding("OrderDetailGridDateBinding"))
 
                     )
 </div>
@@ -65,4 +65,6 @@
         detailWindow.ajaxRequest("/TransportOrder/_SelectASN/", { flow: $('#Flow').val() });
         detailWindow.center().open();
     }
+
+
 </script>

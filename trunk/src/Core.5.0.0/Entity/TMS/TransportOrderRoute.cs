@@ -10,6 +10,8 @@ namespace com.Sconit.Entity.TMS
 
         //TODO: Add Non O/R Mapping Properties here. 
 
+        public Guid TempId { get; set; }
+
         #endregion
     }
 }
