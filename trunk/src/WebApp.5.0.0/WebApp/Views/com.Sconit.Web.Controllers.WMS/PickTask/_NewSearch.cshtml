@@ -27,9 +27,23 @@
             url: "/PickTask/Create/",
             data: data,
             cache: false,
-            success: function (data, textStatus) {
-                var $tGrid = $("#content");
-                $($tGrid).html(data);
+             success: function (data, textStatus) {
+                if (data != "") {
+                    DisplayJsonMessages(data);
+                    $.ajax({
+                        type: "post",
+                        dataType: "html",
+                        url: "@Url.Content("~/PickTask/New/")",
+                        data: orderData,
+                        cache: false,
+                        success: function (data, textStatus) {
+                            var $tGrid = $("#content");
+                            $($tGrid).html(data);
+                        }
+                    });
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                DisplayTextMessages(XMLHttpRequest.responseText);
             }
         });
     }

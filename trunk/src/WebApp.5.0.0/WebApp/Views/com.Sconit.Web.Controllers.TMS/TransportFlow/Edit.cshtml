@@ -58,6 +58,7 @@
             </div>
         </div>
     </fieldset>
+</form>
     <fieldset>
         <legend>@Resources.TMS.TransportFlow.TransportFlow_FlowCarrier</legend>
         <div class="editor">
@@ -73,7 +74,7 @@
                 })
                 .Columns(columns =>
                 {
-                    columns.Bound(o => o.Sequence).ClientTemplate(Html.ActionLink("<#= Sequence #>", "CarrierEdit", "TransportFlow", new { ID = "<#= Id #>" }, null).ToString());
+                    columns.Bound(o => o.Sequence);
                     columns.Bound(o => o.Carrier).EditorTemplateName("CarrierGridForeignKey").Width(120);
                     columns.Bound(o => o.CarrierName).Hidden();
                     columns.Bound(o => o.CarrierName).ReadOnly();
@@ -86,17 +87,12 @@
                         commands.Delete();
                     }).Width(150);
                 })
-                .ClientEvents(events => events.OnError("TelerikGridView_OnError"))
+                .ClientEvents(events => events.OnError("FlowCarrierGrid_OnError"))
                 .DataBinding(dataBinding => dataBinding.Ajax()
-                        .Select("_AjaxFlowCarrierList", "TransportFlow")
+                        .Select("_AjaxFlowCarrierList", "TransportFlow", new { Flow = Model.Code })
                         .Insert("_InsertFlowCarrier", "TransportFlow", new { Flow = Model.Code })
                         .Update("_UpdateFlowCarrier", "TransportFlow", new { Flow = Model.Code })
                         .Delete("_DeleteFlowCarrier", "TransportFlow", new { Flow = Model.Code }))
-                .Pageable(settings =>
-                {
-                    settings.PageSize(20);
-                    settings.PageTo(1);
-                })
                 .Sortable()
 
             )
@@ -117,26 +113,22 @@
                 })
                 .Columns(columns =>
                 {
-                    columns.Bound(o => o.Sequence).ClientTemplate(Html.ActionLink("<#= Sequence #>", "RouteEdit", "TransportFlow", new { ID = "<#= Id #>" }, null).ToString());
-                    columns.Bound(o => o.ShipAddress);
-                    columns.Bound(o => o.ShipAddressDescription);
+                    columns.Bound(o => o.Sequence);
+                    columns.Bound(o => o.ShipAddress).EditorTemplateName("AddressGridTemplater").Width(300);
+                    columns.Bound(o => o.ShipAddressDescription).Hidden();
+                    columns.Bound(o => o.ShipAddressDescription).ReadOnly().Width(800);
                     columns.Command(commands =>
                     {
                         commands.Edit();
                         commands.Delete();
-                    }).Width(150);
+                    }).Width(300);
                 })
-                .ClientEvents(events => events.OnError("TelerikGridView_OnError"))
+                .ClientEvents(events => events.OnError("FlowRouteGridView_OnError"))
                 .DataBinding(dataBinding => dataBinding.Ajax()
                         .Select("_AjaxFlowRouteList", "TransportFlow", new { flow=Model.Code })
-                        .Insert("_InsertAjaxEditing", "TransportFlow", new { flow = Model.Code })
-                        .Update("_UpdateLocation", "StockTake")
-                        .Delete("_DeleteLocation", "StockTake", new { stNo = ViewBag.StNo }))
-                .Pageable(settings =>
-                {
-                    settings.PageSize(20);
-                    settings.PageTo(1);
-                })
+                        .Insert("_InsertFlowRoute", "TransportFlow", new { flow = Model.Code })
+                        .Update("_UpdateFlowRoute", "TransportFlow", new { flow = Model.Code })
+                        .Delete("_DeleteFlowRoute", "TransportFlow", new { flow = Model.Code }))
                 .Sortable()
 
             )
@@ -163,7 +155,7 @@
         <button type="button" id="btnBack" onclick="location.href='@Url.Content("~/TransportFlow/List")'">
             @Resources.SYS.Global.Button_Back</button>
     </div>
-</form>
+
 <script language="javascript" type="text/javascript">
     $(document).ready(function () {
         $("form[action$='_Edit']").submit(function () {
@@ -184,20 +176,20 @@
             }
             if (combobox.selectedIndex == undefined || combobox.selectedIndex == -1) {
                 combobox.value("");
-                $(e.target).parent().parent().next().text("");
+                $(e.target).parent().parent().next().next().text("")
                 combobox.reload();
             } else {
                 var data = {
-                    "Carrier": e.value
+                    "carrier": e.value
                 };
                 $.ajax({
-                    type: "post",
+                    type: "get",
                     dataType: "html",
-                    url: "/TransferFlow/_GetCarrierName/",
+                    url: "/TransportFlow/_GetCarrierName/",
                     data: data,
                     success: function (data, textStatus) {
-                        debugger;
-                        //$(e.target).parent().parent().next().text(data);
+                        $(e.target).parent().parent().next().children().val(data)
+                        $(e.target).parent().parent().next().next().text(data);
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         alert(errorThrown);
@@ -211,5 +203,62 @@
         e.data = {
             "checkPermission": false
         };
+    }
+
+    function onAddressComboBoxChange(e) {
+        if (e.value != null) {
+            var combobox = $(this).data("tComboBox");
+            if (combobox == undefined) {
+                return;
+            }
+            if (combobox.selectedIndex == undefined || combobox.selectedIndex == -1) {
+                combobox.value("");
+                $(e.target).parent().parent().next().text("");
+                combobox.reload();
+            } else {
+                var data = {
+                    "address": e.value
+                };
+                $.ajax({
+                    type: "get",
+                    dataType: "html",
+                    url: "/TransportFlow/_GetAddressName/",
+                    data: data,
+                    success: function (data, textStatus) {
+                        $(e.target).parent().parent().next().children().val(data)
+                        $(e.target).parent().parent().next().next().text(data);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            }
+        }
+    }
+
+    function onAddressDataBinding(e) {
+        e.data = {
+            type: 0,
+            checkParty:false
+        };
+    }
+
+    function FlowCarrierGrid_OnError(e) {
+        if (e.XMLHttpRequest.status === 200) {
+            var grid = $("#FlowCarrierGrid").data("tGrid");
+            grid.ajaxRequest();
+        }
+        else {
+            DisplayTextMessages(e.XMLHttpRequest.responseText);
+        }
+    }
+    function FlowRouteGridView_OnError(e) {
+        if (e.XMLHttpRequest.status === 200) {
+            var grid = $("#FlowRouteGrid").data("tGrid");
+            grid.ajaxRequest();
+        }
+        else {
+            DisplayTextMessages(e.XMLHttpRequest.responseText);
+        }
     }
 </script>

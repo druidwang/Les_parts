@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.TMS
 {
     [Serializable]
-    public partial class TransportFlowCarrier : EntityBase
+    public partial class TransportFlowCarrier : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
 		

@@ -35,7 +35,7 @@ namespace com.Sconit.Service.Impl
         }
 
         [Transaction(TransactionMode.Requires)]
-        public string CreateTransportOrder(TransportOrderMaster transportOrderMaster, IList<string> ipNoList)
+        public string CreateTransportOrder(TransportOrderMaster transportOrderMaster, IDictionary<int, string> shipAddressDic, IList<string> ipNoList)
         {
             #region 是否生成运输单号校验
             if (!string.IsNullOrWhiteSpace(transportOrderMaster.OrderNo))

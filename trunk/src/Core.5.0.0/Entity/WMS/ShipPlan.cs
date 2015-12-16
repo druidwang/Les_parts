@@ -26,6 +26,15 @@ namespace com.Sconit.Entity.WMS
                 return this.PickedQty.ToString("F0") + "/" + this.PickQty.ToString("F0");
             }
         }
+
+
+        public decimal ToPickQty
+        {
+            get
+            {
+                return this.OrderQty - this.PickQty;
+            }
+        }
         #endregion
     }
 }

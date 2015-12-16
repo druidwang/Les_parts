@@ -3,7 +3,6 @@
     $(function () {
         $("#checkAll").click(function () {
             $('input[name="checkedRecords"]').attr("checked", this.checked);
-            $("#btnAssign").attr("style", this.checked ? "display:inline" : "display:none");
         });
     });
 
@@ -31,7 +30,7 @@
 </script>
 <fieldset>
     <legend>@Resources.WMS.RepackTask.RepackTask_Assign_Title</legend>
- <div class="search-footer">
+    <div class="search-footer">
         <table>
             <tr>
                 <td>
@@ -40,13 +39,13 @@
                     </label>
                 </td>
                 <td>
-                     @{
-        Html.RenderAction("_UserComboBox", "Common",
-         new
-         {
-             ControlName = "AssignUser"
-         });
-                }
+                    @{
+                        Html.RenderAction("_UserComboBox", "Common",
+                         new
+                         {
+                             ControlName = "AssignUser"
+                         });
+                    }
                 </td>
                 <td id="tdCarrayOver">
                     @Html.Button(Resources.SYS.Global.Button_Assign, "Url_RepackTask_Assign", new Dictionary<string, string>()
@@ -69,7 +68,10 @@
           })
                  .Columns(columns =>
                  {
-                     columns.Bound(o => o.Item).ClientTemplate(Html.ActionLink("<#= Item #>", "Edit", "RepackTask", new { id = "<#= Id #>" }, null).ToString());
+                     columns.Bound(o => o.Item)
+                        .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' value='<#= Id #>' onClick='showButtons()'  />")
+                        .HeaderTemplate("<input type='checkbox' id='checkAll' name='checkAll' />")
+                        .Width(36).HtmlAttributes(new { style = "text-align:center" });
                      columns.Bound(o => o.ItemDescription);
                      columns.Bound(o => o.Uom);
                      columns.Bound(o => o.UnitCount);
@@ -94,6 +96,4 @@
         .Sortable()
         .Resizable(resizing => resizing.Columns(true))
     )
-
-   
 </fieldset>

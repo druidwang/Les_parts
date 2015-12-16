@@ -5,27 +5,42 @@ using com.Sconit.CodeMaster;
 namespace com.Sconit.Entity.WMS
 {
     [Serializable]
-    public partial class PickGroup : EntityBase
+    public partial class PickGroup :  EntityBase, IAuditable
     {
         #region O/R Mapping Properties
-		
-		public string PickGroupCode { get; set; }
-		public PickGroupType Type { get; set; }
-		public string Description { get; set; }
-		public Boolean IsActive { get; set; }
-		public Int32 CreateUserId { get; set; }
-		public string CreateUserName { get; set; }
-		public DateTime CreateDate { get; set; }
-		public Int32 LastModifyUserId { get; set; }
-		public string LastModifyUserName { get; set; }
-		public DateTime LastModifyDate { get; set; }
-		public Int32 Version { get; set; }
-        
+
+        [Display(Name = "PickGroup_PickGroupCode", ResourceType = typeof(Resources.WMS.PickGroup))]
+        public string PickGroupCode { get; set; }
+
+
+        public PickGroupType Type { get; set; }
+
+        [Display(Name = "PickGroup_Description", ResourceType = typeof(Resources.WMS.PickGroup))]
+        public string Description { get; set; }
+
+        [Display(Name = "PickGroup_IsActive", ResourceType = typeof(Resources.WMS.PickGroup))]
+        public Boolean IsActive { get; set; }
+        public Int32 CreateUserId { get; set; }
+
+        [Display(Name = "PickGroup_CreateUserName", ResourceType = typeof(Resources.WMS.PickGroup))]
+        public string CreateUserName { get; set; }
+
+        [Display(Name = "PickGroup_CreateDate", ResourceType = typeof(Resources.WMS.PickGroup))]
+        public DateTime CreateDate { get; set; }
+        public Int32 LastModifyUserId { get; set; }
+
+        [Display(Name = "PickGroup_LastModifyUserName", ResourceType = typeof(Resources.WMS.PickGroup))]
+        public string LastModifyUserName { get; set; }
+
+        [Display(Name = "PickGroup_LastModifyDate", ResourceType = typeof(Resources.WMS.PickGroup))]
+        public DateTime LastModifyDate { get; set; }
+        public Int32 Version { get; set; }
+
         #endregion
 
-		public override int GetHashCode()
+        public override int GetHashCode()
         {
-			if (PickGroupCode != null)
+            if (PickGroupCode != null)
             {
                 return PickGroupCode.GetHashCode();
             }
@@ -45,9 +60,9 @@ namespace com.Sconit.Entity.WMS
             }
             else
             {
-            	return (this.PickGroupCode == another.PickGroupCode);
+                return (this.PickGroupCode == another.PickGroupCode);
             }
-        } 
+        }
     }
-	
+
 }

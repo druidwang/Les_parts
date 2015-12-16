@@ -13,8 +13,16 @@
     function Flow_Change(e) {
         $('#Detail').show();
         var tabstrip = $("#TabStrip").data("tTabStrip");
-        var item = $("li", tabstrip.element)[0]; 
-        tabstrip.select(item);
+        var items = $("li", tabstrip.element);
+        tabstrip.select(items[0]);
+        var grid1 = $("#OrderDetailGrid").data("tGrid");
+        if (grid1 !== undefined) {
+            grid1.ajaxRequest();
+        }
+        var grid2 = $("#OrderRouteGrid").data("tGrid");
+        if (grid2 !== undefined) {
+            grid2.ajaxRequest();
+        }
     }
 
     function Vehicle_OnChange(e) {
@@ -57,12 +65,97 @@
 
     $(document).ready(function () {
         var tabstrip = $("#TabStrip").data("tTabStrip");
-        $($("li", tabstrip.element)[0]).find('a')[0].href += "?flow=qazwsx";
-    }); 
+        //$($("li", tabstrip.element)[0]).find('a')[0].href += "?flow=qazwsx";
+    });
+    function OrderDetailGridDateBinding(e) {
+        e.data = {
+            flow: $("#Flow").val()
+        }
+    }
+
+    function OrderRouteGridDateBinding(e) {
+        e.data = {
+            flow: $("#Flow").val(),
+            guid: $("#Guid").val()
+        }
+    }
+
+
+    function onCreate() {
+        debugger;
+        var grid = $("#OrderDetailGrid").data("tGrid");
+        if (grid === undefined) {
+            alert("明细不能为空");
+            return;
+        }
+
+        if (grid.data.length === 0) {
+            $message.error("请填写要建立运单的送货单号");
+            return;
+        }
+
+        var ipNos=[];
+        for (var i = 0; i < grid.data.length; i++) {
+            ipNos.push(grid.data[i]["IpNo"]);
+        }
+        var gridroute = $("#OrderRouteGrid").data("tGrid");
+        var routeSeqs=[];
+        var routeAddrs=[];
+        if (gridroute !== undefined) {
+            for (var i = 0; i < gridroute.data.length; i++) {
+                routeSeqs.push(gridroute.data[i]["Sequence"]);
+                routeAddrs.push(gridroute.data[i]["ShipAddress"]);
+            }
+        }
+            
+        var ordermstr = {
+            Flow:$("#Flow").val(),
+            ExternalOrderNo:$("#ExternalOrderNo").val(),
+            Carrier:$("#Carrier").val(),
+            TransportMode:$("#TransportMode").val(),
+            Tonnage:$("#Tonnage").val(),
+            Driver: $("#Driver").val(),
+            ipNos: ipNos,
+            routeSeqs: routeSeqs,
+            routeAddrs: routeAddrs,
+            guid: $("#Guid").val()
+        }
+
+
+        $.ajax({
+            type: "post",
+            dataType: "Json",
+            data: ordermstr,
+            url: "/TransportOrder/CreateOrder/",
+            cache: false,
+            traditional: true,
+            success: function (data, textStatus) {
+                $message.success(data.SuccessMessage);
+
+                if (data != "") {
+                    $.ajax({
+                        type: "post",
+                        dataType: "html",
+                        data: { ipNo: data.SuccessData },
+                        url: "/DistributionIpMaster/_ReceiveIpDetailList/",
+                        cache: false,
+                        success: function (data, textStatus) {
+                            var $tDiv = $("#divRecIpDetail");
+                            $($tDiv).html(data);
+                        }
+                    });
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                var errorMessages = XMLHttpRequest.responseText;
+
+                $message.error(errorMessages);
+            }
+        });
+    }
 
 </script>
-@using (Html.BeginForm())
-{
+
     <fieldset>
         <div class="editor">
             <div class="editor-label-2">
@@ -227,7 +320,7 @@
             </div>
         </div>
         <div class="editor-footer">
-            @Html.Button(Resources.SYS.Global.Button_New, "Url_TransportOrderMstr_Edit", new Dictionary<string, string>()
+            @Html.Button(Resources.SYS.Global.Button_New, "", new Dictionary<string, string>()
 	        {
 	            {"type", "button"},
 	            {"id", "btnNew"},
@@ -243,17 +336,17 @@
         .Items(tabstrip =>
         {
             tabstrip.Add()
-               .Text("ASN")
+               .Text("订单明细")
                .LoadContentFrom("_ASNBinding", "TransportOrder")
                .HtmlAttributes(new { onclick = "CleanTabMessage()" });
 
             tabstrip.Add()
-                .Text("Routing")
-                .LoadContentFrom("_RoutingBinding", "TransportOrder")
+                .Text("站点")
+                .LoadContentFrom("_RouteBinding", "TransportOrder")
                 .HtmlAttributes(new { onclick = "CleanTabMessage()" });
 
         })
         .Render();
     }
     </fieldset>
-}
+

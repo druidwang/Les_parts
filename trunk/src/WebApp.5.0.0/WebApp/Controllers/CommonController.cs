@@ -60,6 +60,10 @@
 
         private static string selectLikeUserStatement = "from User as u where u.Code like ? and u.IsActive = ?";
 
+        private static string selectEqWmsUserStatement = "from User as u where u.Id = ? and u.IsActive = ?";
+
+        private static string selectLikeWmsUserStatement = "from User as u where u.Code like ? and u.IsActive = ?";
+
         private static string selectEqItemPackageStatement = "from ItemPackage as i where  convert(VARCHAR,i.UnitCount) = ?";
 
         private static string selectLikeItemPackageStatement = "from ItemPackage as i where i.Item=? and convert(VARCHAR,i.UnitCount) like ? ";
@@ -490,6 +494,30 @@
             IList<User> userList = new List<User>();
             userList = queryMgr.FindAll<User>(selectLikeUserStatement, new object[] { text + "%", true }, firstRow, maxRow);
             return new JsonResult { Data = new SelectList(userList, "Code", "CodeDescription") };
+        }
+        #endregion
+
+
+        #region WmsUser
+        public ActionResult _WmsUserComboBox(string controlName, string controlId, string selectedValue, bool? enable)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Enable = enable;
+
+            IList<User> userList = new List<User>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+                userList = queryMgr.FindAll<User>(selectEqWmsUserStatement, new object[] { selectedValue, true });
+            }
+            return PartialView(new SelectList(userList, "Id", "CodeDescription", selectedValue));
+        }
+
+        public ActionResult _WmsUserAjaxLoading(string text)
+        {
+            IList<User> userList = new List<User>();
+            userList = queryMgr.FindAll<User>(selectLikeWmsUserStatement, new object[] { text + "%", true }, firstRow, maxRow);
+            return new JsonResult { Data = new SelectList(userList, "Id", "CodeDescription") };
         }
         #endregion
 
