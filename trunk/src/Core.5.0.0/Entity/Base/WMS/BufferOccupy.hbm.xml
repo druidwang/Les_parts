@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
  	<class name="com.Sconit.Entity.WMS.BufferOccupy, com.Sconit.Entity" table="WMS_BuffOccupy" lazy="false">
-		<id name="Id" column="Id" type="Int32" unsaved-value="0" >
-      		<generator class="identity" />
+		<id name="BufferInventoryId" column="BuffInvId" type="Int32" unsaved-value="0" >
+      		<generator class="assigned" />
         </id>
 		<version name="Version" column="Version" type="Int32" />	
-		<property name="BufferInventoryId" column="BuffInvId" type="Int32"/>	
 		<property name="OrderNo" column="OrderNo" type="String" length="50"/>	
 		<property name="OrderSequence" column="OrderSeq" type="Int32"/>	
 		<property name="ShipPlanId" column="ShipPlanId" type="Int32"/>	

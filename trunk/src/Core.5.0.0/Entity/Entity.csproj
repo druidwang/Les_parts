@@ -263,7 +263,9 @@
     <EmbeddedResource Include="Base\WMS\BufferInventory.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Base\WMS\BufferOccupy.hbm.xml" />
+    <EmbeddedResource Include="Base\WMS\BufferOccupy.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\WMS\PickResult.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PickSchedule.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PickTask.hbm.xml" />
@@ -337,6 +339,11 @@
       <Project>{5907015a-4bec-482d-b4c4-5413e7ee0068}</Project>
       <Name>Globalization</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Base\WMS\PickGroup.hbm.xml" />
+    <Content Include="Base\WMS\PickRule.hbm.xml" />
+    <Content Include="Base\WMS\PickUser.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

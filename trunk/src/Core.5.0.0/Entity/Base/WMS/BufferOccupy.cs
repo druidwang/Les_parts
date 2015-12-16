@@ -8,7 +8,6 @@ namespace com.Sconit.Entity.WMS
     {
         #region O/R Mapping Properties
 		
-		public Int32 Id { get; set; }
 		public Int32 BufferInventoryId { get; set; }
 		public string OrderNo { get; set; }
 		public Int32 OrderSequence { get; set; }
@@ -27,9 +26,9 @@ namespace com.Sconit.Entity.WMS
 
 		public override int GetHashCode()
         {
-			if (Id != 0)
+            if (BufferInventoryId != 0)
             {
-                return Id.GetHashCode();
+                return BufferInventoryId.GetHashCode();
             }
             else
             {
@@ -47,7 +46,7 @@ namespace com.Sconit.Entity.WMS
             }
             else
             {
-            	return (this.Id == another.Id);
+                return (this.BufferInventoryId == another.BufferInventoryId);
             }
         } 
     }

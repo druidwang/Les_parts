@@ -76,6 +76,10 @@ namespace com.Sconit.Entity.WMS
         public DateTime? CloseDate { get; set; }
         public Int32 Version { get; set; }
 
+        public string OrderNo { get; set; }
+        public Int32? OrderSequence { get; set; }
+        public Int32? ShipPlanId { get; set; }
+        public string TargetDock { get; set; }
         #endregion
 
         public override int GetHashCode()
