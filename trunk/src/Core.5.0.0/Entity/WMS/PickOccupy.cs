@@ -4,7 +4,7 @@ using System;
 
 namespace com.Sconit.Entity.WMS
 {
-    public partial class RepackIn
+    public partial class PickOccupy
     {
         #region Non O/R Mapping Properties
 

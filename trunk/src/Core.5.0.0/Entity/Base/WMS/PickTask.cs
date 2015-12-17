@@ -8,7 +8,7 @@ namespace com.Sconit.Entity.WMS
     {
         #region O/R Mapping Properties
 
-        public Int32 Id { get; set; }
+        public string UUID { get; set; }
         public com.Sconit.CodeMaster.OrderPriority Priority { get; set; }
 
         [Display(Name = "PickTask_Item", ResourceType = typeof(Resources.WMS.PickTask))]
@@ -56,6 +56,7 @@ namespace com.Sconit.Entity.WMS
         [Display(Name = "PickTask_HuId", ResourceType = typeof(Resources.WMS.PickTask))]
         public string HuId { get; set; }
 
+        public Boolean NeedRepack { get; set; }
         public Boolean IsPickHu { get; set; }
 
         [Display(Name = "PickTask_PickBy", ResourceType = typeof(Resources.WMS.PickTask))]
@@ -96,13 +97,17 @@ namespace com.Sconit.Entity.WMS
         public DateTime? CloseDate { get; set; }
         public Int32 Version { get; set; }
 
+        public string OrderNo { get; set; }
+        public Int32? OrderSequence { get; set; }
+        public Int32? ShipPlanId { get; set; }
+        public string TargetDock { get; set; }
         #endregion
 
         public override int GetHashCode()
         {
-            if (Id != 0)
+            if (UUID != null)
             {
-                return Id.GetHashCode();
+                return UUID.GetHashCode();
             }
             else
             {
@@ -120,7 +125,7 @@ namespace com.Sconit.Entity.WMS
             }
             else
             {
-                return (this.Id == another.Id);
+                return (this.UUID == another.UUID);
             }
         }
     }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
  	<class name="com.Sconit.Entity.WMS.PickTask, com.Sconit.Entity" table="WMS_PickTask" lazy="false">
-		<id name="Id" column="Id" type="Int32" unsaved-value="0" >
-      		<generator class="identity" />
+        <id name="UUID" column="UUID" type="String" unsaved-value="null" >
+            <generator class="assigned" />
         </id>
 		<version name="Version" column="Version" type="Int32" />	
 		<property name="Priority" column="Priority" />	
@@ -27,6 +27,7 @@
 		<property name="StartTime" column="StartTime" type="DateTime"/>	
 		<property name="WinTime" column="WinTime" type="DateTime"/>
         <property name="IsPickHu" column="IsPickHu" type="Boolean"/>
+        <property name="NeedRepack" column="NeedRepack" type="Boolean"/>
         <property name="IsActive" column="IsActive" type="Boolean"/>	
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
@@ -36,6 +37,10 @@
 		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>	
 		<property name="CloseUser" column="CloseUser" type="Int32"/>	
 		<property name="CloseUserName" column="CloseUserNm" type="String" length="100"/>	
-		<property name="CloseDate" column="CloseDate" type="DateTime"/>	
-  	</class>
+		<property name="CloseDate" column="CloseDate" type="DateTime"/>
+        <property name="OrderNo" column="OrderNo" type="String" length="50"/>
+        <property name="OrderSequence" column="OrderSeq" type="Int32"/>
+        <property name="ShipPlanId" column="ShipPlanId" type="Int32"/>
+        <property name="TargetDock" column="TargetDock" type="String" length="50"/>
+    </class>
 </hibernate-mapping>

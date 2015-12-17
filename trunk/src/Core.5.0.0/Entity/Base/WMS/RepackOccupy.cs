@@ -8,10 +8,9 @@ namespace com.Sconit.Entity.WMS
     {
         #region O/R Mapping Properties
 		
-		public Int32 Id { get; set; }
-		public Int32 RepackTaskId { get; set; }
+		public string UUID { get; set; }
 		public string OrderNo { get; set; }
-		public Int32 OrderSequence { get; set; }
+		public Int32 OrderSeq { get; set; }
 		public Int32 ShipPlanId { get; set; }
 		public string TargetDock { get; set; }
 		public Decimal OccupyQty { get; set; }
@@ -27,9 +26,9 @@ namespace com.Sconit.Entity.WMS
 
 		public override int GetHashCode()
         {
-			if (Id != 0)
+			if (UUID != null)
             {
-                return Id.GetHashCode();
+                return UUID.GetHashCode();
             }
             else
             {
@@ -47,7 +46,7 @@ namespace com.Sconit.Entity.WMS
             }
             else
             {
-            	return (this.Id == another.Id);
+            	return (this.UUID == another.UUID);
             }
         } 
     }

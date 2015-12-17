@@ -8,8 +8,8 @@ namespace com.Sconit.Entity.WMS
     public partial class BufferInventory : EntityBase
     {
         #region O/R Mapping Properties
-		
-		public Int32 Id { get; set; }
+
+        public string UUID { get; set; }
 		public string Location { get; set; }
 		public string Dock { get; set; }
         public IOType IOType { get; set; }
@@ -31,9 +31,9 @@ namespace com.Sconit.Entity.WMS
 
 		public override int GetHashCode()
         {
-			if (Id != 0)
+            if (UUID != null)
             {
-                return Id.GetHashCode();
+                return UUID.GetHashCode();
             }
             else
             {
@@ -51,7 +51,7 @@ namespace com.Sconit.Entity.WMS
             }
             else
             {
-            	return (this.Id == another.Id);
+                return (this.UUID == another.UUID);
             }
         } 
     }

@@ -106,3 +106,41 @@ SET ANSI_PADDING OFF
 GO
 
 
+DROP TABLE [dbo].[WMS_BuffOccupy]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[WMS_BuffOccupy](
+	[BuffInvId] [int] NOT NULL,
+	[OrderNo] [varchar](50) NOT NULL,
+	[OrderSeq] [int] NOT NULL,
+	[ShipPlanId] [int] NOT NULL,
+	[TargetDock] [varchar](50) NOT NULL,
+	[OccupyQty] [decimal](18, 8) NOT NULL,
+	[CreateUser] [int] NOT NULL,
+	[CreateUserNm] [varchar](100) NOT NULL,
+	[CreateDate] [datetime] NOT NULL,
+	[LastModifyUser] [int] NOT NULL,
+	[LastModifyUserNm] [varchar](100) NOT NULL,
+	[LastModifyDate] [datetime] NOT NULL,
+	[Version] [int] NOT NULL,
+ CONSTRAINT [PK_WMS_BuffOccupy] PRIMARY KEY CLUSTERED 
+(
+	[BuffInvId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+
