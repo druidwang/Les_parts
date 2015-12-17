@@ -9,8 +9,8 @@ namespace com.Sconit.Web.Models.SearchModels.WMS
     {
         public string Item { get; set; }
         public string PickUser { get; set; }
-        public DateTime DateFrom { get; set; }
-        public DateTime DateTo { get; set; }
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
         public string Location { get; set; }
         public Boolean IsActive { get; set; }
     }

@@ -5,11 +5,11 @@
         .Name("PickTaskGrid")
         .DataKeys(keys =>
         {
-            keys.Add(p => p.Id);
+            keys.Add(p => p.UUID);
         })
         .Columns(columns =>
         {
-            columns.Bound(o => o.Item).ClientTemplate(Html.ActionLink("<#= Item #>", "Edit", "PickTask", new { id = "<#= Id #>" }, null).ToString());
+            columns.Bound(o => o.Item).ClientTemplate(Html.ActionLink("<#= Item #>", "Edit", "PickTask", new { id = "<#= UUID #>" }, null).ToString());
             columns.Bound(o => o.ItemDescription);
             columns.Bound(o => o.Uom);
             columns.Bound(o => o.UnitCount);

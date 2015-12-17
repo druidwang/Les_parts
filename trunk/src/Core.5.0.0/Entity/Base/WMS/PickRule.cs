@@ -30,7 +30,6 @@ namespace com.Sconit.Entity.WMS
 
         [Display(Name = "PickRule_LastModifyDate", ResourceType = typeof(Resources.WMS.PickRule))]
         public DateTime LastModifyDate { get; set; }
-        public Int32 Version { get; set; }
 
         #endregion
 

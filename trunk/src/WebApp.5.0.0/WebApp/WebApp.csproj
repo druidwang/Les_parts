@@ -369,6 +369,8 @@
     <Compile Include="Controllers\TMS\TransportPriceListController.cs" />
     <Compile Include="Controllers\TMS\VehicleController.cs" />
     <Compile Include="Controllers\WebAppBaseController.cs" />
+    <Compile Include="Controllers\WMS\ShipGroupController.cs" />
+    <Compile Include="Controllers\WMS\RepackGroupController.cs" />
     <Compile Include="Controllers\WMS\PickGroupController.cs" />
     <Compile Include="Controllers\WMS\ShipPlanController.cs" />
     <Compile Include="Controllers\WMS\RepackTaskController.cs" />
@@ -2614,6 +2616,40 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickGroup\_PickUserList.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickGroup\_PickUserNew.cshtml" />
     <Content Include="Views\Common\_WmsUserComboBox.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_PickRule.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_PickRuleEdit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_PickRuleList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_PickRuleNew.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_PickRuleResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_PickUser.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_PickUserEdit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_PickUserList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_PickUserNew.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_PickUserResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_PickRule.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_PickRuleEdit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_PickRuleList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_PickRuleNew.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_PickRuleResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_PickUser.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_PickUserEdit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_PickUserList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_PickUserNew.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_PickUserResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\New.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -3318,8 +3354,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\Filters\" />
     <Folder Include="Resource\DownLoad\" />
-    <Folder Include="Views\com.Sconit.Web.Controllers.WMS\RepackGroup\" />
-    <Folder Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\com.Sconit.Web.Controllers.SP\SupplierIpMaster\_CancelSearch.cshtml" />
