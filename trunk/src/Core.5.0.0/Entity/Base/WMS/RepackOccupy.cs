@@ -1,24 +1,19 @@
 using System;
 using System.ComponentModel.DataAnnotations;
-using com.Sconit.CodeMaster;
 
 namespace com.Sconit.Entity.WMS
 {
     [Serializable]
-    public partial class BufferInventory : EntityBase
+    public partial class RepackOccupy : EntityBase
     {
         #region O/R Mapping Properties
-
-        public string UUID { get; set; }
-		public string Location { get; set; }
-		public string Dock { get; set; }
-        public IOType IOType { get; set; }
-		public string Item { get; set; }
-		public string Uom { get; set; }
-		public Decimal UnitCount { get; set; }
-		public Decimal Qty { get; set; }
-		public string LotNo { get; set; }
-		public string HuId { get; set; }
+		
+		public string UUID { get; set; }
+		public string OrderNo { get; set; }
+		public Int32 OrderSeq { get; set; }
+		public Int32 ShipPlanId { get; set; }
+		public string TargetDock { get; set; }
+		public Decimal OccupyQty { get; set; }
 		public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
 		public DateTime CreateDate { get; set; }
@@ -31,7 +26,7 @@ namespace com.Sconit.Entity.WMS
 
 		public override int GetHashCode()
         {
-            if (UUID != null)
+			if (UUID != null)
             {
                 return UUID.GetHashCode();
             }
@@ -43,7 +38,7 @@ namespace com.Sconit.Entity.WMS
 
         public override bool Equals(object obj)
         {
-            BufferInventory another = obj as BufferInventory;
+            RepackOccupy another = obj as RepackOccupy;
 
             if (another == null)
             {
@@ -51,7 +46,7 @@ namespace com.Sconit.Entity.WMS
             }
             else
             {
-                return (this.UUID == another.UUID);
+            	return (this.UUID == another.UUID);
             }
         } 
     }

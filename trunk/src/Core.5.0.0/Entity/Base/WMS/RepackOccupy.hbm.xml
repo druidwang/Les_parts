@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
- 	<class name="com.Sconit.Entity.WMS.BufferOccupy, com.Sconit.Entity" table="WMS_BuffOccupy" lazy="false">
+ 	<class name="com.Sconit.Entity.WMS.RepackOccupy, com.Sconit.Entity" table="WMS_RepackOccupy" lazy="false">
 		<id name="UUID" column="UUID" type="String" unsaved-value="null" >
       		<generator class="assigned" />
         </id>
