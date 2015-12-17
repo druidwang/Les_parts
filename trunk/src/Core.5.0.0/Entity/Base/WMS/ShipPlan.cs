@@ -155,6 +155,9 @@ namespace com.Sconit.Entity.WMS
         public DateTime? CloseDate { get; set; }
         public Int32 Version { get; set; }
 
+        public string LocationTo { get; set; }
+        public string LocationToName { get; set; }
+        public string Station { get; set; }
         #endregion
 
         public override int GetHashCode()
