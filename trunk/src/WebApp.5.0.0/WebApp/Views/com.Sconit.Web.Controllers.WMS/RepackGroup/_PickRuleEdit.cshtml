@@ -6,10 +6,11 @@
         <div class="editor">
                 @Html.HiddenFor(model => model.Id)
                 @Html.HiddenFor(model => model.PickGroupCode)
+                 @Html.HiddenFor(model => model.CreateUserId)
                 @Html.HiddenFor(model => model.CreateUserName)
                 @Html.HiddenFor(model => model.CreateDate)
             <div class="editor-label-2">
-                @Resources.WMS.PickRule.PickRule_PickGroupCode
+                 @Resources.WMS.RepackRule.RepackRule_RepackGroupCode
             </div>
             <div class="editor-field-2">
                 @Html.DisplayFor(model => model.PickGroupCode)
@@ -57,7 +58,7 @@
         $.ajax({
             type: "post",
             dataType: "html",
-            url: "/PickGroup/DeletePickRule/",
+            url: "/RepackGroup/DeletePickRule/",
             data: data,
             cache:false,
             success: function (data, textStatus) {
@@ -71,7 +72,7 @@
         var data = {
             "PickGroupCode": $("#PickGroupCode").val(),
             "Location": $("#Location").val(),
-            "CreateDate": $("#CreateDate").val(),
+             "CreateDate": $("#CreateDate").val(),
             "CreateUserId": $("#CreateUserId").val(),
             "CreateUserName": $("#CreateUserName").val(),
             "Id": $("#Id").val()
@@ -79,7 +80,7 @@
         $.ajax({
             type: "post",
             dataType: "html",
-            url: "/PickGroup/_PickRuleEdit/",
+            url: "/RepackGroup/_PickRuleEdit/",
             data: data,
             success: function (data, textStatus) {
                 var tabStrip = $("#TabStrip");
@@ -96,7 +97,7 @@
         $.ajax({
             type: "get",
             dataType: "html",
-            url: "/PickGroup/_PickRuleList/",
+            url: "/RepackGroup/_PickRuleList/",
             data: "",
             success: function (data, textStatus) {
                 var tabStrip = $("#TabStrip");

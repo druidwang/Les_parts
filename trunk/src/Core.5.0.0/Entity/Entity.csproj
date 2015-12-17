@@ -650,9 +650,7 @@
     <Compile Include="WMS\PickTask.cs" />
     <Compile Include="WMS\PickUser.cs" />
     <Compile Include="WMS\PickWindowTime.cs" />
-    <Compile Include="WMS\RepackIn.cs" />
     <Compile Include="WMS\RepackOccupy.cs" />
-    <Compile Include="WMS\RepackOut.cs" />
     <Compile Include="WMS\RepackTask.cs" />
     <Compile Include="WMS\ShipPlan.cs" />
   </ItemGroup>

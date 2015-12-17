@@ -8,6 +8,7 @@ namespace com.Sconit.Web.Controllers.WMS
     using System.Web;
     using System.Web.Mvc;
     using System.Web.Security;
+    using com.Sconit.Entity.MD;
     using com.Sconit.Entity.SYS;
     using com.Sconit.Service;
     using Telerik.Web.Mvc;
@@ -19,9 +20,9 @@ namespace com.Sconit.Web.Controllers.WMS
     using com.Sconit.CodeMaster;
     using com.Sconit.Entity.ACC;
 
-    public class PickGroupController : WebAppBaseController
+    public class ShipGroupController : WebAppBaseController
     {
-        #region 拣货组
+        #region 发货组
 
         private static string selectCountStatement = "select count(*) from PickGroup as p";
 
@@ -30,7 +31,7 @@ namespace com.Sconit.Web.Controllers.WMS
         private static string selectCountPickGroupStatement = "select count(*) from PickGroup as s where s.PickGroupCode = ?";
 
 
-        [SconitAuthorize(Permissions = "Url_PickGroup_View")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_View")]
         public ActionResult Index()
         {
             return View();
@@ -43,7 +44,7 @@ namespace com.Sconit.Web.Controllers.WMS
         /// <param name="searchModel"></param>
         /// <returns></returns>
         [GridAction]
-        [SconitAuthorize(Permissions = "Url_PickGroup_View")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_View")]
         public ActionResult List(GridCommand command, PickGroupSearchModel searchModel)
         {
             SearchCacheModel searchCacheModel = this.ProcessSearchModel(command, searchModel);
@@ -58,7 +59,7 @@ namespace com.Sconit.Web.Controllers.WMS
         /// <param name="searchModel"></param>
         /// <returns></returns>
         [GridAction(EnableCustomBinding = true)]
-        [SconitAuthorize(Permissions = "Url_PickGroup_View")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_View")]
         public ActionResult _AjaxList(GridCommand command, PickGroupSearchModel searchModel)
         {
             SearchStatementModel searchStatementModel = PrepareSearchStatement(command, searchModel);
@@ -69,7 +70,7 @@ namespace com.Sconit.Web.Controllers.WMS
         /// 
         /// </summary>
         /// <returns></returns>
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult New()
         {
             return View();
@@ -81,7 +82,7 @@ namespace com.Sconit.Web.Controllers.WMS
         /// <param name="region"></param>
         /// <returns></returns>
         [HttpPost]
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult New(PickGroup pickGroup)
         {
             if (ModelState.IsValid)
@@ -89,11 +90,11 @@ namespace com.Sconit.Web.Controllers.WMS
                 //判断描述不能重复
                 if (base.genericMgr.FindAll<long>(selectCountPickGroupStatement, new object[] { pickGroup.PickGroupCode })[0] > 0)
                 {
-                    base.SaveErrorMessage(Resources.WMS.PickGroup.PickGroup_Errors_Existing_PickGroupCode, pickGroup.PickGroupCode);
+                    base.SaveErrorMessage(Resources.WMS.ShipGroup.ShipGroup_Errors_Existing_ShipGroupCode, pickGroup.PickGroupCode);
                 }
-                pickGroup.Type = PickGroupType.Pick;
+                pickGroup.Type = PickGroupType.Ship;
                 genericMgr.Create(pickGroup);
-                SaveSuccessMessage(Resources.WMS.PickGroup.PickGroup_Added);
+                SaveSuccessMessage(Resources.WMS.ShipGroup.ShipGroup_Added);
                 return RedirectToAction("Edit/" + pickGroup.PickGroupCode);
             }
             return View(pickGroup);
@@ -107,7 +108,7 @@ namespace com.Sconit.Web.Controllers.WMS
         /// <param name="Id"></param>
         /// <returns></returns>
         [HttpGet]
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult Edit(string Id)
         {
 
@@ -120,7 +121,7 @@ namespace com.Sconit.Web.Controllers.WMS
         }
 
         [HttpGet]
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult _Edit(string Id)
         {
 
@@ -139,15 +140,15 @@ namespace com.Sconit.Web.Controllers.WMS
 
 
         [HttpPost]
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult _Edit(PickGroup pickGroup)
         {
 
             if (ModelState.IsValid)
             {
-                pickGroup.Type = PickGroupType.Pick;
+                pickGroup.Type = PickGroupType.Ship;
                 genericMgr.Update(pickGroup);
-                SaveSuccessMessage(Resources.WMS.PickGroup.PickGroup_Updated);
+                SaveSuccessMessage(Resources.WMS.ShipGroup.ShipGroup_Updated);
             }
 
             TempData["TabIndex"] = 0;
@@ -170,7 +171,7 @@ namespace com.Sconit.Web.Controllers.WMS
             else
             {
                 base.genericMgr.DeleteById<PickGroup>(id);
-                SaveSuccessMessage(Resources.WMS.PickGroup.PickGroup_Deleted);
+                SaveSuccessMessage(Resources.WMS.ShipGroup.ShipGroup_Deleted);
                 return RedirectToAction("List");
             }
         }
@@ -179,7 +180,7 @@ namespace com.Sconit.Web.Controllers.WMS
             string whereStatement = string.Empty;
             IList<object> param = new List<object>();
             HqlStatementHelper.AddLikeStatement("PickGroupCode", searchModel.PickGroupCode, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
-            HqlStatementHelper.AddEqStatement("Type", (int)PickGroupType.Pick, "p", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("Type", (int)PickGroupType.Ship, "p", ref whereStatement, param);
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
             SearchStatementModel searchStatementModel = new SearchStatementModel();
             searchStatementModel.SelectCountStatement = selectCountStatement;
@@ -192,11 +193,11 @@ namespace com.Sconit.Web.Controllers.WMS
         #endregion
 
 
-        #region 拣货规则
+        #region 发货规则
         private static string selectPickRuleCountStatement = "select count(*) from PickRule as  pr  ";
         private static string selectPickRuleStatement = "select  pr  from PickRule as  pr ";
 
-        [SconitAuthorize(Permissions = "Url_PickGroup_View")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_View")]
         public ActionResult _PickRule(string Id)
         {
             ViewBag.PickGroupCode = Id;
@@ -204,7 +205,7 @@ namespace com.Sconit.Web.Controllers.WMS
         }
 
         [GridAction]
-        [SconitAuthorize(Permissions = "Url_PickGroup_View")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_View")]
         public ActionResult _PickRuleList(GridCommand command, PickRuleSearchModel searchModel, string PickGroupCode)
         {
             ViewBag.PickGroupCode = PickGroupCode;
@@ -214,14 +215,14 @@ namespace com.Sconit.Web.Controllers.WMS
         }
 
         [GridAction(EnableCustomBinding = true)]
-        [SconitAuthorize(Permissions = "Url_PickGroup_View")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_View")]
         public ActionResult _AjaxPickRuleList(GridCommand command, PickRuleSearchModel searchModel, string PickGroupCode)
         {
             SearchStatementModel searchStatementModel = PrepareSearchPickRuleStatement(command, searchModel, PickGroupCode);
             return PartialView(GetAjaxPageData<PickRule>(searchStatementModel, command));
         }
 
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult _PickRuleNew(String PickGroupCode)
         {
             PickRule pickRule = new PickRule();
@@ -230,7 +231,7 @@ namespace com.Sconit.Web.Controllers.WMS
         }
 
         [HttpPost]
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult _PickRuleNew(PickRule pickRule, string PickGroupCode, string Location)
         {
             if (ModelState.IsValid)
@@ -239,13 +240,13 @@ namespace com.Sconit.Web.Controllers.WMS
                 pickRule.Location = Location;
                 genericMgr.Create(pickRule);
 
-                SaveSuccessMessage(Resources.WMS.PickRule.PickRule_Added);
+                SaveSuccessMessage(Resources.WMS.ShipRule.ShipRule_Added);
                 return RedirectToAction("_PickRuleEdit/" + pickRule.Id);
             }
             return PartialView(pickRule);
         }
 
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult DeletePickRule(int? id, string PickGroupCode)
         {
             if (!id.HasValue)
@@ -255,7 +256,7 @@ namespace com.Sconit.Web.Controllers.WMS
             else
             {
                 genericMgr.DeleteById<PickRule>(id);
-                SaveSuccessMessage(Resources.WMS.PickGroup.PickGroup_Deleted);
+                SaveSuccessMessage(Resources.WMS.ShipRule.ShipRule_Deleted);
                 return new RedirectToRouteResult(new RouteValueDictionary { 
                                                         { "action", "_PickRuleList" }, 
                                                         { "controller", "PickGroup" }, 
@@ -264,7 +265,7 @@ namespace com.Sconit.Web.Controllers.WMS
         }
 
         [HttpGet]
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult _PickRuleEdit(int? Id)
         {
             if (!Id.HasValue)
@@ -280,7 +281,7 @@ namespace com.Sconit.Web.Controllers.WMS
         }
 
         [HttpPost]
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult _PickRuleEdit(PickRule pickRule, string PickGroupCode)
         {
             if (ModelState.IsValid)
@@ -289,7 +290,7 @@ namespace com.Sconit.Web.Controllers.WMS
                 pickRule.PickGroupCode = PickGroupCode;
                 genericMgr.Update(pickRule);
 
-                SaveSuccessMessage(Resources.WMS.PickRule.PickRule_Added);
+                SaveSuccessMessage(Resources.WMS.ShipRule.ShipRule_Updated);
             }
 
             TempData["TabIndex"] = 1;
@@ -314,11 +315,11 @@ namespace com.Sconit.Web.Controllers.WMS
         #endregion
 
 
-        #region 拣货用户
+        #region 发货用户
         private static string selectPickUserCountStatement = "select count(*) from PickUser as  pu  ";
         private static string selectPickUserStatement = "select  pu  from PickUser as  pu ";
 
-        [SconitAuthorize(Permissions = "Url_PickGroup_View")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_View")]
         public ActionResult _PickUser(string Id)
         {
             ViewBag.PickGroupCode = Id;
@@ -326,7 +327,7 @@ namespace com.Sconit.Web.Controllers.WMS
         }
 
         [GridAction]
-        [SconitAuthorize(Permissions = "Url_PickGroup_View")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_View")]
         public ActionResult _PickUserList(GridCommand command, PickUserSearchModel searchModel, string PickGroupCode)
         {
             ViewBag.PickGroupCode = PickGroupCode;
@@ -336,14 +337,14 @@ namespace com.Sconit.Web.Controllers.WMS
         }
 
         [GridAction(EnableCustomBinding = true)]
-        [SconitAuthorize(Permissions = "Url_PickGroup_View")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_View")]
         public ActionResult _AjaxPickUserList(GridCommand command, PickUserSearchModel searchModel, string PickGroupCode)
         {
             SearchStatementModel searchStatementModel = PrepareSearchPickUserStatement(command, searchModel, PickGroupCode);
             return PartialView(GetAjaxPageData<PickUser>(searchStatementModel, command));
         }
 
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult _PickUserNew(String PickGroupCode)
         {
             PickUser pickRule = new PickUser();
@@ -352,7 +353,7 @@ namespace com.Sconit.Web.Controllers.WMS
         }
 
         [HttpPost]
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult _PickUserNew(PickUser pickUser)
         {
 
@@ -362,12 +363,12 @@ namespace com.Sconit.Web.Controllers.WMS
             pickUser.PickUserName = user.FullName;
             genericMgr.Create(pickUser);
 
-            SaveSuccessMessage(Resources.WMS.PickUser.PickUser_Added);
+            SaveSuccessMessage(Resources.WMS.ShipUser.ShipUser_Added);
             return RedirectToAction("_PickUserEdit/" + pickUser.Id);
 
         }
 
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult DeletePickUser(int? id, string PickGroupCode)
         {
             if (!id.HasValue)
@@ -377,7 +378,7 @@ namespace com.Sconit.Web.Controllers.WMS
             else
             {
                 genericMgr.DeleteById<PickUser>(id);
-                SaveSuccessMessage(Resources.WMS.PickGroup.PickGroup_Deleted);
+                SaveSuccessMessage(Resources.WMS.ShipUser.ShipUser_Deleted);
                 return new RedirectToRouteResult(new RouteValueDictionary { 
                                                         { "action", "_PickUserList" }, 
                                                         { "controller", "PickGroup" }, 
@@ -386,7 +387,7 @@ namespace com.Sconit.Web.Controllers.WMS
         }
 
         [HttpGet]
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult _PickUserEdit(int? Id)
         {
             if (!Id.HasValue)
@@ -402,7 +403,7 @@ namespace com.Sconit.Web.Controllers.WMS
         }
 
         [HttpPost]
-        [SconitAuthorize(Permissions = "Url_PickGroup_Edit")]
+        [SconitAuthorize(Permissions = "Url_ShipGroup_Edit")]
         public ActionResult _PickUserEdit(PickUser pickUser)
         {
             if (ModelState.IsValid)
@@ -413,7 +414,7 @@ namespace com.Sconit.Web.Controllers.WMS
                 pickUser.PickUserName = user.FullName;
                 genericMgr.Update(pickUser);
 
-                SaveSuccessMessage(Resources.WMS.PickUser.PickUser_Updated);
+                SaveSuccessMessage(Resources.WMS.ShipUser.ShipUser_Updated);
             }
 
             TempData["TabIndex"] = 2;

@@ -4,7 +4,6 @@
 		<id name="Id" column="Id" type="Int32" unsaved-value="0" >
       		<generator class="identity" />
         </id>
-		<version name="Version" column="Version" type="Int32" />	
 		<property name="PickGroupCode" column="PickGroupCode" type="String" length="50"/>	
 		<property name="Location" column="Location" type="String" length="50"/>	
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	

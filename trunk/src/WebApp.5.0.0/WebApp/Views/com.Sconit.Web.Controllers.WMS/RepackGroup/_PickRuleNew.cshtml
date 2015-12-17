@@ -8,7 +8,7 @@
         <legend>@Resources.WMS.PickRule.PickRule_New_Title </legend>
         <div class="editor">
           <div class="editor-label-2">
-               @Resources.WMS.PickRule.PickRule_PickGroupCode
+                @Resources.WMS.RepackRule.RepackRule_RepackGroupCode
             </div>
             <div class="editor-field-2">
                 @Html.DisplayFor(model => model.PickGroupCode)
@@ -18,11 +18,11 @@
             </div>
             <div class="editor-field-2">
                 @{
-    Html.RenderAction("_LocationComboBox", "Common", new
-    {
-        checkRegion = false,
-        controlName = "Location"
-    });
+                    Html.RenderAction("_LocationComboBox", "Common", new
+                    {
+                        checkRegion = false,
+                        controlName = "Location"
+                    });
                 }
                 @Html.ValidationMessageFor(model => model.Location)
             </div>
@@ -51,7 +51,7 @@
         $.ajax({
             type: "get",
             dataType: "html",
-            url: "/PickGroup/_PickRuleList/",
+            url: "/RepackGroup/_PickRuleList/",
             data: data,
             cache:false,
             success: function (data, textStatus) {
@@ -70,7 +70,7 @@
         $.ajax({
             type: "post",
             dataType: "html",
-            url: "/PickGroup/_PickRuleNew/",
+            url: "/RepackGroup/_PickRuleNew/",
             data: data,
             success: function (data, textStatus) {
                 var tabStrip = $("#TabStrip");
