@@ -3,13 +3,13 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-IF EXISTS(SELECT * FROM SYS.objects WHERE type='P' AND name='USP_WMS_OcuppyBuffInv4PickLotNo')
+IF EXISTS(SELECT * FROM SYS.objects WHERE type='P' AND name='USP_WMS_OcuppyBuffInv4PickHu')
 BEGIN
-	DROP PROCEDURE USP_WMS_OcuppyBuffInv4PickLotNo
+	DROP PROCEDURE USP_WMS_OcuppyBuffInv4PickHu
 END
 GO
 
-CREATE PROCEDURE dbo.USP_WMS_OcuppyBuffInv4PickLotNo
+CREATE PROCEDURE dbo.USP_WMS_OcuppyBuffInv4PickHu
 	@CreatePickTaskTable CreatePickTaskTableType readonly,
 	@CreateUserId int,
 	@CreateUserNm varchar(100)
@@ -21,14 +21,14 @@ BEGIN
 
 	set @DateTimeNow = GetDate()
 
-	create table #tempPickTarget_005
+	create table #tempPickTarget_007
 	(
 		Id int identity(1, 1),
 		Loc varchar(50),
 		Item varchar(50)
 	)
 
-	create table #tempShipPlan_005
+	create table #tempShipPlan_007
 	(
 		RowId int identity(1, 1) primary key,
 		OrderNo varchar(50),
@@ -51,7 +51,7 @@ BEGIN
 		[Version] int
 	)
 
-	create table #tempBuffInv_005
+	create table #tempBuffInv_007
 	(
 		RowId int identity(1, 1) primary key,
 		Id int,
@@ -64,7 +64,7 @@ BEGIN
 		UnitQty decimal(18, 8)
 	)
 
-	create table #tempBuffOccupy_005
+	create table #tempBuffOccupy_007
 	(
 		BuffInvId int, 
 		OrderNo varchar(50), 
@@ -74,13 +74,13 @@ BEGIN
 	)
 
 	begin try
-		if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempOccupyBuffInv_005%') 
+		if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempOccupyBuffInv_007%') 
 		begin
 			set @ErrorMsg = '没有定义返回数据的参数表。'
 			RAISERROR(@ErrorMsg, 16, 1) 
 
 			--代码不会执行到这里
-			create table #tempOccupyBuffInv_005
+			create table #tempOccupyBuffInv_007
 			(
 				Id int primary key,
 				PickedQty decimal(18, 8),
@@ -88,17 +88,17 @@ BEGIN
 		end
 		else
 		begin
-			truncate table #tempOccupyBuffInv_005
+			truncate table #tempOccupyBuffInv_007
 		end
 
 		begin try
 			--获取拣货库位和零件
-			insert into #tempPickTarget_005(Loc, Item) 
+			insert into #tempPickTarget_007(Loc, Item) 
 			select distinct sp.LocFrom, sp.Item from @CreatePickTaskTable as t 
 			inner join WMS_ShipPlan as sp on t.Id = sp.Id
 
 			--获取发货计划
-			insert into #tempShipPlan_005(OrderNo, OrderSeq, ShipPlanId, TargetDock, [Priority], StartTime, LocFrom, Item, UOM, UC, UnitQty, 
+			insert into #tempShipPlan_007(OrderNo, OrderSeq, ShipPlanId, TargetDock, [Priority], StartTime, LocFrom, Item, UOM, UC, UnitQty, 
 			PickQty, PickedQty, ThisPickQty, ThisPickFullQty, ThisPickOddQty, ThisPickedQty, [Version])
 			select sp.OrderNo, sp.OrderSeq, sp.Id, sp.Dock, sp.[Priority], sp.StartTime, sp.LocFrom, sp.Item, sp.Uom, sp.UC, sp.UnitQty, 
 			sp.PickQty, sp.PickedQty, t.PickQty, ROUND(t.PickQty / sp.UC, 0, 1) * sp.UC, t.PickQty % sp.UC, 0, sp.[Version] 
@@ -107,9 +107,9 @@ BEGIN
 			order by sp.LocFrom, sp.Item, sp.[Priority], sp.StartTime, sp.Id
 
 			--获取缓冲区条码库存
-			insert into #tempBuffInv_005(Id, Loc, Item, HuId, Uom, UC, Qty, UnitQty)
+			insert into #tempBuffInv_007(Id, Loc, Item, HuId, Uom, UC, Qty, UnitQty)
 			select bi.Id, bi.Loc, bi.Item, hu.HuId, hu.Uom, hu.UC, hu.Qty, hu.UnitQty
-			from #tempPickTarget_005 as pt
+			from #tempPickTarget_007 as pt
 			inner join WMS_BuffInv as bi on pt.Item = bi.Item and pt.Loc = bi.Loc
 			inner join INV_Hu as hu on bi.HuId = hu.HuId
 			left join WMS_BuffOccupy as bo on bi.Id = bo.BuffInvId
@@ -127,27 +127,27 @@ BEGIN
 			declare @Qty decimal(18, 8)
 			declare @UnitQty decimal(18, 8)
 			declare @ShipPlanRowId int
-			select @RowId = MIN(RowId), @MaxRowId = MAX(RowId) from #tempBuffInv_005
+			select @RowId = MIN(RowId), @MaxRowId = MAX(RowId) from #tempBuffInv_007
 			while (@RowId <= @MaxRowId)
 			begin  --循环占用缓冲区库存
 				select @BuffInvId = Id, @Loc = Loc, @Item = Item, @Uom = Uom, @UC = UC, @Qty = Qty, @UnitQty = UnitQty
-				from #tempBuffInv_005 where RowId = @RowId
+				from #tempBuffInv_007 where RowId = @RowId
 				set @ShipPlanRowId = null
 
 				if (@UC = @Qty)
 				begin --满箱匹配
-					insert into #tempBuffOccupy_005(BuffInvId, OrderNo, OrderSeq, ShipPlanId, TargetDock)
+					insert into #tempBuffOccupy_007(BuffInvId, OrderNo, OrderSeq, ShipPlanId, TargetDock)
 					select top 1 @BuffInvId, sp.OrderNo, sp.OrderSeq, sp.ShipPlanId, sp.TargetDock
-					from #tempShipPlan_005 as sp 
+					from #tempShipPlan_007 as sp 
 					where sp.Item = @Item and sp.LocFrom = @Loc and Uom = @Uom and UC = @UC 
 					and sp.ThisPickQty >= sp.ThisPickedQty + @Qty
 					order by sp.RowId
 				end
 				else --零头箱匹配
 				begin
-					insert into #tempBuffOccupy_005(BuffInvId, OrderNo, OrderSeq, ShipPlanId, TargetDock)
+					insert into #tempBuffOccupy_007(BuffInvId, OrderNo, OrderSeq, ShipPlanId, TargetDock)
 					select top 1 @BuffInvId, sp.OrderNo, sp.OrderSeq, sp.ShipPlanId, sp.TargetDock
-					from #tempShipPlan_005 as sp 
+					from #tempShipPlan_007 as sp 
 					where sp.Item = @Item and sp.LocFrom = @Loc and Uom = @Uom and UC = @UC 
 					and sp.ThisPickOddQty = @Qty
 					order by sp.RowId
@@ -157,12 +157,12 @@ BEGIN
 
 				if (@@Identity is not null)
 				begin  --更新
-					update #tempShipPlan_005 set ThisPickedQty = ThisPickedQty + @Qty where ShipPlanId = @ShipPlanRowId
-					update #tempBuffInv_005 set Qty = Qty - @Qty where Id = @BuffInvId
+					update #tempShipPlan_007 set ThisPickedQty = ThisPickedQty + @Qty where ShipPlanId = @ShipPlanRowId
+					update #tempBuffInv_007 set Qty = Qty - @Qty where Id = @BuffInvId
 
 					if (@UC <> @Qty)
 					begin
-						update #tempShipPlan_005 set ThisPickOddQty = 0
+						update #tempShipPlan_007 set ThisPickOddQty = 0
 					end
 				end
 			
@@ -189,16 +189,16 @@ BEGIN
 			CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
 			select BuffInvId, OrderNo, OrderSeq, ShipPlanId, TargetDock, 
 			@CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1
-			from #tempBuffOccupy_005
+			from #tempBuffOccupy_007
 
 			--获取需要更新的行数
 			declare @UpdateRowCount int
-			select @UpdateRowCount = count(1) from #tempShipPlan_005 where ThisPickedQty > 0
+			select @UpdateRowCount = count(1) from #tempShipPlan_007 where ThisPickedQty > 0
 			
 			--更新创建拣货单的数量和已经拣货的数量
 			update sp set LockQty = sp.LockQty + tmp.ThisPickedQty, PickedQty = sp.PickedQty + tmp.ThisPickedQty, PickQty = sp.PickQty + tmp.ThisPickedQty, 
 			LastModifyDate = @DateTimeNow, LastModifyUser = @CreateUserId, LastModifyUserNm = @CreateUserNm, [Version] = sp.[Version] + 1
-			from  #tempShipPlan_005 as tmp
+			from  #tempShipPlan_007 as tmp
 			inner join WMS_ShipPlan as sp on tmp.ShipPlanId = sp.Id and tmp.[Version] = sp.[Version]
 			where tmp.ThisPickedQty > 0
 			
@@ -222,11 +222,11 @@ BEGIN
 		RAISERROR(@ErrorMsg, 16, 1) 
 	end catch
 
-	insert into #tempOccupyBuffInv_005(Id, PickedQty) select ShipPlanId, ThisPickedQty from #tempShipPlan_005 where ThisPickedQty > 0
+	insert into #tempOccupyBuffInv_007(Id, PickedQty) select ShipPlanId, ThisPickedQty from #tempShipPlan_007 where ThisPickedQty > 0
 
-	drop table #tempPickTarget_005
-	drop table #tempShipPlan_005
-	drop table #tempBuffInv_005
-	drop table #tempBuffOccupy_005
+	drop table #tempPickTarget_007
+	drop table #tempShipPlan_007
+	drop table #tempBuffInv_007
+	drop table #tempBuffOccupy_007
 END
 GO
