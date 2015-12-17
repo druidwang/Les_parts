@@ -6,7 +6,7 @@
         </id>
 		<version name="Version" column="Version" type="Int32" />	
 		<property name="PickGroupCode" column="PickGroupCode" type="String" length="50"/>	
-		<property name="PickUser" column="PickUser" type="Int32"/>	
+		<property name="PickUserId" column="PickUser" type="Int32"/>	
 		<property name="PickUserName" column="PickUserNm" type="String" length="100"/>	
 		<property name="IsActive" column="IsActive" type="Boolean"/>	
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	

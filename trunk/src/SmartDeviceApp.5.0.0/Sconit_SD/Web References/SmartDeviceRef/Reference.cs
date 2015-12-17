@@ -28,7 +28,47 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         public SD_SmartDeviceService() {
-            this.Url = "http://shq-mes-test.csaextra.net/WebService/SD/SmartDeviceService.asmx";
+            this.Url = "http://localhost:2015/WebService/SD/SmartDeviceService.asmx";
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetPickTasks", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public PickTask[] GetPickTasks(string userCode) {
+            object[] results = this.Invoke("GetPickTasks", new object[] {
+                        userCode});
+            return ((PickTask[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetPickTasks(string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetPickTasks", new object[] {
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public PickTask[] EndGetPickTasks(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((PickTask[])(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoPick", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DoPick(Hu[] huList, string userCode) {
+            this.Invoke("DoPick", new object[] {
+                        huList,
+                        userCode});
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginDoPick(Hu[] huList, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("DoPick", new object[] {
+                        huList,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public void EndDoPick(System.IAsyncResult asyncResult) {
+            this.EndInvoke(asyncResult);
         }
         
         /// <remarks/>
@@ -1288,31 +1328,47 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public partial class User {
+    public partial class PickTask {
         
         private int idField;
         
-        private string codeField;
+        private OrderPriority priorityField;
         
-        private string passwordField;
+        private string itemField;
         
-        private string firstNameField;
+        private string itemDescriptionField;
         
-        private string lastNameField;
+        private string uomField;
         
-        private string emailField;
+        private string baseUomField;
         
-        private string telPhoneField;
+        private decimal unitQtyField;
         
-        private string mobilePhoneField;
+        private decimal unitCountField;
         
-        private string languageField;
+        private string locationField;
         
-        private bool isActiveField;
+        private decimal orderQtyField;
         
-        private Permission[] permissionsField;
+        private decimal pickQtyField;
         
-        private BarCodeType[] barCodeTypesField;
+        private string areaField;
+        
+        private string binField;
+        
+        private string lotNoField;
+        
+        private string huIdField;
+        
+        private bool isPickHuField;
+        
+        private string pickGroupField;
+        
+        private System.Nullable<int> pickUserIdField;
+        
+        private System.DateTime startTimeField;
+        
+        private System.DateTime winTimeField;
         
         /// <remarks/>
         public int Id {
@@ -1325,198 +1381,206 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
-        public string Code {
+        public OrderPriority Priority {
             get {
-                return this.codeField;
+                return this.priorityField;
             }
             set {
-                this.codeField = value;
+                this.priorityField = value;
             }
         }
         
         /// <remarks/>
-        public string Password {
+        public string Item {
             get {
-                return this.passwordField;
+                return this.itemField;
             }
             set {
-                this.passwordField = value;
+                this.itemField = value;
             }
         }
         
         /// <remarks/>
-        public string FirstName {
+        public string ItemDescription {
             get {
-                return this.firstNameField;
+                return this.itemDescriptionField;
             }
             set {
-                this.firstNameField = value;
+                this.itemDescriptionField = value;
             }
         }
         
         /// <remarks/>
-        public string LastName {
+        public string Uom {
             get {
-                return this.lastNameField;
+                return this.uomField;
             }
             set {
-                this.lastNameField = value;
+                this.uomField = value;
             }
         }
         
         /// <remarks/>
-        public string Email {
+        public string BaseUom {
             get {
-                return this.emailField;
+                return this.baseUomField;
             }
             set {
-                this.emailField = value;
+                this.baseUomField = value;
             }
         }
         
         /// <remarks/>
-        public string TelPhone {
+        public decimal UnitQty {
             get {
-                return this.telPhoneField;
+                return this.unitQtyField;
             }
             set {
-                this.telPhoneField = value;
+                this.unitQtyField = value;
             }
         }
         
         /// <remarks/>
-        public string MobilePhone {
+        public decimal UnitCount {
             get {
-                return this.mobilePhoneField;
+                return this.unitCountField;
             }
             set {
-                this.mobilePhoneField = value;
+                this.unitCountField = value;
             }
         }
         
         /// <remarks/>
-        public string Language {
+        public string Location {
             get {
-                return this.languageField;
+                return this.locationField;
             }
             set {
-                this.languageField = value;
+                this.locationField = value;
             }
         }
         
         /// <remarks/>
-        public bool IsActive {
+        public decimal OrderQty {
             get {
-                return this.isActiveField;
+                return this.orderQtyField;
             }
             set {
-                this.isActiveField = value;
+                this.orderQtyField = value;
             }
         }
         
         /// <remarks/>
-        public Permission[] Permissions {
+        public decimal PickQty {
             get {
-                return this.permissionsField;
+                return this.pickQtyField;
             }
             set {
-                this.permissionsField = value;
+                this.pickQtyField = value;
             }
         }
         
         /// <remarks/>
-        public BarCodeType[] BarCodeTypes {
+        public string Area {
             get {
-                return this.barCodeTypesField;
+                return this.areaField;
             }
             set {
-                this.barCodeTypesField = value;
+                this.areaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Bin {
+            get {
+                return this.binField;
+            }
+            set {
+                this.binField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LotNo {
+            get {
+                return this.lotNoField;
+            }
+            set {
+                this.lotNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string HuId {
+            get {
+                return this.huIdField;
+            }
+            set {
+                this.huIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsPickHu {
+            get {
+                return this.isPickHuField;
+            }
+            set {
+                this.isPickHuField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PickGroup {
+            get {
+                return this.pickGroupField;
+            }
+            set {
+                this.pickGroupField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> PickUserId {
+            get {
+                return this.pickUserIdField;
+            }
+            set {
+                this.pickUserIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime StartTime {
+            get {
+                return this.startTimeField;
+            }
+            set {
+                this.startTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime WinTime {
+            get {
+                return this.winTimeField;
+            }
+            set {
+                this.winTimeField = value;
             }
         }
     }
     
     /// <remarks/>
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public partial class Permission {
-        
-        private int userIdField;
-        
-        private string permissionCodeField;
-        
-        private string permissionCategoryField;
-        
-        private PermissionCategoryType permissionCategoryTypeField;
+    public enum OrderPriority {
         
         /// <remarks/>
-        public int UserId {
-            get {
-                return this.userIdField;
-            }
-            set {
-                this.userIdField = value;
-            }
-        }
+        Normal,
         
         /// <remarks/>
-        public string PermissionCode {
-            get {
-                return this.permissionCodeField;
-            }
-            set {
-                this.permissionCodeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string PermissionCategory {
-            get {
-                return this.permissionCategoryField;
-            }
-            set {
-                this.permissionCategoryField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public PermissionCategoryType PermissionCategoryType {
-            get {
-                return this.permissionCategoryTypeField;
-            }
-            set {
-                this.permissionCategoryTypeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum PermissionCategoryType {
-        
-        /// <remarks/>
-        Menu,
-        
-        /// <remarks/>
-        Url,
-        
-        /// <remarks/>
-        Region,
-        
-        /// <remarks/>
-        Customer,
-        
-        /// <remarks/>
-        Supplier,
-        
-        /// <remarks/>
-        Terminal,
-        
-        /// <remarks/>
-        SI,
-        
-        /// <remarks/>
-        OrderType,
+        Urgent,
     }
     
     /// <remarks/>
@@ -5192,609 +5256,6 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public partial class Hu {
-        
-        private string huIdField;
-        
-        private string lotNoField;
-        
-        private string itemField;
-        
-        private string itemDescriptionField;
-        
-        private string referenceItemCodeField;
-        
-        private string uomField;
-        
-        private string baseUomField;
-        
-        private decimal unitCountField;
-        
-        private decimal qtyField;
-        
-        private decimal unitQtyField;
-        
-        private System.DateTime manufactureDateField;
-        
-        private string manufacturePartyField;
-        
-        private System.Nullable<System.DateTime> expireDateField;
-        
-        private System.Nullable<System.DateTime> firstInventoryDateField;
-        
-        private short printCountField;
-        
-        private HuStatus statusField;
-        
-        private string locationField;
-        
-        private string regionField;
-        
-        private string binField;
-        
-        private string locationFromField;
-        
-        private string locationToField;
-        
-        private bool isConsignmentField;
-        
-        private QualityType qualityTypeField;
-        
-        private bool isFreezeField;
-        
-        private bool isATPField;
-        
-        private OccupyType occupyTypeField;
-        
-        private string occupyReferenceNoField;
-        
-        private string supplierLotNoField;
-        
-        private string createUserNameField;
-        
-        private System.DateTime createDateField;
-        
-        private string orderNoField;
-        
-        private string receiptNoField;
-        
-        private string memoField;
-        
-        private string shiftField;
-        
-        private string flowField;
-        
-        private string itemVersionField;
-        
-        private string refHuField;
-        
-        private string directionField;
-        
-        private bool isOddField;
-        
-        private HuOption huOptionField;
-        
-        private string agingLocationField;
-        
-        private decimal currentQtyField;
-        
-        private string stationField;
-        
-        private int orderDetIdField;
-        
-        private bool isEffectiveField;
-        
-        /// <remarks/>
-        public string HuId {
-            get {
-                return this.huIdField;
-            }
-            set {
-                this.huIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LotNo {
-            get {
-                return this.lotNoField;
-            }
-            set {
-                this.lotNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Item {
-            get {
-                return this.itemField;
-            }
-            set {
-                this.itemField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ItemDescription {
-            get {
-                return this.itemDescriptionField;
-            }
-            set {
-                this.itemDescriptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ReferenceItemCode {
-            get {
-                return this.referenceItemCodeField;
-            }
-            set {
-                this.referenceItemCodeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Uom {
-            get {
-                return this.uomField;
-            }
-            set {
-                this.uomField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string BaseUom {
-            get {
-                return this.baseUomField;
-            }
-            set {
-                this.baseUomField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal UnitCount {
-            get {
-                return this.unitCountField;
-            }
-            set {
-                this.unitCountField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal Qty {
-            get {
-                return this.qtyField;
-            }
-            set {
-                this.qtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal UnitQty {
-            get {
-                return this.unitQtyField;
-            }
-            set {
-                this.unitQtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime ManufactureDate {
-            get {
-                return this.manufactureDateField;
-            }
-            set {
-                this.manufactureDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ManufactureParty {
-            get {
-                return this.manufacturePartyField;
-            }
-            set {
-                this.manufacturePartyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> ExpireDate {
-            get {
-                return this.expireDateField;
-            }
-            set {
-                this.expireDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> FirstInventoryDate {
-            get {
-                return this.firstInventoryDateField;
-            }
-            set {
-                this.firstInventoryDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public short PrintCount {
-            get {
-                return this.printCountField;
-            }
-            set {
-                this.printCountField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public HuStatus Status {
-            get {
-                return this.statusField;
-            }
-            set {
-                this.statusField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Location {
-            get {
-                return this.locationField;
-            }
-            set {
-                this.locationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Region {
-            get {
-                return this.regionField;
-            }
-            set {
-                this.regionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Bin {
-            get {
-                return this.binField;
-            }
-            set {
-                this.binField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LocationFrom {
-            get {
-                return this.locationFromField;
-            }
-            set {
-                this.locationFromField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LocationTo {
-            get {
-                return this.locationToField;
-            }
-            set {
-                this.locationToField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsConsignment {
-            get {
-                return this.isConsignmentField;
-            }
-            set {
-                this.isConsignmentField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public QualityType QualityType {
-            get {
-                return this.qualityTypeField;
-            }
-            set {
-                this.qualityTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsFreeze {
-            get {
-                return this.isFreezeField;
-            }
-            set {
-                this.isFreezeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsATP {
-            get {
-                return this.isATPField;
-            }
-            set {
-                this.isATPField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public OccupyType OccupyType {
-            get {
-                return this.occupyTypeField;
-            }
-            set {
-                this.occupyTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string OccupyReferenceNo {
-            get {
-                return this.occupyReferenceNoField;
-            }
-            set {
-                this.occupyReferenceNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string SupplierLotNo {
-            get {
-                return this.supplierLotNoField;
-            }
-            set {
-                this.supplierLotNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string CreateUserName {
-            get {
-                return this.createUserNameField;
-            }
-            set {
-                this.createUserNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime CreateDate {
-            get {
-                return this.createDateField;
-            }
-            set {
-                this.createDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string OrderNo {
-            get {
-                return this.orderNoField;
-            }
-            set {
-                this.orderNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ReceiptNo {
-            get {
-                return this.receiptNoField;
-            }
-            set {
-                this.receiptNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Memo {
-            get {
-                return this.memoField;
-            }
-            set {
-                this.memoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Shift {
-            get {
-                return this.shiftField;
-            }
-            set {
-                this.shiftField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Flow {
-            get {
-                return this.flowField;
-            }
-            set {
-                this.flowField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ItemVersion {
-            get {
-                return this.itemVersionField;
-            }
-            set {
-                this.itemVersionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string RefHu {
-            get {
-                return this.refHuField;
-            }
-            set {
-                this.refHuField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Direction {
-            get {
-                return this.directionField;
-            }
-            set {
-                this.directionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsOdd {
-            get {
-                return this.isOddField;
-            }
-            set {
-                this.isOddField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public HuOption HuOption {
-            get {
-                return this.huOptionField;
-            }
-            set {
-                this.huOptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string AgingLocation {
-            get {
-                return this.agingLocationField;
-            }
-            set {
-                this.agingLocationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal CurrentQty {
-            get {
-                return this.currentQtyField;
-            }
-            set {
-                this.currentQtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Station {
-            get {
-                return this.stationField;
-            }
-            set {
-                this.stationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int OrderDetId {
-            get {
-                return this.orderDetIdField;
-            }
-            set {
-                this.orderDetIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsEffective {
-            get {
-                return this.isEffectiveField;
-            }
-            set {
-                this.isEffectiveField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum HuStatus {
-        
-        /// <remarks/>
-        NA,
-        
-        /// <remarks/>
-        Location,
-        
-        /// <remarks/>
-        Ip,
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum OccupyType {
-        
-        /// <remarks/>
-        None,
-        
-        /// <remarks/>
-        Pick,
-        
-        /// <remarks/>
-        Inspect,
-        
-        /// <remarks/>
-        Sequence,
-        
-        /// <remarks/>
-        MiscOrder,
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum HuOption {
-        
-        /// <remarks/>
-        NoNeed,
-        
-        /// <remarks/>
-        UnAging,
-        
-        /// <remarks/>
-        Aged,
-        
-        /// <remarks/>
-        UnFilter,
-        
-        /// <remarks/>
-        Filtered,
-    }
-    
-    /// <remarks/>
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
     public partial class OrderDetailInput {
         
         private int idField;
@@ -6855,6 +6316,844 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
     }
     
     /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class Permission {
+        
+        private int userIdField;
+        
+        private string permissionCodeField;
+        
+        private string permissionCategoryField;
+        
+        private PermissionCategoryType permissionCategoryTypeField;
+        
+        /// <remarks/>
+        public int UserId {
+            get {
+                return this.userIdField;
+            }
+            set {
+                this.userIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PermissionCode {
+            get {
+                return this.permissionCodeField;
+            }
+            set {
+                this.permissionCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PermissionCategory {
+            get {
+                return this.permissionCategoryField;
+            }
+            set {
+                this.permissionCategoryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public PermissionCategoryType PermissionCategoryType {
+            get {
+                return this.permissionCategoryTypeField;
+            }
+            set {
+                this.permissionCategoryTypeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum PermissionCategoryType {
+        
+        /// <remarks/>
+        Menu,
+        
+        /// <remarks/>
+        Url,
+        
+        /// <remarks/>
+        Region,
+        
+        /// <remarks/>
+        Customer,
+        
+        /// <remarks/>
+        Supplier,
+        
+        /// <remarks/>
+        Terminal,
+        
+        /// <remarks/>
+        SI,
+        
+        /// <remarks/>
+        OrderType,
+    }
+    
+    /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class User {
+        
+        private int idField;
+        
+        private string codeField;
+        
+        private string passwordField;
+        
+        private string firstNameField;
+        
+        private string lastNameField;
+        
+        private string emailField;
+        
+        private string telPhoneField;
+        
+        private string mobilePhoneField;
+        
+        private string languageField;
+        
+        private bool isActiveField;
+        
+        private Permission[] permissionsField;
+        
+        private BarCodeType[] barCodeTypesField;
+        
+        /// <remarks/>
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Password {
+            get {
+                return this.passwordField;
+            }
+            set {
+                this.passwordField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FirstName {
+            get {
+                return this.firstNameField;
+            }
+            set {
+                this.firstNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LastName {
+            get {
+                return this.lastNameField;
+            }
+            set {
+                this.lastNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TelPhone {
+            get {
+                return this.telPhoneField;
+            }
+            set {
+                this.telPhoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MobilePhone {
+            get {
+                return this.mobilePhoneField;
+            }
+            set {
+                this.mobilePhoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Language {
+            get {
+                return this.languageField;
+            }
+            set {
+                this.languageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsActive {
+            get {
+                return this.isActiveField;
+            }
+            set {
+                this.isActiveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Permission[] Permissions {
+            get {
+                return this.permissionsField;
+            }
+            set {
+                this.permissionsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BarCodeType[] BarCodeTypes {
+            get {
+                return this.barCodeTypesField;
+            }
+            set {
+                this.barCodeTypesField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class Hu {
+        
+        private string huIdField;
+        
+        private string lotNoField;
+        
+        private string itemField;
+        
+        private string itemDescriptionField;
+        
+        private string referenceItemCodeField;
+        
+        private string uomField;
+        
+        private string baseUomField;
+        
+        private decimal unitCountField;
+        
+        private decimal qtyField;
+        
+        private decimal unitQtyField;
+        
+        private System.DateTime manufactureDateField;
+        
+        private string manufacturePartyField;
+        
+        private System.Nullable<System.DateTime> expireDateField;
+        
+        private System.Nullable<System.DateTime> firstInventoryDateField;
+        
+        private short printCountField;
+        
+        private HuStatus statusField;
+        
+        private string locationField;
+        
+        private string regionField;
+        
+        private string binField;
+        
+        private string locationFromField;
+        
+        private string locationToField;
+        
+        private bool isConsignmentField;
+        
+        private QualityType qualityTypeField;
+        
+        private bool isFreezeField;
+        
+        private bool isATPField;
+        
+        private OccupyType occupyTypeField;
+        
+        private string occupyReferenceNoField;
+        
+        private string supplierLotNoField;
+        
+        private string createUserNameField;
+        
+        private System.DateTime createDateField;
+        
+        private string orderNoField;
+        
+        private string receiptNoField;
+        
+        private string memoField;
+        
+        private string shiftField;
+        
+        private string flowField;
+        
+        private string itemVersionField;
+        
+        private string refHuField;
+        
+        private string directionField;
+        
+        private bool isOddField;
+        
+        private HuOption huOptionField;
+        
+        private string agingLocationField;
+        
+        private decimal currentQtyField;
+        
+        private string stationField;
+        
+        private int orderDetIdField;
+        
+        private bool isEffectiveField;
+        
+        /// <remarks/>
+        public string HuId {
+            get {
+                return this.huIdField;
+            }
+            set {
+                this.huIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LotNo {
+            get {
+                return this.lotNoField;
+            }
+            set {
+                this.lotNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Item {
+            get {
+                return this.itemField;
+            }
+            set {
+                this.itemField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ItemDescription {
+            get {
+                return this.itemDescriptionField;
+            }
+            set {
+                this.itemDescriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ReferenceItemCode {
+            get {
+                return this.referenceItemCodeField;
+            }
+            set {
+                this.referenceItemCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Uom {
+            get {
+                return this.uomField;
+            }
+            set {
+                this.uomField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BaseUom {
+            get {
+                return this.baseUomField;
+            }
+            set {
+                this.baseUomField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal UnitCount {
+            get {
+                return this.unitCountField;
+            }
+            set {
+                this.unitCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Qty {
+            get {
+                return this.qtyField;
+            }
+            set {
+                this.qtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal UnitQty {
+            get {
+                return this.unitQtyField;
+            }
+            set {
+                this.unitQtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ManufactureDate {
+            get {
+                return this.manufactureDateField;
+            }
+            set {
+                this.manufactureDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ManufactureParty {
+            get {
+                return this.manufacturePartyField;
+            }
+            set {
+                this.manufacturePartyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> ExpireDate {
+            get {
+                return this.expireDateField;
+            }
+            set {
+                this.expireDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> FirstInventoryDate {
+            get {
+                return this.firstInventoryDateField;
+            }
+            set {
+                this.firstInventoryDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public short PrintCount {
+            get {
+                return this.printCountField;
+            }
+            set {
+                this.printCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public HuStatus Status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Location {
+            get {
+                return this.locationField;
+            }
+            set {
+                this.locationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Region {
+            get {
+                return this.regionField;
+            }
+            set {
+                this.regionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Bin {
+            get {
+                return this.binField;
+            }
+            set {
+                this.binField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LocationFrom {
+            get {
+                return this.locationFromField;
+            }
+            set {
+                this.locationFromField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LocationTo {
+            get {
+                return this.locationToField;
+            }
+            set {
+                this.locationToField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsConsignment {
+            get {
+                return this.isConsignmentField;
+            }
+            set {
+                this.isConsignmentField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public QualityType QualityType {
+            get {
+                return this.qualityTypeField;
+            }
+            set {
+                this.qualityTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsFreeze {
+            get {
+                return this.isFreezeField;
+            }
+            set {
+                this.isFreezeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsATP {
+            get {
+                return this.isATPField;
+            }
+            set {
+                this.isATPField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public OccupyType OccupyType {
+            get {
+                return this.occupyTypeField;
+            }
+            set {
+                this.occupyTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OccupyReferenceNo {
+            get {
+                return this.occupyReferenceNoField;
+            }
+            set {
+                this.occupyReferenceNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SupplierLotNo {
+            get {
+                return this.supplierLotNoField;
+            }
+            set {
+                this.supplierLotNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CreateUserName {
+            get {
+                return this.createUserNameField;
+            }
+            set {
+                this.createUserNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime CreateDate {
+            get {
+                return this.createDateField;
+            }
+            set {
+                this.createDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OrderNo {
+            get {
+                return this.orderNoField;
+            }
+            set {
+                this.orderNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ReceiptNo {
+            get {
+                return this.receiptNoField;
+            }
+            set {
+                this.receiptNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Memo {
+            get {
+                return this.memoField;
+            }
+            set {
+                this.memoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Shift {
+            get {
+                return this.shiftField;
+            }
+            set {
+                this.shiftField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Flow {
+            get {
+                return this.flowField;
+            }
+            set {
+                this.flowField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ItemVersion {
+            get {
+                return this.itemVersionField;
+            }
+            set {
+                this.itemVersionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string RefHu {
+            get {
+                return this.refHuField;
+            }
+            set {
+                this.refHuField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Direction {
+            get {
+                return this.directionField;
+            }
+            set {
+                this.directionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsOdd {
+            get {
+                return this.isOddField;
+            }
+            set {
+                this.isOddField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public HuOption HuOption {
+            get {
+                return this.huOptionField;
+            }
+            set {
+                this.huOptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string AgingLocation {
+            get {
+                return this.agingLocationField;
+            }
+            set {
+                this.agingLocationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal CurrentQty {
+            get {
+                return this.currentQtyField;
+            }
+            set {
+                this.currentQtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Station {
+            get {
+                return this.stationField;
+            }
+            set {
+                this.stationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int OrderDetId {
+            get {
+                return this.orderDetIdField;
+            }
+            set {
+                this.orderDetIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsEffective {
+            get {
+                return this.isEffectiveField;
+            }
+            set {
+                this.isEffectiveField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum HuStatus {
+        
+        /// <remarks/>
+        NA,
+        
+        /// <remarks/>
+        Location,
+        
+        /// <remarks/>
+        Ip,
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum OccupyType {
+        
+        /// <remarks/>
+        None,
+        
+        /// <remarks/>
+        Pick,
+        
+        /// <remarks/>
+        Inspect,
+        
+        /// <remarks/>
+        Sequence,
+        
+        /// <remarks/>
+        MiscOrder,
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum HuOption {
+        
+        /// <remarks/>
+        NoNeed,
+        
+        /// <remarks/>
+        UnAging,
+        
+        /// <remarks/>
+        Aged,
+        
+        /// <remarks/>
+        UnFilter,
+        
+        /// <remarks/>
+        Filtered,
+    }
+    
+    /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
     public enum CodeEnum {
         
@@ -6875,6 +7174,15 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         CompleteIssueWaitingTime,
+        
+        /// <remarks/>
+        SMTPEmailAddr,
+        
+        /// <remarks/>
+        SMTPEmailHost,
+        
+        /// <remarks/>
+        SMTPEmailPasswd,
         
         /// <remarks/>
         IsRecordLocatoinTransactionDetail,
@@ -6943,6 +7251,18 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         MiContainerLocations,
         
         /// <remarks/>
+        HistoryPasswordCount,
+        
+        /// <remarks/>
+        PasswordExpiredDays,
+        
+        /// <remarks/>
+        PasswordLength,
+        
+        /// <remarks/>
+        PasswordComplexity,
+        
+        /// <remarks/>
         FordEdiBakFolder,
         
         /// <remarks/>
@@ -6971,5 +7291,20 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         WERKS,
+        
+        /// <remarks/>
+        PassawordActive,
+        
+        /// <remarks/>
+        PasswordLockCount,
+        
+        /// <remarks/>
+        CompanyName,
+        
+        /// <remarks/>
+        WebAddress,
+        
+        /// <remarks/>
+        StartUpTime,
     }
 }

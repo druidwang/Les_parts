@@ -10,7 +10,7 @@ namespace com.Sconit.Entity.WMS
 		
 		public Int32 Id { get; set; }
 		public string PickGroupCode { get; set; }
-		public Int32? PickUser { get; set; }
+		public Int32? PickUserId { get; set; }
 		public string PickUserName { get; set; }
 		public Boolean IsActive { get; set; }
 		public Int32 CreateUserId { get; set; }

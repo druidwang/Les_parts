@@ -63,6 +63,9 @@ namespace com.Sconit.Service.SI
             Mapper.CreateMap<com.Sconit.Entity.SCM.FlowDetail, com.Sconit.Entity.SI.SD_SCM.FlowDetail>()
                     .ForMember(d => d.FlowDetailInputs, o => o.Ignore())
                     .ForMember(d => d.CurrentQty, o => o.Ignore());
+
+            //WSM
+            Mapper.CreateMap<com.Sconit.Entity.WMS.PickTask, com.Sconit.Entity.SI.SD_WMS.PickTask>();
         }
     }
 }

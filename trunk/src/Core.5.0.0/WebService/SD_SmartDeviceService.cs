@@ -6,6 +6,7 @@
     using com.Sconit.Entity.Exception;
     using com.Sconit.Entity.SI.SD_INV;
     using com.Sconit.Entity.SI.SD_ORD;
+    using com.Sconit.Entity.SI.SD_WMS;
     using com.Sconit.Service.SI;
     using com.Sconit.Entity;
     using System;
@@ -23,6 +24,8 @@
         private ISD_FlowMgr flowMgr { get { return GetService<ISD_FlowMgr>(); } }
 
         private ISD_MasterDataMgr masterDataMgr { get { return GetService<ISD_MasterDataMgr>(); } }
+
+        private ISD_WMSMgr wmsMgr { get { return GetService<ISD_WMSMgr>(); } }
 
         private void ProcessException(Exception ex)
         {
@@ -838,6 +841,22 @@
             {
                 throw new SoapException(GetBusinessExMessage(ex), SoapException.ServerFaultCode, string.Empty);
             }
+        }
+
+        [WebMethod]
+        public List<PickTask> GetPickTasks(string userCode)
+        {
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            return this.wmsMgr.GetPickTaskByUser(user.Id);
+        }
+
+        [WebMethod]
+        public void DoPick(List<Hu> huList,string userCode)
+        {
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            this.wmsMgr.DoPick(huList);
         }
     }
 }
