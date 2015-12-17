@@ -28,6 +28,7 @@ namespace com.Sconit.SmartDevice
         protected DataGridTextBoxColumn columnSupplierLotNo;
         protected DataGridTextBoxColumn columnOrderedQty;
         protected DataGridTextBoxColumn columnHuTo;
+        protected DataGridTextBoxColumn columnBin;
 
         protected User user;
         protected List<Hu> hus;
@@ -492,6 +493,15 @@ namespace com.Sconit.SmartDevice
             this.columnHuTo.MappingName = "HuTo";
             this.columnHuTo.NullText = "";
             this.columnHuTo.Width = 30;
+
+
+            this.columnBin = new DataGridTextBoxColumn();
+            this.columnBin.Format = "";
+            this.columnBin.FormatInfo = null;
+            this.columnBin.HeaderText = "库格";
+            this.columnBin.MappingName = "Bin";
+            this.columnBin.NullText = "";
+            this.columnBin.Width = 30;
         }
 
         //MMddHH =>yyyy-MM-dd HH

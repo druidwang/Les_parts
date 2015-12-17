@@ -59,6 +59,12 @@
     <Compile Include="AppExecutionManager.cs" />
     <Compile Include="CodeMaster.cs" />
     <Compile Include="BusinessException.cs" />
+    <Compile Include="UCWMSPickGoods.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCWMSPickGoods.Designer.cs">
+      <DependentUpon>UCWMSPickGoods.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCQuickReturn.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -121,6 +127,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UCWMSPickGoods.resx">
+      <DependentUpon>UCWMSPickGoods.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCQuickReturn.resx">
       <DependentUpon>UCQuickReturn.cs</DependentUpon>
     </EmbeddedResource>
@@ -441,6 +450,9 @@
     <None Include="Web References\SmartDeviceRef\PickListMaster.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\SmartDeviceRef\PickTask.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\SmartDeviceRef\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
@@ -458,10 +470,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://shq-mes-test.csaextra.net/WebService/SD/SmartDeviceService.asmx">
+    <WebReferenceUrl Include="http://localhost:2015/WebService/SD/SmartDeviceService.asmx">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\SmartDeviceRef\</RelPath>
-      <UpdateFromURL>http://shq-mes-test.csaextra.net/WebService/SD/SmartDeviceService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:2015/WebService/SD/SmartDeviceService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

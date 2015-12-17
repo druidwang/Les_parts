@@ -32,6 +32,30 @@
         }
 
         [Transaction(TransactionMode.Requires)]
+        public Entity.SI.SD_INV.Hu GetPickHu(string huId)
+        {
+            try
+            {
+                HuStatus huStatus = huMgr.GetHuStatus(huId.ToUpper());
+                var hu = Mapper.Map<HuStatus, Entity.SI.SD_INV.Hu>(huStatus);
+                if (string.IsNullOrEmpty(hu.Location))
+                {
+                    throw new BusinessException(string.Format("条码{0}不在库存中。", huId));
+                }
+                var occupy = this.genericMgr.FindAll<com.Sconit.Entity.WMS.BufferInventory>("select bi.* from BufferInventory as bi where bi.HuId = ? ", hu.HuId);
+                if (occupy != null && occupy.Count > 0)
+                {
+                    throw new BusinessException(string.Format("条码{0}已被其他拣货任务占用。", huId));
+                }
+                return hu;
+            }
+            catch (ObjectNotFoundException)
+            {
+                throw new BusinessException(string.Format("条码{0}不存在。", huId));
+            }
+        }
+
+        [Transaction(TransactionMode.Requires)]
         public Entity.SI.SD_INV.Hu CloneHu(string huId, decimal qty)
         {
             try
