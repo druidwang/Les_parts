@@ -274,12 +274,14 @@
     <Compile Include="Base\WMS\BufferInventory.cs" />
     <Compile Include="Base\WMS\BufferOccupy.cs" />
     <Compile Include="Base\WMS\PickGroup.cs" />
+    <Compile Include="Base\WMS\PickOccupy.cs" />
     <Compile Include="Base\WMS\PickResult.cs" />
     <Compile Include="Base\WMS\PickRule.cs" />
     <Compile Include="Base\WMS\PickSchedule.cs" />
     <Compile Include="Base\WMS\PickTask.cs" />
     <Compile Include="Base\WMS\PickUser.cs" />
     <Compile Include="Base\WMS\PickWindowTime.cs" />
+    <Compile Include="Base\WMS\RepackOccupy.cs" />
     <Compile Include="Base\WMS\RepackTask.cs" />
     <Compile Include="Base\WMS\ShipPlan.cs" />
     <Compile Include="BIL\ActingBill.cs" />
@@ -644,15 +646,14 @@
     <Compile Include="WMS\BufferInventory.cs" />
     <Compile Include="WMS\BufferOccupy.cs" />
     <Compile Include="WMS\PickGroup.cs" />
+    <Compile Include="WMS\PickOccupy.cs" />
     <Compile Include="WMS\PickResult.cs" />
     <Compile Include="WMS\PickRule.cs" />
     <Compile Include="WMS\PickSchedule.cs" />
     <Compile Include="WMS\PickTask.cs" />
     <Compile Include="WMS\PickUser.cs" />
     <Compile Include="WMS\PickWindowTime.cs" />
-    <Compile Include="WMS\RepackIn.cs" />
     <Compile Include="WMS\RepackOccupy.cs" />
-    <Compile Include="WMS\RepackOut.cs" />
     <Compile Include="WMS\RepackTask.cs" />
     <Compile Include="WMS\ShipPlan.cs" />
   </ItemGroup>
@@ -940,6 +941,10 @@
     <EmbeddedResource Include="Base\WMS\PickGroup.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PickRule.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PickUser.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Base\WMS\PickOccupy.hbm.xml" />
+    <Content Include="Base\WMS\RepackOccupy.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

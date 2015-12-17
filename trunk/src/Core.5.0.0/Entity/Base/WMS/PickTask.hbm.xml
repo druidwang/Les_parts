@@ -38,9 +38,5 @@
 		<property name="CloseUser" column="CloseUser" type="Int32"/>	
 		<property name="CloseUserName" column="CloseUserNm" type="String" length="100"/>	
 		<property name="CloseDate" column="CloseDate" type="DateTime"/>
-        <property name="OrderNo" column="OrderNo" type="String" length="50"/>
-        <property name="OrderSequence" column="OrderSeq" type="Int32"/>
-        <property name="ShipPlanId" column="ShipPlanId" type="Int32"/>
-        <property name="TargetDock" column="TargetDock" type="String" length="50"/>
     </class>
 </hibernate-mapping>
