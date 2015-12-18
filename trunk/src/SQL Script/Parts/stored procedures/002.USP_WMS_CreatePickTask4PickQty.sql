@@ -20,24 +20,14 @@ BEGIN
 	set nocount on
 	declare @DateTimeNow datetime
 	declare @ErrorMsg nvarchar(MAX)
-	declare @Trancount int
 
 	set @DateTimeNow = GetDate()
-	set @Trancount = @@trancount
-
-	create table #tempMsg_002 
-	(
-		Id int identity(1, 1) primary key,
-		Lvl tinyint,
-		Msg varchar(2000)
-	)
 
 	create table #tempShipPlan_002
 	(
 		ShipPlanId int primary key,
 		OrderNo varchar(50),
 		OrderSeq int,
-		OrderDetId int,
 		StartTime datetime,
 		WindowTime datetime,
 		Item varchar(50),
@@ -48,23 +38,17 @@ BEGIN
 		UnitQty decimal(18, 8),
 		UC decimal(18, 8),
 		UCDesc varchar(50),
-		OrderQty decimal(18, 8),
-		PickQty decimal(18, 8),
-		PickedQty decimal(18, 8),
-		ThisPickQty decimal(18, 8),
-		ThisPickFullQty decimal(18, 8),  --本次要创建的拣货数（整包装）
-		ThisPickOddQty decimal(18, 8),  --本次要创建的拣货数（零头数）
-		ThisPickedQty decimal(18, 8),
+		TargetPickQty decimal(18, 8),
+		FulfillPickQty decimal(18, 8),
 		[Priority] tinyint,
 		LocFrom varchar(50),
 		Dock varchar(50),
-		IsShipScanHu bit,
-		IsActive bit,
+		[Version] int
 	)
 
 	CREATE TABLE #tempPickTask_002
 	(
-		RowId int IDENTITY(1,1),
+		UUID varchar(50),
 		[Priority] tinyint,
 		Item varchar(50),
 		ItemDesc varchar(100),
@@ -76,71 +60,61 @@ BEGIN
 		UCDesc varchar(50),
 		OrderQty decimal(18, 8),
 		Loc varchar(50),
-		Area varchar(50),
-		Bin varchar(50),
-		LotNo varchar(50),
-		HuId varchar(50),
 		StartTime datetime,
 		WinTime datetime,
-		IsPickHu bit,
-		NeedRepack bit,
 		OrderNo varchar(50),
 		OrderSeq int,
 		ShipPlanId int,
-		TargetDock varchar(50),
+		TargetDock varchar(50)
 	)
 
-	if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempAvailableInv_002%') 
-	begin
-		create table #tempAvailableInv_002
-		(
-			RowId int identity(1, 1),
-			Location varchar(50),
-			PickBy tinyint,
-			Item varchar(50),
-			Uom varchar(5),
-			UC decimal(18, 8),
-			Area varchar(50),
-			Bin varchar(50),
-			BinSeq int,
-			HuId varchar(50),
-			LotNo varchar(50),
-			Qty decimal(18, 8),
-			IsOdd bit
-		)
-	end
-
-	if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempOccupyBuffInv_003%') 
-	begin
-		create table #tempOccupyBuffInv_003
-		(
-			Id int primary key,
-			PickedQty decimal(18, 8),
-		)
-	end
+	create table #tempAvailableInv_008
+	(
+		RowId int identity(1, 1),
+		Location varchar(50),
+		Item varchar(50),
+		Qty decimal(18, 8)
+	)
 
 	begin try
+		if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempMsg_002%') 
+		begin
+			set @ErrorMsg = '没有定义返回数据的参数表。'
+			RAISERROR(@ErrorMsg, 16, 1) 
+
+			--代码不会执行到这里
+			create table #tempMsg_002 
+			(
+				Id int identity(1, 1) primary key,
+				Lvl tinyint,
+				Msg varchar(2000)
+			)
+		end
+		else
+		begin
+			truncate table #tempMsg_002
+		end
+
 		begin try
-			--获取发运计划
-			insert into #tempShipPlan_002(ShipPlanId, OrderNo, OrderSeq, OrderDetId, StartTime, WindowTime, 
-									Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc,
-									OrderQty, PickQty, PickedQty, ThisPickQty, ThisPickedQty, 
-									[Priority], LocFrom, Dock, IsShipScanHu, IsActive)
-			select sp.Id, sp.OrderNo, sp.OrderSeq, sp.OrderDetId, sp.StartTime, sp.WindowTime, 
-			sp.Item, sp.ItemDesc, sp.RefItemCode, sp.Uom, sp.BaseUom, sp.UnitQty, sp.UC, sp.UCDesc,
-			sp.OrderQty, sp.PickQty, sp.PickedQty, tmp.PickQty, 0,
-			sp.[Priority], sp.LocFrom, sp.Dock, sp.IsShipScanHu, sp.IsActive
-			from @CreatePickTaskTable as tmp 
-			inner join WMS_ShipPlan as sp on tmp.Id = sp.Id
-			
 			--占用发货缓冲区的库存
 			--exec USP_WMS_OcuppyBuffInv4PickQty @CreatePickTaskTable, @CreateUserId, @CreateUserNm
 			--update sp set ThisPickQty = ThisPickQty - bi.PickedQty from #tempShipPlan_002 as sp inner join #tempOccupyBuffInv_003 as bi on sp.Id = bi.Id
 
+			--获取发运计划
+			insert into #tempShipPlan_002(ShipPlanId, OrderNo, OrderSeq, StartTime, WindowTime, 
+									Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc,
+									TargetPickQty, FulfillPickQty, [Priority], LocFrom, Dock, [Version])
+			select sp.Id, sp.OrderNo, sp.OrderSeq, sp.StartTime, sp.WindowTime, 
+			sp.Item, sp.ItemDesc, sp.RefItemCode, sp.Uom, sp.BaseUom, sp.UnitQty, sp.UC, sp.UCDesc,
+			tmp.PickQty, 0, sp.[Priority], sp.LocFrom, sp.Dock, sp.[Version]
+			from @CreatePickTaskTable as tmp 
+			inner join WMS_ShipPlan as sp on tmp.Id = sp.Id
+			order by sp.StartTime, sp.Id
+
 			--获取可用库存
 			declare @PickTargetTable PickTargetTableType
 			insert into @PickTargetTable(Location, Item) select distinct LocFrom, Item from #tempShipPlan_002
-			exec USP_WMS_GetAvailableInv4Pick @PickTargetTable
+			exec USP_WMS_GetAvailableInv4PickQty @PickTargetTable
 
 			declare @RowId int
 			declare @MaxRowId int
@@ -148,28 +122,26 @@ BEGIN
 			declare @Item varchar(50)
 			declare @Qty decimal(18, 8)
 			declare @LastQty decimal(18, 8)
-			select @RowId = MIN(RowId), @MaxRowId = MAX(RowId) from #tempAvailableInv_002
+			select @RowId = MIN(RowId), @MaxRowId = MAX(RowId) from #tempAvailableInv_008
 			while @RowId <= @MaxRowId
 			begin
 				set @LastQty = 0
 				select @Location = Location, @Item = Item, @Qty = Qty 
-				from #tempAvailableInv_002 where RowId = @RowId
+				from #tempAvailableInv_008 where RowId = @RowId
 
-				update sp set ThisPickedQty = @LastQty / sp.UnitQty,
-				@Qty = @Qty - @LastQty, @LastQty = CASE WHEN @Qty >= sp.ThisPickQty * sp.UnitQty THEN sp.ThisPickQty * sp.UnitQty ELSE @Qty END
+				update sp set FulfillPickQty = @LastQty / sp.UnitQty,
+				@Qty = @Qty - @LastQty, @LastQty = CASE WHEN @Qty >= sp.TargetPickQty * sp.UnitQty THEN sp.TargetPickQty * sp.UnitQty ELSE @Qty END
 				from #tempShipPlan_002 as sp
 				where sp.Item = @Item and sp.LocFrom = @Location
 				set @Qty = @Qty - @LastQty
 
-				insert into #tempPickTask_002(OrderNo, OrderSeq, ShipPlanId, TargetDock,
+				insert into #tempPickTask_002(UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock,
 											[Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
-											Loc, StartTime, WinTime, IsPickHu, NeedRepack)
-				select OrderNo, OrderSeq, ShipPlanId, Dock,
-				[Priority], Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, ThisPickedQty 
-				Loc, @DateTimeNow, case when StartTime >= @DateTimeNow then StartTime else @DateTimeNow end, 0, 0
-				from #tempShipPlan_002 where ThisPickedQty > 0
-
-				update #tempShipPlan_002 set ThisPickQty = ThisPickQty - ThisPickedQty, ThisPickedQty = 0 where ThisPickedQty > 0
+											Loc, StartTime, WinTime)
+				select NEWID(), OrderNo, OrderSeq, ShipPlanId, Dock,
+				[Priority], Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, FulfillPickQty, 
+				LocFrom, @DateTimeNow, case when StartTime >= @DateTimeNow then StartTime else @DateTimeNow end
+				from #tempShipPlan_002 where FulfillPickQty > 0
 
 				set @RowId = @RowId + 1 
 			end
@@ -180,6 +152,9 @@ BEGIN
 		end catch
 
 		begin try
+			declare @Trancount int
+			set @Trancount = @@trancount
+
 			if @Trancount = 0
 			begin
 				begin tran
@@ -187,13 +162,39 @@ BEGIN
 
 			if exists(select top 1 1 from #tempPickTask_002)
 			begin
-				INSERT INTO WMS_PickTask( Priority, Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, OrderQty, PickQty, Loc, Area, Bin, LotNo, HuId, PickBy, PickGroup, PickUserId, PickUserNm, StartTime, WinTime, IsActive, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, CloseUser, CloseUserNm, CloseDate, Version, IsPickHu, NeedRepack)
-			end
+				declare @UpdateCount int
+				select @UpdateCount = COUNT(1) from #tempShipPlan_002 where FulfillPickQty > 0
 
+				update sp set PickQty = sp.PickQty + tmp.FulfillPickQty, LastModifyUser = @CreateUserId, LastModifyUserNm = @CreateUserId, LastModifyDate = @DateTimeNow, [Version] = sp.[Version] + 1
+				from #tempShipPlan_002 as tmp inner join WMS_ShipPlan as sp on tmp.ShipPlanId = sp.Id and tmp.[Version] = sp.[Version]
+				where tmp.FulfillPickQty > 0
+
+				if (@@ROWCOUNT <> @UpdateCount)
+				begin
+					RAISERROR(N'数据已经被更新，请重试。', 16, 1)
+				end
+
+				insert into WMS_PickTask(UUID, [Priority], Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, OrderQty, PickQty, 
+				Loc, StartTime, WinTime, IsActive, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, 
+				[Version], IsPickHu, PickBy, NeedRepack, IsOdd)
+				select UUID, [Priority], Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, OrderQty, 0, 
+				Loc, StartTime, WinTime, 1, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 
+				1, 0, 0, 0, 0
+				from #tempPickTask_002
+
+				insert into WMS_PickOccupy(UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty, 
+				CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
+				select UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OrderQty,
+				@CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1
+				from #tempPickTask_002
+			end
+			
 			if @Trancount = 0 
 			begin  
 				commit
 			end
+
+			
 		end try
 		begin catch
 			if @Trancount = 0
@@ -210,8 +211,12 @@ BEGIN
 		RAISERROR(@ErrorMsg, 16, 1) 
 	end catch
 
-	select Lvl, Msg from #tempMsg_002 order by Id
+	insert into #tempMsg_002(Lvl, Msg)
+	select 1, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']库存缺少' + (TargetPickQty - FulfillPickQty) + N'[' + Uom +  N']，不能创建拣货单。'
+	from #tempShipPlan_002 where TargetPickQty > FulfillPickQty
 
-	drop table #tempMsg_002
+	drop table #tempShipPlan_002
+	drop table #tempPickTask_002
+	drop table #tempAvailableInv_008
 END
 GO

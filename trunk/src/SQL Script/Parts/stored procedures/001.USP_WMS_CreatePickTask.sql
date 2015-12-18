@@ -39,8 +39,37 @@ BEGIN
 		IsActive bit,
 	)
 
-	begin try
+	if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempMsg_002%') 
+	begin
+		create table #tempMsg_002 
+		(
+			Id int identity(1, 1) primary key,
+			Lvl tinyint,
+			Msg varchar(2000)
+		)
+	end
 
+	if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempMsg_003%') 
+	begin
+		create table #tempMsg_003 
+		(
+			Id int identity(1, 1) primary key,
+			Lvl tinyint,
+			Msg varchar(2000)
+		)
+	end
+
+	if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempMsg_004%') 
+	begin
+		create table #tempMsg_004 
+		(
+			Id int identity(1, 1) primary key,
+			Lvl tinyint,
+			Msg varchar(2000)
+		)
+	end
+
+	begin try
 		insert into #tempShipPlan_001(ShipPlanId, OrderQty, PickQty, ThisPickQty, IsShipScanHu, PickBy, IsActive)
 		select sp.Id, sp.OrderQty, sp.PickQty, tmp.PickQty, sp.IsShipScanHu, l.PickBy, sp.IsActive
 		from @CreatePickTaskTable as tmp 
@@ -49,12 +78,12 @@ BEGIN
 
 		--检查发运计划是否关闭
 		insert into #tempMsg_001(Lvl, Msg)
-		select 2, N'发货任务'+ convert(varchar, ShipPlanId) + N'已经关闭。'
+		select 2, N'发货任务['+ convert(varchar, ShipPlanId) + N']已经关闭，不能创建拣货单。'
 		from #tempShipPlan_001 where IsActive = 0
 
 		--检查创建的拣货单数量是否超过了计划数
 		insert into #tempMsg_001(Lvl, Msg)
-		select 2, N'发货任务'+ convert(varchar, ShipPlanId) + N'的拣货数已经超过了订单数。'
+		select 2, N'发货任务['+ convert(varchar, ShipPlanId) + N']的拣货数已经超过了订单数，不能创建拣货单。'
 		from #tempShipPlan_001 where IsActive = 1
 		and PickQty + ThisPickQty > OrderQty
 
@@ -70,17 +99,17 @@ BEGIN
 
 			if exists(select top 1 1 from @CreatePickTask4PickQtyTable)
 			begin
-				exec USP_WMS_CreatePickTask4PickQty @CreatePickTask4PickQtyTable, @CreateUserId,@CreateUserNm 
+				insert into #tempMsg_002(Lvl, Msg) exec USP_WMS_CreatePickTask4PickQty @CreatePickTask4PickQtyTable, @CreateUserId,@CreateUserNm 
 			end
 
 			if exists(select top 1 1 from @CreatePickTask4PickLotNoTable)
 			begin
-				exec USP_WMS_CreatePickTask4PickLotNo @CreatePickTask4PickLotNoTable, @CreateUserId,@CreateUserNm 
+				insert into #tempMsg_003(Lvl, Msg) exec USP_WMS_CreatePickTask4PickLotNo @CreatePickTask4PickLotNoTable, @CreateUserId,@CreateUserNm 
 			end
 
 			if exists(select top 1 1 from @CreatePickTask4PickHuTable)
 			begin
-				exec USP_WMS_CreatePickTask4PickHu @CreatePickTask4PickHuTable, @CreateUserId,@CreateUserNm 
+				insert into #tempMsg_004(Lvl, Msg) exec USP_WMS_CreatePickTask4PickHu @CreatePickTask4PickHuTable, @CreateUserId,@CreateUserNm 
 			end
 		end
 	end try
@@ -89,8 +118,17 @@ BEGIN
 		RAISERROR(@ErrorMsg, 16, 1) 
 	end catch
 
-	select Lvl, Msg from #tempMsg_001 order by Id
+	select Lvl, Msg from #tempMsg_001
+	union all
+	select Lvl, Msg from #tempMsg_002
+	union all
+	select Lvl, Msg from #tempMsg_003
+	union all
+	select Lvl, Msg from #tempMsg_004
 
 	drop table #tempMsg_001
+	drop table #tempMsg_002
+	drop table #tempMsg_003
+	drop table #tempMsg_004
 END
 GO
