@@ -54,6 +54,7 @@ namespace com.Sconit.Entity.WMS
 		public Int32 Version { get; set; }
         public Int32 ShipPlanId { get; set; }
         public string Flow { get; set; }
+        public Boolean IsPickHu { get; set; }
 
         #endregion
 

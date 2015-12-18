@@ -43,6 +43,7 @@
 		<property name="HuId" column="HuId" type="String" length="50"/>
 		<property name="ShipPlanId" column="ShipPlanId" type="Int32" />
 		<property name="Flow" column="Flow" type="String" length="50"/>
+		<property name="IsPickHu" column="IsPickHu" type="Boolean"/>
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	

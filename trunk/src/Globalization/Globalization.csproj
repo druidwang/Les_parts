@@ -2905,6 +2905,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Visualization.zh-CN.resx</DependentUpon>
     </Compile>
+    <Compile Include="WMS\DeliveryBarCode.Designer.cs">
+      <DependentUpon>DeliveryBarCode.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\DeliveryBarCode.en-US.Designer.cs">
+      <DependentUpon>DeliveryBarCode.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="WMS\DeliveryBarCode.zh-CN.Designer.cs">
+      <DependentUpon>DeliveryBarCode.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="WMS\ShipGroup.Designer.cs">
       <DependentUpon>ShipGroup.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -5564,6 +5579,19 @@
     <EmbeddedResource Include="View\Visualization.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Visualization.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\DeliveryBarCode.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DeliveryBarCode.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\DeliveryBarCode.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DeliveryBarCode.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WMS\DeliveryBarCode.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DeliveryBarCode.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="WMS\ShipGroup.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
