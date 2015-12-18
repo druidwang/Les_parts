@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
- 	<class name="com.Sconit.Entity.WMS.DeliveryBarCodes, com.Sconit.Entity" table="WMS_DeliveryBarCode" lazy="false">
+ 	<class name="com.Sconit.Entity.WMS.DeliveryBarCode, com.Sconit.Entity" table="WMS_DeliveryBarCode" lazy="false">
 		<id name="BarCode" column="BarCode" type="String" unsaved-value="null" >
       		<generator class="assigned" />
         </id>
@@ -40,7 +40,10 @@
 		<property name="Station" column="Station" type="String" length="50"/>	
 		<property name="Dock" column="Dock" type="String" length="50"/>	
 		<property name="IsActive" column="IsActive" type="Boolean"/>	
-		<property name="HuId" column="HuId" type="String" length="50"/>	
+		<property name="HuId" column="HuId" type="String" length="50"/>
+		<property name="ShipPlanId" column="ShipPlanId" type="Int32" />
+		<property name="Flow" column="Flow" type="String" length="50"/>
+		<property name="IsPickHu" column="IsPickHu" type="Boolean"/>
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	

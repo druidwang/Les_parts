@@ -4,7 +4,7 @@ using System;
 
 namespace com.Sconit.Entity.WMS
 {
-    public partial class DeliveryBarCodes
+    public partial class DeliveryBarCode
     {
         #region Non O/R Mapping Properties
 

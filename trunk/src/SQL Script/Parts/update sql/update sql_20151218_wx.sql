@@ -1,0 +1,1 @@
+alter table WMS_DeliveryBarCode add IsPickHu bit;

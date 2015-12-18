@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.WMS
 {
     [Serializable]
-    public partial class DeliveryBarCodes : EntityBase
+    public partial class DeliveryBarCode : EntityBase
     {
         #region O/R Mapping Properties
 		
@@ -52,7 +52,10 @@ namespace com.Sconit.Entity.WMS
 		public string LastModifyUserName { get; set; }
 		public DateTime LastModifyDate { get; set; }
 		public Int32 Version { get; set; }
-        
+        public Int32 ShipPlanId { get; set; }
+        public string Flow { get; set; }
+        public Boolean IsPickHu { get; set; }
+
         #endregion
 
 		public override int GetHashCode()
@@ -69,7 +72,7 @@ namespace com.Sconit.Entity.WMS
 
         public override bool Equals(object obj)
         {
-            DeliveryBarCodes another = obj as DeliveryBarCodes;
+            DeliveryBarCode another = obj as DeliveryBarCode;
 
             if (another == null)
             {
