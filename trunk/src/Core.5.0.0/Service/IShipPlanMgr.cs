@@ -9,14 +9,8 @@ namespace com.Sconit.Service
 {
     public interface IShipPlanMgr
     {
-        IList<ShipPlan> CreateShipPlan(string orderNo);
-
-        IList<ShipPlan> CreateShipPlan(OrderMaster orderMaster);
+        void CreateShipPlan(string orderNo);
 
         void CancelShipPlan(string orderNo);
-
-        void CancelShipPlan(OrderMaster orderMaster);
-
-
     }
 }

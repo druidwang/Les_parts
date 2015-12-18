@@ -244,6 +244,61 @@ namespace com.Sconit.Persistence
             }
         }
 
+        public virtual int ExecuteUpdateWithNativeQuery(string queryString)
+        {
+            return ExecuteUpdateWithNativeQuery(queryString, (object[])null, (IType[])null);
+        }
+
+        public virtual int ExecuteUpdateWithNativeQuery(string queryString, object value)
+        {
+            return ExecuteUpdateWithNativeQuery(queryString, new object[] { value }, (IType[])null);
+        }
+
+        public virtual int ExecuteUpdateWithNativeQuery(string queryString, object value, IType type)
+        {
+            return ExecuteUpdateWithNativeQuery(queryString, new object[] { value }, new IType[] { type });
+        }
+
+        public virtual int ExecuteUpdateWithNativeQuery(string queryString, object[] values)
+        {
+            return ExecuteUpdateWithNativeQuery(queryString, values, (IType[])null);
+        }
+
+        public virtual int ExecuteUpdateWithNativeQuery(string queryString, object[] values, IType[] types)
+        {
+            if (queryString == null || queryString.Length == 0) throw new ArgumentNullException("queryString");
+            if (values != null && types != null && types.Length != values.Length) throw new ArgumentException("Length of values array must match length of types array");
+
+            using (ISession session = GetSession())
+            {
+                try
+                {
+                    IQuery query = session.CreateSQLQuery(queryString);
+                    if (values != null)
+                    {
+                        for (int i = 0; i < values.Length; i++)
+                        {
+                            if (types != null && types[i] != null)
+                            {
+                                query.SetParameter(i, values[i], types[i]);
+                            }
+                            else
+                            {
+                                query.SetParameter(i, values[i]);
+                            }
+                        }
+                    }
+
+                    int resultCount = query.ExecuteUpdate();
+                    return resultCount;
+                }
+                catch (Exception ex)
+                {
+                    throw new DataException("Could not perform Find for custom query : " + queryString, ex);
+                }
+            }
+        }
+
         public void InitializeLazyProperties(object instance)
         {
             if (instance == null) throw new ArgumentNullException("instance");

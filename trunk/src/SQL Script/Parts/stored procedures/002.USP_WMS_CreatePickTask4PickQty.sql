@@ -193,8 +193,6 @@ BEGIN
 			begin  
 				commit
 			end
-
-			
 		end try
 		begin catch
 			if @Trancount = 0
@@ -210,6 +208,10 @@ BEGIN
 		set @ErrorMsg = N'创建拣货任务发生异常：' + Error_Message() 
 		RAISERROR(@ErrorMsg, 16, 1) 
 	end catch
+
+	insert into #tempMsg_002(Lvl, Msg)
+	select 0, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']成功创建拣货单，数量为' + FulfillPickQty + N'[' + Uom +  N']。'
+	from #tempShipPlan_002 where FulfillPickQty > 0
 
 	insert into #tempMsg_002(Lvl, Msg)
 	select 1, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']库存缺少' + (TargetPickQty - FulfillPickQty) + N'[' + Uom +  N']，不能创建拣货单。'

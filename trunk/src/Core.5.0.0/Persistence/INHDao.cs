@@ -32,6 +32,16 @@ namespace com.Sconit.Persistence
 
         int ExecuteUpdateWithCustomQuery(string queryString, object[] values, IType[] types);
 
+        int ExecuteUpdateWithNativeQuery(string queryString);
+
+        int ExecuteUpdateWithNativeQuery(string queryString, object value);
+
+        int ExecuteUpdateWithNativeQuery(string queryString, object value, IType type);
+
+        int ExecuteUpdateWithNativeQuery(string queryString, object[] values);
+
+        int ExecuteUpdateWithNativeQuery(string queryString, object[] values, IType[] types);
+
         void InitializeLazyProperties(object instance);
 
         void InitializeLazyProperty(object instance, string propertyName);

@@ -1,4 +1,5 @@
-alter table WMS_ShipPlan add [Priority] [tinyint] NOT NULL;
+alter table WMS_ShipPlan add [Priority] [tinyint] NOT NULL
+go
 
 insert into sys_menu values('Url_PickTask_New','创建拣货任务','Url_PickTask',200,'高级仓库-事务-拣货任务-创建','~/PickTask/New','~/Content/Images/Nav/Default.png',1);
 insert into sys_menu values('Url_PickTask_Assign','分派','Url_PickTask',300,'高级仓库-事务-拣货任务-分派','~/PickTask/Assign','~/Content/Images/Nav/Default.png',1);

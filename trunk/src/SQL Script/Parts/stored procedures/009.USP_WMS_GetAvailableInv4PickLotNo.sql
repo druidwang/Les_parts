@@ -87,8 +87,8 @@ BEGIN
 		begin
 			select @Location = Location, @LocSuffix = Suffix
 			from #tempLocation_009 where RowId = @LocationRowId
-			
-			set @SelectInvStatement = 'select sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin, SUM(llt.Qty) as InvQty, 0 as OccupyQty, 0 as IsOdd '
+
+			set @SelectInvStatement = 'select sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin, SUM(hu.Qty) as InvQty, 0 as OccupyQty, 0 as IsOdd '
 			set @SelectInvStatement = @SelectInvStatement + 'from #tempPickTarget_009 as sp '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @LocSuffix + ' as llt on sp.Location = llt.Location and sp.Item = llt.Item '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on llt.HuId = hu.HuId '
@@ -96,7 +96,7 @@ BEGIN
 			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = ' + @Location + ' and llt.OccupyRefNo is null and llt.Qty > 0 and llt.QualityType = 0 and hu.Qty = hu.UC '
 			set @SelectInvStatement = @SelectInvStatement + 'group by sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin '
 			set @SelectInvStatement = @SelectInvStatement + 'union all '
-			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin, llt.Qty, 0 as OccupyQty, 1 as IsOdd '
+			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin, hu.Qty, 0 as OccupyQty, 1 as IsOdd '
 			set @SelectInvStatement = @SelectInvStatement + 'from #tempPickTarget_009 as sp '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @LocSuffix + ' as llt on sp.Location = llt.Location and sp.Item = llt.Item ' 
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on llt.HuId = hu.HuId '
@@ -130,7 +130,7 @@ BEGIN
 		--扣减拣货单占用的库存（整箱）
 		update inv set Qty = inv.Qty - oc.OccupyQty
 		from #tempAvailableInv_009 as inv inner join
-		(select pt.Loc, pt.Item, pt.Uom, pt.UC, pt.LotNo, pt.Bin, SUM((pt.OrderQty - pt.PickQty) * pt.UnitQty) as OccupyQty
+		(select pt.Loc, pt.Item, pt.Uom, pt.UC, pt.LotNo, pt.Bin, SUM(pt.OrderQty - pt.PickQty) as OccupyQty
 		from @PickTargetTable as sp 
 		inner join WMS_PickTask as pt on sp.Location = pt.Loc and sp.Item = pt.Item and sp.Uom = pt.Uom
 		where pt.IsPickHu = 1 and pt.PickBy = 0 and pt.IsActive = 1 and pt.IsOdd = 0
@@ -139,7 +139,7 @@ BEGIN
 
 		-----------------------------↓扣减拣货单占用的库存（零头箱）-----------------------------	
 		insert into #tempOddPickTask_009(Loc, Item, Uom, UC, OrderQty, LotNo, Bin)
-		select pt.Loc, pt.Item, pt.Uom, pt.UC, (pt.OrderQty - pt.PickQty) * pt.UnitQty, pt.LotNo, pt.Bin
+		select pt.Loc, pt.Item, pt.Uom, pt.UC, (pt.OrderQty - pt.PickQty), pt.LotNo, pt.Bin
 		from @PickTargetTable as sp 
 		inner join WMS_PickTask as pt on sp.Location = pt.Loc and sp.Item = pt.Item and sp.Uom = pt.Uom
 		where pt.IsPickHu = 1 and pt.PickBy = 0 and pt.IsActive = 1 and pt.IsOdd = 1
