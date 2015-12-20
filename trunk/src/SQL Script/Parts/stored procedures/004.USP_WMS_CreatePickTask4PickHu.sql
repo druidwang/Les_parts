@@ -156,7 +156,6 @@ BEGIN
 			declare @HuId varchar(50)
 			declare @Uom varchar(5)
 			declare @UC decimal(18, 8)
-			declare @UnitQty decimal(18, 8)
 			declare @Area varchar(50)
 			declare @Bin varchar(50)
 			declare @LotNo varchar(50)
@@ -170,8 +169,8 @@ BEGIN
 			select @SPRowId = MIN(RowId), @MaxSPRowId = MAX(RowId) from #tempShipPlan_004
 			while @SPRowId <= @MaxSPRowId
 			begin
-				select @Location = LocFrom, @Item = Item, @Uom = Uom, @UC = UC, @UnitQty = UnitQty,
-				@TargetFullPickQty = TargetFullPickQty * UnitQty, @TargetOddPickQty = TargetOddPickQty * UnitQty
+				select @Location = LocFrom, @Item = Item, @Uom = Uom, @UC = UC,
+				@TargetFullPickQty = TargetFullPickQty, @TargetOddPickQty = TargetOddPickQty
 				from #tempShipPlan_004 where RowId = @SPRowId
 
 				while (@TargetFullPickQty > 0 and exists(select top 1 1 from #tempAvailableInv_010 
@@ -182,17 +181,17 @@ BEGIN
 
 					insert into #tempPickTask_004([Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
 								Loc, Area, Bin, HuId, LotNo, StartTime, WinTime, NeedRepack, IsOdd)
-					select [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @Qty / UnitQty, 
+					select [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @Qty, 
 					@Location, @Area, @Bin, @HuId, @LotNo, @DateTimeNow, case when StartTime >= @DateTimeNow then StartTime else @DateTimeNow end, 1, @IsOdd
 					from #tempShipPlan_004 where RowId = @SPRowId
 
 
 					select @UUID = UUID from #tempPickTask_004 where RowId = @@IDENTITY
 					insert into #tempPickOccupy_004(UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty)
-					select @UUID, OrderNo, OrderSeq, ShipPlanId, Dock, @Qty / UnitQty from #tempShipPlan_004 where RowId = @SPRowId
+					select @UUID, OrderNo, OrderSeq, ShipPlanId, Dock, @Qty from #tempShipPlan_004 where RowId = @SPRowId
 
 					update #tempAvailableInv_010 set OccupyQty = Qty where RowId = @InvRowId
-					update #tempShipPlan_004 set FulfillFullPickQty = FulfillFullPickQty + @Qty / @UnitQty where RowId = @SPRowId
+					update #tempShipPlan_004 set FulfillFullPickQty = FulfillFullPickQty + @Qty where RowId = @SPRowId
 
 					set @TargetFullPickQty = @TargetFullPickQty - @Qty
 				end
@@ -206,7 +205,7 @@ BEGIN
 					begin  --库存中有和零头拣货数量相同的箱子
 						insert into #tempPickTask_004(UUID, [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
 										Loc, Area, Bin, HuId, LotNo, StartTime, WinTime, NeedRepack, IsOdd)
-						select NEWID(), [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, TargetOddPickQty, 
+						select NEWID(), [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @TargetOddPickQty, 
 						@Location, @Area, @Bin, @HuId, @LotNo, @DateTimeNow, case when StartTime >= @DateTimeNow then StartTime else @DateTimeNow end, 0, 1
 						from #tempShipPlan_004 where RowId = @SPRowId
 
@@ -216,7 +215,7 @@ BEGIN
 						select @UUID, OrderNo, OrderSeq, ShipPlanId, Dock, TargetOddPickQty from #tempShipPlan_004 where RowId = @SPRowId
 
 						update #tempAvailableInv_010 set OccupyQty = Qty where RowId = @InvRowId
-						update #tempShipPlan_004 set FulfillOddPickQty = @Qty / @UnitQty where RowId = @SPRowId
+						update #tempShipPlan_004 set FulfillOddPickQty = @TargetOddPickQty where RowId = @SPRowId
 						set @TargetOddPickQty = 0
 					end
 				end
@@ -234,22 +233,22 @@ BEGIN
 
 						if (@IsOdd = 0 and @Qty > @TargetPickQty)
 						begin
-							set @Qty = CEILING((@TargetPickQty / @UnitQty) / @UC) * @UC * @UnitQty
+							set @Qty = CEILING((@TargetPickQty) / @UC) * @UC
 						end
 
 						insert into #tempPickTask_004([Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
 									Loc, Area, Bin, HuId, LotNo, StartTime, WinTime, NeedRepack, IsOdd)
-						select [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @Qty / UnitQty, 
+						select [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @Qty, 
 						@Location, @Area, @Bin, @HuId, @LotNo, @DateTimeNow, case when StartTime >= @DateTimeNow then StartTime else @DateTimeNow end, 1, @IsOdd
 						from #tempShipPlan_004 where RowId = @SPRowId
 
 						--记录订单占用
 						select @UUID = UUID from #tempPickTask_004 where RowId = @@IDENTITY
 						insert into #tempPickOccupy_004(UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty)
-						select @UUID, OrderNo, OrderSeq, ShipPlanId, Dock, @Qty / UnitQty from #tempShipPlan_004 where RowId = @SPRowId
+						select @UUID, OrderNo, OrderSeq, ShipPlanId, Dock, @Qty from #tempShipPlan_004 where RowId = @SPRowId
 
 						update #tempAvailableInv_010 set OccupyQty = Qty where RowId = @InvRowId
-						update #tempShipPlan_004 set FulfillFullPickQty = FulfillFullPickQty + @Qty / @UnitQty where RowId = @SPRowId
+						update #tempShipPlan_004 set FulfillFullPickQty = FulfillFullPickQty + @Qty where RowId = @SPRowId
 
 						set @TargetPickQty = @TargetPickQty - @Qty
 					end
@@ -273,8 +272,8 @@ BEGIN
 				
 				if (@Qty > 0)
 				begin
-					update sp set TempPickQty = @LastQty / sp.UnitQty, FulfillFullPickQty = sp.FulfillFullPickQty + @LastQty / sp.UnitQty,
-					@Qty = @Qty - @LastQty, @LastQty = CASE WHEN @Qty >= (sp.TargetPickQty - sp.FulfillFullPickQty - sp.FulfillOddPickQty) * sp.UnitQty THEN (sp.TargetPickQty - sp.FulfillFullPickQty - sp.FulfillOddPickQty) * sp.UnitQty ELSE @Qty END
+					update sp set TempPickQty = @LastQty, FulfillFullPickQty = sp.FulfillFullPickQty + @LastQty,
+					@Qty = @Qty - @LastQty, @LastQty = CASE WHEN @Qty >= (sp.TargetPickQty - sp.FulfillFullPickQty - sp.FulfillOddPickQty) THEN (sp.TargetPickQty - sp.FulfillFullPickQty - sp.FulfillOddPickQty) ELSE @Qty END
 					from #tempShipPlan_004 as sp
 					where sp.Item = @Item and sp.LocFrom = @Location and sp.Uom = @Uom
 					and sp.TargetFullPickQty > 0
@@ -284,7 +283,7 @@ BEGIN
 					begin
 						insert into #tempPickTask_004([Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
 													Loc, Area, Bin, HuId, LotNo, StartTime, WinTime, NeedRepack, IsOdd)
-						select top 1 [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, (@OrgQty - @Qty) / UnitQty, 
+						select top 1 [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @OrgQty, 
 						@Location, @Area, @HuId, @Bin, @LotNo, @DateTimeNow, case when StartTime >= @DateTimeNow then StartTime else @DateTimeNow end, 1, @IsOdd
 						from #tempShipPlan_004 where TempPickQty > 0
 						order by StartTime asc
@@ -294,7 +293,7 @@ BEGIN
 						insert into #tempPickOccupy_004(UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty)
 						select @UUID, OrderNo, OrderSeq, ShipPlanId, Dock, TempPickQty from #tempShipPlan_004 where TempPickQty > 0
 
-						update #tempAvailableInv_010 set OccupyQty = Qty - @Qty where RowId = @MaxInvRowId
+						update #tempAvailableInv_010 set OccupyQty = OccupyQty + @OrgQty where RowId = @MaxInvRowId
 						update #tempShipPlan_004 set TempPickQty = 0 where TempPickQty > 0
 					end
 				end
@@ -367,8 +366,17 @@ BEGIN
 		RAISERROR(@ErrorMsg, 16, 1) 
 	end catch
 
-	select Lvl, Msg from #tempMsg_004 order by Id
+	insert into #tempMsg_004(Lvl, Msg)
+	select 0, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']成功创建拣货单，数量为' + (FulfillFullPickQty + FulfillOddPickQty) + N'[' + Uom +  N']。'
+	from #tempShipPlan_004 where (FulfillFullPickQty + FulfillOddPickQty) > 0
 
-	drop table #tempMsg_004
+	insert into #tempMsg_004(Lvl, Msg)
+	select 1, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']库存缺少' + (TargetPickQty - (FulfillFullPickQty + FulfillOddPickQty)) + N'[' + Uom +  N']，不能创建拣货单。'
+	from #tempShipPlan_004 where TargetPickQty > (FulfillFullPickQty + FulfillOddPickQty)
+
+	drop table #tempShipPlan_004
+	drop table #tempPickTask_004
+	drop table #tempPickOccupy_004
+	drop table #tempAvailableInv_010
 END
 GO

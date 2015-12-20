@@ -72,6 +72,16 @@ namespace com.Sconit.Service
 
         int ExecuteUpdateWithCustomQuery(string queryString, object[] values);
 
+        int ExecuteUpdateWithNativeQuery(string queryString);
+
+        int ExecuteUpdateWithNativeQuery(string queryString, object value);
+
+        int ExecuteUpdateWithNativeQuery(string queryString, object value, IType type);
+
+        int ExecuteUpdateWithNativeQuery(string queryString, object[] values);
+
+        int ExecuteUpdateWithNativeQuery(string queryString, object[] values, IType[] types);
+
         IList<T> FindAllWithCustomQuery<T>(string queryString);
 
         IList<T> FindAllWithCustomQuery<T>(string queryString, object value);

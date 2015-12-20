@@ -94,6 +94,7 @@ namespace com.Sconit.Service.Impl
         public IEmailMgr emailMgr { get; set; }
         public ISequenceMgr sequenceMgr { get; set; }
         public IWorkingCalendarMgr workingCalendarMgr { get; set; }
+        public IShipPlanMgr shipPlanMgr { get; set; }
         #endregion
 
         #region Delegate
@@ -2386,9 +2387,12 @@ namespace com.Sconit.Service.Impl
                 #endregion
 
                 #region 生成发货任务
-                if (!(orderMaster.IsQuick || orderMaster.IsAutoStart))
+                if (!(orderMaster.IsQuick || orderMaster.IsAutoStart)
+                    && (orderMaster.Type == CodeMaster.OrderType.Transfer
+                        || orderMaster.Type == CodeMaster.OrderType.Distribution))
                 {
-
+                    this.genericMgr.FlushSession();
+                    this.shipPlanMgr.CreateShipPlan(orderMaster.OrderNo);
                 }
                 #endregion
 

@@ -76,7 +76,7 @@ BEGIN
 		begin
 			select @Location = Location, @LocSuffix = Suffix
 			from #tempLocation_010 where RowId = @LocationRowId
-			set @SelectInvStatement =  'select sp.Location, sp.Item, hu.HuId, hu.Uom, hu.UC, bin.Area, llt.Bin, hu.LotNo, llt.Qty, 0 as OccupyQty, CASE WHEN hu.UC = hu.Qty THEN 0 ELSE 1 END as IsOdd '
+			set @SelectInvStatement =  'select sp.Location, sp.Item, hu.HuId, hu.Uom, hu.UC, bin.Area, llt.Bin, hu.LotNo, hu.Qty, 0 as OccupyQty, CASE WHEN hu.UC = hu.Qty THEN 0 ELSE 1 END as IsOdd '
 			set @SelectInvStatement = @SelectInvStatement + 'from #tempPickTarget_010 as sp '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @LocSuffix + ' as llt on sp.Location = llt.Location and sp.Item = llt.Item ' 
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on llt.HuId = hu.HuId '

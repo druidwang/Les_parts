@@ -9,7 +9,7 @@ namespace com.Sconit.Service
 {
     public interface IPickTaskMgr
     {
-        IList<PickTask> CreatePickTask(IDictionary<int, decimal> shipPlanIdAndQtyDic);
+        void CreatePickTask(IDictionary<int, decimal> shipPlanIdAndQtyDic);
 
         void PorcessPick(Dictionary<int,List<Hu>> pickResults);
     }

@@ -962,6 +962,31 @@
             return dao.ExecuteUpdateWithCustomQuery(queryString, values);
         }
 
+        public int ExecuteUpdateWithNativeQuery(string queryString)
+        {
+            return dao.ExecuteUpdateWithNativeQuery(queryString);
+        }
+
+        public int ExecuteUpdateWithNativeQuery(string queryString, object value)
+        {
+            return dao.ExecuteUpdateWithNativeQuery(queryString, value);
+        }
+
+        public int ExecuteUpdateWithNativeQuery(string queryString, object value, IType type)
+        {
+            return dao.ExecuteUpdateWithNativeQuery(queryString, value, type);
+        }
+
+        public int ExecuteUpdateWithNativeQuery(string queryString, object[] values)
+        {
+            return dao.ExecuteUpdateWithNativeQuery(queryString, values);
+        }
+
+        public int ExecuteUpdateWithNativeQuery(string queryString, object[] values, IType[] types)
+        {
+            return dao.ExecuteUpdateWithNativeQuery(queryString, values, types);
+        }
+
         public IList<T> FindAllWithCustomQuery<T>(string queryString)
         {
             return dao.FindAllWithCustomQuery<T>(queryString);

@@ -58,8 +58,6 @@ BEGIN
 		declare @LocationRowId int
 		declare @MaxLocationRowId int
 		declare @Location varchar(50)
-		declare @IsSpread bit
-		declare @PickBy tinyint
 		declare @LocSuffix varchar(50)
 		declare @SelectInvStatement varchar(max)
 

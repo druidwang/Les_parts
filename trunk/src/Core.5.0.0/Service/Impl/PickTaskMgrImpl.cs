@@ -16,9 +16,68 @@ namespace com.Sconit.Service.Impl
     {
         public IGenericMgr genericMgr { get; set; }
 
-        public IList<PickTask> CreatePickTask(IDictionary<int, decimal> shipPlanIdAndQtyDic)
+        public void CreatePickTask(IDictionary<int, decimal> shipPlanIdAndQtyDic)
         {
-            throw new NotImplementedException();
+            User user = SecurityContextHolder.Get();
+            SqlParameter[] paras = new SqlParameter[3];
+            DataTable createPickTaskTable = new DataTable();
+            createPickTaskTable.Columns.Add("Id", typeof(Int32));
+            createPickTaskTable.Columns.Add("PickQty", typeof(decimal));
+            foreach (var i in shipPlanIdAndQtyDic)
+            {
+                DataRow row = createPickTaskTable.NewRow();
+                row[0] = i.Key;
+                row[1] = i.Value;
+            }
+            paras[0] = new SqlParameter("@CreatePickTaskTable", SqlDbType.Structured);
+            paras[0].Value = createPickTaskTable;
+            paras[1] = new SqlParameter("@CreateUserId", SqlDbType.Int);
+            paras[1].Value = user.Id;
+            paras[2] = new SqlParameter("@CreateUserNm", SqlDbType.VarChar);
+            paras[3].Value = user.FullName;
+
+            try
+            {
+                DataSet msgs = this.genericMgr.GetDatasetByStoredProcedure("USP_WMS_CreatePickTask", paras);
+
+                if (msgs != null && msgs.Tables != null && msgs.Tables[0] != null
+                    && msgs.Tables[0].Rows != null && msgs.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow msg in msgs.Tables[0].Rows)
+                    {
+                        if ((int)msg[1] == 0)
+                        {
+                            MessageHolder.AddInfoMessage((string)msg[2]);
+                        }
+                        else if ((int)msg[1] == 1)
+                        {
+                            MessageHolder.AddWarningMessage((string)msg[2]);
+                        }
+                        else
+                        {
+                            MessageHolder.AddErrorMessage((string)msg[2]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null)
+                {
+                    if (ex.InnerException.InnerException != null)
+                    {
+                        MessageHolder.AddErrorMessage(ex.InnerException.InnerException.Message);
+                    }
+                    else
+                    {
+                        MessageHolder.AddErrorMessage(ex.InnerException.Message);
+                    }
+                }
+                else
+                {
+                    MessageHolder.AddErrorMessage(ex.Message);
+                }
+            }
         }
 
         public void PorcessPick(Dictionary<int, List<Hu>> pickResults)
@@ -33,22 +92,22 @@ namespace com.Sconit.Service.Impl
             pickResultTable.Columns.Add(new DataColumn("HuId", Type.GetType("System.Int32")));
             pickResultTable.Columns.Add(new DataColumn("HuQty", Type.GetType("System.Decimal")));
             foreach (var pickResult in pickResults)
-	        {
-		        foreach (var hu in pickResult.Value)
-	            {
-		            DataRow row = pickResultTable.NewRow();
+            {
+                foreach (var hu in pickResult.Value)
+                {
+                    DataRow row = pickResultTable.NewRow();
                     row[0] = pickResult.Key;
                     row[1] = hu.HuId;
                     row[2] = hu.Qty;
-	            }
-	        }
+                }
+            }
             SqlParameter[] paras = new SqlParameter[3];
             paras[0] = new SqlParameter("@UserId", SqlDbType.Int);
-            paras[0].Value  = user.Id;
+            paras[0].Value = user.Id;
             paras[1] = new SqlParameter("@UserName", SqlDbType.VarChar);
-            paras[1].Value=user.FullName;
+            paras[1].Value = user.FullName;
             paras[1] = new SqlParameter("@PickResult", SqlDbType.Structured);
-            paras[1].Value=pickResultTable;
+            paras[1].Value = pickResultTable;
 
             this.genericMgr.ExecuteStoredProcedure("USP_Busi_WMS_ProcessPickResult", paras);
         }

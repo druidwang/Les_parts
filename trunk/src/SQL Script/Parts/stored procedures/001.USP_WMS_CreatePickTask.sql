@@ -21,13 +21,6 @@ BEGIN
 	declare @DateTimeNow datetime
 	declare @ErrorMsg nvarchar(MAX)
 	
-	create table #tempMsg_001 
-	(
-		Id int identity(1, 1) primary key,
-		Lvl tinyint,
-		Msg varchar(2000)
-	)
-
 	create table #tempShipPlan_001
 	(
 		ShipPlanId int primary key,
@@ -39,35 +32,33 @@ BEGIN
 		IsActive bit,
 	)
 
-	if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempMsg_002%') 
-	begin
-		create table #tempMsg_002 
-		(
-			Id int identity(1, 1) primary key,
-			Lvl tinyint,
-			Msg varchar(2000)
-		)
-	end
+	create table #tempMsg_001 
+	(
+		Id int identity(1, 1) primary key,
+		Lvl tinyint,
+		Msg varchar(2000)
+	)
 
-	if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempMsg_003%') 
-	begin
-		create table #tempMsg_003 
-		(
-			Id int identity(1, 1) primary key,
-			Lvl tinyint,
-			Msg varchar(2000)
-		)
-	end
+	create table #tempMsg_002 
+	(
+		Id int identity(1, 1) primary key,
+		Lvl tinyint,
+		Msg varchar(2000)
+	)
 
-	if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempMsg_004%') 
-	begin
-		create table #tempMsg_004 
-		(
-			Id int identity(1, 1) primary key,
-			Lvl tinyint,
-			Msg varchar(2000)
-		)
-	end
+	create table #tempMsg_003 
+	(
+		Id int identity(1, 1) primary key,
+		Lvl tinyint,
+		Msg varchar(2000)
+	)
+
+	create table #tempMsg_004 
+	(
+		Id int identity(1, 1) primary key,
+		Lvl tinyint,
+		Msg varchar(2000)
+	)
 
 	begin try
 		insert into #tempShipPlan_001(ShipPlanId, OrderQty, PickQty, ThisPickQty, IsShipScanHu, PickBy, IsActive)
