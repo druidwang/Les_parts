@@ -158,7 +158,7 @@ namespace com.Sconit.Web.Controllers.WMS
             }
             else if (searchModel.DateTo != null )
             {
-                HqlStatementHelper.AddLeStatement("CreateDate", searchModel.DateTo, "p", ref whereStatement, param);
+                HqlStatementHelper.AddLtStatement("CreateDate", searchModel.DateTo.Value.AddDays(1), "p", ref whereStatement, param);
             }
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
             SearchStatementModel searchStatementModel = new SearchStatementModel();
@@ -186,7 +186,7 @@ namespace com.Sconit.Web.Controllers.WMS
             }
             else if (searchModel.DateTo != null)
             {
-                HqlStatementHelper.AddLeStatement("CreateDate", searchModel.DateTo, "p", ref whereStatement, param);
+                HqlStatementHelper.AddLtStatement("CreateDate", searchModel.DateTo.Value.AddDays(1), "p", ref whereStatement, param);
             }
 
         
