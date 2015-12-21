@@ -79,7 +79,7 @@ BEGIN
 		declare @MaxLocationRowId int
 		declare @Location varchar(50)
 		declare @LocSuffix varchar(50)
-		declare @SelectInvStatement varchar(max)
+		declare @SelectInvStatement nvarchar(max)
 
 		select @LocationRowId = MIN(RowId), @MaxLocationRowId = MAX(RowId) from #tempLocation_009
 
@@ -88,7 +88,8 @@ BEGIN
 			select @Location = Location, @LocSuffix = Suffix
 			from #tempLocation_009 where RowId = @LocationRowId
 
-			set @SelectInvStatement = 'select sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin, SUM(hu.Qty) as InvQty, 0 as OccupyQty, 0 as IsOdd '
+			set @SelectInvStatement = 'insert into #tempAvailableInv_009(Location, Item, Uom, UC, LotNo, Area, Bin, Qty, OccupyQty, IsOdd) '
+			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin, SUM(hu.Qty) as InvQty, 0 as OccupyQty, 0 as IsOdd '
 			set @SelectInvStatement = @SelectInvStatement + 'from #tempPickTarget_009 as sp '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @LocSuffix + ' as llt on sp.Location = llt.Location and sp.Item = llt.Item '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on llt.HuId = hu.HuId '
@@ -103,7 +104,7 @@ BEGIN
 			set @SelectInvStatement = @SelectInvStatement + 'inner join MD_LocationBin as bin on llt.Bin = bin.Code '
 			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = ' + @Location + ' and llt.OccupyRefNo is null and llt.Qty > 0 and llt.QualityType = 0 and hu.Qty <> hu.UC'
 
-			insert into #tempAvailableInv_009(Location, Item, Uom, UC, LotNo, Area, Bin, Qty, OccupyQty, IsOdd) exec sp_executesql @SelectInvStatement
+			exec sp_executesql @SelectInvStatement
 
 			set @LocationRowId = @LocationRowId + 1
 		end

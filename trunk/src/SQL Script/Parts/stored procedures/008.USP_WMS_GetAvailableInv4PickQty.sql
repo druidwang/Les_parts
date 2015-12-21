@@ -59,7 +59,7 @@ BEGIN
 		declare @MaxLocationRowId int
 		declare @Location varchar(50)
 		declare @LocSuffix varchar(50)
-		declare @SelectInvStatement varchar(max)
+		declare @SelectInvStatement nvarchar(max)
 
 		select @LocationRowId = MIN(RowId), @MaxLocationRowId = MAX(RowId) from #tempLocation_008
 
@@ -69,14 +69,15 @@ BEGIN
 			from #tempLocation_008 where RowId = @LocationRowId
 			set @SelectInvStatement = ''
 
-			set @SelectInvStatement = 'select sp.Location, sp.Item, SUM(ISNULL(llt.Qty, 0)) as InvQty '
+			set @SelectInvStatement = 'insert into #tempAvailableInv_008(Location, Item, Qty) '
+			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, SUM(ISNULL(llt.Qty, 0)) as InvQty '
 			set @SelectInvStatement = @SelectInvStatement + 'from #tempPickTarget_008 as sp '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @LocSuffix + ' as llt on sp.Location = llt.Location and sp.Item = llt.Item '
 			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = ' + @Location + ' and llt.OccupyRefNo is null and llt.Qty <> 0 and llt.HuId is null and llt.QualityType = 0'
 			set @SelectInvStatement = @SelectInvStatement + 'group by sp.Location, sp.Item '
 			set @SelectInvStatement = @SelectInvStatement + 'having SUM(llt.Qty, 0) > 0'
 
-			insert into #tempAvailableInv_008(Location, Item, Qty) exec sp_executesql @SelectInvStatement
+			exec sp_executesql @SelectInvStatement
 
 			set @LocationRowId = @LocationRowId + 1
 		end

@@ -210,11 +210,11 @@ BEGIN
 	end catch
 
 	insert into #tempMsg_002(Lvl, Msg)
-	select 0, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']成功创建拣货单，数量为' + FulfillPickQty + N'[' + Uom +  N']。'
+	select 0, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']成功创建拣货单，数量为' + convert(varchar, convert(decimal, FulfillPickQty)) + N'[' + Uom +  N']。'
 	from #tempShipPlan_002 where FulfillPickQty > 0
 
 	insert into #tempMsg_002(Lvl, Msg)
-	select 1, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']库存缺少' + (TargetPickQty - FulfillPickQty) + N'[' + Uom +  N']，不能创建拣货单。'
+	select 1, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']库存缺少' + convert(varchar, convert(decimal, TargetPickQty - FulfillPickQty)) + N'[' + Uom +  N']，不能创建拣货单。'
 	from #tempShipPlan_002 where TargetPickQty > FulfillPickQty
 
 	drop table #tempShipPlan_002

@@ -144,7 +144,6 @@ BEGIN
 
 			--计算按批号拣货满箱和零头箱各需要多少
 			update #tempShipPlan_003 set TargetFullPickQty = ROUND(TargetPickQty / UC, 0, 1) * UC, TargetOddPickQty = TargetPickQty % UC where TargetPickQty > 0
-
 			-----------------------------↓满包装匹配-----------------------------	
 			declare @InvRowId int
 			declare @MaxInvRowId int
@@ -298,7 +297,7 @@ BEGIN
 			while @SPRowId <= @MaxSPRowId
 			begin
 				select @Location = LocFrom, @Item = Item, @Uom = Uom, @UC = UC, 
-				@TargetPickQty = (TargetPickQty - FulfillFullPickQty + TargetOddPickQty - FulfillOddPickQty)
+				@TargetPickQty = (TargetPickQty - FulfillFullPickQty - FulfillOddPickQty)
 				from #tempShipPlan_003 where RowId = @SPRowId
 				
 				while @TargetPickQty > 0 and exists(select top 1 1 from #tempAvailableInv_009 
@@ -453,11 +452,11 @@ BEGIN
 	end catch
 
 	insert into #tempMsg_003(Lvl, Msg)
-	select 0, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']成功创建拣货单，数量为' + (FulfillFullPickQty + FulfillOddPickQty) + N'[' + Uom +  N']。'
+	select 0, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']成功创建拣货单，数量为' + convert(varchar, convert(decimal, FulfillFullPickQty + FulfillOddPickQty)) + N'[' + Uom +  N']。'
 	from #tempShipPlan_003 where (FulfillFullPickQty + FulfillOddPickQty) > 0
 
 	insert into #tempMsg_003(Lvl, Msg)
-	select 1, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']库存缺少' + (TargetPickQty - (FulfillFullPickQty + FulfillOddPickQty)) + N'[' + Uom +  N']，不能创建拣货单。'
+	select 1, N'发货任务['+ convert(varchar, ShipPlanId) + N']库位[' + LocFrom + N']物料代码[' + Item + N']库存缺少' + convert(varchar, convert(decimal, TargetPickQty - (FulfillFullPickQty + FulfillOddPickQty))) + N'[' + Uom +  N']，不能创建拣货单。'
 	from #tempShipPlan_003 where TargetPickQty > (FulfillFullPickQty + FulfillOddPickQty)
 
 	drop table #tempShipPlan_003

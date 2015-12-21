@@ -68,7 +68,7 @@ BEGIN
 		declare @MaxLocationRowId int
 		declare @Location varchar(50)
 		declare @LocSuffix varchar(50)
-		declare @SelectInvStatement varchar(max)
+		declare @SelectInvStatement nvarchar(max)
 
 		select @LocationRowId = MIN(RowId), @MaxLocationRowId = MAX(RowId) from #tempLocation_010
 
@@ -76,7 +76,9 @@ BEGIN
 		begin
 			select @Location = Location, @LocSuffix = Suffix
 			from #tempLocation_010 where RowId = @LocationRowId
-			set @SelectInvStatement =  'select sp.Location, sp.Item, hu.HuId, hu.Uom, hu.UC, bin.Area, llt.Bin, hu.LotNo, hu.Qty, 0 as OccupyQty, CASE WHEN hu.UC = hu.Qty THEN 0 ELSE 1 END as IsOdd '
+
+			set @SelectInvStatement = 'insert into #tempAvailableInv_010(Location, Item, HuId, Uom, UC, Area, Bin, LotNo, Qty, OccupyQty, IsOdd) '
+			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, hu.HuId, hu.Uom, hu.UC, bin.Area, llt.Bin, hu.LotNo, hu.Qty, 0 as OccupyQty, CASE WHEN hu.UC = hu.Qty THEN 0 ELSE 1 END as IsOdd '
 			set @SelectInvStatement = @SelectInvStatement + 'from #tempPickTarget_010 as sp '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @LocSuffix + ' as llt on sp.Location = llt.Location and sp.Item = llt.Item ' 
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on llt.HuId = hu.HuId '
@@ -84,7 +86,7 @@ BEGIN
 			set @SelectInvStatement = @SelectInvStatement + 'left join WMS_PickTask as pt on llt.HuId = pt.HuId and pt.IsActive = 1 '  --过滤掉被拣货单占用的条码
 			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = ' + @Location + ' and llt.OccupyRefNo is null and llt.Qty > 0 and llt.QualityType = 0 and pt.Id is null '
 
-			insert into #tempAvailableInv_010(Location, Item, HuId, Uom, UC, Area, Bin, LotNo, Qty, OccupyQty, IsOdd) exec sp_executesql @SelectInvStatement
+			exec sp_executesql @SelectInvStatement
 
 			set @LocationRowId = @LocationRowId + 1
 		end

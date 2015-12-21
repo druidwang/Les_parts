@@ -78,7 +78,7 @@ BEGIN
 		from #tempShipPlan_001 where IsActive = 1
 		and PickQty + ThisPickQty > OrderQty
 
-		if exists(select top 1 1 from #tempMsg_001)
+		if not exists(select top 1 1 from #tempMsg_001)
 		begin
 			declare @CreatePickTask4PickQtyTable CreatePickTaskTableType
 			declare @CreatePickTask4PickLotNoTable CreatePickTaskTableType
@@ -90,17 +90,17 @@ BEGIN
 
 			if exists(select top 1 1 from @CreatePickTask4PickQtyTable)
 			begin
-				insert into #tempMsg_002(Lvl, Msg) exec USP_WMS_CreatePickTask4PickQty @CreatePickTask4PickQtyTable, @CreateUserId,@CreateUserNm 
+				exec USP_WMS_CreatePickTask4PickQty @CreatePickTask4PickQtyTable, @CreateUserId,@CreateUserNm 
 			end
 
 			if exists(select top 1 1 from @CreatePickTask4PickLotNoTable)
 			begin
-				insert into #tempMsg_003(Lvl, Msg) exec USP_WMS_CreatePickTask4PickLotNo @CreatePickTask4PickLotNoTable, @CreateUserId,@CreateUserNm 
+				exec USP_WMS_CreatePickTask4PickLotNo @CreatePickTask4PickLotNoTable, @CreateUserId,@CreateUserNm 
 			end
 
 			if exists(select top 1 1 from @CreatePickTask4PickHuTable)
 			begin
-				insert into #tempMsg_004(Lvl, Msg) exec USP_WMS_CreatePickTask4PickHu @CreatePickTask4PickHuTable, @CreateUserId,@CreateUserNm 
+				exec USP_WMS_CreatePickTask4PickHu @CreatePickTask4PickHuTable, @CreateUserId,@CreateUserNm 
 			end
 		end
 	end try
