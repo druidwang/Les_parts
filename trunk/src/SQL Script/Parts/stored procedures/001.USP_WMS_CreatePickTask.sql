@@ -61,46 +61,53 @@ BEGIN
 	)
 
 	begin try
-		insert into #tempShipPlan_001(ShipPlanId, OrderQty, PickQty, ThisPickQty, IsShipScanHu, PickBy, IsActive)
-		select sp.Id, sp.OrderQty, sp.PickQty, tmp.PickQty, sp.IsShipScanHu, l.PickBy, sp.IsActive
-		from @CreatePickTaskTable as tmp 
-		inner join WMS_ShipPlan as sp on tmp.Id = sp.Id
-		inner join MD_Location as l on sp.LocFrom = l.Code
-
-		--检查发运计划是否关闭
-		insert into #tempMsg_001(Lvl, Msg)
-		select 2, N'发货任务['+ convert(varchar, ShipPlanId) + N']已经关闭，不能创建拣货单。'
-		from #tempShipPlan_001 where IsActive = 0
-
-		--检查创建的拣货单数量是否超过了计划数
-		insert into #tempMsg_001(Lvl, Msg)
-		select 2, N'发货任务['+ convert(varchar, ShipPlanId) + N']的拣货数已经超过了订单数，不能创建拣货单。'
-		from #tempShipPlan_001 where IsActive = 1
-		and PickQty + ThisPickQty > OrderQty
-
-		if not exists(select top 1 1 from #tempMsg_001)
+		if not exists(select top 1 1 from @CreatePickTaskTable)
 		begin
-			declare @CreatePickTask4PickQtyTable CreatePickTaskTableType
-			declare @CreatePickTask4PickLotNoTable CreatePickTaskTableType
-			declare @CreatePickTask4PickHuTable CreatePickTaskTableType
+			insert into #tempMsg_001(Lvl, Msg) values(2, N'发货任务为空，不能创建拣货单。')
+		end
+		else
+		begin
+			insert into #tempShipPlan_001(ShipPlanId, OrderQty, PickQty, ThisPickQty, IsShipScanHu, PickBy, IsActive)
+			select sp.Id, sp.OrderQty, sp.PickQty, tmp.PickQty, sp.IsShipScanHu, l.PickBy, sp.IsActive
+			from @CreatePickTaskTable as tmp 
+			inner join WMS_ShipPlan as sp on tmp.Id = sp.Id
+			inner join MD_Location as l on sp.LocFrom = l.Code
 
-			insert into @CreatePickTask4PickQtyTable(Id, PickQty) select ShipPlanId, ThisPickQty from #tempShipPlan_001 where IsShipScanHu = 0
-			insert into @CreatePickTask4PickLotNoTable(Id, PickQty) select ShipPlanId, ThisPickQty from #tempShipPlan_001 where IsShipScanHu = 1 and PickBy = 0
-			insert into @CreatePickTask4PickHuTable(Id, PickQty) select ShipPlanId, ThisPickQty from #tempShipPlan_001 where IsShipScanHu = 1 and PickBy = 1
+			--检查发运计划是否关闭
+			insert into #tempMsg_001(Lvl, Msg)
+			select 2, N'发货任务['+ convert(varchar, ShipPlanId) + N']已经关闭，不能创建拣货单。'
+			from #tempShipPlan_001 where IsActive = 0
 
-			if exists(select top 1 1 from @CreatePickTask4PickQtyTable)
+			--检查创建的拣货单数量是否超过了计划数
+			insert into #tempMsg_001(Lvl, Msg)
+			select 2, N'发货任务['+ convert(varchar, ShipPlanId) + N']的拣货数已经超过了订单数，不能创建拣货单。'
+			from #tempShipPlan_001 where IsActive = 1
+			and PickQty + ThisPickQty > OrderQty
+
+			if not exists(select top 1 1 from #tempMsg_001)
 			begin
-				exec USP_WMS_CreatePickTask4PickQty @CreatePickTask4PickQtyTable, @CreateUserId,@CreateUserNm 
-			end
+				declare @CreatePickTask4PickQtyTable CreatePickTaskTableType
+				declare @CreatePickTask4PickLotNoTable CreatePickTaskTableType
+				declare @CreatePickTask4PickHuTable CreatePickTaskTableType
 
-			if exists(select top 1 1 from @CreatePickTask4PickLotNoTable)
-			begin
-				exec USP_WMS_CreatePickTask4PickLotNo @CreatePickTask4PickLotNoTable, @CreateUserId,@CreateUserNm 
-			end
+				insert into @CreatePickTask4PickQtyTable(Id, PickQty) select ShipPlanId, ThisPickQty from #tempShipPlan_001 where IsShipScanHu = 0
+				insert into @CreatePickTask4PickLotNoTable(Id, PickQty) select ShipPlanId, ThisPickQty from #tempShipPlan_001 where IsShipScanHu = 1 and PickBy = 0
+				insert into @CreatePickTask4PickHuTable(Id, PickQty) select ShipPlanId, ThisPickQty from #tempShipPlan_001 where IsShipScanHu = 1 and PickBy = 1
 
-			if exists(select top 1 1 from @CreatePickTask4PickHuTable)
-			begin
-				exec USP_WMS_CreatePickTask4PickHu @CreatePickTask4PickHuTable, @CreateUserId,@CreateUserNm 
+				if exists(select top 1 1 from @CreatePickTask4PickQtyTable)
+				begin
+					exec USP_WMS_CreatePickTask4PickQty @CreatePickTask4PickQtyTable, @CreateUserId,@CreateUserNm 
+				end
+
+				if exists(select top 1 1 from @CreatePickTask4PickLotNoTable)
+				begin
+					exec USP_WMS_CreatePickTask4PickLotNo @CreatePickTask4PickLotNoTable, @CreateUserId,@CreateUserNm 
+				end
+
+				if exists(select top 1 1 from @CreatePickTask4PickHuTable)
+				begin
+					exec USP_WMS_CreatePickTask4PickHu @CreatePickTask4PickHuTable, @CreateUserId,@CreateUserNm 
+				end
 			end
 		end
 	end try

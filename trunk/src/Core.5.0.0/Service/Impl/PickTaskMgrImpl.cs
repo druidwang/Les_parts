@@ -28,6 +28,7 @@ namespace com.Sconit.Service.Impl
                 DataRow row = createPickTaskTable.NewRow();
                 row[0] = i.Key;
                 row[1] = i.Value;
+                createPickTaskTable.Rows.Add(row);
             }
             paras[0] = new SqlParameter("@CreatePickTaskTable", SqlDbType.Structured);
             paras[0].Value = createPickTaskTable;
@@ -40,22 +41,24 @@ namespace com.Sconit.Service.Impl
             {
                 DataSet msgs = this.genericMgr.GetDatasetByStoredProcedure("USP_WMS_CreatePickTask", paras);
 
+                //SqlDataReader reader = this.genericMgr.GetDatasetBySql("exec USP_WMS_CreatePickTask", paras); 
+
                 if (msgs != null && msgs.Tables != null && msgs.Tables[0] != null
                     && msgs.Tables[0].Rows != null && msgs.Tables[0].Rows.Count > 0)
                 {
                     foreach (DataRow msg in msgs.Tables[0].Rows)
                     {
-                        if ((int)msg[1] == 0)
+                        if ((int)msg[0] == 0)
                         {
-                            MessageHolder.AddInfoMessage((string)msg[2]);
+                            MessageHolder.AddInfoMessage((string)msg[1]);
                         }
-                        else if ((int)msg[1] == 1)
+                        else if ((int)msg[0] == 1)
                         {
-                            MessageHolder.AddWarningMessage((string)msg[2]);
+                            MessageHolder.AddWarningMessage((string)msg[1]);
                         }
                         else
                         {
-                            MessageHolder.AddErrorMessage((string)msg[2]);
+                            MessageHolder.AddErrorMessage((string)msg[1]);
                         }
                     }
                 }

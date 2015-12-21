@@ -126,9 +126,9 @@ namespace com.Sconit.Persistence
                 connection.Open();
 
                 //start a transaction
-                transaction = connection.BeginTransaction();
-                executeDataSet = SqlHelper.ExecuteDataset(transaction, commandType, commandText, commandParameters);
-                transaction.Commit();
+                //transaction = connection.BeginTransaction();
+                executeDataSet = SqlHelper.ExecuteDataset(connection, commandType, commandText, commandParameters);
+                //transaction.Commit();
                 return executeDataSet;
             }
             catch (SqlException ex)
@@ -172,6 +172,13 @@ namespace com.Sconit.Persistence
                 //}
 
                 throw ex;
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Close();
+                }
             }
         }
     }
