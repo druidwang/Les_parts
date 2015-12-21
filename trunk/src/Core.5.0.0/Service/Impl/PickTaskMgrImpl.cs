@@ -48,11 +48,11 @@ namespace com.Sconit.Service.Impl
                 {
                     foreach (DataRow msg in msgs.Tables[0].Rows)
                     {
-                        if ((int)msg[0] == 0)
+                        if (msg[0].ToString() == "0")
                         {
                             MessageHolder.AddInfoMessage((string)msg[1]);
                         }
-                        else if ((int)msg[0] == 1)
+                        else if (msg[0].ToString() == "1")
                         {
                             MessageHolder.AddWarningMessage((string)msg[1]);
                         }
