@@ -15,5 +15,6 @@ namespace com.Sconit.Web.Models.SearchModels.WMS
         public string PartyFrom { get; set; }
         public string PartyTo { get; set; }
         public Boolean IsActive { get; set; }
+        public Boolean IsShipScanHu { get; set; }
     }
 }

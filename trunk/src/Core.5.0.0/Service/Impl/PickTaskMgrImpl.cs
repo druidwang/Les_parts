@@ -34,7 +34,7 @@ namespace com.Sconit.Service.Impl
             paras[1] = new SqlParameter("@CreateUserId", SqlDbType.Int);
             paras[1].Value = user.Id;
             paras[2] = new SqlParameter("@CreateUserNm", SqlDbType.VarChar);
-            paras[3].Value = user.FullName;
+            paras[2].Value = user.FullName;
 
             try
             {

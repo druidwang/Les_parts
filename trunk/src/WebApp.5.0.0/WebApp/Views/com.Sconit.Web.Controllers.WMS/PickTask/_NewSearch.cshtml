@@ -33,14 +33,15 @@
                     $.ajax({
                         type: "post",
                         dataType: "html",
-                        url: "@Url.Content("~/PickTask/New/")",
-                        data: orderData,
+                        url: "@Url.Content("~/PickTask/NewIndex/")",
+                        data: "",
                         cache: false,
                         success: function (data, textStatus) {
                             var $tGrid = $("#content");
                             $($tGrid).html(data);
                         }
                     });
+                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 DisplayTextMessages(XMLHttpRequest.responseText);
@@ -142,6 +143,14 @@
                 selectedValue = TempData["ShipPlanSearchModel"] != null ? ((ShipPlanSearchModel)TempData["ShipPlanSearchModel"]).Item : string.Empty
             });
                 }
+            </div>
+             <div class="search-label">
+                <label for="ShipPlan_Item">
+                    @Resources.WMS.ShipPlan.ShipPlan_IsShipScanHu
+                </label>
+            </div>
+            <div class="search-field">
+                @Html.CheckBox("IsShipScanHu", TempData["ItemSearchModel"] != null ? ((ShipPlanSearchModel)TempData["ShipPlanSearchModel"]).IsShipScanHu : true)
             </div>
         </div>
         <div class="search-footer">

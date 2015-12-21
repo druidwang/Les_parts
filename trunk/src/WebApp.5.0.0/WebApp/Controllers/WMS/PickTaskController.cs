@@ -305,6 +305,7 @@ namespace com.Sconit.Web.Controllers.WMS
             HqlStatementHelper.AddEqStatement("PartyTo", searchModel.PartyTo, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("IsActive", true, "p", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("IsShipScanHu", searchModel.IsShipScanHu, "p", ref whereStatement, param);
 
             if (searchModel.DateFrom != null)
             {
