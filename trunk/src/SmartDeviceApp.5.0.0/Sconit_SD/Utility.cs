@@ -40,6 +40,10 @@ namespace com.Sconit.SmartDevice
             {
                 return CodeMaster.BarCodeType.HU.ToString();
             }
+            else if (barCode.StartsWith("DC"))
+            {
+                return CodeMaster.BarCodeType.HU.ToString();
+            }
             else
             {
                 foreach (var codeType in barCodeTypes)

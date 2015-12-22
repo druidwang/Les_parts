@@ -5,6 +5,7 @@ using System.Text;
 
 namespace com.Sconit.Entity.SI.SD_WMS
 {
+    [Serializable]
     public class PickTask
     {
         public Int32 Id { get; set; }

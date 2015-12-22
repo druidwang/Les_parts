@@ -13,7 +13,7 @@ using com.Sconit.Entity;
 namespace com.Sconit.Service.Impl
 {
     [Transactional]
-    public class TransportMgrImple : BaseMgr, ITransportMgr
+    public class TransportMgrImpl : BaseMgr, ITransportMgr
     {
         public INumberControlMgr numberControlMgr { get; set; }
         public ISystemMgr systemMgr { get; set; }
@@ -164,6 +164,7 @@ namespace com.Sconit.Service.Impl
 
             #region 准备运单
             string orderNo = numberControlMgr.GetTransportOrderNo(transportOrderMaster);
+            transportOrderMaster.OrderNo = orderNo;
             if (ipNoList != null)
             {
                 ipNoList = ipNoList.Distinct().ToArray();
@@ -180,6 +181,7 @@ namespace com.Sconit.Service.Impl
             {
                 this.genericMgr.Create(transportOrderRoute);
             }
+            transportOrderMaster.TransportOrderRouteList = transportOrderRouteList;
 
             foreach (TransportOrderDetail transportOrderDetail in transportOrderDetailList)
             {
@@ -188,6 +190,7 @@ namespace com.Sconit.Service.Impl
                 transportOrderDetail.OrderRouteTo = transportOrderRouteList.Where(r => r.ShipAddress == transportOrderDetail.ShipTo && r.Sequence > transportOrderRouteFrom.Sequence).OrderBy(r => r.Sequence).First().Id;
                 this.genericMgr.Create(transportOrderDetail);
             }
+            transportOrderMaster.TransportOrderDetailList = transportOrderDetailList;
             #endregion
 
             if (transportOrderMaster.IsAutoRelease)
@@ -667,7 +670,7 @@ namespace com.Sconit.Service.Impl
                         selectIpMasterHql = new StringBuilder("from IpMaster where IpNo in (?");
                         selectIpDetailHql = new StringBuilder("from IpDetail where IpNo in (?");
                         selectItemHql = new StringBuilder("from Item where code in (select Item from IpDetail where IpNo in (?");
-                        verifyIpNoHql = new StringBuilder("select IpNo where TransportOrderDetail where IpNo in (?");
+                        verifyIpNoHql = new StringBuilder("select IpNo from TransportOrderDetail where IpNo in (?");
                     }
                     else
                     {
