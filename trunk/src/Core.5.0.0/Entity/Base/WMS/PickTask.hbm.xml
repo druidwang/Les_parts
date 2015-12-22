@@ -4,8 +4,9 @@
         <id name="UUID" column="UUID" type="String" unsaved-value="null" >
             <generator class="assigned" />
         </id>
-		<version name="Version" column="Version" type="Int32" />	
-		<property name="Priority" column="Priority" />	
+		<version name="Version" column="Version" type="Int32" />
+        <property name="Id" column="Id" type="Int32"/>
+        <property name="Priority" column="Priority" />	
 		<property name="Item" column="Item" type="String" length="50"/>	
 		<property name="ItemDescription" column="ItemDesc" type="String" length="100"/>	
 		<property name="ReferenceItemCode" column="RefItemCode" type="String" length="50"/>	

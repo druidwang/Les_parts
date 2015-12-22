@@ -179,9 +179,9 @@ BEGIN
 					select top 1 @InvRowId = RowId, @Qty = Qty, @Area = Area, @Bin = Bin, @HuId = HuId, @LotNo = LotNo from #tempAvailableInv_010 
 							where Location = @Location and Item = @Item and Uom = @Uom and UC = @UC and IsOdd = 0
 
-					insert into #tempPickTask_004([Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
+					insert into #tempPickTask_004(UUID, [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
 								Loc, Area, Bin, HuId, LotNo, StartTime, WinTime, NeedRepack, IsOdd)
-					select [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @Qty, 
+					select NEWID(), [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @Qty, 
 					@Location, @Area, @Bin, @HuId, @LotNo, @DateTimeNow, case when StartTime >= @DateTimeNow then StartTime else @DateTimeNow end, 1, @IsOdd
 					from #tempShipPlan_004 where RowId = @SPRowId
 
@@ -236,9 +236,9 @@ BEGIN
 							set @Qty = CEILING((@TargetPickQty) / @UC) * @UC
 						end
 
-						insert into #tempPickTask_004([Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
+						insert into #tempPickTask_004(UUID, [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
 									Loc, Area, Bin, HuId, LotNo, StartTime, WinTime, NeedRepack, IsOdd)
-						select [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @Qty, 
+						select NEWID(), [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @Qty, 
 						@Location, @Area, @Bin, @HuId, @LotNo, @DateTimeNow, case when StartTime >= @DateTimeNow then StartTime else @DateTimeNow end, 1, @IsOdd
 						from #tempShipPlan_004 where RowId = @SPRowId
 
@@ -281,9 +281,9 @@ BEGIN
 
 					if (@OrgQty > @Qty)
 					begin
-						insert into #tempPickTask_004([Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
+						insert into #tempPickTask_004(UUID, [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
 													Loc, Area, Bin, HuId, LotNo, StartTime, WinTime, NeedRepack, IsOdd)
-						select top 1 [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @OrgQty, 
+						select top 1 NEWID(), [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @OrgQty, 
 						@Location, @Area, @HuId, @Bin, @LotNo, @DateTimeNow, case when StartTime >= @DateTimeNow then StartTime else @DateTimeNow end, 1, @IsOdd
 						from #tempShipPlan_004 where TempPickQty > 0
 						order by StartTime asc

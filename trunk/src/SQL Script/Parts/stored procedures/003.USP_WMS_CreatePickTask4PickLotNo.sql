@@ -313,9 +313,9 @@ BEGIN
 						set @Qty = CEILING(@TargetPickQty / @UC) * @UC
 					end
 
-					insert into #tempPickTask_003([Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
+					insert into #tempPickTask_003(UUID, [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
 								Loc, Area, Bin, LotNo, StartTime, WinTime, NeedRepack, IsOdd)
-					select [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @Qty, 
+					select NEWID(), [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, @Qty, 
 					@Location, @Area, @Bin, @LotNo, @DateTimeNow, case when StartTime >= @DateTimeNow then StartTime else @DateTimeNow end, 1, @IsOdd
 					from #tempShipPlan_003 where RowId = @SPRowId
 
@@ -365,9 +365,9 @@ BEGIN
 							set @Qty = 0
 						end
 
-						insert into #tempPickTask_003([Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
+						insert into #tempPickTask_003(UUID, [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, OrderQty, 
 													Loc, Area, Bin, LotNo, StartTime, WinTime, NeedRepack, IsOdd)
-						select top 1 [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, (@OrgQty - @Qty), 
+						select top 1 NEWID(), [Priority], Item, ItemDesc, RefItemCode , Uom , BaseUom, UnitQty, UC, UCDesc, (@OrgQty - @Qty), 
 						@Location, @Area, @Bin, @LotNo, @DateTimeNow, case when StartTime >= @DateTimeNow then StartTime else @DateTimeNow end, 1, @IsOdd
 						from #tempShipPlan_003 where TempPickQty > 0
 						order by StartTime asc
