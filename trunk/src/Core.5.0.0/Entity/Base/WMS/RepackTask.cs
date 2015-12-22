@@ -10,6 +10,8 @@ namespace com.Sconit.Entity.WMS
 
         public string UUID { get; set; }
 
+        public Int32 Id { get; set; }
+
         [Display(Name = "RepackTask_Item", ResourceType = typeof(Resources.WMS.RepackTask))]
         public string Item { get; set; }
 

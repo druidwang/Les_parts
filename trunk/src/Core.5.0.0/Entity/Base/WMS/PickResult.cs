@@ -9,7 +9,7 @@ namespace com.Sconit.Entity.WMS
         #region O/R Mapping Properties
 
         public Int32 Id { get; set; }
-        public Int32 PickTaskId { get; set; }
+        public string PickTaskId { get; set; }
 
         [Display(Name = "PickResult_OrderNo", ResourceType = typeof(Resources.WMS.PickResult))]
         public string OrderNo { get; set; }
@@ -60,7 +60,6 @@ namespace com.Sconit.Entity.WMS
 
         [Display(Name = "PickResult_HuId", ResourceType = typeof(Resources.WMS.PickResult))]
         public string HuId { get; set; }
-        public com.Sconit.CodeMaster.PickBy PickBy { get; set; }
         public Int32 PickUserId { get; set; }
 
         [Display(Name = "PickResult_PickUserName", ResourceType = typeof(Resources.WMS.PickResult))]

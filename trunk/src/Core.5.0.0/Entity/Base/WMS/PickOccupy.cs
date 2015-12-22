@@ -7,14 +7,16 @@ namespace com.Sconit.Entity.WMS
     public partial class PickOccupy : EntityBase
     {
         #region O/R Mapping Properties
-		
-		public string UUID { get; set; }
+
+        public Int32 Id { get; set; }
+        public string UUID { get; set; }
 		public string OrderNo { get; set; }
 		public Int32 OrderSeq { get; set; }
 		public Int32 ShipPlanId { get; set; }
 		public string TargetDock { get; set; }
 		public Decimal OccupyQty { get; set; }
-		public Int32 CreateUserId { get; set; }
+        public Decimal ReleaseQty { get; set; }
+        public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
 		public DateTime CreateDate { get; set; }
 		public Int32 LastModifyUserId { get; set; }
@@ -26,9 +28,9 @@ namespace com.Sconit.Entity.WMS
 
 		public override int GetHashCode()
         {
-			if (UUID != null)
+            if (Id != null)
             {
-                return UUID.GetHashCode();
+                return Id.GetHashCode();
             }
             else
             {
@@ -46,7 +48,7 @@ namespace com.Sconit.Entity.WMS
             }
             else
             {
-            	return (this.UUID == another.UUID);
+                return (this.Id == another.Id);
             }
         } 
     }
