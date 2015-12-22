@@ -852,11 +852,52 @@
         }
 
         [WebMethod]
+        public Entity.SI.SD_INV.Hu GetPickHu(string huId, string userCode)
+        {
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            return this.wmsMgr.GetPickHu(huId);
+        }
+
+        [WebMethod]
         public void DoPick(List<Hu> huList,string userCode)
         {
             var user = sdSecurityMgr.GetBaseUser(userCode);
             SecurityContextHolder.Set(user);
             this.wmsMgr.DoPick(huList);
         }
+
+        [WebMethod]
+        public Entity.SI.SD_INV.Hu GetDeliverMatchHu(string huId, string userCode)
+        {
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            return this.wmsMgr.GetDeliverMatchHu(huId);
+        }
+
+        [WebMethod]
+        public Entity.SI.SD_WMS.DeliverBarCode GetDeliverBarCode(string barCode, string userCode)
+        {
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            return this.wmsMgr.GetDeliverBarCode(barCode);
+        }
+
+        [WebMethod]
+        public void MatchDCToHU(string huId, string barCode, string userCode)
+        {
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            this.wmsMgr.MatchDCToHU(huId,barCode);
+        }
+
+        [WebMethod]
+        public void TransferToDock(List<string> huIds, string dock, string userCode)
+        {
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            this.wmsMgr.TransferToDock(huIds, dock);
+        }
+
     }
 }

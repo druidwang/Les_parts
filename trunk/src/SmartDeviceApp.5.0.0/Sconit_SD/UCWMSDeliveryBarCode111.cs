@@ -7,7 +7,7 @@ using System.Web.Services.Protocols;
 
 namespace com.Sconit.SmartDevice
 {
-    public partial class UCWMSPickGoods : UCBase
+    public partial class UCWMSDeliveryBarCode111 : UCBase
     {
         //public event MainForm.ModuleSelectHandler ModuleSelectionEvent;
 
@@ -17,33 +17,32 @@ namespace com.Sconit.SmartDevice
         private DateTime? effDate;
         private bool isPickByHu;
         //private List<IpDetailInput> ipDetailProcess;
-        private static UCWMSPickGoods ucWMSPickGoods;
+        private static UCWMSDeliveryBarCode111 ucWMSDeliveryBarCode;
         private static object obj = new object();
 
-        public UCWMSPickGoods(User user,bool isPickByHu)
+        public UCWMSDeliveryBarCode111(User user)
             : base(user)
         {
             this.InitializeComponent();
-            this.isPickByHu = isPickByHu;
-            base.btnOrder.Text = "拣货";
+            base.btnOrder.Text = "配送标签扫描";
         }
 
-        public static UCWMSPickGoods GetUCWMSPickGoods(User user,bool isPickByHu)
+        public static UCWMSDeliveryBarCode111 GetUCWMSDeliveryBarCode(User user)
         {
-            if (ucWMSPickGoods == null)
+            if (ucWMSDeliveryBarCode == null)
             {
                 lock (obj)
                 {
-                    if (ucWMSPickGoods == null)
+                    if (ucWMSDeliveryBarCode == null)
                     {
-                        ucWMSPickGoods = new UCWMSPickGoods(user, isPickByHu);
+                        ucWMSDeliveryBarCode = new UCWMSDeliveryBarCode111(user);
                     }
                 }
             }
-            ucWMSPickGoods.user = user;
-            ucWMSPickGoods.Reset();
-            ucWMSPickGoods.lblMessage.Text = "请扫描条码";
-            return ucWMSPickGoods;
+            ucWMSDeliveryBarCode.user = user;
+            ucWMSDeliveryBarCode.Reset();
+            ucWMSDeliveryBarCode.lblMessage.Text = "请扫描条码\\配送标签";
+            return ucWMSDeliveryBarCode;
         }
 
         #region Event
@@ -76,72 +75,6 @@ namespace com.Sconit.SmartDevice
             {
                 throw new BusinessException("条码不存在");
             }
-
-            if (isPickByHu == false)
-            {
-                var matchedPickTasks = this.pickTasks.Where(p => p.Item == hu.Item && p.LotNo == hu.LotNo && p.Uom == hu.Uom && p.UnitCount == hu.UnitCount && p.Bin == hu.Bin).OrderBy(p => p.WinTime);
-                if (matchedPickTasks == null || matchedPickTasks.Count() == 0)
-                {
-                    throw new BusinessException("未找到与条码{0}相关的拣货任务。", hu.HuId);
-                }
-                else if (matchedPickTasks.Count() == 1)
-                {
-                    var pickTask = matchedPickTasks.FirstOrDefault();
-
-                    if (pickTask.OrderQty - pickTask.PickQty < hu.Qty)
-                    {
-                        throw new BusinessException("条码{0}匹配的拣货任务已拣满。", hu.HuId);
-                    }
-                    else
-                    {
-                        pickTask.PickQty += hu.Qty;
-                        hu.OrderDetId = pickTask.Id;
-                        this.hus.Add(hu);
-                    }
-                }
-                else
-                {
-                    var isMatched = false;
-                    foreach (var pickTask in matchedPickTasks)
-                    {
-                        if (pickTask.OrderQty - pickTask.PickQty >= hu.Qty)
-                        {
-                            pickTask.PickQty += hu.Qty;
-                            hu.OrderDetId = pickTask.Id;
-                            this.hus.Add(hu);
-                            isMatched = true;
-                            break;
-                        }
-                    }
-                    if (isMatched == false)
-                    {
-                        throw new BusinessException("条码{0}匹配的拣货任务已拣满。", hu.HuId);
-                    }
-                }
-            }
-            else
-            {
-                var matchedPickTasks = this.pickTasks.Where(p => p.HuId == hu.HuId);
-                if (matchedPickTasks == null || matchedPickTasks.Count() == 0)
-                {
-                    throw new BusinessException("未找到与条码{0}相关的拣货任务。", hu.HuId);
-                }
-                else if (matchedPickTasks.Count() == 1)
-                {
-                    var pickTask = matchedPickTasks.FirstOrDefault();
-
-                    if (pickTask.OrderQty - pickTask.PickQty < hu.Qty)
-                    {
-                        throw new BusinessException("条码{0}匹配的拣货任务已拣满。", hu.HuId);
-                    }
-                    else
-                    {
-                        pickTask.PickQty += hu.Qty;
-                        hu.OrderDetId = pickTask.Id;
-                        this.hus.Add(hu);
-                    }
-                }
-            }
         }
 
 
@@ -170,11 +103,6 @@ namespace com.Sconit.SmartDevice
 
             this.ResumeLayout();
             this.isMasterBind = true;
-
-            this.pickTasks = this.smartDeviceService.GetPickTasks(this.user.Code).ToList();
-
-            ts.MappingName = this.pickTasks.GetType().Name;
-            base.dgList.DataSource = this.pickTasks;
         }
 
         #endregion

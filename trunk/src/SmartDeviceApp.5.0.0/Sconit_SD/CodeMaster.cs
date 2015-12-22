@@ -67,6 +67,13 @@ namespace com.Sconit.SmartDevice.CodeMaster
         Client_FullContainerReceive,//满箱收货
 
         Client_Location_Bin_Transfer,//按库位,库格移库
+
+        //高级仓库
+        Client_WMSPickGoods,
+        Client_WMSDeliverBarCode,
+        Client_WMSPickGoodsQty,
+        Client_WMSTransfer,
+
         M_Switch,
     }
 
@@ -92,6 +99,10 @@ namespace com.Sconit.SmartDevice.CodeMaster
         /// </summary>
         B,
         /// <summary>
+        /// 道口
+        /// </summary>
+        D,
+        /// <summary>
         /// 检验
         /// </summary>
         I,
@@ -116,6 +127,10 @@ namespace com.Sconit.SmartDevice.CodeMaster
         /// </summary>
         SP,
         HU,
+        /// <summary>
+        /// 配送标签
+        /// </summary>
+        DC,
         DATE,
     }
 
