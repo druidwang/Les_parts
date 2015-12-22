@@ -1,6 +1,27 @@
 ﻿@using com.Sconit.Entity.WMS;
 @model IEnumerable<com.Sconit.Entity.WMS.ShipPlan>
+           
 <script type="text/javascript">
+    $(function () {
+        $("#checkAll").click(function () {
+            $('input[name="checkedRecords"]').attr("checked", this.checked);
+            $("#btnNew").attr("style", this.checked ? "display:inline" : "display:none");
+        });
+    });
+
+    function showButtons() {
+        var $checkRecords = $("input[name='checkedRecords']");
+        var showButton = false;
+        for (var i = 0; i < $checkRecords.length; i++) {
+            if ($checkRecords[i].checked) {
+                showButton = true;
+                break;
+            }
+        }
+        $("#checkAll").attr("checked", $checkRecords.length == $("input[name='checkedRecords']:checked").length ? true : false);
+        $("#btnNew").attr("style", showButton ? "display:inline" : "display:none");
+    }
+
     function onDataBound() {
         $("tr.t-no-data td").html("@Resources.GridLocalization.NoRecords");
     }
