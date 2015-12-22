@@ -236,3 +236,14 @@ SET ANSI_PADDING OFF
 GO
 
 
+/****** Object:  UserDefinedTableType [dbo].[PickResultTableType]    Script Date: 2015/12/22 15:06:07 ******/
+DROP TYPE [dbo].[PickResultTableType]
+GO
+
+/****** Object:  UserDefinedTableType [dbo].[PickResultTableType]    Script Date: 2015/12/22 15:06:07 ******/
+CREATE TYPE [dbo].[PickResultTableType] AS TABLE(
+	[PickTaskUUID] [varchar](50) NOT NULL,
+	[HuId] [int] NULL,
+	[Qty] [decimal](18, 8) NULL
+)
+GO

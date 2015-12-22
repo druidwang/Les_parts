@@ -9,14 +9,10 @@ namespace com.Sconit.Entity.WMS
         #region O/R Mapping Properties
 
         public Int32 Id { get; set; }
-        public string PickTaskId { get; set; }
 
-        [Display(Name = "PickResult_OrderNo", ResourceType = typeof(Resources.WMS.PickResult))]
-        public string OrderNo { get; set; }
+        public Int32 PickTaskId { get; set; }
 
-        [Display(Name = "PickResult_OrderSequence", ResourceType = typeof(Resources.WMS.PickResult))]
-        public Int32? OrderSequence { get; set; }
-        public Int32? ShipPlanId { get; set; }
+        public string PickTaskUUID { get; set; }
 
         [Display(Name = "PickResult_Item", ResourceType = typeof(Resources.WMS.PickResult))]
         public string Item { get; set; }
