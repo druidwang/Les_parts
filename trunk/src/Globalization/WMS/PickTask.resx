@@ -138,6 +138,9 @@
   <data name="PickTask_CloseUserName" xml:space="preserve">
     <value>Close User</value>
   </data>
+  <data name="PickTask_Created" xml:space="preserve">
+    <value>PickTask Created</value>
+  </data>
   <data name="PickTask_CreateDate" xml:space="preserve">
     <value>Create Date</value>
   </data>

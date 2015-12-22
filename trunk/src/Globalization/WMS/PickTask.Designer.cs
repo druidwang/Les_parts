@@ -124,6 +124,15 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PickTask Created.
+        /// </summary>
+        public static string PickTask_Created {
+            get {
+                return ResourceManager.GetString("PickTask_Created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Date.
         /// </summary>
         public static string PickTask_CreateDate {

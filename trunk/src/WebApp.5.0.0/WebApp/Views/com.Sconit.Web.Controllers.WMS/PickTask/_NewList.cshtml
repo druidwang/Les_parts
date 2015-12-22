@@ -54,25 +54,20 @@
         .EnableCustomBinding(true)
                 .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxShipPlanList", "PickTask"))
                                   .ClientEvents(events => events.OnDataBinding("ShipPlanGrid_OnDataBinding"))
-        .Pageable(settings =>
-        {
-            settings.Total(ViewBag.Total == null ? 0 : ViewBag.Total);
-            settings.PageSize(ViewBag.PageSize);
-        })
-        .Sortable()
-        .Resizable(resizing => resizing.Columns(true))
+        //.Pageable(settings =>
+        //{
+        //    settings.Total(ViewBag.Total == null ? 0 : ViewBag.Total);
+        //    settings.PageSize(ViewBag.PageSize);
+        //})
+        //.Sortable()
+        //.Resizable(resizing => resizing.Columns(true))
     )
 
     <script type="text/javascript">
         function ShipPlanGrid_OnDataBinding(e) {
         e.data = {
-            Item: $('#Item').val(),
-            PartyFrom: $('#PartyFrom').val(),
-            PartyTo: $('#PartyTo').val(),
-            DateFrom: $('#DateFrom').val(),
-            DateTo: $('#DateTo').val(),
             OrderNo: $('#OrderNo').val(),
-            IsShipScanHu: $('#IsShipScanHu').is(':checked')
+            Flow:$('#OrderNo').val()
         };
     }
     </script>

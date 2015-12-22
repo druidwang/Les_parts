@@ -138,6 +138,9 @@
   <data name="PickTask_CloseUserName" xml:space="preserve">
     <value>关闭用户</value>
   </data>
+  <data name="PickTask_Created" xml:space="preserve">
+    <value>拣货任务创建成功</value>
+  </data>
   <data name="PickTask_CreateDate" xml:space="preserve">
     <value>创建日期</value>
   </data>
