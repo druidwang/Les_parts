@@ -69,6 +69,7 @@ BEGIN
 		declare @Location varchar(50)
 		declare @LocSuffix varchar(50)
 		declare @SelectInvStatement nvarchar(max)
+		declare @Parameter nvarchar(max)
 
 		select @LocationRowId = MIN(RowId), @MaxLocationRowId = MAX(RowId) from #tempLocation_010
 
@@ -85,8 +86,9 @@ BEGIN
 			set @SelectInvStatement = @SelectInvStatement + 'inner join MD_LocationBin as bin on llt.Bin = bin.Code '
 			set @SelectInvStatement = @SelectInvStatement + 'left join WMS_PickTask as pt on llt.HuId = pt.HuId and pt.IsActive = 1 '  --过滤掉被拣货单占用的条码
 			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = ''' + @Location + ''' and llt.OccupyRefNo is null and llt.Qty > 0 and llt.QualityType = 0 and pt.Id is null '
+			set @Parameter = N'@Location_1 varchar(50) '
 
-			exec sp_executesql @SelectInvStatement
+			exec sp_executesql @SelectInvStatement, @Parameter, @Location_1=@Location
 
 			set @LocationRowId = @LocationRowId + 1
 		end

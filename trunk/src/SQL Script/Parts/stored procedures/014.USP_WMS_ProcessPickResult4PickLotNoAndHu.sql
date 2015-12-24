@@ -3,14 +3,15 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-IF EXISTS(SELECT * FROM SYS.objects WHERE type='P' AND name='USP_WMS_ProcessPickResult4PickLotNo')
+IF EXISTS(SELECT * FROM SYS.objects WHERE type='P' AND name='USP_WMS_ProcessPickResult4PickLotNoAndHu')
 BEGIN
-	DROP PROCEDURE USP_WMS_ProcessPickResult4PickLotNo
+	DROP PROCEDURE USP_WMS_ProcessPickResult4PickLotNoAndHu
 END
 GO
 
-CREATE PROCEDURE dbo.USP_WMS_ProcessPickResult4PickLotNo
+CREATE PROCEDURE dbo.USP_WMS_ProcessPickResult4PickLotNoAndHu
 	@PickResultTable PickResultTableType readonly,
+	@PickBy tinyint,
 	@CreateUserId int,
 	@CreateUserNm varchar(100)
 AS
@@ -56,6 +57,7 @@ BEGIN
 		OrderQty decimal(18, 8),
 		PickQty decimal(18, 8),
 		ThisPickQty decimal(18, 8),
+		UC decimal(18, 8),
 		[Version] int
 	)
 
@@ -81,7 +83,7 @@ BEGIN
 		[Version] int,
 	)
 
-	create table #tempHuInventory_016
+	create table #tempHuInventory_015
 	(
 		LocationLotDetId int primary key,
 		HuId varchar(50),
@@ -125,30 +127,30 @@ BEGIN
 			
 			insert into #tempLocation_014(Location, Suffix)
 			select distinct l.Code, l.PartSuffix 
-			from #tempHuInventory_016 as inv inner join MD_Location as l on inv.Location = l.Code
+			from #tempHuInventory_015 as inv inner join MD_Location as l on inv.Location = l.Code
 
 			insert into #tempMsg_014(Lvl, Msg)
 			select 2, N'条码['+ pr.HuId + N']在库位['+ pt.Loc + N']中不存在。'
-			from @PickResultTable as pr left join #tempHuInventory_016 as inv on pr.HuId = inv.HuId
-			inner join WMS_PickTask as pt on pr.PickTaskUUID = pt.UUID
+			from @PickResultTable as pr left join #tempHuInventory_015 as inv on pr.HuId = inv.HuId
+			inner join WMS_PickTask as pt on pr.PickTaskId = pt.Id
 			where inv.HuId is null
 
 			insert into #tempMsg_014(Lvl, Msg)
 			select 2, N'条码['+ pr.HuId + N']不在库格上。'
-			from @PickResultTable as pr left join #tempHuInventory_016 as inv on pr.HuId = inv.HuId
-			inner join WMS_PickTask as pt on pr.PickTaskUUID = pt.UUID
+			from @PickResultTable as pr left join #tempHuInventory_015 as inv on pr.HuId = inv.HuId
+			inner join WMS_PickTask as pt on pr.PickTaskId = pt.Id
 			where inv.Bin is null
 
 			insert into #tempMsg_014(Lvl, Msg)
 			select 2, N'拣货任务['+ convert(varchar, pt.Id) + N']的物料代码['+ pt.Item + N']和条码['+ inv.HuId + N']的物料代码['+ inv.Item + N']不匹配。'
-			from @PickResultTable as pr inner join #tempHuInventory_016 as inv on pr.HuId = inv.HuId
-			inner join WMS_PickTask as pt on pr.PickTaskUUID = pt.UUID
+			from @PickResultTable as pr inner join #tempHuInventory_015 as inv on pr.HuId = inv.HuId
+			inner join WMS_PickTask as pt on pr.PickTaskId = pt.Id
 			where inv.Item <> pt.Item
 
 			insert into #tempMsg_014(Lvl, Msg)
 			select 2, N'拣货任务['+ convert(varchar, pt.Id) + N']物料代码['+ pt.Item + N']的单位['+ pt.Uom + N']和条码['+ inv.HuId + N']物料代码['+ inv.Item + N']的单位['+ pt.Uom + N']不匹配。'
-			from @PickResultTable as pr inner join #tempHuInventory_016 as inv on pr.HuId = inv.HuId
-			inner join WMS_PickTask as pt on pr.PickTaskUUID = pt.UUID
+			from @PickResultTable as pr inner join #tempHuInventory_015 as inv on pr.HuId = inv.HuId
+			inner join WMS_PickTask as pt on pr.PickTaskId = pt.Id
 			where inv.Uom <> pt.Uom
 
 			if not exists(select top 1 1 from #tempMsg_014)
@@ -157,19 +159,19 @@ BEGIN
 												Uom, BaseUom, UC, UCDesc, UnitQty, Loc, Area, Bin, Qty)
 				select pt.Id, pt.UUID, inv.HuId, inv.LotNo, inv.Item, inv.ItemDesc, inv.RefItemCode, 
 				inv.Uom, inv.BaseUom, inv.UC, inv.UCDesc, inv.UnitQty, inv.Location, inv.Area, inv.Bin, inv.Qty
-				from @PickResultTable as pr inner join #tempHuInventory_016 as inv on pr.HuId = inv.HuId
-				inner join WMS_PickTask as pt on pr.PickTaskUUID = pt.UUID
+				from @PickResultTable as pr inner join #tempHuInventory_015 as inv on pr.HuId = inv.HuId
+				inner join WMS_PickTask as pt on pr.PickTaskId = pt.Id
 
-				insert into #tempPickTask_014(PickTaskID, PickTaskUUID, OrderQty, PickQty, ThisPickQty, [Version])
-				select tp.Id, tp.UUID, tp.OrderQty, tp.PickQty, 0, tp.[Version]
+				insert into #tempPickTask_014(PickTaskID, PickTaskUUID, OrderQty, PickQty, ThisPickQty, UC, [Version])
+				select distinct pt.Id, pt.UUID, pt.OrderQty, pt.PickQty, 0, pt.UC, pt.[Version]
 				from @PickResultTable as tmp 
-				inner join WMS_PickTask as tp on tmp.PickTaskUUID = tp.UUID
+				inner join WMS_PickTask as pt on tmp.PickTaskId = pt.Id
 
 				update pt set ThisPickQty = tmp.Qty
 				from #tempPickTask_014 as pt 
-				inner join (select PickTaskUUID, SUM(Qty) as Qty 
+				inner join (select PickTaskId, SUM(Qty) as Qty 
 							from @PickResultTable 
-							group by PickTaskUUID) as tmp on pt.PickTaskUUID = tmp.PickTaskUUID
+							group by PickTaskId) as tmp on pt.PickTaskId = tmp.PickTaskId
 
 				insert into #tempPickOccupy_014(Id, PickTaskUUID, ShipPlanId, OccupyQty, ReleaseQty, ThisReleaseQty, ThisLockQty, [Version])
 				select po.Id, po.UUID, po.ShipPlanId, po.OccupyQty, po.ReleaseQty, 0, 0, po.[Version]
@@ -186,25 +188,26 @@ BEGIN
 				declare @PickTaskId int
 				declare @PickTaskUUID varchar(50)
 				declare @Qty decimal(18, 8)
-				declare @UC decimal(18, 8)
+				declare @IsOdd bit
 				declare @LastQty decimal(18, 8)
 				select @RowId = MIN(RowId), @MaxRowId = MAX(RowId) from #tempPickResult_014
 				while @RowId <= @MaxRowId
 				begin
 					set @LastQty = 0
-					select @PickTaskId = PickTaskId, @PickTaskUUID = PickTaskUUID, @Qty = Qty, @UC = UC
-					from #tempPickResult_014 where RowId = @RowId
+					select @PickTaskId = pr.PickTaskId, @PickTaskUUID = pr.PickTaskUUID, @Qty = pr.Qty, @IsOdd = CASE WHEN pt.UC = pr.UC THEN 0 ELSE 1 END
+					from #tempPickResult_014 as pr inner join #tempPickTask_014 as pt on pr.PickTaskUUID = pt.PickTaskUUID 
+					where pr.RowId = @RowId
 
-					update #tempPickOccupy_014 set ThisReleaseQty = ThisReleaseQty + @LastQty, ThisLockQty = ThisLockQty + CASE WHEN @UC = @Qty THEN @LastQty ELSE 0 END,
+					update #tempPickOccupy_014 set ThisReleaseQty = ThisReleaseQty + @LastQty, ThisLockQty = ThisLockQty + CASE WHEN @IsOdd = 0 THEN @LastQty ELSE 0 END,
 					@Qty = @Qty - @LastQty, @LastQty = CASE WHEN @Qty >= OccupyQty - ReleaseQty - ThisReleaseQty THEN OccupyQty - ReleaseQty - ThisReleaseQty ELSE @Qty END
 					where PickTaskUUID = @PickTaskUUID
 					set @Qty = @Qty - @LastQty
 
-					if (@Qty > 0)
-					begin
-						insert into #tempMsg_014(Lvl, Msg)
-						values (2, N'拣货任务['+ convert(varchar, @PickTaskId) + N']的已拣数已经超过了对应发运单的拣货数。')
-					end
+					--if (@Qty > 0)
+					--begin
+					--	insert into #tempMsg_014(Lvl, Msg)
+					--	values (2, N'拣货任务['+ convert(varchar, @PickTaskId) + N']的已拣数已经超过了对应发运单的拣货数。')
+					--end
 
 					set @RowId = @RowId + 1
 				end
@@ -213,9 +216,9 @@ BEGIN
 				from #tempShipPlan_014 as sp 
 				inner join (select ShipPlanId, SUM(ThisReleaseQty) as ThisReleaseQty, SUM(ThisLockQty) as ThisLockQty 
 							from #tempPickOccupy_014 group by ShipPlanId) as po on po.ShipPlanId = sp.ShipPlanId
-		
+
 				insert into #tempMsg_014(Lvl, Msg)
-				select 2, N'和拣货任务关联的发运任务['+ convert(varchar, ShipPlanId) + N']的已拣数已经超过了待拣数。'
+				select 2, N'拣货任务关联的发运任务['+ convert(varchar, ShipPlanId) + N']的已拣数已经超过了待拣数。'
 				from #tempShipPlan_014 where PickQty < PickedQty + ThisPickedQty
 			end
 		end try
@@ -274,13 +277,14 @@ BEGIN
 				Area, Bin, LotNo, HuId, @CreateUserId, @CreateUserNm, @CreateUserId, @CreateUserNm, @DateTimeNow, 0 
 				from #tempPickResult_014
 
-				insert into WMS_BuffInv(UUID, Loc, IOType, Item, UC, Qty, LotNo, HuId, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
-				select NEWID(), Location, 1, Item, UC, Qty * UnitQty, LotNo, HuId, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
-				from #tempHuInventory_016
+				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, LotNo, HuId, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
+				select NEWID(), Location, 1, Item, Uom, UC, Qty * UnitQty, LotNo, HuId, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
+				from #tempHuInventory_015
 
 				declare @Location varchar(50)
 				declare @Suffix varchar(50)
 				declare @UpdateInvStatement nvarchar(max)
+				declare @Parameter nvarchar(max)
 
 				select @RowId = MIN(RowId), @MaxRowId = MAX(RowId) from #tempLocation_014
 				while (@RowId <= @MaxRowId)
@@ -288,16 +292,17 @@ BEGIN
 					select @Location = Location, @Suffix = Suffix from #tempLocation_014 where RowId = @RowId
 
 					set @UpdateInvStatement = 'declare @UpdateCount int '
-					set @UpdateInvStatement = @UpdateInvStatement + 'select @UpdateCount = COUNT(1) from #tempHuInventory_016 where Location = ''' + @Location + ''' '
-					set @UpdateInvStatement = @UpdateInvStatement + 'update lld set Bin = null, LastModifyUser = ' + @CreateUserId + ', LastModifyUserNm = ''' + @CreateUserNm + ''', LastModifyDate = ''' + @DateTimeNow + ''', [Version] = lld.[Version] + 1 '
-					set @UpdateInvStatement = @UpdateInvStatement + 'from INV_LocationLotDet as lld '
-					set @UpdateInvStatement = @UpdateInvStatement + 'inner join #tempHuInventory_016 as inv on lld.Id = inv.LocationLotDetId and lld.[Version] = inv.[Version] '
+					set @UpdateInvStatement = @UpdateInvStatement + 'select @UpdateCount = COUNT(1) from #tempHuInventory_015 where Location = @Location_1 '
+					set @UpdateInvStatement = @UpdateInvStatement + 'update lld set Bin = null, LastModifyUser = @CreateUserId_1, LastModifyUserNm = @CreateUserNm_1, LastModifyDate = @DateTimeNow_1, [Version] = lld.[Version] + 1 '
+					set @UpdateInvStatement = @UpdateInvStatement + 'from INV_LocationLotDet_' + @Suffix + ' as lld '
+					set @UpdateInvStatement = @UpdateInvStatement + 'inner join #tempHuInventory_015 as inv on lld.Id = inv.LocationLotDetId and lld.[Version] = inv.[Version] '
 					set @UpdateInvStatement = @UpdateInvStatement + 'if (@@ROWCOUNT <> @UpdateCount) '
 					set @UpdateInvStatement = @UpdateInvStatement + 'begin '
 					set @UpdateInvStatement = @UpdateInvStatement + 'RAISERROR(N''数据已经被更新，请重试。'', 16, 1) '
 					set @UpdateInvStatement = @UpdateInvStatement + 'end'
+					set @Parameter = N'@Location_1 varchar(50), @CreateUserId_1 int, @CreateUserNm_1 varchar(100), @DateTimeNow_1 datetime'
 
-					exec sp_executesql @UpdateInvStatement
+					exec sp_executesql @UpdateInvStatement, @Parameter, @Location_1=@Location, @CreateUserId_1=@CreateUserId, @CreateUserNm_1=@CreateUserNm, @DateTimeNow_1=@DateTimeNow
 
 					set @RowId = @RowId + 1
 				end
@@ -328,6 +333,6 @@ BEGIN
 	drop table #tempPickTask_014
 	drop table #tempPickOccupy_014
 	drop table #tempShipPlan_014
-	drop table #tempHuInventory_016
+	drop table #tempHuInventory_015
 END
 GO

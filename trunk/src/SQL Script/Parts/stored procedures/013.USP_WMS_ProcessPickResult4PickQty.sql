@@ -84,7 +84,7 @@ BEGIN
 			insert into #tempPickTask_013(PickTaskId, PickTaskUUID, Loc, Item, ItemDesc, RefItemCode, Uom, BaseUom, UC, UCDesc, UnitQty, OrderQty, PickQty, ThisPickQty, [Version])
 			select distinct tp.Id, tp.UUID, tp.Loc, tp.Item, tp.ItemDesc, tp.RefItemCode, tp.Uom, tp.BaseUom, tp.UC, tp.UCDesc, tp.UnitQty, tp.OrderQty, tp.PickQty, tmp.Qty, tp.[Version]
 			from @PickResultTable as tmp 
-			inner join WMS_PickTask as tp on tmp.PickTaskUUID = tp.UUID
+			inner join WMS_PickTask as tp on tmp.PickTaskId = tp.Id
 
 			insert into #tempPickOccupy_013(Id, PickTaskUUID, ShipPlanId, OccupyQty, ReleaseQty, ThisReleaseQty, [Version])
 			select po.Id, po.UUID, po.ShipPlanId, po.OccupyQty, po.ReleaseQty, 0, po.[Version]
@@ -187,8 +187,8 @@ BEGIN
 				@CreateUserId, @CreateUserNm, @CreateUserId, @CreateUserNm, @DateTimeNow, 0 
 				from #tempPickTask_013
 
-				insert into WMS_BuffInv(UUID, Loc, IOType, Item, UC, Qty, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
-				select NEWID(), Loc, 1, Item, UC, ThisPickQty * UnitQty, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
+				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
+				select NEWID(), Loc, 1, Item, Uom, UC, ThisPickQty * UnitQty, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
 				from #tempPickTask_013
 
 				if @Trancount = 0 

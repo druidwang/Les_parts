@@ -424,9 +424,9 @@ BEGIN
 				1, 1, 0, NeedRepack, IsOdd
 				from #tempPickTask_003
 
-				insert into WMS_PickOccupy(UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty, 
+				insert into WMS_PickOccupy(UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty, ReleaseQty,
 				CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
-				select UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty,
+				select UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty, 0,
 				@CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1
 				from #tempPickOccupy_003
 			end

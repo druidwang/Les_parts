@@ -63,7 +63,7 @@ BEGIN
 
 		insert into #tempPickResult_015(HuId, Location)
 		select tmp.HuId, pt.Loc from @PickResultTable as tmp 
-		inner join WMS_PickTask as pt on tmp.PickTaskUUID = pt.Id
+		inner join WMS_PickTask as pt on tmp.PickTaskId = pt.Id
 
 		insert into #tempLocation_015(Location, Suffix) 
 		select distinct pr.Location, l.PartSuffix
@@ -74,6 +74,7 @@ BEGIN
 		declare @Location varchar(50)
 		declare @Suffix varchar(50)
 		declare @SelectInvStatement nvarchar(max)
+		declare @Parameter nvarchar(max)
 
 		select @RowId = MIN(RowId), @MaxRowId = MAX(RowId) from #tempLocation_015
 		while (@RowId <= @MaxRowId)
@@ -86,9 +87,10 @@ BEGIN
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on pr.HuId = hu.HuId '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @Suffix + ' as lld on lld.HuId = hu.HuId '
 			set @SelectInvStatement = @SelectInvStatement + 'left join MD_LocationBin as bin on lld.Bin = bin.Code '
-			set @SelectInvStatement = @SelectInvStatement + 'where pr.Location = ''' + @Location + ''' and lld.Location = ''' + @Location + ''' and lld.Qty > 0 '
+			set @SelectInvStatement = @SelectInvStatement + 'where pr.Location = @Location_1 and lld.Location = @Location_1 and lld.Qty > 0 '
+			set @Parameter = N'@Location_1 varchar(50) '
 	
-			exec sp_executesql @SelectInvStatement
+			exec sp_executesql @SelectInvStatement, @Parameter, @Location_1=@Location
 
 			set @RowId = @RowId + 1
 		end

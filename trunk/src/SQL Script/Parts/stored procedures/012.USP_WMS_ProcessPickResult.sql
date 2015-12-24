@@ -64,11 +64,19 @@ BEGIN
 			insert into #tempPickTask_012(PickTaskId, PickTaskUUID, OrderQty, PickQty, ThisPickQty, IsPickHu, PickBy, IsActive)
 			select distinct sp.Id, sp.UUID, sp.OrderQty, sp.PickQty, 0, sp.IsPickHu, sp.PickBy, sp.IsActive
 			from @PickResultTable as tmp 
-			inner join WMS_PickTask as sp on tmp.PickTaskUUID = sp.UUID
+			inner join WMS_PickTask as sp on tmp.PickTaskId = sp.Id
 
-			update pt set ThisPickQty = SUM(tmp.PickQty)
+			update pt set ThisPickQty = tmp.PickQty
 			from #tempPickTask_012 as pt
-			inner join (select PickTaskUUID, SUM(Qty) as PickQty from @PickResultTable group by PickTaskUUID) as tmp on pt.PickTaskUUID = tmp.PickTaskUUID
+			inner join (select PickTaskId, SUM(Qty) as PickQty 
+						from @PickResultTable where HuId is null 
+						group by PickTaskId) as tmp on pt.PickTaskId = tmp.PickTaskId
+
+			update pt set ThisPickQty = tmp.PickQty
+			from #tempPickTask_012 as pt
+			inner join (select PickTaskId, SUM(hu.Qty) as PickQty 
+						from @PickResultTable as pr inner join INV_Hu as hu on pr.HuId = hu.HuId 
+						group by PickTaskId) as tmp on pt.PickTaskId = tmp.PickTaskId
 
 			insert into #tempMsg_012(Lvl, Msg)
 			select 2, N'拣货任务['+ convert(varchar, PickTaskId) + N']已经关闭。'
@@ -84,17 +92,21 @@ BEGIN
 				declare @PickResult4PickLotNoTable PickResultTableType
 				declare @PickResult4PickHuTable PickResultTableType
 
-				insert into @PickResult4PickQtyTable(PickTaskUUID, Qty) 
-				select PickTaskUUID, ThisPickQty from #tempPickTask_012 where IsPickHu = 0
+				insert into @PickResult4PickQtyTable(PickTaskId, Qty) 
+				select PickTaskId, ThisPickQty from #tempPickTask_012 where IsPickHu = 0
 				
-				insert into @PickResult4PickLotNoTable(PickTaskUUID, HuId, Qty) 
-				select tmp.PickTaskUUID, tmp.HuId, tmp.Qty from #tempPickTask_012 as pt 
-				inner join @PickResultTable as tmp on pt.PickTaskUUID = tmp.PickTaskUUID 
+				insert into @PickResult4PickLotNoTable(PickTaskId, HuId, Qty) 
+				select tmp.PickTaskId, hu.HuId, hu.Qty
+				from #tempPickTask_012 as pt 
+				inner join @PickResultTable as tmp on pt.PickTaskId = tmp.PickTaskId 
+				inner join INV_Hu as hu on tmp.HuId = hu.HuId 
 				where IsPickHu = 1 and PickBy = 0
 				
-				insert into @PickResult4PickHuTable(PickTaskUUID, HuId, Qty)
-				select tmp.PickTaskUUID, tmp.HuId, tmp.Qty from #tempPickTask_012 as pt 
-				inner join @PickResultTable as tmp on pt.PickTaskId = tmp.PickTaskUUID 
+				insert into @PickResult4PickHuTable(PickTaskId, HuId, Qty)
+				select tmp.PickTaskId, hu.HuId, hu.Qty 
+				from #tempPickTask_012 as pt 
+				inner join @PickResultTable as tmp on pt.PickTaskId = tmp.PickTaskId 
+				inner join INV_Hu as hu on tmp.HuId = hu.HuId 
 				where IsPickHu = 1 and PickBy = 1
 
 				if exists(select top 1 1 from @PickResult4PickQtyTable)
