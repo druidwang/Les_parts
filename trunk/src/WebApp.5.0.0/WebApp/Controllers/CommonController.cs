@@ -98,6 +98,14 @@
 
         private static string selectEqTaskAddressStatement = "from TaskAddress as t where t.Code = ?";
 
+        private static string selectEqPickGroupStatement = "from PickGroup as p where p.PickGroupCode = ? and p.Type = ?";
+
+        private static string selectLikePickGroupStatement = "from PickGroup as p where p.PickGroupCode like ? and p.Type = ?";
+
+        private static string selectEqPickUserStatement = "from PickUser as p where p.PickUserName = ? and p.PickGroupCode = ?";
+
+        private static string selectLikePickUserStatement = "from PickUser as p where p.PickGroupCode = ? and p.PickUserName like ?";
+
         #endregion
 
         //public IGenericMgr genericMgr { get; set; }
@@ -3396,6 +3404,100 @@
         }
         #endregion
 
+        #region PickGroup
+        public ActionResult _PickGroupComboBox(string controlName, string controlId, string selectedValue, bool? enable, bool? isChange, bool? includeBlankOption, int type)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Enable = enable;
+            ViewBag.IncludeBlankOption = includeBlankOption;
+            ViewBag.Type = type;
+            ViewBag.isChange = isChange;
+            IList<PickGroup> pickGroupList = new List<PickGroup>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+                pickGroupList = queryMgr.FindAll<PickGroup>(selectEqPickGroupStatement, new object[] { selectedValue, type });
+            }
+            return PartialView(new SelectList(pickGroupList, "PickGroupCode", "Description", selectedValue));
+        }
+
+        public ActionResult _PickGroupAjaxLoading(string text, int type, bool? includeBlankOption)
+        {
+
+            IList<PickGroup> pickGroupList = new List<PickGroup>();
+            IList<object> paramList = new List<object>();
+            string hql = "from PickGroup p where p.Type = ?";
+            paramList.Add(type);
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                hql += "  and p.PickGroupCode like ? ";
+                paramList.Add(text + "%");
+            }
+
+            pickGroupList = base.genericMgr.FindAll<PickGroup>(hql, paramList.ToArray(), firstRow, maxRow);
+            if (includeBlankOption.HasValue && includeBlankOption.Value)
+            {
+                pickGroupList.Insert(0, new PickGroup());
+            }
+
+            return new JsonResult
+            {
+                Data = new SelectList(pickGroupList, "PickGroupCode", "Description")
+            };
+        }
+
+    
+
+        #endregion
+
+
+        #region PickUser
+        public ActionResult _PickUserComboBox(string controlName, string controlId, string selectedValue, bool? enable, bool? includeBlankOption, string pickGroupCode)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Enable = enable;
+            ViewBag.IncludeBlankOption = includeBlankOption;
+            ViewBag.PickGroupCode = pickGroupCode;
+
+            IList<PickUser> pickUserList = new List<PickUser>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+                pickUserList = queryMgr.FindAll<PickUser>(selectEqPickUserStatement, new object[] { selectedValue, pickGroupCode });
+            }
+            return PartialView(new SelectList(pickUserList, "PickUserId", "PickUserName", selectedValue));
+        }
+
+        public ActionResult _PickUserAjaxLoading(string text, string pickGroupCode, bool? includeBlankOption)
+        {
+
+            IList<PickUser> pickUserList = new List<PickUser>();
+            IList<object> paramList = new List<object>();
+            string hql = "from PickUser p where p.PickGroupCode = ?";
+            paramList.Add(pickGroupCode);
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                hql += "  and p.PickUserName like ? ";
+                paramList.Add(text + "%");
+            }
+
+            pickUserList = base.genericMgr.FindAll<PickUser>(hql, paramList.ToArray(), firstRow, maxRow);
+            if (includeBlankOption.HasValue && includeBlankOption.Value)
+            {
+                pickUserList.Insert(0, new PickUser());
+            }
+
+            return new JsonResult
+            {
+                Data = new SelectList(pickUserList, "PickUserId", "PickUserName")
+            };
+        }
+
+
+
+        #endregion
         #endregion
 
         #region CostCenter

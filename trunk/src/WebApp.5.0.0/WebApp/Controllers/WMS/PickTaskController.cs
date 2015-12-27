@@ -179,46 +179,76 @@ namespace com.Sconit.Web.Controllers.WMS
 
         #region 分派
         [SconitAuthorize(Permissions = "Url_PickTask_Assign")]
-        public ActionResult AssignIndex()
+        public ActionResult Assign()
         {
             return View();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="searchModel"></param>
-        /// <returns></returns>
-        [GridAction(EnableCustomBinding = true)]
         [SconitAuthorize(Permissions = "Url_PickTask_Assign")]
-        public ActionResult AssignList(GridCommand command, PickTaskSearchModel searchModel)
+        public ActionResult _PickTaskList(string pickGroupCode)
         {
-            SearchCacheModel searchCacheModel = this.ProcessSearchModel(command, searchModel);
-            ViewBag.PageSize = base.ProcessPageSize(command.PageSize);
-            return View();
+        
+            ViewBag.pickGroupCode = pickGroupCode;
+
+            if (!string.IsNullOrEmpty(pickGroupCode))
+            {
+                PickGroup pickGroup = genericMgr.FindById<PickGroup>(pickGroupCode);
+            }
+           
+            return PartialView();
+        }
+
+        [GridAction]
+        [SconitAuthorize(Permissions = "Url_PickTask_Assign")]
+        public ActionResult _SelectAssignBatchEditing(string pickGroupCode)
+        {
+            IList<PickTask> pickTaskList = new List<PickTask>();
+
+            if (!string.IsNullOrEmpty(pickGroupCode))
+            {
+                string pickGroupSql = "select r from PickRule as r where r.PickGroupCode = ?";
+                IList<PickRule> pickRuleList = genericMgr.FindAll<PickRule>(pickGroupSql, pickGroupCode);
+
+                if (pickRuleList != null && pickRuleList.Count > 0)
+                {
+                    string pickRuleSql = string.Empty;
+                    IList<object> param = new List<object>();
+
+                    foreach (PickRule r in pickRuleList)
+                    {
+                        if (string.IsNullOrEmpty(pickRuleSql))
+                        {
+                            pickRuleSql += "select p from PickTask as p where p.Location in (?";
+                            param.Add(r.Location);
+                        }
+                        else
+                        {
+                            pickRuleSql += ",?";
+                            param.Add(r.Location);
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(pickRuleSql))
+                    {
+                        pickRuleSql += ")";
+                    }
+
+                       pickTaskList = genericMgr.FindAll<PickTask>(pickRuleSql, param.ToList());
+                }
+
+
+             
+             
+            }
+            return View(new GridModel(pickTaskList));
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="command"></param>
-        /// <param name="searchModel"></param>
-        /// <returns></returns>
-        [GridAction(EnableCustomBinding = true)]
-        [SconitAuthorize(Permissions = "Url_PickTask_Assign")]
-        public ActionResult _AjaxAssignPlanList(GridCommand command, PickTaskSearchModel searchModel)
-        {
-            SearchStatementModel searchStatementModel = PrepareAssignSearchStatement(command, searchModel);
-            return PartialView(GetAjaxPageData<PickTask>(searchStatementModel, command));
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <returns></returns>
         [SconitAuthorize(Permissions = "Url_PickTask_Assign")]
-        public ActionResult Assign(String checkedPickTasks,String assignUser)
+        public ActionResult AssignPickTask(String checkedPickTasks, String assignUser)
         {
             try
             {
@@ -300,19 +330,7 @@ namespace com.Sconit.Web.Controllers.WMS
            
             string whereStatement = " where p.PickUserId is null "; 
             IList<object> param = new List<object>();
-            HqlStatementHelper.AddEqStatement("Location", searchModel.Location, "p", ref whereStatement, param);
-            HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "p", ref whereStatement, param);
-           
-
-            if (searchModel.DateFrom != null)
-            {
-                HqlStatementHelper.AddGeStatement("CreateDate", searchModel.DateFrom, "p", ref whereStatement, param);
-            }
-            if (searchModel.DateTo != null)
-            {
-                HqlStatementHelper.AddLtStatement("CreateDate", searchModel.DateTo.Value.AddDays(1), "p", ref whereStatement, param);
-            }
-
+            HqlStatementHelper.AddEqStatement("PickGroupCode", searchModel.PickGroup, "p", ref whereStatement, param);
            
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
             SearchStatementModel searchStatementModel = new SearchStatementModel();

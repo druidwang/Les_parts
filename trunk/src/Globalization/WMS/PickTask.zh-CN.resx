@@ -207,4 +207,10 @@
   <data name="PickTask_WindowTime" xml:space="preserve">
     <value>窗口时间</value>
   </data>
+  <data name="PickTask_PickGroupCode" xml:space="preserve">
+    <value>拣货组</value>
+  </data>
+  <data name="PickTask_PickTaskList" xml:space="preserve">
+    <value>拣货任务明细</value>
+  </data>
 </root>

@@ -207,4 +207,10 @@
   <data name="PickTask_WindowTime" xml:space="preserve">
     <value>WindowTime</value>
   </data>
+  <data name="PickTask_PickGroupCode" xml:space="preserve">
+    <value>PickGroupCode</value>
+  </data>
+  <data name="PickTask_PickTaskList" xml:space="preserve">
+    <value>PickTaskList</value>
+  </data>
 </root>
