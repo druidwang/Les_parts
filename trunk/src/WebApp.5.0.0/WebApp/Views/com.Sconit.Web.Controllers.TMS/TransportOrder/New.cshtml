@@ -107,7 +107,7 @@
                 routeAddrs.push(gridroute.data[i]["ShipAddress"]);
             }
         }
-            
+        
         var ordermstr = {
             Flow:$("#Flow").val(),
             ExternalOrderNo:$("#ExternalOrderNo").val(),
@@ -115,6 +115,13 @@
             TransportMode:$("#TransportMode").val(),
             Tonnage:$("#Tonnage").val(),
             Driver: $("#Driver").val(),
+            Vehicle: $("#Vehicle").val(),
+            LicenseNo: $("#LicenseNo").val(),
+            DriverMobilePhone: $("#DriverMobilePhone").val(),
+            LoadVolume: $("#LoadVolume").val(),
+            LoadWeight: $("#LoadWeight").val(),
+            MultiSitePick: $("#MultiSitePick").is(':checked'),
+            IsAutoRelease: $("#IsAutoRelease").is(':checked'),
             ipNos: ipNos,
             routeSeqs: routeSeqs,
             routeAddrs: routeAddrs,

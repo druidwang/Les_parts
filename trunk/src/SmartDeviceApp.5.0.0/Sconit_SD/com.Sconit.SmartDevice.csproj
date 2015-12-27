@@ -59,6 +59,24 @@
     <Compile Include="AppExecutionManager.cs" />
     <Compile Include="CodeMaster.cs" />
     <Compile Include="BusinessException.cs" />
+    <Compile Include="UCWMSTransfer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCWMSTransfer.Designer.cs">
+      <DependentUpon>UCWMSTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCWMSDeliveryBarCode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCWMSDeliveryBarCode.Designer.cs">
+      <DependentUpon>UCWMSDeliveryBarCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCWMSDeliveryBarCode111.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCWMSDeliveryBarCode111.Designer.cs">
+      <DependentUpon>UCWMSDeliveryBarCode111.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCWMSPickGoods.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -127,6 +145,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UCWMSTransfer.resx">
+      <DependentUpon>UCWMSTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCWMSDeliveryBarCode.resx">
+      <DependentUpon>UCWMSDeliveryBarCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCWMSDeliveryBarCode111.resx">
+      <DependentUpon>UCWMSDeliveryBarCode111.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCWMSPickGoods.resx">
       <DependentUpon>UCWMSPickGoods.cs</DependentUpon>
     </EmbeddedResource>
@@ -421,6 +448,9 @@
     <Content Include="favicon.ico" />
     <None Include="ClassDiagram1.cd" />
     <None Include="Web References\SmartDeviceRef\Bin.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SmartDeviceRef\DeliverBarCode.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\SmartDeviceRef\FlowMaster.datasource">

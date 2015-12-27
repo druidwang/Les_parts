@@ -182,9 +182,9 @@ BEGIN
 				1, 0, 0, 0, 0
 				from #tempPickTask_002
 
-				insert into WMS_PickOccupy(UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty, 
+				insert into WMS_PickOccupy(UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty, ReleaseQty,
 				CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
-				select UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OrderQty,
+				select UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OrderQty, 0,
 				@CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1
 				from #tempPickTask_002
 			end

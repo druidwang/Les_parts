@@ -4,10 +4,8 @@
 		<id name="Id" column="Id" type="Int32" unsaved-value="0" >
       		<generator class="identity" />
         </id>
-		<property name="PickTaskId" column="PickTaskId" type="String" length="50"/>
-        <property name="OrderNo" column="OrderNo" type="String" length="50"/>	
-		<property name="OrderSequence" column="OrderSeq" type="Int32"/>	
-		<property name="ShipPlanId" column="ShipPlanId" type="Int32"/>	
+        <property name="PickTaskId" column="PickTaskId" type="Int32"/>
+        <property name="PickTaskUUID" column="PickTaskUUID" type="String" length="50"/>
 		<property name="Item" column="Item" type="String" length="50"/>	
 		<property name="ItemDescription" column="ItemDesc" type="String" length="100"/>	
 		<property name="ReferenceItemCode" column="RefItemCode" type="String" length="50"/>	
@@ -24,7 +22,6 @@
 		<property name="HuId" column="HuId" type="String" length="50"/>	
 		<property name="PickUserId" column="PickUserId" type="Int32"/>	
 		<property name="PickUserName" column="PickUserNm" type="String" length="100"/>	
-		<property name="PickDate" column="PickDate" type="DateTime"/>	
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	

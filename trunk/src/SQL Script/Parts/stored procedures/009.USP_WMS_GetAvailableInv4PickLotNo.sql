@@ -80,6 +80,7 @@ BEGIN
 		declare @Location varchar(50)
 		declare @LocSuffix varchar(50)
 		declare @SelectInvStatement nvarchar(max)
+		declare @Parameter nvarchar(max)
 
 		select @LocationRowId = MIN(RowId), @MaxLocationRowId = MAX(RowId) from #tempLocation_009
 
@@ -94,7 +95,7 @@ BEGIN
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @LocSuffix + ' as llt on sp.Location = llt.Location and sp.Item = llt.Item '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on llt.HuId = hu.HuId '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join MD_LocationBin as bin on llt.Bin = bin.Code '
-			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = ' + @Location + ' and llt.OccupyRefNo is null and llt.Qty > 0 and llt.QualityType = 0 and hu.Qty = hu.UC '
+			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = @Location_1 and llt.OccupyRefNo is null and llt.Qty > 0 and llt.QualityType = 0 and hu.Qty = hu.UC '
 			set @SelectInvStatement = @SelectInvStatement + 'group by sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin '
 			set @SelectInvStatement = @SelectInvStatement + 'union all '
 			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin, hu.Qty, 0 as OccupyQty, 1 as IsOdd '
@@ -102,9 +103,10 @@ BEGIN
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @LocSuffix + ' as llt on sp.Location = llt.Location and sp.Item = llt.Item ' 
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on llt.HuId = hu.HuId '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join MD_LocationBin as bin on llt.Bin = bin.Code '
-			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = ' + @Location + ' and llt.OccupyRefNo is null and llt.Qty > 0 and llt.QualityType = 0 and hu.Qty <> hu.UC'
+			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = @Location_1 and llt.OccupyRefNo is null and llt.Qty > 0 and llt.QualityType = 0 and hu.Qty <> hu.UC'
+			set @Parameter = N'@Location_1 varchar(50), '
 
-			exec sp_executesql @SelectInvStatement
+			exec sp_executesql @SelectInvStatement, @Parameter, @Location_1=@Location
 
 			set @LocationRowId = @LocationRowId + 1
 		end

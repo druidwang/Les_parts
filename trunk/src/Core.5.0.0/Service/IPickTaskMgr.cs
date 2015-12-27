@@ -11,6 +11,8 @@ namespace com.Sconit.Service
     {
         void CreatePickTask(IDictionary<int, decimal> shipPlanIdAndQtyDic);
 
-        void PorcessPick(Dictionary<int,List<Hu>> pickResults);
+        void PorcessPickResult4PickQty(Dictionary<int, decimal> pickResults);
+
+        void PorcessPickResult4PickLotNoAndHu(Dictionary<int, string> pickResults);
     }
 }

@@ -408,8 +408,6 @@
     <Compile Include="Models\SearchModels\MRP\MrpExWorkHourSearchModel.cs" />
     <Compile Include="Models\ORD\ScheduleView.cs" />
     <Compile Include="Models\ORD\WebOrderDetail.cs" />
-    <Compile Include="Controllers\WMS\DeliveryBarCodeController.cs" />
-    <Compile Include="Models\SearchModels\WMS\DeliveryBarCodeSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickUserSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickRuleSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickGroupSearchModel.cs" />

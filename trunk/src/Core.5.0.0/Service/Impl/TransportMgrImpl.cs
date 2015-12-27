@@ -13,7 +13,7 @@ using com.Sconit.Entity;
 namespace com.Sconit.Service.Impl
 {
     [Transactional]
-    public class TransportMgrImple : BaseMgr, ITransportMgr
+    public class TransportMgrImpl : BaseMgr, ITransportMgr
     {
         public INumberControlMgr numberControlMgr { get; set; }
         public ISystemMgr systemMgr { get; set; }
@@ -76,29 +76,29 @@ namespace com.Sconit.Service.Impl
                 transportOrderMaster.MultiSitePick = transportFlowMaster.MultiSitePick;
             }
 
-            IList<TransportFlowRoute> transportFlowRouteList = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute where Flow = ? order by Sequence", transportOrderMaster.Flow);
-            if (transportFlowRouteList == null || transportFlowRouteList.Count < 2)
-            {
-                throw new BusinessException("运输路线{0}没有维护足够的运输站点。", transportOrderMaster.Flow);
-            }
-            else
-            {
-                transportOrderMaster.ShipFrom = transportFlowRouteList.First().ShipAddress;
-                transportOrderMaster.ShipFromAddress = transportFlowRouteList.First().ShipAddressDescription;
-                transportOrderMaster.ShipTo = transportFlowRouteList.Last().ShipAddress;
-                transportOrderMaster.ShipToAddress = transportFlowRouteList.Last().ShipAddressDescription;
-            }
+            //IList<TransportFlowRoute> transportFlowRouteList = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute where Flow = ? order by Sequence", transportOrderMaster.Flow);
+            //if (transportFlowRouteList == null || transportFlowRouteList.Count < 2)
+            //{
+            //    throw new BusinessException("运输路线{0}没有维护足够的运输站点。", transportOrderMaster.Flow);
+            //}
+            //else
+            //{
+            //    transportOrderMaster.ShipFrom = transportFlowRouteList.First().ShipAddress;
+            //    transportOrderMaster.ShipFromAddress = transportFlowRouteList.First().ShipAddressDescription;
+            //    transportOrderMaster.ShipTo = transportFlowRouteList.Last().ShipAddress;
+            //    transportOrderMaster.ShipToAddress = transportFlowRouteList.Last().ShipAddressDescription;
+            //}
 
-            Carrier carrier = genericMgr.FindAll<Carrier>("from Carrier where Code = ?", transportOrderMaster.Carrier).FirstOrDefault();
+            //Carrier carrier = genericMgr.FindAll<Carrier>("from Carrier where Code = ?", transportOrderMaster.Carrier).FirstOrDefault();
 
-            if (carrier == null)
-            {
-                throw new BusinessException("承运商代码{0}不存在。", transportOrderMaster.Carrier);
-            }
-            else
-            {
-                transportOrderMaster.CarrierName = carrier.Name;
-            }
+            //if (carrier == null)
+            //{
+            //    throw new BusinessException("承运商代码{0}不存在。", transportOrderMaster.Carrier);
+            //}
+            //else
+            //{
+            //    transportOrderMaster.CarrierName = carrier.Name;
+            //}
 
             TransportFlowCarrier transportFlowCarrier = genericMgr.FindAll<TransportFlowCarrier>("from TransportFlowCarrier where Flow = ? and Carrier = ? and TransportMode = ?",
                 new object[] { transportFlowMaster.Code, transportOrderMaster.Carrier, transportOrderMaster.TransportMode }).FirstOrDefault();
@@ -109,69 +109,82 @@ namespace com.Sconit.Service.Impl
                 transportFlowCarrier.BillAddress = transportFlowCarrier.BillAddress;
             }
 
-            if (!string.IsNullOrWhiteSpace(transportOrderMaster.Vehicle))
-            {
-                Vehicle vehicle = genericMgr.FindAll<Vehicle>("from Vehicle where Code = ?", transportOrderMaster.Vehicle).FirstOrDefault();
+            //if (!string.IsNullOrWhiteSpace(transportOrderMaster.Vehicle))
+            //{
+            //    Vehicle vehicle = genericMgr.FindAll<Vehicle>("from Vehicle where Code = ?", transportOrderMaster.Vehicle).FirstOrDefault();
 
-                if (vehicle == null)
-                {
-                    throw new BusinessException("运输工具{0}不存在。", transportOrderMaster.Vehicle);
-                }
+            //    if (vehicle == null)
+            //    {
+            //        throw new BusinessException("运输工具{0}不存在。", transportOrderMaster.Vehicle);
+            //    }
 
-                if (vehicle.Carrier != carrier.Code)
-                {
-                    throw new BusinessException("运输工具{0}不属于承运商{1}。", transportOrderMaster.Vehicle, transportOrderMaster.Carrier);
-                }
+            //    if (vehicle.Carrier != carrier.Code)
+            //    {
+            //        throw new BusinessException("运输工具{0}不属于承运商{1}。", transportOrderMaster.Vehicle, transportOrderMaster.Carrier);
+            //    }
 
-                Tonnage tonnage = genericMgr.FindAll<Tonnage>("from Tonnage where Code = ?", vehicle.Tonnage).FirstOrDefault();
+            //    Tonnage tonnage = genericMgr.FindAll<Tonnage>("from Tonnage where Code = ?", vehicle.Tonnage).FirstOrDefault();
 
-                if (tonnage == null)
-                {
-                    throw new BusinessException("运输工具{0}的吨位代码{1}不存在。", vehicle.Code, transportOrderMaster.Tonnage);
-                }
+            //    if (tonnage == null)
+            //    {
+            //        throw new BusinessException("运输工具{0}的吨位代码{1}不存在。", vehicle.Code, transportOrderMaster.Tonnage);
+            //    }
 
-                transportOrderMaster.Tonnage = tonnage.Code;
-                transportOrderMaster.LoadVolume = tonnage.LoadVolume;
-                transportOrderMaster.LoadWeight = tonnage.LoadWeight;
-                transportOrderMaster.DrivingNo = vehicle.DrivingNo;
+            //    transportOrderMaster.Tonnage = tonnage.Code;
+            //    transportOrderMaster.LoadVolume = tonnage.LoadVolume;
+            //    transportOrderMaster.LoadWeight = tonnage.LoadWeight;
+            //    transportOrderMaster.DrivingNo = vehicle.DrivingNo;
 
-                if (string.IsNullOrWhiteSpace(transportOrderMaster.Driver) && !string.IsNullOrWhiteSpace(vehicle.Driver))
-                {
-                    Driver driver = genericMgr.FindAll<Driver>("from Driver where Code = ?", vehicle.Driver).FirstOrDefault();
-                    if (driver != null)
-                    {
-                        transportOrderMaster.Driver = driver.Code;
-                        transportOrderMaster.DriverMobilePhone = driver.MobilePhone;
-                        transportOrderMaster.LicenseNo = driver.LicenseNo;
-                    }
-                }
-            }
+            //    if (string.IsNullOrWhiteSpace(transportOrderMaster.Driver) && !string.IsNullOrWhiteSpace(vehicle.Driver))
+            //    {
+            //        Driver driver = genericMgr.FindAll<Driver>("from Driver where Code = ?", vehicle.Driver).FirstOrDefault();
+            //        if (driver != null)
+            //        {
+            //            transportOrderMaster.Driver = driver.Code;
+            //            transportOrderMaster.DriverMobilePhone = driver.MobilePhone;
+            //            transportOrderMaster.LicenseNo = driver.LicenseNo;
+            //        }
+            //    }
+            //}
 
-            if (!string.IsNullOrWhiteSpace(transportOrderMaster.Driver))
-            {
-                Driver driver = genericMgr.FindAll<Driver>("from Driver where Code = ?", transportOrderMaster.Driver).FirstOrDefault();
+            //if (!string.IsNullOrWhiteSpace(transportOrderMaster.Driver))
+            //{
+            //    Driver driver = genericMgr.FindAll<Driver>("from Driver where Code = ?", transportOrderMaster.Driver).FirstOrDefault();
 
-                if (driver == null)
-                {
-                    throw new BusinessException("驾驶员{0}不存在。", transportOrderMaster.Driver);
-                }
+            //    if (driver == null)
+            //    {
+            //        throw new BusinessException("驾驶员{0}不存在。", transportOrderMaster.Driver);
+            //    }
 
-                transportOrderMaster.Driver = driver.Code;
-                transportOrderMaster.DriverMobilePhone = driver.MobilePhone;
-                transportOrderMaster.LicenseNo = driver.LicenseNo;
-            }
+            //    transportOrderMaster.Driver = driver.Code;
+            //    transportOrderMaster.DriverMobilePhone = driver.MobilePhone;
+            //    transportOrderMaster.LicenseNo = driver.LicenseNo;
+            //}
             #endregion
 
             #region 准备运单
             string orderNo = numberControlMgr.GetTransportOrderNo(transportOrderMaster);
+            transportOrderMaster.OrderNo = orderNo;
             if (ipNoList != null)
             {
                 ipNoList = ipNoList.Distinct().ToArray();
             }
 
-            IList<TransportOrderRoute> transportOrderRouteList = PrepareTransportOrderRoute(orderNo, transportOrderMaster.TransportMode, transportFlowRouteList);
+            IList<TransportOrderRoute> transportOrderRouteList = PrepareTransportOrderRoute(orderNo, transportOrderMaster.TransportMode, shipAddressDic);
 
             IList<TransportOrderDetail> transportOrderDetailList = PrepareTransportOrderDetail(orderNo, transportOrderMaster.TransportMode, transportOrderMaster.MultiSitePick, ipNoList, transportOrderRouteList);
+
+            if (transportOrderRouteList == null || transportOrderRouteList.Count < 2)
+            {
+                throw new BusinessException("运输站点不能小于2个。");
+            }
+            else
+            {
+                transportOrderMaster.ShipFrom = transportOrderMaster.TransportOrderRouteList.First().ShipAddress;
+                transportOrderMaster.ShipFromAddress = transportOrderMaster.TransportOrderRouteList.First().ShipAddressDescription;
+                transportOrderMaster.ShipTo = transportOrderMaster.TransportOrderRouteList.Last().ShipAddress;
+                transportOrderMaster.ShipToAddress = transportOrderMaster.TransportOrderRouteList.Last().ShipAddressDescription;
+            }
             #endregion
 
             #region 创建运单
@@ -180,6 +193,7 @@ namespace com.Sconit.Service.Impl
             {
                 this.genericMgr.Create(transportOrderRoute);
             }
+            transportOrderMaster.TransportOrderRouteList = transportOrderRouteList;
 
             foreach (TransportOrderDetail transportOrderDetail in transportOrderDetailList)
             {
@@ -188,6 +202,7 @@ namespace com.Sconit.Service.Impl
                 transportOrderDetail.OrderRouteTo = transportOrderRouteList.Where(r => r.ShipAddress == transportOrderDetail.ShipTo && r.Sequence > transportOrderRouteFrom.Sequence).OrderBy(r => r.Sequence).First().Id;
                 this.genericMgr.Create(transportOrderDetail);
             }
+            transportOrderMaster.TransportOrderDetailList = transportOrderDetailList;
             #endregion
 
             if (transportOrderMaster.IsAutoRelease)
@@ -628,23 +643,52 @@ namespace com.Sconit.Service.Impl
         #endregion
 
         #region private methods
-        private IList<TransportOrderRoute> PrepareTransportOrderRoute(string orderNo, TransportMode transportMode, IList<TransportFlowRoute> transportFlowRouteList)
+        private IList<TransportOrderRoute> PrepareTransportOrderRoute(string orderNo, TransportMode transportMode, IDictionary<int, string> shipAddressDic)
         {
             IList<TransportOrderRoute> transportOrderRouteList = new List<TransportOrderRoute>();
-            TransportFlowRoute prevTransportFlowRoute = null;
-            foreach (TransportFlowRoute transportFlowRoute in transportFlowRouteList)
+            TransportOrderRoute prevTransportOrderRoute = null;
+            IList<Address> addressList = null;
+
+            if (shipAddressDic != null && shipAddressDic.Count > 0)
             {
+                StringBuilder selectHql = null;
+                IList<object> parms = new List<object>();
+                foreach (var shipAddress in shipAddressDic)
+                {
+                    if (selectHql == null)
+                    {
+                        selectHql = new StringBuilder("from Address where Code in (?");
+                    }
+                    else
+                    {
+                        selectHql.Append(", ?");
+                    }
+
+                    parms.Add(shipAddress.Value);
+                }
+                selectHql.Append(")");
+                addressList = genericMgr.FindAll<Address>(selectHql.ToString(), parms.ToArray());
+            }
+
+            foreach (var shipAddress in shipAddressDic.OrderBy(s => s.Key))
+            {
+                Address address = addressList.Where(a => a.Code == shipAddress.Value).SingleOrDefault();
+                if (address == null)
+                {
+                    throw new BusinessException("站点{0}不存在。", shipAddress.Value);
+                }
+
                 TransportOrderRoute transportOrderRoute = new TransportOrderRoute();
                 transportOrderRoute.OrderNo = orderNo;
-                transportOrderRoute.Sequence = transportFlowRoute.Sequence;
-                transportOrderRoute.ShipAddress = transportFlowRoute.ShipAddress;
-                transportOrderRoute.ShipAddressDescription = transportFlowRoute.ShipAddressDescription;
-                transportOrderRoute.Distance = prevTransportFlowRoute != null ?
-                    CalculateShipDistance(prevTransportFlowRoute.ShipAddress, transportOrderRoute.ShipAddress, transportMode)
+                transportOrderRoute.Sequence = shipAddress.Key;
+                transportOrderRoute.ShipAddress = address.Code;
+                transportOrderRoute.ShipAddressDescription = address.CodeAddressContent;
+                transportOrderRoute.Distance = prevTransportOrderRoute != null ?
+                    CalculateShipDistance(prevTransportOrderRoute.ShipAddress, transportOrderRoute.ShipAddress, transportMode)
                     : 0;
                 transportOrderRouteList.Add(transportOrderRoute);
 
-                prevTransportFlowRoute = transportFlowRoute;
+                prevTransportOrderRoute = transportOrderRoute;
             }
 
             return transportOrderRouteList;
@@ -667,7 +711,7 @@ namespace com.Sconit.Service.Impl
                         selectIpMasterHql = new StringBuilder("from IpMaster where IpNo in (?");
                         selectIpDetailHql = new StringBuilder("from IpDetail where IpNo in (?");
                         selectItemHql = new StringBuilder("from Item where code in (select Item from IpDetail where IpNo in (?");
-                        verifyIpNoHql = new StringBuilder("select IpNo where TransportOrderDetail where IpNo in (?");
+                        verifyIpNoHql = new StringBuilder("select IpNo from TransportOrderDetail where IpNo in (?");
                     }
                     else
                     {
@@ -785,8 +829,6 @@ namespace com.Sconit.Service.Impl
             }
         }
         #endregion
-
-
        
     }
 }

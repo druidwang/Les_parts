@@ -214,7 +214,8 @@
 
             HqlStatementHelper.AddEqStatement("IpNo", ipNo, "ip", ref whereStatement, param);
             HqlStatementHelper.AddInStatement("ShipTo", stations.Split(','), "ip", ref whereStatement, param);
-            HqlStatementHelper.AddInStatement("Status", new object[]{ 0, 1 }, "ip", ref whereStatement, param);
+            HqlStatementHelper.AddInStatement("ShipFrom", stations.Split(','), "ip", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("Status", 0, "ip", ref whereStatement, param);
 
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
 
@@ -346,7 +347,7 @@
             }
             else
             {
-                var flowRoutes = this.genericMgr.FindAll<TransportFlowRoute>(order.Flow);
+                var flowRoutes = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute tf where tf.Flow=?", order.Flow);
                 for (int i = 0; i < flowRoutes.Count; ++i)
                 {
                     orderRoutes.Add(flowRoutes[i].Sequence, flowRoutes[i].ShipAddress);
@@ -495,7 +496,7 @@
         }
 
         [SconitAuthorize(Permissions = "Url_TransportOrderMstr_View")]
-        public ActionResult Edit(string orderNo, int? SubType)
+        public ActionResult Edit(string orderNo)
         {
             if (string.IsNullOrWhiteSpace(orderNo))
             {
@@ -503,8 +504,8 @@
             }
             else
             {
-                ViewBag.SubType = SubType;
-                return View("Edit", string.Empty, orderNo);
+                var transportOrderMaster = this.genericMgr.FindById<TransportOrderMaster>(orderNo);
+                return View(transportOrderMaster);
             }
         }
 

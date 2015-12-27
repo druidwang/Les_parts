@@ -352,6 +352,38 @@ namespace com.Sconit.SmartDevice
                 uc.tbBarCode.Focus();
                 this.Text = "Check";
             }
+            else if (module == CodeMaster.TerminalPermission.Client_WMSPickGoods)
+            {
+                UCWMSPickGoods uc = new UCWMSPickGoods(this.user, true);//.GetUCHuFilter(this.user);
+                uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(uc);
+                uc.tbBarCode.Focus();
+                this.Text = "拣货";
+            }
+            else if (module == CodeMaster.TerminalPermission.Client_WMSPickGoodsQty)
+            {
+                UCWMSPickGoods uc = new UCWMSPickGoods(this.user, false);//.GetUCHuFilter(this.user);
+                uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(uc);
+                uc.tbBarCode.Focus();
+                this.Text = "数量拣货";
+            }
+            else if (module == CodeMaster.TerminalPermission.Client_WMSDeliverBarCode)
+            {
+                UCWMSDeliveryBarCode uc = new UCWMSDeliveryBarCode(this.user);
+                uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(uc);
+                uc.tbBarCode.Focus();
+                this.Text = "配送标签扫描";
+            }
+            else if (module == CodeMaster.TerminalPermission.Client_WMSTransfer)
+            {
+                UCWMSTransfer uc = new UCWMSTransfer(this.user);
+                uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(uc);
+                uc.tbBarCode.Focus();
+                this.Text = "移库";
+            }
         }
 
         private void AddModule(UserControl userControl)

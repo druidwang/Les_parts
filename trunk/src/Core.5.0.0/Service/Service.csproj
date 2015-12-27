@@ -98,7 +98,7 @@
     <Compile Include="Impl\PickTaskMgrImpl.cs" />
     <Compile Include="Impl\ShipPlanMgrImpl.cs" />
     <Compile Include="Impl\TaskMgrImpl.cs" />
-    <Compile Include="Impl\TransportMgrImple.cs" />
+    <Compile Include="Impl\TransportMgrImpl.cs" />
     <Compile Include="IMrp\BaseMrpMgr.cs" />
     <Compile Include="Impl\CustomizationMgrImpl.cs" />
     <Compile Include="ICustomizationMgr.cs" />

@@ -5,7 +5,7 @@
             <generator class="assigned" />
         </id>
 		<version name="Version" column="Version" type="Int32" />
-        <property name="Id" column="Id" type="Int32"/>
+        <property name="Id" column="Id" type="Int32" update="false" insert="false"/>
         <property name="Priority" column="Priority" />	
 		<property name="Item" column="Item" type="String" length="50"/>	
 		<property name="ItemDescription" column="ItemDesc" type="String" length="100"/>	

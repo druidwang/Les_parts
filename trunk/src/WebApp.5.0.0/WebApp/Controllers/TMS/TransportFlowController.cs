@@ -60,7 +60,7 @@ namespace com.Sconit.Web.Controllers.TMS
         {
             GridModel<TransportFlowCarrier> GridModel = new GridModel<TransportFlowCarrier>();
             GridModel.Total = (int)this.genericMgr.FindAll<long>("select count(*) from TransportFlowCarrier tf where tf.Flow=?", id)[0];
-            var result = this.genericMgr.FindAll<TransportFlowCarrier>("from TransportFlowCarrier tf where tf.Flow=?", id);
+            var result = this.genericMgr.FindAll<TransportFlowCarrier>("from TransportFlowCarrier tf where tf.Flow=? order by Sequence", id);
             this.FillCodeDetailDescription<TransportFlowCarrier>(result);
             GridModel.Data = result;
             return PartialView(GridModel);
@@ -78,7 +78,7 @@ namespace com.Sconit.Web.Controllers.TMS
             this.genericMgr.Update(dbFlowCarrier);
             GridModel<TransportFlowCarrier> GridModel = new GridModel<TransportFlowCarrier>();
             GridModel.Total = (int)this.genericMgr.FindAll<long>("select count(*) from TransportFlowCarrier tf where tf.Flow=?", dbFlowCarrier.Flow)[0];
-            var result = this.genericMgr.FindAll<TransportFlowCarrier>("from TransportFlowCarrier tf where tf.Flow=?", dbFlowCarrier.Flow);
+            var result = this.genericMgr.FindAll<TransportFlowCarrier>("from TransportFlowCarrier tf where tf.Flow=? order by Sequence", dbFlowCarrier.Flow);
             this.FillCodeDetailDescription<TransportFlowCarrier>(result);
             GridModel.Data = result;
             return PartialView(GridModel);
@@ -106,7 +106,7 @@ namespace com.Sconit.Web.Controllers.TMS
             this.genericMgr.Create(dbFlowCarrier);
             GridModel<TransportFlowCarrier> GridModel = new GridModel<TransportFlowCarrier>();
             GridModel.Total = (int)this.genericMgr.FindAll<long>("select count(*) from TransportFlowCarrier tf where tf.Flow=?", dbFlowCarrier.Flow)[0];
-            var result = this.genericMgr.FindAll<TransportFlowCarrier>("from TransportFlowCarrier tf where tf.Flow=?", dbFlowCarrier.Flow);
+            var result = this.genericMgr.FindAll<TransportFlowCarrier>("from TransportFlowCarrier tf where tf.Flow=? order by Sequence", dbFlowCarrier.Flow);
             this.FillCodeDetailDescription<TransportFlowCarrier>(result);
             GridModel.Data = result;
             return PartialView(GridModel);
@@ -124,7 +124,7 @@ namespace com.Sconit.Web.Controllers.TMS
             {
                 genericMgr.DeleteById<TransportFlowCarrier>(Id.Value);
             }
-            IList<TransportFlowCarrier> result = genericMgr.FindAll<TransportFlowCarrier>("from TransportFlowCarrier tf where tf.Flow=?", Flow);
+            IList<TransportFlowCarrier> result = genericMgr.FindAll<TransportFlowCarrier>("from TransportFlowCarrier tf where tf.Flow=? order by Sequence", Flow);
             this.FillCodeDetailDescription<TransportFlowCarrier>(result);
             return PartialView(new GridModel(result));
         }
@@ -164,7 +164,7 @@ namespace com.Sconit.Web.Controllers.TMS
         {
             GridModel<TransportFlowRoute> GridModel = new GridModel<TransportFlowRoute>();
             GridModel.Total = (int)this.genericMgr.FindAll<long>("select count(*) from TransportFlowRoute tf where tf.Flow=?", flow)[0];
-            var result = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute tf where tf.Flow=?", flow);
+            var result = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute tf where tf.Flow=? order by Sequence", flow);
             this.FillCodeDetailDescription<TransportFlowRoute>(result);
             GridModel.Data = result;
             return PartialView(GridModel);
@@ -175,13 +175,14 @@ namespace com.Sconit.Web.Controllers.TMS
         public ActionResult _UpdateFlowRoute(GridCommand command, TransportFlowRoute flowRoute)
         {
             var dbFlowRoute = this.genericMgr.FindById<TransportFlowRoute>(flowRoute.Id);
+            dbFlowRoute.Sequence = flowRoute.Sequence;
             dbFlowRoute.ShipAddress = flowRoute.ShipAddress;
             dbFlowRoute.ShipAddressDescription = flowRoute.ShipAddressDescription;
             dbFlowRoute.Flow = flowRoute.Flow;
             this.genericMgr.Update(dbFlowRoute);
             GridModel<TransportFlowRoute> GridModel = new GridModel<TransportFlowRoute>();
             GridModel.Total = (int)this.genericMgr.FindAll<long>("select count(*) from TransportFlowRoute tf where tf.Flow=?", dbFlowRoute.Flow)[0];
-            var result = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute tf where tf.Flow=?", dbFlowRoute.Flow);
+            var result = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute tf where tf.Flow=? order by Sequence", dbFlowRoute.Flow);
             this.FillCodeDetailDescription<TransportFlowRoute>(result);
             GridModel.Data = result;
             return PartialView(GridModel);
@@ -208,7 +209,7 @@ namespace com.Sconit.Web.Controllers.TMS
             this.genericMgr.Create(dbFlowRoute);
             GridModel<TransportFlowRoute> GridModel = new GridModel<TransportFlowRoute>();
             GridModel.Total = (int)this.genericMgr.FindAll<long>("select count(*) from TransportFlowRoute tf where tf.Flow=?", dbFlowRoute.Flow)[0];
-            var result = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute tf where tf.Flow=?", dbFlowRoute.Flow);
+            var result = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute tf where tf.Flow=? order by Sequence", dbFlowRoute.Flow);
             this.FillCodeDetailDescription<TransportFlowRoute>(result);
             GridModel.Data = result;
             return PartialView(GridModel);

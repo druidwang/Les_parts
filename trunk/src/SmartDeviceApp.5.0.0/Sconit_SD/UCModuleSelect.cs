@@ -71,6 +71,12 @@ namespace com.Sconit.SmartDevice
             dicObject.Add(CodeMaster.TerminalPermission.Client_UnFreeze, new List<object> { this.btnUnfreeze, 3, Keys.D3, Keys.NumPad3 });
             //dicObject.Add(CodeMaster.TerminalPermission.Client_WorkerWaste, new List<object> { this.btnWorkerWaste, 3, Keys.D6, Keys.NumPad6 });
             //dicObject.Add(CodeMaster.TerminalPermission.Client_Reject, new List<object> { this.btnReject, 3, Keys.D3, Keys.NumPad3 });
+
+            //高级仓库
+            dicObject.Add(CodeMaster.TerminalPermission.Client_WMSPickGoods, new List<object> { this.btnWMSPickGoods, 4, Keys.D1, Keys.NumPad1 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_WMSDeliverBarCode, new List<object> { this.btnWMSDeliverBarCode, 4, Keys.D2, Keys.NumPad2 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_WMSPickGoodsQty, new List<object> { this.btnWMSPickGoodsQty, 4, Keys.D3, Keys.NumPad3 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_WMSTransfer, new List<object> { this.btnWMSTransfer, 4, Keys.D4, Keys.NumPad4 });
             #endregion
 
             var permissionList = this.user.Permissions.Where(p => p.PermissionCategoryType == PermissionCategoryType.Terminal)
