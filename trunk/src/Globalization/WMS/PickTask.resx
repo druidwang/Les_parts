@@ -138,6 +138,9 @@
   <data name="PickTask_CloseUserName" xml:space="preserve">
     <value>Close User</value>
   </data>
+  <data name="PickTask_Created" xml:space="preserve">
+    <value>PickTask Created</value>
+  </data>
   <data name="PickTask_CreateDate" xml:space="preserve">
     <value>Create Date</value>
   </data>
@@ -203,5 +206,11 @@
   </data>
   <data name="PickTask_WindowTime" xml:space="preserve">
     <value>WindowTime</value>
+  </data>
+  <data name="PickTask_PickGroupCode" xml:space="preserve">
+    <value>PickGroupCode</value>
+  </data>
+  <data name="PickTask_PickTaskList" xml:space="preserve">
+    <value>PickTaskList</value>
   </data>
 </root>
