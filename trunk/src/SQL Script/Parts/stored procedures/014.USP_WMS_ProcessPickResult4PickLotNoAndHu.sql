@@ -100,7 +100,52 @@ BEGIN
 		Area varchar(50),
 		Bin varchar(50),
 		Qty decimal(18, 8),
+		QualityType tinyint,
+		IsFreeze bit,
+		OccupyType tinyint,
 		[Version] int
+	)
+
+	create table #tempRepackOccupy_014
+	(
+		RowId int Identity(1, 1) primary key,
+		GroupId int,
+		RepackUUID varchar(50),
+		OrderNo varchar(50),
+		OrderSeq int,
+		TargetDock varchar(50),
+		ShipPlanId int,
+		Item varchar(50),
+		ItemDesc varchar(100),
+		RefItemCode varchar(50),
+		Uom varchar(5),
+		BaseUom varchar(5),
+		UnitQty decimal(18, 8),
+		UC decimal(18, 8),
+		UCDesc varchar(50),
+		Loc varchar(50),
+		[Priority] tinyint,
+		StartTime datetime,
+		OccupyQty decimal(18, 8)
+	)
+
+	create table #tempRepackTask_014
+	(
+		RepackUUID varchar(50) primary key,
+		GroupId int,
+		Item varchar(50),
+		ItemDesc varchar(100),
+		RefItemCode varchar(50),
+		Uom varchar(5),
+		BaseUom varchar(5),
+		UnitQty decimal(18, 8),
+		UC decimal(18, 8),
+		UCDesc varchar(50),
+		Qty decimal(18, 8),
+		Loc varchar(50),
+		[Priority] tinyint,
+		StartTime datetime,
+		WinTime datetime
 	)
 
 	begin try
@@ -134,6 +179,21 @@ BEGIN
 			from @PickResultTable as pr left join #tempHuInventory_015 as inv on pr.HuId = inv.HuId
 			inner join WMS_PickTask as pt on pr.PickTaskId = pt.Id
 			where inv.HuId is null
+
+			insert into #tempMsg_014(Lvl, Msg)
+			select 2, N'条码['+ HuId + N']已经被占用。'
+			from #tempHuInventory_015
+			where OccupyType <> 0
+
+			insert into #tempMsg_014(Lvl, Msg)
+			select 2, N'条码['+ HuId + N']的质量状态不是合格。'
+			from #tempHuInventory_015
+			where QualityType <> 0
+
+			insert into #tempMsg_014(Lvl, Msg)
+			select 2, N'条码['+ HuId + N']已经被冻结'
+			from #tempHuInventory_015
+			where IsFreeze = 1
 
 			insert into #tempMsg_014(Lvl, Msg)
 			select 2, N'条码['+ pr.HuId + N']不在库格上。'
@@ -220,6 +280,21 @@ BEGIN
 				insert into #tempMsg_014(Lvl, Msg)
 				select 2, N'拣货任务关联的发运任务['+ convert(varchar, ShipPlanId) + N']的已拣数已经超过了待拣数。'
 				from #tempShipPlan_014 where PickQty < PickedQty + ThisPickedQty
+				
+				insert into #tempRepackOccupy_014(GroupId, OrderNo, OrderSeq, TargetDock, ShipPlanId, Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Loc, [Priority], StartTime, OccupyQty)
+				select ROW_NUMBER() over (partition by sp.Item, sp.ItemDesc, sp.RefItemCode, sp.Uom, sp.BaseUom, sp.UnitQty, sp.UC, sp.UCDesc, sp.LocFrom, sp.[Priority] order by sp.Id), 
+				sp.OrderNo, sp.OrderSeq, sp.Dock, sp.Id, sp.Item, sp.ItemDesc, sp.RefItemCode, sp.Uom, sp.BaseUom, sp.UnitQty, sp.UC, sp.UCDesc, sp.LocFrom, sp.[Priority], sp.StartTime, po.ThisReleaseQty - po.ThisLockQty 
+				from #tempPickOccupy_014 as po 
+				inner join WMS_ShipPlan as sp on po.ShipPlanId = sp.Id
+				where po.ThisReleaseQty > po.ThisLockQty
+
+				insert into #tempRepackTask_014(RepackUUID, GroupId, Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Qty, Loc, [Priority], StartTime, WinTime)
+				select NEWID(), GroupId, MIN(Item), MIN(ItemDesc), MIN(RefItemCode), MIN(Uom), MIN(BaseUom), MIN(UnitQty), MIN(UC), MIN(UCDesc), SUM(OccupyQty), MIN(Loc), MIN([Priority]), @DateTimeNow, MIN(StartTime)
+				from #tempRepackOccupy_014
+				group by GroupId
+
+				update ro set RepackUUID = rt.RepackUUID
+				from #tempRepackOccupy_014 as ro inner join #tempRepackTask_014 as rt on ro.GroupId = rt.GroupId
 			end
 		end try
 		begin catch
@@ -276,6 +351,18 @@ BEGIN
 				select PickTaskId, PickTaskUUID, Item, ItemDesc, RefItemCode, Uom, BaseUom, UC, UCDesc, Qty, Loc,  
 				Area, Bin, LotNo, HuId, @CreateUserId, @CreateUserNm, @CreateUserId, @CreateUserNm, @DateTimeNow, 0 
 				from #tempPickResult_014
+
+				if exists(select top 1 1 from #tempRepackTask_014)
+				begin
+					insert into WMS_RepackTask(UUID, Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Qty, RepackQty, Loc, 
+												[Priority], StartTime, WinTime, IsActive, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
+					select RepackUUID, Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Qty, 0, Loc, 
+					[Priority], StartTime, WinTime, 1, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
+					from #tempRepackTask_014
+
+					insert into WMS_RepackOccupy(UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty, ReleaseQty, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
+					select RepackUUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty, 0, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 from #tempRepackOccupy_014
+				end
 
 				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, LotNo, HuId, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
 				select NEWID(), Location, 1, Item, Uom, UC, Qty * UnitQty, LotNo, HuId, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
@@ -334,5 +421,7 @@ BEGIN
 	drop table #tempPickOccupy_014
 	drop table #tempShipPlan_014
 	drop table #tempHuInventory_015
+	drop table #tempRepackOccupy_014
+	drop table #tempRepackTask_014
 END
 GO

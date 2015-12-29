@@ -53,6 +53,9 @@ BEGIN
 				Area varchar(50),
 				Bin varchar(50),
 				Qty decimal(18, 8),
+				QualityType tinyint,
+				IsFreeze bit,
+				OccupyType tinyint,
 				[Version] int
 			)
 		end
@@ -81,8 +84,8 @@ BEGIN
 		begin
 			select @Location = Location, @Suffix = Suffix from #tempLocation_015 where RowId = @RowId
 
-			set @SelectInvStatement = 'insert into #tempHuInventory_015(LocationLotDetId, HuId, LotNo, Item, ItemDesc, RefItemCode, Uom, BaseUom, UC, UCDesc, UnitQty, Location, Area, Bin, Qty, [Version]) '
-			set @SelectInvStatement = @SelectInvStatement + 'select lld.Id, hu.HuId, hu.LotNo, hu.Item, hu.ItemDesc, hu.RefItemCode, hu.Uom, hu.BaseUom, hu.UC, hu.UCDesc, hu.UnitQty, lld.Location, bin.Area, lld.Bin, lld.Qty, lld.[Version] '
+			set @SelectInvStatement = 'insert into #tempHuInventory_015(LocationLotDetId, HuId, LotNo, Item, ItemDesc, RefItemCode, Uom, BaseUom, UC, UCDesc, UnitQty, Location, Area, Bin, Qty, QualityType, IsFreeze, OccupyType, [Version]) '
+			set @SelectInvStatement = @SelectInvStatement + 'select lld.Id, hu.HuId, hu.LotNo, hu.Item, hu.ItemDesc, hu.RefItemCode, hu.Uom, hu.BaseUom, hu.UC, hu.UCDesc, hu.UnitQty, lld.Location, bin.Area, lld.Bin, lld.Qty, lld.QualityType, lld.IsFreeze, lld.OccupyType, lld.[Version] '
 			set @SelectInvStatement = @SelectInvStatement + 'from #tempPickResult_015 as pr '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on pr.HuId = hu.HuId '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @Suffix + ' as lld on lld.HuId = hu.HuId '
