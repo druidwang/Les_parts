@@ -143,27 +143,34 @@
         public ActionResult _LoadOrderDetail(string checkedIpNos,string orderNo,string flow)
         {
             IList<TransportOrderDetail> transOrderDetailList = new List<TransportOrderDetail>();
-            string[] checkedIpNoArray = new string[]{};
-            if (!string.IsNullOrEmpty(checkedIpNos))
+            if (!string.IsNullOrEmpty(orderNo))
             {
-                checkedIpNoArray = checkedIpNos.Split(',');
-            }
-            if (checkedIpNoArray == null || checkedIpNoArray.Length == 0)
-            {
-                transOrderDetailList.Add(new TransportOrderDetail { Sequence = 1 });
+                transOrderDetailList = this.genericMgr.FindAll<TransportOrderDetail>("from TransportOrderDetail to where to.OrderNo=?", orderNo);
             }
             else
             {
-                DetachedCriteria criteria = DetachedCriteria.For<IpDetail>();
-                criteria.Add(Expression.In("IpNo", checkedIpNoArray));
-                IList<IpDetail> ipDetailList = genericMgr.FindAll<IpDetail>(criteria);
-                int i = 1;
-                foreach (var ipNo in checkedIpNoArray)
+                string[] checkedIpNoArray = new string[] { };
+                if (!string.IsNullOrEmpty(checkedIpNos))
                 {
-                    transOrderDetailList.Add(new TransportOrderDetail { Sequence = i, IpNo = ipNo });
-                    ++i;
+                    checkedIpNoArray = checkedIpNos.Split(',');
                 }
+                if (checkedIpNoArray == null || checkedIpNoArray.Length == 0)
+                {
+                    transOrderDetailList.Add(new TransportOrderDetail { Sequence = 1 });
+                }
+                else
+                {
+                    DetachedCriteria criteria = DetachedCriteria.For<IpDetail>();
+                    criteria.Add(Expression.In("IpNo", checkedIpNoArray));
+                    IList<IpDetail> ipDetailList = genericMgr.FindAll<IpDetail>(criteria);
+                    int i = 1;
+                    foreach (var ipNo in checkedIpNoArray)
+                    {
+                        transOrderDetailList.Add(new TransportOrderDetail { Sequence = i, IpNo = ipNo });
+                        ++i;
+                    }
 
+                }
             }
             return PartialView(new GridModel(transOrderDetailList));
         }
@@ -255,6 +262,10 @@
                     transOrderRouteList.Add(orderRoute);
                 }
                 userOrderRoutes.AddRange(transOrderRouteList);
+            }
+            else
+            {
+                transOrderRouteList = this.genericMgr.FindAll<TransportOrderRoute>("from TransportOrderRoute to where to.OrderNo=?", orderNo);
             }
             return PartialView(new GridModel(transOrderRouteList));
         }

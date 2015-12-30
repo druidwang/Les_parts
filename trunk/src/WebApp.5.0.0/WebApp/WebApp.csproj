@@ -2679,6 +2679,9 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\PartsDetailList.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\ShelfLifeWarningIndex.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\ShelfLifeWarningList.cshtml" />
+    <Content Include="Views\Common\_VehicleComboBox.cshtml" />
+    <Content Include="Views\Common\_TonnageComboBox.cshtml" />
+    <Content Include="Views\Common\_TransportPriceListComboBox.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

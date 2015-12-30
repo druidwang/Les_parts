@@ -13,6 +13,8 @@ namespace com.Sconit.Service.SI.Impl
 {
     public class SD_WMSMgrImpl : BaseMgr, ISD_WMSMgr  
     {
+        public IPickTaskMgr pickTaskMgr { get; set; }
+
         public List<PickTask> GetPickTaskByUser(int pickUserId)
         {
             IList<com.Sconit.Entity.WMS.PickTask> pickTaskList = this.genericMgr.FindAll<com.Sconit.Entity.WMS.PickTask>("from PickTask p where p.PickUserId=?", pickUserId);
@@ -70,21 +72,29 @@ namespace com.Sconit.Service.SI.Impl
             }
         }
 
-        public void DoPick(List<Entity.SI.SD_INV.Hu> huList)
+        public void DoPickTask(List<Entity.SI.SD_INV.Hu> huList)
         {
-            Dictionary<int, List<Entity.INV.Hu>> pickResult = new Dictionary<int, List<Entity.INV.Hu>>();
-            foreach (var hu in huList)
+            try
             {
-                if (pickResult.ContainsKey(hu.OrderDetId))
+                Dictionary<int, List<string>> pickResult = new Dictionary<int, List<string>>();
+                foreach (var hu in huList)
                 {
-                    pickResult[hu.OrderDetId].Add(Mapper.Map<Entity.SI.SD_INV.Hu, Entity.INV.Hu>(hu));
+                    if (pickResult.ContainsKey(hu.OrderDetId))
+                    {
+                        pickResult[hu.OrderDetId].Add(hu.HuId);
+                    }
+                    else
+                    {
+                        var values = new List<string>();
+                        values.Add(hu.HuId);
+                        pickResult.Add(hu.OrderDetId, values);
+                    }
                 }
-                else
-                {
-                    var values = new List<Entity.INV.Hu>();
-                    values.Add(Mapper.Map<Entity.SI.SD_INV.Hu, Entity.INV.Hu>(hu));
-                    pickResult.Add(hu.OrderDetId, values);
-                }
+                pickTaskMgr.PorcessPickResult4PickLotNoAndHu(pickResult);
+            }
+            catch (Exception ex)
+            {
+                throw new BusinessException(ex.Message);
             }
         }
 

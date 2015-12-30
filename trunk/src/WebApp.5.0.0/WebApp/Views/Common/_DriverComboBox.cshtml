@@ -2,6 +2,7 @@
 @{
     string name = ViewBag.ControlName;
     var selectedValue = ViewBag.SelectedValue;
+    bool checkVehicle = ViewBag.CheckVehicle != null ? ViewBag.CheckVehicle : false;
     string id = string.IsNullOrWhiteSpace(ViewBag.ControlId) ? name : ViewBag.ControlId;
     bool enable = true;
     if (ViewBag.Enable != null)
@@ -10,6 +11,7 @@
     }
     bool isChange = ViewBag.IsChange != null ? ViewBag.IsChange : false;
     string onChangeName = isChange ? "Driver_Change" : "EmptyChange";
+    string onBindingName = checkVehicle ? "Driver_DataBinding" : "EmptyDataBinding";
 }
 @{
     if (enable)
@@ -19,7 +21,7 @@
                 .AutoFill(true)
                     .HiddenInputHtmlAttributes(new { id = id })
                 .DataBinding(binding => binding.Ajax().Select("_AjaxLoadingDriver", "Common").Cache(true))
-                .ClientEvents(events=>events.OnChange(onChangeName))
+                    .ClientEvents(events => events.OnChange(onChangeName).OnDataBinding(onBindingName))
                 .HighlightFirstMatch(true)
                 .BindTo(Model)
                 .Enable(enable))

@@ -13,6 +13,6 @@ namespace com.Sconit.Service
 
         void PorcessPickResult4PickQty(Dictionary<int, decimal> pickResults);
 
-        void PorcessPickResult4PickLotNoAndHu(Dictionary<int, string> pickResults);
+        void PorcessPickResult4PickLotNoAndHu(Dictionary<int, List<string>> pickResults);
     }
 }

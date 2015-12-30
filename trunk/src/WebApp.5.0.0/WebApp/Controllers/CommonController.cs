@@ -2336,11 +2336,12 @@
             return new JsonResult { Data = new SelectList(flowList, "Code", "CodeDescription") };
         }
 
-        public ActionResult _DriverComboBox(string controlName, string controlId, string selectedValue, bool? enable)
+        public ActionResult _DriverComboBox(string controlName, string controlId, string selectedValue, bool? checkVehicle, bool? enable)
         {
             ViewBag.ControlName = controlName;
             ViewBag.ControlId = controlId;
             ViewBag.Enable = enable;
+            ViewBag.CheckVehicle = checkVehicle;
 
             IList<Driver> driverList = new List<Driver>();
             if (selectedValue != null && selectedValue.Trim() != string.Empty)
@@ -2368,6 +2369,21 @@
             return new JsonResult { Data = new SelectList(driverList, "Code", "CodeDescription", text) };
         }
 
+        public ActionResult _VehicleComboBox(string controlName, string controlId, string selectedValue, bool? isChange , bool? enable)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Enable = enable;
+            ViewBag.IsChange = isChange;
+
+            IList<Vehicle>vehicleList = new List<Vehicle>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+                vehicleList = queryMgr.FindAll<Vehicle>("from Vehicle v where v.Code like ?", selectedValue);
+            }
+            return PartialView(new SelectList(vehicleList, "Code", "CodeDescription", selectedValue));
+        }
+
         public ActionResult _AjaxLoadingVehicle(string text, bool? includeBlankOption)
         {
             IList<Vehicle> vehicleList = this.genericMgr.FindAll<Vehicle>("from Vehicle v where v.Code like ?", text + "%");
@@ -2376,6 +2392,21 @@
                 vehicleList.Insert(0, new Vehicle());
             }
             return new JsonResult { Data = new SelectList(vehicleList, "Code", "CodeDescription") };
+        }
+
+        public ActionResult _TonnageComboBox(string controlName, string controlId, string selectedValue, bool? checkVehicle, bool? enable)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Enable = enable;
+            ViewBag.CheckVehicle = checkVehicle;
+
+            IList<Tonnage> tonnageList = new List<Tonnage>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+                tonnageList = queryMgr.FindAll<Tonnage>("from Tonnage t where t.Code like ?", selectedValue);
+            }
+            return PartialView(new SelectList(tonnageList, "Code", "CodeDescription", selectedValue));
         }
 
         public ActionResult _AjaxLoadingTonnage(string text, string vehicle, bool? includeBlankOption)
@@ -2394,6 +2425,20 @@
                 tonnageList.Insert(0, new Tonnage());
             }
             return new JsonResult { Data = new SelectList(tonnageList, "Code", "CodeDescription", text) };
+        }
+
+        public ActionResult _TransportPriceListComboBox(string controlName, string controlId, string selectedValue, bool? enable)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Enable = enable;
+
+            IList<TransportPriceList> transportPriceList = new List<TransportPriceList>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+                transportPriceList = queryMgr.FindAll<TransportPriceList>("from TransportPriceList t where t.Code like ?", selectedValue);
+            }
+            return PartialView(new SelectList(transportPriceList, "Code", "CodeDescription", selectedValue));
         }
 
         public ActionResult _AjaxLoadingTransportPriceList(string text, bool? includeBlankOption)

@@ -18,7 +18,7 @@
                         controlName = "ShipFrom",
                         type = (int)com.Sconit.CodeMaster.AddressType.ShipAddress,
                         selectedValue = TempData["TransportPriceListDetSearchModel"] != null ? ((TransportPriceListDetSearchModel)TempData["TransportPriceListDetSearchModel"]).ShipFrom : string.Empty,
-                        enable = false
+                        //enable = false
                     });
                 }
             </div>
@@ -35,9 +35,14 @@
                         controlName = "ShipTo",
                         type = (int)com.Sconit.CodeMaster.AddressType.ShipAddress,
                         selectedValue = TempData["TransportPriceListDetSearchModel"] != null ? ((TransportPriceListDetSearchModel)TempData["TransportPriceListDetSearchModel"]).ShipTo : string.Empty,
-                        enable = false
+                        //enable = false
                     });
                 }
+            </div>
+            <div class="search-label">
+                <label for="IpMaster_EndDate">
+                    @Resources.ORD.IpMaster.IpMaster_StartDate
+                </label>
             </div>
             <div class="search-field">
                 @(Html.Telerik().DatePicker().Format("yyyy-MM-dd ").Name("StartDate")
@@ -133,13 +138,16 @@
     function btnSearchPriceListDetail_Click() {
         var data = {
             "priceListCode": $("#PriceListCode").val(),
-            "Item": $("#Item").val(),
+            "shipFrom": $("#ShipFrom").val(),
+            "shipTo": $("#ShipTo").val(),
+            "startDate": $("#StartDate").val(),
+            "endDate": $("#EndDate").val(),
             "isFromList": "true"
         };
         $.ajax({
             type: "post",
             dataType: "html",
-            url: "/ProcurementPriceList/_PriceListDetailList/",
+            url: "/TransportPriceList/_PriceListDetailList/",
             data: data,
             cache: false,
             success: function (data, textStatus) {
