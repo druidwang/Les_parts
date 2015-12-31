@@ -103,6 +103,7 @@ BEGIN
 		QualityType tinyint,
 		IsFreeze bit,
 		OccupyType tinyint,
+		IsLock bit,
 		[Version] int
 	)
 
@@ -227,6 +228,11 @@ BEGIN
 				from @PickResultTable as tmp 
 				inner join WMS_PickTask as pt on tmp.PickTaskId = pt.Id
 
+				update inv set IsLock = CASE WHEN inv.UC = pt.UC THEN 1 ELSE 0 END
+				from #tempHuInventory_015 as inv 
+				inner join #tempPickResult_014 as pr on inv.HuId = pr.HuId
+				inner join #tempPickTask_014 as pt on pr.PickTaskId = pt.PickTaskId
+
 				update pt set ThisPickQty = tmp.Qty
 				from #tempPickTask_014 as pt 
 				inner join (select PickTaskId, SUM(Qty) as Qty 
@@ -248,17 +254,17 @@ BEGIN
 				declare @PickTaskId int
 				declare @PickTaskUUID varchar(50)
 				declare @Qty decimal(18, 8)
-				declare @IsOdd bit
+				declare @IsRepack bit
 				declare @LastQty decimal(18, 8)
 				select @RowId = MIN(RowId), @MaxRowId = MAX(RowId) from #tempPickResult_014
 				while @RowId <= @MaxRowId
 				begin
 					set @LastQty = 0
-					select @PickTaskId = pr.PickTaskId, @PickTaskUUID = pr.PickTaskUUID, @Qty = pr.Qty, @IsOdd = CASE WHEN pt.UC = pr.UC THEN 0 ELSE 1 END
+					select @PickTaskId = pr.PickTaskId, @PickTaskUUID = pr.PickTaskUUID, @Qty = pr.Qty, @IsRepack = CASE WHEN pt.UC = pr.UC THEN 0 ELSE 1 END
 					from #tempPickResult_014 as pr inner join #tempPickTask_014 as pt on pr.PickTaskUUID = pt.PickTaskUUID 
 					where pr.RowId = @RowId
 
-					update #tempPickOccupy_014 set ThisReleaseQty = ThisReleaseQty + @LastQty, ThisLockQty = ThisLockQty + CASE WHEN @IsOdd = 0 THEN @LastQty ELSE 0 END,
+					update #tempPickOccupy_014 set ThisReleaseQty = ThisReleaseQty + @LastQty, ThisLockQty = ThisLockQty + CASE WHEN @IsRepack = 0 THEN @LastQty ELSE 0 END,
 					@Qty = @Qty - @LastQty, @LastQty = CASE WHEN @Qty >= OccupyQty - ReleaseQty - ThisReleaseQty THEN OccupyQty - ReleaseQty - ThisReleaseQty ELSE @Qty END
 					where PickTaskUUID = @PickTaskUUID
 					set @Qty = @Qty - @LastQty
@@ -364,8 +370,8 @@ BEGIN
 					select RepackUUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty, 0, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 from #tempRepackOccupy_014
 				end
 
-				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, LotNo, HuId, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
-				select NEWID(), Location, 1, Item, Uom, UC, Qty * UnitQty, LotNo, HuId, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
+				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, LotNo, HuId, IsLock, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
+				select NEWID(), Location, 1, Item, Uom, UC, Qty * UnitQty, LotNo, HuId, IsLock, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
 				from #tempHuInventory_015
 
 				declare @Location varchar(50)
@@ -380,9 +386,9 @@ BEGIN
 
 					set @UpdateInvStatement = 'declare @UpdateCount int '
 					set @UpdateInvStatement = @UpdateInvStatement + 'select @UpdateCount = COUNT(1) from #tempHuInventory_015 where Location = @Location_1 '
-					set @UpdateInvStatement = @UpdateInvStatement + 'update lld set Bin = null, LastModifyUser = @CreateUserId_1, LastModifyUserNm = @CreateUserNm_1, LastModifyDate = @DateTimeNow_1, [Version] = lld.[Version] + 1 '
+					set @UpdateInvStatement = @UpdateInvStatement + 'update lld set Bin = null, OccupyType = 1, LastModifyUser = @CreateUserId_1, LastModifyUserNm = @CreateUserNm_1, LastModifyDate = @DateTimeNow_1, [Version] = lld.[Version] + 1 '
 					set @UpdateInvStatement = @UpdateInvStatement + 'from INV_LocationLotDet_' + @Suffix + ' as lld '
-					set @UpdateInvStatement = @UpdateInvStatement + 'inner join #tempHuInventory_015 as inv on lld.Id = inv.LocationLotDetId and lld.[Version] = inv.[Version] '
+					set @UpdateInvStatement = @UpdateInvStatement + 'inner join #tempHuInventory_015 as inv on lld.Id = inv.LocationLotDetId and lld.[Version] = inv.[Version] where inv.Location = @Location_1 '
 					set @UpdateInvStatement = @UpdateInvStatement + 'if (@@ROWCOUNT <> @UpdateCount) '
 					set @UpdateInvStatement = @UpdateInvStatement + 'begin '
 					set @UpdateInvStatement = @UpdateInvStatement + 'RAISERROR(N''数据已经被更新，请重试。'', 16, 1) '

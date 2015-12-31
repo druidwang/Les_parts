@@ -56,6 +56,7 @@ BEGIN
 				QualityType tinyint,
 				IsFreeze bit,
 				OccupyType tinyint,
+				IsLock bit,
 				[Version] int
 			)
 		end

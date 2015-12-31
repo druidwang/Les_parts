@@ -71,12 +71,12 @@ BEGIN
 			set @SelectInvStatement = ''
 
 			set @SelectInvStatement = 'insert into #tempAvailableInv_008(Location, Item, Qty) '
-			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, SUM(ISNULL(llt.Qty, 0)) as InvQty '
+			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, SUM(llt.Qty) as InvQty '
 			set @SelectInvStatement = @SelectInvStatement + 'from #tempPickTarget_008 as sp '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @LocSuffix + ' as llt on sp.Location = llt.Location and sp.Item = llt.Item '
-			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = @Location_1 and llt.OccupyRefNo is null and llt.Qty <> 0 and llt.HuId is null and llt.QualityType = 0'
+			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = @Location_1 and llt.OccupyType = 0 and llt.Qty <> 0 and llt.HuId is null and llt.QualityType = 0'
 			set @SelectInvStatement = @SelectInvStatement + 'group by sp.Location, sp.Item '
-			set @SelectInvStatement = @SelectInvStatement + 'having SUM(llt.Qty, 0) > 0'
+			set @SelectInvStatement = @SelectInvStatement + 'having SUM(llt.Qty) > 0'
 			set @Parameter = N'@Location_1 varchar(50)'
 
 			exec sp_executesql @SelectInvStatement, @Parameter, @Location_1=@Location
@@ -85,16 +85,25 @@ BEGIN
 		end
 
 		--扣减被占用的库存
+		--update inv set Qty = inv.Qty - oc.OccupyQty
+		--from #tempAvailableInv_008 as inv inner join
+		--(select ai.Location, ai.Item, SUM(OccupyQty) as OccupyQty
+		--from (select sp.Location, sp.Item, SUM(bi.Qty) as OccupyQty 
+		--		from #tempPickTarget_008 as sp
+		--		inner join WMS_BuffInv as bi on bi.Loc = sp.Location and bi.Item = sp.Item
+		--		where bi.Qty > 0 and bi.HuId is null and bi.IOType = 1
+		--		group by sp.Location, sp.Item
+		--		union all 
+		--		select pt.Loc, pt.Item, SUM((pt.OrderQty - pt.PickQty) * pt.UnitQty) as OccupyQty
+		--		from #tempPickTarget_008 as sp 
+		--		inner join WMS_PickTask as pt on sp.Location = pt.Loc and sp.Item = pt.Item
+		--		where pt.IsPickHu = 0 and pt.IsActive = 1
+		--		group by pt.Loc, pt.Item) as ai
+		--group by ai.Location, ai.Item) as oc on inv.Location = oc.Location and inv.Item = oc.Item
 		update inv set Qty = inv.Qty - oc.OccupyQty
 		from #tempAvailableInv_008 as inv inner join
 		(select ai.Location, ai.Item, SUM(OccupyQty) as OccupyQty
-		from (select sp.Location, sp.Item, SUM(bi.Qty) as OccupyQty 
-				from #tempPickTarget_008 as sp
-				inner join WMS_BuffInv as bi on bi.Loc = sp.Location and bi.Item = sp.Item
-				where bi.Qty > 0 and bi.HuId is null and bi.IOType = 1
-				group by sp.Location, sp.Item
-				union all 
-				select pt.Loc, pt.Item, SUM((pt.OrderQty - pt.PickQty) * pt.UnitQty) as OccupyQty
+		from (select pt.Loc as Location, pt.Item, SUM((pt.OrderQty - pt.PickQty) * pt.UnitQty) as OccupyQty
 				from #tempPickTarget_008 as sp 
 				inner join WMS_PickTask as pt on sp.Location = pt.Loc and sp.Item = pt.Item
 				where pt.IsPickHu = 0 and pt.IsActive = 1
