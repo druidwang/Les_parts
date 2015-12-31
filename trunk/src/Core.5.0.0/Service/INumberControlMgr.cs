@@ -8,6 +8,7 @@ using com.Sconit.Entity.CUST;
 using com.Sconit.Entity.MD;
 using com.Sconit.Entity.BIL;
 using com.Sconit.Entity.TMS;
+using com.Sconit.Entity.WMS;
 
 namespace com.Sconit.Service
 {
@@ -62,5 +63,7 @@ namespace com.Sconit.Service
         string GetShipmentNo();
 
         string GetTaskNo(string prefix);
+
+        IDictionary<string, decimal> GetDeliveryBarCode(ShipPlan shipPlan);
     }
 }

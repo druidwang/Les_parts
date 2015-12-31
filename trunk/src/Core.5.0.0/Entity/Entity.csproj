@@ -947,7 +947,7 @@
     <EmbeddedResource Include="Base\WMS\PickUser.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Base\WMS\DeliveryBarCode.hbm.xml" />
+    <EmbeddedResource Include="Base\WMS\DeliveryBarCode.hbm.xml" />
     <Content Include="Base\WMS\PickOccupy.hbm.xml" />
     <Content Include="Base\WMS\RepackOccupy.hbm.xml" />
   </ItemGroup>

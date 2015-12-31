@@ -189,11 +189,6 @@ namespace com.Sconit.Web.Controllers.WMS
         {
         
             ViewBag.pickGroupCode = pickGroupCode;
-
-            if (!string.IsNullOrEmpty(pickGroupCode))
-            {
-                PickGroup pickGroup = genericMgr.FindById<PickGroup>(pickGroupCode);
-            }
            
             return PartialView();
         }

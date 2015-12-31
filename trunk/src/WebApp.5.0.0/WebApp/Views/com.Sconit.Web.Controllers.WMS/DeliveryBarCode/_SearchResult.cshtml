@@ -3,12 +3,10 @@
     $(function () {
         $("#checkAll").click(function () {
             $('input[name="checkedRecords"]').attr("checked", this.checked);
-            $("#btnEdit").attr("style", this.checked ? "display:inline" : "display:none");
+            $("#btnPrint").attr("style", this.checked ? "display:inline" : "display:none");
             $("#btnExport").attr("style", this.checked ? "display:inline" : "display:none");
         });
     });
-
-
 
     function showButtons() {
         var $checkRecords = $("input[name='checkedRecords']");
@@ -20,91 +18,50 @@
             }
         }
         $("#checkAll").attr("checked", $checkRecords.length == $("input[name='checkedRecords']:checked").length ? true : false);
-        $("#btnEdit").attr("style", showButton ? "display:inline" : "display:none");
+        $("#btnPrint").attr("style", showButton ? "display:inline" : "display:none");
         $("#btnExport").attr("style", showButton ? "display:inline" : "display:none");
     }
 
-
-    function HuMasterGrid_OnDataBinding(e) {
-        e.data = {
-            HuId: $('#HuId').val(),
-            Item: $('#Item').val(),
-            lotNo: $('#LotNo').val(),
-            lotNo: $('#LotNoTo').val(),
-            StartDate: $('#StartDate').val(),
-            EndDate: $('#EndDate').val()
-        }
-    }
-
-
-    function CheckedExport(isExport) {
+    function btnPrintClick() {
         var $checkRecords = $("input[name='checkedRecords']");
 
-        var checkedOrders = "";
+        var checkedbarCodes = "";
         for (var i = 0; i < $checkRecords.length; i++) {
             if ($checkRecords[i].checked) {
-                if (checkedOrders == "") {
-                    checkedOrders = $checkRecords[i].value;
+                if (checkedbarCodes == "") {
+                    checkedbarCodes = $checkRecords[i].value;
                 } else {
-                    checkedOrders += "," + $checkRecords[i].value;
+                    checkedbarCodes += "," + $checkRecords[i].value;
                 }
             }
         }
-        if (checkedOrders == "") {
+        if (checkedbarCodes == "") {
             alert('Must Check One');
             return;
         }
 
         var data = {
-            "checkedOrders": checkedOrders
+            "checkedbarCodes": checkedbarCodes
         };
-       //debugger
-        if (isExport) {
-            $.ajax({
-                type: "post",
-                dataType: "Json",
-                url: "/Hu/CheckExportTemplate/",
-                data: data,
-                cache: false,
-                success: function (data, textStatus) {
-                    
-                    if (data.Message != "OK") {
-                        $message.error(data.Message)
-                    }
-                    else {
-                        //$message.error(checkedOrders + "  3");
-                        $("#checkedOrders").val(checkedOrders);
-                        $("#hiddenForm").submit();
-                        //location.href = "/Hu/SaveToClientTo/?checkedOrders=" + checkedOrders;
-                    }
 
-                }
-            });
-        } else {
-            $.ajax({
-                type: "post",
-                dataType: "Json",
-                data: data,
-                async: false,
-                url: "/Hu/_PrintHuList/",
-                cache: false,
-                success: function (data, textStatus) {
-                    $message.success("条码打印成功");
-                    
-                    for (var i = 0; i < data.PrintUrl.length; i++) {
-                        PrintOrder(data.PrintUrl[i]);
-                    }
-                    //if (data.PrintUrl != "") {
-                    //PrintOrder(data.PrintUrl);
-                    //}
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    var errorMessages = XMLHttpRequest.responseText;
+        $.ajax({
+            type: "post",
+            dataType: "Json",
+            data: data,
+            async: false,
+            url: "/DeliveryBarCode/PrintDeliveryBarCodeList/",
+            cache: false,
+            success: function (data, textStatus) {
+                $message.success(data.SuccessMessage);
+                PrintOrder(data.PrintUrl);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                var errorMessages = XMLHttpRequest.responseText;
 
-                    $message.error(errorMessages);
-                }
-            });
-        }
+                $message.error(errorMessages);
+            }
+        });
+
     }
 </script>
 <fieldset>
@@ -112,26 +69,27 @@
                 .Name("DeliveryBarCodeGrid")
         .DataKeys(keys =>
         {
-            keys.Add(p => p.HuId);
+            keys.Add(p => p.BarCode);
         })
         .Columns(columns =>
         {
             columns.Bound(o => o.BarCode)
-              .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' onClick='showButtons();' value='<#= HuId #>'   />")
+              .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' onClick='showButtons();' value='<#= BarCode #>'   />")
               .HeaderTemplate("<input type='checkbox' id='checkAll' name='checkAll' />")
               .Width(36).HtmlAttributes(new { style = "text-align:center" });
-            columns.Bound(o => o.HuId).ClientTemplate(Html.ActionLink("<#= HuId #>", "HuDetail", "Hu", new { Id = "<#= HuId #>" }, null).ToString());
-         
+            columns.Bound(o => o.HuId).ClientTemplate(Html.ActionLink("<#= BarCode #>", "EditDeliveryBarCode", "DeliveryBarCode", new { Id = "<#= BarCode #>" }, null).ToString());
+
             columns.Bound(o => o.Item);
             columns.Bound(o => o.ItemDescription);
-         
+
             columns.Bound(o => o.Qty);
             columns.Bound(o => o.Uom);
             columns.Bound(o => o.IsPickHu)
-              .ClientTemplate("<input type='checkbox' disabled='disabled' id='IsPickHu' name='IsPickHu' value='<#= IsPickHu #>' <#=IsPickHu? checked='checked' : '' #> style=<#=IsPickHu? 'background-color:blue' : '' #> />");
+              .ClientTemplate("<input type='checkbox' disabled='disabled'  name='IsPickHu' <#= IsPickHu? checked='checked' : '' #> />");
+
 
             columns.Bound(o => o.IsActive)
-              .ClientTemplate("<input type='checkbox' disabled='disabled' id='IsActive' name='IsActive' value='<#= IsActive #>' <#=IsActive? checked='checked' : '' #> style=<#=IsActive? 'background-color:blue' : '' #> />");
+              .ClientTemplate("<input type='checkbox' disabled='disabled'  name='IsActive' value='<#= IsActive? checked='checked' : ''  #>' />");
 
             columns.Bound(o => o.CreateUserName);
             columns.Bound(o => o.CreateDate);
@@ -139,8 +97,8 @@
 
         .Scrollable(c => c.Enabled(false))
         .EnableCustomBinding(true)
-        .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "Hu"))
-                         .ClientEvents(events => events.OnDataBinding("HuGrid_OnDataBinding"))
+                .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "DeliveryBarCode"))
+                         .ClientEvents(events => events.OnDataBinding("DeliveryBarCodeGrid_OnDataBinding"))
 
         .Pageable(settings =>
         {
@@ -155,9 +113,10 @@
         .Resizable(resizing => resizing.Columns(true))
     )
     <script type="text/javascript">
-        function HuGrid_OnDataBinding(e) {
+        function DeliveryBarCodeGrid_OnDataBinding(e) {
             e.data = {
                 BarCode: $('#BarCode').val(),
+                Flow: $('#Flow').val(),
                 CreateUserName: $('#CreateUserName').val(),
                 StartDate: $('#StartDate').val(),
                 EndDate: $('#EndDate').val(),
@@ -167,6 +126,7 @@
 
     </script>
 </fieldset>
-<form id="hiddenForm" action="/DeliveryBarCode/SaveToClientTo" target="_blank" method="post">
-<input id="checkedOrders" name="checkedOrders" type="hidden" />
+<form id="hiddenForm" action="/DeliveryBarCode/PrintDeliveryBarCodeList" target="_blank"
+method="post">
+<input id="checkedbarCodes" name="checkedbarCodes" type="hidden" />
 </form>

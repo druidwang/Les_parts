@@ -270,4 +270,10 @@
   <data name="ShipPlan_Ship_Title" xml:space="preserve">
     <value>发货</value>
   </data>
+  <data name="ShipPlan_Title" xml:space="preserve">
+    <value>发运计划</value>
+  </data>
+  <data name="ShipPlan_ToDeliveryBarCodeQty" xml:space="preserve">
+    <value>标签数量</value>
+  </data>
 </root>

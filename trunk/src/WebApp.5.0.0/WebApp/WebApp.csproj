@@ -408,6 +408,8 @@
     <Compile Include="Models\SearchModels\MRP\MrpExWorkHourSearchModel.cs" />
     <Compile Include="Models\ORD\ScheduleView.cs" />
     <Compile Include="Models\ORD\WebOrderDetail.cs" />
+    <Compile Include="Controllers\WMS\DeliveryBarCodeController.cs" />
+    <Compile Include="Models\SearchModels\WMS\DeliveryBarCodeSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickUserSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickRuleSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickGroupSearchModel.cs" />
@@ -2582,10 +2584,7 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_SearchResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Edit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Index.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\_AssignList.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\Assign.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\AssignIndex.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\AssignList.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_AssignSearch.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_AssignList.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\AssignIndex.cshtml" />
@@ -2646,17 +2645,19 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipGroup\New.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\_Search.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\_SearchResult.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\Edit.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\Index.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\List.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\New.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\New.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\_ShipPlanList.cshtml" />
     <Content Include="Views\Common\_PickGroupComboBox.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\_PickTaskList.cshtml" />
     <Content Include="Views\Common\_PickUserComboBox.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\FlowMaster.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\_ShipPlanList.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>
