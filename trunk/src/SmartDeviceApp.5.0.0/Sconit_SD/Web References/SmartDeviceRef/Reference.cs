@@ -74,22 +74,22 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoPick", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void DoPick(Hu[] huList, string userCode) {
-            this.Invoke("DoPick", new object[] {
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoPickTask", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DoPickTask(Hu[] huList, string userCode) {
+            this.Invoke("DoPickTask", new object[] {
                         huList,
                         userCode});
         }
         
         /// <remarks/>
-        public System.IAsyncResult BeginDoPick(Hu[] huList, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("DoPick", new object[] {
+        public System.IAsyncResult BeginDoPickTask(Hu[] huList, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("DoPickTask", new object[] {
                         huList,
                         userCode}, callback, asyncState);
         }
         
         /// <remarks/>
-        public void EndDoPick(System.IAsyncResult asyncResult) {
+        public void EndDoPickTask(System.IAsyncResult asyncResult) {
             this.EndInvoke(asyncResult);
         }
         

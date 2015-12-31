@@ -2582,6 +2582,9 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_SearchResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Edit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Index.cshtml" />
+    <Content Include="Views\Common\_VehicleComboBox.cshtml" />
+    <Content Include="Views\Common\_TonnageComboBox.cshtml" />
+    <Content Include="Views\Common\_TransportPriceListComboBox.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\_AssignList.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\Assign.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\AssignIndex.cshtml" />

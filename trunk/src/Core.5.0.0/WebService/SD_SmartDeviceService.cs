@@ -860,11 +860,11 @@
         }
 
         [WebMethod]
-        public void DoPick(List<Hu> huList,string userCode)
+        public void DoPickTask(List<Hu> huList,string userCode)
         {
             var user = sdSecurityMgr.GetBaseUser(userCode);
             SecurityContextHolder.Set(user);
-            this.wmsMgr.DoPick(huList);
+            this.wmsMgr.DoPickTask(huList);
         }
 
         [WebMethod]

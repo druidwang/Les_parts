@@ -147,7 +147,7 @@
           <s:enumeration value="Filtered" />
         </s:restriction>
       </s:simpleType>
-      <s:element name="DoPick">
+      <s:element name="DoPickTask">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="huList" type="tns:ArrayOfHU" />
@@ -160,7 +160,7 @@
           <s:element minOccurs="0" maxOccurs="unbounded" name="Hu" nillable="true" type="tns:Hu" />
         </s:sequence>
       </s:complexType>
-      <s:element name="DoPickResponse">
+      <s:element name="DoPickTaskResponse">
         <s:complexType />
       </s:element>
       <s:element name="GetDeliverMatchHu">
@@ -1770,11 +1770,11 @@
   <wsdl:message name="GetPickHuSoapOut">
     <wsdl:part name="parameters" element="tns:GetPickHuResponse" />
   </wsdl:message>
-  <wsdl:message name="DoPickSoapIn">
-    <wsdl:part name="parameters" element="tns:DoPick" />
+  <wsdl:message name="DoPickTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:DoPickTask" />
   </wsdl:message>
-  <wsdl:message name="DoPickSoapOut">
-    <wsdl:part name="parameters" element="tns:DoPickResponse" />
+  <wsdl:message name="DoPickTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:DoPickTaskResponse" />
   </wsdl:message>
   <wsdl:message name="GetDeliverMatchHuSoapIn">
     <wsdl:part name="parameters" element="tns:GetDeliverMatchHu" />
@@ -2145,9 +2145,9 @@
       <wsdl:input message="tns:GetPickHuSoapIn" />
       <wsdl:output message="tns:GetPickHuSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="DoPick">
-      <wsdl:input message="tns:DoPickSoapIn" />
-      <wsdl:output message="tns:DoPickSoapOut" />
+    <wsdl:operation name="DoPickTask">
+      <wsdl:input message="tns:DoPickTaskSoapIn" />
+      <wsdl:output message="tns:DoPickTaskSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetDeliverMatchHu">
       <wsdl:input message="tns:GetDeliverMatchHuSoapIn" />
@@ -2410,8 +2410,8 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DoPick">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoPick" style="document" />
+    <wsdl:operation name="DoPickTask">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoPickTask" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2980,8 +2980,8 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DoPick">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoPick" style="document" />
+    <wsdl:operation name="DoPickTask">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoPickTask" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -11,7 +11,7 @@ using com.Sconit.Entity.BIL;
 using com.Sconit.Entity.MD;
 using System.Web.Routing;
 using com.Sconit.Web.Models.SearchModels.TMS;
-using Resources.TMS;
+using com.Sconit.Entity.TMS;
 
 namespace com.Sconit.Web.Controllers.TMS
 {
@@ -167,9 +167,8 @@ namespace com.Sconit.Web.Controllers.TMS
             }
             else
             {
-                PriceListMaster priceListMaster = this.genericMgr.FindById<PriceListMaster>(id);
-                priceListMaster.PartyName = this.genericMgr.FindById<Party>(priceListMaster.Party).Name;
-                return PartialView(priceListMaster);
+                TransportPriceList priceList = this.genericMgr.FindById<TransportPriceList>(id);
+                return PartialView(priceList);
             }
         }
 
@@ -264,15 +263,7 @@ namespace com.Sconit.Web.Controllers.TMS
         public ActionResult _AjaxPriceListDetailList(GridCommand command, PriceListDetailSearchModel searchModel, string priceListCode)
         {
             SearchStatementModel searchStatementModel = this.LocationAreaPrepareSearchStatement(command, searchModel, priceListCode);
-            GridModel<PriceListDetail> priceListDetailList = GetAjaxPageData<PriceListDetail>(searchStatementModel, command);
-            foreach (var priceList in priceListDetailList.Data)
-            {
-                if (priceList.PriceList != null)
-                {
-                    priceList.PriceListCode = priceList.PriceList.Code;
-                }
-                priceList.ItemDesc = this.itemMgr.GetCacheItem(priceList.Item).Description;
-            }
+            GridModel<TransportPriceListDetail> priceListDetailList = GetAjaxPageData<TransportPriceListDetail>(searchStatementModel, command);
 
             return PartialView(priceListDetailList);
         }
