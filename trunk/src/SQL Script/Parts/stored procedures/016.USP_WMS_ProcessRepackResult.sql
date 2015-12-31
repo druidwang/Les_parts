@@ -76,6 +76,7 @@ BEGIN
 	(
 		UUID varchar(50) primary key,
 		HuId varchar(50),
+		IsLock bit,
 		[Version] int
 	)
 
@@ -175,11 +176,11 @@ BEGIN
 				begin
 					insert into #tempMsg_016(Lvl, Msg)
 					select 2, N'翻包前条码['+ HuId + N']大于1条。' 
-					from #tempRepackInHu_016 group by HuId having COUNT(1) > 1
+					from @RepackResultIn group by HuId having COUNT(1) > 1
 
 					insert into #tempMsg_016(Lvl, Msg)
 					select 2, N'翻包后条码['+ HuId + N']大于1条。' 
-					from #tempRepackOutHu_016 group by HuId having COUNT(1) > 1
+					from @RepackResultOut group by HuId having COUNT(1) > 1
 
 					insert into #tempMsg_016(Lvl, Msg)
 					select 2, N'翻包前条码['+ HuId + N']的物料代码和翻包任务的物料代码不匹配。' 
@@ -214,8 +215,8 @@ BEGIN
 
 					exec sp_executesql @selectStatement, @Parameter, @Location_1=@Location
 
-					insert into #tempBuffInv_016(UUID, HuId, [Version]) 
-					select bi.UUID, rih.HuId, bi.[Version] from WMS_BuffInv as bi 
+					insert into #tempBuffInv_016(UUID, HuId, IsLock, [Version]) 
+					select bi.UUID, rih.HuId, bi.IsLock, bi.[Version] from WMS_BuffInv as bi 
 					inner join #tempRepackInHu_016 as rih on bi.HuId = rih.HuId and bi.Loc = @Location and bi.IOType = 1
 
 					--insert into #tempMsg_016(Lvl, Msg) select 2, N'翻包前的条码['+ HuId + N']不在库位[' + @Location + ']中，不能进行翻包。' 
@@ -227,11 +228,15 @@ BEGIN
 					insert into #tempMsg_016(Lvl, Msg) select 2, N'翻包前的条码['+ HuId + N']不在库位[' + @Location + ']的发货缓冲区中，不能进行翻包。' 
 					from #tempBuffInv_016 where UUID is null
 
-					insert into #tempMsg_016(Lvl, Msg) select 2, N'翻包前的条码['+ HuId + N']已经被占用。' 
+					insert into #tempMsg_016(Lvl, Msg) 
+					select 2, N'翻包前的条码['+ bi.HuId + N']已经被占用。' 
 					from #tempBuffInv_016 as bi inner join WMS_BuffOccupy as bo on bi.UUID = bo.UUID
 					group by bi.HuId
-
-					insert into #tempMsg_016(Lvl, Msg) select 2, N'翻包前的条码['+ HuId + N']已经被占用。' 
+					union 
+					select 2, N'翻包前的条码['+ HuId + N']已经被占用。' 
+					from #tempBuffInv_016 where IsLock = 1
+					union
+					select 2, N'翻包前的条码['+ HuId + N']已经被占用。' 
 					from #tempLocationLotDet_016 where OccupyType <> 0
 
 					insert into #tempMsg_016(Lvl, Msg) select 2, N'翻包前的条码['+ HuId + N']已经被冻结。' 
@@ -419,5 +424,11 @@ BEGIN
 	select Lvl, Msg from #tempMsg_016
 
 	drop table #tempMsg_016
+	drop table #tempRepackInHu_016
+	drop table #tempRepackOutHu_016
+	drop table #tempLocationLotDet_016
+	drop table #tempBuffInv_016
+	drop table #tempRepackOccupy_016
+	drop table #tempShipPlan_016
 END
 GO

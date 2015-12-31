@@ -85,7 +85,7 @@ BEGIN
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on llt.HuId = hu.HuId '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join MD_LocationBin as bin on llt.Bin = bin.Code '
 			set @SelectInvStatement = @SelectInvStatement + 'left join WMS_PickTask as pt on llt.HuId = pt.HuId and pt.IsActive = 1 '  --过滤掉被拣货单占用的条码
-			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = ''' + @Location + ''' and llt.OccupyRefNo is null and llt.Qty > 0 and llt.QualityType = 0 and pt.Id is null '
+			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = ''' + @Location + ''' and llt.OccupyType = 0 and llt.Qty > 0 and llt.QualityType = 0 and pt.Id is null '
 			set @Parameter = N'@Location_1 varchar(50) '
 
 			exec sp_executesql @SelectInvStatement, @Parameter, @Location_1=@Location

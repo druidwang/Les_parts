@@ -61,6 +61,37 @@ BEGIN
 		[Version] int,
 	)
 
+	create table #tempLocation_013
+	(
+		RowId int identity(1, 1),
+		Location varchar(50),
+		Suffix varchar(50),
+		AllowNegaInv bit
+	)
+
+	create table #tempUpdatedLocLotDet_013
+	(
+		LocationLotDetId int primary key,
+		Location varchar(50),
+		Item varchar(50),
+		Qty decimal(18, 8),
+		UpdateQty decimal(18, 8),
+		PlanBill int,
+		OccupyType tinyint,
+		[Version] int,
+		Seq int
+	)
+
+	create table #tempInsertedLocLotDet_013
+	(
+		RowId int primary key,
+		LocationLotDetId int,
+		Location varchar(50),
+		Item varchar(50),
+		Qty decimal(18, 8),
+		PlanBill int
+	)
+
 	begin try
 		if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempMsg_013%') 
 		begin
@@ -95,19 +126,56 @@ BEGIN
 			select distinct sp.Id, sp.PickQty, sp.PickedQty, 0, sp.[Version]
 			from WMS_ShipPlan as sp 
 			inner join #tempPickOccupy_013 as po on po.ShipPlanId = sp.Id
+
+			insert into #tempLocation_013(Location, Suffix, AllowNegaInv) 
+			select distinct l.Code, l.PartSuffix, l.AllowNegaInv
+			from #tempPickTask_013 as pt inner join MD_Location as l on pt.Loc = l.Code
+
+			declare @LocationRowId int
+			declare @MaxLocationRowId int
+			declare @Location varchar(50)
+			declare @LocSuffix varchar(50)
+			declare @SelectInvStatement nvarchar(max)
+			declare @Parameter nvarchar(max)
+
+			select @LocationRowId = MIN(RowId), @MaxLocationRowId = MAX(RowId) from #tempLocation_013
+
+			while (@LocationRowId <= @MaxLocationRowId)
+			begin
+				select @Location = Location, @LocSuffix = Suffix
+				from #tempLocation_013 where RowId = @LocationRowId
+				set @SelectInvStatement = ''
+
+				set @SelectInvStatement = 'insert into #tempUpdatedLocLotDet_013(LocationLotDetId, Location, Item, Qty, UpdateQty, PlanBill, OccupyType, [Version]) '
+				set @SelectInvStatement = @SelectInvStatement + 'select llt.Id, llt.Location, llt.Item, llt.Qty, 0, CASE WHEN llt.IsCS = 1 THEN llt.PlanBill ELSE NULL END, llt.OccupyType, llt.[Version] '
+				set @SelectInvStatement = @SelectInvStatement + 'from INV_LocationLotDet_' + @LocSuffix + ' as llt inner join #tempPickTask_013 as pt on lld.Location = pt.Loc and lld.Item = pt.Item '
+				set @SelectInvStatement = @SelectInvStatement + 'where lld.Location = @Location_1 and pt.Location = @Location_1 and llt.OccupyType in (0, 1) and llt.Qty > 0 and llt.HuId is null and llt.QualityType = 0'
+				set @Parameter = N'@Location_1 varchar(50)'
+
+				exec sp_executesql @SelectInvStatement, @Parameter, @Location_1=@Location
+
+				set @LocationRowId = @LocationRowId + 1
+			end
 			
 			declare @RowId int
 			declare @MaxRowId int
 			declare @PickTaskId int
 			declare @PickTaskUUID varchar(50)
+			declare @Item varchar(50)
+			declare @AllowNegaInv bit
 			declare @Qty decimal(18, 8)
+			declare @BaseQty decimal(18, 8)
 			declare @LastQty decimal(18, 8)
+			declare @LastBaseQty decimal(18, 8)
 			select @RowId = MIN(RowId), @MaxRowId = MAX(RowId) from #tempPickTask_013
 			while @RowId <= @MaxRowId
 			begin
 				set @LastQty = 0
-				select @PickTaskId = PickTaskId, @PickTaskUUID = PickTaskUUID, @Qty = ThisPickQty
-				from #tempPickTask_013 where RowId = @RowId
+				set @LastBaseQty = 0
+				select @PickTaskId = pt.PickTaskId, @PickTaskUUID = pt.PickTaskUUID, @Qty = pt.ThisPickQty, @BaseQty = pt.ThisPickQty * pt.UnitQty,
+				@Location = pt.Loc, @Item = pt.Item, @AllowNegaInv = l.AllowNegaInv
+				from #tempPickTask_013 as pt inner join #tempLocation_013 as l on pt.Loc = l.Location 
+				where pt.RowId = @RowId
 
 				update #tempPickOccupy_013 set ThisReleaseQty = @LastQty,
 				@Qty = @Qty - @LastQty, @LastQty = CASE WHEN @Qty >= OccupyQty - ReleaseQty THEN OccupyQty - ReleaseQty ELSE @Qty END
@@ -118,6 +186,17 @@ BEGIN
 				begin
 					insert into #tempMsg_013(Lvl, Msg)
 					values (2, N'拣货任务['+ convert(varchar, @PickTaskId) + N']的已拣数已经超过了对应发运单的拣货数。')
+				end
+
+				update #tempUpdatedLocLotDet_013 set UpdateQty = UpdateQty + @LastBaseQty,
+				@BaseQty = @BaseQty - @LastBaseQty, @LastBaseQty = CASE WHEN @BaseQty >= (Qty - UpdateQty) THEN (Qty - UpdateQty) ELSE @BaseQty END
+				where Location = @Location and Item = @Item and OccupyType = 0
+				set @BaseQty = @BaseQty - @LastBaseQty
+
+				if (@BaseQty > 0 and @AllowNegaInv = 0)
+				begin
+					insert into #tempMsg_013(Lvl, Msg)
+					values (2, N'物料代码['+ @Item + N']在库位['+ @Location + N']中的库存不足。')
 				end
 
 				set @RowId = @RowId + 1
@@ -131,6 +210,37 @@ BEGIN
 			insert into #tempMsg_013(Lvl, Msg)
 			select 2, N'和拣货任务关联的发运任务['+ convert(varchar, ShipPlanId) + N']的已拣数已经超过了待拣数。'
 			from #tempShipPlan_013 where PickQty < PickedQty + ThisPickedQty
+
+
+			update #tempUpdatedLocLotDet_013 set Seq = ROW_NUMBER() over (partition by Location, Item, PlanBill order by LocationLotDetId)
+			where OccupyType = 1
+
+			update lld1 set UpdateQty = lld1.Qty + lld2.Qty
+			from #tempUpdatedLocLotDet_013 as lld1
+			inner join (select Location, Item, PlanBill, SUM(UpdateQty) as Qty
+						from #tempUpdatedLocLotDet_013 where OccupyType = 0 and UpdateQty > 0
+						group by Location, Item, PlanBill) as lld2 on lld1.Location = lld2.Location and lld1.Item = lld2.Item and lld1.PlanBill = lld2.PlanBill
+			where lld1.OccupyType = 1 and lld1.Seq = 1
+
+			insert into #tempInsertedLocLotDet_013(Location, Item, Qty, PlanBill)
+			select lld2.Location, lld2.Item, lld2.PlanBill, lld2.Qty
+			from #tempUpdatedLocLotDet_013 as lld1
+			right join (select Location, Item, PlanBill, SUM(UpdateQty) as Qty
+						from #tempUpdatedLocLotDet_013 where OccupyType = 0 and UpdateQty > 0
+						group by Location, Item, PlanBill) as lld2 on lld1.Location = lld2.Location and lld1.Item = lld2.Item and lld1.PlanBill = lld2.PlanBill and lld1.OccupyType = 1 and lld1.Seq = 1
+			where lld1.LocationLotDetId is null
+
+			if exists(select top 1 1 from #tempInsertedLocLotDet_013)
+			begin
+				declare @LocLotDetCount int 
+				declare @StartLocLotDetId int 
+				declare @EndLocLotDetId int 
+
+				select @LocLotDetCount = COUNT(1) from #tempInsertedLocLotDet_013
+				exec USP_SYS_BatchGetNextId 'INV_LocationLotDet', @LocLotDetCount, @EndLocLotDetId output
+				select @StartLocLotDetId = @EndLocLotDetId - @LocLotDetCount + 1
+				update #tempInsertedLocLotDet_013 set LocationLotDetId = ROW_NUMBER() over (order by RowId) + @StartLocLotDetId
+			end
 		end try
 		begin catch
 			set @ErrorMsg = N'数据准备出现异常：' + Error_Message()
@@ -187,9 +297,36 @@ BEGIN
 				@CreateUserId, @CreateUserNm, @CreateUserId, @CreateUserNm, @DateTimeNow, 0 
 				from #tempPickTask_013
 
-				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
-				select NEWID(), Loc, 1, Item, Uom, UC, ThisPickQty * UnitQty, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
+				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, IsLock, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
+				select NEWID(), Loc, 1, Item, Uom, UC, ThisPickQty * UnitQty, 1, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
 				from #tempPickTask_013
+
+				declare @UpdateInvStatement nvarchar(max)
+				declare @UpdateParameter nvarchar(max)
+				select @LocationRowId = MIN(RowId), @MaxLocationRowId = MAX(RowId) from #tempLocation_013
+				while (@LocationRowId <= @MaxLocationRowId)
+				begin
+					select @Location = Location, @LocSuffix = Suffix
+					from #tempLocation_013 where RowId = @LocationRowId
+					set @UpdateInvStatement = ''
+
+					set @UpdateInvStatement = 'insert into INV_LocationLotDet_' + @LocSuffix + '(Id, Location, Item, Qty, IsCS, PlanBill, QualityType, IsFreeze, IsATP, OccupyType, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])'
+					set @UpdateInvStatement = @UpdateInvStatement + 'select LocationLotDetId, Location, Item, Qty, CASE WHEN PlanBill is null THEN 0 ELSE 1 END, PlanBill, 0, 0, 1, 1, @CreateUserId_1, @CreateUserNm_1, @DateTimeNow_1, @CreateUserId_1, @CreateUserNm_1, @DateTimeNow_1, 1 from #tempInsertedLocLotDet_013 '
+					set @UpdateInvStatement = @UpdateInvStatement + 'declare @UpdateCount int '
+					set @UpdateInvStatement = @UpdateInvStatement + 'select @UpdateCount = COUNT(1) from #tempUpdatedLocLotDet_013 where Location = @Location_1 and UpdateQty > 0 '
+					set @UpdateInvStatement = @UpdateInvStatement + 'update lld set Qty = CASE WHEN inv.OccupyType = 0 THEN inv.Qty - inv.UpdateQty ELSE inv.UpdateQty END, LastModifyUser = @CreateUserId_1, LastModifyUserNm = @CreateUserNm_1, LastModifyDate = @DateTimeNow_1, [Version] = lld.[Version] + 1 '
+					set @UpdateInvStatement = @UpdateInvStatement + 'from INV_LocationLotDet_' + @LocSuffix + ' as lld '
+					set @UpdateInvStatement = @UpdateInvStatement + 'inner join #tempUpdatedLocLotDet_013 as inv on lld.Id = inv.LocationLotDetId and lld.[Version] = inv.[Version] where inv.Location = @Location_1 and inv.UpdateQty > 0 '
+					set @UpdateInvStatement = @UpdateInvStatement + 'if (@@ROWCOUNT <> @UpdateCount) '
+					set @UpdateInvStatement = @UpdateInvStatement + 'begin '
+					set @UpdateInvStatement = @UpdateInvStatement + 'RAISERROR(N''数据已经被更新，请重试。'', 16, 1) '
+					set @UpdateInvStatement = @UpdateInvStatement + 'end'
+					set @Parameter = N'@Location_1 varchar(50), @CreateUserId_1 int, @CreateUserNm_1 varchar(100), @DateTimeNow_1 datetime'
+
+					exec sp_executesql @UpdateInvStatement, @UpdateParameter, @Location_1=@Location
+
+					set @LocationRowId = @LocationRowId + 1
+				end
 
 				if @Trancount = 0 
 				begin  
@@ -215,5 +352,8 @@ BEGIN
 	drop table #tempPickTask_013
 	drop table #tempPickOccupy_013
 	drop table #tempShipPlan_013
+	drop table #tempLocation_013
+	drop table #tempUpdatedLocLotDet_013
+	drop table #tempInsertedLocLotDet_013
 END
 GO
