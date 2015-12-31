@@ -3,27 +3,6 @@
     Html.RenderAction("_SiteMapPath", "Common", new { MenuContent = "Url_OrderMstr_Distribution_New" });
 }
 <script type="text/javascript">
-    function Carrier_Change(e) {
-        var combobox = $(this).data("tComboBox");
-        if (combobox == undefined) {
-            return;
-        }
-    }
-
-    function Flow_Change(e) {
-        $('#Detail').show();
-        var tabstrip = $("#TabStrip").data("tTabStrip");
-        var items = $("li", tabstrip.element);
-        tabstrip.select(items[0]);
-        var grid1 = $("#OrderDetailGrid").data("tGrid");
-        if (grid1 !== undefined) {
-            grid1.ajaxRequest();
-        }
-        var grid2 = $("#OrderRouteGrid").data("tGrid");
-        if (grid2 !== undefined) {
-            grid2.ajaxRequest();
-        }
-    }
 
     function Vehicle_OnChange(e) {
         var combobox = $(this).data("tComboBox");
@@ -63,20 +42,18 @@
         }
     }
 
-    $(document).ready(function () {
-        var tabstrip = $("#TabStrip").data("tTabStrip");
-        //$($("li", tabstrip.element)[0]).find('a')[0].href += "?flow=qazwsx";
-    });
     function OrderDetailGridDateBinding(e) {
         e.data = {
-            flow: $("#Flow").val()
+            flow: $("#Flow").val(),
+            orderNo:$("#OrderNo").val()
         }
     }
 
     function OrderRouteGridDateBinding(e) {
         e.data = {
             flow: $("#Flow").val(),
-            guid: $("#Guid").val()
+            guid: $("#Guid").val(),
+            orderNo: $("#OrderNo").val()
         }
     }
 
@@ -166,17 +143,18 @@
     <fieldset>
         <div class="editor">
             <div class="editor-label-2">
+                @Html.LabelFor(model => model.OrderNo)
+            </div>
+            <div class="editor-field-2">
+                @Html.DisplayFor(model => model.OrderNo)
+                @Html.HiddenFor(model => model.OrderNo)
+            </div>
+            <div class="editor-label-2">
                 @Html.LabelFor(model => model.Flow)
             </div>
             <div class="editor-field-2">
-                @{
-                    Html.RenderAction("_TransportFlowComboBox", "Common", new
-                    {
-                        controlName = "Flow",
-                        isChange = true
-                    });
-                }
-                @Html.ValidationMessageFor(model => model.Flow)
+                @Html.DisplayFor(model=>model.Flow)
+                @Html.HiddenFor(model=>model.Flow)
             </div>
             <div class="editor-label-2">
                 @Html.LabelFor(model => model.ExternalOrderNo)
@@ -189,15 +167,8 @@
             </div>
             <div class="editor-field-2">
                 <div class="editor-field-2">
-                @{
-                    Html.RenderAction("_CarrierComboBox", "Common", new
-                    {
-                        controlName = "Carrier",
-                        checkPermission = false,
-                        isChange = true
-                    });
-                }
-                @Html.ValidationMessageFor(model => model.Carrier)
+                 @Html.DisplayFor(model => model.Carrier)
+                 @Html.HiddenFor(model => model.Carrier)
                 </div>
             </div>
             <div class="editor-label-2">
@@ -208,6 +179,7 @@
                 Html.RenderAction("_CodeMasterDropDownList", "Common", new
                 {
                     code = com.Sconit.CodeMaster.CodeMaster.TransportMode,
+                    selectedValue = Model.TransportMode,
                     controlName = "TransportMode"
                 });
             }
@@ -216,75 +188,49 @@
                 @Html.LabelFor(model => model.Vehicle)
             </div>
             <div class="editor-field-2">
-                @(Html.Telerik().ComboBox()
-                .DropDownHtmlAttributes(new { style = "width: 300px; " })
-                .Name("Vehicle")
-                .HiddenInputHtmlAttributes(new { id = "Vehicle" })
-                .AutoFill(true)
-                .DataBinding(binding => binding.Ajax()
-                .Select("_AjaxLoadingVehicle", "Common", new
-                {
-                    includeBlankOption = false,
-                    text = Model.Vehicle
-                }))
-                .ClientEvents(e => e.OnChange("Vehicle_OnChange"))
-                .HighlightFirstMatch(true)
-                .Enable(true))
+                @{
+                    Html.RenderAction("_VehicleComboBox", "Common", new
+                    {
+                        controlName = "Vehicle",
+                        selectedValue = Model.Vehicle
+                    });
+                }
             </div>
             <div class="editor-label-2">
                 @Html.LabelFor(model => model.PriceList)
             </div>
             <div class="editor-field-2">
-                @(Html.Telerik().ComboBox()
-                .DropDownHtmlAttributes(new { style = "width: 300px; " })
-                .Name("PriceList")
-                .HiddenInputHtmlAttributes(new { id = "PriceList" })
-                .AutoFill(true)
-                .DataBinding(binding => binding.Ajax()
-                .Select("_AjaxLoadingTransportPriceList", "Common", new
-                {
-                    includeBlankOption = false
-                }))
-                .HighlightFirstMatch(true)
-                .Enable(true))
+                @{
+                    Html.RenderAction("_TransportPriceListComboBox", "Common", new
+                    {
+                        controlName = "PriceList",
+                        selectedValue = Model.PriceList
+                    });
+                }
             </div>
             <div class="editor-label-2">
                 @Html.LabelFor(model=>model.Tonnage)
             </div>
             <div class="editor-field-2">
-                @(Html.Telerik().ComboBox()
-                .DropDownHtmlAttributes(new { style = "width: 300px; " })
-                .Name("Tonnage")
-                .HiddenInputHtmlAttributes(new { id = "Tonnage" })
-                .AutoFill(true)
-                .DataBinding(binding => binding.Ajax()
-                .Select("_AjaxLoadingTonnage", "Common", new
-                {
-                    includeBlankOption = false
-                }))
-                .ClientEvents(e => e.OnDataBinding("Tonnage_OnDataBinding"))
-                .Value(Model.Tonnage)
-                .HighlightFirstMatch(true)
-                .Enable(true))
+                @{
+                    Html.RenderAction("_TonnageComboBox", "Common", new
+                    {
+                        controlName = "Tonnage",
+                        selectedValue = Model.Tonnage
+                    });
+                }
             </div>
             <div class="editor-label-2">
                 @Html.LabelFor(model => model.Driver)
             </div>
             <div class="editor-field-2">
-                @(Html.Telerik().ComboBox()
-                .DropDownHtmlAttributes(new { style = "width: 300px; " })
-                .Name("Driver")
-                .HiddenInputHtmlAttributes(new { id = "Driver" })
-                .AutoFill(true)
-                .Value(Model.Driver)
-                .DataBinding(binding => binding.Ajax()
-                .Select("_AjaxLoadingDriver", "Common", new
-                {
-                    includeBlankOption = false
-                }))
-                .ClientEvents(e => e.OnChange("Driver_Change").OnDataBinding("Driver_OnDataBinding"))
-                .HighlightFirstMatch(true)
-                .Enable(true))
+                @{
+                    Html.RenderAction("_DriverComboBox", "Common", new
+                    {
+                        controlName = "Driver",
+                        selectedValue = Model.Driver
+                    });
+                }
             </div>
             <div class="editor-label-2">
                 @Html.LabelFor(model => model.LicenseNo)
@@ -359,4 +305,14 @@
         .Render();
     }
     </fieldset>
+
+
+    <script>
+        $(document).ready(function () {
+            var tabIndex = "";
+            var tabstrip = $("#TabStrip").data("tTabStrip");
+            var item = $("li", tabstrip.element)[tabIndex != "" ? tabIndex : 0];
+            tabstrip.select(item);
+        });
+    </script>
 

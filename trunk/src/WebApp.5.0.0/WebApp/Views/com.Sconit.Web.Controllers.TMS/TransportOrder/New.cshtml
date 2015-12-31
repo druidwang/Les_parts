@@ -25,7 +25,8 @@
         }
     }
 
-    function Vehicle_OnChange(e) {
+    function Vehicle_Change(e) {
+        //debugger;
         var combobox = $(this).data("tComboBox");
         if (combobox == undefined) {
             return;
@@ -49,17 +50,15 @@
 
     }
 
-    function Driver_OnDataBinding(e) {
+    function Driver_DataBinding(e) {
         e.data = {
-            vehicle: $('#Vehicle').val(),
-            includeBlankOption: false
+            vehicle: $('#Vehicle').val()
         }
     }
 
-    function Tonnage_OnDataBinding(e) {
+    function Tonnage_DataBinding(e) {
         e.data = {
-            vehicle: $('#Vehicle').val(),
-            includeBlankOption: false
+            vehicle: $('#Vehicle').val()
         }
     }
 
@@ -216,72 +215,48 @@
                 @Html.LabelFor(model => model.Vehicle)
             </div>
             <div class="editor-field-2">
-                @(Html.Telerik().ComboBox()
-                .DropDownHtmlAttributes(new { style = "width: 300px; " })
-                .Name("Vehicle")
-                .HiddenInputHtmlAttributes(new { id = "Vehicle" })
-                .AutoFill(true)
-                .DataBinding(binding => binding.Ajax()
-                .Select("_AjaxLoadingVehicle", "Common", new
-                {
-                    includeBlankOption = false
-                }))
-                .ClientEvents(e => e.OnChange("Vehicle_OnChange"))
-                .HighlightFirstMatch(true)
-                .Enable(true))
+                @{
+                    Html.RenderAction("_VehicleComboBox", "Common", new
+                    {
+                        controlName = "Vehicle",
+                        isChange = true
+                    });
+                }
             </div>
             <div class="editor-label-2">
                 @Html.LabelFor(model => model.PriceList)
             </div>
             <div class="editor-field-2">
-                @(Html.Telerik().ComboBox()
-                .DropDownHtmlAttributes(new { style = "width: 300px; " })
-                .Name("PriceList")
-                .HiddenInputHtmlAttributes(new { id = "PriceList" })
-                .AutoFill(true)
-                .DataBinding(binding => binding.Ajax()
-                .Select("_AjaxLoadingTransportPriceList", "Common", new
-                {
-                    includeBlankOption = false
-                }))
-                .HighlightFirstMatch(true)
-                .Enable(true))
+                @{
+                    Html.RenderAction("_TransportPriceListComboBox", "Common", new
+                    {
+                        controlName = "PriceList"
+                    });
+                }
             </div>
             <div class="editor-label-2">
                 @Html.LabelFor(model=>model.Tonnage)
             </div>
             <div class="editor-field-2">
-                @(Html.Telerik().ComboBox()
-                .DropDownHtmlAttributes(new { style = "width: 300px; " })
-                .Name("Tonnage")
-                .HiddenInputHtmlAttributes(new { id = "Tonnage" })
-                .AutoFill(true)
-                .DataBinding(binding => binding.Ajax()
-                .Select("_AjaxLoadingTonnage", "Common", new
-                {
-                    includeBlankOption = false
-                }))
-                .ClientEvents(e => e.OnDataBinding("Tonnage_OnDataBinding"))
-                .HighlightFirstMatch(true)
-                .Enable(true))
+                @{
+                    Html.RenderAction("_TonnageComboBox", "Common", new
+                    {
+                        controlName = "Tonnage",
+                        checkVehicle = true
+                    });
+                }
             </div>
             <div class="editor-label-2">
                 @Html.LabelFor(model => model.Driver)
             </div>
             <div class="editor-field-2">
-                @(Html.Telerik().ComboBox()
-                .DropDownHtmlAttributes(new { style = "width: 300px; " })
-                .Name("Driver")
-                .HiddenInputHtmlAttributes(new { id = "Driver" })
-                .AutoFill(true)
-                .DataBinding(binding => binding.Ajax()
-                .Select("_AjaxLoadingDriver", "Common", new
-                {
-                    includeBlankOption = false
-                }))
-                .ClientEvents(e => e.OnChange("Driver_Change").OnDataBinding("Driver_OnDataBinding"))
-                .HighlightFirstMatch(true)
-                .Enable(true))
+                @{
+                    Html.RenderAction("_DriverComboBox", "Common", new
+                    {
+                        controlName = "Driver",
+                        checkVehicle = true
+                    });
+                }
             </div>
             <div class="editor-label-2">
                 @Html.LabelFor(model => model.LicenseNo)

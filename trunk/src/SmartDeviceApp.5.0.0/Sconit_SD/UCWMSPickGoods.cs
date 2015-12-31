@@ -183,16 +183,27 @@ namespace com.Sconit.SmartDevice
         protected override void Reset()
         {
             base.Reset();
+            this.hus = new List<Hu>();
             this.effDate = null;
         }
         #endregion
 
         protected override void DoSubmit()
         {
-
-            this.Reset();
-            //base.lblMessage.Text = string.Format("收货成功,收货单号:{0}", receiptNo);
-            this.isMark = true;
+            try
+            {
+                this.smartDeviceService.DoPickTask(this.hus.ToArray(), this.user.Code);
+                this.Reset();
+                base.lblMessage.Text = string.Format("拣货成功");
+                this.isMark = true;
+            }
+            catch (Exception ex)
+            {
+                this.isMark = true;
+                this.tbBarCode.Text = string.Empty;
+                this.tbBarCode.Focus();
+                Utility.ShowMessageBox(ex.Message);
+            }
         }
 
       

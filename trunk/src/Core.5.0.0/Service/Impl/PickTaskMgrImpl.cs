@@ -149,7 +149,7 @@ namespace com.Sconit.Service.Impl
             }
         }
 
-        public void PorcessPickResult4PickLotNoAndHu(Dictionary<int, string> pickResults)
+        public void PorcessPickResult4PickLotNoAndHu(Dictionary<int, List<string>> pickResults)
         {
             User user = SecurityContextHolder.Get();
 
@@ -159,11 +159,15 @@ namespace com.Sconit.Service.Impl
             pickResultTable.Columns.Add(new DataColumn("Qty", typeof(decimal)));
             foreach (var pickResult in pickResults)
             {
-                DataRow row = pickResultTable.NewRow();
-                row[0] = pickResult.Key;
-                row[1] = pickResult.Value;
-                row[2] = 0;
-                pickResultTable.Rows.Add(row);
+                foreach (var huId in pickResult.Value)
+                {
+                    DataRow row = pickResultTable.NewRow();
+                    row[0] = pickResult.Key;
+                    row[1] = huId;
+                    row[2] = 0;
+                    pickResultTable.Rows.Add(row);
+                }
+
             }
             SqlParameter[] paras = new SqlParameter[3];
             paras[0] = new SqlParameter("@PickResultTable", SqlDbType.Structured);

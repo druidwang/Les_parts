@@ -8,7 +8,7 @@
     {
         List<PickTask> GetPickTaskByUser(int pickUserId);
 
-        void DoPick(List<Entity.SI.SD_INV.Hu> huList);
+        void DoPickTask(List<Entity.SI.SD_INV.Hu> huList);
 
         Entity.SI.SD_INV.Hu GetPickHu(string huId);
 
