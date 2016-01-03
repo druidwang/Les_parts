@@ -61,6 +61,33 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assign.
+        /// </summary>
+        public static string ShipPlan_Assign_Title {
+            get {
+                return ResourceManager.GetString("ShipPlan_Assign_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ShipPlan Assigned.
+        /// </summary>
+        public static string ShipPlan_Assigned {
+            get {
+                return ResourceManager.GetString("ShipPlan_Assigned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AssignUser.
+        /// </summary>
+        public static string ShipPlan_AssignUser {
+            get {
+                return ResourceManager.GetString("ShipPlan_AssignUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Base Uom.
         /// </summary>
         public static string ShipPlan_BaseUom {
@@ -403,6 +430,15 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ShipGroupCode.
+        /// </summary>
+        public static string ShipPlan_ShipGroupCode {
+            get {
+                return ResourceManager.GetString("ShipPlan_ShipGroupCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ship Qty.
         /// </summary>
         public static string ShipPlan_ShipQty {
@@ -462,6 +498,15 @@ namespace Resources.WMS {
         public static string ShipPlan_ShipToTel {
             get {
                 return ResourceManager.GetString("ShipPlan_ShipToTel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ShipUserName.
+        /// </summary>
+        public static string ShipPlan_ShipUserName {
+            get {
+                return ResourceManager.GetString("ShipPlan_ShipUserName", resourceCulture);
             }
         }
         

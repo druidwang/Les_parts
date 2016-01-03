@@ -12,5 +12,7 @@ namespace com.Sconit.Service
         void CreateShipPlan(string orderNo);
 
         void CancelShipPlan(string orderNo);
+
+        void AssignShipPlan(IList<ShipPlan> shipPlanList, string assignUser);
     }
 }

@@ -213,7 +213,7 @@ namespace com.Sconit.Web.Controllers.WMS
                     {
                         if (string.IsNullOrEmpty(pickRuleSql))
                         {
-                            pickRuleSql += "select p from PickTask as p where p.Location in (?";
+                            pickRuleSql += "select p from PickTask as p where p.PickUserId is null and p.Location in (?";
                             param.Add(r.Location);
                         }
                         else
@@ -256,7 +256,7 @@ namespace com.Sconit.Web.Controllers.WMS
 
                 //}
 
-                IList<ShipPlan> shipPlanList = new List<ShipPlan>();
+                IList<PickTask> pickTaskList = new List<PickTask>();
                 if (!string.IsNullOrEmpty(checkedPickTasks))
                 {
 
@@ -266,19 +266,14 @@ namespace com.Sconit.Web.Controllers.WMS
                     for (int i = 0; i < idArray.Count(); i++)
                     {
 
-                        ShipPlan sp = genericMgr.FindById<ShipPlan>(Convert.ToInt32(idArray[i]));
-
-                        shipPlanList.Add(sp);
+                        PickTask pt = genericMgr.FindById<PickTask>(idArray[i]);
+                        pickTaskList.Add(pt);
 
                     }
                 }
-                //if (orderDetailList.Count() == 0)
-                //{
-                //    throw new BusinessException(Resources.EXT.ControllerLan.Con_ReceiveDetailCanNotBeEmpty);
-                //}
-
-                //orderMgr.ReceiveOrder(orderDetailList);
-                object obj = new { SuccessMessage = string.Format(Resources.ORD.OrderMaster.OrderMaster_Received, checkedPickTasks), SuccessData = checkedPickTasks };
+                pickTaskMgr.AssignPickTask(pickTaskList, assignUser);
+                SaveSuccessMessage(Resources.WMS.PickTask.PickTask_Assigned);
+                object obj = new { SuccessMessage = string.Format(Resources.WMS.PickTask.PickTask_Assigned, checkedPickTasks), SuccessData = checkedPickTasks };
                 return Json(obj);
 
             }

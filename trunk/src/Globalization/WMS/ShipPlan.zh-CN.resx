@@ -276,4 +276,19 @@
   <data name="ShipPlan_ToDeliveryBarCodeQty" xml:space="preserve">
     <value>标签数量</value>
   </data>
+  <data name="ShipPlan_Assigned" xml:space="preserve">
+    <value>发货任务已分配</value>
+  </data>
+  <data name="ShipPlan_ShipGroupCode" xml:space="preserve">
+    <value>发货组</value>
+  </data>
+  <data name="ShipPlan_ShipUserName" xml:space="preserve">
+    <value>发货人</value>
+  </data>
+  <data name="ShipPlan_AssignUser" xml:space="preserve">
+    <value>分派用户</value>
+  </data>
+  <data name="ShipPlan_Assign_Title" xml:space="preserve">
+    <value>分派</value>
+  </data>
 </root>

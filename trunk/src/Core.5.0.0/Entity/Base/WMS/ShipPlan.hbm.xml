@@ -59,5 +59,7 @@
         <property name="CloseUserId" column="CloseUser" type="Int32"/>
         <property name="CloseUserName" column="CloseUserNm" type="String" length="100"/>
         <property name="CloseDate" column="CloseDate" type="DateTime"/>
+		<property name="ShipUserId" column="ShipUserId" type="Int32"/>
+		<property name="ShipUserName" column="ShipUserNm" type="String" length="100"/>
     </class>
 </hibernate-mapping>

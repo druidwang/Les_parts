@@ -213,4 +213,7 @@
   <data name="PickTask_PickTaskList" xml:space="preserve">
     <value>PickTaskList</value>
   </data>
+  <data name="PickTask_Assigned" xml:space="preserve">
+    <value>PickTask Assigned</value>
+  </data>
 </root>

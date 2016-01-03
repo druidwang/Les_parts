@@ -220,5 +220,24 @@ namespace com.Sconit.Service.Impl
                 }
             }
         }
+
+        public void AssignPickTask(IList<PickTask> pickTaskList, string assignUser)
+        {
+            if (pickTaskList != null && pickTaskList.Count > 0)
+            {
+                User lastModifyUser = SecurityContextHolder.Get();
+                User user = genericMgr.FindById<User>(Convert.ToInt32(assignUser));
+                foreach(PickTask p in pickTaskList)
+                {
+                    p.PickUserId = user.Id;
+                    p.PickUserName = user.FullName;
+                    p.LastModifyDate = DateTime.Now;
+                    p.LastModifyUserId = lastModifyUser.Id;
+                    p.LastModifyUserName = lastModifyUser.FullName;
+                    genericMgr.Update(p);
+                }
+
+            }
+        }
     }
 }

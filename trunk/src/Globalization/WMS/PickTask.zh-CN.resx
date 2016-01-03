@@ -213,4 +213,7 @@
   <data name="PickTask_PickTaskList" xml:space="preserve">
     <value>拣货任务明细</value>
   </data>
+  <data name="PickTask_Assigned" xml:space="preserve">
+    <value>拣货任务分派成功</value>
+  </data>
 </root>

@@ -2585,9 +2585,6 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Edit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\Assign.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_AssignSearch.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_AssignList.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\AssignIndex.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\AssignList.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_ShipList.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_ShipSearch.cshtml" />
@@ -2658,6 +2655,10 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\_SearchResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\FlowMaster.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\DeliveryBarCode\_ShipPlanList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\Assign.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_RepackTaskList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Assign.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_ShipPlanList.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

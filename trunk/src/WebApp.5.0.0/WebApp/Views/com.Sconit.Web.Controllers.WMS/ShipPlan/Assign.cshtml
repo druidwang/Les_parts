@@ -8,19 +8,19 @@
         }
         if (combobox.selectedIndex == undefined || combobox.selectedIndex == -1) {
             combobox.value("");
-            $("#fdTaskList").hide();
+            $("#fdPlanList").hide();
         } else {
-            $("#fdTaskList").html("Loading...");
-            $("#fdTaskList").show();
+            $("#fdPlanList").html("Loading...");
+            $("#fdPlanList").show();
             var data = { "pickGroupCode": e.value };
             $.ajax({
                 type: "get",
                 dataType: "html",
-                url: "/PickTask/_PickTaskList/",
+                url: "/ShipPlan/_ShipPlanList/",
                 data: data,
                 cache: false,
                 success: function (data, textStatus) {
-                    $("#fdTaskList").html(data);
+                    $("#fdPlanList").html(data);
                     //$("#fdOrderDetail").show();
                     $("tr.t-no-data").find("td").text("Loading...");
                 },
@@ -31,23 +31,23 @@
         }
     }
 
-    function assignCheckedPickTasks() {
+    function assignCheckedShipPlans() {
         var $checkRecords = $("input[name='checkedRecords']");
 
-        var checkedPickTasks = "";
+        var checkedShipPlans = "";
         var assignUser = "";
         for (var i = 0; i < $checkRecords.length; i++) {
             if ($checkRecords[i].checked) {
-                if (checkedPickTasks == "") {
-                    checkedPickTasks = $checkRecords[i].value;
+                if (checkedShipPlans == "") {
+                    checkedShipPlans = $checkRecords[i].value;
                 } else {
-                    checkedPickTasks += "," + $checkRecords[i].value;
+                    checkedShipPlans += "," + $checkRecords[i].value;
                 }
             }
         }
 
         assignUser = $("#PickUser").val();
-        if (checkedPickTasks == "") {
+        if (checkedShipPlans == "") {
             alert('请选择一条记录');
             return;
         }
@@ -57,13 +57,13 @@
             return;
         }
         var data = {
-            "checkedPickTasks": checkedPickTasks,
+            "checkedShipPlans": checkedShipPlans,
             "assignUser": assignUser
         };
         $.ajax({
             type: "Post",
             dataType: "html",
-            url: "/PickTask/AssignPickTask/",
+            url: "/ShipPlan/AssignShipPlan/",
             data: data,
             cache: false,
             success: function (data, textStatus) {
@@ -72,7 +72,7 @@
                     $.ajax({
                         type: "post",
                         dataType: "html",
-                        url: "@Url.Content("~/PickTask/Assign/")",
+                        url: "@Url.Content("~/ShipPlan/Assign/")",
                         data: "",
                         cache: false,
                         success: function (data, textStatus) {
@@ -88,13 +88,13 @@
         });
     }
 </script>
-@using (Html.BeginForm("AssignList", "PickTask"))
+@using (Html.BeginForm("AssignList", "ShipPlan"))
 {  
     <fieldset>
         <div class="search">
             <div class="search-label">
-                <label for="PickTask_Item">
-                    @Resources.WMS.PickTask.PickTask_PickGroupCode
+                <label for="ShipPlan_Item">
+                    @Resources.WMS.ShipPlan.ShipPlan_ShipGroupCode
                 </label>
             </div>
             <div class="search-field">
@@ -103,7 +103,7 @@
         new
         {
             controlName = "PickGroup",
-            type = (int)com.Sconit.CodeMaster.PickGroupType.Pick,
+            type = (int)com.Sconit.CodeMaster.PickGroupType.Ship,
             isChange = true
         });
                 }
@@ -111,6 +111,6 @@
         </div>
     </fieldset>
 
-    <div id="fdTaskList" style="display: none;">
+    <div id="fdPlanList" style="display: none;">
     </div>
 }

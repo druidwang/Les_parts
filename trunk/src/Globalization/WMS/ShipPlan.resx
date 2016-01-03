@@ -276,4 +276,19 @@
   <data name="ShipPlan_ToDeliveryBarCodeQty" xml:space="preserve">
     <value>BarCodeQty</value>
   </data>
+  <data name="ShipPlan_Assigned" xml:space="preserve">
+    <value>ShipPlan Assigned</value>
+  </data>
+  <data name="ShipPlan_AssignUser" xml:space="preserve">
+    <value>AssignUser</value>
+  </data>
+  <data name="ShipPlan_Assign_Title" xml:space="preserve">
+    <value>Assign</value>
+  </data>
+  <data name="ShipPlan_ShipGroupCode" xml:space="preserve">
+    <value>ShipGroupCode</value>
+  </data>
+  <data name="ShipPlan_ShipUserName" xml:space="preserve">
+    <value>ShipUserName</value>
+  </data>
 </root>

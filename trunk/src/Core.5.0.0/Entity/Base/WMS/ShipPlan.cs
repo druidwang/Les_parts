@@ -153,6 +153,12 @@ namespace com.Sconit.Entity.WMS
 
         [Display(Name = "ShipPlan_CloseDate", ResourceType = typeof(Resources.WMS.ShipPlan))]
         public DateTime? CloseDate { get; set; }
+
+        public Int32? ShipUserId { get; set; }
+
+        [Display(Name = "ShipPlan_ShipUserName", ResourceType = typeof(Resources.WMS.ShipPlan))]
+        public string ShipUserName { get; set; }
+
         public Int32 Version { get; set; }
 
         public string LocationTo { get; set; }
