@@ -9,6 +9,7 @@
         <property name="OrderNo" column="OrderNo" type="String" length="50"/>
         <property name="OrderSequence" column="OrderSeq" type="Int32"/>
         <property name="OrderDetailId" column="OrderDetId" type="Int32"/>
+        <property name="OrderType" column="OrderType"/>
 		<property name="StartTime" column="StartTime" type="DateTime"/>	
 		<property name="WindowTime" column="WindowTime" type="DateTime"/>	
 		<property name="Item" column="Item" type="String" length="50"/>	

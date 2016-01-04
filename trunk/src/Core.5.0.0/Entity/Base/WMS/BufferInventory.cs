@@ -18,7 +18,8 @@ namespace com.Sconit.Entity.WMS
 		public Decimal UnitCount { get; set; }
 		public Decimal Qty { get; set; }
 		public string LotNo { get; set; }
-		public string HuId { get; set; }
+        public string HuId { get; set; }
+        public Boolean IsLock { get; set; }
 		public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
 		public DateTime CreateDate { get; set; }

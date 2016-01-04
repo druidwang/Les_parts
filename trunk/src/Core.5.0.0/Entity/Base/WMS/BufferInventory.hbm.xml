@@ -12,8 +12,9 @@
 		<property name="Uom" column="Uom" type="String" length="5"/>	
 		<property name="UnitCount" column="UC" type="Decimal"/>	
 		<property name="Qty" column="Qty" type="Decimal"/>	
-		<property name="LotNo" column="LotNo" type="String" length="50"/>	
-		<property name="HuId" column="HuId" type="String" length="50"/>	
+		<property name="LotNo" column="LotNo" type="String" length="50"/>
+        <property name="HuId" column="HuId" type="String" length="50"/>
+        <property name="IsLock" column="IsLock" type="Boolean"/>	
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
