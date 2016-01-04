@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using com.Sconit.Entity.WMS;
-using com.Sconit.Entity.INV;
 
 namespace com.Sconit.Service
 {
@@ -14,5 +13,7 @@ namespace com.Sconit.Service
         void PorcessPickResult4PickQty(Dictionary<int, decimal> pickResults);
 
         void PorcessPickResult4PickLotNoAndHu(Dictionary<int, List<string>> pickResults);
+
+        void AssignPickTask(IList<PickTask> pickTaskList,string assignUser);
     }
 }

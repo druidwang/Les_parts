@@ -27,6 +27,7 @@ namespace com.Sconit.Web.Controllers.WMS
 
         private static string selectStatement = "select p from ShipPlan as p";
 
+        public IShipPlanMgr shipPlanMgr { get; set; }
 
         #region 查询
         [SconitAuthorize(Permissions = "Url_ShipPlan_View")]
@@ -102,32 +103,98 @@ namespace com.Sconit.Web.Controllers.WMS
             return PartialView(GetAjaxPageData<ShipPlan>(searchStatementModel, command));
         }
 
+        #endregion
+
+        #region 分派
+        [SconitAuthorize(Permissions = "Url_ShipPlan_Assign")]
+        public ActionResult Assign()
+        {
+            return View();
+        }
+
+        [SconitAuthorize(Permissions = "Url_ShipPlan_Assign")]
+        public ActionResult _ShipPlanList(string pickGroupCode)
+        {
+
+            ViewBag.pickGroupCode = pickGroupCode;
+
+            return PartialView();
+        }
+
+        [GridAction]
+        [SconitAuthorize(Permissions = "Url_ShipPlan_Assign")]
+        public ActionResult _SelectAssignBatchEditing(string pickGroupCode)
+        {
+            IList<ShipPlan> pickTaskList = new List<ShipPlan>();
+
+            if (!string.IsNullOrEmpty(pickGroupCode))
+            {
+                string repackGroupSql = "select r from PickRule as r where r.PickGroupCode = ?";
+                IList<PickRule> pickRuleList = genericMgr.FindAll<PickRule>(repackGroupSql, pickGroupCode);
+
+                if (pickRuleList != null && pickRuleList.Count > 0)
+                {
+                    string pickRuleSql = string.Empty;
+                    IList<object> param = new List<object>();
+
+                    foreach (PickRule r in pickRuleList)
+                    {
+                        if (string.IsNullOrEmpty(pickRuleSql))
+                        {
+                            pickRuleSql += "select p from ShipPlan as p where p.ShipUserId is null and p.LocationFrom in (?";
+                            param.Add(r.Location);
+                        }
+                        else
+                        {
+                            pickRuleSql += ",?";
+                            param.Add(r.Location);
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(pickRuleSql))
+                    {
+                        pickRuleSql += ")";
+                    }
+
+                    pickTaskList = genericMgr.FindAll<ShipPlan>(pickRuleSql, param.ToList());
+                }
+
+
+
+
+            }
+            return View(new GridModel(pickTaskList));
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        [SconitAuthorize(Permissions = "Url_ShipPlan_Ship")]
-        public ActionResult Assign(String checkedShipPlans)
+        [SconitAuthorize(Permissions = "Url_ShipPlan_Assign")]
+        public ActionResult AssignShipPlan(String checkedShipPlans, String assignUser)
         {
             try
             {
+
                 IList<ShipPlan> shipPlanList = new List<ShipPlan>();
                 if (!string.IsNullOrEmpty(checkedShipPlans))
                 {
+
                     string[] idArray = checkedShipPlans.Split(',');
+
+
                     for (int i = 0; i < idArray.Count(); i++)
                     {
-                        ShipPlan sp = genericMgr.FindById<ShipPlan>(Convert.ToInt32(idArray[i]));
-                        shipPlanList.Add(sp);
+
+                        ShipPlan rt = genericMgr.FindById<ShipPlan>(Convert.ToInt32(idArray[i]));
+
+                        shipPlanList.Add(rt);
+
                     }
                 }
-                //if (orderDetailList.Count() == 0)
-                //{
-                //    throw new BusinessException(Resources.EXT.ControllerLan.Con_ReceiveDetailCanNotBeEmpty);
-                //}
-
-                //orderMgr.ReceiveOrder(orderDetailList);
-                object obj = new { SuccessMessage = string.Format(Resources.ORD.OrderMaster.OrderMaster_Received, checkedShipPlans), SuccessData = checkedShipPlans };
+                shipPlanMgr.AssignShipPlan(shipPlanList, assignUser);
+                SaveSuccessMessage(Resources.WMS.ShipPlan.ShipPlan_Assigned);
+                object obj = new { SuccessMessage = string.Format(Resources.WMS.ShipPlan.ShipPlan_Assigned, checkedShipPlans), SuccessData = checkedShipPlans };
                 return Json(obj);
 
             }

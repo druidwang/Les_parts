@@ -26,5 +26,24 @@ namespace com.Sconit.Service.Impl
         {
             throw new NotImplementedException();
         }
+
+        public void AssignShipPlan(IList<ShipPlan> shipPlanList, string assignUser)
+        {
+            if (shipPlanList != null && shipPlanList.Count > 0)
+            {
+                User lastModifyUser = SecurityContextHolder.Get();
+                User user = genericMgr.FindById<User>(Convert.ToInt32(assignUser));
+                foreach (ShipPlan p in shipPlanList)
+                {
+                    p.ShipUserId = user.Id;
+                    p.ShipUserName = user.FullName;
+                    p.LastModifyDate = DateTime.Now;
+                    p.LastModifyUserId = lastModifyUser.Id;
+                    p.LastModifyUserName = lastModifyUser.FullName;
+                    genericMgr.Update(p);
+                }
+
+            }
+        }
     }
 }

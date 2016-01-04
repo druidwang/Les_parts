@@ -35,6 +35,10 @@ namespace com.Sconit.Entity.WMS
                 return this.OrderQty - this.PickQty;
             }
         }
+
+          [Display(Name = "ShipPlan_ToDeliveryBarCodeQty", ResourceType = typeof(Resources.WMS.ShipPlan))]
+        public decimal ToDeliveryBarCodeQty { get; set; }
+
         #endregion
     }
 }

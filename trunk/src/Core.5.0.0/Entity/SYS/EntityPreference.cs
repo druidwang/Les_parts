@@ -67,6 +67,9 @@ namespace com.Sconit.Entity.SYS
             WebAddress = 11074,
             //上报时间
             StartUpTime = 11075,
+
+            //默认配送标签模板
+            DefaultDeliveryBarCodeTemplate = 90114,
         }
 
         [Display(Name = "EntityPreference_Desc", ResourceType = typeof(Resources.SYS.EntityPreference))]

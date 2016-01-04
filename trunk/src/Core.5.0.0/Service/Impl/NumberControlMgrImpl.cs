@@ -14,6 +14,7 @@ using com.Sconit.Entity.BIL;
 using com.Sconit.Entity;
 using com.Sconit.Entity.Exception;
 using com.Sconit.Entity.TMS;
+using com.Sconit.Entity.WMS;
 
 namespace com.Sconit.Service.Impl
 {
@@ -548,6 +549,57 @@ namespace com.Sconit.Service.Impl
             numberSuffix = numberSuffix.PadLeft(10, '0');
             return "T" + numberSuffix;
         }
+        #endregion
+
+
+        #region 获取配送标签号
+
+
+        public IDictionary<string, decimal> GetDeliveryBarCode(ShipPlan shipPlan)
+        {
+
+            var barCodes = GetDeliveryBarCode(shipPlan.Item, shipPlan.ToDeliveryBarCodeQty, shipPlan.UnitCount);
+
+            return barCodes;
+        }
+
+
+        public IDictionary<string, decimal> GetDeliveryBarCode(string item, decimal qty, decimal unitCount)
+        {
+            if (qty / unitCount > 1000)
+            {
+                throw new BusinessException("一次创建的配送标签不能超过1000条");
+            }
+
+            IDictionary<string, decimal> HuIds = new Dictionary<string, decimal>();
+
+            SqlParameter[] parm = new SqlParameter[5];
+
+            parm[0] = new SqlParameter("@Item", SqlDbType.VarChar, 50);
+            parm[0].Value = item;
+
+            parm[1] = new SqlParameter("@Qty", SqlDbType.Decimal);
+            parm[1].Precision = 18;
+            parm[1].Scale = 8;
+            parm[1].Value = qty;
+
+            parm[2] = new SqlParameter("@UC", SqlDbType.Decimal);
+            parm[2].Precision = 18;
+            parm[2].Scale = 8;
+            parm[2].Value = unitCount;
+
+
+
+            DataSet ds = sqlDao.GetDatasetByStoredProcedure("USP_GetDocNo_DBC", parm);
+            foreach (DataRow dr in ds.Tables[0].Rows)
+            {
+                HuIds.Add((string)dr.ItemArray[0], (decimal)dr.ItemArray[1]);
+            }
+
+            return HuIds;
+        }
+
+
         #endregion
 
         #region private methods

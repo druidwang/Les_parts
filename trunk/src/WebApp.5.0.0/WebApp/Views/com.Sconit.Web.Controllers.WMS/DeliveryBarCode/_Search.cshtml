@@ -1,4 +1,5 @@
-﻿@using com.Sconit.Web.Models.SearchModels.INV
+﻿@using com.Sconit.Entity.WMS
+@using com.Sconit.Web.Models.SearchModels.WMS
 <fieldset>
     @using (Html.BeginForm("List", "DeliveryBarCode"))
     {   
@@ -10,6 +11,21 @@
             </div>
             <div class="search-field">
                 @Html.TextBox("BarCode", TempData["DeliveryBarCodeSearchModel"] != null ? ((DeliveryBarCodeSearchModel)TempData["DeliveryBarCodeSearchModel"]).BarCode : string.Empty)
+            </div>
+             <div class="search-label">
+                <label for="PickTask_Item">
+                    @Resources.WMS.DeliveryBarCode.DeliveryBarCode_Flow
+                </label>
+            </div>
+            <div class="search-field">
+                @{
+    Html.RenderAction("_FlowComboBox", "Common", new
+    {
+        controlName = "Flow",
+        type = (int)com.Sconit.CodeMaster.OrderType.Distribution,
+        selectedValue = TempData["DeliveryBarCodeSearchModel"] != null ? ((DeliveryBarCodeSearchModel)TempData["DeliveryBarCodeSearchModel"]).Flow : string.Empty
+    });
+                }
             </div>
             <div class="search-label">
                 <label for="DeliveryBarCode_Item">
@@ -28,7 +44,11 @@
                     
                 }
             </div>
-           
+             <div class="search-label">
+                <label for="DeliveryBarCode_CreateUserName">
+                    @Resources.WMS.DeliveryBarCode.DeliveryBarCode_CreateUserName
+                </label>
+            </div>
             <div class="search-field">
                 @Html.TextBox("CreateUserName", TempData["DeliveryBarCodeSearchModel"] != null ? ((DeliveryBarCodeSearchModel)TempData["DeliveryBarCodeSearchModel"]).CreateUserName : (string)@ViewBag.CreateUserName)
             </div>
@@ -57,8 +77,7 @@
             @Html.Hidden("isFromList", true)
             <button type="submit" id="btnSearch">
                 @Resources.SYS.Global.Button_Search</button>
-            <button type="button" id="btnPrint" onclick="CheckedExport(false)" style="display: none">@Resources.SYS.Global.Button_Print</button>
-            <button type="button" id="btnExport" onclick="CheckedExport(true)" style="display: none">@Resources.SYS.Global.Button_Export</button>
+            <button type="button" id="btnPrint" onclick="btnPrintClick()" style="display: none">@Resources.SYS.Global.Button_Print</button>
         </div>
     }
 </fieldset>

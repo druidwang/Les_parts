@@ -99,6 +99,7 @@
     <Compile Include="IWindsorContainer.cs" />
     <Compile Include="LotNoHelper.cs" />
     <Compile Include="MultiButtonAttribute.cs" />
+    <Compile Include="Report\Operator\RepDeliveryBarCodeOperator.cs" />
     <Compile Include="Report\Operator\RepBarCodePartsOperator.cs" />
     <Compile Include="Report\Operator\RepBarCodePurchase2DOperator.cs" />
     <Compile Include="Report\Operator\RepBarCodeMI2DOperator.cs" />

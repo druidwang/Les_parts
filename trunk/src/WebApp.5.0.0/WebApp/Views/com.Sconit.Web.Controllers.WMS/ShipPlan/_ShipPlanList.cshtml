@@ -1,5 +1,5 @@
 ﻿@using com.Sconit.Entity.WMS;
-@model IEnumerable<com.Sconit.Entity.WMS.PickTask>
+@model IEnumerable<com.Sconit.Entity.WMS.ShipPlan>
 <script type="text/javascript">
     $(function () {
         $("#checkAll").click(function () {
@@ -25,13 +25,13 @@
     }
 </script>
 <fieldset>
-    <legend>@Resources.WMS.PickTask.PickTask_Assign_Title</legend>
+    <legend>@Resources.WMS.ShipPlan.ShipPlan_Assign_Title</legend>
     <div class="search-footer">
         <table>
             <tr>
                 <td>
                     <label>
-                        @Resources.WMS.PickTask.PickTask_AssignUser
+                        @Resources.WMS.ShipPlan.ShipPlan_AssignUser
                     </label>
                 </td>
                 <td>
@@ -44,44 +44,39 @@
                     }
                 </td>
                 <td id="tdCarrayOver">
-                    @Html.Button(Resources.SYS.Global.Button_Assign, "Url_PickTask_Assign", new Dictionary<string, string>()
+                    @Html.Button(Resources.SYS.Global.Button_Assign, "Url_ShipPlan_Assign", new Dictionary<string, string>()
 	            {
 	                {"type", "button"},
 	                {"id", "btnAssign"},
                     {"needconfirm","true"},
-                    {"onclick","assignCheckedPickTasks()"}
+                    {"onclick","assignCheckedShipPlans()"}
 	            })
                 </td>
             </tr>
         </table>
     </div>
     @(Html.Telerik().Grid(Model)
-        .Name("PickTask")
+        .Name("ShipPlan")
         .DataKeys(keys =>
         {
-            keys.Add(p => p.UUID);
+            keys.Add(p => p.Id);
         })
         .DataBinding(dataBinding =>
             dataBinding.Ajax()
-                    .Select("_SelectAssignBatchEditing", "PickTask", new { pickGroupCode = ViewBag.pickGroupCode })
+                                    .Select("_SelectAssignBatchEditing", "ShipPlan", new { shipGroupCode = ViewBag.PickGroupCode })
         )
         .Columns(columns =>
         {
             columns.Bound(o => o.Item)
-              .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' value='<#= UUID #>' onClick='showButtons()'  />")
+              .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' value='<#= Id #>' onClick='showButtons()'  />")
               .HeaderTemplate("<input type='checkbox' id='checkAll' name='checkAll' />")
               .Width(36).HtmlAttributes(new { style = "text-align:center" });
             columns.Bound(o => o.ItemDescription);
             columns.Bound(o => o.Uom);
             columns.Bound(o => o.UnitCount);
-            columns.Bound(o => o.UCDescription);
-            columns.Bound(o => o.Location);
-            columns.Bound(o => o.Area);
-            columns.Bound(o => o.Bin);
-            columns.Bound(o => o.LotNo);
-            columns.Bound(o => o.HuId);
             columns.Bound(o => o.StartTime);
-            columns.Bound(o => o.WinTime);
+            columns.Bound(o => o.WindowTime);
+            columns.Bound(o => o.OrderQty);
             columns.Bound(o => o.PickQty);
         })
         .ClientEvents(c => c.OnDataBound("onDataBound"))

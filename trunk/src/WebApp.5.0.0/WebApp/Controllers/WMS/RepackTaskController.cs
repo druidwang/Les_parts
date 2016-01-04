@@ -27,6 +27,7 @@ namespace com.Sconit.Web.Controllers.WMS
 
         private static string selectStatement = "select p from RepackTask as p";
 
+        public IRepackTaskMgr repackTaskMgr { get; set; }
 
         #region 查看
         [SconitAuthorize(Permissions = "Url_RepackTask_View")]
@@ -99,71 +100,96 @@ namespace com.Sconit.Web.Controllers.WMS
       
         #endregion
 
-
         #region 分派
         [SconitAuthorize(Permissions = "Url_RepackTask_Assign")]
-        public ActionResult AssignIndex()
+        public ActionResult Assign()
         {
             return View();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="searchModel"></param>
-        /// <returns></returns>
+        [SconitAuthorize(Permissions = "Url_RepackTask_Assign")]
+        public ActionResult _RepackTaskList(string pickGroupCode)
+        {
+
+            ViewBag.pickGroupCode = pickGroupCode;
+
+            return PartialView();
+        }
+
         [GridAction]
         [SconitAuthorize(Permissions = "Url_RepackTask_Assign")]
-        public ActionResult AssignList(GridCommand command, RepackTaskSearchModel searchModel)
+        public ActionResult _SelectAssignBatchEditing(string repackGroupCode)
         {
-            SearchCacheModel searchCacheModel = this.ProcessSearchModel(command, searchModel);
-            ViewBag.PageSize = base.ProcessPageSize(command.PageSize);
-            return View();
+            IList<RepackTask> pickTaskList = new List<RepackTask>();
+
+            if (!string.IsNullOrEmpty(repackGroupCode))
+            {
+                string repackGroupSql = "select r from PickRule as r where r.PickGroupCode = ?";
+                IList<PickRule> pickRuleList = genericMgr.FindAll<PickRule>(repackGroupSql, repackGroupCode);
+
+                if (pickRuleList != null && pickRuleList.Count > 0)
+                {
+                    string pickRuleSql = string.Empty;
+                    IList<object> param = new List<object>();
+
+                    foreach (PickRule r in pickRuleList)
+                    {
+                        if (string.IsNullOrEmpty(pickRuleSql))
+                        {
+                            pickRuleSql += "select p from RepackTask as p where p.Location in (?";
+                            param.Add(r.Location);
+                        }
+                        else
+                        {
+                            pickRuleSql += ",?";
+                            param.Add(r.Location);
+                        }
+                    }
+
+                    if (!string.IsNullOrEmpty(pickRuleSql))
+                    {
+                        pickRuleSql += ")";
+                    }
+
+                    pickTaskList = genericMgr.FindAll<RepackTask>(pickRuleSql, param.ToList());
+                }
+
+
+
+
+            }
+            return View(new GridModel(pickTaskList));
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="command"></param>
-        /// <param name="searchModel"></param>
-        /// <returns></returns>
-        [GridAction(EnableCustomBinding = true)]
-        [SconitAuthorize(Permissions = "Url_RepackTask_Assign")]
-        public ActionResult _AjaxAssignList(GridCommand command, RepackTaskSearchModel searchModel)
-        {
-            SearchStatementModel searchStatementModel = PrepareAssignSearchStatement(command, searchModel);
-            return PartialView(GetAjaxPageData<RepackTask>(searchStatementModel, command));
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
         /// <returns></returns>
         [SconitAuthorize(Permissions = "Url_RepackTask_Assign")]
-        public ActionResult Assign(String checkedRepackTasks, String assignUser)
+        public ActionResult AssignRepackTask(String checkedRepackTasks, String assignUser)
         {
             try
             {
-                IList<ShipPlan> shipPlanList = new List<ShipPlan>();
+
+                IList<RepackTask> repackTaskList = new List<RepackTask>();
                 if (!string.IsNullOrEmpty(checkedRepackTasks))
                 {
+
                     string[] idArray = checkedRepackTasks.Split(',');
+
+
                     for (int i = 0; i < idArray.Count(); i++)
                     {
-                        ShipPlan sp = genericMgr.FindById<ShipPlan>(Convert.ToInt32(idArray[i]));
-                        shipPlanList.Add(sp);
+
+                        RepackTask rt = genericMgr.FindById<RepackTask>(idArray[i]);
+
+                        repackTaskList.Add(rt);
 
                     }
                 }
-                //if (orderDetailList.Count() == 0)
-                //{
-                //    throw new BusinessException(Resources.EXT.ControllerLan.Con_ReceiveDetailCanNotBeEmpty);
-                //}
-
-                //orderMgr.ReceiveOrder(orderDetailList);
-                object obj = new { SuccessMessage = string.Format(Resources.ORD.OrderMaster.OrderMaster_Received, checkedRepackTasks), SuccessData = checkedRepackTasks };
+                repackTaskMgr.AssignRepackTask(repackTaskList, assignUser);
+                SaveSuccessMessage(Resources.WMS.RepackTask.RepackTask_Assigned);
+                object obj = new { SuccessMessage = string.Format(Resources.WMS.RepackTask.RepackTask_Assigned, checkedRepackTasks), SuccessData = checkedRepackTasks };
                 return Json(obj);
 
             }
@@ -175,7 +201,6 @@ namespace com.Sconit.Web.Controllers.WMS
                 return Json(null);
             }
         }
-
         #endregion
 
 

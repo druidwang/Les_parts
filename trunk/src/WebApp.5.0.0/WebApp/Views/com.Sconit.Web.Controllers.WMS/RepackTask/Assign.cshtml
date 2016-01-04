@@ -16,7 +16,7 @@
             $.ajax({
                 type: "get",
                 dataType: "html",
-                url: "/PickTask/_PickTaskList/",
+                url: "/RepackTask/_RepackTaskList/",
                 data: data,
                 cache: false,
                 success: function (data, textStatus) {
@@ -31,23 +31,23 @@
         }
     }
 
-    function assignCheckedPickTasks() {
+    function assignCheckedRepackTasks() {
         var $checkRecords = $("input[name='checkedRecords']");
 
-        var checkedPickTasks = "";
+        var checkedRepackTasks = "";
         var assignUser = "";
         for (var i = 0; i < $checkRecords.length; i++) {
             if ($checkRecords[i].checked) {
-                if (checkedPickTasks == "") {
-                    checkedPickTasks = $checkRecords[i].value;
+                if (checkedRepackTasks == "") {
+                    checkedRepackTasks = $checkRecords[i].value;
                 } else {
-                    checkedPickTasks += "," + $checkRecords[i].value;
+                    checkedRepackTasks += "," + $checkRecords[i].value;
                 }
             }
         }
 
-        assignUser = $("#PickUser").val();
-        if (checkedPickTasks == "") {
+        assignUser = $("#AssignUser").val();
+        if (checkedRepackTasks == "") {
             alert('请选择一条记录');
             return;
         }
@@ -57,44 +57,29 @@
             return;
         }
         var data = {
-            "checkedPickTasks": checkedPickTasks,
+            "checkedRepackTasks": checkedRepackTasks,
             "assignUser": assignUser
         };
         $.ajax({
             type: "Post",
             dataType: "html",
-            url: "/PickTask/AssignPickTask/",
+            url: "/RepackTask/AssignRepackTask/",
             data: data,
             cache: false,
             success: function (data, textStatus) {
-                if (data != "") {
-                    DisplayTextMessages(data);
-                    $.ajax({
-                        type: "post",
-                        dataType: "html",
-                        url: "@Url.Content("~/PickTask/Assign/")",
-                        data: "",
-                        cache: false,
-                        success: function (data, textStatus) {
-                            var $tGrid = $("#content");
-                            $($tGrid).html(data);
-                        }
-                    });
-                 }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                DisplayTextMessages(XMLHttpRequest.responseText);
+                var $tGrid = $("#content");
+                $($tGrid).html(data);
             }
         });
     }
 </script>
-@using (Html.BeginForm("AssignList", "PickTask"))
+@using (Html.BeginForm("AssignList", "RepackTask"))
 {  
     <fieldset>
         <div class="search">
             <div class="search-label">
-                <label for="PickTask_Item">
-                    @Resources.WMS.PickTask.PickTask_PickGroupCode
+                <label for="RepackTask_Item">
+                    @Resources.WMS.RepackTask.RepackTask_RepackGroupCode
                 </label>
             </div>
             <div class="search-field">
@@ -102,8 +87,8 @@
     Html.RenderAction("_PickGroupComboBox", "Common",
         new
         {
-            controlName = "PickGroup",
-            type = (int)com.Sconit.CodeMaster.PickGroupType.Pick,
+            controlName = "RepackGroup",
+            type = (int)com.Sconit.CodeMaster.PickGroupType.Repack,
             isChange = true
         });
                 }

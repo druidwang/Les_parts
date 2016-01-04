@@ -117,14 +117,35 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DeliveryBarcodePrintedSuccessfully" xml:space="preserve">
+    <value>Delivery BarCode Printed Successfully</value>
+  </data>
   <data name="DeliveryBarCode_BarCode" xml:space="preserve">
     <value>BarCode</value>
+  </data>
+  <data name="DeliveryBarCode_CreateDate" xml:space="preserve">
+    <value>CreateDate</value>
+  </data>
+  <data name="DeliveryBarCode_CreateUserName" xml:space="preserve">
+    <value>CreateUserName</value>
+  </data>
+  <data name="DeliveryBarCode_Dock" xml:space="preserve">
+    <value>Dock</value>
   </data>
   <data name="DeliveryBarCode_EndDate" xml:space="preserve">
     <value>EndDate</value>
   </data>
+  <data name="DeliveryBarCode_Flow" xml:space="preserve">
+    <value>Flow</value>
+  </data>
+  <data name="DeliveryBarCode_HuId" xml:space="preserve">
+    <value>HuId</value>
+  </data>
   <data name="DeliveryBarCode_IsActive" xml:space="preserve">
     <value>IsActive</value>
+  </data>
+  <data name="DeliveryBarCode_IsPickHu" xml:space="preserve">
+    <value>IsPickHu</value>
   </data>
   <data name="DeliveryBarCode_Item" xml:space="preserve">
     <value>Item</value>
@@ -141,8 +162,14 @@
   <data name="DeliveryBarCode_LocationFrom" xml:space="preserve">
     <value>LocationFrom</value>
   </data>
+  <data name="DeliveryBarCode_LocationFromName" xml:space="preserve">
+    <value>LocationFromName</value>
+  </data>
   <data name="DeliveryBarCode_LocationTo" xml:space="preserve">
     <value>LocationTo</value>
+  </data>
+  <data name="DeliveryBarCode_LocationToName" xml:space="preserve">
+    <value>LocationToName</value>
   </data>
   <data name="DeliveryBarCode_OrderNo" xml:space="preserve">
     <value>OrderNo</value>
@@ -150,11 +177,20 @@
   <data name="DeliveryBarCode_PartyFrom" xml:space="preserve">
     <value>PartyFrom</value>
   </data>
+  <data name="DeliveryBarCode_PartyFromName" xml:space="preserve">
+    <value>PartyFromName</value>
+  </data>
   <data name="DeliveryBarCode_PartyTo" xml:space="preserve">
     <value>PartyTo</value>
   </data>
+  <data name="DeliveryBarCode_PartyToName" xml:space="preserve">
+    <value>PartyToName</value>
+  </data>
   <data name="DeliveryBarCode_Printed" xml:space="preserve">
     <value>BarCode Printed</value>
+  </data>
+  <data name="DeliveryBarCode_Priority" xml:space="preserve">
+    <value>Priority</value>
   </data>
   <data name="DeliveryBarCode_Qty" xml:space="preserve">
     <value>Qty</value>
@@ -168,11 +204,44 @@
   <data name="DeliveryBarCode_ShipFrom" xml:space="preserve">
     <value>ShipFrom</value>
   </data>
+  <data name="DeliveryBarCode_ShipFromAddress" xml:space="preserve">
+    <value>ShipFromAddress</value>
+  </data>
+  <data name="DeliveryBarCode_ShipFromCell" xml:space="preserve">
+    <value>ShipFromCell</value>
+  </data>
+  <data name="DeliveryBarCode_ShipFromContact" xml:space="preserve">
+    <value>ShipFromContact</value>
+  </data>
+  <data name="DeliveryBarCode_ShipFromFax" xml:space="preserve">
+    <value>ShipFromFax</value>
+  </data>
+  <data name="DeliveryBarCode_ShipFromTel" xml:space="preserve">
+    <value>ShipFromTel</value>
+  </data>
   <data name="DeliveryBarCode_ShipTo" xml:space="preserve">
     <value>ShipTo</value>
   </data>
+  <data name="DeliveryBarCode_ShipToAddress" xml:space="preserve">
+    <value>ShipToAddress</value>
+  </data>
+  <data name="DeliveryBarCode_ShipToCell" xml:space="preserve">
+    <value>ShipToCell</value>
+  </data>
+  <data name="DeliveryBarCode_ShipToContact" xml:space="preserve">
+    <value>ShipToContact</value>
+  </data>
+  <data name="DeliveryBarCode_ShipToFax" xml:space="preserve">
+    <value>ShipToFax</value>
+  </data>
+  <data name="DeliveryBarCode_ShipToTel" xml:space="preserve">
+    <value>ShipToTel</value>
+  </data>
   <data name="DeliveryBarCode_StartDate" xml:space="preserve">
     <value>StartDate</value>
+  </data>
+  <data name="DeliveryBarCode_Station" xml:space="preserve">
+    <value>Station</value>
   </data>
   <data name="DeliveryBarCode_UnitCount" xml:space="preserve">
     <value>UnitCount</value>
@@ -185,5 +254,8 @@
   </data>
   <data name="DeliveryBarCode_Uom" xml:space="preserve">
     <value>Uom</value>
+  </data>
+  <data name="DeliveryBarCode_WindowTime" xml:space="preserve">
+    <value>WindowTime</value>
   </data>
 </root>
