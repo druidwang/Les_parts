@@ -75,7 +75,7 @@ BEGIN
 
 			if @OrderType = 2
 			begin
-				insert into WMS_ShipPlan(Flow, OrderNo, OrderSeq, OrderDetId, StartTime, WindowTime, 
+				insert into WMS_ShipPlan(Flow, OrderNo, OrderSeq, OrderDetId, OrderType, StartTime, WindowTime, 
 							Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, 
 							OrderQty, ShipQty, [Priority], PartyFrom, PartyFromNm, PartyTo, PartyToNm, 
 							ShipFrom, ShipFromAddr, ShipFromTel, ShipFromCell, ShipFromFax, ShipFromContact, 
@@ -83,7 +83,7 @@ BEGIN
 							LocFrom, LocFromNm, LocTo, LocToNm, Station, Dock, IsOccupyInv, IsActive, 
 							CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, 
 							[Version], IsShipScanHu, PickQty, PickedQty, LockQty)
-				select mstr.Flow, det.OrderNo, det.Seq, det.Id, @DateTimeNow, CASE WHEN StartTime >  @DateTimeNow THEN StartTime ELSE @DateTimeNow end as WindowTime,
+				select mstr.Flow, det.OrderNo, det.Seq, det.Id, mstr.[Type], @DateTimeNow, CASE WHEN StartTime >  @DateTimeNow THEN StartTime ELSE @DateTimeNow end as WindowTime,
 				det.Item, det.ItemDesc, det.RefItemCode, det.Uom, det.BaseUom, det.UnitQty, det.UC, det.UCDesc,
 				det.OrderQty, 0, mstr.[Priority], mstr.PartyFrom, mstr.PartyFromNm, mstr.PartyTo, mstr.PartyToNm, 
 				mstr.ShipFrom, mstr.ShipFromAddr, mstr.ShipFromTel, mstr.ShipFromCell, mstr.ShipFromFax, mstr.ShipFromContact, 
@@ -100,7 +100,7 @@ BEGIN
 			end
 			else
 			begin
-				insert into WMS_ShipPlan(Flow, OrderNo, OrderSeq, OrderDetId, StartTime, WindowTime, 
+				insert into WMS_ShipPlan(Flow, OrderNo, OrderSeq, OrderDetId, OrderType, StartTime, WindowTime, 
 							Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, 
 							OrderQty, ShipQty, [Priority], PartyFrom, PartyFromNm, PartyTo, PartyToNm, 
 							ShipFrom, ShipFromAddr, ShipFromTel, ShipFromCell, ShipFromFax, ShipFromContact, 
@@ -108,7 +108,7 @@ BEGIN
 							LocFrom, LocFromNm, LocTo, LocToNm, Station, Dock, IsOccupyInv, IsActive, 
 							CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, 
 							[Version], IsShipScanHu, PickQty, PickedQty, LockQty)
-				select mstr.Flow, det.OrderNo, det.Seq, det.Id, @DateTimeNow, CASE WHEN StartTime >  @DateTimeNow THEN StartTime ELSE @DateTimeNow end as WindowTime,
+				select mstr.Flow, det.OrderNo, det.Seq, det.Id, mstr.[Type], @DateTimeNow, CASE WHEN StartTime >  @DateTimeNow THEN StartTime ELSE @DateTimeNow end as WindowTime,
 				det.Item, det.ItemDesc, det.RefItemCode, det.Uom, det.BaseUom, det.UnitQty, det.UC, det.UCDesc,
 				det.OrderQty, 0, mstr.[Priority], mstr.PartyFrom, mstr.PartyFromNm, mstr.PartyTo, mstr.PartyToNm, 
 				mstr.ShipFrom, mstr.ShipFromAddr, mstr.ShipFromTel, mstr.ShipFromCell, mstr.ShipFromFax, mstr.ShipFromContact, 

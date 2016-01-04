@@ -9,5 +9,9 @@ namespace com.Sconit.Service
     public interface IRepackTaskMgr
     {
         void AssignRepackTask(IList<RepackTask> repackTaskList,string assignUser);
+
+        IList<string> SuggestRepackIn(int repackTaskId);
+
+        void ProcessRepackResult(IList<string> repackResultIn, IList<string> repackResultOut, DateTime? effectiveDate);
     }
 }
