@@ -12,6 +12,6 @@ namespace com.Sconit.Service
 
         IList<string> SuggestRepackIn(int repackTaskId);
 
-        void ProcessRepackResult(IList<string> repackResultIn, IList<string> repackResultOut, DateTime? effectiveDate);
+        void ProcessRepackResult(int repackTaskId, IList<string> repackResultIn, IList<string> repackResultOut, DateTime? effectiveDate);
     }
 }
