@@ -63,7 +63,7 @@
         })
         .DataBinding(dataBinding =>
             dataBinding.Ajax()
-                            .Select("_SelectAssignBatchEditing", "RepackTask", new { repackGroupCode = ViewBag.repackGroupCode })
+                                            .Select("_SelectAssignBatchEditing", "RepackTask", new { pickGroupCode = ViewBag.pickGroupCode })
         )
         .Columns(columns =>
         {
