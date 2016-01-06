@@ -118,14 +118,14 @@ namespace com.Sconit.Web.Controllers.WMS
 
         [GridAction]
         [SconitAuthorize(Permissions = "Url_RepackTask_Assign")]
-        public ActionResult _SelectAssignBatchEditing(string repackGroupCode)
+        public ActionResult _SelectAssignBatchEditing(string pickGroupCode)
         {
             IList<RepackTask> pickTaskList = new List<RepackTask>();
 
-            if (!string.IsNullOrEmpty(repackGroupCode))
+            if (!string.IsNullOrEmpty(pickGroupCode))
             {
                 string repackGroupSql = "select r from PickRule as r where r.PickGroupCode = ?";
-                IList<PickRule> pickRuleList = genericMgr.FindAll<PickRule>(repackGroupSql, repackGroupCode);
+                IList<PickRule> pickRuleList = genericMgr.FindAll<PickRule>(repackGroupSql, pickGroupCode);
 
                 if (pickRuleList != null && pickRuleList.Count > 0)
                 {
@@ -136,7 +136,7 @@ namespace com.Sconit.Web.Controllers.WMS
                     {
                         if (string.IsNullOrEmpty(pickRuleSql))
                         {
-                            pickRuleSql += "select p from RepackTask as p where p.Location in (?";
+                            pickRuleSql += "select p from RepackTask as p where p.RepackUserId is null and p.Location in (?";
                             param.Add(r.Location);
                         }
                         else
@@ -203,13 +203,74 @@ namespace com.Sconit.Web.Controllers.WMS
         }
         #endregion
 
+        #region 翻包
+        [SconitAuthorize(Permissions = "Url_RepackTask_Repack")]
+        public ActionResult RepackIndex()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="searchModel"></param>
+        /// <returns></returns>
+        [GridAction]
+        [SconitAuthorize(Permissions = "Url_RepackTask_Repack")]
+        public ActionResult RepackList(GridCommand command, RepackTaskSearchModel searchModel)
+        {
+            SearchCacheModel searchCacheModel = this.ProcessSearchModel(command, searchModel);
+            ViewBag.PageSize = base.ProcessPageSize(command.PageSize);
+            return View();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="searchModel"></param>
+        /// <returns></returns>
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_RepackTask_Repack")]
+        public ActionResult _RepackAjaxList(GridCommand command, RepackTaskSearchModel searchModel)
+        {
+            SearchStatementModel searchStatementModel = PrepareRepackSearchStatement(command, searchModel);
+            return PartialView(GetAjaxPageData<RepackTask>(searchStatementModel, command));
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [SconitAuthorize(Permissions = "Url_RepackTask_Repack")]
+        public ActionResult RepackEdit(string id)
+        {
+
+            if (string.IsNullOrEmpty(id))
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                RepackTask pickSchedule = base.genericMgr.FindById<RepackTask>(id);
+                return View(pickSchedule);
+            }
+
+        }
 
 
+        #endregion
+
+
+        #region private method
         private SearchStatementModel PrepareSearchStatement(GridCommand command, RepackTaskSearchModel searchModel)
         {
             string whereStatement = string.Empty;
             IList<object> param = new List<object>();
-            HqlStatementHelper.AddEqStatement("RepackUser", searchModel.RepackUser, "p", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("RepackUserId", searchModel.RepackUser, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Location", searchModel.Location, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("IsActive", searchModel.IsActive, "p", ref whereStatement, param);
@@ -231,7 +292,6 @@ namespace com.Sconit.Web.Controllers.WMS
             searchStatementModel.Parameters = param.ToArray<object>();
             return searchStatementModel;
         }
-
 
         private SearchStatementModel PrepareAssignSearchStatement(GridCommand command, RepackTaskSearchModel searchModel)
         {
@@ -260,7 +320,37 @@ namespace com.Sconit.Web.Controllers.WMS
             searchStatementModel.Parameters = param.ToArray<object>();
             return searchStatementModel;
         }
-     
+
+        private SearchStatementModel PrepareRepackSearchStatement(GridCommand command, RepackTaskSearchModel searchModel)
+        {
+            string whereStatement = string.Empty;
+            IList<object> param = new List<object>();
+         
+            HqlStatementHelper.AddEqStatement("Location", searchModel.Location, "p", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "p", ref whereStatement, param);
+
+            //默认只能选自己的有效的
+            HqlStatementHelper.AddEqStatement("RepackUserId", searchModel.RepackUser, "p", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("IsActive", true, "p", ref whereStatement, param);
+
+            if (searchModel.DateFrom != null)
+            {
+                HqlStatementHelper.AddGeStatement("CreateDate", searchModel.DateFrom, "p", ref whereStatement, param);
+            }
+            if (searchModel.DateTo != null)
+            {
+                HqlStatementHelper.AddLtStatement("CreateDate", searchModel.DateTo.Value.AddDays(1), "p", ref whereStatement, param);
+            }
+            string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
+            SearchStatementModel searchStatementModel = new SearchStatementModel();
+            searchStatementModel.SelectCountStatement = selectCountStatement;
+            searchStatementModel.SelectStatement = selectStatement;
+            searchStatementModel.WhereStatement = whereStatement;
+            searchStatementModel.SortingStatement = sortingStatement;
+            searchStatementModel.Parameters = param.ToArray<object>();
+            return searchStatementModel;
+        }
+        #endregion
 
         #endregion
 

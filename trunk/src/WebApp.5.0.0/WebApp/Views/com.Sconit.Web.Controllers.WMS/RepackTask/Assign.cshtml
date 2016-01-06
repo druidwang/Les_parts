@@ -46,7 +46,7 @@
             }
         }
 
-        assignUser = $("#AssignUser").val();
+        assignUser = $("#RepackUser").val();
         if (checkedRepackTasks == "") {
             alert('请选择一条记录');
             return;
@@ -67,8 +67,23 @@
             data: data,
             cache: false,
             success: function (data, textStatus) {
-                var $tGrid = $("#content");
-                $($tGrid).html(data);
+                if (data != "") {
+                    DisplayTextMessages(data);
+                    $.ajax({
+                        type: "post",
+                        dataType: "html",
+                        url: "@Url.Content("~/RepackTask/Assign/")",
+                        data: "",
+                        cache: false,
+                        success: function (data, textStatus) {
+                            var $tGrid = $("#content");
+                            $($tGrid).html(data);
+                        }
+                    });
+                 }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                DisplayTextMessages(XMLHttpRequest.responseText);
             }
         });
     }

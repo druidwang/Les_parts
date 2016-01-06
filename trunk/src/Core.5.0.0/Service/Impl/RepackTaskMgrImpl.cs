@@ -22,7 +22,7 @@ namespace com.Sconit.Service.Impl
             {
                 User lastModifyUser = SecurityContextHolder.Get();
                 User user = genericMgr.FindById<User>(Convert.ToInt32(assignUser));
-                foreach(RepackTask p in repackTaskList)
+                foreach (RepackTask p in repackTaskList)
                 {
                     p.RepackUserId = user.Id;
                     p.RepackUserName = user.FullName;
@@ -33,6 +33,17 @@ namespace com.Sconit.Service.Impl
                 }
 
             }
+        }
+
+
+        public IList<string> SuggestRepackIn(int repackTaskId)
+        {
+            List<string> huList = new List<string>();
+            return huList;
+        }
+
+        public void ProcessRepackResult(int repackTaskId, IList<string> repackResultIn, IList<string> repackResultOut, DateTime? effectiveDate)
+        {
         }
     }
 }
