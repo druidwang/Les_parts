@@ -14,5 +14,7 @@ namespace com.Sconit.Service
         void CancelShipPlan(string orderNo);
 
         void AssignShipPlan(IList<ShipPlan> shipPlanList, string assignUser);
+
+        void ProcessShipPlanResult4Hu(string transportOrderNo, IList<string> huIdList, DateTime? effDate);
     }
 }
