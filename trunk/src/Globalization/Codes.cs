@@ -794,6 +794,7 @@ namespace com.Sconit.CodeMaster
         TransportMode,
         TransportStatus,
         IOType,
+        PickBy,
     }
 
     public enum MessageType
