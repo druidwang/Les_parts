@@ -2662,6 +2662,8 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_RepackSearchResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\RepackList.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\RepackIndex.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\RepackEdit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_RepackHuList.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

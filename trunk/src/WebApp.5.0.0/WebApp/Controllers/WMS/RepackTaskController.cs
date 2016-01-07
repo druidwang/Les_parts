@@ -18,16 +18,18 @@ namespace com.Sconit.Web.Controllers.WMS
     using com.Sconit.Web.Models.SearchModels.WMS;
     using com.Sconit.Entity.WMS;
     using com.Sconit.Entity.Exception;
+    using com.Sconit.Entity.INV;
 
     public class RepackTaskController : WebAppBaseController
     {
         #region 翻箱任务
-      
+
         private static string selectCountStatement = "select count(*) from RepackTask as p";
 
         private static string selectStatement = "select p from RepackTask as p";
 
         public IRepackTaskMgr repackTaskMgr { get; set; }
+
 
         #region 查看
         [SconitAuthorize(Permissions = "Url_RepackTask_View")]
@@ -74,7 +76,7 @@ namespace com.Sconit.Web.Controllers.WMS
         {
             return View();
         }
-     
+
         /// <summary>
         /// 
         /// </summary>
@@ -91,13 +93,13 @@ namespace com.Sconit.Web.Controllers.WMS
             }
             else
             {
-                RepackTask pickSchedule = base.genericMgr.FindById<RepackTask>(id);
-                return View(pickSchedule);
+                RepackTask repackTask = genericMgr.FindAll<RepackTask>("from RepackTask where Id = ?", id).SingleOrDefault();
+                return View(repackTask);
             }
 
         }
 
-      
+
         #endregion
 
         #region 分派
@@ -255,12 +257,126 @@ namespace com.Sconit.Web.Controllers.WMS
             }
             else
             {
-                RepackTask pickSchedule = base.genericMgr.FindById<RepackTask>(id);
-                return View(pickSchedule);
+                RepackTask repackTask = genericMgr.FindAll<RepackTask>("from RepackTask where Id = ?", id).SingleOrDefault();
+                return View(repackTask);
             }
 
         }
 
+        [SconitAuthorize(Permissions = "Url_RepackTask_Repack")]
+        public ActionResult _RepackHuList(string RepackInHu, string RepackOutHu)
+        {
+            string a = (string)TempData["repackInHu"];
+            ViewBag.repackInHu = RepackInHu;
+
+            return PartialView();
+        }
+
+        [HttpPost]
+        [SconitAuthorize(Permissions = "Url_RepackTask_Repack")]
+        public ActionResult HuIdScan(string huId, int inOrOut, string repackInHu, string repackOutHu)
+        {
+            // int inOrOut = 0;
+            if (inOrOut == 0)
+            {
+                #region 翻包前条码
+                if (String.IsNullOrEmpty(repackInHu))
+                {
+                    repackInHu = huId;
+                }
+                else
+                {
+                    repackInHu = repackInHu + "," + huId;
+                }
+                #endregion
+            }
+            else
+            {
+                #region 翻包后条码
+                if (String.IsNullOrEmpty(repackOutHu))
+                {
+                    ViewBag.repackOutHu = huId;
+                }
+                else
+                {
+                    ViewBag.repackOutHu = repackInHu + "," + huId;
+                }
+
+                TempData["repackOutHu"] = repackOutHu;
+                #endregion
+            }
+
+            object obj = new { RepackInHu = repackInHu, RepackOutHu = repackOutHu};
+            return Json(obj);
+        }
+
+        [GridAction]
+        [SconitAuthorize(Permissions = "Url_RepackTask_Repack")]
+        public ActionResult _SelectRepackInHu(string repackInHu)
+        {
+            IList<Hu> huList = new List<Hu>();
+            if (!string.IsNullOrEmpty(repackInHu))
+            {
+                string inSqlStr = string.Empty;
+                IList<object> param = new List<object>();
+                string[] repackInHuArray = repackInHu.Split(',');
+
+                foreach (string h in repackInHuArray)
+                {
+                    if (string.IsNullOrEmpty(inSqlStr))
+                    {
+                        inSqlStr += "select h from Hu as h where h.HuId in (?";
+                        param.Add(h);
+                    }
+                    else
+                    {
+                        inSqlStr += ",?";
+                        param.Add(h);
+                    }
+                }
+                if (!string.IsNullOrEmpty(inSqlStr))
+                {
+                    inSqlStr += ")";
+                }
+
+                huList = genericMgr.FindAll<Hu>(inSqlStr, param.ToList());
+            }
+            return PartialView(new GridModel(huList));
+        }
+
+        [GridAction]
+        [SconitAuthorize(Permissions = "Url_RepackTask_Repack")]
+        public ActionResult _SelectRepackOutHu(string repackOutHu)
+        {
+            IList<Hu> huList = new List<Hu>();
+            if (!string.IsNullOrEmpty(repackOutHu))
+            {
+                string outSqlStr = string.Empty;
+                IList<object> param = new List<object>();
+                string[] repackOutHuArray = repackOutHu.Split(',');
+
+                foreach (string h in repackOutHuArray)
+                {
+                    if (string.IsNullOrEmpty(outSqlStr))
+                    {
+                        outSqlStr += "select h from Hu as h where h.HuId in (?";
+                        param.Add(h);
+                    }
+                    else
+                    {
+                        outSqlStr += ",?";
+                        param.Add(h);
+                    }
+                }
+                if (!string.IsNullOrEmpty(outSqlStr))
+                {
+                    outSqlStr += ")";
+                }
+
+                huList = genericMgr.FindAll<Hu>(outSqlStr, param.ToList());
+            }
+            return PartialView(new GridModel(huList));
+        }
 
         #endregion
 
@@ -295,7 +411,7 @@ namespace com.Sconit.Web.Controllers.WMS
 
         private SearchStatementModel PrepareAssignSearchStatement(GridCommand command, RepackTaskSearchModel searchModel)
         {
-            string whereStatement = " where p.RepackUserId is null "; 
+            string whereStatement = " where p.RepackUserId is null ";
             IList<object> param = new List<object>();
             HqlStatementHelper.AddEqStatement("Location", searchModel.Location, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "p", ref whereStatement, param);
@@ -310,7 +426,7 @@ namespace com.Sconit.Web.Controllers.WMS
                 HqlStatementHelper.AddLtStatement("CreateDate", searchModel.DateTo.Value.AddDays(1), "p", ref whereStatement, param);
             }
 
-          
+
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
             SearchStatementModel searchStatementModel = new SearchStatementModel();
             searchStatementModel.SelectCountStatement = selectCountStatement;
@@ -325,7 +441,7 @@ namespace com.Sconit.Web.Controllers.WMS
         {
             string whereStatement = string.Empty;
             IList<object> param = new List<object>();
-         
+
             HqlStatementHelper.AddEqStatement("Location", searchModel.Location, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "p", ref whereStatement, param);
 

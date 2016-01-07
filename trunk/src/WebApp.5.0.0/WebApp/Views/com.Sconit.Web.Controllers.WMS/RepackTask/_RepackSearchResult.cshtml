@@ -8,7 +8,7 @@
         })
         .Columns(columns =>
         {
-            columns.Bound(o => o.Item).ClientTemplate(Html.ActionLink("<#= Item #>", "Edit", "RepackTask", new { id = "<#= Id #>" }, null).ToString());
+            columns.Bound(o => o.Item).ClientTemplate(Html.ActionLink("<#= Item #>", "RepackEdit", "RepackTask", new { id = "<#= Id #>" }, null).ToString());
             columns.Bound(o => o.ItemDescription);
             columns.Bound(o => o.Uom);
             columns.Bound(o => o.UnitCount);
