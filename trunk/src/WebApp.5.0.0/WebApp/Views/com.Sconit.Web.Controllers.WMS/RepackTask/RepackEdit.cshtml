@@ -1,13 +1,13 @@
 ﻿@using com.Sconit.Entity.SYS
 @model com.Sconit.Entity.WMS.RepackTask
 @{
-    Html.RenderAction("_SiteMapPath", "Common", new { MenuContent = "Url_RepackTask_View" });
+    Html.RenderAction("_SiteMapPath", "Common", new { MenuContent = "Url_RepackTask_Repack" });
 }
 
 @using (Html.BeginForm())
 {
     <fieldset>
-        <legend>@Resources.WMS.RepackTask.RepackTask_Edit_Title</legend>
+        <legend>@Resources.WMS.RepackTask.RepackTask_Repack_Title</legend>
         <div class="editor">
             @Html.HiddenFor(model => model.CreateUserName)
             @Html.HiddenFor(model => model.CreateDate)
@@ -68,4 +68,10 @@
                 @Resources.SYS.Global.Button_Back</button>
         </div>
     </fieldset>
+    
 }
+<div id="divRepackHuList">
+@{
+    Html.RenderAction("_RepackHuList", "RepackTask");
+}
+</div>

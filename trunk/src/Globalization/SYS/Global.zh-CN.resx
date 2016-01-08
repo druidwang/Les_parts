@@ -399,4 +399,7 @@
   <data name="Common_SubmitUserName" xml:space="preserve">
     <value>提交用户</value>
   </data>
+  <data name="Button_Repack" xml:space="preserve">
+    <value>翻包</value>
+  </data>
 </root>

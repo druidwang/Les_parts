@@ -151,6 +151,15 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string RepackTask_Edit_Title {
+            get {
+                return ResourceManager.GetString("RepackTask_Edit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IsActive.
         /// </summary>
         public static string RepackTask_IsActive {
@@ -201,6 +210,15 @@ namespace Resources.WMS {
         public static string RepackTask_ReferenceItemCode {
             get {
                 return ResourceManager.GetString("RepackTask_ReferenceItemCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Repack.
+        /// </summary>
+        public static string RepackTask_Repack_Title {
+            get {
+                return ResourceManager.GetString("RepackTask_Repack_Title", resourceCulture);
             }
         }
         

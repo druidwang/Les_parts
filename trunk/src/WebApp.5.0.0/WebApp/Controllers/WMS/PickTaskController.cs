@@ -139,6 +139,8 @@ namespace com.Sconit.Web.Controllers.WMS
                         sqlStatement += " and p.Flow = '" + flow + "' ";
                     }
                 }
+
+                sqlStatement += " and p.PickQty < p.OrderQty";
                 shipPlanList = genericMgr.FindAll<ShipPlan>(sqlStatement);
             }
             return View(new GridModel(shipPlanList));
@@ -162,7 +164,7 @@ namespace com.Sconit.Web.Controllers.WMS
                     }
                 }
                 pickTaskMgr.CreatePickTask(shipPlanIdAndQtyDic);
-                SaveSuccessMessage(Resources.WMS.PickTask.PickTask_Created);
+                //SaveSuccessMessage(Resources.WMS.PickTask.PickTask_Created);
                 object obj = new { SuccessMessage = string.Format(Resources.WMS.PickTask.PickTask_Created), SuccessData = checkedShipPlans };
                 return Json(obj);
 

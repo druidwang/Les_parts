@@ -192,4 +192,10 @@
   <data name="RepackTask_WindowTime" xml:space="preserve">
     <value>窗口时间</value>
   </data>
+  <data name="RepackTask_Edit_Title" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="RepackTask_Repack_Title" xml:space="preserve">
+    <value>翻包</value>
+  </data>
 </root>
