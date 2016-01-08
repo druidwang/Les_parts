@@ -25,35 +25,35 @@ BEGIN
 	create table #tempLocation_014
 	(
 		RowId int identity(1, 1),
-		Location varchar(50),
-		Suffix varchar(50)
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Suffix varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempPickResult_014
 	(
 		RowId int identity(1, 1),
-		HuId varchar(50) primary key,
-		LotNo varchar(50),
+		HuId varchar(50) COLLATE  Chinese_PRC_CI_AS primary key,
+		LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		PickTaskId int,
-		PickTaskUUID varchar(50),
-		Item varchar(50),
-		ItemDesc varchar(50),
-		RefItemCode varchar(100),
-		Uom varchar(5),
-		BaseUom varchar(5),
+		PickTaskUUID varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		ItemDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		RefItemCode varchar(100) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
+		BaseUom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UC decimal(18, 8),
-		UCDesc varchar(50),
+		UCDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
-		Loc varchar(50),
-		Area varchar(50),
-		Bin varchar(50),
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Area varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Bin varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		Qty decimal(18, 8)
 	)
 
 	create table #tempPickTask_014
 	(
-		PickTaskID int,
-		PickTaskUUID varchar(50) Primary Key,
+		PickTaskID int Primary Key,
+		PickTaskUUID varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		OrderQty decimal(18, 8),
 		PickQty decimal(18, 8),
 		ThisPickQty decimal(18, 8),
@@ -64,7 +64,7 @@ BEGIN
 	create table #tempPickOccupy_014
 	(
 		Id int Primary Key,
-		PickTaskUUID varchar(50),
+		PickTaskUUID varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		ShipPlanId int,
 		OccupyQty decimal(18, 8),
 		ReleaseQty decimal(18, 8),
@@ -86,19 +86,19 @@ BEGIN
 	create table #tempHuInventory_015
 	(
 		LocationLotDetId int primary key,
-		HuId varchar(50),
-		LotNo varchar(50),
-		Item varchar(50),
-		ItemDesc varchar(50),
-		RefItemCode varchar(100),
-		Uom varchar(5),
-		BaseUom varchar(5),
+		HuId varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		ItemDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		RefItemCode varchar(100) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
+		BaseUom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UC decimal(18, 8),
-		UCDesc varchar(50),
+		UCDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
-		Location varchar(50),
-		Area varchar(50),
-		Bin varchar(50),
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Area varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Bin varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		Qty decimal(18, 8),
 		QualityType tinyint,
 		IsFreeze bit,
@@ -111,20 +111,20 @@ BEGIN
 	(
 		RowId int Identity(1, 1) primary key,
 		GroupId int,
-		RepackUUID varchar(50),
-		OrderNo varchar(50),
+		RepackUUID varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		OrderNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		OrderSeq int,
-		TargetDock varchar(50),
+		TargetDock varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		ShipPlanId int,
-		Item varchar(50),
-		ItemDesc varchar(100),
-		RefItemCode varchar(50),
-		Uom varchar(5),
-		BaseUom varchar(5),
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		ItemDesc varchar(100) COLLATE  Chinese_PRC_CI_AS,
+		RefItemCode varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
+		BaseUom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
 		UC decimal(18, 8),
-		UCDesc varchar(50),
-		Loc varchar(50),
+		UCDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		[Priority] tinyint,
 		StartTime datetime,
 		OccupyQty decimal(18, 8)
@@ -132,18 +132,18 @@ BEGIN
 
 	create table #tempRepackTask_014
 	(
-		RepackUUID varchar(50) primary key,
+		RepackUUID varchar(50) COLLATE  Chinese_PRC_CI_AS primary key,
 		GroupId int,
-		Item varchar(50),
-		ItemDesc varchar(100),
-		RefItemCode varchar(50),
-		Uom varchar(5),
-		BaseUom varchar(5),
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		ItemDesc varchar(100) COLLATE  Chinese_PRC_CI_AS,
+		RefItemCode varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
+		BaseUom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
 		UC decimal(18, 8),
-		UCDesc varchar(50),
+		UCDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		Qty decimal(18, 8),
-		Loc varchar(50),
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		[Priority] tinyint,
 		StartTime datetime,
 		WinTime datetime
@@ -160,7 +160,7 @@ BEGIN
 			(
 				Id int identity(1, 1) primary key,
 				Lvl tinyint,
-				Msg varchar(2000)
+				Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 			)
 		end
 		else
@@ -417,7 +417,7 @@ BEGIN
 		end
 	end try
 	begin catch
-		set @ErrorMsg = N'处理拣货结果发生异常：' + Error_Message() 
+		set @ErrorMsg = N'处理条码拣货结果发生异常：' + Error_Message() 
 		RAISERROR(@ErrorMsg, 16, 1) 
 	end catch
 

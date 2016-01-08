@@ -19,27 +19,27 @@ BEGIN
 	create table #tempPickTarget_009
 	(
 		RowId int identity(1, 1),
-		Location varchar(50),
-		Item varchar(50)
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempLocation_009
 	(
 		RowId int identity(1, 1),
-		Location varchar(50),
-		Suffix varchar(50)
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Suffix varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempOddPickTask_009
 	(
 		RowId int identity(1, 1),
-		Loc varchar(50),
-		Item varchar(50),
-		Uom varchar(5),
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UC decimal(18, 8),
 		OrderQty decimal(18, 8),
-		LotNo varchar(50),
-		Bin varchar(50)
+		LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Bin varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	begin try
@@ -52,15 +52,15 @@ BEGIN
 			create table #tempAvailableInv_009
 			(
 				RowId int identity(1, 1),
-				Location varchar(50),
-				Item varchar(50),
-				Uom varchar(5),
+				Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 				UC decimal(18, 8),
-				Area varchar(50),
+				Area varchar(50) COLLATE  Chinese_PRC_CI_AS,
 				Qty decimal(18, 8),
 				OccupyQty decimal(18, 8),
-				Bin varchar(50),
-				LotNo varchar(50),
+				Bin varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 				IsOdd bit
 			)
 		end
@@ -104,7 +104,7 @@ BEGIN
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on llt.HuId = hu.HuId '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join MD_LocationBin as bin on llt.Bin = bin.Code '
 			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = @Location_1 and llt.OccupyType = 0 and llt.Qty > 0 and llt.QualityType = 0 and hu.Qty <> hu.UC'
-			set @Parameter = N'@Location_1 varchar(50), '
+			set @Parameter = N'@Location_1 varchar(50)'
 
 			exec sp_executesql @SelectInvStatement, @Parameter, @Location_1=@Location
 

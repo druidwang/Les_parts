@@ -36,28 +36,28 @@ BEGIN
 	(
 		Id int identity(1, 1) primary key,
 		Lvl tinyint,
-		Msg varchar(2000)
+		Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempMsg_002 
 	(
 		Id int identity(1, 1) primary key,
 		Lvl tinyint,
-		Msg varchar(2000)
+		Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempMsg_003 
 	(
 		Id int identity(1, 1) primary key,
 		Lvl tinyint,
-		Msg varchar(2000)
+		Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempMsg_004 
 	(
 		Id int identity(1, 1) primary key,
 		Lvl tinyint,
-		Msg varchar(2000)
+		Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	begin try

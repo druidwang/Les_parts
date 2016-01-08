@@ -27,18 +27,18 @@ BEGIN
 	(
 		RowId int identity(1, 1) primary key,
 		ShipPlanId int,
-		OrderNo varchar(50),
+		OrderNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		OrderSeq int,
 		StartTime datetime,
 		WindowTime datetime,
-		Item varchar(50),
-		ItemDesc varchar(100),
-		RefItemCode varchar(50),
-		Uom varchar(5),
-		BaseUom varchar(5),
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		ItemDesc varchar(100) COLLATE  Chinese_PRC_CI_AS,
+		RefItemCode varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
+		BaseUom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
 		UC decimal(18, 8),
-		UCDesc varchar(50),
+		UCDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		TargetPickQty decimal(18, 8),
 		TargetFullPickQty decimal(18, 8),
 		TargetOddPickQty decimal(18, 8),
@@ -46,29 +46,29 @@ BEGIN
 		FulfillOddPickQty decimal(18, 8),
 		TempPickQty decimal(18, 8),
 		[Priority] tinyint,
-		LocFrom varchar(50),
-		Dock varchar(50),
+		LocFrom varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Dock varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		[Version] int
 	)
 
 	CREATE TABLE #tempPickTask_003
 	(
 		RowId int identity(1, 1) primary key,
-		UUID varchar(50),
+		UUID varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		[Priority] tinyint,
 		Item varchar(50),
-		ItemDesc varchar(100),
-		RefItemCode varchar(50),
-		Uom varchar(5),
-		BaseUom varchar(5),
+		ItemDesc varchar(100) COLLATE  Chinese_PRC_CI_AS,
+		RefItemCode varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
+		BaseUom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
 		UC decimal(18, 8),
-		UCDesc varchar(50),
+		UCDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		OrderQty decimal(18, 8),
-		Loc varchar(50),
-		Area varchar(50),
-		Bin varchar(50),
-		LotNo varchar(50),
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Area varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Bin varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		StartTime datetime,
 		WinTime datetime,
 		NeedRepack bit,
@@ -77,26 +77,26 @@ BEGIN
 	
 	CREATE TABLE #tempPickOccupy_003
 	(
-		UUID varchar(50),
-		OrderNo varchar(50),
+		UUID varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		OrderNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		OrderSeq int,
 		ShipPlanId int,
-		TargetDock varchar(50),
-		OccupyQty varchar(50)
+		TargetDock varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		OccupyQty varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempAvailableInv_009
 	(
 		RowId int identity(1, 1),
-		Location varchar(50),
-		Item varchar(50),
-		Uom varchar(5),
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UC decimal(18, 8),
-		Area varchar(50),
+		Area varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		Qty decimal(18, 8),
 		OccupyQty decimal(18, 8),
-		Bin varchar(50),
-		LotNo varchar(50),
+		Bin varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		IsOdd bit
 	)
 
@@ -111,7 +111,7 @@ BEGIN
 			(
 				Id int identity(1, 1) primary key,
 				Lvl tinyint,
-				Msg varchar(2000)
+				Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 			)
 		end
 		else
@@ -199,7 +199,9 @@ BEGIN
 			end
 			-----------------------------¡üÂú°ü×°Æ¥Åä-----------------------------
 
-
+select * from #tempShipPlan_003
+select *
+from #tempAvailableInv_009 
 			-----------------------------¡ýÁãÍ·ÏäÆ¥Åä-----------------------------	
 			declare @SPRowId int
 			declare @MaxSPRowId int
@@ -303,10 +305,14 @@ BEGIN
 				while @TargetPickQty > 0 and exists(select top 1 1 from #tempAvailableInv_009 
 							where Location = @Location and Item = @Item and Uom = @Uom and UC = @UC and Qty > OccupyQty)
 				begin
+select *
+from #tempAvailableInv_009 
+where Location = @Location and Item = @Item and Uom = @Uom and UC = @UC and Qty > OccupyQty
+order by Qty asc, LotNo asc
 					select top 1 @InvRowId = RowId, @Qty = Qty - OccupyQty, @Area = Area, @Bin = Bin, @LotNo = LotNo, @IsOdd = IsOdd 
 					from #tempAvailableInv_009 
 					where Location = @Location and Item = @Item and Uom = @Uom and UC = @UC and Qty > OccupyQty
-					order by Qty asc
+					order by Qty asc, LotNo asc
 
 					if (@IsOdd = 0 and @Qty > @TargetPickQty)
 					begin

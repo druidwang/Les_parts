@@ -33,16 +33,16 @@ BEGIN
 	(
 		Id int identity(1, 1) primary key,
 		Lvl tinyint,
-		Msg varchar(2000)
+		Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempRepackInHu_016
 	(
 		LocLotDetId int,
-		HuId varchar(50) primary key,
-		LotNo varchar(50),
-		Item varchar(50),
-		Uom varchar(5),
+		HuId varchar(50) COLLATE  Chinese_PRC_CI_AS primary key,
+		LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
 		UC decimal(18, 8),
 		Qty  decimal(18, 8),
@@ -50,10 +50,10 @@ BEGIN
 
 	create table #tempRepackOutHu_016
 	(
-		HuId varchar(50) primary key,
-		LotNo varchar(50),
-		Item varchar(50),
-		Uom varchar(5),
+		HuId varchar(50) COLLATE  Chinese_PRC_CI_AS primary key,
+		LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
 		UC decimal(18, 8),
 		Qty  decimal(18, 8),
@@ -62,8 +62,8 @@ BEGIN
 	create table #tempLocationLotDet_016
 	(
 		Id int primary key,
-		Bin varchar(50),
-		HuId varchar(50),
+		Bin varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		HuId varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		IsCS bit,
 		PlanBill int,
 		QualityType tinyint,
@@ -74,8 +74,8 @@ BEGIN
 
 	create table #tempBuffInv_016
 	(
-		UUID varchar(50) primary key,
-		HuId varchar(50),
+		UUID varchar(50) COLLATE  Chinese_PRC_CI_AS primary key,
+		HuId varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		IsLock bit,
 		[Version] int
 	)

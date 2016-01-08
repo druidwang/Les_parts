@@ -20,13 +20,13 @@ BEGIN
 	(
 		Id int identity(1, 1) primary key,
 		Lvl tinyint,
-		Msg varchar(2000)
+		Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempBuffInv_018
 	(
 		RowId int identity(1, 1) primary key,
-		HuId varchar(50),
+		HuId varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		Qty decimal(18, 8),
 		SuggestQty decimal(18, 8)
 	)

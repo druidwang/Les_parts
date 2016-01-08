@@ -19,15 +19,15 @@ BEGIN
 	create table #tempPickTarget_010
 	(
 		RowId int identity(1, 1),
-		Location varchar(50),
-		Item varchar(50)
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempLocation_010
 	(
 		RowId int identity(1, 1),
-		Location varchar(50),
-		Suffix varchar(50)
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Suffix varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	begin try
@@ -40,14 +40,14 @@ BEGIN
 			create table #tempAvailableInv_010
 			(
 				RowId int identity(1, 1),
-				Location varchar(50),
-				Item varchar(50),
-				HuId varchar(50),
-				Uom varchar(5),
+				Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				HuId varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 				UC decimal(18, 8),
-				Area varchar(50),
-				Bin varchar(50),
-				LotNo varchar(50),
+				Area varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				Bin varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 				Qty decimal(18, 8),
 				OccupyQty decimal(18, 8),
 				IsOdd bit
