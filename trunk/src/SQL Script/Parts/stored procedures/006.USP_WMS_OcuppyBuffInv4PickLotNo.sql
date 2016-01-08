@@ -25,22 +25,22 @@ BEGIN
 	create table #tempPickTarget_006
 	(
 		Id int identity(1, 1),
-		Loc varchar(50),
-		Item varchar(50)
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempShipPlan_006
 	(
 		RowId int identity(1, 1) primary key,
-		OrderNo varchar(50),
+		OrderNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		OrderSeq int,
 		ShipPlanId int,
-		TargetDock varchar(50),
+		TargetDock varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		[Priority] tinyint,
 		StartTime DateTime,
-		LocFrom varchar(50),
-		Item varchar(50),
-		Uom varchar(5),
+		LocFrom varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UC decimal(18, 8),
 		UnitQty decimal(18, 8),
 		LockQty decimal(18, 8),		--可发货的数量
@@ -58,9 +58,9 @@ BEGIN
 	create table #tempBuffInv_006
 	(
 		RowId int identity(1, 1) primary key,
-		Loc varchar(50),
-		Item varchar(50),
-		Uom varchar(5),
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UC decimal(18, 8),
 		Qty decimal(18, 8),
 		IsOdd bit   --是否零头箱
@@ -69,9 +69,9 @@ BEGIN
 	create table #tempCreatedShipPlan_006
 	(
 		RowId int identity(1, 1) primary key,
-		Loc varchar(50),
-		Item varchar(50),
-		Uom varchar(5),
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UC decimal(18, 8),
 		RemainLockQty decimal(18, 8),
 		RemainRepackQty decimal(18, 8),
@@ -81,10 +81,10 @@ BEGIN
 	create table #tempBuffOccupy_006
 	(
 		BuffInvId int, 
-		OrderNo varchar(50), 
+		OrderNo varchar(50) COLLATE  Chinese_PRC_CI_AS, 
 		OrderSeq int, 
 		ShipPlanId int, 
-		TargetDock varchar(50)
+		TargetDock varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	begin try

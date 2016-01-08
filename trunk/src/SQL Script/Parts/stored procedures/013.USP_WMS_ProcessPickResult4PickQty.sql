@@ -24,14 +24,14 @@ BEGIN
 	create table #tempPickTask_013
 	(
 		RowId int identity(1, 1),
-		PickTaskID int,
-		PickTaskUUID varchar(50) Primary Key,
-		Loc varchar(50),
-		Item varchar(50),
-		ItemDesc varchar(50),
-		RefItemCode varchar(100),
-		Uom varchar(5),
-		BaseUom varchar(5),
+		PickTaskID int Primary Key,
+		PickTaskUUID varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		ItemDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		RefItemCode varchar(100) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
+		BaseUom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UC decimal(18, 8),
 		UCDesc varchar(50),
 		UnitQty decimal(18, 8),
@@ -44,7 +44,7 @@ BEGIN
 	create table #tempPickOccupy_013
 	(
 		Id int Primary Key,
-		PickTaskUUID varchar(50),
+		PickTaskUUID varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		ShipPlanId int,
 		OccupyQty decimal(18, 8),
 		ReleaseQty decimal(18, 8),
@@ -64,16 +64,16 @@ BEGIN
 	create table #tempLocation_013
 	(
 		RowId int identity(1, 1),
-		Location varchar(50),
-		Suffix varchar(50),
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Suffix varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		AllowNegaInv bit
 	)
 
 	create table #tempUpdatedLocLotDet_013
 	(
 		LocationLotDetId int primary key,
-		Location varchar(50),
-		Item varchar(50),
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		Qty decimal(18, 8),
 		UpdateQty decimal(18, 8),
 		PlanBill int,
@@ -86,8 +86,8 @@ BEGIN
 	(
 		RowId int primary key,
 		LocationLotDetId int,
-		Location varchar(50),
-		Item varchar(50),
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		Qty decimal(18, 8),
 		PlanBill int
 	)
@@ -103,7 +103,7 @@ BEGIN
 			(
 				Id int identity(1, 1) primary key,
 				Lvl tinyint,
-				Msg varchar(2000)
+				Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 			)
 		end
 		else
@@ -345,7 +345,7 @@ BEGIN
 		end
 	end try
 	begin catch
-		set @ErrorMsg = N'处理拣货结果发生异常：' + Error_Message() 
+		set @ErrorMsg = N'处理数量拣货结果发生异常：' + Error_Message() 
 		RAISERROR(@ErrorMsg, 16, 1) 
 	end catch
 

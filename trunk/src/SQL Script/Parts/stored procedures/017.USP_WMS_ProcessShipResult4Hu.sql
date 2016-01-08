@@ -25,20 +25,20 @@ BEGIN
 	(
 		Id int identity(1, 1) primary key,
 		Lvl tinyint,
-		Msg varchar(2000)
+		Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempBuffInv_017
 	(
-		UUID varchar(50) primary key,
-		HuId varchar(50),
-		LotNo varchar(50),
-		Item varchar(50),
-		Uom varchar(5),
+		UUID varchar(50) COLLATE  Chinese_PRC_CI_AS primary key,
+		HuId varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
 		UC decimal(18, 8),
 		Qty  decimal(18, 8),
-		Location varchar(50),
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		IsLock bit,
 		ShipPlanId int,
 		[Version] int
@@ -47,11 +47,11 @@ BEGIN
 	create table #tempShipPlan_017
 	(
 		ShipPlanId int Primary Key,
-		OrderNo varchar(50),
+		OrderNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		OrderDetId int,
 		OrderType tinyint,
-		Item varchar(50),
-		Uom varchar(5),
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
 		UC decimal(18, 8),
 		OrderQty decimal(18, 8),

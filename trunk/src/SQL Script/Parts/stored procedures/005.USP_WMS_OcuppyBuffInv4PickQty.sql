@@ -24,8 +24,8 @@ BEGIN
 	create table #tempPickTarget_005
 	(
 		Id int identity(1, 1),
-		Loc varchar(50),
-		Item varchar(50)
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempShipPlan_005
@@ -34,9 +34,9 @@ BEGIN
 		ShipPlanId int,
 		[Priority] tinyint,
 		StartTime DateTime,
-		LocFrom varchar(50),
-		Item varchar(50),
-		Uom varchar(5),
+		LocFrom varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UC decimal(18, 8),
 		UnitQty decimal(18, 8),
 		PickQty decimal(18, 8),		--创建的拣货数
@@ -49,8 +49,8 @@ BEGIN
 	create table #tempBuffInv_005
 	(
 		RowId int identity(1, 1) primary key,
-		Loc varchar(50),
-		Item varchar(50),
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		Qty decimal(18, 8)
 	)
 

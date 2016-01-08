@@ -26,53 +26,53 @@ BEGIN
 	create table #tempShipPlan_002
 	(
 		ShipPlanId int primary key,
-		OrderNo varchar(50),
+		OrderNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		OrderSeq int,
 		StartTime datetime,
 		WindowTime datetime,
-		Item varchar(50),
-		ItemDesc varchar(100),
-		RefItemCode varchar(50),
-		Uom varchar(5),
-		BaseUom varchar(5),
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		ItemDesc varchar(100) COLLATE  Chinese_PRC_CI_AS,
+		RefItemCode varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
+		BaseUom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
 		UC decimal(18, 8),
 		UCDesc varchar(50),
 		TargetPickQty decimal(18, 8),
 		FulfillPickQty decimal(18, 8),
 		[Priority] tinyint,
-		LocFrom varchar(50),
-		Dock varchar(50),
+		LocFrom varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Dock varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		[Version] int
 	)
 
 	CREATE TABLE #tempPickTask_002
 	(
-		UUID varchar(50),
+		UUID varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		[Priority] tinyint,
-		Item varchar(50),
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		ItemDesc varchar(100),
-		RefItemCode varchar(50),
-		Uom varchar(5),
-		BaseUom varchar(5),
+		RefItemCode varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
+		BaseUom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
 		UC decimal(18, 8),
-		UCDesc varchar(50),
+		UCDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		OrderQty decimal(18, 8),
-		Loc varchar(50),
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		StartTime datetime,
 		WinTime datetime,
-		OrderNo varchar(50),
+		OrderNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		OrderSeq int,
 		ShipPlanId int,
-		TargetDock varchar(50)
+		TargetDock varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempAvailableInv_008
 	(
 		RowId int identity(1, 1),
-		Location varchar(50),
-		Item varchar(50),
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		Qty decimal(18, 8)
 	)
 
@@ -87,7 +87,7 @@ BEGIN
 			(
 				Id int identity(1, 1) primary key,
 				Lvl tinyint,
-				Msg varchar(2000)
+				Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 			)
 		end
 		else

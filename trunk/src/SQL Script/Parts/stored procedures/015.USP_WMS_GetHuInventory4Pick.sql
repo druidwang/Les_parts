@@ -18,15 +18,15 @@ BEGIN
 
 	create table #tempPickResult_015
 	(
-		HuId varchar(50) primary key,
-		Location varchar(50)
+		HuId varchar(50) COLLATE  Chinese_PRC_CI_AS primary key,
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempLocation_015
 	(
 		RowId int identity(1, 1),
-		Location varchar(50),
-		Suffix varchar(50)
+		Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Suffix varchar(50) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	begin try
@@ -39,19 +39,19 @@ BEGIN
 			create table #tempHuInventory_015
 			(
 				LocationLotDetId int primary key,
-				HuId varchar(50),
-				LotNo varchar(50),
-				Item varchar(50),
-				ItemDesc varchar(50),
-				RefItemCode varchar(100),
-				Uom varchar(5),
-				BaseUom varchar(5),
+				HuId varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				ItemDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				RefItemCode varchar(100) COLLATE  Chinese_PRC_CI_AS,
+				Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
+				BaseUom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 				UC decimal(18, 8),
-				UCDesc varchar(50),
+				UCDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 				UnitQty decimal(18, 8),
-				Location varchar(50),
-				Area varchar(50),
-				Bin varchar(50),
+				Location varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				Area varchar(50) COLLATE  Chinese_PRC_CI_AS,
+				Bin varchar(50) COLLATE  Chinese_PRC_CI_AS,
 				Qty decimal(18, 8),
 				QualityType tinyint,
 				IsFreeze bit,

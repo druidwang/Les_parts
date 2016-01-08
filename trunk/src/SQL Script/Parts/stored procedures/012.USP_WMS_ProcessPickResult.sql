@@ -23,8 +23,8 @@ BEGIN
 
 	create table #tempPickTask_012
 	(
-		PickTaskID varchar(50),
-		PickTaskUUID varchar(50) Primary Key,
+		PickTaskId int Primary Key,
+		PickTaskUUID varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		OrderQty decimal(18, 8),
 		PickQty decimal(18, 8),
 		ThisPickQty decimal(18, 8),
@@ -37,21 +37,21 @@ BEGIN
 	(
 		Id int identity(1, 1) primary key,
 		Lvl tinyint,
-		Msg varchar(2000)
+		Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempMsg_013 
 	(
 		Id int identity(1, 1) primary key,
 		Lvl tinyint,
-		Msg varchar(2000)
+		Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	create table #tempMsg_014
 	(
 		Id int identity(1, 1) primary key,
 		Lvl tinyint,
-		Msg varchar(2000)
+		Msg varchar(2000) COLLATE  Chinese_PRC_CI_AS
 	)
 
 	begin try
@@ -111,7 +111,7 @@ BEGIN
 
 				if exists(select top 1 1 from @PickResult4PickQtyTable)
 				begin
-					exec USP_WMS_ProcessPickResult4PickQty @PickResult4PickQtyTable, @CreateUserId,@CreateUserNm 
+					exec USP_WMS_ProcessPickResult4PickQty @PickResult4PickQtyTable, @CreateUserId, @CreateUserNm 
 				end
 
 				if exists(select top 1 1 from @PickResult4PickLotNoTable)
