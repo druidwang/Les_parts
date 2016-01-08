@@ -10,6 +10,8 @@ namespace com.Sconit.Entity.WMS
 
         public string UUID { get; set; }
 
+
+        [Display(Name = "PickTask_Id", ResourceType = typeof(Resources.WMS.PickTask))]
         public Int32 Id { get; set; }
 
         public com.Sconit.CodeMaster.OrderPriority Priority { get; set; }

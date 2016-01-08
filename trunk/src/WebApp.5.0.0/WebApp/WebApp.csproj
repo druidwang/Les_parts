@@ -2582,7 +2582,6 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_SearchResult.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Edit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickTask\Assign.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\ShipPlan\_ShipList.cshtml" />

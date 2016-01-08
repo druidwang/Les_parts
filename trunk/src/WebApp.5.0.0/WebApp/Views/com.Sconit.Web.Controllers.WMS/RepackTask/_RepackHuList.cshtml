@@ -3,13 +3,15 @@
 <script type="text/javascript">
     $(function () {
         $("#HuId").keydown(function () {
-        
+
             if (event.keyCode == 13) {
                 var data = {
+                    "repackTaskId": $("#Id").val(),
                     "huId": $(this).val(),
-                    "inOrOut":0,
+                    "huType": $("#huType").val(),
                     "repackInHu": $("#repackInHu").val(),
                     "repackOutHu": $("#repackOutHu").val(),
+                    "inQty": $("#inQty").val()
                 }
                 $(this).val("");
                 $.ajax({
@@ -19,9 +21,12 @@
                     url: "/RepackTask/HuIdScan/",
                     cache: false,
                     success: function (data, textStatus) {
+                        debugger;
                         var huData = {
                             "RepackInHu": data.RepackInHu,
-                            "RepackOutHu": data.RepackOutHu
+                            "RepackOutHu": data.RepackOutHu,
+                            "HuType": data.HuType,
+                            "InQty": data.InQty
                         }
                         $.ajax({
                             type: "get",
@@ -30,9 +35,15 @@
                             url: "/RepackTask/_RepackHuList/",
                             cache: false,
                             success: function (data, textStatus) {
+
                                 var $tGrid = $("#divRepackHuList");
                                 $($tGrid).html(data);
                                 $($tGrid).show();
+                            },
+                            error: function (XMLHttpRequest, textStatus, errorThrown) {
+
+                                var errorMessages = XMLHttpRequest.responseText;
+                                $message.error(errorMessages);
                             }
                         });
                     },
@@ -46,6 +57,10 @@
         });
 
     });
+
+     function doClick(v) {
+         $("#huType").val(v);
+    }
 </script>
 <fieldset>
     <legend>@Resources.WMS.RepackTask.RepackTask_Repack_Title</legend>
@@ -54,21 +69,17 @@
             <tr>
                 <td>
                     <label>
+                        @Html.RadioButton("inOrOut", 0, (bool)(ViewBag.huType == null || ViewBag.huType == "0"), new { onclick = "doClick(0)" })<span>翻包前</span>
+                        @Html.RadioButton("inOrOut", 1, (bool)(ViewBag.huType == "1"), new { onclick = "doClick(1)" })<span>翻包后</span>
+                    </label>
+                </td>
+                <td>
+                    <label>
                         条码
                     </label>
                 </td>
                 <td>
-                     @Html.TextBox("HuId")
-
-                </td>
-                <td id="tdCarrayOver">
-                    @Html.Button(Resources.SYS.Global.Button_Repack, "Url_RepackTask_Repack", new Dictionary<string, string>()
-	            {
-	                {"type", "button"},
-	                {"id", "btnRepack"},
-                    {"needconfirm","true"},
-                    {"onclick","assignCheckedRepackTasks()"}
-	            })
+                    @Html.TextBox("HuId")
                 </td>
             </tr>
         </table>
@@ -130,6 +141,8 @@
         .Scrollable(c => c.Enabled(false))
         .Footer(false)
     )
-        @Html.Hidden("repackInHu", (String)ViewBag.repackInHu)
-       @Html.Hidden("repackOutHu", (String)ViewBag.repackOutHu)
+    @Html.Hidden("repackInHu", (String)ViewBag.repackInHu)
+    @Html.Hidden("repackOutHu", (String)ViewBag.repackOutHu)
+    @Html.Hidden("huType", (String)ViewBag.huType)
+    @Html.Hidden("inQty", (String)ViewBag.inQty)
 </fieldset>

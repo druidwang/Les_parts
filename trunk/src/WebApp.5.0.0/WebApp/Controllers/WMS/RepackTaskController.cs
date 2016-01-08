@@ -20,6 +20,7 @@ namespace com.Sconit.Web.Controllers.WMS
     using com.Sconit.Entity.Exception;
     using com.Sconit.Entity.INV;
 
+
     public class RepackTaskController : WebAppBaseController
     {
         #region 翻箱任务
@@ -29,6 +30,7 @@ namespace com.Sconit.Web.Controllers.WMS
         private static string selectStatement = "select p from RepackTask as p";
 
         public IRepackTaskMgr repackTaskMgr { get; set; }
+        public IHuMgr huMgr { get; set; }
 
 
         #region 查看
@@ -257,57 +259,135 @@ namespace com.Sconit.Web.Controllers.WMS
             }
             else
             {
-                RepackTask repackTask = genericMgr.FindAll<RepackTask>("from RepackTask where Id = ?", id).SingleOrDefault();
+                RepackTask repackTask = genericMgr.FindAll<RepackTask>("from RepackTask where Id = ?", Convert.ToInt32(id)).SingleOrDefault();
+                try
+                {
+                    IList<Hu> huList = repackTaskMgr.SuggestRepackHu(Convert.ToInt32(id));
+                    if (huList != null)
+                    {
+                        string huStr = huList.Select(h => h.HuId).ToString();
+                    }
+                }
+                catch (BusinessException ex)
+                {
+                    repackTask.Remark = (string)ex.GetMessages().First().GetMessageString();
+                }
                 return View(repackTask);
             }
 
         }
 
         [SconitAuthorize(Permissions = "Url_RepackTask_Repack")]
-        public ActionResult _RepackHuList(string RepackInHu, string RepackOutHu)
+        public ActionResult _RepackHuList(string RepackInHu, string RepackOutHu, string HuType, string InQty)
         {
-            string a = (string)TempData["repackInHu"];
-            ViewBag.repackInHu = RepackInHu;
 
+            ViewBag.repackInHu = RepackInHu;
+            ViewBag.repackOutHu = RepackOutHu;
+            ViewBag.huType = (HuType == null || HuType == "") ? "0" : HuType;
+            ViewBag.inQty = string.IsNullOrEmpty(InQty) ? "0" : InQty;
             return PartialView();
         }
 
         [HttpPost]
         [SconitAuthorize(Permissions = "Url_RepackTask_Repack")]
-        public ActionResult HuIdScan(string huId, int inOrOut, string repackInHu, string repackOutHu)
+        public ActionResult HuIdScan(string repackTaskId, string huId, string huType, string repackInHu, string repackOutHu, string inQty)
         {
-            // int inOrOut = 0;
-            if (inOrOut == 0)
+            try
             {
-                #region 翻包前条码
-                if (String.IsNullOrEmpty(repackInHu))
+                RepackTask repackTask = genericMgr.FindAll<RepackTask>("from RepackTask where Id = ?", repackTaskId).SingleOrDefault();
+                if (huType == "0")
                 {
-                    repackInHu = huId;
+                    #region 翻包前条码
+                    if (repackInHu.Contains(huId))
+                    {
+                        //throw new BusinessException(string.Format(Resources.WMS.RepackTask.RepackTask_HuIdExist, huId));
+                        repackInHu = repackInHu.Replace(huId, "");
+                        if (repackInHu.Contains(",,"))
+                        {
+                            repackInHu = repackInHu.Replace(",,", ",");
+                        }
+                        Hu inHu = genericMgr.FindAll<Hu>("from Hu where HuId = ?", huId).SingleOrDefault();
+                        Decimal qty = String.IsNullOrEmpty(inQty) ? 0 : Convert.ToDecimal(inQty);
+                        inQty = (qty - inHu.Qty).ToString("0.##");
+                    }
+                    else
+                    {
+                        Hu inHu = genericMgr.FindAll<Hu>("from Hu where HuId = ?", huId).SingleOrDefault();
+                        {
+                            if (inHu == null)
+                            {
+                                throw new BusinessException(string.Format(Resources.WMS.RepackTask.RepackTask_HuIdNotExist, huId));
+                            }
+                            //if (inHu.Location != repackTask.Location)
+                            //{
+                            //    errorMsg = "条码库位和拣货库位不一致";
+                            //}
+                        }
+
+
+                        if (String.IsNullOrEmpty(repackInHu))
+                        {
+                            repackInHu = huId;
+                        }
+                        else
+                        {
+                            repackInHu = repackInHu + "," + huId;
+                        }
+
+                        Decimal qty = String.IsNullOrEmpty(inQty) ? 0 : Convert.ToDecimal(inQty);
+                        inQty = (qty + inHu.Qty).ToString("0.##");
+                        if (qty + inHu.Qty >= (repackTask.Qty - repackTask.RepackQty))
+                        {
+                            huType = "1";
+                        }
+                    }
+                    #endregion
                 }
                 else
                 {
-                    repackInHu = repackInHu + "," + huId;
+                    #region 翻包后条码
+                    if (repackOutHu.Contains(huId))
+                    {
+                        repackOutHu = repackOutHu.Replace(huId, "");
+                        if (repackOutHu.Contains(",,"))
+                        {
+                            repackOutHu = repackOutHu.Replace(",,", ",");
+                        }
+                    }
+                    else
+                    {
+                        Hu outHu = genericMgr.FindAll<Hu>("from Hu where HuId = ?", huId).SingleOrDefault();
+                        {
+                            if (outHu == null)
+                            {
+                                throw new BusinessException(string.Format(Resources.WMS.RepackTask.RepackTask_HuIdNotExist, huId));
+                            }
+                            //判断条码状态
+                        }
+
+                        if (String.IsNullOrEmpty(repackOutHu))
+                        {
+                            repackOutHu = huId;
+                        }
+                        else
+                        {
+                            repackOutHu = repackOutHu + "," + huId;
+                        }
+
+                    }
+                    #endregion
                 }
-                #endregion
+                object obj = new { RepackInHu = repackInHu, RepackOutHu = repackOutHu, HuType = huType, InQty = inQty };
+                return Json(obj);
             }
-            else
+            catch (BusinessException ex)
             {
-                #region 翻包后条码
-                if (String.IsNullOrEmpty(repackOutHu))
-                {
-                    ViewBag.repackOutHu = huId;
-                }
-                else
-                {
-                    ViewBag.repackOutHu = repackInHu + "," + huId;
-                }
-
-                TempData["repackOutHu"] = repackOutHu;
-                #endregion
+                Response.TrySkipIisCustomErrors = true;
+                Response.StatusCode = 500;
+                Response.Write(ex.GetMessages()[0].GetMessageString());
+                return Json(null);
             }
 
-            object obj = new { RepackInHu = repackInHu, RepackOutHu = repackOutHu};
-            return Json(obj);
         }
 
         [GridAction]
@@ -378,6 +458,25 @@ namespace com.Sconit.Web.Controllers.WMS
             return PartialView(new GridModel(huList));
         }
 
+        [SconitAuthorize(Permissions = "Url_RepackTask_Assign")]
+        public ActionResult RepackTaskRepack(string repackTaskId, string repackInHu, string repackOutHu)
+        {
+            try
+            {
+                IList<string> repackInResult = repackInHu.Split(',').ToList<string>();
+                IList<string> repackOutResult = repackOutHu.Split(',').ToList<string>();
+                repackTaskMgr.ProcessRepackResult(Convert.ToInt32(repackTaskId), repackInResult, repackOutResult, DateTime.Now);
+                return Json(null);
+
+            }
+            catch (BusinessException ex)
+            {
+                Response.TrySkipIisCustomErrors = true;
+                Response.StatusCode = 500;
+                Response.Write(ex.GetMessages()[0].GetMessageString());
+                return Json(null);
+            }
+        }
         #endregion
 
 

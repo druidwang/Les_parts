@@ -213,4 +213,10 @@
   <data name="PickTask_Assigned" xml:space="preserve">
     <value>PickTask Assigned</value>
   </data>
+  <data name="PickTask_DiaplayPickQty" xml:space="preserve">
+    <value>PickQty/OrderQty</value>
+  </data>
+  <data name="PickTask_Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
 </root>

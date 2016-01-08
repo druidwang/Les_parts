@@ -160,6 +160,33 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to HuIdExist.
+        /// </summary>
+        public static string RepackTask_HuIdExist {
+            get {
+                return ResourceManager.GetString("RepackTask_HuIdExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to HuIdNotExist.
+        /// </summary>
+        public static string RepackTask_HuIdNotExist {
+            get {
+                return ResourceManager.GetString("RepackTask_HuIdNotExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string RepackTask_Id {
+            get {
+                return ResourceManager.GetString("RepackTask_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to IsActive.
         /// </summary>
         public static string RepackTask_IsActive {

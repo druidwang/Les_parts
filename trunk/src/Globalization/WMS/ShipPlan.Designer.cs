@@ -187,6 +187,15 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string ShipPlan_Id {
+            get {
+                return ResourceManager.GetString("ShipPlan_Id", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is Active.
         /// </summary>
         public static string ShipPlan_IsActive {
