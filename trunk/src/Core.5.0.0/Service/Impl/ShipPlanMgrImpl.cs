@@ -171,7 +171,11 @@ namespace com.Sconit.Service.Impl
                     IpMaster ipMaster = orderMgr.ShipOrder(flow.Value, effDate.Value);
                     ipNoList.Add(ipMaster.IpNo);
                 }
-                transportMgr.AddTransportOrderDetail(transportOrderNo, ipNoList);
+
+                if (!string.IsNullOrWhiteSpace(transportOrderNo))
+                {
+                    transportMgr.AddTransportOrderDetail(transportOrderNo, ipNoList);
+                }
             }
             else
             {

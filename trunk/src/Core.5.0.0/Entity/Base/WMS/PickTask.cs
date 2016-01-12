@@ -99,6 +99,7 @@ namespace com.Sconit.Entity.WMS
         [Display(Name = "PickTask_CloseDate", ResourceType = typeof(Resources.WMS.PickTask))]
         public DateTime? CloseDate { get; set; }
         public Int32 Version { get; set; }
+        public Decimal ShipUnitCount { get; set; }
         #endregion
 
         public override int GetHashCode()

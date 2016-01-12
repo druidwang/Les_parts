@@ -174,10 +174,10 @@ BEGIN
 					RAISERROR(N'数据已经被更新，请重试。', 16, 1)
 				end
 
-				insert into WMS_PickTask(UUID, [Priority], Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, OrderQty, PickQty, 
+				insert into WMS_PickTask(UUID, [Priority], Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, ShipUC, OrderQty, PickQty, 
 				Loc, StartTime, WinTime, IsActive, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, 
 				[Version], IsPickHu, PickBy, NeedRepack, IsOdd)
-				select UUID, [Priority], Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, OrderQty, 0, 
+				select UUID, [Priority], Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, UC, OrderQty, 0, 
 				Loc, StartTime, WinTime, 1, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 
 				1, 0, 0, 0, 0
 				from #tempPickTask_002

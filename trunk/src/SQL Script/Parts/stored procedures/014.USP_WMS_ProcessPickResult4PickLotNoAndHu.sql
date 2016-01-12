@@ -58,6 +58,7 @@ BEGIN
 		PickQty decimal(18, 8),
 		ThisPickQty decimal(18, 8),
 		UC decimal(18, 8),
+		ShipUC decimal(18, 8), 
 		[Version] int
 	)
 
@@ -149,6 +150,29 @@ BEGIN
 		WinTime datetime
 	)
 
+	create table #tempRepackBuff_014
+	(
+		ShipPlanId int,
+		OrderNo varchar(50),
+		OrderSeq int,
+		TargetDock varchar(50),
+		Item varchar(50),
+		ItemDesc varchar(100),
+		RefItemCode varchar(50),
+		Uom varchar(5),
+		BaseUom varchar(5),
+		UnitQty decimal(18, 8),
+		UC decimal(18, 8),
+		UCDesc varchar(50),
+		Qty decimal(18, 8),
+		Loc varchar(50),
+		[Priority] tinyint,
+		StartTime datetime,
+		WindowTime datetime,
+		IsUpdate bit,
+		[Version] int
+	)
+
 	begin try
 		if not exists(select top 1 1 FROM tempdb.sys.objects WHERE type = 'U' AND name like '#tempMsg_014%') 
 		begin
@@ -223,12 +247,12 @@ BEGIN
 				from @PickResultTable as pr inner join #tempHuInventory_015 as inv on pr.HuId = inv.HuId
 				inner join WMS_PickTask as pt on pr.PickTaskId = pt.Id
 
-				insert into #tempPickTask_014(PickTaskID, PickTaskUUID, OrderQty, PickQty, ThisPickQty, UC, [Version])
-				select distinct pt.Id, pt.UUID, pt.OrderQty, pt.PickQty, 0, pt.UC, pt.[Version]
+				insert into #tempPickTask_014(PickTaskID, PickTaskUUID, OrderQty, PickQty, ThisPickQty, UC, ShipUC, [Version])
+				select distinct pt.Id, pt.UUID, pt.OrderQty, pt.PickQty, 0, pt.UC, pt.ShipUC, pt.[Version]
 				from @PickResultTable as tmp 
 				inner join WMS_PickTask as pt on tmp.PickTaskId = pt.Id
 
-				update inv set IsLock = CASE WHEN inv.UC = pt.UC THEN 1 ELSE 0 END
+				update inv set IsLock = CASE WHEN inv.UC = pt.ShipUC THEN 1 ELSE 0 END
 				from #tempHuInventory_015 as inv 
 				inner join #tempPickResult_014 as pr on inv.HuId = pr.HuId
 				inner join #tempPickTask_014 as pt on pr.PickTaskId = pt.PickTaskId
@@ -260,7 +284,7 @@ BEGIN
 				while @RowId <= @MaxRowId
 				begin
 					set @LastQty = 0
-					select @PickTaskId = pr.PickTaskId, @PickTaskUUID = pr.PickTaskUUID, @Qty = pr.Qty, @IsRepack = CASE WHEN pt.UC = pr.UC THEN 0 ELSE 1 END
+					select @PickTaskId = pr.PickTaskId, @PickTaskUUID = pr.PickTaskUUID, @Qty = pr.Qty, @IsRepack = CASE WHEN pt.ShipUC = pr.UC THEN 0 ELSE 1 END
 					from #tempPickResult_014 as pr inner join #tempPickTask_014 as pt on pr.PickTaskUUID = pt.PickTaskUUID 
 					where pr.RowId = @RowId
 
@@ -286,13 +310,41 @@ BEGIN
 				insert into #tempMsg_014(Lvl, Msg)
 				select 2, N'拣货任务关联的发运任务['+ convert(varchar, ShipPlanId) + N']的已拣数已经超过了待拣数。'
 				from #tempShipPlan_014 where PickQty < PickedQty + ThisPickedQty
-				
+	
+				insert into #tempRepackBuff_014(ShipPlanId, OrderNo, OrderSeq, TargetDock, Item, ItemDesc, RefItemCode, Uom, BaseUom,
+												UnitQty, UC, UCDesc, Qty, Loc, [Priority], StartTime, WindowTime, [Version])
+				select rb.ShipPlanId, rb.OrderNo, rb.OrderSeq, rb.TargetDock, rb.Item, rb.ItemDesc, rb.RefItemCode, rb.Uom, rb.BaseUom,
+						rb.UnitQty, rb.UC, rb.UCDesc, rb.Qty, rb.Loc, rb.[Priority], rb.StartTime, rb.WindowTime, rb.[Version] 
+				from WMS_RepackBuff as rb
+				inner join (select distinct ShipPlanId from #tempPickOccupy_014) as po on rb.ShipPlanId = po.ShipPlanId
+
+				update rb set Qty = rb.Qty + tmp.Qty, IsUpdate = 1
+				from #tempRepackBuff_014 as rb
+				inner join (select po.ShipPlanId, SUM(po.ThisReleaseQty - po.ThisLockQty) as Qty 
+							from #tempPickOccupy_014 as po 
+							inner join WMS_ShipPlan as sp on po.ShipPlanId = sp.Id
+							where po.ThisReleaseQty > po.ThisLockQty group by po.ShipPlanId) as tmp on rb.ShipPlanId = tmp.ShipPlanId
+
+				insert into #tempRepackBuff_014(ShipPlanId, OrderNo, OrderSeq, TargetDock, Item, ItemDesc, RefItemCode, Uom, BaseUom,
+												UnitQty, UC, UCDesc, Qty, Loc, [Priority], StartTime, WindowTime, [Version])
+				select sp.Id, sp.OrderNo, sp.OrderSeq, sp.Dock, sp.Item, sp.ItemDesc, sp.RefItemCode, sp.Uom, sp.BaseUom, 
+				sp.UnitQty, sp.UC, sp.UCDesc, tmp.Qty, sp.LocFrom, sp.[Priority], sp.StartTime, sp.WindowTime, null  
+				from (select sp.Id as ShipPlanId, SUM(po.ThisReleaseQty - po.ThisLockQty) as Qty 
+						from #tempPickOccupy_014 as po 
+						inner join WMS_ShipPlan as sp on po.ShipPlanId = sp.Id
+						left join #tempRepackBuff_014 as rb on sp.Id = rb.ShipPlanId
+						where rb.ShipPlanId is null and po.ThisReleaseQty > po.ThisLockQty
+						group by sp.Id) as tmp
+				inner join WMS_ShipPlan as sp on tmp.ShipPlanId = sp.Id
+
 				insert into #tempRepackOccupy_014(GroupId, OrderNo, OrderSeq, TargetDock, ShipPlanId, Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Loc, [Priority], StartTime, OccupyQty)
-				select ROW_NUMBER() over (partition by sp.Item, sp.ItemDesc, sp.RefItemCode, sp.Uom, sp.BaseUom, sp.UnitQty, sp.UC, sp.UCDesc, sp.LocFrom, sp.[Priority] order by sp.Id), 
-				sp.OrderNo, sp.OrderSeq, sp.Dock, sp.Id, sp.Item, sp.ItemDesc, sp.RefItemCode, sp.Uom, sp.BaseUom, sp.UnitQty, sp.UC, sp.UCDesc, sp.LocFrom, sp.[Priority], sp.StartTime, po.ThisReleaseQty - po.ThisLockQty 
-				from #tempPickOccupy_014 as po 
-				inner join WMS_ShipPlan as sp on po.ShipPlanId = sp.Id
-				where po.ThisReleaseQty > po.ThisLockQty
+				select ROW_NUMBER() over (partition by Item, Uom, UC, LocFrom, [Priority] order by ShipPlanId), 
+				OrderNo, OrderSeq, TargetDock, ShipPlanId, Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Loc, [Priority], StartTime, ROUND(Qty / UC, 0, 1) * UC
+				from #tempRepackBuff_014
+				where Qty >= UC
+
+				update #tempRepackBuff_014 set Qty = Qty % UC, IsUpdate = 1
+				where Qty >= UC
 
 				insert into #tempRepackTask_014(RepackUUID, GroupId, Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Qty, Loc, [Priority], StartTime, WinTime)
 				select NEWID(), GroupId, MIN(Item), MIN(ItemDesc), MIN(RefItemCode), MIN(Uom), MIN(BaseUom), MIN(UnitQty), MIN(UC), MIN(UCDesc), SUM(OccupyQty), MIN(Loc), MIN([Priority]), @DateTimeNow, MIN(StartTime)
@@ -353,10 +405,26 @@ BEGIN
 				end
 
 				insert into WMS_PickResult(PickTaskId, PickTaskUUID, Item, ItemDesc, RefItemCode, Uom, BaseUom, UC, UCDesc, PickQty, Loc, 
-				Area, Bin, LotNo, HuId, PickUserId, PickUserNm, CreateUser, CreateUserNm, CreateDate, IsCancel)
+					Area, Bin, LotNo, HuId, PickUserId, PickUserNm, CreateUser, CreateUserNm, CreateDate, IsCancel)
 				select PickTaskId, PickTaskUUID, Item, ItemDesc, RefItemCode, Uom, BaseUom, UC, UCDesc, Qty, Loc,  
-				Area, Bin, LotNo, HuId, @CreateUserId, @CreateUserNm, @CreateUserId, @CreateUserNm, @DateTimeNow, 0 
+					Area, Bin, LotNo, HuId, @CreateUserId, @CreateUserNm, @CreateUserId, @CreateUserNm, @DateTimeNow, 0 
 				from #tempPickResult_014
+
+				select @UpdateCount = COUNT(1) from #tempRepackBuff_014 where IsUpdate = 1 and [Version] is not null
+				update WMS_RepackBuff set Qty = 1
+				from WMS_RepackBuff as rb inner join #tempRepackBuff_014 as tmp on rb.ShipPlanId = tmp.ShipPlanId and rb.[Version] = tmp.[Version]
+				where tmp.IsUpdate = 1 and tmp.[Version] is not null
+
+				if (@@ROWCOUNT <> @UpdateCount)
+				begin
+					RAISERROR(N'数据已经被更新，请重试。', 16, 1)
+				end
+
+				insert into WMS_RepackBuff(ShipPlanId, OrderNo, OrderSeq, TargetDock, Item, ItemDesc, RefItemCode, Uom, BaseUom,
+												UnitQty, UC, UCDesc, Qty, Loc, [Priority], StartTime, WindowTime, [Version])
+				select ShipPlanId, OrderNo, OrderSeq, TargetDock, Item, ItemDesc, RefItemCode, Uom, BaseUom,
+												UnitQty, UC, UCDesc, Qty, Loc, [Priority], StartTime, WindowTime, [Version] 
+				from #tempRepackBuff_014 where [Version] is not null
 
 				if exists(select top 1 1 from #tempRepackTask_014)
 				begin

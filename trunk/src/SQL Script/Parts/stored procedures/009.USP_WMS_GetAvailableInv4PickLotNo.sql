@@ -56,6 +56,7 @@ BEGIN
 				Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
 				Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 				UC decimal(18, 8),
+				UCDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 				Area varchar(50) COLLATE  Chinese_PRC_CI_AS,
 				Qty decimal(18, 8),
 				OccupyQty decimal(18, 8),
@@ -89,21 +90,23 @@ BEGIN
 			select @Location = Location, @LocSuffix = Suffix
 			from #tempLocation_009 where RowId = @LocationRowId
 
-			set @SelectInvStatement = 'insert into #tempAvailableInv_009(Location, Item, Uom, UC, LotNo, Area, Bin, Qty, OccupyQty, IsOdd) '
-			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin, SUM(hu.Qty) as InvQty, 0 as OccupyQty, 0 as IsOdd '
+			set @SelectInvStatement = 'insert into #tempAvailableInv_009(Location, Item, Uom, UC, UCDesc, LotNo, Area, Bin, Qty, OccupyQty, IsOdd) '
+			set @SelectInvStatement = @SelectInvStatement + 'select Location, Item, Uom, UC, UCDesc, LotNo, Area, Bin, InvQty, OccupyQty, IsOdd from ('
+			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, hu.Uom, hu.UC, MAX(hu.UCDesc) as UCDesc, hu.LotNo, bin.Area, llt.Bin, bin.Seq, SUM(hu.Qty) as InvQty, 0 as OccupyQty, 0 as IsOdd '
 			set @SelectInvStatement = @SelectInvStatement + 'from #tempPickTarget_009 as sp '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @LocSuffix + ' as llt on sp.Location = llt.Location and sp.Item = llt.Item '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on llt.HuId = hu.HuId '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join MD_LocationBin as bin on llt.Bin = bin.Code '
 			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = @Location_1 and llt.OccupyType = 0 and llt.Qty > 0 and llt.QualityType = 0 and hu.Qty = hu.UC '
-			set @SelectInvStatement = @SelectInvStatement + 'group by sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin '
+			set @SelectInvStatement = @SelectInvStatement + 'group by sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin, bin.Seq '
 			set @SelectInvStatement = @SelectInvStatement + 'union all '
-			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Area, llt.Bin, hu.Qty, 0 as OccupyQty, 1 as IsOdd '
+			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, hu.Uom, hu.UC, hu.UCDesc, hu.LotNo, bin.Area, llt.Bin, bin.Seq, hu.Qty, 0 as OccupyQty, 1 as IsOdd '
 			set @SelectInvStatement = @SelectInvStatement + 'from #tempPickTarget_009 as sp '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @LocSuffix + ' as llt on sp.Location = llt.Location and sp.Item = llt.Item ' 
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on llt.HuId = hu.HuId '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join MD_LocationBin as bin on llt.Bin = bin.Code '
-			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = @Location_1 and llt.OccupyType = 0 and llt.Qty > 0 and llt.QualityType = 0 and hu.Qty <> hu.UC'
+			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = @Location_1 and llt.OccupyType = 0 and llt.Qty > 0 and llt.QualityType = 0 and hu.Qty <> hu.UC '
+			set @SelectInvStatement = @SelectInvStatement + ') as a order by Location, Item, Uom, UC, LotNo, Seq'
 			set @Parameter = N'@Location_1 varchar(50)'
 
 			exec sp_executesql @SelectInvStatement, @Parameter, @Location_1=@Location

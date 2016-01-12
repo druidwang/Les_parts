@@ -45,6 +45,7 @@ BEGIN
 				HuId varchar(50) COLLATE  Chinese_PRC_CI_AS,
 				Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 				UC decimal(18, 8),
+				UCDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 				Area varchar(50) COLLATE  Chinese_PRC_CI_AS,
 				Bin varchar(50) COLLATE  Chinese_PRC_CI_AS,
 				LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
@@ -78,14 +79,15 @@ BEGIN
 			select @Location = Location, @LocSuffix = Suffix
 			from #tempLocation_010 where RowId = @LocationRowId
 
-			set @SelectInvStatement = 'insert into #tempAvailableInv_010(Location, Item, HuId, Uom, UC, Area, Bin, LotNo, Qty, OccupyQty, IsOdd) '
-			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, hu.HuId, hu.Uom, hu.UC, bin.Area, llt.Bin, hu.LotNo, hu.Qty, 0 as OccupyQty, CASE WHEN hu.UC = hu.Qty THEN 0 ELSE 1 END as IsOdd '
+			set @SelectInvStatement = 'insert into #tempAvailableInv_010(Location, Item, HuId, Uom, UC, UCDesc, Area, Bin, LotNo, Qty, OccupyQty, IsOdd) '
+			set @SelectInvStatement = @SelectInvStatement + 'select sp.Location, sp.Item, hu.HuId, hu.Uom, hu.UC, hu.UCDesc, bin.Area, llt.Bin, hu.LotNo, hu.Qty, 0 as OccupyQty, CASE WHEN hu.UC = hu.Qty THEN 0 ELSE 1 END as IsOdd '
 			set @SelectInvStatement = @SelectInvStatement + 'from #tempPickTarget_010 as sp '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_LocationLotDet_' + @LocSuffix + ' as llt on sp.Location = llt.Location and sp.Item = llt.Item ' 
 			set @SelectInvStatement = @SelectInvStatement + 'inner join INV_Hu as hu on llt.HuId = hu.HuId '
 			set @SelectInvStatement = @SelectInvStatement + 'inner join MD_LocationBin as bin on llt.Bin = bin.Code '
 			set @SelectInvStatement = @SelectInvStatement + 'left join WMS_PickTask as pt on llt.HuId = pt.HuId and pt.IsActive = 1 '  --过滤掉被拣货单占用的条码
 			set @SelectInvStatement = @SelectInvStatement + 'where sp.Location = ''' + @Location + ''' and llt.OccupyType = 0 and llt.Qty > 0 and llt.QualityType = 0 and pt.Id is null '
+			set @SelectInvStatement = @SelectInvStatement + 'order by sp.Location, sp.Item, hu.Uom, hu.UC, hu.LotNo, bin.Seq '
 			set @Parameter = N'@Location_1 varchar(50) '
 
 			exec sp_executesql @SelectInvStatement, @Parameter, @Location_1=@Location

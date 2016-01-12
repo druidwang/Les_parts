@@ -82,7 +82,7 @@ BEGIN
 							ShipTo, ShipToAddr, ShipToTel, ShipToCell, ShipToFax, ShipToContact, 
 							LocFrom, LocFromNm, LocTo, LocToNm, Station, Dock, IsOccupyInv, IsActive, 
 							CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, 
-							[Version], IsShipScanHu, PickQty, PickedQty, LockQty)
+							[Version], IsShipScanHu, PickQty, PickedQty, LockQty, PackQty)
 				select mstr.Flow, det.OrderNo, det.Seq, det.Id, mstr.[Type], @DateTimeNow, CASE WHEN StartTime >  @DateTimeNow THEN StartTime ELSE @DateTimeNow end as WindowTime,
 				det.Item, det.ItemDesc, det.RefItemCode, det.Uom, det.BaseUom, det.UnitQty, det.UC, det.UCDesc,
 				det.OrderQty, 0, mstr.[Priority], mstr.PartyFrom, mstr.PartyFromNm, mstr.PartyTo, mstr.PartyToNm, 
@@ -90,7 +90,7 @@ BEGIN
 				mstr.ShipTo, mstr.ShipToAddr, mstr.ShipToTel, mstr.ShipToCell, mstr.ShipToFax, mstr.ShipToContact,
 				ISNULL(det.LocFrom, mstr.LocFrom), ISNULL(dl.Name, ml.Name), ISNULL(det.LocTo, mstr.LocTo), CASE WHEN det.LocTo is null THEN mstr.LocToNm ELSE det.LocToNm END, det.BinTo, mstr.Dock, 0, 1,
 				@CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow,
-				1, mstr.IsShipScanHu, 0, 0, 0
+				1, mstr.IsShipScanHu, 0, 0, 0, 0
 				from ORD_OrderMstr_2 as mstr 
 				inner join ORD_OrderDet_2 as det on mstr.OrderNo = det.OrderNo
 				left join MD_Location as ml on mstr.LocFrom = ml.Code
@@ -107,7 +107,7 @@ BEGIN
 							ShipTo, ShipToAddr, ShipToTel, ShipToCell, ShipToFax, ShipToContact, 
 							LocFrom, LocFromNm, LocTo, LocToNm, Station, Dock, IsOccupyInv, IsActive, 
 							CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, 
-							[Version], IsShipScanHu, PickQty, PickedQty, LockQty)
+							[Version], IsShipScanHu, PickQty, PickedQty, LockQty, PackQty)
 				select mstr.Flow, det.OrderNo, det.Seq, det.Id, mstr.[Type], @DateTimeNow, CASE WHEN StartTime >  @DateTimeNow THEN StartTime ELSE @DateTimeNow end as WindowTime,
 				det.Item, det.ItemDesc, det.RefItemCode, det.Uom, det.BaseUom, det.UnitQty, det.UC, det.UCDesc,
 				det.OrderQty, 0, mstr.[Priority], mstr.PartyFrom, mstr.PartyFromNm, mstr.PartyTo, mstr.PartyToNm, 
@@ -115,7 +115,7 @@ BEGIN
 				mstr.ShipTo, mstr.ShipToAddr, mstr.ShipToTel, mstr.ShipToCell, mstr.ShipToFax, mstr.ShipToContact,
 				ISNULL(det.LocFrom, mstr.LocFrom), ISNULL(dl.Name, ml.Name), ISNULL(det.LocTo, mstr.LocTo), CASE WHEN det.LocTo is null THEN mstr.LocToNm ELSE det.LocToNm END, det.BinTo, mstr.Dock, 0, 1,
 				@CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow,
-				1, mstr.IsShipScanHu, 0, 0, 0
+				1, mstr.IsShipScanHu, 0, 0, 0, 0
 				from ORD_OrderMstr_3 as mstr 
 				inner join ORD_OrderDet_3 as det on mstr.OrderNo = det.OrderNo
 				left join MD_Location as ml on mstr.LocFrom = ml.Code

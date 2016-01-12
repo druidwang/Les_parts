@@ -13,8 +13,9 @@
 		<property name="Uom" column="Uom" type="String" length="5"/>	
 		<property name="BaseUom" column="BaseUom" type="String" length="5"/>	
 		<property name="UnitCount" column="UC" type="Decimal"/>	
-		<property name="UCDescription" column="UCDesc" type="String" length="50"/>	
-		<property name="OrderQty" column="OrderQty" type="Decimal"/>	
+		<property name="UCDescription" column="UCDesc" type="String" length="50"/>
+        <property name="ShipUnitCount" column="ShipUC" type="Decimal"/>
+        <property name="OrderQty" column="OrderQty" type="Decimal"/>	
 		<property name="PickQty" column="PickQty" type="Decimal"/>	
 		<property name="Location" column="Loc" type="String" length="50"/>	
 		<property name="Area" column="Area" type="String" length="50"/>	
