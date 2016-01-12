@@ -216,4 +216,10 @@
   <data name="PickTask_Assigned" xml:space="preserve">
     <value>拣货任务分派成功</value>
   </data>
+  <data name="PickTask_DiaplayPickQty" xml:space="preserve">
+    <value>拣货数/订单数</value>
+  </data>
+  <data name="PickTask_Id" xml:space="preserve">
+    <value>任务编号</value>
+  </data>
 </root>

@@ -298,6 +298,7 @@ namespace com.Sconit.Web.Controllers.WMS
             HqlStatementHelper.AddEqStatement("PickUser", searchModel.PickUser, "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Location", searchModel.Location,  "p", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "p", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("IsActive", searchModel.IsActive, "p", ref whereStatement, param);
 
             if (searchModel.DateFrom != null)
             {

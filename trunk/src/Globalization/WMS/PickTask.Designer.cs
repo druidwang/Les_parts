@@ -178,11 +178,29 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to PickQty/OrderQty.
+        /// </summary>
+        public static string PickTask_DiaplayPickQty {
+            get {
+                return ResourceManager.GetString("PickTask_DiaplayPickQty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to HuId.
         /// </summary>
         public static string PickTask_HuId {
             get {
                 return ResourceManager.GetString("PickTask_HuId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Id.
+        /// </summary>
+        public static string PickTask_Id {
+            get {
+                return ResourceManager.GetString("PickTask_Id", resourceCulture);
             }
         }
         

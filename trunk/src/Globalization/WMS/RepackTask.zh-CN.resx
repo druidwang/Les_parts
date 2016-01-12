@@ -198,4 +198,13 @@
   <data name="RepackTask_Repack_Title" xml:space="preserve">
     <value>翻包</value>
   </data>
+  <data name="RepackTask_HuIdExist" xml:space="preserve">
+    <value>条码{0}已存在</value>
+  </data>
+  <data name="RepackTask_HuIdNotExist" xml:space="preserve">
+    <value>条码{0}不存在</value>
+  </data>
+  <data name="RepackTask_Id" xml:space="preserve">
+    <value>任务编号</value>
+  </data>
 </root>

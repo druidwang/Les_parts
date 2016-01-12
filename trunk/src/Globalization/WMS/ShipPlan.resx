@@ -291,4 +291,7 @@
   <data name="ShipPlan_ShipUserName" xml:space="preserve">
     <value>ShipUserName</value>
   </data>
+  <data name="ShipPlan_Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
 </root>

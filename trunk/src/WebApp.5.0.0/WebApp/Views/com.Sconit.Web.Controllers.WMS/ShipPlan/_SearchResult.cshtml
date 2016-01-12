@@ -9,7 +9,8 @@
         })
         .Columns(columns =>
         {
-            columns.Bound(o => o.OrderNo).ClientTemplate(Html.ActionLink("<#= Item #>", "Edit", "ShipPlan", new { id = "<#= Id #>" }, null).ToString());
+            columns.Bound(o => o.Id);
+            columns.Bound(o => o.OrderNo);
             columns.Bound(o => o.Flow);
             columns.Bound(o => o.PartyFromName);
             columns.Bound(o => o.PartyToName);

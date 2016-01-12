@@ -8,6 +8,7 @@ namespace com.Sconit.Entity.WMS
     {
         #region O/R Mapping Properties
 
+        [Display(Name = "ShipPlan_Id", ResourceType = typeof(Resources.WMS.ShipPlan))]
         public Int32 Id { get; set; }
 
         [Display(Name = "ShipPlan_Flow", ResourceType = typeof(Resources.WMS.ShipPlan))]

@@ -8,7 +8,7 @@ namespace com.Sconit.Entity.WMS
     {
         #region Non O/R Mapping Properties
 
-        //TODO: Add Non O/R Mapping Properties here. 
+        public string Remark { get; set; }
 
         #endregion
     }
