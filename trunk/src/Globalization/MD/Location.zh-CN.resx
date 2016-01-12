@@ -133,7 +133,7 @@
     <value>修改库位</value>
   </data>
   <data name="Location_EnableAdvWM" xml:space="preserve">
-    <value>预付</value>
+    <value>高级仓库管理</value>
   </data>
   <data name="Location_IsActive" xml:space="preserve">
     <value>有效</value>
@@ -155,6 +155,9 @@
   </data>
   <data name="Location_New_Title" xml:space="preserve">
     <value>创建库位</value>
+  </data>
+  <data name="Location_PickBy" xml:space="preserve">
+    <value>拣货方式</value>
   </data>
   <data name="Location_Region" xml:space="preserve">
     <value>区域</value>

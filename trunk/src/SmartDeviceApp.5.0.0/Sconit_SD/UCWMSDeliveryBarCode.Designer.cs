@@ -45,12 +45,12 @@
             this.tbHuId = new System.Windows.Forms.Label();
             this.lblHuBarCode = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tbDCWindowTime = new System.Windows.Forms.Label();
+            this.lblDCWindowTime = new System.Windows.Forms.Label();
+            this.tbDCDock = new System.Windows.Forms.Label();
             this.lblDCDock = new System.Windows.Forms.Label();
             this.tbDCId = new System.Windows.Forms.Label();
             this.lblDCId = new System.Windows.Forms.Label();
-            this.tbDCDock = new System.Windows.Forms.Label();
-            this.tbDCWindowTime = new System.Windows.Forms.Label();
-            this.lblDCWindowTime = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -62,7 +62,7 @@
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(40, 20);
             this.btnOrder.TabIndex = 15;
-            this.btnOrder.Text = "状态";
+            this.btnOrder.Text = "确认";
             this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
             this.btnOrder.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbBarCode_KeyUp);
             // 
@@ -200,6 +200,29 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(234, 129);
             // 
+            // tbDCWindowTime
+            // 
+            this.tbDCWindowTime.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular);
+            this.tbDCWindowTime.Location = new System.Drawing.Point(42, 69);
+            this.tbDCWindowTime.Name = "tbDCWindowTime";
+            this.tbDCWindowTime.Size = new System.Drawing.Size(177, 16);
+            this.tbDCWindowTime.Text = "123456789012345678901234567890";
+            // 
+            // lblDCWindowTime
+            // 
+            this.lblDCWindowTime.Location = new System.Drawing.Point(3, 53);
+            this.lblDCWindowTime.Name = "lblDCWindowTime";
+            this.lblDCWindowTime.Size = new System.Drawing.Size(41, 36);
+            this.lblDCWindowTime.Text = "窗口时间:";
+            // 
+            // tbDCDock
+            // 
+            this.tbDCDock.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular);
+            this.tbDCDock.Location = new System.Drawing.Point(43, 31);
+            this.tbDCDock.Name = "tbDCDock";
+            this.tbDCDock.Size = new System.Drawing.Size(177, 16);
+            this.tbDCDock.Text = "D00001";
+            // 
             // lblDCDock
             // 
             this.lblDCDock.Location = new System.Drawing.Point(3, 30);
@@ -221,29 +244,6 @@
             this.lblDCId.Name = "lblDCId";
             this.lblDCId.Size = new System.Drawing.Size(41, 18);
             this.lblDCId.Text = "标签:";
-            // 
-            // tbDCDock
-            // 
-            this.tbDCDock.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular);
-            this.tbDCDock.Location = new System.Drawing.Point(43, 31);
-            this.tbDCDock.Name = "tbDCDock";
-            this.tbDCDock.Size = new System.Drawing.Size(177, 16);
-            this.tbDCDock.Text = "D00001";
-            // 
-            // tbDCWindowTime
-            // 
-            this.tbDCWindowTime.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular);
-            this.tbDCWindowTime.Location = new System.Drawing.Point(42, 69);
-            this.tbDCWindowTime.Name = "tbDCWindowTime";
-            this.tbDCWindowTime.Size = new System.Drawing.Size(177, 16);
-            this.tbDCWindowTime.Text = "123456789012345678901234567890";
-            // 
-            // lblDCWindowTime
-            // 
-            this.lblDCWindowTime.Location = new System.Drawing.Point(3, 53);
-            this.lblDCWindowTime.Name = "lblDCWindowTime";
-            this.lblDCWindowTime.Size = new System.Drawing.Size(41, 36);
-            this.lblDCWindowTime.Text = "窗口时间:";
             // 
             // UCWMSDeliveryBarCode
             // 

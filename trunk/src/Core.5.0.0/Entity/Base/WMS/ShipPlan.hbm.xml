@@ -25,7 +25,8 @@
         <property name="PickedQty" column="PickedQty" type="Decimal"/>
         <property name="LockQty" column="LockQty" type="Decimal"/>
 		<property name="ShipQty" column="ShipQty" type="Decimal"/>
-        <property name="Priority" column="Priority" />
+    <property name="PackQty" column="PackQty" type="Decimal"/> 
+    <property name="Priority" column="Priority" />
         <property name="PartyFrom" column="PartyFrom" type="String" length="50"/>	
 		<property name="PartyFromName" column="PartyFromNm" type="String" length="100"/>	
 		<property name="PartyTo" column="PartyTo" type="String" length="50"/>	

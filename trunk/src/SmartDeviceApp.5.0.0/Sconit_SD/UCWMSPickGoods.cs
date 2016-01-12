@@ -25,6 +25,7 @@ namespace com.Sconit.SmartDevice
         {
             this.InitializeComponent();
             this.isPickByHu = isPickByHu;
+            this.lblMessage.Text = "请扫描条码";
             base.btnOrder.Text = "拣货";
         }
 
@@ -56,9 +57,9 @@ namespace com.Sconit.SmartDevice
             if (base.op == CodeMaster.BarCodeType.HU.ToString())
             {
 
-                Hu hu = smartDeviceService.GetHu(barCode);
+                Hu hu = smartDeviceService.GetPickHu(barCode, this.user.Code);
                 MatchPickTask(hu);
-
+                this.gvListDataBind();
             }
             else
             {
@@ -95,6 +96,7 @@ namespace com.Sconit.SmartDevice
                     else
                     {
                         pickTask.PickQty += hu.Qty;
+                        pickTask.CurrentQty = pickTask.OrderQty - pickTask.PickQty;
                         hu.OrderDetId = pickTask.Id;
                         this.hus.Add(hu);
                     }
@@ -107,6 +109,7 @@ namespace com.Sconit.SmartDevice
                         if (pickTask.OrderQty - pickTask.PickQty >= hu.Qty)
                         {
                             pickTask.PickQty += hu.Qty;
+                            pickTask.CurrentQty = pickTask.OrderQty - pickTask.PickQty;
                             hu.OrderDetId = pickTask.Id;
                             this.hus.Add(hu);
                             isMatched = true;
@@ -137,8 +140,10 @@ namespace com.Sconit.SmartDevice
                     else
                     {
                         pickTask.PickQty += hu.Qty;
+                        pickTask.CurrentQty = pickTask.OrderQty - pickTask.PickQty;
                         hu.OrderDetId = pickTask.Id;
                         this.hus.Add(hu);
+                        
                     }
                 }
             }
@@ -160,7 +165,7 @@ namespace com.Sconit.SmartDevice
             {
                 this.ts.GridColumnStyles.Add(columnHuId);
             }
-            //this.ts.GridColumnStyles.Add(columnIsOdd);
+            this.ts.GridColumnStyles.Add(columnCurrentQty);
             this.ts.GridColumnStyles.Add(columnBin);
             this.ts.GridColumnStyles.Add(columnUom);
             this.ts.GridColumnStyles.Add(columnReferenceItemCode);
@@ -171,8 +176,11 @@ namespace com.Sconit.SmartDevice
             this.ResumeLayout();
             this.isMasterBind = true;
 
-            this.pickTasks = this.smartDeviceService.GetPickTasks(this.user.Code).ToList();
+            if (this.pickTasks == null)
+            {
+                this.pickTasks = this.smartDeviceService.GetPickTasks(this.user.Code, isPickByHu).ToList();
 
+            }
             ts.MappingName = this.pickTasks.GetType().Name;
             base.dgList.DataSource = this.pickTasks;
         }
@@ -183,7 +191,7 @@ namespace com.Sconit.SmartDevice
         protected override void Reset()
         {
             base.Reset();
-            this.hus = new List<Hu>();
+            this.pickTasks = this.smartDeviceService.GetPickTasks(this.user.Code, isPickByHu).ToList();
             this.effDate = null;
         }
         #endregion

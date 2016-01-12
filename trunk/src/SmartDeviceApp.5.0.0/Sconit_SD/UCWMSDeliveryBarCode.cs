@@ -236,6 +236,7 @@ namespace com.Sconit.SmartDevice
                     Utility.ShowMessageBox("请扫描条码");
                 }
                 this.smartDeviceService.MatchDCToHU(this.hu != null ? this.hu.HuId:string.Empty, this.dc.BarCode ,this.user.Code);
+                this.Reset();
             }
             catch (Exception ex)
             {
@@ -268,7 +269,7 @@ namespace com.Sconit.SmartDevice
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
-            this.tbBarCode_KeyUp(null, null);
+            this.tbBarCode_KeyUp(sender, null);
         }
 
     }

@@ -174,8 +174,8 @@ namespace com.Sconit.Service.Impl
             paras[0].Value = pickResultTable;
             paras[1] = new SqlParameter("@CreateUserId", SqlDbType.Int);
             paras[1].Value = user.Id;
-            paras[1] = new SqlParameter("@CreateUserNm", SqlDbType.VarChar);
-            paras[1].Value = user.FullName;
+            paras[2] = new SqlParameter("@CreateUserNm", SqlDbType.VarChar);
+            paras[2].Value = user.FullName;
 
             try
             {
@@ -237,6 +237,43 @@ namespace com.Sconit.Service.Impl
                     genericMgr.Update(p);
                 }
 
+            }
+        }
+
+        public void PorcessDeliverBarCode2Hu(string deliverBarCode, string HuId)
+        {
+            User user = SecurityContextHolder.Get();
+            SqlParameter[] paras = new SqlParameter[4];
+            paras[0] = new SqlParameter("@DeliverBarCode", SqlDbType.VarChar);
+            paras[0].Value = deliverBarCode;
+            paras[1] = new SqlParameter("@HuId", SqlDbType.VarChar);
+            paras[1].Value = HuId;
+            paras[2] = new SqlParameter("@CreateUserId", SqlDbType.Int);
+            paras[2].Value = user.Id;
+            paras[3] = new SqlParameter("@CreateUserNm", SqlDbType.VarChar);
+            paras[3].Value = user.FullName;
+
+            try
+            {
+                DataSet msgs = this.genericMgr.GetDatasetByStoredProcedure("USP_WMS_PorcessDeliverBarCode2Hu", paras);
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null)
+                {
+                    if (ex.InnerException.InnerException != null)
+                    {
+                        MessageHolder.AddErrorMessage(ex.InnerException.InnerException.Message);
+                    }
+                    else
+                    {
+                        MessageHolder.AddErrorMessage(ex.InnerException.Message);
+                    }
+                }
+                else
+                {
+                    MessageHolder.AddErrorMessage(ex.Message);
+                }
             }
         }
     }

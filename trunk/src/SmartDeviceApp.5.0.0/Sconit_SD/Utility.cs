@@ -42,7 +42,7 @@ namespace com.Sconit.SmartDevice
             }
             else if (barCode.StartsWith("DC"))
             {
-                return CodeMaster.BarCodeType.HU.ToString();
+                return CodeMaster.BarCodeType.DC.ToString();
             }
             else
             {

@@ -844,11 +844,11 @@
         }
 
         [WebMethod]
-        public List<PickTask> GetPickTasks(string userCode)
+        public List<PickTask> GetPickTasks(string userCode, bool isPickByHus)
         {
             var user = sdSecurityMgr.GetBaseUser(userCode);
             SecurityContextHolder.Set(user);
-            return this.wmsMgr.GetPickTaskByUser(user.Id);
+            return this.wmsMgr.GetPickTaskByUser(user.Id, isPickByHus);
         }
 
         [WebMethod]
