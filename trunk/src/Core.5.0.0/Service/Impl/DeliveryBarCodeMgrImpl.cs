@@ -41,7 +41,8 @@ namespace com.Sconit.Service.Impl
                         dc.Flow = shipPlan.Flow;
                         dc.Dock = shipPlan.Dock;
                         dc.IsPickHu = shipPlan.IsShipScanHu;
-                   
+
+                        dc.ShipPlanId = shipPlan.Id;
                         dc.Item = shipPlan.Item;
                         dc.ItemDescription = shipPlan.ItemDescription;
                         dc.Qty = deliveryBarCodeDic[barCode];

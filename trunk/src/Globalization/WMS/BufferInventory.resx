@@ -117,34 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PackingList_Created" xml:space="preserve">
-    <value>PackingList Created</value>
+  <data name="BufferInventory_Dock" xml:space="preserve">
+    <value>Dock</value>
   </data>
-  <data name="PackingList_CreateDate" xml:space="preserve">
-    <value>CreateDate</value>
+  <data name="BufferInventory_HuId" xml:space="preserve">
+    <value>HuId</value>
   </data>
-  <data name="PackingList_CreateUserName" xml:space="preserve">
-    <value>CreateUser</value>
+  <data name="BufferInventory_IOType" xml:space="preserve">
+    <value>IOType</value>
   </data>
-  <data name="PackingList_DateFrom" xml:space="preserve">
-    <value>DateFrom</value>
+  <data name="BufferInventory_IsLock" xml:space="preserve">
+    <value>IsLock</value>
   </data>
-  <data name="PackingList_DateTo" xml:space="preserve">
-    <value>DateTo</value>
+  <data name="BufferInventory_Item" xml:space="preserve">
+    <value>Item</value>
   </data>
-  <data name="PackingList_Edit_Title" xml:space="preserve">
-    <value>Edit</value>
+  <data name="BufferInventory_Location" xml:space="preserve">
+    <value>Location</value>
   </data>
-  <data name="PackingList_LastModifyDate" xml:space="preserve">
-    <value>LastModifyDate</value>
+  <data name="BufferInventory_LotNo" xml:space="preserve">
+    <value>LotNo</value>
   </data>
-  <data name="PackingList_LastModifyUserName" xml:space="preserve">
-    <value>LastModifyUserName</value>
+  <data name="BufferInventory_Qty" xml:space="preserve">
+    <value>Qty</value>
   </data>
-  <data name="PackingList_New_Title" xml:space="preserve">
-    <value>New</value>
+  <data name="BufferInventory_UnitCount" xml:space="preserve">
+    <value>UnitCount</value>
   </data>
-  <data name="PackingList_PackingListCode" xml:space="preserve">
-    <value>PackingListCode</value>
+  <data name="BufferInventory_Uom" xml:space="preserve">
+    <value>Uom</value>
   </data>
 </root>

@@ -118,33 +118,54 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="PackingList_Created" xml:space="preserve">
-    <value>PackingList Created</value>
+    <value>装箱单创建成功</value>
   </data>
   <data name="PackingList_CreateDate" xml:space="preserve">
-    <value>CreateDate</value>
+    <value>创建日期</value>
   </data>
   <data name="PackingList_CreateUserName" xml:space="preserve">
-    <value>CreateUser</value>
+    <value>创建人</value>
   </data>
   <data name="PackingList_DateFrom" xml:space="preserve">
-    <value>DateFrom</value>
+    <value>开始日期</value>
   </data>
   <data name="PackingList_DateTo" xml:space="preserve">
-    <value>DateTo</value>
+    <value>结束日期</value>
   </data>
   <data name="PackingList_Edit_Title" xml:space="preserve">
-    <value>Edit</value>
+    <value>编辑</value>
   </data>
   <data name="PackingList_LastModifyDate" xml:space="preserve">
-    <value>LastModifyDate</value>
+    <value>最后更新日期</value>
   </data>
   <data name="PackingList_LastModifyUserName" xml:space="preserve">
-    <value>LastModifyUserName</value>
+    <value>最后更新用户</value>
   </data>
   <data name="PackingList_New_Title" xml:space="preserve">
-    <value>New</value>
+    <value>装箱</value>
   </data>
   <data name="PackingList_PackingListCode" xml:space="preserve">
-    <value>PackingListCode</value>
+    <value>装箱单号</value>
+  </data>
+  <data name="PackingList_PackUserName" xml:space="preserve">
+    <value>装箱用户</value>
+  </data>
+  <data name="PackingList_HuIdNotExist" xml:space="preserve">
+    <value>缓冲区库存不存在条码{0}</value>
+  </data>
+  <data name="PackingList_FlowNotMatch" xml:space="preserve">
+    <value>条码{0}的路线{1}与当前路线{2}不匹配</value>
+  </data>
+  <data name="PackingList_HuIdNotLock" xml:space="preserve">
+    <value>条码{0}未锁定</value>
+  </data>
+  <data name="PackingList_Shipped" xml:space="preserve">
+    <value>发货成功</value>
+  </data>
+  <data name="PackingList_Flow" xml:space="preserve">
+    <value>路线</value>
+  </data>
+  <data name="PackingList_Ship_Title" xml:space="preserve">
+    <value>发货</value>
   </data>
 </root>

@@ -65,5 +65,7 @@ namespace com.Sconit.Service
         string GetTaskNo(string prefix);
 
         IDictionary<string, decimal> GetDeliveryBarCode(ShipPlan shipPlan);
+
+        string GetPackingListCode();
     }
 }

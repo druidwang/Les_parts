@@ -126,12 +126,6 @@
   <data name="PackingList_CreateUserName" xml:space="preserve">
     <value>CreateUser</value>
   </data>
-  <data name="PackingList_DateFrom" xml:space="preserve">
-    <value>DateFrom</value>
-  </data>
-  <data name="PackingList_DateTo" xml:space="preserve">
-    <value>DateTo</value>
-  </data>
   <data name="PackingList_Edit_Title" xml:space="preserve">
     <value>Edit</value>
   </data>
@@ -146,5 +140,32 @@
   </data>
   <data name="PackingList_PackingListCode" xml:space="preserve">
     <value>PackingListCode</value>
+  </data>
+  <data name="PackingList_DateFrom" xml:space="preserve">
+    <value>DateFrom</value>
+  </data>
+  <data name="PackingList_DateTo" xml:space="preserve">
+    <value>DateTo</value>
+  </data>
+  <data name="PackingList_PackUserName" xml:space="preserve">
+    <value>PackUserName</value>
+  </data>
+  <data name="PackingList_HuIdNotExist" xml:space="preserve">
+    <value>HuId {0} Not Exist in Buffer Inventory</value>
+  </data>
+  <data name="PackingList_FlowNotMatch" xml:space="preserve">
+    <value>HuId{0} Flow{1} Not Match Flow{2}</value>
+  </data>
+  <data name="PackingList_HuIdNotLock" xml:space="preserve">
+    <value>HuId {0} Not Lock</value>
+  </data>
+  <data name="PackingList_Shipped" xml:space="preserve">
+    <value>PackingList Shipped</value>
+  </data>
+  <data name="PackingList_Flow" xml:space="preserve">
+    <value>Flow</value>
+  </data>
+  <data name="PackingList_Ship_Title" xml:space="preserve">
+    <value>Ship</value>
   </data>
 </root>

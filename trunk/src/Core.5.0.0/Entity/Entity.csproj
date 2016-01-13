@@ -273,6 +273,8 @@
     <Compile Include="Base\VIEW\UserPermissionView.cs" />
     <Compile Include="Base\WMS\BufferInventory.cs" />
     <Compile Include="Base\WMS\BufferOccupy.cs" />
+    <Compile Include="Base\WMS\PackingListDetail.cs" />
+    <Compile Include="Base\WMS\PackingList.cs" />
     <Compile Include="Base\WMS\DeliveryBarCode.cs" />
     <Compile Include="Base\WMS\PickGroup.cs" />
     <Compile Include="Base\WMS\PickOccupy.cs" />
@@ -646,7 +648,9 @@
     <Compile Include="VIEW\WorkingCalendarView.cs" />
     <Compile Include="WMS\BufferInventory.cs" />
     <Compile Include="WMS\BufferOccupy.cs" />
+    <Compile Include="WMS\PackingListDetail.cs" />
     <Compile Include="WMS\DeliveryBarCode.cs" />
+    <Compile Include="WMS\PackingList.cs" />
     <Compile Include="WMS\PickGroup.cs" />
     <Compile Include="WMS\PickOccupy.cs" />
     <Compile Include="WMS\PickResult.cs" />
@@ -868,7 +872,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Base\WMS\BufferOccupy.hbm.xml" />
-    <EmbeddedResource Include="Base\WMS\PickResult.hbm.xml" />
+    <EmbeddedResource Include="Base\WMS\PickResult.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\WMS\PickSchedule.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PickTask.hbm.xml">
       <SubType>Designer</SubType>
@@ -950,6 +956,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Base\WMS\DeliveryBarCode.hbm.xml" />
+    <EmbeddedResource Include="Base\WMS\PackingList.hbm.xml" />
+    <EmbeddedResource Include="Base\WMS\PackingListDetail.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Content Include="Base\WMS\PickOccupy.hbm.xml" />
     <Content Include="Base\WMS\RepackOccupy.hbm.xml" />
   </ItemGroup>
