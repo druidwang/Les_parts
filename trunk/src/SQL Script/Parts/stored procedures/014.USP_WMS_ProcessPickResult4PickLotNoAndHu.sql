@@ -153,19 +153,19 @@ BEGIN
 	create table #tempRepackBuff_014
 	(
 		ShipPlanId int,
-		OrderNo varchar(50),
+		OrderNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		OrderSeq int,
-		TargetDock varchar(50),
-		Item varchar(50),
-		ItemDesc varchar(100),
-		RefItemCode varchar(50),
-		Uom varchar(5),
-		BaseUom varchar(5),
+		TargetDock varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		ItemDesc varchar(100) COLLATE  Chinese_PRC_CI_AS,
+		RefItemCode varchar(50) COLLATE  Chinese_PRC_CI_AS,
+		Uom varchar(5) COLLATE  Chinese_PRC_CI_AS,
+		BaseUom varchar(5) COLLATE  Chinese_PRC_CI_AS,
 		UnitQty decimal(18, 8),
 		UC decimal(18, 8),
-		UCDesc varchar(50),
+		UCDesc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		Qty decimal(18, 8),
-		Loc varchar(50),
+		Loc varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		[Priority] tinyint,
 		StartTime datetime,
 		WindowTime datetime,
@@ -338,7 +338,7 @@ BEGIN
 				inner join WMS_ShipPlan as sp on tmp.ShipPlanId = sp.Id
 
 				insert into #tempRepackOccupy_014(GroupId, OrderNo, OrderSeq, TargetDock, ShipPlanId, Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Loc, [Priority], StartTime, OccupyQty)
-				select ROW_NUMBER() over (partition by Item, Uom, UC, LocFrom, [Priority] order by ShipPlanId), 
+				select ROW_NUMBER() over (partition by Item, Uom, UC, Loc, [Priority] order by ShipPlanId), 
 				OrderNo, OrderSeq, TargetDock, ShipPlanId, Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Loc, [Priority], StartTime, ROUND(Qty / UC, 0, 1) * UC
 				from #tempRepackBuff_014
 				where Qty >= UC
@@ -423,8 +423,8 @@ BEGIN
 				insert into WMS_RepackBuff(ShipPlanId, OrderNo, OrderSeq, TargetDock, Item, ItemDesc, RefItemCode, Uom, BaseUom,
 												UnitQty, UC, UCDesc, Qty, Loc, [Priority], StartTime, WindowTime, [Version])
 				select ShipPlanId, OrderNo, OrderSeq, TargetDock, Item, ItemDesc, RefItemCode, Uom, BaseUom,
-												UnitQty, UC, UCDesc, Qty, Loc, [Priority], StartTime, WindowTime, [Version] 
-				from #tempRepackBuff_014 where [Version] is not null
+												UnitQty, UC, UCDesc, Qty, Loc, [Priority], StartTime, WindowTime, ISNULL([Version], 1)
+				from #tempRepackBuff_014 where [Version] is null
 
 				if exists(select top 1 1 from #tempRepackTask_014)
 				begin
@@ -438,8 +438,8 @@ BEGIN
 					select RepackUUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty, 0, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 from #tempRepackOccupy_014
 				end
 
-				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, LotNo, HuId, IsLock, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
-				select NEWID(), Location, 1, Item, Uom, UC, Qty * UnitQty, LotNo, HuId, IsLock, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
+				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, LotNo, HuId, IsLock, IsPack, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
+				select NEWID(), Location, 1, Item, Uom, UC, Qty * UnitQty, LotNo, HuId, IsLock, 0, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
 				from #tempHuInventory_015
 
 				declare @Location varchar(50)
