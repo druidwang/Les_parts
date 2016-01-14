@@ -7,7 +7,7 @@
                 var data = {
                     "huId": $(this).val(),
                     "packingListHu": $("#packingListHu").val(),
-                    "flow":$("#flow").val()
+                    "flow": $("#flow").val()
                 }
                 $(this).val("");
                 $.ajax({
@@ -28,7 +28,6 @@
                             url: "/PackingList/New/",
                             cache: false,
                             success: function (data, textStatus) {
-
                                 var $tGrid = $("#content");
                                 $($tGrid).html(data);
                             },
@@ -63,13 +62,26 @@
         }
         $.ajax({
             type: "post",
-            dataType: "Json",
+            dataType: "html",
             data: data,
             async: false,
             url: "/PackingList/CreatePackingList/",
             cache: false,
             success: function (data, textStatus) {
-                DisplayJsonMessages(data);
+                if (data != "") {
+                    DisplayTextMessages(data);
+                    $.ajax({
+                        type: "post",
+                            dataType: "html",
+                            url: "@Url.Content("~/PackingList/New/")",
+                            data: "",
+                            cache: false,
+                            success: function (data, textStatus) {
+                                var $tGrid = $("#content");
+                                $($tGrid).html(data);
+                            }
+                      });
+             }
             },
 
             error: function (XMLHttpRequest, textStatus, errorThrown) {

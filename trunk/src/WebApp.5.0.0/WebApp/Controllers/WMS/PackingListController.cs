@@ -119,7 +119,7 @@ namespace com.Sconit.Web.Controllers.WMS
                 }
                 else
                 {
-                    BufferInventory buffInv = genericMgr.FindAll<BufferInventory>("from BufferInventory where Qty > 0 and IsLock = ? and HuId = ?", new object[] { true, huId }).SingleOrDefault();
+                    BufferInventory buffInv = genericMgr.FindAll<BufferInventory>("from BufferInventory where Qty > 0 and IsLock = ? and IsPack = ? and HuId = ?", new object[] { true,false, huId }).SingleOrDefault();
                     {
                         if (buffInv == null)
                         {
@@ -207,13 +207,14 @@ namespace com.Sconit.Web.Controllers.WMS
         [AcceptVerbs(HttpVerbs.Post)]
         [GridAction]
         [SconitAuthorize(Permissions = "Url_PackingList_New")]
-        public JsonResult CreatePackingList(string flow, string packingListHu)
+        public ActionResult CreatePackingList(string flow, string packingListHu)
         {
             try
             {
                 string[] huArray = packingListHu.Split(',');
                 PackingList packingList = packingListMgr.CreatePackingList(flow, huArray.ToList());
-                object obj = new { SuccessMessage = string.Format(Resources.WMS.PackingList.PackingList_Created), SuccessData = packingList.PackingListCode };
+                SaveSuccessMessage(Resources.WMS.PackingList.PackingList_Created, packingList.PackingListCode);
+                object obj = new { SuccessMessage = string.Format(Resources.WMS.PackingList.PackingList_Created,packingList.PackingListCode), SuccessData = packingList.PackingListCode };
                 return Json(obj);
 
             }

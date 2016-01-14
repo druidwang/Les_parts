@@ -45,6 +45,8 @@ namespace com.Sconit.Entity.WMS
 
         [Display(Name = "BufferInventory_IsLock", ResourceType = typeof(Resources.WMS.BufferInventory))]
         public Boolean IsLock { get; set; }
+
+        public Boolean IsPack { get; set; }
         public Int32 CreateUserId { get; set; }
         public string CreateUserName { get; set; }
         public DateTime CreateDate { get; set; }

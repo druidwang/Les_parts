@@ -2,7 +2,6 @@
 @using com.Sconit.Web.Models.SearchModels.WMS
 <script type="text/javascript">
    function Flow_Change(e) {
-   debugger;
         var combobox = $(this).data("tComboBox");
         if (combobox == undefined) {
             return;
@@ -104,7 +103,7 @@
         </div>
         <div class="search-footer">
        
-            @Html.Button(Resources.SYS.Global.Button_Create, "Url_PackingList_Ship", new Dictionary<string, string>()
+            @Html.Button(Resources.SYS.Global.Button_Ship, "Url_PackingList_Ship", new Dictionary<string, string>()
 	{
 	    {"type", "button"},
 	    {"id", "btnShip"},

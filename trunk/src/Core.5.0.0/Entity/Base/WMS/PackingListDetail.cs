@@ -12,7 +12,7 @@ namespace com.Sconit.Entity.WMS
         public Int32 Id { get; set; }
 
 
-        public string PackingListNo { get; set; }
+        public string PackingListCode { get; set; }
 
         public string OrderNo { get; set; }
         public Int32 OrderSeq { get; set; }

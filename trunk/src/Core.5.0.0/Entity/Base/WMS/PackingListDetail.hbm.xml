@@ -4,7 +4,7 @@
 		<id name="Id" column="Id" type="Int32" unsaved-value="0" >
 			<generator class="identity" />
 		</id>
-		<property name="PackingListNo" column="PackingListNo" type="String" length="50"/>
+		<property name="PackingListCode" column="PackingListCode" type="String" length="50"/>
         <property name="Location" column="Loc" type="String" length="50"/>
 		<property name="OrderNo" column="OrderNo" type="String" length="50"/>
 		<property name="OrderSeq" column="OrderSeq" type="Int32"/>

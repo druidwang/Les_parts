@@ -18,6 +18,7 @@
             }
         }
         $("#checkAll").attr("checked", $checkRecords.length == $("input[name='checkedRecords']:checked").length ? true : false);
+        $("#btnShip").attr("style", showButton ? "display:inline" : "display:none");
     }
 
     function onDataBound() {
@@ -40,7 +41,7 @@
         .Columns(columns =>
         {
             columns.Bound(o => o.PackingListCode)
-              .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' value='<#= Id #>' onClick='showButtons()'  />")
+              .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' value='<#= PackingListCode #>' onClick='showButtons()'  />")
               .HeaderTemplate("<input type='checkbox' id='checkAll' name='checkAll' />")
               .Width(36).HtmlAttributes(new { style = "text-align:center" });
             columns.Bound(o => o.PackingListCode);

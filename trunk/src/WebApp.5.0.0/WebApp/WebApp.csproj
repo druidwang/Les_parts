@@ -710,7 +710,6 @@
     <Content Include="Views\Common\_PickScheduleComboBox.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\_SearchResult.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\Edit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\List.cshtml" />
     <Content Include="Content\2012.2.607\Office2010Blue\sprite.png" />

@@ -61,7 +61,7 @@ namespace Resources.WMS {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to PackingList Created.
+        ///   Looks up a localized string similar to PackingList {0} Created.
         /// </summary>
         public static string PackingList_Created {
             get {

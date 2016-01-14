@@ -89,7 +89,7 @@ namespace com.Sconit.Service.Impl
             foreach (BufferInventory bufferInv in bufferInvList)
             {
                 PackingListDetail PackingListDetail = new PackingListDetail();
-                PackingListDetail.PackingListNo = code;
+                PackingListDetail.PackingListCode = code;
                 BufferOccupy bufferOccupy = bufferOccupyList.Where(p => p.UUID == bufferInv.UUID).FirstOrDefault();
                 PackingListDetail.Dock = bufferInv.Dock;
                 PackingListDetail.HuId = bufferInv.HuId;
@@ -104,6 +104,10 @@ namespace com.Sconit.Service.Impl
                 PackingListDetail.OrderSeq = bufferOccupy.OrderSeq;
                 PackingListDetail.ShipPlanId = bufferOccupy.ShipPlanId;
                 genericMgr.Create(PackingListDetail);
+
+
+                bufferInv.IsPack = true;
+                genericMgr.Update(bufferInv);
             }
             #endregion
             return packingList;

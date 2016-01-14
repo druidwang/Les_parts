@@ -9,7 +9,8 @@
         })
         .Columns(columns =>
         {
-            columns.Bound(o => o.Item).ClientTemplate(Html.ActionLink("<#= Item #>", "Edit", "PickResult", new { id = "<#= Id #>" }, null).ToString());
+            columns.Bound(o => o.PickTaskId).ClientTemplate(Html.ActionLink("<#= Item #>", "Edit", "PickResult", new { id = "<#= Id #>" }, null).ToString());
+            columns.Bound(o => o.Item);
             columns.Bound(o => o.ItemDescription);
             columns.Bound(o => o.Uom);
             columns.Bound(o => o.UnitCount);
@@ -20,8 +21,6 @@
             columns.Bound(o => o.LotNo);
             columns.Bound(o => o.HuId);
             columns.Bound(o=>o.PickQty);
-            columns.Bound(o => o.OrderNo);
-            columns.Bound(o => o.OrderSequence); 
             columns.Bound(o => o.PickUserName);
             columns.Bound(o => o.PickDate);
                 })
