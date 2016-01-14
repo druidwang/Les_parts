@@ -19,5 +19,7 @@
         void MatchDCToHU(string huId, string barCode);
 
         void TransferToDock(List<string> huIds, string dock);
+
+        Entity.SI.SD_INV.Hu GetShipHu(string huId, string deliverBarCode);
     }
 }

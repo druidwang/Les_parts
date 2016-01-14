@@ -32,6 +32,28 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/RecSmallChkSparePart", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void RecSmallChkSparePart(string huId, string spareItem, string userCode) {
+            this.Invoke("RecSmallChkSparePart", new object[] {
+                        huId,
+                        spareItem,
+                        userCode});
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginRecSmallChkSparePart(string huId, string spareItem, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("RecSmallChkSparePart", new object[] {
+                        huId,
+                        spareItem,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public void EndRecSmallChkSparePart(System.IAsyncResult asyncResult) {
+            this.EndInvoke(asyncResult);
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetPickTasks", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public PickTask[] GetPickTasks(string userCode, bool isPickByHus) {
             object[] results = this.Invoke("GetPickTasks", new object[] {
@@ -181,6 +203,26 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         /// <remarks/>
         public void EndTransferToDock(System.IAsyncResult asyncResult) {
             this.EndInvoke(asyncResult);
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetTransOrder", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public TransportOrderMaster GetTransOrder(string orderNo) {
+            object[] results = this.Invoke("GetTransOrder", new object[] {
+                        orderNo});
+            return ((TransportOrderMaster)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetTransOrder(string orderNo, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetTransOrder", new object[] {
+                        orderNo}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public TransportOrderMaster EndGetTransOrder(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((TransportOrderMaster)(results[0]));
         }
         
         /// <remarks/>
@@ -1411,28 +1453,6 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         public Hu EndDoFilter(System.IAsyncResult asyncResult) {
             object[] results = this.EndInvoke(asyncResult);
             return ((Hu)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/RecSmallChkSparePart", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void RecSmallChkSparePart(string huId, string spareItem, string userCode) {
-            this.Invoke("RecSmallChkSparePart", new object[] {
-                        huId,
-                        spareItem,
-                        userCode});
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginRecSmallChkSparePart(string huId, string spareItem, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("RecSmallChkSparePart", new object[] {
-                        huId,
-                        spareItem,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public void EndRecSmallChkSparePart(System.IAsyncResult asyncResult) {
-            this.EndInvoke(asyncResult);
         }
     }
     
@@ -6672,6 +6692,572 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
                 this.barCodeTypesField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class TransportOrderDetail {
+        
+        private int idField;
+        
+        private string orderNoField;
+        
+        private int sequenceField;
+        
+        private string ipNoField;
+        
+        private int orderRouteFromField;
+        
+        private int orderRouteToField;
+        
+        private System.Nullable<int> estPalletQtyField;
+        
+        private System.Nullable<int> palletQtyField;
+        
+        private System.Nullable<decimal> estVolumeField;
+        
+        private System.Nullable<decimal> volumeField;
+        
+        private System.Nullable<decimal> estWeightField;
+        
+        private System.Nullable<decimal> weightField;
+        
+        private System.Nullable<int> estBoxCountField;
+        
+        private System.Nullable<int> boxCountField;
+        
+        private System.Nullable<System.DateTime> loadTimeField;
+        
+        private System.Nullable<System.DateTime> unloadTimeField;
+        
+        private string dockField;
+        
+        private System.Nullable<decimal> distanceField;
+        
+        private bool isReceivedField;
+        
+        /// <remarks/>
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OrderNo {
+            get {
+                return this.orderNoField;
+            }
+            set {
+                this.orderNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Sequence {
+            get {
+                return this.sequenceField;
+            }
+            set {
+                this.sequenceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IpNo {
+            get {
+                return this.ipNoField;
+            }
+            set {
+                this.ipNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int OrderRouteFrom {
+            get {
+                return this.orderRouteFromField;
+            }
+            set {
+                this.orderRouteFromField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int OrderRouteTo {
+            get {
+                return this.orderRouteToField;
+            }
+            set {
+                this.orderRouteToField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> EstPalletQty {
+            get {
+                return this.estPalletQtyField;
+            }
+            set {
+                this.estPalletQtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> PalletQty {
+            get {
+                return this.palletQtyField;
+            }
+            set {
+                this.palletQtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> EstVolume {
+            get {
+                return this.estVolumeField;
+            }
+            set {
+                this.estVolumeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> Volume {
+            get {
+                return this.volumeField;
+            }
+            set {
+                this.volumeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> EstWeight {
+            get {
+                return this.estWeightField;
+            }
+            set {
+                this.estWeightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> Weight {
+            get {
+                return this.weightField;
+            }
+            set {
+                this.weightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> EstBoxCount {
+            get {
+                return this.estBoxCountField;
+            }
+            set {
+                this.estBoxCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BoxCount {
+            get {
+                return this.boxCountField;
+            }
+            set {
+                this.boxCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> LoadTime {
+            get {
+                return this.loadTimeField;
+            }
+            set {
+                this.loadTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> UnloadTime {
+            get {
+                return this.unloadTimeField;
+            }
+            set {
+                this.unloadTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Dock {
+            get {
+                return this.dockField;
+            }
+            set {
+                this.dockField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> Distance {
+            get {
+                return this.distanceField;
+            }
+            set {
+                this.distanceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsReceived {
+            get {
+                return this.isReceivedField;
+            }
+            set {
+                this.isReceivedField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class TransportOrderMaster {
+        
+        private string orderNoField;
+        
+        private string flowField;
+        
+        private string flowDescriptionField;
+        
+        private TransportStatus statusField;
+        
+        private string carrierField;
+        
+        private string vehicleField;
+        
+        private string tonnageField;
+        
+        private string drivingNoField;
+        
+        private string driverField;
+        
+        private string driverMobilePhoneField;
+        
+        private System.Nullable<decimal> loadVolumeField;
+        
+        private System.Nullable<decimal> loadWeightField;
+        
+        private System.Nullable<decimal> minLoadRateField;
+        
+        private bool isAutoReleaseField;
+        
+        private bool isAutoStartField;
+        
+        private bool multiSitePickField;
+        
+        private string shipFromField;
+        
+        private string shipToField;
+        
+        private TransportMode transportModeField;
+        
+        private string priceListField;
+        
+        private string billAddressField;
+        
+        private string licenseNoField;
+        
+        private TransportOrderDetail[] transportOrderDetailListField;
+        
+        /// <remarks/>
+        public string OrderNo {
+            get {
+                return this.orderNoField;
+            }
+            set {
+                this.orderNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Flow {
+            get {
+                return this.flowField;
+            }
+            set {
+                this.flowField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FlowDescription {
+            get {
+                return this.flowDescriptionField;
+            }
+            set {
+                this.flowDescriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TransportStatus Status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Carrier {
+            get {
+                return this.carrierField;
+            }
+            set {
+                this.carrierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Vehicle {
+            get {
+                return this.vehicleField;
+            }
+            set {
+                this.vehicleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Tonnage {
+            get {
+                return this.tonnageField;
+            }
+            set {
+                this.tonnageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DrivingNo {
+            get {
+                return this.drivingNoField;
+            }
+            set {
+                this.drivingNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Driver {
+            get {
+                return this.driverField;
+            }
+            set {
+                this.driverField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DriverMobilePhone {
+            get {
+                return this.driverMobilePhoneField;
+            }
+            set {
+                this.driverMobilePhoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> LoadVolume {
+            get {
+                return this.loadVolumeField;
+            }
+            set {
+                this.loadVolumeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> LoadWeight {
+            get {
+                return this.loadWeightField;
+            }
+            set {
+                this.loadWeightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> MinLoadRate {
+            get {
+                return this.minLoadRateField;
+            }
+            set {
+                this.minLoadRateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsAutoRelease {
+            get {
+                return this.isAutoReleaseField;
+            }
+            set {
+                this.isAutoReleaseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsAutoStart {
+            get {
+                return this.isAutoStartField;
+            }
+            set {
+                this.isAutoStartField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool MultiSitePick {
+            get {
+                return this.multiSitePickField;
+            }
+            set {
+                this.multiSitePickField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ShipFrom {
+            get {
+                return this.shipFromField;
+            }
+            set {
+                this.shipFromField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ShipTo {
+            get {
+                return this.shipToField;
+            }
+            set {
+                this.shipToField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TransportMode TransportMode {
+            get {
+                return this.transportModeField;
+            }
+            set {
+                this.transportModeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PriceList {
+            get {
+                return this.priceListField;
+            }
+            set {
+                this.priceListField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BillAddress {
+            get {
+                return this.billAddressField;
+            }
+            set {
+                this.billAddressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LicenseNo {
+            get {
+                return this.licenseNoField;
+            }
+            set {
+                this.licenseNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TransportOrderDetail[] TransportOrderDetailList {
+            get {
+                return this.transportOrderDetailListField;
+            }
+            set {
+                this.transportOrderDetailListField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum TransportStatus {
+        
+        /// <remarks/>
+        Create,
+        
+        /// <remarks/>
+        Submit,
+        
+        /// <remarks/>
+        InProcess,
+        
+        /// <remarks/>
+        Close,
+        
+        /// <remarks/>
+        Cancel,
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum TransportMode {
+        
+        /// <remarks/>
+        Land,
+        
+        /// <remarks/>
+        Sea,
+        
+        /// <remarks/>
+        Air,
     }
     
     /// <remarks/>

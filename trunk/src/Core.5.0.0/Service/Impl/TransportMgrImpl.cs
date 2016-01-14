@@ -829,6 +829,11 @@ namespace com.Sconit.Service.Impl
             }
         }
         #endregion
-       
+
+
+        public void Ship(string transOrder, List<string> huIds)
+        { 
+            
+        }
     }
 }

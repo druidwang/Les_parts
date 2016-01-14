@@ -173,5 +173,43 @@ namespace com.Sconit.Service.SI.Impl
                 throw new BusinessException(ex.Message);
             }
         }
+
+
+        public Entity.SI.SD_INV.Hu GetShipHu(string huId, string deliverBarCode)
+        {
+            if (string.IsNullOrEmpty(huId))
+            {
+                var dcs = this.genericMgr.FindAll<Entity.WMS.DeliveryBarCode>("from DeliveryBarCode dc where dc.HuId=?", huId);
+                if (dcs == null || dcs.Count == 0)
+                {
+                    throw new BusinessException("条码未匹配配送标签。");
+                }
+                else
+                {
+                    var dc = dcs.FirstOrDefault();
+                    deliverBarCode = dc.BarCode;
+                }
+            }
+            else
+            {
+                var dc = this.genericMgr.FindById<Entity.WMS.DeliveryBarCode>(deliverBarCode);
+                if (string.IsNullOrEmpty(dc.HuId))
+                {
+                    throw new BusinessException(string.Format("配送标签{0}未关联条码。", deliverBarCode));
+                }
+                else
+                {
+                    huId = dc.HuId;
+                }
+            }
+            var inBuffer = this.genericMgr.FindAll<com.Sconit.Entity.WMS.BufferInventory>("from BufferInventory bi where bi.HuId = ?", huId);
+            if (inBuffer == null && inBuffer.Count == 0)
+            {
+                throw new BusinessException(string.Format("条码{0}不在拣货区库存中。", huId));
+            }
+            HuStatus huStatus = huMgr.GetHuStatus(huId.ToUpper());
+            var hu = Mapper.Map<HuStatus, Entity.SI.SD_INV.Hu>(huStatus);
+            return hu;
+        }
     }
 }

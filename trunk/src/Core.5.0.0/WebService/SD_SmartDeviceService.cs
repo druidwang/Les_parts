@@ -11,6 +11,7 @@
     using com.Sconit.Entity;
     using System;
     using com.Sconit.Entity.SYS;
+    using com.Sconit.Entity.SI.SD_TMS;
 
     [WebService(Namespace = "http://com.Sconit.WebService.SD.SmartDeviceService/")]
     public class SD_SmartDeviceService : BaseWebService
@@ -26,6 +27,8 @@
         private ISD_MasterDataMgr masterDataMgr { get { return GetService<ISD_MasterDataMgr>(); } }
 
         private ISD_WMSMgr wmsMgr { get { return GetService<ISD_WMSMgr>(); } }
+
+        private ISD_TMSMgr tmsMgr { get { return GetService<ISD_TMSMgr>(); } }
 
         private void ProcessException(Exception ex)
         {
@@ -899,5 +902,24 @@
             this.wmsMgr.TransferToDock(huIds, dock);
         }
 
+        [WebMethod]
+        public TransportOrderMaster GetTransOrder(string orderNo)
+        {
+            return this.tmsMgr.GetTransOrder(orderNo);
+        }
+
+        [WebMethod]
+        public Hu GetShipHu(string huId, string deliverBarCode)
+        {
+            return this.wmsMgr.GetShipHu(huId, deliverBarCode);
+        }
+
+        [WebMethod]
+        public void DoShipWMS(string transOrder, List<string> huIds, string userCode)
+        {
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            this.tmsMgr.Ship(transOrder, huIds);
+        }
     }
 }

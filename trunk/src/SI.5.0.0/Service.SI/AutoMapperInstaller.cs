@@ -68,6 +68,8 @@ namespace com.Sconit.Service.SI
             Mapper.CreateMap<com.Sconit.Entity.WMS.PickTask, com.Sconit.Entity.SI.SD_WMS.PickTask>()
                 .ForMember(d => d.CurrentQty, o => o.MapFrom(s => s.OrderQty - s.PickQty)); ;
             Mapper.CreateMap<com.Sconit.Entity.WMS.DeliveryBarCode, com.Sconit.Entity.SI.SD_WMS.DeliverBarCode>();
+            Mapper.CreateMap<com.Sconit.Entity.TMS.TransportOrderMaster, com.Sconit.Entity.SI.SD_TMS.TransportOrderMaster>();
+            Mapper.CreateMap<com.Sconit.Entity.TMS.TransportOrderDetail, com.Sconit.Entity.SI.SD_TMS.TransportOrderDetail>();
         }
     }
 }
