@@ -106,7 +106,7 @@ namespace com.Sconit.Web.Controllers.WMS
 
         #region 创建
 
-        [SconitAuthorize(Permissions = "Url_OrderMstr_Distribution_View")]
+        [SconitAuthorize(Permissions = "Url_PickTask_New")]
         public ActionResult _ShipPlanList(string flow, string orderNo)
         {
             ViewBag.isManualCreateDetail = false;
@@ -117,7 +117,7 @@ namespace com.Sconit.Web.Controllers.WMS
         }
 
         [GridAction]
-        [SconitAuthorize(Permissions = "Url_OrderMstr_Distribution_View")]
+        [SconitAuthorize(Permissions = "Url_PickTask_New")]
         public ActionResult _SelectBatchEditing(string orderNo, string flow)
         {
             IList<ShipPlan> shipPlanList = new List<ShipPlan>();
@@ -215,7 +215,8 @@ namespace com.Sconit.Web.Controllers.WMS
                     {
                         if (string.IsNullOrEmpty(pickRuleSql))
                         {
-                            pickRuleSql += "select p from PickTask as p where p.PickUserId is null and p.Location in (?";
+                            pickRuleSql += "select p from PickTask as p where p.PickUserId is null and p.IsActive = ? and p.Location in (?";
+                            param.Add(true);
                             param.Add(r.Location);
                         }
                         else
@@ -268,7 +269,7 @@ namespace com.Sconit.Web.Controllers.WMS
                     for (int i = 0; i < idArray.Count(); i++)
                     {
 
-                        PickTask pt = genericMgr.FindById<PickTask>(idArray[i]);
+                        PickTask pt = genericMgr.FindAll<PickTask>("from PickTask where Id = ?", Convert.ToInt32(idArray[i])).SingleOrDefault();
                         pickTaskList.Add(pt);
 
                     }

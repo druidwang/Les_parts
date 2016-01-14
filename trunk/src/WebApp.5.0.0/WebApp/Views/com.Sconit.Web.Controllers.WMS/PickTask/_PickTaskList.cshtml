@@ -67,10 +67,12 @@
         )
         .Columns(columns =>
         {
-            columns.Bound(o => o.Item)
-              .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' value='<#= UUID #>' onClick='showButtons()'  />")
+            columns.Bound(o => o.Id)
+              .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' value='<#= Id #>' onClick='showButtons()'  />")
               .HeaderTemplate("<input type='checkbox' id='checkAll' name='checkAll' />")
               .Width(36).HtmlAttributes(new { style = "text-align:center" });
+            columns.Bound(o => o.Id);
+            columns.Bound(o => o.Item);
             columns.Bound(o => o.ItemDescription);
             columns.Bound(o => o.Uom);
             columns.Bound(o => o.UnitCount);

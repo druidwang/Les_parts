@@ -297,8 +297,8 @@ BEGIN
 				@CreateUserId, @CreateUserNm, @CreateUserId, @CreateUserNm, @DateTimeNow, 0 
 				from #tempPickTask_013
 
-				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, IsLock, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
-				select NEWID(), Loc, 1, Item, Uom, UC, ThisPickQty * UnitQty, 1, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
+				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, IsLock, IsPack, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
+				select NEWID(), Loc, 1, Item, Uom, UC, ThisPickQty * UnitQty, 1, 0, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
 				from #tempPickTask_013
 
 				declare @UpdateInvStatement nvarchar(max)

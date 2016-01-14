@@ -117,88 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PickResult_Area" xml:space="preserve">
-    <value>Area</value>
+  <data name="PackingList_Created" xml:space="preserve">
+    <value>装箱单{0}创建成功</value>
   </data>
-  <data name="PickResult_BaseUom" xml:space="preserve">
-    <value>BaseUom</value>
+  <data name="PackingList_CreateDate" xml:space="preserve">
+    <value>创建日期</value>
   </data>
-  <data name="PickResult_Bin" xml:space="preserve">
-    <value>Bin</value>
+  <data name="PackingList_CreateUserName" xml:space="preserve">
+    <value>创建人</value>
   </data>
-  <data name="PickResult_CancelDate" xml:space="preserve">
-    <value>CancelDate</value>
+  <data name="PackingList_DateFrom" xml:space="preserve">
+    <value>开始日期</value>
   </data>
-  <data name="PickResult_CancelUserName" xml:space="preserve">
-    <value>CancelUserName</value>
+  <data name="PackingList_DateTo" xml:space="preserve">
+    <value>结束日期</value>
   </data>
-  <data name="PickResult_CreateDate" xml:space="preserve">
-    <value>Create Date</value>
+  <data name="PackingList_Edit_Title" xml:space="preserve">
+    <value>编辑</value>
   </data>
-  <data name="PickResult_CreateUserName" xml:space="preserve">
-    <value>Create User Name</value>
+  <data name="PackingList_LastModifyDate" xml:space="preserve">
+    <value>最后更新日期</value>
   </data>
-  <data name="PickResult_DateFrom" xml:space="preserve">
-    <value>DateFrom</value>
+  <data name="PackingList_LastModifyUserName" xml:space="preserve">
+    <value>最后更新用户</value>
   </data>
-  <data name="PickResult_DateTo" xml:space="preserve">
-    <value>EndDate</value>
+  <data name="PackingList_New_Title" xml:space="preserve">
+    <value>装箱</value>
   </data>
-  <data name="PickResult_HuId" xml:space="preserve">
-    <value>HuId</value>
+  <data name="PackingList_PackingListCode" xml:space="preserve">
+    <value>装箱单号</value>
   </data>
-  <data name="PickResult_IsActive" xml:space="preserve">
-    <value>IsActive</value>
+  <data name="PackingList_PackUserName" xml:space="preserve">
+    <value>装箱用户</value>
   </data>
-  <data name="PickResult_Item" xml:space="preserve">
-    <value>Item Code</value>
+  <data name="PackingList_HuIdNotExist" xml:space="preserve">
+    <value>缓冲区库存不存在条码{0}</value>
   </data>
-  <data name="PickResult_ItemDescription" xml:space="preserve">
-    <value>Item Description</value>
+  <data name="PackingList_FlowNotMatch" xml:space="preserve">
+    <value>条码{0}的路线{1}与当前路线{2}不匹配</value>
   </data>
-  <data name="PickResult_Location" xml:space="preserve">
-    <value>Location</value>
+  <data name="PackingList_HuIdNotLock" xml:space="preserve">
+    <value>条码{0}未锁定</value>
   </data>
-  <data name="PickResult_LotNo" xml:space="preserve">
-    <value>LotNo</value>
+  <data name="PackingList_Shipped" xml:space="preserve">
+    <value>发货成功</value>
   </data>
-  <data name="PickResult_OrderNo" xml:space="preserve">
-    <value>OrderNo</value>
+  <data name="PackingList_Flow" xml:space="preserve">
+    <value>路线</value>
   </data>
-  <data name="PickResult_OrderSequence" xml:space="preserve">
-    <value>OrderSequence</value>
-  </data>
-  <data name="PickResult_PickDate" xml:space="preserve">
-    <value>PickDate</value>
-  </data>
-  <data name="PickResult_PickQty" xml:space="preserve">
-    <value>PickQty</value>
-  </data>
-  <data name="PickResult_PickTaskId" xml:space="preserve">
-    <value>PickTaskId</value>
-  </data>
-  <data name="PickResult_PickUserName" xml:space="preserve">
-    <value>PickUserName</value>
-  </data>
-  <data name="PickResult_ReferenceItemCode" xml:space="preserve">
-    <value>ReferenceItemCode</value>
-  </data>
-  <data name="PickResult_StartTime" xml:space="preserve">
-    <value>StartTime</value>
-  </data>
-  <data name="PickResult_UCDescription" xml:space="preserve">
-    <value>UCDescription</value>
-  </data>
-  <data name="PickResult_UnitCount" xml:space="preserve">
-    <value>UnitCount</value>
-  </data>
-  <data name="PickResult_UnitQty" xml:space="preserve">
-    <value>UnitQty</value>
-  </data>
-  <data name="PickResult_Uom" xml:space="preserve">
-    <value>Uom</value>
-  </data>
-  <data name="PickResult_WindowTime" xml:space="preserve">
-    <value>WindowTime</value>
+  <data name="PackingList_Ship_Title" xml:space="preserve">
+    <value>发货</value>
   </data>
 </root>

@@ -369,6 +369,7 @@
     <Compile Include="Controllers\TMS\TransportPriceListController.cs" />
     <Compile Include="Controllers\TMS\VehicleController.cs" />
     <Compile Include="Controllers\WebAppBaseController.cs" />
+    <Compile Include="Controllers\WMS\PackingListController.cs" />
     <Compile Include="Controllers\WMS\ShipGroupController.cs" />
     <Compile Include="Controllers\WMS\RepackGroupController.cs" />
     <Compile Include="Controllers\WMS\PickGroupController.cs" />
@@ -409,6 +410,7 @@
     <Compile Include="Models\ORD\ScheduleView.cs" />
     <Compile Include="Models\ORD\WebOrderDetail.cs" />
     <Compile Include="Controllers\WMS\DeliveryBarCodeController.cs" />
+    <Compile Include="Models\SearchModels\WMS\PackingListSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\DeliveryBarCodeSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickUserSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickRuleSearchModel.cs" />
@@ -708,7 +710,6 @@
     <Content Include="Views\Common\_PickScheduleComboBox.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\_SearchResult.cshtml" />
-    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\Edit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickResult\List.cshtml" />
     <Content Include="Content\2012.2.607\Office2010Blue\sprite.png" />
@@ -2663,6 +2664,14 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\RepackIndex.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\RepackEdit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\RepackTask\_RepackHuList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PackingList\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PackingList\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PackingList\Assign.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PackingList\Ship.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PackingList\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PackingList\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PackingList\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.WMS\PackingList\_PackingList.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

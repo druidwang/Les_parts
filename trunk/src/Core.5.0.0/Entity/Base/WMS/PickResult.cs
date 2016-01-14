@@ -10,6 +10,7 @@ namespace com.Sconit.Entity.WMS
 
         public Int32 Id { get; set; }
 
+        [Display(Name = "PickResult_PickTaskId", ResourceType = typeof(Resources.WMS.PickResult))]
         public Int32 PickTaskId { get; set; }
 
         public string PickTaskUUID { get; set; }

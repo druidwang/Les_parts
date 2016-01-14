@@ -117,88 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PickResult_Area" xml:space="preserve">
-    <value>Area</value>
+  <data name="BufferInventory_Dock" xml:space="preserve">
+    <value>道口</value>
   </data>
-  <data name="PickResult_BaseUom" xml:space="preserve">
-    <value>BaseUom</value>
+  <data name="BufferInventory_HuId" xml:space="preserve">
+    <value>条码</value>
   </data>
-  <data name="PickResult_Bin" xml:space="preserve">
-    <value>Bin</value>
+  <data name="BufferInventory_IOType" xml:space="preserve">
+    <value>类型</value>
   </data>
-  <data name="PickResult_CancelDate" xml:space="preserve">
-    <value>CancelDate</value>
+  <data name="BufferInventory_IsLock" xml:space="preserve">
+    <value>是否锁定</value>
   </data>
-  <data name="PickResult_CancelUserName" xml:space="preserve">
-    <value>CancelUserName</value>
+  <data name="BufferInventory_Item" xml:space="preserve">
+    <value>物料代码</value>
   </data>
-  <data name="PickResult_CreateDate" xml:space="preserve">
-    <value>Create Date</value>
+  <data name="BufferInventory_Location" xml:space="preserve">
+    <value>库位</value>
   </data>
-  <data name="PickResult_CreateUserName" xml:space="preserve">
-    <value>Create User Name</value>
+  <data name="BufferInventory_LotNo" xml:space="preserve">
+    <value>批号</value>
   </data>
-  <data name="PickResult_DateFrom" xml:space="preserve">
-    <value>DateFrom</value>
+  <data name="BufferInventory_Qty" xml:space="preserve">
+    <value>数量</value>
   </data>
-  <data name="PickResult_DateTo" xml:space="preserve">
-    <value>EndDate</value>
+  <data name="BufferInventory_UnitCount" xml:space="preserve">
+    <value>单包装</value>
   </data>
-  <data name="PickResult_HuId" xml:space="preserve">
-    <value>HuId</value>
-  </data>
-  <data name="PickResult_IsActive" xml:space="preserve">
-    <value>IsActive</value>
-  </data>
-  <data name="PickResult_Item" xml:space="preserve">
-    <value>Item Code</value>
-  </data>
-  <data name="PickResult_ItemDescription" xml:space="preserve">
-    <value>Item Description</value>
-  </data>
-  <data name="PickResult_Location" xml:space="preserve">
-    <value>Location</value>
-  </data>
-  <data name="PickResult_LotNo" xml:space="preserve">
-    <value>LotNo</value>
-  </data>
-  <data name="PickResult_OrderNo" xml:space="preserve">
-    <value>OrderNo</value>
-  </data>
-  <data name="PickResult_OrderSequence" xml:space="preserve">
-    <value>OrderSequence</value>
-  </data>
-  <data name="PickResult_PickDate" xml:space="preserve">
-    <value>PickDate</value>
-  </data>
-  <data name="PickResult_PickQty" xml:space="preserve">
-    <value>PickQty</value>
-  </data>
-  <data name="PickResult_PickTaskId" xml:space="preserve">
-    <value>PickTaskId</value>
-  </data>
-  <data name="PickResult_PickUserName" xml:space="preserve">
-    <value>PickUserName</value>
-  </data>
-  <data name="PickResult_ReferenceItemCode" xml:space="preserve">
-    <value>ReferenceItemCode</value>
-  </data>
-  <data name="PickResult_StartTime" xml:space="preserve">
-    <value>StartTime</value>
-  </data>
-  <data name="PickResult_UCDescription" xml:space="preserve">
-    <value>UCDescription</value>
-  </data>
-  <data name="PickResult_UnitCount" xml:space="preserve">
-    <value>UnitCount</value>
-  </data>
-  <data name="PickResult_UnitQty" xml:space="preserve">
-    <value>UnitQty</value>
-  </data>
-  <data name="PickResult_Uom" xml:space="preserve">
-    <value>Uom</value>
-  </data>
-  <data name="PickResult_WindowTime" xml:space="preserve">
-    <value>WindowTime</value>
+  <data name="BufferInventory_Uom" xml:space="preserve">
+    <value>单位</value>
   </data>
 </root>
