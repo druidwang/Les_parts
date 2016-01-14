@@ -73,6 +73,7 @@ namespace com.Sconit.SmartDevice.CodeMaster
         Client_WMSDeliverBarCode,
         Client_WMSPickGoodsQty,
         Client_WMSTransfer,
+        Client_WMSShip,
 
         M_Switch,
     }

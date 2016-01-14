@@ -602,6 +602,16 @@ namespace com.Sconit.Service.Impl
 
         #endregion
 
+
+        #region 获取装箱单号
+        public string GetPackingListCode()
+        {
+            string numberSuffix = GetNextSequence(BusinessConstants.NUMBERCONTROL_PACKINGLIST);
+            numberSuffix = numberSuffix.PadLeft(10, '0');
+            return "PL" + numberSuffix;
+        }
+        #endregion
+
         #region private methods
         public String GetNextSequence(string code)
         {

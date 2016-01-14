@@ -15,6 +15,7 @@
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
 		<property name="LastModifyUserId" column="LastModifyUser" type="Int32"/>	
 		<property name="LastModifyUserName" column="LastModifyUserNm" type="String" length="100"/>	
-		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>	
+		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>
+    <property name="Flow" column="Flow" type="String" length="50"/>
   	</class>
 </hibernate-mapping>

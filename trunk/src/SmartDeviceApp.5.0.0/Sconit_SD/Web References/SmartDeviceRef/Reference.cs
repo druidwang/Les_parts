@@ -33,16 +33,18 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetPickTasks", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public PickTask[] GetPickTasks(string userCode) {
+        public PickTask[] GetPickTasks(string userCode, bool isPickByHus) {
             object[] results = this.Invoke("GetPickTasks", new object[] {
-                        userCode});
+                        userCode,
+                        isPickByHus});
             return ((PickTask[])(results[0]));
         }
         
         /// <remarks/>
-        public System.IAsyncResult BeginGetPickTasks(string userCode, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BeginGetPickTasks(string userCode, bool isPickByHus, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("GetPickTasks", new object[] {
-                        userCode}, callback, asyncState);
+                        userCode,
+                        isPickByHus}, callback, asyncState);
         }
         
         /// <remarks/>
@@ -1480,6 +1482,8 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         private System.DateTime winTimeField;
         
+        private decimal currentQtyField;
+        
         /// <remarks/>
         public int Id {
             get {
@@ -1678,6 +1682,16 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
             }
             set {
                 this.winTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal CurrentQty {
+            get {
+                return this.currentQtyField;
+            }
+            set {
+                this.currentQtyField = value;
             }
         }
     }
@@ -7654,5 +7668,8 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         StartUpTime,
+        
+        /// <remarks/>
+        DefaultDeliveryBarCodeTemplate,
     }
 }

@@ -8,6 +8,7 @@ using Castle.Services.Transaction;
 using com.Sconit.Entity.VIEW;
 using LeanEngine.Entity;
 using NHibernate;
+using com.Sconit.Entity;
 
 namespace com.Sconit.Service.SI.Impl
 {
@@ -15,9 +16,10 @@ namespace com.Sconit.Service.SI.Impl
     {
         public IPickTaskMgr pickTaskMgr { get; set; }
 
-        public List<PickTask> GetPickTaskByUser(int pickUserId)
+        public List<PickTask> GetPickTaskByUser(int pickUserId, bool isPickByHu)
         {
-            IList<com.Sconit.Entity.WMS.PickTask> pickTaskList = this.genericMgr.FindAll<com.Sconit.Entity.WMS.PickTask>("from PickTask p where p.PickUserId=?", pickUserId);
+            int pickBy = isPickByHu?(int)CodeMaster.PickBy.Hu:(int)CodeMaster.PickBy.LotNo;
+            IList<com.Sconit.Entity.WMS.PickTask> pickTaskList = this.genericMgr.FindAll<com.Sconit.Entity.WMS.PickTask>("from PickTask p where p.PickUserId=? and p.PickBy=?", new object[]{pickUserId, pickBy});
 
             return Mapper.Map<List<Entity.WMS.PickTask>, List<Entity.SI.SD_WMS.PickTask>>(pickTaskList.ToList());
         }
@@ -33,7 +35,7 @@ namespace com.Sconit.Service.SI.Impl
                 {
                     throw new BusinessException(string.Format("条码{0}不在库存中。", huId));
                 }
-                var occupy = this.genericMgr.FindAll<com.Sconit.Entity.WMS.BufferInventory>("select bi.* from BufferInventory as bi where bi.HuId = ? ", hu.HuId);
+                var occupy = this.genericMgr.FindAll<com.Sconit.Entity.WMS.BufferInventory>("from BufferInventory bi where bi.HuId = ? ", hu.HuId);
                 if (occupy != null && occupy.Count > 0)
                 {
                     throw new BusinessException(string.Format("条码{0}已被其他拣货任务占用。", huId));
@@ -58,12 +60,17 @@ namespace com.Sconit.Service.SI.Impl
                 {
                     throw new BusinessException(string.Format("条码{0}不在库存中。", huId));
                 }
-                var occupy = this.genericMgr.FindAll<com.Sconit.Entity.WMS.BufferInventory>("select bi.* from BufferInventory as bi where bi.HuId = ? ", hu.HuId);
-                if (occupy == null && occupy.Count == 0)
+                var inBuffer = this.genericMgr.FindAll<com.Sconit.Entity.WMS.BufferInventory>("from BufferInventory bi where bi.HuId = ?", hu.HuId);
+                if (inBuffer == null && inBuffer.Count == 0)
                 {
                     throw new BusinessException(string.Format("条码{0}未被拣货任务占用。", huId));
                 }
-                hu.AgingLocation = occupy.FirstOrDefault().Dock;
+                var occupy = this.genericMgr.FindEntityWithNativeSql<com.Sconit.Entity.WMS.BufferOccupy>("select bo.* from WMS_BuffOccupy bo left join WMS_BuffInv bi on bo.UUID=bi.UUID where bi.HuId = ?", hu.HuId);
+                if (occupy != null && occupy.Count > 0)
+                {
+                    throw new BusinessException(string.Format("条码{0}已被其他发货计划锁定。", huId));
+                }
+                hu.AgingLocation = inBuffer.FirstOrDefault().Dock;
                 return hu;
             }
             catch (ObjectNotFoundException)
@@ -91,6 +98,10 @@ namespace com.Sconit.Service.SI.Impl
                     }
                 }
                 pickTaskMgr.PorcessPickResult4PickLotNoAndHu(pickResult);
+                if (MessageHolder.GetErrorMessages()!=null && MessageHolder.GetErrorMessages().Count > 0)
+                {
+                    throw new BusinessException(MessageHolder.GetErrorMessages().FirstOrDefault().GetMessageString());
+                }
             }
             catch (Exception ex)
             {
@@ -104,13 +115,13 @@ namespace com.Sconit.Service.SI.Impl
             try
             {
                 var deliverBarCode = this.genericMgr.FindById<Entity.WMS.DeliveryBarCode>(barCode);
-                if (string.IsNullOrEmpty(deliverBarCode.HuId))
+                if (!string.IsNullOrEmpty(deliverBarCode.HuId))
                 {
                     throw new BusinessException(string.Format("配送标签{0}已关联条码{1}。", barCode, deliverBarCode.HuId));
                 }
-                if (deliverBarCode.IsActive == false)
+                if (deliverBarCode.IsActive == true)
                 {
-                    throw new BusinessException(string.Format("配送标签{0}已经失效。", barCode));
+                    throw new BusinessException(string.Format("配送标签{0}已被占用。", barCode));
                 }
                 return Mapper.Map<Entity.WMS.DeliveryBarCode, Entity.SI.SD_WMS.DeliverBarCode>(deliverBarCode);
             }
@@ -124,16 +135,10 @@ namespace com.Sconit.Service.SI.Impl
         {
             try
             {
-                var deliverBarCode = this.genericMgr.FindById<Entity.WMS.DeliveryBarCode>(barCode);
-                deliverBarCode.IsActive = false;
-                deliverBarCode.HuId = huId;
-                this.genericMgr.Update(deliverBarCode);
-
-                if (!string.IsNullOrEmpty(huId))
+                this.pickTaskMgr.PorcessDeliverBarCode2Hu(barCode, huId);
+                if (MessageHolder.GetErrorMessages() != null && MessageHolder.GetErrorMessages().Count > 0)
                 {
-                    var bufferInventory = this.genericMgr.FindAll<com.Sconit.Entity.WMS.BufferInventory>("select bi.* from BufferInventory as bi where bi.HuId = ? ", huId).FirstOrDefault();
-                    bufferInventory.Dock = deliverBarCode.Dock;
-                    this.genericMgr.Update(bufferInventory);
+                    throw new BusinessException(MessageHolder.GetErrorMessages().FirstOrDefault().GetMessageString());
                 }
             }
             catch (ObjectNotFoundException)

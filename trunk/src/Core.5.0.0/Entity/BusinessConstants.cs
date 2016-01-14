@@ -13,6 +13,7 @@ namespace com.Sconit.Entity
         public static readonly string BARCODE_HEAD_LOCATION = "L";
         public static readonly string BARCODE_HEAD_CONTAINER = "C";
 
+
         public static readonly string TEMPLATE_EXCEL_FILE_PATH = "Report/Templates/ExcelTemplates/";
         public static readonly string TEMP_FILE_PATH = "TempFiles/";
 
@@ -20,6 +21,7 @@ namespace com.Sconit.Entity
         public static readonly string NUMBERCONTROL_PROCUREMENTBILL = "ORD_PROCUREMENTBILL";
         public static readonly string NUMBERCONTROL_DISTRIBUTIONBILL = "ORD_DISTRIBUTIONBILL";
         public static readonly string NUMBERCONTROL_TRANSPORTATION = "ORD_TRANSPORTATION";
+
 
         public static readonly string VIRTUALSECTION = "299999";
 
@@ -52,5 +54,6 @@ namespace com.Sconit.Entity
         public static readonly string SAPBUSINESSDATA_STORDER_0001 = "STMES0001";
 
 
+        public static readonly string NUMBERCONTROL_PACKINGLIST = "PACKINGLIST";
     }
 }

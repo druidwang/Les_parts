@@ -117,8 +117,107 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="TransportOrderDetail_BoxCount" xml:space="preserve">
+    <value>箱数</value>
+  </data>
+  <data name="TransportOrderDetail_Distance" xml:space="preserve">
+    <value>距离</value>
+  </data>
+  <data name="TransportOrderDetail_Dock" xml:space="preserve">
+    <value>收货道口</value>
+  </data>
+  <data name="TransportOrderDetail_EstBoxCount" xml:space="preserve">
+    <value>箱数（暂估）</value>
+  </data>
+  <data name="TransportOrderDetail_EstPalletQty" xml:space="preserve">
+    <value>栈板数（暂估）</value>
+  </data>
+  <data name="TransportOrderDetail_EstVolume" xml:space="preserve">
+    <value>体积（暂估）</value>
+  </data>
+  <data name="TransportOrderDetail_EstWeight" xml:space="preserve">
+    <value>重量（暂估）</value>
+  </data>
   <data name="TransportOrderDetail_IpNo" xml:space="preserve">
     <value>送货单号</value>
+  </data>
+  <data name="TransportOrderDetail_IpNo1" xml:space="preserve">
+    <value>送货单号</value>
+  </data>
+  <data name="TransportOrderDetail_IsReceived" xml:space="preserve">
+    <value>已收</value>
+  </data>
+  <data name="TransportOrderDetail_LoadTime" xml:space="preserve">
+    <value>装载时间</value>
+  </data>
+  <data name="TransportOrderDetail_OrderRouteFrom" xml:space="preserve">
+    <value>起始站点</value>
+  </data>
+  <data name="TransportOrderDetail_OrderRouteTo" xml:space="preserve">
+    <value>到达站点</value>
+  </data>
+  <data name="TransportOrderDetail_PalletQty" xml:space="preserve">
+    <value>栈板数</value>
+  </data>
+  <data name="TransportOrderDetail_PartyFrom" xml:space="preserve">
+    <value>发货方代码</value>
+  </data>
+  <data name="TransportOrderDetail_PartyFromName" xml:space="preserve">
+    <value>发货方名称</value>
+  </data>
+  <data name="TransportOrderDetail_PartyTo" xml:space="preserve">
+    <value>收货方代码</value>
+  </data>
+  <data name="TransportOrderDetail_PartyToName" xml:space="preserve">
+    <value>收货方名称</value>
+  </data>
+  <data name="TransportOrderDetail_Sequence" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="TransportOrderDetail_ShipFrom" xml:space="preserve">
+    <value>发货地址代码</value>
+  </data>
+  <data name="TransportOrderDetail_ShipFromAddress" xml:space="preserve">
+    <value>发货地址</value>
+  </data>
+  <data name="TransportOrderDetail_ShipFromCell" xml:space="preserve">
+    <value>发货方移动电话</value>
+  </data>
+  <data name="TransportOrderDetail_ShipFromContact" xml:space="preserve">
+    <value>发货方固定电话</value>
+  </data>
+  <data name="TransportOrderDetail_ShipFromFax" xml:space="preserve">
+    <value>发货方地址传真</value>
+  </data>
+  <data name="TransportOrderDetail_ShipFromTel" xml:space="preserve">
+    <value>发货方固定电话</value>
+  </data>
+  <data name="TransportOrderDetail_ShipTo" xml:space="preserve">
+    <value>收货地址代码</value>
+  </data>
+  <data name="TransportOrderDetail_ShipToAddress" xml:space="preserve">
+    <value>收货地址</value>
+  </data>
+  <data name="TransportOrderDetail_ShipToCell" xml:space="preserve">
+    <value>收货方移动电话</value>
+  </data>
+  <data name="TransportOrderDetail_ShipToContact" xml:space="preserve">
+    <value>收货方联系人</value>
+  </data>
+  <data name="TransportOrderDetail_ShipToFax" xml:space="preserve">
+    <value>收货方传真</value>
+  </data>
+  <data name="TransportOrderDetail_ShipToTel" xml:space="preserve">
+    <value>收货方固定电话</value>
+  </data>
+  <data name="TransportOrderDetail_UnloadTime" xml:space="preserve">
+    <value>卸货时间</value>
+  </data>
+  <data name="TransportOrderDetail_Volume" xml:space="preserve">
+    <value>体积</value>
+  </data>
+  <data name="TransportOrderDetail_Weight" xml:space="preserve">
+    <value>重量</value>
   </data>
   <data name="TransportOrderMaster_BillAddress" xml:space="preserve">
     <value>账单地址</value>
@@ -200,5 +299,50 @@
   </data>
   <data name="TransportOrderMaster_Vehicle" xml:space="preserve">
     <value>运输工具</value>
+  </data>
+  <data name="TransportOrderRoute_ArriveInputUser" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TransportOrderRoute_ArriveInputUserName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TransportOrderRoute_ArriveTime" xml:space="preserve">
+    <value>到达时间</value>
+  </data>
+  <data name="TransportOrderRoute_DepartInputUser" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TransportOrderRoute_DepartInputUserName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TransportOrderRoute_DepartTime" xml:space="preserve">
+    <value>离开时间</value>
+  </data>
+  <data name="TransportOrderRoute_Distance" xml:space="preserve">
+    <value>距离</value>
+  </data>
+  <data name="TransportOrderRoute_EstArriveTime" xml:space="preserve">
+    <value>到达时间（预估）</value>
+  </data>
+  <data name="TransportOrderRoute_EstDepartTime" xml:space="preserve">
+    <value>离开时间（预估）</value>
+  </data>
+  <data name="TransportOrderRoute_IsArrive" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TransportOrderRoute_LoadRate" xml:space="preserve">
+    <value>负载率</value>
+  </data>
+  <data name="TransportOrderRoute_Sequence" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="TransportOrderRoute_ShipAddress" xml:space="preserve">
+    <value>地址代码</value>
+  </data>
+  <data name="TransportOrderRoute_ShipAddressDescription" xml:space="preserve">
+    <value>地址描述</value>
+  </data>
+  <data name="TransportOrderRoute_WeightRate" xml:space="preserve">
+    <value />
   </data>
 </root>

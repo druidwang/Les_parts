@@ -95,6 +95,8 @@
   <ItemGroup>
     <Compile Include="AutoMapperInstaller.cs" />
     <Compile Include="BaseMgr.cs" />
+    <Compile Include="IPackingListMgr.cs" />
+    <Compile Include="Impl\PackingListMgrImpl.cs" />
     <Compile Include="Impl\RepackTaskMgrImpl.cs" />
     <Compile Include="IRepackTaskMgr.cs" />
     <Compile Include="IDeliveryBarCodeMgr.cs" />

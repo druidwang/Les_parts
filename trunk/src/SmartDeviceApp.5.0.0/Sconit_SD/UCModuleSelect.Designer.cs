@@ -66,6 +66,7 @@ namespace com.Sconit.SmartDevice
             this.btnInspect = new System.Windows.Forms.Button();
             this.btnQualify = new System.Windows.Forms.Button();
             this.tabWMS = new System.Windows.Forms.TabPage();
+            this.btnWMSPickGoodsQty = new System.Windows.Forms.Button();
             this.btnWMSTransfer = new System.Windows.Forms.Button();
             this.btnWMSDeliverBarCode = new System.Windows.Forms.Button();
             this.btnWMSPickGoods = new System.Windows.Forms.Button();
@@ -73,7 +74,7 @@ namespace com.Sconit.SmartDevice
             this.btnLogOff = new System.Windows.Forms.Button();
             this.tbKeyCode = new System.Windows.Forms.TextBox();
             this.lblUserStatus = new System.Windows.Forms.Label();
-            this.btnWMSPickGoodsQty = new System.Windows.Forms.Button();
+            this.btnWMSShip = new System.Windows.Forms.Button();
             this.tabModuleSelect.SuspendLayout();
             this.tabProcurement.SuspendLayout();
             this.tabProduction.SuspendLayout();
@@ -480,6 +481,7 @@ namespace com.Sconit.SmartDevice
             // 
             // tabWMS
             // 
+            this.tabWMS.Controls.Add(this.btnWMSShip);
             this.tabWMS.Controls.Add(this.btnWMSPickGoodsQty);
             this.tabWMS.Controls.Add(this.btnWMSTransfer);
             this.tabWMS.Controls.Add(this.btnWMSDeliverBarCode);
@@ -489,6 +491,16 @@ namespace com.Sconit.SmartDevice
             this.tabWMS.Size = new System.Drawing.Size(226, 195);
             this.tabWMS.Text = "高级仓库";
             // 
+            // btnWMSPickGoodsQty
+            // 
+            this.btnWMSPickGoodsQty.Location = new System.Drawing.Point(5, 42);
+            this.btnWMSPickGoodsQty.Name = "btnWMSPickGoodsQty";
+            this.btnWMSPickGoodsQty.Size = new System.Drawing.Size(98, 20);
+            this.btnWMSPickGoodsQty.TabIndex = 5;
+            this.btnWMSPickGoodsQty.Text = "3.批次拣货";
+            this.btnWMSPickGoodsQty.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnWMSPickGoodsQty.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
             // btnWMSTransfer
             // 
             this.btnWMSTransfer.Location = new System.Drawing.Point(119, 42);
@@ -496,6 +508,8 @@ namespace com.Sconit.SmartDevice
             this.btnWMSTransfer.Size = new System.Drawing.Size(98, 20);
             this.btnWMSTransfer.TabIndex = 4;
             this.btnWMSTransfer.Text = "4.移库";
+            this.btnWMSTransfer.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnWMSTransfer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
             // btnWMSDeliverBarCode
             // 
@@ -504,6 +518,8 @@ namespace com.Sconit.SmartDevice
             this.btnWMSDeliverBarCode.Size = new System.Drawing.Size(101, 20);
             this.btnWMSDeliverBarCode.TabIndex = 3;
             this.btnWMSDeliverBarCode.Text = "2.配送标签扫描";
+            this.btnWMSDeliverBarCode.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnWMSDeliverBarCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
             // btnWMSPickGoods
             // 
@@ -511,7 +527,9 @@ namespace com.Sconit.SmartDevice
             this.btnWMSPickGoods.Name = "btnWMSPickGoods";
             this.btnWMSPickGoods.Size = new System.Drawing.Size(98, 20);
             this.btnWMSPickGoods.TabIndex = 2;
-            this.btnWMSPickGoods.Text = "1.拣货";
+            this.btnWMSPickGoods.Text = "1.条码拣货";
+            this.btnWMSPickGoods.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnWMSPickGoods.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
             // btnExit
             // 
@@ -546,13 +564,13 @@ namespace com.Sconit.SmartDevice
             this.lblUserStatus.Size = new System.Drawing.Size(215, 20);
             this.lblUserStatus.Text = "当前用户:";
             // 
-            // btnWMSPickGoodsQty
+            // btnWMSShip
             // 
-            this.btnWMSPickGoodsQty.Location = new System.Drawing.Point(5, 42);
-            this.btnWMSPickGoodsQty.Name = "btnWMSPickGoodsQty";
-            this.btnWMSPickGoodsQty.Size = new System.Drawing.Size(98, 20);
-            this.btnWMSPickGoodsQty.TabIndex = 5;
-            this.btnWMSPickGoodsQty.Text = "3.数量拣货";
+            this.btnWMSShip.Location = new System.Drawing.Point(5, 68);
+            this.btnWMSShip.Name = "btnWMSShip";
+            this.btnWMSShip.Size = new System.Drawing.Size(98, 20);
+            this.btnWMSShip.TabIndex = 6;
+            this.btnWMSShip.Text = "5.发货";
             // 
             // UCModuleSelect
             // 
@@ -623,5 +641,6 @@ namespace com.Sconit.SmartDevice
         private System.Windows.Forms.Button btnWMSDeliverBarCode;
         private System.Windows.Forms.Button btnWMSTransfer;
         private System.Windows.Forms.Button btnWMSPickGoodsQty;
+        private System.Windows.Forms.Button btnWMSShip;
     }
 }

@@ -156,6 +156,9 @@
   <data name="Location_New_Title" xml:space="preserve">
     <value>New Location</value>
   </data>
+  <data name="Location_PickBy" xml:space="preserve">
+    <value>PickBy</value>
+  </data>
   <data name="Location_Region" xml:space="preserve">
     <value>Region</value>
   </data>

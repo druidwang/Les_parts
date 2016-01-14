@@ -21,6 +21,8 @@ namespace com.Sconit.Entity.WMS
 		public string LastModifyUserName { get; set; }
 		public DateTime LastModifyDate { get; set; }
 		public Int32 Version { get; set; }
+
+        public string Flow { get; set; }
         
         #endregion
 

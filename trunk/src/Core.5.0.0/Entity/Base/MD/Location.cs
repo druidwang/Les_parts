@@ -50,6 +50,7 @@ namespace com.Sconit.Entity.MD
 		public string LastModifyUserName { get; set; }
 		public DateTime LastModifyDate { get; set; }
         public Boolean IsSpread { get; set; }
+        [Display(Name = "Location_PickBy", ResourceType = typeof(Resources.MD.Location))]
         public com.Sconit.CodeMaster.PickBy PickBy { get; set; }
         
         #endregion

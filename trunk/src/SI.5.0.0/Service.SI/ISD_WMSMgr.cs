@@ -6,7 +6,7 @@
 
     public interface ISD_WMSMgr
     {
-        List<PickTask> GetPickTaskByUser(int pickUserId);
+        List<PickTask> GetPickTaskByUser(int pickUserId, bool isPickByHus);
 
         void DoPickTask(List<Entity.SI.SD_INV.Hu> huList);
 

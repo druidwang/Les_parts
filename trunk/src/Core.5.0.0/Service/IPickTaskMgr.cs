@@ -15,5 +15,7 @@ namespace com.Sconit.Service
         void PorcessPickResult4PickLotNoAndHu(Dictionary<int, List<string>> pickResults);
 
         void AssignPickTask(IList<PickTask> pickTaskList,string assignUser);
+
+        void PorcessDeliverBarCode2Hu(string deliverBarCode, string HuId);
     }
 }

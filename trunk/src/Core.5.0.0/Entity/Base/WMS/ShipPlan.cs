@@ -166,6 +166,8 @@ namespace com.Sconit.Entity.WMS
         public string LocationToName { get; set; }
         public string Station { get; set; }
         public com.Sconit.CodeMaster.OrderType OrderType { get; set; }
+
+        public Decimal PackQty { get; set; }
         #endregion
 
         public override int GetHashCode()

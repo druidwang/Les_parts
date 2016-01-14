@@ -358,7 +358,7 @@ namespace com.Sconit.SmartDevice
                 uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
                 this.AddModule(uc);
                 uc.tbBarCode.Focus();
-                this.Text = "拣货";
+                this.Text = "条码拣货";
             }
             else if (module == CodeMaster.TerminalPermission.Client_WMSPickGoodsQty)
             {
@@ -366,7 +366,7 @@ namespace com.Sconit.SmartDevice
                 uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
                 this.AddModule(uc);
                 uc.tbBarCode.Focus();
-                this.Text = "数量拣货";
+                this.Text = "批次拣货";
             }
             else if (module == CodeMaster.TerminalPermission.Client_WMSDeliverBarCode)
             {

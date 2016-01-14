@@ -45,5 +45,7 @@ namespace com.Sconit.Entity.SI.SD_WMS
         public DateTime StartTime { get; set; }
 
         public DateTime WinTime { get; set; }
+
+        public Decimal CurrentQty { get; set; }
     }
 }
