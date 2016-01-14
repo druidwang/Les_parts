@@ -38,7 +38,6 @@ BEGIN
 
 	create table #tempRepackInHu_016
 	(
-		LocLotDetId int,
 		HuId varchar(50) COLLATE  Chinese_PRC_CI_AS primary key,
 		LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
@@ -50,6 +49,7 @@ BEGIN
 
 	create table #tempRepackOutHu_016
 	(
+		LocLotDetId int,
 		HuId varchar(50) COLLATE  Chinese_PRC_CI_AS primary key,
 		LotNo varchar(50) COLLATE  Chinese_PRC_CI_AS,
 		Item varchar(50) COLLATE  Chinese_PRC_CI_AS,
@@ -198,9 +198,9 @@ BEGIN
 					select 2, N'翻包后条码['+ HuId + N']的单位和翻包任务的单位不匹配。' 
 					from #tempRepackOutHu_016 where Uom <> @Uom
 
-					insert into #tempMsg_016(Lvl, Msg)
-					select 2, N'翻包前条码['+ HuId + N']的包装和翻包任务的包装不匹配。' 
-					from #tempRepackInHu_016 where UC <> @UC
+					--insert into #tempMsg_016(Lvl, Msg)
+					--select 2, N'翻包前条码['+ HuId + N']的包装和翻包任务的包装不匹配。' 
+					--from #tempRepackInHu_016 where UC <> @UC
 
 					insert into #tempMsg_016(Lvl, Msg)
 					select 2, N'翻包后条码['+ HuId + N']的包装和翻包任务的包装不匹配。' 
@@ -209,8 +209,8 @@ BEGIN
 					select @Region = Region, @LocSuffix = PartSuffix from MD_Location where Code = @Location
 
 					set @selectStatement = 'insert into #tempLocationLotDet_016(Id, Bin, HuId, IsCS, PlanBill, QualityType, IsFreeze, OccupyType, [Version]) '
-					set @selectStatement = @selectStatement + 'select lld.Id, lld.Bin, lld.HuId, lld.IsCS, lld.PlanBill, lld.QualityType, lld.IsFreeze, lld.OccupyType, lld.[Version] '
-					set @selectStatement = @selectStatement + 'from INV_LocationLotDet_' + @LocSuffix + ' as lld inner join #tempRepackInHu_016 as rih on lld.HuId = rih.HuId where lld.Qty > 0 and lld.Location <> @Location_1'
+					set @selectStatement = @selectStatement + 'select lld.Id, lld.Bin, rih.HuId, lld.IsCS, lld.PlanBill, lld.QualityType, lld.IsFreeze, lld.OccupyType, lld.[Version] '
+					set @selectStatement = @selectStatement + 'from INV_LocationLotDet_' + @LocSuffix + ' as lld right join #tempRepackInHu_016 as rih on lld.HuId = rih.HuId where lld.Id is null or (lld.Qty > 0 and lld.Location = @Location_1)'
 					set @Parameter = N'@Location_1 varchar(50)'
 
 					exec sp_executesql @selectStatement, @Parameter, @Location_1=@Location
@@ -219,11 +219,11 @@ BEGIN
 					select bi.UUID, rih.HuId, bi.IsLock, bi.[Version] from WMS_BuffInv as bi 
 					inner join #tempRepackInHu_016 as rih on bi.HuId = rih.HuId and bi.Loc = @Location and bi.IOType = 1
 
-					--insert into #tempMsg_016(Lvl, Msg) select 2, N'翻包前的条码['+ HuId + N']不在库位[' + @Location + ']中，不能进行翻包。' 
-					--from #tempLocationLotDet_016 where Id is null
+					insert into #tempMsg_016(Lvl, Msg) select 2, N'翻包前的条码['+ HuId + N']不在库位[' + @Location + ']中，不能进行翻包。' 
+					from #tempLocationLotDet_016 where Id is null
 
-					--insert into #tempMsg_016(Lvl, Msg) select 2, N'翻包前的条码['+ HuId + N']在库格[' + Bin + ']中，不能进行翻包。' 
-					--from #tempLocationLotDet_016 where Bin is not null
+					insert into #tempMsg_016(Lvl, Msg) select 2, N'翻包前的条码['+ HuId + N']在库格[' + Bin + ']中，不能进行翻包。' 
+					from #tempLocationLotDet_016 where Bin is not null
 
 					insert into #tempMsg_016(Lvl, Msg) select 2, N'翻包前的条码['+ HuId + N']不在库位[' + @Location + ']的发货缓冲区中，不能进行翻包。' 
 					from #tempBuffInv_016 where UUID is null
@@ -298,17 +298,19 @@ BEGIN
 
 						if not exists(select top 1 1 from #tempMsg_016)
 						begin
-							select @LocTransCount = COUNT(1) from #tempRepackInHu_016
+							select @LocTransCount = COUNT(1) from #tempRepackOutHu_016
 
 							exec USP_SYS_BatchGetNextId 'INV_LocationLotDet', @LocTransCount, @EndLocLotDetId output
 							select @StartLocLotDetId = @EndLocLotDetId - @LocTransCount + 1
-							update #tempRepackInHu_016 set LocLotDetId = ROW_NUMBER() over (order by HuId) + @StartLocLotDetId
+							update ri set LocLotDetId = id.LocLotDetId
+							from #tempRepackOutHu_016 as ri 
+							inner join (select HuId, ROW_NUMBER() over (order by HuId) + @StartLocLotDetId as LocLotDetId 
+										from #tempRepackOutHu_016) as id on ri.HuId = id.HuId
 
 							select @LocTransCount = @LocTransCount + COUNT(1) from #tempRepackOutHu_016
-
 							exec USP_SYS_BatchGetNextId 'INV_LocTrans', @LocTransCount, @EndTransId output
-							select @StartOutTransId = @EndTransId - COUNT(1) + 1 from #tempRepackOutHu_016
-							select @StartInTransId = @StartOutTransId - COUNT(1) + 1 from #tempRepackInHu_016
+							select @StartOutTransId = @EndTransId - COUNT(1) from #tempRepackOutHu_016
+							select @StartInTransId = @StartOutTransId - COUNT(1) from #tempRepackInHu_016
 						end
 					end
 				end
@@ -371,9 +373,9 @@ BEGIN
 					RAISERROR(N'数据已经被更新，请重试。', 16, 1)
 				end
 
-				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, LotNo, HuId, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
-				select NEWID(), @Location, 1, Item, Uom, UC, Qty, LotNo, HuId, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
-				from #tempRepackInHu_016
+				insert into WMS_BuffInv(UUID, Loc, IOType, Item, Uom, UC, Qty, LotNo, HuId, IsLock, IsPack, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version])
+				select NEWID(), @Location, 1, Item, Uom, UC, Qty, LotNo, HuId, 1, 0, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 
+				from #tempRepackOutHu_016
 
 				declare @UpdateInvStatement nvarchar(max)
 				declare @UpdateParameter nvarchar(max)
@@ -388,17 +390,16 @@ BEGIN
 				set @UpdateInvStatement = @UpdateInvStatement + 'RAISERROR(N''数据已经被更新，请重试。'', 16, 1) '
 				set @UpdateInvStatement = @UpdateInvStatement + 'end '
 				set @UpdateInvStatement = @UpdateInvStatement + 'insert into INV_LocationLotDet_' + @LocSuffix + '(Id, Location, Item, HuId, LotNo, Qty, IsCS, PlanBill, QualityType, IsFreeze, IsATP, OccupyType, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version]) '
-				set @UpdateInvStatement = @UpdateInvStatement + 'select LocLotDetId, @Location_1, Item, HuId, LotNo, Qty, @IsCS_1, @PlanBill_1, 0, 0, 1, 0, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1 from #tempRepackInHu_016'
-				set @UpdateParameter = N'@Location_1 varchar(50), @IsCS_1 bit, @PlanBill_1 int, @CreateUserId_1 int, @CreateUserNm_1 varchar(100), @DateTimeNow_1 datetime'
+				set @UpdateInvStatement = @UpdateInvStatement + 'select LocLotDetId, @Location_1, Item, HuId, LotNo, Qty, @IsCS_1, @PlanBill_1, 0, 0, 1, 1, @CreateUserId_1, @CreateUserNm_1, @DateTimeNow_1, @CreateUserId_1, @CreateUserNm_1, @DateTimeNow_1, 1 from #tempRepackOutHu_016 '
+				set @UpdateInvStatement = @UpdateInvStatement + 'insert into INV_LocTrans_' + @LocSuffix + '(Id, OrderNo, Item, Uom, BaseUom, Qty, IsCS, PlanBill, PlanBillQty, ActBillQty, UnitQty, QualityType, HuId, LotNo, TransType, IOType, PartyFrom, PartyTo, LocFrom, LocTo, EffDate, CreateUser, CreateDate) '
+				set @UpdateInvStatement = @UpdateInvStatement + 'select ROW_NUMBER() over(order by HuId) + @StartInTransId_1, CONVERT(varchar, @RepackTaskId_1), @Item_1, @Uom_1, @BaseUom_1, -Qty, @IsCS_1, @PlanBill_1, 0, 0, @UnitQty_1, 0, HuId, LotNo, 351, 1, @Region_1, @Region_1, @Location_1, @Location_1, @EffDate_1, @CreateUserId_1, @DateTimeNow_1 '
+				set @UpdateInvStatement = @UpdateInvStatement + 'from #tempRepackInHu_016 '
+				set @UpdateInvStatement = @UpdateInvStatement + 'union all '
+				set @UpdateInvStatement = @UpdateInvStatement + 'select ROW_NUMBER() over(order by HuId) + @StartOutTransId_1, CONVERT(varchar, @RepackTaskId_1), @Item_1, @Uom_1, @BaseUom_1, Qty, @IsCS_1, @PlanBill_1, 0, 0, @UnitQty_1, 0, HuId, LotNo, 352, 0, @Region_1, @Region_1, @Location_1, @Location_1, @EffDate_1, @CreateUserId_1, @DateTimeNow_1 '
+				set @UpdateInvStatement = @UpdateInvStatement + 'from #tempRepackOutHu_016'
+				set @UpdateParameter = N'@Location_1 varchar(50), @IsCS_1 bit, @PlanBill_1 int, @CreateUserId_1 int, @CreateUserNm_1 varchar(100), @DateTimeNow_1 datetime, @StartOutTransId_1 int, @StartInTransId_1 int, @RepackTaskId_1 int, @Item_1 varchar(50), @Uom_1 varchar(5), @BaseUom_1 varchar(5), @UnitQty_1 decimal(18, 8), @Region_1 varchar(50), @EffDate_1 datetime'
 
-				exec sp_executesql @UpdateInvStatement, @UpdateParameter, @Location_1=@Location, @IsCS_1=@IsCS, @PlanBill_1=@PlanBill, @CreateUserId_1=@CreateUserId, @CreateUserNm_1=@CreateUserNm, @DateTimeNow_1=@DateTimeNow
-
-				insert into INV_LocTrans(Id, OrderNo, Item, Uom, BaseUom, Qty, IsCS, PlanBill, PlanBillQty, UnitQty, QualityType, HuId, LotNo, TransType, IOType, PartyFrom, PartyTo, LocFrom, LocTo, EffDate, CreateUser, CreateDate)
-				select ROW_NUMBER() over (order by HuId) + @StartOutTransId as Id, CONVERT(varchar, @RepackTaskId), @Item, @Uom, @BaseUom, Qty, @IsCS, @PlanBill, 0, @UnitQty, 0, HuId, LotNo, 351, 1, @Region, @Region, @Location, @Location, @EffDate, @CreateUserId, @DateTimeNow
-				from #tempRepackOutHu_016
-				union all
-				select ROW_NUMBER() over (order by HuId) + @StartInTransId as Id, CONVERT(varchar, @RepackTaskId), @Item, @Uom, @BaseUom, Qty, @IsCS, @PlanBill, 0, @UnitQty, 0, HuId, LotNo, 352, 0, @Region, @Region, @Location, @Location, @EffDate, @CreateUserId, @DateTimeNow
-				from #tempRepackInHu_016
+				exec sp_executesql @UpdateInvStatement, @UpdateParameter, @Location_1=@Location, @IsCS_1=@IsCS, @PlanBill_1=@PlanBill, @CreateUserId_1=@CreateUserId, @CreateUserNm_1=@CreateUserNm, @DateTimeNow_1=@DateTimeNow, @StartOutTransId_1=@StartOutTransId, @StartInTransId_1=@StartInTransId, @RepackTaskId_1=@RepackTaskId, @Item_1=@Item, @Uom_1=@Uom, @BaseUom_1=@BaseUom, @UnitQty_1=@UnitQty, @Region_1=@Region, @EffDate_1=@EffDate
 
 				if @Trancount = 0 
 				begin  
