@@ -22,5 +22,7 @@ namespace com.Sconit.Service
 
         void StartTransportOrderMaster(string orderNo);
 
+        void Ship(string transOrder, List<string> huIds);
+
     }
 }

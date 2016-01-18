@@ -142,7 +142,9 @@
   <ItemGroup>
     <Compile Include="AutoMapperInstaller.cs" />
     <Compile Include="BaseMgr.cs" />
+    <Compile Include="Impl\SD_TMSMgrImpl.cs" />
     <Compile Include="Impl\SD_WMSMgrImpl.cs" />
+    <Compile Include="ISD_TMSMgr.cs" />
     <Compile Include="ISD_WMSMgr.cs" />
     <Compile Include="IJobRunMgr.cs" />
     <Compile Include="Impl\Job\JobRunMgrImpl.cs" />
