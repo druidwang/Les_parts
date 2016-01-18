@@ -185,7 +185,7 @@ namespace com.Sconit.Web.Controllers.WMS
                 {
                     if (string.IsNullOrEmpty(sqlStr))
                     {
-                        sqlStr += "select b from BufferInventory as b where b.HuId in (?";
+                        sqlStr += "select b from BufferInventory as b where b.Qty >0 and b.HuId in (?";
                         param.Add(h);
                     }
                     else
