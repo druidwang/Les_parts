@@ -3743,7 +3743,7 @@ namespace com.Sconit.Service.Impl
                 if (huStatus.IsConsignment == true)
                 {
                     int userId = SecurityContextHolder.Get().Id;
-                    bool hasPermission = genericMgr.FindAll<UserPermissionView>(" from UserPermissionView as u where u.UserId=? and u.PermissionCode='Client_UnPackAllowCs' ", new object[] { userId }).Count==0;
+                    bool hasPermission = genericMgr.FindAll<UserPermissionView>(" from UserPermissionView as u where u.UserId=? and u.PermissionCode='Client_UnPackAllowCs' ", new object[] { userId }).Count == 0;
                     if (hasPermission)
                     {
                         businessException.AddMessage("寄售的条码{0}不能拆箱。", huStatus.HuId);
@@ -7070,10 +7070,16 @@ namespace com.Sconit.Service.Impl
         #region 检查库存是否被捡货单占用
         private void CheckLocationLotDetailOccupiedByPickList(LocationLotDetail locationLotDetail, string occupyReferenceNo, BusinessException businessException)
         {
-            if (locationLotDetail.OccupyType == com.Sconit.CodeMaster.OccupyType.Pick && locationLotDetail.OccupyReferenceNo != occupyReferenceNo)
+            if (locationLotDetail.OccupyType == com.Sconit.CodeMaster.OccupyType.Pick)
             {
-                //要求被捡货单占用，实际被其它捡货占用
-                throw new BusinessException(Resources.INV.LocationLotDetail.Errors_HuOccupiedByPickList, locationLotDetail.HuId, locationLotDetail.OccupyReferenceNo);
+                if (locationLotDetail.OccupyReferenceNo != occupyReferenceNo)
+                {
+                    if (locationLotDetail.OccupyReferenceNo != null || occupyReferenceNo != null)
+                    {
+                        //要求被捡货单占用，实际被其它捡货占用
+                        throw new BusinessException(Resources.INV.LocationLotDetail.Errors_HuOccupiedByPickList, locationLotDetail.HuId, locationLotDetail.OccupyReferenceNo);
+                    }
+                }
             }
             else if (locationLotDetail.OccupyType == com.Sconit.CodeMaster.OccupyType.None)
             {

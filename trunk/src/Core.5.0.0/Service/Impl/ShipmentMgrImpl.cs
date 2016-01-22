@@ -34,10 +34,5 @@ namespace com.Sconit.Service.Impl
             genericMgr.Delete(billofLadingMaster);
             
         }
-
-
-
     }
-
-   
 }

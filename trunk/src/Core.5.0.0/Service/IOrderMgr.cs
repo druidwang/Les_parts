@@ -272,6 +272,10 @@ namespace com.Sconit.Service
         void DistributionReceiveOrder(OrderMaster orderMaster);
         #endregion
 
+        #region 高级仓库发货
+        void ProcessShipPlanResult4Hu(string transportOrderNo, IList<string> huIdList, DateTime? effDate);
+        #endregion
+
         string CreateProcurementOrderFromXls(Stream inputStream, string flowCode, string extOrderNo, string refOrderNo,
             DateTime startTime, DateTime windowTime, CodeMaster.OrderPriority priority);
 

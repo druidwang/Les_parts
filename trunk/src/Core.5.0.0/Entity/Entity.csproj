@@ -709,7 +709,9 @@
     <EmbeddedResource Include="Base\INP\ConcessionDetail.hbm.xml" />
     <EmbeddedResource Include="Base\INP\ConcessionMaster.hbm.xml" />
     <EmbeddedResource Include="Base\INP\InspectDetail.hbm.xml" />
-    <EmbeddedResource Include="Base\INP\InspectMaster.hbm.xml" />
+    <EmbeddedResource Include="Base\INP\InspectMaster.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\INP\InspectResult.hbm.xml" />
     <EmbeddedResource Include="Base\INP\InspectResultExt.hbm.xml" />
     <EmbeddedResource Include="Base\INP\RejectDetail.hbm.xml" />
