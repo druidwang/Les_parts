@@ -210,7 +210,7 @@ BEGIN
 
 					set @selectStatement = 'insert into #tempLocationLotDet_016(Id, Bin, HuId, IsCS, PlanBill, QualityType, IsFreeze, OccupyType, [Version]) '
 					set @selectStatement = @selectStatement + 'select lld.Id, lld.Bin, rih.HuId, lld.IsCS, lld.PlanBill, lld.QualityType, lld.IsFreeze, lld.OccupyType, lld.[Version] '
-					set @selectStatement = @selectStatement + 'from INV_LocationLotDet_' + @LocSuffix + ' as lld right join #tempRepackInHu_016 as rih on lld.HuId = rih.HuId where lld.Id is null or (lld.Qty > 0 and lld.Location = @Location_1)'
+					set @selectStatement = @selectStatement + 'from INV_LocationLotDet_' + @LocSuffix + ' as lld right join #tempRepackInHu_016 as rih on lld.HuId = rih.HuId and lld.Qty > 0 and lld.Location = @Location_1'
 					set @Parameter = N'@Location_1 varchar(50)'
 
 					exec sp_executesql @selectStatement, @Parameter, @Location_1=@Location
@@ -218,6 +218,13 @@ BEGIN
 					insert into #tempBuffInv_016(UUID, HuId, IsLock, [Version]) 
 					select bi.UUID, rih.HuId, bi.IsLock, bi.[Version] from WMS_BuffInv as bi 
 					inner join #tempRepackInHu_016 as rih on bi.HuId = rih.HuId and bi.Loc = @Location and bi.IOType = 1
+
+					insert into #tempMsg_016(Lvl, Msg)
+					select 2, N'翻包前条码['+ HuId + N']在库存中存在多个。' 
+					from #tempLocationLotDet_016 group by HuId having COUNT(1) > 1
+					union
+					select 2, N'翻包前条码['+ HuId + N']在库存中存在多个。' 
+					from #tempBuffInv_016 group by HuId having COUNT(1) > 1
 
 					insert into #tempMsg_016(Lvl, Msg) select 2, N'翻包前的条码['+ HuId + N']不在库位[' + @Location + ']中，不能进行翻包。' 
 					from #tempLocationLotDet_016 where Id is null

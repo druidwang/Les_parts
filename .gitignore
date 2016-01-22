@@ -3,3 +3,4 @@ obj
 *.suo
 *.user
 bin
+/trunk/src/WebApp.5.0.0/WebApp/TempFiles

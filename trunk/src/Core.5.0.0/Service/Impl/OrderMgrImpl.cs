@@ -30,6 +30,8 @@ using NHibernate;
 using NHibernate.Type;
 using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace com.Sconit.Service.Impl
 {
@@ -94,6 +96,7 @@ namespace com.Sconit.Service.Impl
         public IEmailMgr emailMgr { get; set; }
         public ISequenceMgr sequenceMgr { get; set; }
         public IWorkingCalendarMgr workingCalendarMgr { get; set; }
+        public ITransportMgr transportMgr { get; set; }
         public IShipPlanMgr shipPlanMgr { get; set; }
         #endregion
 
@@ -3086,8 +3089,8 @@ namespace com.Sconit.Service.Impl
                 var itemDesc = orderDetails.First().ItemDescription;
                 if (minLotNo != null && string.Compare(maxLotNo, minLotNo) > 0)
                 {
-                    throw new BusinessException(string.Format("物料{0}[{1}]{2}违反了先进先出,不能发货",
-                        orderDetails.Key.Item, orderDetails.First().ItemDescription, directionDesc));
+                    //throw new BusinessException(string.Format("物料{0}[{1}]{2}违反了先进先出,不能发货",
+                    //    orderDetails.Key.Item, orderDetails.First().ItemDescription, directionDesc));
                 }
             }
 
@@ -7854,6 +7857,143 @@ namespace com.Sconit.Service.Impl
                 return orderMaster;
             }
             return null;
+        }
+        #endregion
+
+        #region 高级仓库发货
+        [Transaction(TransactionMode.Requires)]
+        public void ProcessShipPlanResult4Hu(string transportOrderNo, IList<string> huIdList, DateTime? effDate)
+        {
+            DataSet ds = null;
+            #region 处理发运计划
+            User user = SecurityContextHolder.Get();
+            SqlParameter[] paras = new SqlParameter[3];
+            DataTable shipResultTable = new DataTable();
+            shipResultTable.Columns.Add("HuId", typeof(string));
+            foreach (var hu in huIdList)
+            {
+                DataRow row = shipResultTable.NewRow();
+                row[0] = hu;
+                shipResultTable.Rows.Add(row);
+            }
+            paras[0] = new SqlParameter("@ShipResultTable", SqlDbType.Structured);
+            paras[0].Value = shipResultTable;
+            paras[1] = new SqlParameter("@CreateUserId", SqlDbType.Int);
+            paras[1].Value = user.Id;
+            paras[2] = new SqlParameter("@CreateUserNm", SqlDbType.VarChar);
+            paras[2].Value = user.FullName;
+
+            try
+            {
+                ds = this.genericMgr.GetDatasetByStoredProcedure("USP_WMS_ProcessShipResult4Hu", paras);
+
+                if (ds != null && ds.Tables != null && ds.Tables[0] != null
+                    && ds.Tables[0].Rows != null && ds.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow msg in ds.Tables[0].Rows)
+                    {
+                        if (msg[0].ToString() == "0")
+                        {
+                            MessageHolder.AddInfoMessage((string)msg[1]);
+                        }
+                        else if (msg[0].ToString() == "1")
+                        {
+                            MessageHolder.AddWarningMessage((string)msg[1]);
+                        }
+                        else
+                        {
+                            MessageHolder.AddErrorMessage((string)msg[1]);
+                        }
+                    }
+
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null)
+                {
+                    if (ex.InnerException.InnerException != null)
+                    {
+                        MessageHolder.AddErrorMessage(ex.InnerException.InnerException.Message);
+                    }
+                    else
+                    {
+                        MessageHolder.AddErrorMessage(ex.InnerException.Message);
+                    }
+                }
+                else
+                {
+                    MessageHolder.AddErrorMessage(ex.Message);
+                }
+
+                return;
+            }
+            #endregion
+
+            #region 创建ASN并添加到运输单中
+            if (ds != null && ds.Tables != null && ds.Tables[1] != null
+                   && ds.Tables[1].Rows != null && ds.Tables[1].Rows.Count > 0)
+            {
+                IList<object> orderDetailIdList = new List<object>();
+                foreach (DataRow hu in ds.Tables[1].Rows)
+                {
+                    if (!orderDetailIdList.Contains(hu[3]))
+                    {
+                        orderDetailIdList.Add(hu[3]);
+                    }
+                }
+
+                IList<OrderDetail> orderDetailList = genericMgr.FindAllIn<OrderDetail>("from OrderDetail where Id in(?", orderDetailIdList);
+                IDictionary<string, IList<OrderDetail>> flowDic = new Dictionary<string, IList<OrderDetail>>();
+                foreach (DataRow hu in ds.Tables[1].Rows)
+                {
+                    OrderDetail orderDetail = orderDetailList.Where(od => od.Id == (int)hu[3]).Single();
+                    OrderDetailInput orderDetailInput = new OrderDetailInput();
+                    orderDetailInput.HuId = (string)hu[0];
+                    orderDetailInput.LotNo = (string)hu[1];
+                    orderDetailInput.ShipQty = (decimal)hu[2];
+                    orderDetailInput.OccupyType = CodeMaster.OccupyType.Pick;
+                    orderDetail.AddOrderDetailInput(orderDetailInput);
+
+                    if (!flowDic.ContainsKey((string)hu[4]))
+                    {
+                        IList<OrderDetail> flowOrderDetailList = new List<OrderDetail>();
+                        flowOrderDetailList.Add(orderDetail);
+                        flowDic.Add((string)hu[4], flowOrderDetailList);
+                    }
+                    else
+                    {
+                        IList<OrderDetail> flowOrderDetailList = flowDic[(string)hu[4]];
+                        if (!flowOrderDetailList.Contains(orderDetail))
+                        {
+                            flowOrderDetailList.Add(orderDetail);
+                        }
+                    }
+                }
+
+                if (!effDate.HasValue)
+                {
+                    effDate = DateTime.Now;
+                }
+
+                IList<string> ipNoList = new List<string>();
+                foreach (var flow in flowDic)
+                {
+                    IpMaster ipMaster = ShipOrder(flow.Value, effDate.Value);
+                    ipNoList.Add(ipMaster.IpNo);
+                }
+
+                if (!string.IsNullOrWhiteSpace(transportOrderNo))
+                {
+                    transportMgr.AddTransportOrderDetail(transportOrderNo, ipNoList);
+                }
+            }
+            else
+            {
+                throw new TechnicalException("返回的条码信息为空。");
+            }
+            #endregion
         }
         #endregion
 

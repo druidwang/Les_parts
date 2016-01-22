@@ -23,7 +23,7 @@ namespace com.Sconit.Service.Impl
         #region 变量
         public IGenericMgr genericMgr { get; set; }
         public INumberControlMgr numberControlMgr { get; set; }
-        public IShipPlanMgr shipPlanMgr { get; set; }
+        public IOrderMgr orderMgr { get; set; }
         #endregion
 
         #region public methods
@@ -49,7 +49,7 @@ namespace com.Sconit.Service.Impl
             }
             if (!string.IsNullOrEmpty(sqlStr))
             {
-                sqlStr += ")";
+                sqlStr += ") and b.Qty > 0";
             }
             IList<BufferInventory> bufferInvList = genericMgr.FindAll<BufferInventory>(sqlStr, param.ToList());
 
@@ -113,8 +113,6 @@ namespace com.Sconit.Service.Impl
             return packingList;
         }
 
-
-
         [Transaction(TransactionMode.Requires)]
         public void Ship(IList<string> packingListCodeList)
         {
@@ -143,10 +141,9 @@ namespace com.Sconit.Service.Impl
             IList<string> huIdList = packingListDetailList.Select(p => p.HuId).ToList();
             #endregion
 
-            shipPlanMgr.ProcessShipPlanResult4Hu(string.Empty, huIdList, DateTime.Now);
+            orderMgr.ProcessShipPlanResult4Hu(string.Empty, huIdList, DateTime.Now);
         }
         #endregion
-
 
     }
 }
