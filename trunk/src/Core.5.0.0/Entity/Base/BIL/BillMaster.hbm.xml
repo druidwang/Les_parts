@@ -38,7 +38,7 @@
 		<property name="CancelDate" column="CancelDate" type="DateTime" />
 		<property name="CancelReason" column="CancelReason" type="String" length="100" />
 		<property name="InvoiceNo" column="InvoiceNo" type="String" length="50" />
-		<property name="InvoiceDate" column="InvoiceDate" type="DateTime" length="50" />
+		<property name="InvoiceDate" column="InvoiceDate" type="DateTime"  />
 		<property name="Amount" column="Amount" type="Decimal"/>
 	</class>
 </hibernate-mapping>

@@ -259,6 +259,9 @@
     <Compile Include="Base\TMS\Driver.cs" />
     <Compile Include="Base\TMS\Mileage.cs" />
     <Compile Include="Base\TMS\Tonnage.cs" />
+    <Compile Include="Base\TMS\TransportActingBill.cs" />
+    <Compile Include="Base\TMS\TransportBillMaster.cs" />
+    <Compile Include="Base\TMS\TransportBillDetail.cs" />
     <Compile Include="Base\TMS\TransportFlowCarrier.cs" />
     <Compile Include="Base\TMS\TransportFlowMaster.cs" />
     <Compile Include="Base\TMS\TransportFlowRoute.cs" />
@@ -627,6 +630,9 @@
     <Compile Include="SYS\NumberControl.cs" />
     <Compile Include="SYS\SNRule.cs" />
     <Compile Include="TMSConstants.cs" />
+    <Compile Include="TMS\TransportBillDetail.cs" />
+    <Compile Include="TMS\TransportBillMaster.cs" />
+    <Compile Include="TMS\TransportActingBill.cs" />
     <Compile Include="TMS\Driver.cs" />
     <Compile Include="TMS\Mileage.cs" />
     <Compile Include="TMS\Tonnage.cs" />
@@ -960,6 +966,11 @@
     <EmbeddedResource Include="Base\WMS\PackingListDetail.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Base\TMS\TransportActingBill.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\TMS\TransportBillMaster.hbm.xml" />
+    <EmbeddedResource Include="Base\TMS\TransportBillDetail.hbm.xml" />
     <Content Include="Base\WMS\PickOccupy.hbm.xml" />
     <Content Include="Base\WMS\RepackOccupy.hbm.xml" />
   </ItemGroup>

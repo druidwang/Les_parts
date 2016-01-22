@@ -362,6 +362,7 @@
     <Compile Include="Controllers\SYS\SNRuleController.cs" />
     <Compile Include="Controllers\SYS\TriggerController.cs" />
     <Compile Include="Controllers\TMS\CarrierController.cs" />
+    <Compile Include="Controllers\TMS\TransportBillController.cs" />
     <Compile Include="Controllers\TMS\TransportOrderController.cs" />
     <Compile Include="Controllers\TMS\TonnageController.cs" />
     <Compile Include="Controllers\TMS\DriverController.cs" />
@@ -410,6 +411,8 @@
     <Compile Include="Models\ORD\ScheduleView.cs" />
     <Compile Include="Models\ORD\WebOrderDetail.cs" />
     <Compile Include="Controllers\WMS\DeliveryBarCodeController.cs" />
+    <Compile Include="Models\SearchModels\TMS\TransportActingBillSearchModel.cs" />
+    <Compile Include="Models\SearchModels\TMS\TransportBillSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PackingListSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\DeliveryBarCodeSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PickUserSearchModel.cs" />
@@ -2672,6 +2675,22 @@
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PackingList\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PackingList\New.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PackingList\_PackingList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\_ActingBillGroupList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\_TransportActingBillList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\_AddBillDetatilWindow.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\_BillDetailList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\_BillGroupDetailList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\_PlanBillList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\_ReCalculateDetailList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\ActingBillGroup.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\PlanBill.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\ReCalculateMaster.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

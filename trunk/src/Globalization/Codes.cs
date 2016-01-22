@@ -38,7 +38,11 @@ namespace com.Sconit.CodeMaster
         /// <summary>
         /// 销售
         /// </summary>
-        Distribution = 1
+        Distribution = 1,
+        /// <summary>
+        /// 运输
+        /// </summary>
+        Transport = 2,
     }
 
     public enum BillSubType

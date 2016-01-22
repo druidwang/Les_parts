@@ -67,5 +67,7 @@ namespace com.Sconit.Service
         IDictionary<string, decimal> GetDeliveryBarCode(ShipPlan shipPlan);
 
         string GetPackingListCode();
+
+        string GetTransportBillNo(TransportBillMaster billMaster);
     }
 }

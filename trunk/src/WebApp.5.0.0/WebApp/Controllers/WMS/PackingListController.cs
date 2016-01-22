@@ -119,7 +119,7 @@ namespace com.Sconit.Web.Controllers.WMS
                 }
                 else
                 {
-                    BufferInventory buffInv = genericMgr.FindAll<BufferInventory>("from BufferInventory where Qty > 0 and IsLock = ? and IsPack = ? and HuId = ?", new object[] { true,false, huId }).SingleOrDefault();
+                    BufferInventory buffInv = genericMgr.FindAll<BufferInventory>("from BufferInventory where Qty > 0 and IsLock = ? and IsPack = ? and HuId = ?", new object[] { true, false, huId }).SingleOrDefault();
                     {
                         if (buffInv == null)
                         {
@@ -214,7 +214,7 @@ namespace com.Sconit.Web.Controllers.WMS
                 string[] huArray = packingListHu.Split(',');
                 PackingList packingList = packingListMgr.CreatePackingList(flow, huArray.ToList());
                 SaveSuccessMessage(Resources.WMS.PackingList.PackingList_Created, packingList.PackingListCode);
-                object obj = new { SuccessMessage = string.Format(Resources.WMS.PackingList.PackingList_Created,packingList.PackingListCode), SuccessData = packingList.PackingListCode };
+                object obj = new { SuccessMessage = string.Format(Resources.WMS.PackingList.PackingList_Created, packingList.PackingListCode), SuccessData = packingList.PackingListCode };
                 return Json(obj);
 
             }
@@ -271,13 +271,13 @@ namespace com.Sconit.Web.Controllers.WMS
                 {
                     throw new BusinessException("装箱明细不能为空");
                 }
-                    string[] idArray = checkedPackingLists.Split(',');
+                string[] idArray = checkedPackingLists.Split(',');
 
-                    packingListMgr.Ship(idArray.ToList());
+                packingListMgr.Ship(idArray.ToList());
+                SaveSuccessMessage(Resources.WMS.PackingList.PackingList_Shipped);
+                object obj = new { SuccessMessage = string.Format(Resources.WMS.PackingList.PackingList_Shipped) };
+                return Json(obj);
 
-                    object obj = new { SuccessMessage = string.Format(Resources.WMS.PackingList.PackingList_Shipped) };
-                    return Json(obj);
-               
             }
             catch (BusinessException ex)
             {

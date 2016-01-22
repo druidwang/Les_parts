@@ -58,7 +58,7 @@
             cache: false,
              success: function (data, textStatus) {
                 if (data != "") {
-                    DisplayTextMessages(data);
+                      DisplayTextMessages(data);
                     $.ajax({
                         type: "post",
                         dataType: "html",
@@ -66,6 +66,7 @@
                         data: "",
                         cache: false,
                         success: function (data, textStatus) {
+
                             var $tGrid = $("#content");
                             $($tGrid).html(data);
                         }

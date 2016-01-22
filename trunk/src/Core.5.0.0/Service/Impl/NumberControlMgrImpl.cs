@@ -612,6 +612,16 @@ namespace com.Sconit.Service.Impl
         }
         #endregion
 
+
+        #region 运输账单编号
+        public string GetTransportBillNo(TransportBillMaster billMaster)
+        {
+            string numberSuffix = GetNextSequence(BusinessConstants.NUMBERCONTROL_PROCUREMENTBILL);
+            numberSuffix = numberSuffix.PadLeft(9, '0');
+            return ("B3" + numberSuffix);
+        }
+        #endregion
+
         #region private methods
         public String GetNextSequence(string code)
         {

@@ -82,7 +82,7 @@ namespace com.Sconit.Service.Impl
             string code = numberControlMgr.GetPackingListCode();
             packingList.PackingListCode = code;
             packingList.Flow = flow;
-            packingList.IsActive = true;
+            packingList.IsActive = false;
             genericMgr.Create(packingList);
 
             #region 明细
