@@ -10,6 +10,8 @@ namespace com.Sconit.Service.SI.Impl
 {
     public class SD_TMSMgrImpl : BaseMgr, ISD_TMSMgr  
     {
+        public IShipPlanMgr shipPlanMgr { get; set; }
+
         public TransportOrderMaster GetTransOrder(string orderNo)
         {
             var transOrderMaster = new Entity.TMS.TransportOrderMaster();
@@ -35,8 +37,8 @@ namespace com.Sconit.Service.SI.Impl
         }
 
         public void Ship(string transOrder, List<string> huIds)
-        { 
-            
+        {
+            //shipPlanMgr.ProcessShipPlanResult4Hu(transOrder, huIds, DateTime.Now);
         }
     }
 }

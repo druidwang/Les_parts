@@ -220,7 +220,7 @@ namespace com.Sconit.SmartDevice
             this.isMasterBind = true;
         }
 
-        protected virtual void gvHuListDataBind()
+        protected virtual void   gvHuListDataBind()
         {
             List<Hu> hus = new List<Hu>();
             if (this.hus != null)

@@ -226,6 +226,50 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetShipHu", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Hu GetShipHu(string huId, string deliverBarCode) {
+            object[] results = this.Invoke("GetShipHu", new object[] {
+                        huId,
+                        deliverBarCode});
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetShipHu(string huId, string deliverBarCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetShipHu", new object[] {
+                        huId,
+                        deliverBarCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public Hu EndGetShipHu(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoShipWMS", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DoShipWMS(string transOrder, string[] huIds, string userCode) {
+            this.Invoke("DoShipWMS", new object[] {
+                        transOrder,
+                        huIds,
+                        userCode});
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginDoShipWMS(string transOrder, string[] huIds, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("DoShipWMS", new object[] {
+                        transOrder,
+                        huIds,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public void EndDoShipWMS(System.IAsyncResult asyncResult) {
+            this.EndInvoke(asyncResult);
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetUser", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public User GetUser(string userCode, string hashedPassword) {
             object[] results = this.Invoke("GetUser", new object[] {

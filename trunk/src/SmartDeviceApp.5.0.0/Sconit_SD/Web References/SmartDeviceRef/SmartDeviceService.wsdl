@@ -344,6 +344,33 @@
           <s:element minOccurs="1" maxOccurs="1" name="IsReceived" type="s:boolean" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetShipHu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="deliverBarCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetShipHuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetShipHuResult" type="tns:Hu" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoShipWMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="transOrder" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="huIds" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoShipWMSResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="GetUser">
         <s:complexType>
           <s:sequence>
@@ -1900,6 +1927,18 @@
   <wsdl:message name="GetTransOrderSoapOut">
     <wsdl:part name="parameters" element="tns:GetTransOrderResponse" />
   </wsdl:message>
+  <wsdl:message name="GetShipHuSoapIn">
+    <wsdl:part name="parameters" element="tns:GetShipHu" />
+  </wsdl:message>
+  <wsdl:message name="GetShipHuSoapOut">
+    <wsdl:part name="parameters" element="tns:GetShipHuResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoShipWMSSoapIn">
+    <wsdl:part name="parameters" element="tns:DoShipWMS" />
+  </wsdl:message>
+  <wsdl:message name="DoShipWMSSoapOut">
+    <wsdl:part name="parameters" element="tns:DoShipWMSResponse" />
+  </wsdl:message>
   <wsdl:message name="GetUserSoapIn">
     <wsdl:part name="parameters" element="tns:GetUser" />
   </wsdl:message>
@@ -2267,6 +2306,14 @@
       <wsdl:input message="tns:GetTransOrderSoapIn" />
       <wsdl:output message="tns:GetTransOrderSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="GetShipHu">
+      <wsdl:input message="tns:GetShipHuSoapIn" />
+      <wsdl:output message="tns:GetShipHuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoShipWMS">
+      <wsdl:input message="tns:DoShipWMSSoapIn" />
+      <wsdl:output message="tns:DoShipWMSSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetUser">
       <wsdl:input message="tns:GetUserSoapIn" />
       <wsdl:output message="tns:GetUserSoapOut" />
@@ -2564,6 +2611,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetTransOrder">
       <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetTransOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShipHu">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetShipHu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoShipWMS">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoShipWMS" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3143,6 +3208,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetTransOrder">
       <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetTransOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShipHu">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetShipHu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoShipWMS">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoShipWMS" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

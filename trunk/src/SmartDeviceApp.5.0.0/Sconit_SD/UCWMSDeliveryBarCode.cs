@@ -112,9 +112,21 @@ namespace com.Sconit.SmartDevice
                         Hu hu = smartDeviceService.GetDeliverMatchHu(barCode, this.user.Code);
                         if (this.dc != null)
                         {
-                            if (hu.Item != this.dc.Item || hu.Uom != this.dc.Uom || hu.UnitCount != this.dc.UnitCount || hu.Qty != this.dc.Qty)
+                            if (hu.Item != this.dc.Item)
                             {
-                                throw new BusinessException("配送标签的零件号/单位/包装与配送标签不匹配。");
+                                throw new BusinessException("配送标签的零件号与配送标签不匹配。");
+                            }
+                            if (hu.Uom != this.dc.Uom)
+                            {
+                                throw new BusinessException("配送标签的单位与配送标签不匹配。");
+                            }
+                            if( hu.UnitCount != this.dc.UnitCount)
+                            {
+                                throw new BusinessException("配送标签的包装与配送标签不匹配。");
+                            }
+                            if (hu.Qty != this.dc.Qty)
+                            {
+                                throw new BusinessException("配送标签的数量与配送标签不匹配。");
                             }
                         }
                         this.hu = hu;
