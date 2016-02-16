@@ -147,31 +147,30 @@
             {
                 transOrderDetailList = this.genericMgr.FindAll<TransportOrderDetail>("from TransportOrderDetail to where to.OrderNo=?", orderNo);
             }
+
+            string[] checkedIpNoArray = new string[] { };
+            if (!string.IsNullOrEmpty(checkedIpNos))
+            {
+                checkedIpNoArray = checkedIpNos.Split(',');
+            }
+            if (checkedIpNoArray == null || checkedIpNoArray.Length == 0)
+            {
+                transOrderDetailList.Add(new TransportOrderDetail { Sequence = 1 });
+            }
             else
             {
-                string[] checkedIpNoArray = new string[] { };
-                if (!string.IsNullOrEmpty(checkedIpNos))
+                DetachedCriteria criteria = DetachedCriteria.For<IpDetail>();
+                criteria.Add(Expression.In("IpNo", checkedIpNoArray));
+                IList<IpDetail> ipDetailList = genericMgr.FindAll<IpDetail>(criteria);
+                int i = 1;
+                foreach (var ipNo in checkedIpNoArray)
                 {
-                    checkedIpNoArray = checkedIpNos.Split(',');
+                    transOrderDetailList.Add(new TransportOrderDetail { Sequence = i, IpNo = ipNo });
+                    ++i;
                 }
-                if (checkedIpNoArray == null || checkedIpNoArray.Length == 0)
-                {
-                    transOrderDetailList.Add(new TransportOrderDetail { Sequence = 1 });
-                }
-                else
-                {
-                    DetachedCriteria criteria = DetachedCriteria.For<IpDetail>();
-                    criteria.Add(Expression.In("IpNo", checkedIpNoArray));
-                    IList<IpDetail> ipDetailList = genericMgr.FindAll<IpDetail>(criteria);
-                    int i = 1;
-                    foreach (var ipNo in checkedIpNoArray)
-                    {
-                        transOrderDetailList.Add(new TransportOrderDetail { Sequence = i, IpNo = ipNo });
-                        ++i;
-                    }
 
-                }
             }
+
             return PartialView(new GridModel(transOrderDetailList));
         }
         

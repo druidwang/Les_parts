@@ -87,6 +87,7 @@ namespace com.Sconit.SmartDevice.CodeMaster
         INS,
         SEQ,
         MIS,
+        T,
         /// <summary>
         /// 生产线实例
         /// </summary>

@@ -2,6 +2,7 @@
 @{
     Html.RenderAction("_SiteMapPath", "Common", new { MenuContent = "Url_OrderMstr_Distribution_New" });
 }
+@Html.Partial("_AjaxMessage")
 <script type="text/javascript">
     function Carrier_Change(e) {
         var combobox = $(this).data("tComboBox");
