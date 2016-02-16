@@ -14,6 +14,8 @@
         <property name="EndDate" column="EndDate" type="DateTime"/>
         <property name="Currency" column="Currency" type="String" length="50"/>
         <property name="UnitPrice" column="UnitPrice" type="Decimal"/>
+		<property name="MinVolume" column="MinVolume" type="Decimal"/>
+		<property name="MinWeight" column="MinWeight" type="Decimal"/>
         <property name="IsProvEst" column="IsProvEst" type="Boolean"/>
         <property name="Tonnage" column="Tonnage" type="String" length="50"/>
         <property name="MinPrice" column="MinPrice" type="Decimal"/>

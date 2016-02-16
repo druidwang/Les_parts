@@ -250,6 +250,21 @@
   <data name="CodeDetail_TaskType_Response" xml:space="preserve">
     <value>Response</value>
   </data>
+  <data name="CodeDetail_TransportPricingMethod_Chartered" xml:space="preserve">
+    <value>Chartered</value>
+  </data>
+  <data name="CodeDetail_TransportPricingMethod_Distance" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="CodeDetail_TransportPricingMethod_LadderVolumn" xml:space="preserve">
+    <value>LadderVolumn</value>
+  </data>
+  <data name="CodeDetail_TransportPricingMethod_Volumn" xml:space="preserve">
+    <value>Volumn</value>
+  </data>
+  <data name="CodeDetail_TransportPricingMethod_Weight" xml:space="preserve">
+    <value>Weight</value>
+  </data>
   <data name="CodeDetail_UserType_Supplier" xml:space="preserve">
     <value>Supplier</value>
   </data>

@@ -106,6 +106,13 @@ namespace com.Sconit.Entity.TMS
         public Int32? CurrentArriveSiteId { get; set; }
         public string CurrentArriveShipAddress { get; set; }
         public string CurrentArriveShipAddressDescription { get; set; }
+
+        public bool IsValuated { get; set; }
+
+        public string Expense { get; set; }
+
+        [Display(Name = "TransportOrderMaster_PricingMethod", ResourceType = typeof(Resources.TMS.TransportOrder))]
+        public TransportPricingMethod PricingMethod { get; set; }
         
         #endregion
 

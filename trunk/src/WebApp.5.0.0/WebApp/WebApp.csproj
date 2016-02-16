@@ -2691,6 +2691,9 @@
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\New.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\PlanBill.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.TMS\TransportBill\ReCalculateMaster.cshtml" />
+    <Content Include="Views\Common\_TransportPriceListComboBox.cshtml" />
+    <Content Include="Views\Common\_VehicleComboBox.cshtml" />
+    <Content Include="Views\Common\_TonnageComboBox.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

@@ -52,5 +52,8 @@
         <property name="CurrentArriveSiteId" column="CurrArriveSiteId" type="Int32"/>
         <property name="CurrentArriveShipAddress" column="CurrArriveShipAddr" type="String" length="50"/>
         <property name="CurrentArriveShipAddressDescription" column="CurrArriveShipAddrDesc" type="String" length="255"/>
+		<property name="IsValuated" column="IsValuated" type="Boolean"/>
+		<property name="Expense" column="Expense" type="String" length="50"/>
+		<property name="PricingMethod" column="PricingMethod" />
     </class>
 </hibernate-mapping>

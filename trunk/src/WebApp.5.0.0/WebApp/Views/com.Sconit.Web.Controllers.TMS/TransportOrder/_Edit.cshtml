@@ -937,7 +937,7 @@
     </div>
 }
 @{
-    Html.RenderAction("_OrderDetailList", "DistributionOrder", new { flow = Model.Flow, orderNo = Model.OrderNo, orderSubType = (int)Model.SubType });
+    Html.RenderAction("_OrderDetailList", "TransportOrder", new { flow = Model.Flow, orderNo = Model.OrderNo, orderSubType = (int)Model.SubType });
 }
 <form id="hiddenForm" action="/DistributionOrder/SaveToClient" target="_blank" method="post">
     <input id="orderNo" name="orderNo" type="hidden" />

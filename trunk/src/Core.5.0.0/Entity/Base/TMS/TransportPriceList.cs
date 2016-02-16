@@ -42,7 +42,12 @@ namespace com.Sconit.Entity.TMS
 
         [Display(Name = "Common_LastModifyDate", ResourceType = typeof(Resources.SYS.Global))]
         public DateTime LastModifyDate { get; set; }
-        
+
+        public string Currency { get; set; }
+
+        public string Tax { get; set; }
+
+        public Boolean IsIncludeTax { get; set; }
         #endregion
 
 		public override int GetHashCode()

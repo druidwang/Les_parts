@@ -529,6 +529,15 @@ namespace Resources.TMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 计价方式.
+        /// </summary>
+        public static string TransportOrderMaster_PricingMethod {
+            get {
+                return ResourceManager.GetString("TransportOrderMaster_PricingMethod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 参考单号.
         /// </summary>
         public static string TransportOrderMaster_ReferenceOrderNo {

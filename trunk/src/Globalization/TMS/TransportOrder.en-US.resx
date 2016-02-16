@@ -273,6 +273,9 @@
   <data name="TransportOrderMaster_PriceList" xml:space="preserve">
     <value>运价单</value>
   </data>
+  <data name="TransportOrderMaster_PricingMethod" xml:space="preserve">
+    <value>PricingMethod</value>
+  </data>
   <data name="TransportOrderMaster_ReferenceOrderNo" xml:space="preserve">
     <value>参考单号</value>
   </data>
