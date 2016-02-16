@@ -107,7 +107,7 @@
             this.GetCommand(ref command, searchModel);
             if (!this.CheckSearchModelIsNull(searchModel))
             {
-                return PartialView(new GridModel(new List<OrderMaster>()));
+                return PartialView(new GridModel(new List<TransportOrderMaster>()));
             }
 
             //string whereStatement = " where o.Type in (" + (int)com.Sconit.CodeMaster.OrderType.Distribution + "," + (int)com.Sconit.CodeMaster.OrderType.Transfer + "," + (int)com.Sconit.CodeMaster.OrderType.SubContractTransfer + ")"

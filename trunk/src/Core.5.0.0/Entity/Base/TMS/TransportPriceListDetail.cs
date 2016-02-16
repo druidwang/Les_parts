@@ -68,6 +68,11 @@ namespace com.Sconit.Entity.TMS
 
         [Display(Name = "Common_LastModifyDate", ResourceType = typeof(Resources.SYS.Global))]
         public DateTime LastModifyDate { get; set; }
+
+
+        public decimal MinVolume { get; set; }
+
+        public decimal MinWeight { get; set; }
         #endregion
 
 		public override int GetHashCode()

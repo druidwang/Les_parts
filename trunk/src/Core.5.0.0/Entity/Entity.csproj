@@ -871,7 +871,9 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Base\TMS\TransportOrderRoute.hbm.xml" />
-    <EmbeddedResource Include="Base\TMS\TransportPriceList.hbm.xml" />
+    <EmbeddedResource Include="Base\TMS\TransportPriceList.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Base\TMS\TransportPriceListDetail.hbm.xml" />
     <EmbeddedResource Include="Base\TMS\Vehicle.hbm.xml" />
     <EmbeddedResource Include="Base\VIEW\LocationDetailView.hbm.xml" />

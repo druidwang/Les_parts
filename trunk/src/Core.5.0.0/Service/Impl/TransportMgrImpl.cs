@@ -72,7 +72,7 @@ namespace com.Sconit.Service.Impl
                 transportOrderMaster.FlowDescription = transportFlowMaster.Description;
                 transportOrderMaster.MinLoadRate = transportFlowMaster.MinLoadRate;
                 transportOrderMaster.IsAutoRelease = transportFlowMaster.IsAutoRelease;
-                transportOrderMaster.IsAutoStart = transportFlowMaster.IsAutoStart;
+                //transportOrderMaster.IsAutoStart = transportFlowMaster.IsAutoStart;
                 transportOrderMaster.MultiSitePick = transportFlowMaster.MultiSitePick;
             }
 
@@ -180,10 +180,10 @@ namespace com.Sconit.Service.Impl
             }
             else
             {
-                transportOrderMaster.ShipFrom = transportOrderMaster.TransportOrderRouteList.First().ShipAddress;
-                transportOrderMaster.ShipFromAddress = transportOrderMaster.TransportOrderRouteList.First().ShipAddressDescription;
-                transportOrderMaster.ShipTo = transportOrderMaster.TransportOrderRouteList.Last().ShipAddress;
-                transportOrderMaster.ShipToAddress = transportOrderMaster.TransportOrderRouteList.Last().ShipAddressDescription;
+                transportOrderMaster.ShipFrom = transportOrderRouteList.First().ShipAddress;
+                transportOrderMaster.ShipFromAddress = transportOrderRouteList.First().ShipAddressDescription;
+                transportOrderMaster.ShipTo = transportOrderRouteList.Last().ShipAddress;
+                transportOrderMaster.ShipToAddress = transportOrderRouteList.Last().ShipAddressDescription;
             }
             #endregion
 

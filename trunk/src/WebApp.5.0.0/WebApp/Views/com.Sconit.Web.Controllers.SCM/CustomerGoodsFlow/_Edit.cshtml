@@ -418,9 +418,9 @@
     $(document).ready(function () {
         debugger
         $("form[action$='_Edit']").submit(function () {
-            debugger
+            //debugger
             $.post($(this).attr("action"), $(this).serialize(), function (response) {
-                debugger
+                //debugger
                 var tabStrip = $("#TabStrip");
                 var tabStripContent0 = tabStrip.data("tTabStrip").getContentElement(0);
                 $(tabStripContent0).html(response);

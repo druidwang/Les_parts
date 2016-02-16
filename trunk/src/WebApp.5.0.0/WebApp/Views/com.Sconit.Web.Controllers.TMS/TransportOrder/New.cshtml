@@ -81,7 +81,7 @@
 
 
     function onCreate() {
-        debugger;
+        //debugger;
         var grid = $("#OrderDetailGrid").data("tGrid");
         if (grid === undefined) {
             alert("明细不能为空");
@@ -247,6 +247,20 @@
                     });
                 }
             </div>
+
+              <div class="editor-label-2">
+                @Html.LabelFor(model => model.PricingMethod)
+            </div>
+            <div class="editor-field-2">
+            @{
+                Html.RenderAction("_CodeMasterDropDownList", "Common", new
+                {
+                    code = com.Sconit.CodeMaster.CodeMaster.TransportPricingMethod,
+                    controlName = "PricingMethod"
+                });
+            }
+            </div>
+
             <div class="editor-label-2">
                 @Html.LabelFor(model => model.Driver)
             </div>

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using com.Sconit.Entity;
+using com.Sconit.CodeMaster;
 //TODO: Add other using statements here
 
 namespace com.Sconit.Entity.TMS
@@ -53,7 +54,7 @@ namespace com.Sconit.Entity.TMS
 
         public DateTime EffectiveDate { get; set; }
 
-        public string PricingMethod { get; set; }
+        public TransportPricingMethod PricingMethod { get; set; }
 
         public Boolean IsClose { get; set; }
 
@@ -73,6 +74,8 @@ namespace com.Sconit.Entity.TMS
         public Decimal BillingQty { get; set; }
 
         public decimal BillQty { get; set; }
+
+        public int PriceListDetail { get; set; }
 
         #endregion
 
