@@ -153,7 +153,7 @@
             {
                 checkedIpNoArray = checkedIpNos.Split(',');
             }
-            if (checkedIpNoArray == null || checkedIpNoArray.Length == 0)
+            if ((checkedIpNoArray == null || checkedIpNoArray.Length == 0) && transOrderDetailList.Count==0)
             {
                 transOrderDetailList.Add(new TransportOrderDetail { Sequence = 1 });
             }
@@ -347,23 +347,31 @@
         [GridAction]
         public ActionResult CreateOrder(TransportOrderMaster order, List<String> ipNos, List<Int32> routeSeqs, List<String> routeAddrs, string guid)
         {
-            var orderRoutes = new Dictionary<int,string>();
-            if (routeSeqs != null && routeSeqs.Count > 0)
+            try
             {
-                for (int i = 0; i < routeSeqs.Count; ++i)
+                var orderRoutes = new Dictionary<int, string>();
+                if (routeSeqs != null && routeSeqs.Count > 0)
                 {
-                    orderRoutes.Add(routeSeqs[i], routeAddrs[i]);
+                    for (int i = 0; i < routeSeqs.Count; ++i)
+                    {
+                        orderRoutes.Add(routeSeqs[i], routeAddrs[i]);
+                    }
                 }
+                else
+                {
+                    var flowRoutes = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute tf where tf.Flow=?", order.Flow);
+                    for (int i = 0; i < flowRoutes.Count; ++i)
+                    {
+                        orderRoutes.Add(flowRoutes[i].Sequence, flowRoutes[i].ShipAddress);
+                    }
+                }
+                transportMgr.CreateTransportOrder(order, orderRoutes, ipNos);
             }
-            else
+            catch (Exception ex)
             {
-                var flowRoutes = this.genericMgr.FindAll<TransportFlowRoute>("from TransportFlowRoute tf where tf.Flow=?", order.Flow);
-                for (int i = 0; i < flowRoutes.Count; ++i)
-                {
-                    orderRoutes.Add(flowRoutes[i].Sequence, flowRoutes[i].ShipAddress);
-                }
+                SaveErrorMessage(ex.Message);
             }
-            transportMgr.CreateTransportOrder(order, orderRoutes, ipNos);
+            SaveSuccessMessage("成功创建运单{0}", order.OrderNo);
             return Json(null);
         }
 
