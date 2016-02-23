@@ -37,6 +37,7 @@
     using com.Sconit.Entity.ISI;
     using com.Sconit.Entity.TMS;
     using com.Sconit.Entity.WMS;
+    using com.Sconit.Entity.FMS;
     public class CommonController : WebAppBaseController
     {
         #region
@@ -3537,6 +3538,53 @@
             return new JsonResult
             {
                 Data = new SelectList(pickUserList, "PickUserId", "PickUserName")
+            };
+        }
+
+
+
+        #endregion
+
+        #region FacilityCategory
+        public ActionResult _FacilityCategoryComboBox(string controlName, string controlId, string selectedValue, bool? enable, bool? includeBlankOption)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Enable = enable;
+            ViewBag.IncludeBlankOption = includeBlankOption;
+
+
+            IList<FacilityCategory> facilityCategoryList = new List<FacilityCategory>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+                facilityCategoryList = genericMgr.FindAll<FacilityCategory>("from FacilityCategory f where f.Code = ?", selectedValue);
+            }
+            return PartialView(new SelectList(facilityCategoryList, "Code", "Description", selectedValue));
+        }
+
+        public ActionResult _FacilityCategoryAjaxLoading(string text, string categoryCode, bool? includeBlankOption)
+        {
+
+            IList<FacilityCategory> facilityCategoryList = new List<FacilityCategory>();
+            IList<object> paramList = new List<object>();
+            string hql = "from FacilityCategory f ";
+           
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                hql += "  where f.Code like ? ";
+                paramList.Add(text + "%");
+            }
+
+            facilityCategoryList = base.genericMgr.FindAll<FacilityCategory>(hql, paramList.ToArray(), firstRow, maxRow);
+            if (includeBlankOption.HasValue && includeBlankOption.Value)
+            {
+                facilityCategoryList.Insert(0, new FacilityCategory());
+            }
+
+            return new JsonResult
+            {
+                Data = new SelectList(facilityCategoryList, "Code", "Description")
             };
         }
 

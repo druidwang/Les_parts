@@ -800,6 +800,8 @@ namespace com.Sconit.CodeMaster
         IOType,
         PickBy,
         TransportPricingMethod,
+        FacilityStatus,
+        FacilityTransType,
     }
 
     public enum MessageType
@@ -1258,5 +1260,41 @@ namespace com.Sconit.CodeMaster
         Ship = 0,
         Pick = 1,
         Repack = 2
+    }
+
+    /// <summary>
+    /// 设施状态
+    /// </summary>
+    public enum FacilityStatus
+    {
+        Create = 0,
+        Idle = 1,
+        InUse = 2,
+        Maintaining = 3,
+        Inspecting = 4,
+        Failure = 5,
+        Repairing = 6
+    }
+
+    /// <summary>
+    /// 设施事务类型
+    /// </summary>
+    public enum FacilityTransType
+    {
+        Create = 101,
+        Enable = 102,
+        StartUse = 103,
+        FinishUse = 104,
+        StartMaintain = 105,
+        FinishMaintain = 106,
+        StartInspect = 107,
+        FinishInspect = 108,
+        StartRepair = 109,
+        FinishRepair = 110,
+        Envelop = 111,
+        Lend = 112,
+        Sell = 113,
+        Lose = 114,
+        Scrap = 115
     }
 }

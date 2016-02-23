@@ -434,7 +434,7 @@ namespace com.Sconit.Service.Impl
             StringBuilder selectTransportOrderDetailHql = null;
             StringBuilder selectIpMasterHql = null;
             IList<object> parms = new List<object>();
-            foreach(string ipNo in ipNoList)
+            foreach (string ipNo in ipNoList)
             {
                 if (selectTransportOrderDetailHql == null)
                 {
@@ -507,7 +507,19 @@ namespace com.Sconit.Service.Impl
 
             ReleaseTransportOrderMaster(transportOrderMaster);
         }
-        
+
+        [Transaction(TransactionMode.Requires)]
+        public void PrepareTransportOrderDetail(TransportOrderDetail transportOrderDetail)
+        {
+            #region 计算体积和重量
+            IList<IpDetail> ipDetailList = genericMgr.FindAll<IpDetail>("from IpDetail where IpNo = ?", transportOrderDetail.IpNo);
+            decimal totalPackageVolumn = ipDetailList.Sum(p => p.PackageVolumn * p.Qty / p.UnitCount);
+            decimal totalPackageWeight = ipDetailList.Sum(p => p.PackageWeight * p.Qty / p.UnitCount);
+            transportOrderDetail.Volume = totalPackageVolumn;
+            transportOrderDetail.Weight = totalPackageWeight;
+            #endregion
+        }
+
         private void ReleaseTransportOrderMaster(TransportOrderMaster transportOrderMaster)
         {
             #region 运单校验
@@ -543,7 +555,7 @@ namespace com.Sconit.Service.Impl
                     throw new BusinessException("运单{0}的驾驶员不能为空。", transportOrderMaster.OrderNo);
                 }
 
-                if (!transportOrderMaster.MultiSitePick 
+                if (!transportOrderMaster.MultiSitePick
                     && transportOrderMaster.MinLoadRate.HasValue
                     && string.IsNullOrWhiteSpace(transportOrderMaster.Tonnage))
                 {
@@ -590,7 +602,7 @@ namespace com.Sconit.Service.Impl
                     }
                 }
 
-                if (targetTransportOrderRouteList.Count <= 1) 
+                if (targetTransportOrderRouteList.Count <= 1)
                 {
                     throw new BusinessException("运单{0}的站点不行小于2个。", transportOrderMaster.OrderNo);
                 }
@@ -808,6 +820,8 @@ namespace com.Sconit.Service.Impl
                     transportOrderDetail.Distance =
                         CalculateShipDistance(transportOrderDetail.ShipFrom, transportOrderDetail.ShipTo, transportMode);
                     transportOrderDetail.IsReceived = false;
+
+                    transportOrderDetailList.Add(transportOrderDetail);
                 }
             }
 
@@ -832,8 +846,8 @@ namespace com.Sconit.Service.Impl
 
 
         public void Ship(string transOrder, List<string> huIds)
-        { 
-            
+        {
+
         }
     }
 }

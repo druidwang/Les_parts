@@ -95,6 +95,8 @@
   <ItemGroup>
     <Compile Include="AutoMapperInstaller.cs" />
     <Compile Include="BaseMgr.cs" />
+    <Compile Include="IFacilityMgr.cs" />
+    <Compile Include="Impl\FacilityMgrImpl.cs" />
     <Compile Include="ITransportBillMgr.cs" />
     <Compile Include="Impl\TransportBillMgrImpl.cs" />
     <Compile Include="IPackingListMgr.cs" />

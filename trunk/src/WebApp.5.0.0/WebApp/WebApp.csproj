@@ -199,6 +199,7 @@
     <Compile Include="Controllers\CUST\CostCenterController.cs" />
     <Compile Include="Controllers\CUST\SubPrintOrderController.cs" />
     <Compile Include="Controllers\CUST\SpecialBarCodeController.cs" />
+    <Compile Include="Controllers\FMS\FacilityCategoryController.cs" />
     <Compile Include="Controllers\INV\HuIdEpDateChangeController.cs" />
     <Compile Include="Controllers\ISI\TaskAddressController.cs" />
     <Compile Include="Controllers\ISI\TaskMasterController.cs" />
@@ -399,6 +400,7 @@
     <Compile Include="Models\MRP\ExProductLineReportData.cs" />
     <Compile Include="Models\ReportModels\CustReportModel.cs" />
     <Compile Include="Models\ReportModels\CustReportSearchModel.cs" />
+    <Compile Include="Models\SearchModels\FMS\FacilityCategorySearchModel.cs" />
     <Compile Include="Models\SearchModels\INV\HuTransSearchModel.cs" />
     <Compile Include="Models\SearchModels\ISI\TaskAddressSearchModel.cs" />
     <Compile Include="Models\SearchModels\ISI\TaskMasterSearchModel.cs" />
@@ -2694,6 +2696,13 @@
     <Content Include="Views\Common\_TransportPriceListComboBox.cshtml" />
     <Content Include="Views\Common\_VehicleComboBox.cshtml" />
     <Content Include="Views\Common\_TonnageComboBox.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityCategory\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityCategory\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityCategory\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityCategory\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityCategory\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityCategory\New.cshtml" />
+    <Content Include="Views\Common\_FacilityCategoryComboBox.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

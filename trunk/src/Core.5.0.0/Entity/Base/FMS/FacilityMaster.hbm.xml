@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class name="com.Sconit.Entity.FMS.FacilityMaster, com.Sconit.Entity" table="Fac_Facility" lazy="false">
+    <id name="FCID" column="FCID" type="String" unsaved-value="null" >
+      <generator class="assigned" />
+    </id>
+    <property name="Name" column="Name" type="String" length="100" />
+    <property name="Specification" column="Specification" type="String" length="100" />
+    <property name="Capacity" column="Capacity" type="String" length="100" />
+    <property name="ManufactureDate" column="ManufactureDate" type="DateTime"  />
+    <property name="Manufacturer" column="Manufacturer" type="String" length="100" />
+    <property name="SerialNo" column="SerialNo" type="String" length="100" />
+    <property name="AssetNo" column="AssetNo" type="String" length="100" />
+    <property name="WarrantyInfo" column="WarrantyInfo" type="String" length="100" />
+    <property name="TechInfo" column="TechInfo" type="String" length="100" />
+    <property name="Supplier" column="Supplier" type="String" length="100" />
+    <property name="SupplierInfo" column="SupplierInfo" type="String" length="100" />
+    <property name="PONo" column="PONo" type="String" length="100" />
+    <property name="EffDate" column="EffDate" type="String" length="100"   />
+    <property name="Price" column="Price" type="String" length="100" />
+    <property name="Owner" column="Owner" type="String" length="100" />
+    <property name="OwnerDescription" column="OwnerDesc" type="String" length="100" />
+    <property name="Remark" column="Remark" type="String" length="100" />
+    <property name="CreateDate" column="CreateDate" type="DateTime"  />
+    <property name="CreateUser" column="CreateUser" type="String" length="50" />
+    <property name="LastModifyDate" column="LastModifyDate" type="DateTime"  />
+    <property name="LastModifyUser" column="LastModifyUser" type="String" length="50" />
+    <property name="Status" column="Status" type="String" length="100" />
+    <property name="IsInStore" column="IsInStore" type="Boolean" />
+    <property name="OldChargePerson" column="OldChargePerson" type="String" length="100" />
+    <property name="OldChargePersonName" column="OldChargePersonNm" type="String" length="100" />
+    <property name="CurrChargePerson" column="CurrChargePerson" type="String" length="100" />
+    <property name="CurrChargePersonName" column="CurrChargePersonNm" type="String" length="100" />
+    <property name="ChargeSite" column="ChargeSite" type="String" length="100" />
+    <property name="ChargeOrganization" column="ChargeOrg" type="String" length="100" />
+    <property name="ChargeDate" column="ChargeDate" type="DateTime"  />
+    <property name="Category" column="Category" type="String" length="100" />
+    <!--先借用维护报表分组-->
+    <property name="MaintainType" column="MaintainType" type="String" length="100" />
+    <property name="MaintainPeriod" column="MaintainPeriod" type="Int32"  /> 
+    <property name="MaintainLeadTime" column="MaintainLeadTime" type="Int32"  />
+    <property name="MaintainStartDate" column="MaintainStartDate" type="DateTime" />
+    <property name="NextMaintainTime" column="NextMaintainTime" type="DateTime" />
+    <!--先借用维护挂具使用次数-->
+    <property name="MaintainTypePeriod" column="MaintainTypePeriod" type="Int32"  />
+    <property name="IsOffBalance" column="IsOffBalance" type="Boolean" />
+    <property name="IsAsset" column="IsAsset" type="Boolean" />
+    <property name="RefenceCode" column="RefCode" type="String" length="50" />
+    <property name="MaintainGroup" column="MaintainGroup" type="String" length="50" />
+    <property name="PrintTemplate" column="PrintTemplate" type="String" length="50" />
+  </class>
+</hibernate-mapping>
