@@ -1693,4 +1693,49 @@
   <data name="CodeDetail_TransportPricingMethod_Weight" xml:space="preserve">
     <value>按重量</value>
   </data>
+  <data name="CodeDetail_FacilityStatus_Create" xml:space="preserve">
+    <value>创建</value>
+  </data>
+  <data name="CodeDetail_FacilityStatus_Failure" xml:space="preserve">
+    <value>故障中</value>
+  </data>
+  <data name="CodeDetail_FacilityStatus_Idle" xml:space="preserve">
+    <value>闲置</value>
+  </data>
+  <data name="CodeDetail_FacilityStatus_Inspecting" xml:space="preserve">
+    <value>检测中</value>
+  </data>
+  <data name="CodeDetail_FacilityStatus_InUse" xml:space="preserve">
+    <value>使用中</value>
+  </data>
+  <data name="CodeDetail_FacilityStatus_Maintaining" xml:space="preserve">
+    <value>保养中</value>
+  </data>
+  <data name="CodeDetail_FacilityStatus_Repairing" xml:space="preserve">
+    <value>维修中</value>
+  </data>
+  <data name="CodeDetail_MaintainPlanType_Day" xml:space="preserve">
+    <value>天</value>
+  </data>
+  <data name="CodeDetail_MaintainPlanType_Hour" xml:space="preserve">
+    <value>小时</value>
+  </data>
+  <data name="CodeDetail_MaintainPlanType_Minute" xml:space="preserve">
+    <value>分钟</value>
+  </data>
+  <data name="CodeDetail_MaintainPlanType_Month" xml:space="preserve">
+    <value>月</value>
+  </data>
+  <data name="CodeDetail_MaintainPlanType_Once" xml:space="preserve">
+    <value>一次性</value>
+  </data>
+  <data name="CodeDetail_MaintainPlanType_Second" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="CodeDetail_MaintainPlanType_Week" xml:space="preserve">
+    <value>周</value>
+  </data>
+  <data name="CodeDetail_MaintainPlanType_Year" xml:space="preserve">
+    <value>年</value>
+  </data>
 </root>

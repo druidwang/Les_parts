@@ -1,0 +1,106 @@
+﻿@model IEnumerable<com.Sconit.Entity.MD.FacilityMasterReference>
+<fieldset>
+<script type="text/javascript">
+    function FacilityMasterReferenceGrid_OnDataBinding(e) {
+        e.data = {
+            FacilityMasterCode: $('#FacilityMasterCode').val(),
+            FacilityMaster: $('#FacilityMaster').val(),
+            Party: $('#Party').val(),
+            ReferenceCode: $('#ReferenceCode').val(),
+            IsActive: $('#FacilityMasterRefIsActive').is(':checked')
+        };
+    } 
+    </script>
+
+    @(Html.Telerik().Grid(Model)
+        .Name("FacilityMasterReferenceGrid")
+        .DataKeys(keys =>
+        {
+            keys.Add(p => p.Id);
+        })
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.FacilityMaster).ClientTemplate(string.Format("<a href=\"javascript:onFacilityMasterRefclick('{0}')\">{1}</a>", "<#= Id #>", "<#= FacilityMaster #>"));
+            columns.Bound(o => o.Party);
+            columns.Bound(o => o.ReferenceCode);
+            columns.Bound(o => o.IsActive)
+                .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsActive' <#= IsActive? checked='checked' : '' #> />");
+                 })
+        .CellAction(cell =>
+            {
+                if (cell.Column.Member == "FacilityMaster")
+                {
+                    cell.Text = string.Format("<a href=\"javascript:onFacilityMasterRefclick('{0}')\">{1}</a>", cell.DataFacilityMaster.Id, cell.DataFacilityMaster.FacilityMaster);
+                }
+            })
+                .Scrollable(c => c.Enabled(false))
+                .EnableCustomBinding(true)
+                .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxFacilityMasterReferenceList", "FacilityMaster"))
+                .ClientEvents(events => events.OnDataBinding("FacilityMasterReferenceGrid_OnDataBinding"))
+                .Pageable(settings =>
+                {
+                    settings.Total(ViewBag.Total == null ? 0 : ViewBag.Total);
+                    settings.PageSize(ViewBag.PageSize);
+                })
+                .Sortable()
+                .Resizable(resizing => resizing.Columns(true))
+            )
+            @Html.Hidden("FacilityMasterCode", (string)ViewBag.FacilityMasterCode)
+        <div class="search-footer">
+            @Html.Hidden("isFromList", true)
+           @* <button type="button" id="btnNew" onclick="btnNewFacilityMasterRef_Click()">
+                @Resources.SYS.Global.Button_New</button>*@
+
+                  @Html.Button(Resources.SYS.Global.Button_New, "Url_FacilityMaster_Edit", new Dictionary<string, string>()
+	{
+	    {"type", "button"},
+	    {"id", "btnNew"},
+        {"needconfirm","false"},
+        {"onclick","btnNewFacilityMasterRef_Click()"}
+	})
+
+                <button type="button" id="btnBack" onclick="location.href='@Url.Content("~/FacilityMaster/List")'">
+                @Resources.SYS.Global.Button_Back</button>
+        </div>
+
+    
+</fieldset>
+
+<script language="javascript" type="text/javascript">
+    function btnNewFacilityMasterRef_Click() {
+        var data = {
+            "id": $("#FacilityMasterCode").val()
+        };
+        $.ajax({
+            type: "get",
+            dataType: "html",
+            url: "/FacilityMaster/_FacilityMasterRefNew/",
+            data: data,
+            cache: false,
+            success: function (data, textStatus) {
+                var tabStrip = $("#TabStrip");
+                var tabStripContent1 = tabStrip.data("tTabStrip").getContentElement(1);
+                $(tabStripContent1).html(data);
+            }
+        });
+    }
+
+    function onFacilityMasterRefclick(Id) {
+        var data = {
+            "Id": Id
+        };
+        $.ajax({
+            type: "get",
+            dataType: "html",
+            cache: false,
+            url: "/FacilityMaster/_FacilityMasterRefEdit/",
+            data: data,
+            success: function (data, textStatus) {
+                var tabStrip = $("#TabStrip");
+                var tabStripContent1 = tabStrip.data("tTabStrip").getContentElement(1);
+                $(tabStripContent1).html(data);
+            }
+        });
+    }
+
+</script>

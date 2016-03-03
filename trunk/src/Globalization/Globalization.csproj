@@ -263,6 +263,51 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="FMS\MaintainPlan.Designer.cs">
+      <DependentUpon>MaintainPlan.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\MaintainPlan.en-US.Designer.cs">
+      <DependentUpon>MaintainPlan.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\MaintainPlan.zh-CN.Designer.cs">
+      <DependentUpon>MaintainPlan.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\FacilityTrans.Designer.cs">
+      <DependentUpon>FacilityTrans.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\FacilityTrans.en-US.Designer.cs">
+      <DependentUpon>FacilityTrans.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\FacilityTrans.zh-CN.Designer.cs">
+      <DependentUpon>FacilityTrans.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\FacilityMaster.Designer.cs">
+      <DependentUpon>FacilityMaster.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\FacilityMaster.en-US.Designer.cs">
+      <DependentUpon>FacilityMaster.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\FacilityMaster.zh-CN.Designer.cs">
+      <DependentUpon>FacilityMaster.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="FMS\FacilityCategory.Designer.cs">
       <DependentUpon>FacilityCategory.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3417,6 +3462,45 @@
     <EmbeddedResource Include="EXT\PageLan.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PageLan.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\MaintainPlan.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MaintainPlan.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\MaintainPlan.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MaintainPlan.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\MaintainPlan.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MaintainPlan.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\FacilityTrans.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FacilityTrans.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\FacilityTrans.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FacilityTrans.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\FacilityTrans.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FacilityTrans.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\FacilityMaster.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FacilityMaster.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\FacilityMaster.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FacilityMaster.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\FacilityMaster.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FacilityMaster.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FMS\FacilityCategory.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

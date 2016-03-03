@@ -2,549 +2,131 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using com.Sconit.Entity;
+using System.ComponentModel.DataAnnotations;
+using com.Sconit.CodeMaster;
 
 //TODO: Add other using statements here
 
 namespace com.Sconit.Entity.FMS
 {
     [Serializable]
-    public partial class FacilityMaster : EntityBase
+    public partial class FacilityMaster : EntityBase,IAuditable
     {
         #region O/R Mapping Properties
-		
-		private string _fCID;
-		public string FCID
-		{
-			get
-			{
-				return _fCID;
-			}
-			set
-			{
-				_fCID = value;
-			}
-		}
-		private string _name;
-		public string Name
-		{
-			get
-			{
-				return _name;
-			}
-			set
-			{
-				_name = value;
-			}
-		}
-		private string _specification;
-		public string Specification
-		{
-			get
-			{
-				return _specification;
-			}
-			set
-			{
-				_specification = value;
-			}
-		}
-		private string _capacity;
-		public string Capacity
-		{
-			get
-			{
-				return _capacity;
-			}
-			set
-			{
-				_capacity = value;
-			}
-		}
-		private DateTime? _manufactureDate;
-		public DateTime? ManufactureDate
-		{
-			get
-			{
-				return _manufactureDate;
-			}
-			set
-			{
-				_manufactureDate = value;
-			}
-		}
-		private string _manufacturer;
-		public string Manufacturer
-		{
-			get
-			{
-				return _manufacturer;
-			}
-			set
-			{
-				_manufacturer = value;
-			}
-		}
-		private string _serialNo;
-		public string SerialNo
-		{
-			get
-			{
-				return _serialNo;
-			}
-			set
-			{
-				_serialNo = value;
-			}
-		}
-		private string _assetNo;
-		public string AssetNo
-		{
-			get
-			{
-				return _assetNo;
-			}
-			set
-			{
-				_assetNo = value;
-			}
-		}
-		private string _warrantyInfo;
-		public string WarrantyInfo
-		{
-			get
-			{
-				return _warrantyInfo;
-			}
-			set
-			{
-				_warrantyInfo = value;
-			}
-		}
-		private string _techInfo;
-		public string TechInfo
-		{
-			get
-			{
-				return _techInfo;
-			}
-			set
-			{
-				_techInfo = value;
-			}
-		}
-		private string _supplier;
-		public string Supplier
-		{
-			get
-			{
-				return _supplier;
-			}
-			set
-			{
-				_supplier = value;
-			}
-		}
-		private string _supplierInfo;
-		public string SupplierInfo
-		{
-			get
-			{
-				return _supplierInfo;
-			}
-			set
-			{
-				_supplierInfo = value;
-			}
-		}
-		private string _pONo;
-		public string PONo
-		{
-			get
-			{
-				return _pONo;
-			}
-			set
-			{
-				_pONo = value;
-			}
-		}
-        private string _effDate;
-        public string EffDate
-		{
-			get
-			{
-				return _effDate;
-			}
-			set
-			{
-				_effDate = value;
-			}
-		}
-		private string _price;
-		public string Price
-		{
-			get
-			{
-				return _price;
-			}
-			set
-			{
-				_price = value;
-			}
-		}
-		private string _owner;
-		public string Owner
-		{
-			get
-			{
-				return _owner;
-			}
-			set
-			{
-				_owner = value;
-			}
-		}
-        private string _ownerDescription;
-		public string OwnerDescription
-		{
-			get
-			{
-                return _ownerDescription;
-			}
-			set
-			{
-                _ownerDescription = value;
-			}
-		}
-		private string _remark;
-		public string Remark
-		{
-			get
-			{
-				return _remark;
-			}
-			set
-			{
-				_remark = value;
-			}
-		}
-		private DateTime _createDate;
-		public DateTime CreateDate
-		{
-			get
-			{
-				return _createDate;
-			}
-			set
-			{
-				_createDate = value;
-			}
-		}
-		private string _createUser;
-		public string CreateUser
-		{
-			get
-			{
-				return _createUser;
-			}
-			set
-			{
-				_createUser = value;
-			}
-		}
-		private DateTime _lastModifyDate;
-		public DateTime LastModifyDate
-		{
-			get
-			{
-				return _lastModifyDate;
-			}
-			set
-			{
-				_lastModifyDate = value;
-			}
-		}
-		private string _lastModifyUser;
-		public string LastModifyUser
-		{
-			get
-			{
-				return _lastModifyUser;
-			}
-			set
-			{
-				_lastModifyUser = value;
-			}
-		}
-		private string _status;
-		public string Status
-		{
-			get
-			{
-				return _status;
-			}
-			set
-			{
-				_status = value;
-			}
-		}
 
-        private bool _isInStore;
-        public Boolean IsInStore
-		{
-			get
-			{
-                return _isInStore;
-			}
-			set
-			{
-                _isInStore = value;
-			}
-		}
-		private string _oldChargePerson;
-		public string OldChargePerson
-		{
-			get
-			{
-				return _oldChargePerson;
-			}
-			set
-			{
-				_oldChargePerson = value;
-			}
-		}
-		private string _currChargePerson;
-		public string CurrChargePerson
-		{
-			get
-			{
-				return _currChargePerson;
-			}
-			set
-			{
-				_currChargePerson = value;
-			}
-		}
-		private string _chargeSite;
-		public string ChargeSite
-		{
-			get
-			{
-				return _chargeSite;
-			}
-			set
-			{
-				_chargeSite = value;
-			}
-		}
-        private string _chargeOrganization;
-        public string ChargeOrganization
-		{
-			get
-			{
-                return _chargeOrganization;
-			}
-			set
-			{
-                _chargeOrganization = value;
-			}
-		}
-		private DateTime? _chargeDate;
-        public DateTime? ChargeDate
-		{
-			get
-			{
-				return _chargeDate;
-			}
-			set
-			{
-				_chargeDate = value;
-			}
-		}
-		private string _category;
-		public string Category
-		{
-			get
-			{
-				return _category;
-			}
-			set
-			{
-				_category = value;
-			}
-		}
-		private string _maintainType;
-		public string MaintainType
-		{
-			get
-			{
-				return _maintainType;
-			}
-			set
-			{
-				_maintainType = value;
-			}
-		}
-        private DateTime? _maintainStartDate;
-        public DateTime? MaintainStartDate
-		{
-			get
-			{
-                return _maintainStartDate;
-			}
-			set
-			{
-                _maintainStartDate = value;
-			}
-		}
+        [Display(Name = "FacilityMaster_FCID", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string FCID { get; set; }
 
-        private Int32? _maintainPeriod;
-        public Int32? MaintainPeriod
-        {
-            get
-            {
-                return _maintainPeriod;
-            }
-            set
-            {
-                _maintainPeriod = value;
-            }
-        }
+        [Display(Name = "FacilityMaster_Name", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string Name { get; set; }
 
-        private Int32? _maintainLeadTime;
-        public Int32? MaintainLeadTime
-        {
-            get
-            {
-                return _maintainLeadTime;
-            }
-            set
-            {
-                _maintainLeadTime = value;
-            }
-        }
+        [Display(Name = "FacilityMaster_Specification", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string Specification { get; set; }
 
-        private DateTime? _nextMaintainTime;
-        public DateTime? NextMaintainTime
-        {
-            get
-            {
-                return _nextMaintainTime;
-            }
-            set
-            {
-                _nextMaintainTime = value;
-            }
-        }
+        [Display(Name = "FacilityMaster_Capacity", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string Capacity { get; set; }
 
-        private Int32? _maintainTypePeriod;
-        public Int32? MaintainTypePeriod
-        {
-            get
-            {
-                return _maintainTypePeriod;
-            }
-            set
-            {
-                _maintainTypePeriod = value;
-            }
-        }
+        [Display(Name = "FacilityMaster_ManufactureDate", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public DateTime? ManufactureDate { get; set; }
+
+        [Display(Name = "FacilityMaster_Manufacturer", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string Manufacturer { get; set; }
+
+        [Display(Name = "FacilityMaster_SerialNo", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string SerialNo { get; set; }
+
+        [Display(Name = "FacilityMaster_AssetNo", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string AssetNo { get; set; }
+
+        [Display(Name = "FacilityMaster_WarrantyInfo", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string WarrantyInfo { get; set; }
+
+        [Display(Name = "FacilityMaster_TechInfo", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string TechInfo { get; set; }
+
+        [Display(Name = "FacilityMaster_Supplier", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string Supplier { get; set; }
+
+        [Display(Name = "FacilityMaster_SupplierInfo", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string SupplierInfo { get; set; }
+
+        [Display(Name = "FacilityMaster_PONo", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string PONo { get; set; }
+
+        [Display(Name = "FacilityMaster_EffDate", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string EffDate { get; set; }
+
+        [Display(Name = "FacilityMaster_Price", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string Price { get; set; }
+
+        [Display(Name = "FacilityMaster_Owner", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string Owner { get; set; }
+
+        [Display(Name = "FacilityMaster_OwnerDescription", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string OwnerDescription { get; set; }
+
+        [Display(Name = "FacilityMaster_Remark", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string Remark { get; set; }
+
+        [Display(Name = "FacilityMaster_Status", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public FacilityStatus Status { get; set; }
+
+        [Display(Name = "FacilityMaster_IsInStore", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public Boolean IsInStore { get; set; }
+
+        public Int32 OldChargePersonId { get; set; }
+
+        public Int32 CurrChargePersonId { get; set; }
+
+        [Display(Name = "FacilityMaster_ChargeSite", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string ChargeSite { get; set; }
+
+        [Display(Name = "FacilityMaster_ChargeOrganization", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string ChargeOrganization { get; set; }
+
+        [Display(Name = "FacilityMaster_ChargeDate", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public DateTime? ChargeDate { get; set; }
+
+        [Display(Name = "FacilityMaster_Category", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string Category { get; set; }
+
+        [Display(Name = "FacilityMaster_OldChargePersonName", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string OldChargePersonName { get; set; }
+
+        [Display(Name = "FacilityMaster_ChargePerson", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string CurrChargePersonName { get; set; }
+
+        [Display(Name = "FacilityMaster_IsOffBalance", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public Boolean IsOffBalance { get; set; }
+
+        [Display(Name = "FacilityMaster_IsAsset", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public Boolean IsAsset { get; set; }
+
+        [Display(Name = "FacilityMaster_IsActive", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public Boolean IsActive { get; set; }
+
+        [Display(Name = "FacilityMaster_RefenceCode", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string RefenceCode { get; set; }
+
+        [Display(Name = "FacilityMaster_MaintainGroup", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string MaintainGroup { get; set; }
+
+        [Display(Name = "FacilityMaster_PrintTemplate", ResourceType = typeof(Resources.FMS.FacilityMaster))]
+        public string PrintTemplate { get; set; }
+
+        public Int32 CreateUserId { get; set; }
+        public string CreateUserName { get; set; }
+        public DateTime CreateDate { get; set; }
+        public Int32 LastModifyUserId { get; set; }
+        public string LastModifyUserName { get; set; }
+        public DateTime LastModifyDate { get; set; }
 
 
-        private string _oldChargePersonName;
-        public string OldChargePersonName
-        {
-            get
-            {
-                return _oldChargePersonName;
-            }
-            set
-            {
-                _oldChargePersonName = value;
-            }
-        }
-
-        private string _currChargePersonName;
-        public string CurrChargePersonName
-        {
-            get
-            {
-                return _currChargePersonName;
-            }
-            set
-            {
-                _currChargePersonName = value;
-            }
-        }
-
-        private Boolean _isOffBalance;
-        public Boolean IsOffBalance
-        {
-            get
-            {
-                return _isOffBalance;
-            }
-            set
-            {
-                _isOffBalance = value;
-            }
-        }
-
-        private Boolean _isAsset;
-        public Boolean IsAsset
-        {
-            get
-            {
-                return _isAsset;
-            }
-            set
-            {
-                _isAsset = value;
-            }
-        }
-
-        public string _refenceCode;
-        public string RefenceCode
-        {
-            get
-            {
-                return _refenceCode;
-            }
-            set
-            {
-                _refenceCode = value;
-            }
-        }
-
-        public string _maintainGroup;
-        public string MaintainGroup
-        {
-            get
-            {
-                return _maintainGroup;
-            }
-            set
-            {
-                _maintainGroup = value;
-            }
-        }
-        private string _printTemplate;
-        public string PrintTemplate
-        {
-            get
-            {
-                return _printTemplate;
-            }
-            set
-            {
-                _printTemplate = value;
-            }
-        }
         #endregion
 
-		public override int GetHashCode()
+        public override int GetHashCode()
         {
-			if (FCID != null)
+            if (FCID != null)
             {
                 return FCID.GetHashCode();
             }
@@ -564,9 +146,9 @@ namespace com.Sconit.Entity.FMS
             }
             else
             {
-            	return (this.FCID == another.FCID);
+                return (this.FCID == another.FCID);
             }
-        } 
+        }
     }
-	
+
 }

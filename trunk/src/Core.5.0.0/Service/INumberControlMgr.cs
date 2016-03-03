@@ -9,6 +9,7 @@ using com.Sconit.Entity.MD;
 using com.Sconit.Entity.BIL;
 using com.Sconit.Entity.TMS;
 using com.Sconit.Entity.WMS;
+using com.Sconit.Entity.FMS;
 
 namespace com.Sconit.Service
 {
@@ -69,5 +70,7 @@ namespace com.Sconit.Service
         string GetPackingListCode();
 
         string GetTransportBillNo(TransportBillMaster billMaster);
+
+        string GetFCID(FacilityMaster facilityMaster);
     }
 }

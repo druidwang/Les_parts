@@ -199,6 +199,9 @@
     <Compile Include="Controllers\CUST\CostCenterController.cs" />
     <Compile Include="Controllers\CUST\SubPrintOrderController.cs" />
     <Compile Include="Controllers\CUST\SpecialBarCodeController.cs" />
+    <Compile Include="Controllers\FMS\MaintainPlanController.cs" />
+    <Compile Include="Controllers\FMS\FacilityTransController.cs" />
+    <Compile Include="Controllers\FMS\FacilityMasterController.cs" />
     <Compile Include="Controllers\FMS\FacilityCategoryController.cs" />
     <Compile Include="Controllers\INV\HuIdEpDateChangeController.cs" />
     <Compile Include="Controllers\ISI\TaskAddressController.cs" />
@@ -400,6 +403,9 @@
     <Compile Include="Models\MRP\ExProductLineReportData.cs" />
     <Compile Include="Models\ReportModels\CustReportModel.cs" />
     <Compile Include="Models\ReportModels\CustReportSearchModel.cs" />
+    <Compile Include="Models\SearchModels\FMS\MaintainPlanSearchModel.cs" />
+    <Compile Include="Models\SearchModels\FMS\FacilityTransSearchModel.cs" />
+    <Compile Include="Models\SearchModels\FMS\FacilityMasterSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\FacilityCategorySearchModel.cs" />
     <Compile Include="Models\SearchModels\INV\HuTransSearchModel.cs" />
     <Compile Include="Models\SearchModels\ISI\TaskAddressSearchModel.cs" />
@@ -2703,6 +2709,31 @@
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityCategory\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityCategory\New.cshtml" />
     <Content Include="Views\Common\_FacilityCategoryComboBox.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\_EditList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\_FacilityMaintainEdit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\_FacilityMaintainNew.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\ItemPackage.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\ItemPackageEdit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\ItemPackageNew.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\FacilityMaintainResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityMaster\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityTrans\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityTrans\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityTrans\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityTrans\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityTrans\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityTrans\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\MaintainPlan\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\MaintainPlan\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\MaintainPlan\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\MaintainPlan\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\MaintainPlan\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\MaintainPlan\List.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

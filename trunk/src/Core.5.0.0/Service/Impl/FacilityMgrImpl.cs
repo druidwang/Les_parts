@@ -17,7 +17,7 @@ using com.Sconit.Entity.FMS;
 namespace com.Sconit.Service.Impl
 {
     [Transactional]
-    public class FacilityImpl : BaseMgr, IFacilityMgr
+    public class FacilityMgrImpl : BaseMgr, IFacilityMgr
     {
         #region 变量
         public IGenericMgr genericMgr { get; set; }
@@ -30,20 +30,23 @@ namespace com.Sconit.Service.Impl
         [Transaction(TransactionMode.Requires)]
         public  void CreateFacilityMaster(FacilityMaster facilityMaster)
         {
+            facilityMaster.FCID = numberControlMgr.GetFCID(facilityMaster);
+            facilityMaster.Status = CodeMaster.FacilityStatus.Create;
+            facilityMaster.CurrChargePersonName = genericMgr.FindById<User>(facilityMaster.CurrChargePersonId).FullName;
             genericMgr.Create(facilityMaster);
 
             #region 记事务
-
             FacilityTrans facilityTrans = new FacilityTrans();
             facilityTrans.CreateDate = DateTime.Now;
-            facilityTrans.CreateUser = facilityMaster.CreateUser;
+            facilityTrans.CreateUserId = facilityMaster.CreateUserId;
+            facilityTrans.CreateUserName = facilityMaster.CreateUserName;
             facilityTrans.EffDate = DateTime.Now.Date;
             facilityTrans.FCID = facilityMaster.FCID;
-            facilityTrans.FromChargePerson = facilityMaster.CurrChargePerson;
+            facilityTrans.FromChargePersonId = facilityMaster.CurrChargePersonId;
             facilityTrans.FromChargePersonName = facilityMaster.CurrChargePersonName;
             facilityTrans.FromOrganization = facilityMaster.ChargeOrganization;
             facilityTrans.FromChargeSite = facilityMaster.ChargeSite;
-            facilityTrans.ToChargePerson = facilityMaster.CurrChargePerson;
+            facilityTrans.ToChargePersonId = facilityMaster.CurrChargePersonId;
             facilityTrans.ToChargePersonName = facilityMaster.CurrChargePersonName;
             facilityTrans.ToOrganization = facilityMaster.ChargeOrganization;
             facilityTrans.ToChargeSite = facilityMaster.ChargeSite;

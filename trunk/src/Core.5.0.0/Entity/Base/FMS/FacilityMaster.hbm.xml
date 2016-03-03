@@ -21,28 +21,24 @@
     <property name="Owner" column="Owner" type="String" length="100" />
     <property name="OwnerDescription" column="OwnerDesc" type="String" length="100" />
     <property name="Remark" column="Remark" type="String" length="100" />
-    <property name="CreateDate" column="CreateDate" type="DateTime"  />
-    <property name="CreateUser" column="CreateUser" type="String" length="50" />
-    <property name="LastModifyDate" column="LastModifyDate" type="DateTime"  />
-    <property name="LastModifyUser" column="LastModifyUser" type="String" length="50" />
-    <property name="Status" column="Status" type="String" length="100" />
+	<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>
+	<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>
+	<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>
+	<property name="LastModifyUserId" column="LastModifyUser" type="Int32"/>
+	<property name="LastModifyUserName" column="LastModifyUserNm" type="String" length="100"/>
+	<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>
+    <property name="Status" column="Status"  />
     <property name="IsInStore" column="IsInStore" type="Boolean" />
-    <property name="OldChargePerson" column="OldChargePerson" type="String" length="100" />
+	<property name="IsActive" column="IsActive" type="Boolean" />
+    <property name="OldChargePersonId" column="OldChargePerson"  type="Int32"  />
     <property name="OldChargePersonName" column="OldChargePersonNm" type="String" length="100" />
-    <property name="CurrChargePerson" column="CurrChargePerson" type="String" length="100" />
+    <property name="CurrChargePersonId" column="CurrChargePerson"  type="Int32"  />
     <property name="CurrChargePersonName" column="CurrChargePersonNm" type="String" length="100" />
     <property name="ChargeSite" column="ChargeSite" type="String" length="100" />
     <property name="ChargeOrganization" column="ChargeOrg" type="String" length="100" />
     <property name="ChargeDate" column="ChargeDate" type="DateTime"  />
     <property name="Category" column="Category" type="String" length="100" />
-    <!--先借用维护报表分组-->
-    <property name="MaintainType" column="MaintainType" type="String" length="100" />
-    <property name="MaintainPeriod" column="MaintainPeriod" type="Int32"  /> 
-    <property name="MaintainLeadTime" column="MaintainLeadTime" type="Int32"  />
-    <property name="MaintainStartDate" column="MaintainStartDate" type="DateTime" />
-    <property name="NextMaintainTime" column="NextMaintainTime" type="DateTime" />
-    <!--先借用维护挂具使用次数-->
-    <property name="MaintainTypePeriod" column="MaintainTypePeriod" type="Int32"  />
+  
     <property name="IsOffBalance" column="IsOffBalance" type="Boolean" />
     <property name="IsAsset" column="IsAsset" type="Boolean" />
     <property name="RefenceCode" column="RefCode" type="String" length="50" />

@@ -15,6 +15,7 @@ using com.Sconit.Entity;
 using com.Sconit.Entity.Exception;
 using com.Sconit.Entity.TMS;
 using com.Sconit.Entity.WMS;
+using com.Sconit.Entity.FMS;
 
 namespace com.Sconit.Service.Impl
 {
@@ -619,6 +620,18 @@ namespace com.Sconit.Service.Impl
             string numberSuffix = GetNextSequence(BusinessConstants.NUMBERCONTROL_PROCUREMENTBILL);
             numberSuffix = numberSuffix.PadLeft(9, '0');
             return ("B3" + numberSuffix);
+        }
+        #endregion
+
+
+        #region 设施编号
+        public string GetFCID(FacilityMaster facilityMaster)
+        {
+            {
+                string numberSuffix = GetNextSequence(BusinessConstants.NUMBERCONTROL_FACILITY);
+                numberSuffix = numberSuffix.PadLeft(9, '0');
+                return ("FC" + numberSuffix);
+            }
         }
         #endregion
 

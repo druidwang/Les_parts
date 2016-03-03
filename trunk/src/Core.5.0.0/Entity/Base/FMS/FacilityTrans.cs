@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using com.Sconit.Entity;
+using System.ComponentModel.DataAnnotations;
 
 //TODO: Add other using statements here
 
@@ -11,273 +12,69 @@ namespace com.Sconit.Entity.FMS
     public partial class FacilityTrans : EntityBase
     {
         #region O/R Mapping Properties
-        private Int32 _id;
-        public Int32 Id
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                _id = value;
-            }
-        }
-        private string _fCID;
-        public string FCID
-        {
-            get
-            {
-                return _fCID;
-            }
-            set
-            {
-                _fCID = value;
-            }
-        }
-        private CodeMaster.FacilityTransType _transType;
-        public CodeMaster.FacilityTransType TransType
-        {
-            get
-            {
-                return _transType;
-            }
-            set
-            {
-                _transType = value;
-            }
-        }
-        private string _fromChargePerson;
-        public string FromChargePerson
-        {
-            get
-            {
-                return _fromChargePerson;
-            }
-            set
-            {
-                _fromChargePerson = value;
-            }
-        }
-        private string _toChargePerson;
-        public string ToChargePerson
-        {
-            get
-            {
-                return _toChargePerson;
-            }
-            set
-            {
-                _toChargePerson = value;
-            }
-        }
-        private string _fromOrganization;
-        public string FromOrganization
-        {
-            get
-            {
-                return _fromOrganization;
-            }
-            set
-            {
-                _fromOrganization = value;
-            }
-        }
-        private string _toOrganization;
-        public string ToOrganization
-        {
-            get
-            {
-                return _toOrganization;
-            }
-            set
-            {
-                _toOrganization = value;
-            }
-        }
-        private string _remark;
-        public string Remark
-        {
-            get
-            {
-                return _remark;
-            }
-            set
-            {
-                _remark = value;
-            }
-        }
-        private DateTime? _effDate;
-        public DateTime? EffDate
-        {
-            get
-            {
-                return _effDate;
-            }
-            set
-            {
-                _effDate = value;
-            }
-        }
-        private string _attachment;
-        public string Attachment
-        {
-            get
-            {
-                return _attachment;
-            }
-            set
-            {
-                _attachment = value;
-            }
-        }
-        private string _facilityCategory;
-        public string FacilityCategory
-        {
-            get
-            {
-                return _facilityCategory;
-            }
-            set
-            {
-                _facilityCategory = value;
-            }
-        }
-        private DateTime _createDate;
-        public DateTime CreateDate
-        {
-            get
-            {
-                return _createDate;
-            }
-            set
-            {
-                _createDate = value;
-            }
-        }
-        private string _createUser;
-        public string CreateUser
-        {
-            get
-            {
-                return _createUser;
-            }
-            set
-            {
-                _createUser = value;
-            }
-        }
 
-        private string _fromChargeSite;
-        public string FromChargeSite
-        {
-            get
-            {
-                return _fromChargeSite;
-            }
-            set
-            {
-                _fromChargeSite = value;
-            }
-        }
-        private string _toChargeSite;
-        public string ToChargeSite
-        {
-            get
-            {
-                return _toChargeSite;
-            }
-            set
-            {
-                _toChargeSite = value;
-            }
-        }
+        public Int32 Id { get; set; }
 
-        private string _fromChargePersonName;
-        public string FromChargePersonName
-        {
-            get
-            {
-                return _fromChargePersonName;
-            }
-            set
-            {
-                _fromChargePersonName = value;
-            }
-        }
-        private string _toChargePersonName;
-        public string ToChargePersonName
-        {
-            get
-            {
-                return _toChargePersonName;
-            }
-            set
-            {
-                _toChargePersonName = value;
-            }
-        }
-        private DateTime? _startDate;
-        public DateTime? StartDate
-        {
-            get
-            {
-                return _startDate;
-            }
-            set
-            {
-                _startDate = value;
-            }
-        }
-        private DateTime? _endDate;
-        public DateTime? EndDate
-        {
-            get
-            {
-                return _endDate;
-            }
-            set
-            {
-                _endDate = value;
-            }
-        }
-        private string _assetNo;
-        public string AssetNo
-        {
-            get
-            {
-                return _assetNo;
-            }
-            set
-            {
-                _assetNo = value;
-            }
-        }
-        private string _facilityName;
-        public string FacilityName
-        {
-            get
-            {
-                return _facilityName;
-            }
-            set
-            {
-                _facilityName = value;
-            }
-        }
+        [Display(Name = "FacilityTrans_FCID", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string FCID { get; set; }
 
-        private string _batchNo;
-        public string BatchNo
-        {
-            get
-            {
-                return _batchNo;
-            }
-            set
-            {
-                _batchNo = value;
-            }
-        }
+        [Display(Name = "FacilityTrans_TransType", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public CodeMaster.FacilityTransType TransType { get; set; }
+        public Int32 FromChargePersonId { get; set; }
+        public Int32 ToChargePersonId { get; set; }
+
+        [Display(Name = "FacilityTrans_FromOrganization", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string FromOrganization { get; set; }
+
+        [Display(Name = "FacilityTrans_ToOrganization", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string ToOrganization { get; set; }
+
+        [Display(Name = "FacilityTrans_Remark", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string Remark { get; set; }
+
+        [Display(Name = "FacilityTrans_EffDate", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public DateTime? EffDate { get; set; }
+
+        [Display(Name = "FacilityTrans_Attachment", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string Attachment { get; set; }
+
+        [Display(Name = "FacilityTrans_Category", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string FacilityCategory { get; set; }
+
+        [Display(Name = "FacilityTrans_FromChargeSite", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string FromChargeSite { get; set; }
+
+        [Display(Name = "FacilityTrans_ToChargeSite", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string ToChargeSite { get; set; }
+
+        [Display(Name = "FacilityTrans_FromChargePerson", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string FromChargePersonName { get; set; }
+
+        [Display(Name = "FacilityTrans_ToChargePerson", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string ToChargePersonName { get; set; }
+
+        [Display(Name = "FacilityTrans_StartDate", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public DateTime? StartDate { get; set; }
+
+        [Display(Name = "FacilityTrans_EndDate", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public DateTime? EndDate { get; set; }
+
+        [Display(Name = "FacilityTrans_AssetNo", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string AssetNo { get; set; }
+
+        [Display(Name = "FacilityTrans_FacilityName", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string FacilityName { get; set; }
+
+
+        public string BatchNo { get; set; }
+
+        public Int32 CreateUserId { get; set; }
+
+        [Display(Name = "FacilityTrans_CreateUser", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string CreateUserName { get; set; }
+
+        [Display(Name = "FacilityTrans_CreateDate", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public DateTime CreateDate { get; set; }
         #endregion
 
         public override int GetHashCode()

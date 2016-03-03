@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using com.Sconit.Entity;
+using System.ComponentModel.DataAnnotations;
 
 //TODO: Add other using statements here
 
@@ -11,103 +12,31 @@ namespace com.Sconit.Entity.FMS
     public partial class MaintainPlan : EntityBase
     {
         #region O/R Mapping Properties
-		
-		private string _code;
-		public string Code
-		{
-			get
-			{
-				return _code;
-			}
-			set
-			{
-				_code = value;
-			}
-		}
-		private string _description;
-		public string Description
-		{
-			get
-			{
-				return _description;
-			}
-			set
-			{
-				_description = value;
-			}
-		}
-		private string _type;
-		public string Type
-		{
-			get
-			{
-				return _type;
-			}
-			set
-			{
-				_type = value;
-			}
-		}
-		private Int32? _period;
-		public Int32? Period
-		{
-			get
-			{
-				return _period;
-			}
-			set
-			{
-				_period = value;
-			}
-		}
-		private Int32? _leadTime;
-		public Int32? LeadTime
-		{
-			get
-			{
-				return _leadTime;
-			}
-			set
-			{
-				_leadTime = value;
-			}
-		}
-		private Int32? _typePeriod;
-		public Int32? TypePeriod
-		{
-			get
-			{
-				return _typePeriod;
-			}
-			set
-			{
-				_typePeriod = value;
-			}
-		}
-        private string _facilityCategory;
-        public string FacilityCategory
-        {
-            get
-            {
-                return _facilityCategory;
-            }
-            set
-            {
-                _facilityCategory = value;
-            }
-        }
-        private string _startUpUser;
-        public string StartUpUser
-        {
-            get
-            {
-                return _startUpUser;
-            }
-            set
-            {
-                _startUpUser = value;
-            }
-        }
+
+        [Display(Name = "MaintainPlan_Code", ResourceType = typeof(Resources.FMS.MaintainPlan))]
+		public string Code{get;set;}
+
+          [Display(Name = "MaintainPlan_Description", ResourceType = typeof(Resources.FMS.MaintainPlan))]
+        public string Description { get; set; }
+
+          [Display(Name = "MaintainPlan_Type", ResourceType = typeof(Resources.FMS.MaintainPlan))]
+        public CodeMaster.MaintainPlanType Type { get; set; }
+
+          [Display(Name = "MaintainPlan_Period", ResourceType = typeof(Resources.FMS.MaintainPlan))]
+        public Int32 Period { get; set; }
+
+          [Display(Name = "MaintainPlan_LeadTime", ResourceType = typeof(Resources.FMS.MaintainPlan))]
+        public Int32 LeadTime { get; set; }
+
+          [Display(Name = "MaintainPlan_TypePeriod", ResourceType = typeof(Resources.FMS.MaintainPlan))]
+        public Int32 TypePeriod { get; set; }
+
+          [Display(Name = "MaintainPlan_FacilityCategory", ResourceType = typeof(Resources.FMS.MaintainPlan))]
+        public string FacilityCategory { get; set; }
+
+          [Display(Name = "MaintainPlan_StartUpUser", ResourceType = typeof(Resources.FMS.MaintainPlan))]
+        public string StartUpUser { get; set; }
+
         #endregion
 
 		public override int GetHashCode()

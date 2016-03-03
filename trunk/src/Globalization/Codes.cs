@@ -802,6 +802,7 @@ namespace com.Sconit.CodeMaster
         TransportPricingMethod,
         FacilityStatus,
         FacilityTransType,
+        MaintainPlanType,
     }
 
     public enum MessageType
@@ -1296,5 +1297,20 @@ namespace com.Sconit.CodeMaster
         Sell = 113,
         Lose = 114,
         Scrap = 115
+    }
+
+    /// <summary>
+    /// 预防策略类型
+    /// </summary>
+    public enum MaintainPlanType
+    {
+        Once = 0,
+        Year = 1,
+        Month = 2,
+        Week = 3,
+        Day = 4,
+        Hour = 5,
+        Minute = 6,
+        Second = 7
     }
 }
