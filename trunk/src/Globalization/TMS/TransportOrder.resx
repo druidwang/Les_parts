@@ -147,6 +147,9 @@
   <data name="TransportOrderDetail_IsReceived" xml:space="preserve">
     <value>已收</value>
   </data>
+  <data name="TransportOrderDetail_IsValuated" xml:space="preserve">
+    <value>IsValuated</value>
+  </data>
   <data name="TransportOrderDetail_LoadTime" xml:space="preserve">
     <value>装载时间</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="TransportOrderDetail_OrderRouteTo" xml:space="preserve">
     <value>到达站点</value>
+  </data>
+  <data name="TransportOrderDetail_PalletCode" xml:space="preserve">
+    <value>PalletCode</value>
   </data>
   <data name="TransportOrderDetail_PalletQty" xml:space="preserve">
     <value>栈板数</value>

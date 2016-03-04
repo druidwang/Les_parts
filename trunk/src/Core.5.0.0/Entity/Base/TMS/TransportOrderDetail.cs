@@ -78,6 +78,12 @@ namespace com.Sconit.Entity.TMS
         [Display(Name = "TransportOrderDetail_IsReceived", ResourceType = typeof(Resources.TMS.TransportOrder))]
 		public Boolean IsReceived { get; set; }
 
+        [Display(Name = "TransportOrderDetail_IsValuated", ResourceType = typeof(Resources.TMS.TransportOrder))]
+        public bool IsValuated { get; set; }
+
+        [Display(Name = "TransportOrderDetail_PalletCode", ResourceType = typeof(Resources.TMS.TransportOrder))]
+        public string PalletCode { get; set; }
+
         [Display(Name = "Common_CreateUserName", ResourceType = typeof(Resources.SYS.Global))]
         public string CreateUserName { get; set; }
         public Int32 CreateUserId { get; set; }
