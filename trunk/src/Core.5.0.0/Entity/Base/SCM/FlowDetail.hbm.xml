@@ -63,6 +63,7 @@
         <property name="MrpPriority" column="MrpPriority" type="Int32"  />
         <property name="ExtraLocationTo" column="ExtraLocationTo" type="String" length="256"  />
         <property name="ExtraLocationFrom" column="ExtraLocationFrom" type="String" length="256"  />
+        <property name="PalletCode" column="PalletCode" type="String" length="50"  />
         <property name="PalletLotSize" column="PalletLotSize" type="Decimal" />
         <property name="PackageVolumn" column="PackageVolumn" type="Decimal" />
         <property name="PackageWeight" column="PackageWeight" type="Decimal" />

@@ -162,6 +162,7 @@ namespace com.Sconit.Entity.ORD
         [Export(ExportName = "ProcumentIpDetail", ExportSeq = 40, ExportTitle = "IpMaster_Flow", ExportTitleResourceType = typeof(Resources.ORD.IpMaster))] 
         public string Flow { get; set; }
 
+        public string PalletCode { get; set; }
         public Decimal PalletLotSize { get; set; }
         public Decimal PackageVolumn { get; set; }
         public Decimal PackageWeight { get; set; }

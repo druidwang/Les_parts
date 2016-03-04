@@ -189,6 +189,7 @@ namespace com.Sconit.Entity.SCM
         [Display(Name = "FlowDetail_ExtraLocationFrom", ResourceType = typeof(Resources.SCM.FlowDetail))]
         public string ExtraLocationFrom { get; set; }
 
+        public string PalletCode { get; set; }
         public Decimal PalletLotSize { get; set; }
         public Decimal PackageVolumn { get; set; }
         public Decimal PackageWeight { get; set; }
