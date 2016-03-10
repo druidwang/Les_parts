@@ -1,31 +1,33 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace com.Sconit.Entity.MD
+namespace com.Sconit.Entity.TMS
 {
     [Serializable]
-    public partial class Pallet : EntityBase
+    public partial class TransportOrderDetailPallet : EntityBase
     {
         #region O/R Mapping Properties
 		
-		public string Code { get; set; }
-		public string Description { get; set; }
-		public Decimal Volume { get; set; }
-		public Decimal Weight { get; set; }
+		public Int32 Id { get; set; }
+        public string IpNo { get; set; }
+        public Int32 TransportOrderDetailId { get; set; }
+		public string PalletCode { get; set; }
+		public Int32 PalletQty { get; set; }
+		public DateTime CreateDate { get; set; }
 		public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
-		public DateTime CreateDate { get; set; }
+		public DateTime LastModifyDate { get; set; }
 		public Int32 LastModifyUserId { get; set; }
 		public string LastModifyUserName { get; set; }
-		public DateTime LastModifyDate { get; set; }
+		public Int32 Version { get; set; }
         
         #endregion
 
 		public override int GetHashCode()
         {
-			if (Code != null)
+			if (Id != 0)
             {
-                return Code.GetHashCode();
+                return Id.GetHashCode();
             }
             else
             {
@@ -35,7 +37,7 @@ namespace com.Sconit.Entity.MD
 
         public override bool Equals(object obj)
         {
-            Pallet another = obj as Pallet;
+            TransportOrderDetailPallet another = obj as TransportOrderDetailPallet;
 
             if (another == null)
             {
@@ -43,7 +45,7 @@ namespace com.Sconit.Entity.MD
             }
             else
             {
-            	return (this.Code == another.Code);
+            	return (this.Id == another.Id);
             }
         } 
     }

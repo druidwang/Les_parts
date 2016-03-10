@@ -146,7 +146,7 @@ namespace com.Sconit.Service.Impl
             paras[1] = new SqlParameter("@RepackResultIn", SqlDbType.Structured);
             paras[1].Value = repackResultInTable;
             paras[2] = new SqlParameter("@RepackResultOut", SqlDbType.Structured);
-            paras[2].Value = repackResultOut;
+            paras[2].Value = repackResultOutTable;
             paras[3] = new SqlParameter("@CreateUserId", SqlDbType.Int);
             paras[3].Value = user.Id;
             paras[4] = new SqlParameter("@CreateUserNm", SqlDbType.VarChar);

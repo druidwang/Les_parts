@@ -242,9 +242,9 @@ BEGIN
 					union 
 					select 2, N'翻包前的条码['+ HuId + N']已经被占用。' 
 					from #tempBuffInv_016 where IsLock = 1
-					union
-					select 2, N'翻包前的条码['+ HuId + N']已经被占用。' 
-					from #tempLocationLotDet_016 where OccupyType <> 0
+					--union
+					--select 2, N'翻包前的条码['+ HuId + N']已经被占用。' 
+					--from #tempLocationLotDet_016 where OccupyType <> 0
 
 					insert into #tempMsg_016(Lvl, Msg) select 2, N'翻包前的条码['+ HuId + N']已经被冻结。' 
 					from #tempLocationLotDet_016 where IsFreeze = 1

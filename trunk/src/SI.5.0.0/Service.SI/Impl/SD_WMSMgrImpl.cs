@@ -19,7 +19,7 @@ namespace com.Sconit.Service.SI.Impl
         public List<PickTask> GetPickTaskByUser(int pickUserId, bool isPickByHu)
         {
             int pickBy = isPickByHu?(int)CodeMaster.PickBy.Hu:(int)CodeMaster.PickBy.LotNo;
-            IList<com.Sconit.Entity.WMS.PickTask> pickTaskList = this.genericMgr.FindAll<com.Sconit.Entity.WMS.PickTask>("from PickTask p where p.PickUserId=? and p.PickBy=?", new object[]{pickUserId, pickBy});
+            IList<com.Sconit.Entity.WMS.PickTask> pickTaskList = this.genericMgr.FindAll<com.Sconit.Entity.WMS.PickTask>("from PickTask p where p.PickUserId=? and p.PickBy=? and p.IsActive = 1 and p.OrderQty > PickQty", new object[] { pickUserId, pickBy });
 
             return Mapper.Map<List<Entity.WMS.PickTask>, List<Entity.SI.SD_WMS.PickTask>>(pickTaskList.ToList());
         }
@@ -177,7 +177,7 @@ namespace com.Sconit.Service.SI.Impl
 
         public Entity.SI.SD_INV.Hu GetShipHu(string huId, string deliverBarCode)
         {
-            if (string.IsNullOrEmpty(huId))
+            if (!string.IsNullOrEmpty(huId))
             {
                 var dcs = this.genericMgr.FindAll<Entity.WMS.DeliveryBarCode>("from DeliveryBarCode dc where dc.HuId=?", huId);
                 if (dcs == null || dcs.Count == 0)

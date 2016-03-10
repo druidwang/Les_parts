@@ -1684,10 +1684,10 @@
   <data name="CodeDetail_TransportPricingMethod_Distance" xml:space="preserve">
     <value>按距离</value>
   </data>
-  <data name="CodeDetail_TransportPricingMethod_LadderVolumn" xml:space="preserve">
+  <data name="CodeDetail_TransportPricingMethod_LadderVolume" xml:space="preserve">
     <value>阶梯体积</value>
   </data>
-  <data name="CodeDetail_TransportPricingMethod_Volumn" xml:space="preserve">
+  <data name="CodeDetail_TransportPricingMethod_Volume" xml:space="preserve">
     <value>按体积</value>
   </data>
   <data name="CodeDetail_TransportPricingMethod_Weight" xml:space="preserve">

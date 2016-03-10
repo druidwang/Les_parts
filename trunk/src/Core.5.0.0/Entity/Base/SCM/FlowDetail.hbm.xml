@@ -65,7 +65,7 @@
         <property name="ExtraLocationFrom" column="ExtraLocationFrom" type="String" length="256"  />
         <property name="PalletCode" column="PalletCode" type="String" length="50"  />
         <property name="PalletLotSize" column="PalletLotSize" type="Decimal" />
-        <property name="PackageVolumn" column="PackageVolumn" type="Decimal" />
+        <property name="PackageVolume" column="PackageVolume" type="Decimal" />
         <property name="PackageWeight" column="PackageWeight" type="Decimal" />
     </class>
 </hibernate-mapping>

@@ -513,9 +513,9 @@ namespace com.Sconit.Service.Impl
         {
             #region 计算体积和重量
             IList<IpDetail> ipDetailList = genericMgr.FindAll<IpDetail>("from IpDetail where IpNo = ?", transportOrderDetail.IpNo);
-            decimal totalPackageVolumn = ipDetailList.Sum(p => p.PackageVolumn * p.Qty / p.UnitCount);
+            decimal totalPackageVolume = ipDetailList.Sum(p => p.PackageVolume * p.Qty / p.UnitCount);
             decimal totalPackageWeight = ipDetailList.Sum(p => p.PackageWeight * p.Qty / p.UnitCount);
-            transportOrderDetail.Volume = totalPackageVolumn;
+            transportOrderDetail.Volume = totalPackageVolume;
             transportOrderDetail.Weight = totalPackageWeight;
             #endregion
         }
@@ -794,7 +794,7 @@ namespace com.Sconit.Service.Impl
                     transportOrderDetail.EstPalletQty = Convert.ToInt32(Math.Ceiling(ipDetailList.Sum(
                         d => (d.PalletLotSize > 0 ? (d.Qty / d.PalletLotSize) : ((itemList.Where(i => i.Code == d.Item).Single().PalletLotSize > 0 ? (d.Qty / itemList.Where(i => i.Code == d.Item).Single().PalletLotSize) : 0))))));
                     transportOrderDetail.EstVolume = ipDetailList.Sum(
-                        d => (d.UnitCount > 0 ? (d.Qty / d.UnitCount) : ((itemList.Where(i => i.Code == d.Item).Single().UnitCount > 0 ? (d.Qty / itemList.Where(i => i.Code == d.Item).Single().UnitCount) : 0))) * d.PackageVolumn);
+                        d => (d.UnitCount > 0 ? (d.Qty / d.UnitCount) : ((itemList.Where(i => i.Code == d.Item).Single().UnitCount > 0 ? (d.Qty / itemList.Where(i => i.Code == d.Item).Single().UnitCount) : 0))) * d.PackageVolume);
                     transportOrderDetail.EstVolume = ipDetailList.Sum(
                         d => (d.UnitCount > 0 ? (d.Qty / d.UnitCount) : ((itemList.Where(i => i.Code == d.Item).Single().UnitCount > 0 ? (d.Qty / itemList.Where(i => i.Code == d.Item).Single().UnitCount) : 0))) * d.PackageWeight);
                     transportOrderDetail.EstBoxCount = Convert.ToInt32(ipDetailList.Sum(
@@ -842,12 +842,154 @@ namespace com.Sconit.Service.Impl
                 return null;
             }
         }
-        #endregion
 
-
-        public void Ship(string transOrder, List<string> huIds)
+        private void CalculateLoad(IList<TransportOrderDetail> transportOrderDetailList)
         {
+            #region 查找所有ASN明细
+            StringBuilder selectIpDetailHql = null;
+            IList<object> selectIpDetailParms = new List<object>();
+            foreach (TransportOrderDetail transportOrderDetail in transportOrderDetailList)
+            {
+                if (selectIpDetailHql == null)
+                {
+                    selectIpDetailHql = new StringBuilder("from IpDet where IpNo in (?");
+                }
+                else
+                {
+                    selectIpDetailHql.Append(", ?");
+                }
+
+                selectIpDetailParms.Add(transportOrderDetail.IpNo);
+            }
+            selectIpDetailHql.Append(")");
+
+            IList<IpDetail> ipDetailList = genericMgr.FindAll<IpDetail>(selectIpDetailHql.ToString(), selectIpDetailParms.ToArray());
+            #endregion
+
+            #region 查找ASN用的托盘
+            StringBuilder selectOrderDetPalletHql = null;
+            IList<object> selectOrderDetPalletParms = new List<object>();
+            foreach (TransportOrderDetail transportOrderDetail in transportOrderDetailList)
+            {
+                if (selectOrderDetPalletHql == null)
+                {
+                    selectOrderDetPalletHql = new StringBuilder("from TransportOrderDetailPallet where TransportOrderDetailId in (?");
+                }
+                else
+                {
+                    selectOrderDetPalletHql.Append(", ?");
+                }
+
+                selectOrderDetPalletParms.Add(transportOrderDetail.Id);
+            }
+            selectOrderDetPalletHql.Append(")");
+
+            IList<TransportOrderDetailPallet> transportOrderDetailPalletList = genericMgr.FindAll<TransportOrderDetailPallet>(selectOrderDetPalletHql.ToString(), selectOrderDetPalletParms.ToArray());
+            #endregion
+
+            #region 查找托盘类型
+            StringBuilder selectPalletHql = null;
+            IList<object> selectPalletParms = new List<object>();
+            foreach (IpDetail ipDetail in ipDetailList)
+            {
+                if (string.IsNullOrWhiteSpace(ipDetail.PalletCode)
+                    && !selectPalletParms.Contains(ipDetail.PalletCode))
+                {
+                    if (selectPalletHql == null)
+                    {
+                        selectPalletHql = new StringBuilder("from Pallet where Code in (?");
+                    }
+                    else
+                    {
+                        selectPalletHql.Append(", ?");
+                    }
+
+                    selectPalletParms.Add(ipDetail.PalletCode);
+                }
+            }
+
+            foreach (TransportOrderDetailPallet transportOrderDetailPallet in transportOrderDetailPalletList)
+            {
+                if (string.IsNullOrWhiteSpace(transportOrderDetailPallet.PalletCode)
+                    && !selectPalletParms.Contains(transportOrderDetailPallet.PalletCode))
+                {
+                    if (selectPalletHql == null)
+                    {
+                        selectPalletHql = new StringBuilder("from Pallet where Code in (?");
+                    }
+                    else
+                    {
+                        selectPalletHql.Append(", ?");
+                    }
+
+                    selectPalletParms.Add(transportOrderDetailPallet.PalletCode);
+                }
+            }
+
+            selectPalletHql.Append(")");
+
+            IList<Pallet> palletList = genericMgr.FindAll<Pallet>(selectPalletHql.ToString(), selectPalletParms.ToArray());
+            #endregion
+
+            #region 按ASN汇总计算重量和体积
+            var ipDetailLoad = from ipDetail in ipDetailList
+                                select new
+                                {
+                                    IpNo = ipDetail.IpNo,
+                                    PalletCode = ipDetail.PalletCode,
+                                    EstBoxCount = ipDetail.UnitCount != 0 ? (ipDetail.Qty / ipDetail.UnitCount) : (decimal?)null,
+                                    EstPalletQty = ipDetail.PalletLotSize != 0 ? ipDetail.Qty / ipDetail.PalletLotSize : (decimal?)null,
+                                    EstVolume = ipDetail.UnitCount != 0 ? ipDetail.PackageVolume * ipDetail.Qty / ipDetail.UnitCount : (decimal?)null,
+                                    EstWeight = ipDetail.UnitCount != 0 ? ipDetail.PackageWeight * ipDetail.Qty / ipDetail.UnitCount : (decimal?)null,
+                                };
+
+            var orderDetailPalletLoad = from odp in transportOrderDetailPalletList
+                                        join p in palletList on odp.PalletCode equals p.Code
+                                        select new
+                                        {
+                                            IpNo = odp.IpNo,
+                                            PalletQty = odp.PalletQty,
+                                            Volumn = odp.PalletQty * p.Volume,
+                                            Weight = odp.PalletQty * p.Weight,
+                                        };
+
+            var groupedIpDetailLoad = from i in ipDetailLoad
+                                        group i by new {IpNo = i.IpNo, PalletCode = i.PalletCode} into result
+                                        select new
+                                        {
+                                            IpNo = result.Key.IpNo,
+                                            PalletCode = result.Key.PalletCode,
+                                            EstBoxCount = result.Sum(i => i.EstBoxCount),
+                                            EstPalletQty = result.Sum(i => i.EstPalletQty),
+                                            EstVolume = result.Sum(i => i.EstVolume),
+                                            EstWeight = result.Sum(i => i.EstWeight),
+                                        };
+
+            var groupedIpDetailWithPalletLoad = from i in groupedIpDetailLoad
+                                                join p in palletList on i.PalletCode equals p.Code 
+                                                into q
+                                                from g in q.DefaultIfEmpty()
+                                                select new
+                                                {
+                                                    IpNo = i.IpNo,
+                                                    PalletCode = i.PalletCode,
+                                                    EstBoxCount = i.EstBoxCount,
+                                                    EstPalletQty = i.EstPalletQty,
+                                                    EstVolume = i.EstVolume + (g.Code != null && g.Volume != 0 ? i.EstPalletQty * g.Volume : 0),
+                                                    EstWeight = i.EstWeight + (g.Code != null && g.Weight != 0 ? i.EstPalletQty * g.Weight : 0),
+                                                };
+
+            foreach (TransportOrderDetail transportOrderDetail in transportOrderDetailList)
+            {
+               var p = groupedIpDetailWithPalletLoad.Where(g=>g.IpNo == transportOrderDetail.IpNo);
+               transportOrderDetail.EstBoxCount = (int)Math.Round(p.Sum(d => d.EstBoxCount).Value);
+               transportOrderDetail.EstPalletQty = (int)Math.Round(p.Sum(d => d.EstPalletQty).Value);
+               transportOrderDetail.EstVolume = p.Sum(d => d.EstVolume);
+               transportOrderDetail.EstWeight = p.Sum(d => d.EstWeight);
+            }
+            #endregion
 
         }
+        #endregion
     }
 }

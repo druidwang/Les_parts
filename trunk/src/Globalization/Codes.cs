@@ -13,6 +13,7 @@ namespace com.Sconit.CodeMaster
         Terminal = 5,
         SI = 6,
         OrderType = 7,
+        Carrier = 8
     }
 
 
@@ -1246,8 +1247,8 @@ namespace com.Sconit.CodeMaster
         Chartered = 0,
         Distance = 1,
         Weight = 2,
-        Volumn = 3,
-        LadderVolumn = 4
+        Volume = 3,
+        LadderVolume = 4
     }
 
     public enum PickBy

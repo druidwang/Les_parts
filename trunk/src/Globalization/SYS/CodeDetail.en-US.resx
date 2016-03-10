@@ -280,11 +280,11 @@
   <data name="CodeDetail_TransportPricingMethod_Distance" xml:space="preserve">
     <value>Distance</value>
   </data>
-  <data name="CodeDetail_TransportPricingMethod_LadderVolumn" xml:space="preserve">
-    <value>LadderVolumn</value>
+  <data name="CodeDetail_TransportPricingMethod_LadderVolume" xml:space="preserve">
+    <value>LadderVolume</value>
   </data>
-  <data name="CodeDetail_TransportPricingMethod_Volumn" xml:space="preserve">
-    <value>Volumn</value>
+  <data name="CodeDetail_TransportPricingMethod_Volume" xml:space="preserve">
+    <value>Volume</value>
   </data>
   <data name="CodeDetail_TransportPricingMethod_Weight" xml:space="preserve">
     <value>Weight</value>

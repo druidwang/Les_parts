@@ -448,7 +448,7 @@ namespace com.Sconit.Service.Impl
                 #endregion
 
                 #region 体积
-                if (order.PricingMethod == CodeMaster.TransportPricingMethod.Volumn)
+                if (order.PricingMethod == CodeMaster.TransportPricingMethod.Volume)
                 {
                     priceListDetail = tPriceListDetailList.Where(p => p.ShipFrom == order.ShipFrom && p.ShipTo == order.ShipTo && p.PricingMethod == order.PricingMethod && p.StartDate < order.StartDate && (p.EndDate == null || p.EndDate > order.StartDate)).FirstOrDefault();
 
@@ -483,7 +483,7 @@ namespace com.Sconit.Service.Impl
                 #endregion
 
                 #region 阶梯体积
-                if (order.PricingMethod == CodeMaster.TransportPricingMethod.LadderVolumn)
+                if (order.PricingMethod == CodeMaster.TransportPricingMethod.LadderVolume)
                 {
 
                     decimal totalVolume = order.TransportOrderDetailList.Sum(p => p.Volume).Value;

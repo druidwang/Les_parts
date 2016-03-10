@@ -5,7 +5,7 @@
       		<generator class="assigned" />
         </id>
 		<property name="Description" column="Desc1" type="String" length="50"/>	
-		<property name="Volumn" column="Volumn" type="Decimal"/>	
+		<property name="Volume" column="Volume" type="Decimal"/>	
 		<property name="Weight" column="Weight" type="Decimal"/>	
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	

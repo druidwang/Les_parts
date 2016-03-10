@@ -72,7 +72,7 @@
         <property name="IsChangeUnitCount" column="IsChangeUC" type="Boolean" />
         <property name="PalletCode" column="PalletCode" type="String" length="50" />
         <property name="PalletLotSize" column="PalletLotSize" type="Decimal" />
-        <property name="PackageVolumn" column="PackageVolumn" type="Decimal" />
+        <property name="PackageVolume" column="PackageVolume" type="Decimal" />
         <property name="PackageWeight" column="PackageWeight" type="Decimal" />
         <!--<bag name="IpLocationDetails" table="ORD_IpLocationDet" inverse="true" lazy="true">
             <key column="IpDetailId" />

@@ -196,6 +196,7 @@
     <Compile Include="Base\MD\Location.cs" />
     <Compile Include="Base\MD\LocationArea.cs" />
     <Compile Include="Base\MD\LocationBin.cs" />
+    <Compile Include="Base\MD\Pallet.cs" />
     <Compile Include="Base\MD\Party.cs" />
     <Compile Include="Base\MD\PartyAddress.cs" />
     <Compile Include="Base\MD\SpecialTime.cs" />
@@ -426,6 +427,7 @@
     <Compile Include="MD\Location.cs" />
     <Compile Include="MD\LocationArea.cs" />
     <Compile Include="MD\LocationBin.cs" />
+    <Compile Include="MD\Pallet.cs" />
     <Compile Include="MD\Party.cs" />
     <Compile Include="MD\PartyAddress.cs" />
     <Compile Include="MD\Region.cs" />
@@ -999,6 +1001,7 @@
     <EmbeddedResource Include="Base\FMS\FacilityStockMaster.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\FacilityTrans.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\MaintainPlan.hbm.xml" />
+    <Content Include="Base\MD\Pallet.hbm.xml" />
     <Content Include="Base\WMS\PickOccupy.hbm.xml" />
     <Content Include="Base\WMS\RepackOccupy.hbm.xml" />
   </ItemGroup>

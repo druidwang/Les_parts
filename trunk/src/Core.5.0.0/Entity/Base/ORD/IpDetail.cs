@@ -164,7 +164,7 @@ namespace com.Sconit.Entity.ORD
 
         public string PalletCode { get; set; }
         public Decimal PalletLotSize { get; set; }
-        public Decimal PackageVolumn { get; set; }
+        public Decimal PackageVolume { get; set; }
         public Decimal PackageWeight { get; set; }
         #endregion
 
