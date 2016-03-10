@@ -13,6 +13,7 @@ namespace com.Sconit.CodeMaster
         Terminal = 5,
         SI = 6,
         OrderType = 7,
+        Carrier = 8,
     }
 
 

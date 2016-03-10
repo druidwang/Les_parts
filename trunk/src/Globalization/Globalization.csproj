@@ -2832,18 +2832,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="TMS\TransportBillMstr.en-US.Designer.cs">
-      <DependentUpon>TransportBillMstr.en-US.resx</DependentUpon>
+    <Compile Include="TMS\TransportBillMaster.en-US.Designer.cs">
+      <DependentUpon>TransportBillMaster.en-US.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="TMS\TransportBillMstr.zh-CN.Designer.cs">
-      <DependentUpon>TransportBillMstr.zh-CN.resx</DependentUpon>
+    <Compile Include="TMS\TransportBillMaster.zh-CN.Designer.cs">
+      <DependentUpon>TransportBillMaster.zh-CN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="TMS\TransportBillMstr.Designer.cs">
-      <DependentUpon>TransportBillMstr.resx</DependentUpon>
+    <Compile Include="TMS\TransportBillMaster.Designer.cs">
+      <DependentUpon>TransportBillMaster.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -5524,19 +5524,19 @@
       <LastGenOutput>TransportBillDetail.zh-CN.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TMS\TransportBillMstr.en-US.resx">
+    <EmbeddedResource Include="TMS\TransportBillMaster.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>TransportBillMstr.en-US.Designer.cs</LastGenOutput>
+      <LastGenOutput>TransportBillMaster.en-US.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TMS\TransportBillMstr.zh-CN.resx">
+    <EmbeddedResource Include="TMS\TransportBillMaster.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>TransportBillMstr.zh-CN.Designer.cs</LastGenOutput>
+      <LastGenOutput>TransportBillMaster.zh-CN.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="TMS\TransportBillMstr.resx">
+    <EmbeddedResource Include="TMS\TransportBillMaster.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>TransportBillMstr.Designer.cs</LastGenOutput>
+      <LastGenOutput>TransportBillMaster.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="TMS\TransportOrder.en-US.resx">

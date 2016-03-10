@@ -1738,4 +1738,7 @@
   <data name="CodeDetail_MaintainPlanType_Year" xml:space="preserve">
     <value>年</value>
   </data>
+  <data name="CodeDetail_PermissionCategoryType_Carrier" xml:space="preserve">
+    <value>承运商</value>
+  </data>
 </root>

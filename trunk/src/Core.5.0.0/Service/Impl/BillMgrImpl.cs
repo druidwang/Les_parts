@@ -566,7 +566,7 @@ namespace com.Sconit.Service.Impl
             {
                 BillMaster bill = null;
 
-                #region 查找和待开明细的transactionType、billAddress、currency一致的BillMstr
+                #region 查找和待开明细的transactionType、billAddress、currency一致的TransportBillMaster
                 foreach (BillMaster thisBill in billList)
                 {
                     if (thisBill.Type == actingBill.Type && thisBill.BillAddress == actingBill.BillAddress

@@ -75,6 +75,8 @@
 
         private static string selectEqRegionStatement = "from Region as r where r.Code = ?";
 
+        private static string selectEqCarrierStatement = "from Carrier as c where c.Code = ?";
+
         private static string selectLikeRoutingStatement = "from RoutingMaster as r where r.Code like ? and IsActive = ?";
 
         private static string selectEqBomStatement = "from BomMaster as b where b.Code = ? and IsActive = ?";
@@ -2744,12 +2746,12 @@
             ViewBag.Enable = enable;
             ViewBag.CheckPermission = checkPermission;
 
-            IList<Carrier> customerList = new List<Carrier>();
+            IList<Carrier> carrierList = new List<Carrier>();
             if (selectedValue != null && selectedValue.Trim() != string.Empty)
             {
-                customerList = queryMgr.FindAll<Carrier>(selectEqCustomerStatement, selectedValue);
+                carrierList = queryMgr.FindAll<Carrier>(selectEqCarrierStatement, selectedValue);
             }
-            return PartialView(new SelectList(customerList, "Code", "CodeDescription", selectedValue));
+            return PartialView(new SelectList(carrierList, "Code", "CodeDescription", selectedValue));
         }
 
         public ActionResult _AjaxLoadingCarrier(string text, bool checkPermission)
@@ -2759,12 +2761,12 @@
             paraList.Add(text + "%");
             paraList.Add(true);
             User user = SecurityContextHolder.Get();
-            IList<Carrier> customerList = queryMgr.FindAll<Carrier>(hql, paraList.ToArray());
+            IList<Carrier> carrierList = queryMgr.FindAll<Carrier>(hql, paraList.ToArray());
             if (checkPermission)
             {
-                customerList = customerList.Where(p => user.CustomerPermissions.Contains(p.Code)).Take(maxRow).ToList();
+                carrierList = carrierList.Where(p => user.CarrierPermissions.Contains(p.Code)).Take(maxRow).ToList();
             }
-            return new JsonResult { Data = new SelectList(customerList, "Code", "CodeDescription", text) };
+            return new JsonResult { Data = new SelectList(carrierList, "Code", "CodeDescription", text) };
         }
         #endregion
 

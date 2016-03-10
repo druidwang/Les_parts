@@ -394,6 +394,24 @@ namespace Resources.TMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TransportOrder Calculated Successfully.
+        /// </summary>
+        public static string TransportOrderMaster_Calculated {
+            get {
+                return ResourceManager.GetString("TransportOrderMaster_Calculated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TransportOrder Cancled Successfully.
+        /// </summary>
+        public static string TransportOrderMaster_Canceled {
+            get {
+                return ResourceManager.GetString("TransportOrderMaster_Canceled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 承运商.
         /// </summary>
         public static string TransportOrderMaster_Carrier {
@@ -408,6 +426,15 @@ namespace Resources.TMS {
         public static string TransportOrderMaster_CarrierName {
             get {
                 return ResourceManager.GetString("TransportOrderMaster_CarrierName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TransportOrder Closed Successfully.
+        /// </summary>
+        public static string TransportOrderMaster_Closed {
+            get {
+                return ResourceManager.GetString("TransportOrderMaster_Closed", resourceCulture);
             }
         }
         
@@ -601,11 +628,29 @@ namespace Resources.TMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TransportOrder Started Successfully.
+        /// </summary>
+        public static string TransportOrderMaster_Started {
+            get {
+                return ResourceManager.GetString("TransportOrderMaster_Started", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 状态.
         /// </summary>
         public static string TransportOrderMaster_Status {
             get {
                 return ResourceManager.GetString("TransportOrderMaster_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TransportOrder Released Successfully.
+        /// </summary>
+        public static string TransportOrderMaster_Submited {
+            get {
+                return ResourceManager.GetString("TransportOrderMaster_Submited", resourceCulture);
             }
         }
         

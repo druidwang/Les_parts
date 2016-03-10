@@ -2491,6 +2491,15 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Carrier.
+        /// </summary>
+        public static string CodeDetail_PermissionCategoryType_Carrier {
+            get {
+                return ResourceManager.GetString("CodeDetail_PermissionCategoryType_Carrier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer.
         /// </summary>
         public static string CodeDetail_PermissionCategoryType_Customer {

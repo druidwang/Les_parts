@@ -75,5 +75,8 @@ namespace com.Sconit.Service
         IList<TransportActingBill> GetRecalculatePrice(CodeMaster.BillType billType, string party, string flow,
             string receiptNo, string externalReceiptNo, string item, string currency, DateTime startDate, DateTime endDate, bool includeNoEstPrice);
 
+
+        TransportActingBill CreateTransportActingBill(string orderNo);
+
     }
 }

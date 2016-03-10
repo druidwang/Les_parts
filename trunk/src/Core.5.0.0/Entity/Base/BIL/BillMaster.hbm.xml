@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
- 	<class name="com.Sconit.Entity.BIL.BillMaster, com.Sconit.Entity" table="BIL_BillMstr" lazy="false">
+ 	<class name="com.Sconit.Entity.BIL.BillMaster, com.Sconit.Entity" table="BIL_TransportBillMaster" lazy="false">
 		<id name="BillNo" column="BillNo" type="String" unsaved-value="null" >
       		<generator class="assigned" />
         </id>

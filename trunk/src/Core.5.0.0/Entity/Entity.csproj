@@ -264,6 +264,7 @@
     <Compile Include="Base\SYS\NumberControl.cs" />
     <Compile Include="Base\SYS\SNRule.cs" />
     <Compile Include="Base\SYS\SNRuleExt.cs" />
+    <Compile Include="Base\TMS\TransportActingBillDetail.cs" />
     <Compile Include="Base\TMS\Driver.cs" />
     <Compile Include="Base\TMS\Mileage.cs" />
     <Compile Include="Base\TMS\Tonnage.cs" />
@@ -646,6 +647,7 @@
     <Compile Include="SYS\NumberControl.cs" />
     <Compile Include="SYS\SNRule.cs" />
     <Compile Include="TMSConstants.cs" />
+    <Compile Include="TMS\TransportActingBillDetail.cs" />
     <Compile Include="TMS\TransportBillDetail.cs" />
     <Compile Include="TMS\TransportBillMaster.cs" />
     <Compile Include="TMS\TransportActingBill.cs" />
@@ -999,6 +1001,9 @@
     <EmbeddedResource Include="Base\FMS\FacilityStockMaster.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\FacilityTrans.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\MaintainPlan.hbm.xml" />
+    <EmbeddedResource Include="Base\TMS\TransportActingBillDetail.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <Content Include="Base\WMS\PickOccupy.hbm.xml" />
     <Content Include="Base\WMS\RepackOccupy.hbm.xml" />
   </ItemGroup>

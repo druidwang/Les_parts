@@ -12,7 +12,7 @@ namespace com.Sconit.Entity.TMS
         #region Non O/R Mapping Properties
 
         [CodeDetailDescriptionAttribute(CodeMaster = com.Sconit.CodeMaster.CodeMaster.BillStatus, ValueField = "Status")]
-        [Display(Name = "BillMstr_Status", ResourceType = typeof(Resources.TMS.TransportBillMstr))]
+        [Display(Name = "TransportBillMaster_Status", ResourceType = typeof(Resources.TMS.TransportBillMaster))]
         public string StatusDescription { get; set; }
 
         public IList<TransportBillDetail> BillDetails { get; set; }

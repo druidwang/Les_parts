@@ -401,10 +401,11 @@ namespace com.Sconit.Service.Impl
 
         #region TransportActingBill
         [Transaction(TransactionMode.Requires)]
-        public TransportActingBill CreateTransportActingBill(TransportOrderMaster order, User user)
+        public TransportActingBill CreateTransportActingBill(string orderNo)
         {
-
+            TransportOrderMaster order = genericMgr.FindById<TransportOrderMaster>(orderNo);
             TransportActingBill actBill = new TransportActingBill();
+            IList<TransportActingBillDetail> transportActingBillDetailList = new List<TransportActingBillDetail>();
             if (!string.IsNullOrEmpty(order.Expense))
             {
                 #region 费用单
@@ -425,59 +426,73 @@ namespace com.Sconit.Service.Impl
                 string currency = tPriceList.Currency;
                 IList<TransportPriceListDetail> tPriceListDetailList = genericMgr.FindAll<TransportPriceListDetail>("from TransportPriceListDetail t where t.PriceList = ?", order.PriceList);
 
-                TransportPriceListDetail priceListDetail = null;
-                
+
 
                 #region 包车
                 if (order.PricingMethod == CodeMaster.TransportPricingMethod.Chartered)
                 {
-                    priceListDetail = tPriceListDetailList.Where(p => p.ShipFrom == order.ShipFrom && p.ShipTo == order.ShipTo && p.PricingMethod == order.PricingMethod && p.Tonnage == order.Tonnage && p.StartDate < order.StartDate && (p.EndDate == null || p.EndDate > order.StartDate)).FirstOrDefault();
+                    TransportPriceListDetail tPriceListDetail = tPriceListDetailList.Where(p => p.ShipFrom == order.ShipFrom && p.ShipTo == order.ShipTo && p.PricingMethod == order.PricingMethod && p.Tonnage == order.Tonnage && p.StartDate < order.StartDate && (p.EndDate == null || p.EndDate > order.StartDate)).FirstOrDefault();
 
-                    if (priceListDetail == null)
+                    if (tPriceListDetail == null)
                     {
                         throw new BusinessException("没有找到对应的价格单明细");
                     }
 
                     actBill.BillQty = 1;
-                    if (priceListDetail != null && actBill.UnitPrice == 0)
-                    {
-                        actBill.UnitPrice = priceListDetail.UnitPrice;
-                        actBill.BillAmount = actBill.UnitPrice * actBill.BillQty;
-                    }
+
+                    actBill.UnitPrice = tPriceListDetail.UnitPrice;
+                    actBill.BillAmount = actBill.UnitPrice * actBill.BillQty;
+
                 }
                 #endregion
 
                 #region 体积
                 if (order.PricingMethod == CodeMaster.TransportPricingMethod.Volumn)
                 {
-                    priceListDetail = tPriceListDetailList.Where(p => p.ShipFrom == order.ShipFrom && p.ShipTo == order.ShipTo && p.PricingMethod == order.PricingMethod && p.StartDate < order.StartDate && (p.EndDate == null || p.EndDate > order.StartDate)).FirstOrDefault();
-
-                    decimal totalVolume = order.TransportOrderDetailList.Sum(p => p.Volume).Value;
-
-                    if (priceListDetail == null)
+                    decimal totalVolume = 0;
+                    TransportPriceListDetail tPriceListDetail = null;
+                    foreach (TransportOrderDetail d in order.TransportOrderDetailList)
                     {
-                        throw new BusinessException("没有找到对应的价格单明细");
+                        TransportActingBillDetail transportActingBillDetail = new TransportActingBillDetail();
+                        tPriceListDetail = tPriceListDetailList.Where(p => p.ShipFrom == d.ShipFrom && p.ShipTo == d.ShipTo && p.Tonnage == order.Tonnage && p.PricingMethod == order.PricingMethod && p.StartDate < order.StartDate && (p.EndDate == null || p.EndDate > order.StartDate)).FirstOrDefault();
+
+                        if (tPriceListDetail == null)
+                        {
+                            throw new BusinessException("没有找到对应的价格单明细");
+                        }
+
+                        #region 最小起运量
+                        if (d.Volume.Value < tPriceListDetail.MinVolume)
+                        {
+                            totalVolume += tPriceListDetail.MinVolume;
+                        }
+                        else
+                        {
+                            totalVolume += d.Volume.Value;
+                        }
+                        #endregion
+
+                        transportActingBillDetail.BillQty = totalVolume;
+                        transportActingBillDetail.BillAmount = totalVolume * tPriceListDetail.UnitPrice;
+                        transportActingBillDetail.Currency = tPriceListDetail.Currency;
+                        transportActingBillDetail.IpNo = d.IpNo;
+                        transportActingBillDetail.IsIncludeTax = tPriceList.IsIncludeTax;
+                        transportActingBillDetail.PriceListDetail = tPriceListDetail.Id;
+                        transportActingBillDetail.ShipFrom = d.ShipFrom;
+                        transportActingBillDetail.ShipFromAddress = d.ShipFromAddress;
+                        transportActingBillDetail.ShipTo = d.ShipTo;
+                        transportActingBillDetail.ShipToAddress = d.ShipToAddress;
+                        transportActingBillDetail.TaxCode = tPriceList.Tax;
+                        transportActingBillDetail.UnitPrice = tPriceListDetail.UnitPrice;
+                        transportActingBillDetailList.Add(transportActingBillDetail);
                     }
-
-                    #region 托盘数
-
-                    #endregion
-
-
-                    #region 最小起运量
-                    if (totalVolume < priceListDetail.MinVolume)
-                    {
-                        totalVolume = priceListDetail.MinVolume;
-                    }
-                    #endregion
 
                     actBill.BillQty = totalVolume;
-                    if (priceListDetail != null && actBill.UnitPrice == 0)
+                    if (tPriceListDetail != null && actBill.UnitPrice == 0)
                     {
-                        actBill.UnitPrice = priceListDetail.UnitPrice;
+                        actBill.UnitPrice = tPriceListDetail.UnitPrice;
                     }
                     actBill.BillAmount = actBill.UnitPrice * actBill.BillQty;
-
 
                 }
                 #endregion
@@ -486,95 +501,145 @@ namespace com.Sconit.Service.Impl
                 if (order.PricingMethod == CodeMaster.TransportPricingMethod.LadderVolumn)
                 {
 
-                    decimal totalVolume = order.TransportOrderDetailList.Sum(p => p.Volume).Value;
-                    #region 最小起运量
-                    if (totalVolume < priceListDetail.MinVolume)
+                    decimal totalVolume = 0;
+                    decimal totalAmount = 0;
+                    TransportPriceListDetail tPriceListDetail = null;
+                    foreach (TransportOrderDetail d in order.TransportOrderDetailList)
                     {
-                        totalVolume = priceListDetail.MinVolume;
-                    }
-                    #endregion
+                        TransportActingBillDetail transportActingBillDetail = new TransportActingBillDetail();
+                        decimal detailVolume = d.Volume.Value;
+                        #region 最小起运量
+                        if (detailVolume < tPriceListDetail.MinVolume)
+                        {
+                            detailVolume = tPriceListDetail.MinVolume;
+                        }
+                        #endregion
 
-                    priceListDetail = tPriceListDetailList.Where(p => p.ShipFrom == order.ShipFrom && p.ShipTo == order.ShipTo
-                       && p.PricingMethod == order.PricingMethod && p.StartDate < order.StartDate && (p.EndDate == null || p.EndDate > order.StartDate)
-                       && p.StartQty < totalVolume && (!p.EndQty.HasValue || p.EndQty.Value > totalVolume)).FirstOrDefault();
-                    if (priceListDetail == null)
-                    {
-                        throw new BusinessException("没有找到对应的价格单明细");
+                        tPriceListDetail = tPriceListDetailList.Where(p => p.ShipFrom == d.ShipFrom && p.ShipTo == d.ShipTo
+                           && p.PricingMethod == order.PricingMethod && p.StartDate < order.StartDate && (p.EndDate == null || p.EndDate > order.StartDate)
+                           && p.StartQty < detailVolume && (!p.EndQty.HasValue || p.EndQty.Value > detailVolume)).FirstOrDefault();
+                        if (tPriceListDetail == null)
+                        {
+                            throw new BusinessException("没有找到对应的价格单明细");
+                        }
+
+
+                        #region 账单明细
+                        decimal minPrice = tPriceListDetail.MinPrice.HasValue ? tPriceListDetail.MinPrice.Value : 0;
+                        transportActingBillDetail.BillQty = detailVolume;
+                        transportActingBillDetail.BillAmount = minPrice + detailVolume * tPriceListDetail.UnitPrice;
+                        transportActingBillDetail.Currency = tPriceListDetail.Currency;
+                        transportActingBillDetail.IpNo = d.IpNo;
+                        transportActingBillDetail.IsIncludeTax = tPriceList.IsIncludeTax;
+                        transportActingBillDetail.PriceListDetail = tPriceListDetail.Id;
+                        transportActingBillDetail.ShipFrom = d.ShipFrom;
+                        transportActingBillDetail.ShipFromAddress = d.ShipFromAddress;
+                        transportActingBillDetail.ShipTo = d.ShipTo;
+                        transportActingBillDetail.ShipToAddress = d.ShipToAddress;
+                        transportActingBillDetail.TaxCode = tPriceList.Tax;
+                        transportActingBillDetail.UnitPrice = tPriceListDetail.UnitPrice;
+                        transportActingBillDetailList.Add(transportActingBillDetail);
+                        #endregion
+
+                        totalVolume += detailVolume;
+                        totalAmount += transportActingBillDetail.BillAmount;
                     }
 
-                    actBill.UnitPrice = priceListDetail.UnitPrice;
+                    #region 头
                     actBill.BillQty = totalVolume;
-                    decimal minPrice = priceListDetail.MinPrice.HasValue ? priceListDetail.MinPrice.Value : 0;
-                    actBill.BillAmount = minPrice + actBill.UnitPrice * actBill.BillQty;
+                    actBill.BillAmount = totalAmount;
+                    #endregion
                 }
                 #endregion
 
                 #region 重量
                 if (order.PricingMethod == CodeMaster.TransportPricingMethod.Weight)
                 {
-                    priceListDetail = tPriceListDetailList.Where(p => p.ShipFrom == order.ShipFrom && p.ShipTo == order.ShipTo && p.PricingMethod == order.PricingMethod && p.StartDate < order.StartDate && (p.EndDate == null || p.EndDate > order.StartDate)).FirstOrDefault();
-
-                    decimal totalVolume = order.TransportOrderDetailList.Sum(p => p.Weight).Value;
-
-                    if (priceListDetail == null)
+                    decimal totalWeight = 0;
+                    TransportPriceListDetail tPriceListDetail = null;
+                    foreach (TransportOrderDetail d in order.TransportOrderDetailList)
                     {
-                        throw new BusinessException("没有找到对应的价格单明细");
+                        TransportActingBillDetail transportActingBillDetail = new TransportActingBillDetail();
+                        tPriceListDetail = tPriceListDetailList.Where(p => p.ShipFrom == d.ShipFrom && p.ShipTo == d.ShipTo && p.PricingMethod == order.PricingMethod && p.Tonnage == order.Tonnage && p.StartDate < order.StartDate && (p.EndDate == null || p.EndDate > order.StartDate)).FirstOrDefault();
+
+                        if (tPriceListDetail == null)
+                        {
+                            throw new BusinessException("没有找到对应的价格单明细");
+                        }
+
+                        #region 最小起运量
+                        if (d.Weight.Value < tPriceListDetail.MinWeight)
+                        {
+                            totalWeight += tPriceListDetail.MinWeight;
+                        }
+                        else
+                        {
+                            totalWeight += d.Weight.Value;
+                        }
+                        #endregion
+
+                        transportActingBillDetail.BillQty = totalWeight;
+                        transportActingBillDetail.BillAmount = totalWeight * tPriceListDetail.UnitPrice;
+                        transportActingBillDetail.Currency = tPriceListDetail.Currency;
+                        transportActingBillDetail.IpNo = d.IpNo;
+                        transportActingBillDetail.IsIncludeTax = tPriceList.IsIncludeTax;
+                        transportActingBillDetail.PriceListDetail = tPriceListDetail.Id;
+                        transportActingBillDetail.ShipFrom = d.ShipFrom;
+                        transportActingBillDetail.ShipFromAddress = d.ShipFromAddress;
+                        transportActingBillDetail.ShipTo = d.ShipTo;
+                        transportActingBillDetail.ShipToAddress = d.ShipToAddress;
+                        transportActingBillDetail.TaxCode = tPriceList.Tax;
+                        transportActingBillDetail.UnitPrice = tPriceListDetail.UnitPrice;
+                        transportActingBillDetailList.Add(transportActingBillDetail);
                     }
 
-                    #region 托盘数
-
-                    #endregion
-
-
-                    #region 最小起运量
-                    if (totalVolume < priceListDetail.MinWeight)
+                    actBill.BillQty = totalWeight;
+                    if (tPriceListDetail != null && actBill.UnitPrice == 0)
                     {
-                        totalVolume = priceListDetail.MinWeight;
-                    }
-                    #endregion
-
-                    actBill.BillQty = totalVolume;
-                    if (priceListDetail != null && actBill.UnitPrice == 0)
-                    {
-                        actBill.UnitPrice = priceListDetail.UnitPrice;
+                        actBill.UnitPrice = tPriceListDetail.UnitPrice;
                     }
                     actBill.BillAmount = actBill.UnitPrice * actBill.BillQty;
 
+
                 }
                 #endregion
-
-
 
                 #region 距离
                 if (order.PricingMethod == CodeMaster.TransportPricingMethod.Distance)
                 {
+                    TransportPriceListDetail tPriceListDetail = tPriceListDetailList.Where(p => p.ShipFrom == order.ShipFrom && p.ShipTo == order.ShipTo && p.PricingMethod == order.PricingMethod && p.Tonnage == order.Tonnage && p.StartDate < order.StartDate && (p.EndDate == null || p.EndDate > order.StartDate)).FirstOrDefault();
+                    if (tPriceListDetail == null)
+                    {
+                        throw new BusinessException("没有找到对应的价格单明细");
+                    }
+                    IList<TransportOrderRoute> tRouteList = genericMgr.FindAll<TransportOrderRoute>("from TransportOrderRoute t where t.OrderNo = ?", order.OrderNo);
 
+                    decimal totalDistance = tRouteList.Sum(p => p.Distance.HasValue ? p.Distance.Value : 0);
+
+                    actBill.BillQty = totalDistance;
+                    actBill.UnitPrice = tPriceListDetail.UnitPrice;
+                    actBill.BillAmount = actBill.UnitPrice * actBill.BillQty;
                 }
                 #endregion
-
-                actBill.UnitPrice = priceListDetail.UnitPrice;
-                 actBill.BillAmount = actBill.UnitPrice * actBill.BillQty;
-                actBill.Currency = priceListDetail.Currency;
-                actBill.IsIncludeTax = tPriceList.IsIncludeTax;
-                actBill.Currency = priceListDetail.Currency;
-                actBill.IsProvisionalEstimate = priceListDetail.IsProvEst;
-                actBill.PricingMethod = order.PricingMethod;
-                actBill.PriceList = priceListDetail.PriceList;
-                actBill.PriceListDetail = priceListDetail.Id ;
-             
             }
 
             actBill.OrderNo = order.OrderNo;
             actBill.BillAddress = order.BillAddress;
             actBill.EffectiveDate = DateTime.Parse(order.CreateDate.ToString("yyyy-MM-dd"));
             actBill.Type = CodeMaster.BillType.Transport;
-            actBill.CreateDate = DateTime.Now;
-            actBill.CreateUserId = user.Id;
-            actBill.LastModifyDate = DateTime.Now;
-            actBill.LastModifyUserId = user.Id;
-            //actBill.TaxCode = 
 
             genericMgr.Create(actBill);
+
+            #region 保存头
+            if (transportActingBillDetailList != null && transportActingBillDetailList.Count > 0)
+            {
+                foreach (TransportActingBillDetail d in transportActingBillDetailList)
+                {
+                    d.ActBill = actBill.Id;
+                    genericMgr.Create(d);
+                }
+            }
+            #endregion
             return actBill;
         }
 

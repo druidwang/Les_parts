@@ -651,81 +651,7 @@
             return RedirectToAction("Edit", new { orderNo = orderMaster.OrderNo });
         }
 
-        [SconitAuthorize(Permissions = "Url_TransportOrderMstr_Delete")]
-        public ActionResult Delete(string id)
-        {
-            try
-            {
-                orderMgr.DeleteOrder(id);
-                SaveSuccessMessage(Resources.ORD.OrderMaster.OrderMaster_Deleted, id);
-                return RedirectToAction("List");
-            }
-            catch (BusinessException ex)
-            {
-                SaveErrorMessage(ex.GetMessages()[0].GetMessageString());
-                return RedirectToAction("Edit", new { orderNo = id });
-            }
-        }
-
-        [SconitAuthorize(Permissions = "Url_TransportOrderMstr_Submit")]
-        public ActionResult Submit(string id)
-        {
-            try
-            {
-                orderMgr.ReleaseOrder(id);
-                SaveSuccessMessage(Resources.ORD.OrderMaster.OrderMaster_Submited, id);
-            }
-            catch (BusinessException ex)
-            {
-                SaveErrorMessage(ex.GetMessages()[0].GetMessageString());
-            }
-            return RedirectToAction("Edit", new { orderNo = id });
-        }
-
-        [SconitAuthorize(Permissions = "Url_TransportOrderMstr_Start")]
-        public ActionResult Start(string id)
-        {
-            try
-            {
-                orderMgr.StartOrder(id);
-                SaveSuccessMessage(Resources.ORD.OrderMaster.OrderMaster_Started, id);
-            }
-            catch (BusinessException ex)
-            {
-                SaveErrorMessage(ex.GetMessages()[0].GetMessageString());
-            }
-            return RedirectToAction("Edit", new { orderNo = id });
-        }
-
-        [SconitAuthorize(Permissions = "Url_TransportOrderMstr_Close")]
-        public ActionResult Close(string id)
-        {
-            try
-            {
-                orderMgr.ManualCloseOrder(id);
-                SaveSuccessMessage(Resources.ORD.OrderMaster.OrderMaster_Closed, id);
-            }
-            catch (BusinessException ex)
-            {
-                SaveErrorMessage(ex.GetMessages()[0].GetMessageString());
-            }
-            return RedirectToAction("Edit", new { orderNo = id });
-        }
-
-        [SconitAuthorize(Permissions = "Url_TransportOrderMstr_Cancel")]
-        public ActionResult Cancel(string id)
-        {
-            try
-            {
-                orderMgr.CancelOrder(id);
-                SaveSuccessMessage(Resources.ORD.OrderMaster.OrderMaster_Canceled, id);
-            }
-            catch (BusinessException ex)
-            {
-                SaveErrorMessage(ex.GetMessages()[0].GetMessageString());
-            }
-            return RedirectToAction("Edit", new { orderNo = id });
-        }
+      
 
         [SconitAuthorize(Permissions = "Url_TransportOrderMstr_View")]
         public ActionResult _OrderDetailList(string flow, string orderNo, int? orderSubType)
@@ -1837,6 +1763,99 @@
             string whereStatement = string.Empty;
             SearchStatementModel searchStatementModel = PrepareSearchStatement(command, searchModel, whereStatement);
             ExportToXLS<TransportOrderMaster>("DistributionOrderMaster.xls", GetAjaxPageData<TransportOrderMaster>(searchStatementModel, command).Data.ToList());
+        }
+        #endregion
+
+        #region 运单操作
+        [SconitAuthorize(Permissions = "Url_TransportOrder_Delete")]
+        public ActionResult Delete(string id)
+        {
+            try
+            {
+                orderMgr.DeleteOrder(id);
+                SaveSuccessMessage(Resources.ORD.OrderMaster.OrderMaster_Deleted, id);
+                return RedirectToAction("List");
+            }
+            catch (BusinessException ex)
+            {
+                SaveErrorMessage(ex.GetMessages()[0].GetMessageString());
+                return RedirectToAction("Edit", new { orderNo = id });
+            }
+        }
+
+        [SconitAuthorize(Permissions = "Url_TransportOrder_Submit")]
+        public ActionResult Submit(string id)
+        {
+            try
+            {
+                transportMgr.ReleaseTransportOrderMaster(id);
+                SaveSuccessMessage(Resources.TMS.TransportOrder.TransportOrderMaster_Submited, id);
+            }
+            catch (BusinessException ex)
+            {
+                SaveErrorMessage(ex.GetMessages()[0].GetMessageString());
+            }
+            return RedirectToAction("Edit", new { orderNo = id });
+        }
+
+        [SconitAuthorize(Permissions = "Url_TransportOrder_Start")]
+        public ActionResult Start(string id)
+        {
+            try
+            {
+                orderMgr.StartOrder(id);
+                SaveSuccessMessage(Resources.TMS.TransportOrder.TransportOrderMaster_Started, id);
+            }
+            catch (BusinessException ex)
+            {
+                SaveErrorMessage(ex.GetMessages()[0].GetMessageString());
+            }
+            return RedirectToAction("Edit", new { orderNo = id });
+        }
+
+        [SconitAuthorize(Permissions = "Url_TransportOrder_Close")]
+        public ActionResult Close(string id)
+        {
+            try
+            {
+                orderMgr.ManualCloseOrder(id);
+                SaveSuccessMessage(Resources.TMS.TransportOrder.TransportOrderMaster_Closed, id);
+            }
+            catch (BusinessException ex)
+            {
+                SaveErrorMessage(ex.GetMessages()[0].GetMessageString());
+            }
+            return RedirectToAction("Edit", new { orderNo = id });
+        }
+
+        [SconitAuthorize(Permissions = "Url_TransportOrder_Cancel")]
+        public ActionResult Cancel(string id)
+        {
+            try
+            {
+                orderMgr.CancelOrder(id);
+                SaveSuccessMessage(Resources.TMS.TransportOrder.TransportOrderMaster_Canceled, id);
+            }
+            catch (BusinessException ex)
+            {
+                SaveErrorMessage(ex.GetMessages()[0].GetMessageString());
+            }
+            return RedirectToAction("Edit", new { orderNo = id });
+        }
+
+        [SconitAuthorize(Permissions = "Url_TransportOrder_Calculate")]
+        public ActionResult Calculate(string id)
+        {
+            try
+            {
+                transportMgr.Calculate(id);
+                SaveSuccessMessage(Resources.TMS.TransportOrder.TransportOrderMaster_Calculated, id);
+            }
+            catch (BusinessException ex)
+            {
+                SaveErrorMessage(ex.GetMessages()[0].GetMessageString());
+            }
+            return RedirectToAction("Edit", new { orderNo = id });
         }
         #endregion
     }

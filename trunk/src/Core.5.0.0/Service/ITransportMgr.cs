@@ -24,5 +24,7 @@ namespace com.Sconit.Service
 
         void Ship(string transOrder, List<string> huIds);
 
+        void Calculate(string orderNo);
+
     }
 }

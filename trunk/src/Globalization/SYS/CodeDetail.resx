@@ -1837,4 +1837,7 @@
   <data name="CodeDetail_MaintainPlanType_Year" xml:space="preserve">
     <value>Year</value>
   </data>
+  <data name="CodeDetail_PermissionCategoryType_Carrier" xml:space="preserve">
+    <value>Carrier</value>
+  </data>
 </root>

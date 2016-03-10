@@ -140,6 +140,22 @@ namespace com.Sconit.Entity.ACC
             }
         }
 
+        public IList<string> CarrierPermissions
+        {
+            get
+            {
+
+                if (Permissions != null && Permissions.Count > 0)
+                {
+                    return (from p in this.Permissions
+                            where p.PermissionCategoryType == com.Sconit.CodeMaster.PermissionCategoryType.Carrier
+                            select p.PermissionCode).ToList();
+                }
+
+                return null;
+            }
+        }
+
         public IList<string> RegionPermissions
         {
             get

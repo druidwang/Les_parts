@@ -18,6 +18,7 @@ namespace com.Sconit.Service.Impl
         public INumberControlMgr numberControlMgr { get; set; }
         public ISystemMgr systemMgr { get; set; }
         public IGenericMgr genericMgr { get; set; }
+        public ITransportBillMgr transportBillMgr { get; set; }
 
         #region public methods
         public TransportOrderMaster TransferFlow2Order(string flowCode)
@@ -520,7 +521,7 @@ namespace com.Sconit.Service.Impl
             #endregion
         }
 
-        private void ReleaseTransportOrderMaster(TransportOrderMaster transportOrderMaster)
+        public void ReleaseTransportOrderMaster(TransportOrderMaster transportOrderMaster)
         {
             #region 运单校验
             if (transportOrderMaster.Status != TransportStatus.Create)
@@ -651,6 +652,12 @@ namespace com.Sconit.Service.Impl
         public void StartTransportOrderMaster(TransportOrderMaster transportOrderMaster)
         {
             throw new NotImplementedException();
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public void Calculate(string orderNo)
+        {
+            transportBillMgr.CreateTransportActingBill(orderNo);
         }
         #endregion
 
@@ -849,5 +856,7 @@ namespace com.Sconit.Service.Impl
         {
 
         }
+
+    
     }
 }

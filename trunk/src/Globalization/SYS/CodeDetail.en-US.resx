@@ -202,6 +202,9 @@
   <data name="CodeDetail_OrderType_Procurement" xml:space="preserve">
     <value>Purchase</value>
   </data>
+  <data name="CodeDetail_PermissionCategoryType_Carrier" xml:space="preserve">
+    <value>Carrier</value>
+  </data>
   <data name="CodeDetail_Sequence" xml:space="preserve">
     <value>Sequence</value>
   </data>
