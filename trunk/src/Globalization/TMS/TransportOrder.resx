@@ -147,6 +147,9 @@
   <data name="TransportOrderDetail_IsReceived" xml:space="preserve">
     <value>已收</value>
   </data>
+  <data name="TransportOrderDetail_IsValuated" xml:space="preserve">
+    <value>IsValuated</value>
+  </data>
   <data name="TransportOrderDetail_LoadTime" xml:space="preserve">
     <value>装载时间</value>
   </data>
@@ -155,6 +158,9 @@
   </data>
   <data name="TransportOrderDetail_OrderRouteTo" xml:space="preserve">
     <value>到达站点</value>
+  </data>
+  <data name="TransportOrderDetail_PalletCode" xml:space="preserve">
+    <value>PalletCode</value>
   </data>
   <data name="TransportOrderDetail_PalletQty" xml:space="preserve">
     <value>栈板数</value>
@@ -222,11 +228,20 @@
   <data name="TransportOrderMaster_BillAddress" xml:space="preserve">
     <value>账单地址</value>
   </data>
+  <data name="TransportOrderMaster_Calculated" xml:space="preserve">
+    <value>TransportOrder Calculated Successfully</value>
+  </data>
+  <data name="TransportOrderMaster_Canceled" xml:space="preserve">
+    <value>TransportOrder Cancled Successfully</value>
+  </data>
   <data name="TransportOrderMaster_Carrier" xml:space="preserve">
     <value>承运商</value>
   </data>
   <data name="TransportOrderMaster_CarrierName" xml:space="preserve">
     <value>承运商描述</value>
+  </data>
+  <data name="TransportOrderMaster_Closed" xml:space="preserve">
+    <value>TransportOrder Closed Successfully</value>
   </data>
   <data name="TransportOrderMaster_Driver" xml:space="preserve">
     <value>驾驶员</value>
@@ -291,8 +306,14 @@
   <data name="TransportOrderMaster_ShipToAddress" xml:space="preserve">
     <value>目的地地址</value>
   </data>
+  <data name="TransportOrderMaster_Started" xml:space="preserve">
+    <value>TransportOrder Started Successfully</value>
+  </data>
   <data name="TransportOrderMaster_Status" xml:space="preserve">
     <value>状态</value>
+  </data>
+  <data name="TransportOrderMaster_Submited" xml:space="preserve">
+    <value>TransportOrder Released Successfully</value>
   </data>
   <data name="TransportOrderMaster_Tonnage" xml:space="preserve">
     <value>吨位</value>

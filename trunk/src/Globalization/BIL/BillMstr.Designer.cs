@@ -22,14 +22,14 @@ namespace Resources.BIL {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class BillMstr {
+    public class TransportBillMaster {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal BillMstr() {
+        internal TransportBillMaster() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace Resources.BIL {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.BIL.BillMstr", typeof(BillMstr).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Resources.BIL.TransportBillMaster", typeof(TransportBillMaster).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -112,189 +112,189 @@ namespace Resources.BIL {
         /// <summary>
         ///   Looks up a localized string similar to BatchBilling.
         /// </summary>
-        public static string BillMstr_BatchBilling {
+        public static string TransportBillMaster_BatchBilling {
             get {
-                return ResourceManager.GetString("BillMstr_BatchBilling", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_BatchBilling", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to BillAddress.
         /// </summary>
-        public static string BillMstr_BillAddress {
+        public static string TransportBillMaster_BillAddress {
             get {
-                return ResourceManager.GetString("BillMstr_BillAddress", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_BillAddress", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to BilledAmount.
         /// </summary>
-        public static string BillMstr_BilledAmount {
+        public static string TransportBillMaster_BilledAmount {
             get {
-                return ResourceManager.GetString("BillMstr_BilledAmount", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_BilledAmount", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Billing.
         /// </summary>
-        public static string BillMstr_Billing {
+        public static string TransportBillMaster_Billing {
             get {
-                return ResourceManager.GetString("BillMstr_Billing", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_Billing", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to BillNo.
         /// </summary>
-        public static string BillMstr_BillNo {
+        public static string TransportBillMaster_BillNo {
             get {
-                return ResourceManager.GetString("BillMstr_BillNo", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_BillNo", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to CreateDate.
         /// </summary>
-        public static string BillMstr_CreateDate {
+        public static string TransportBillMaster_CreateDate {
             get {
-                return ResourceManager.GetString("BillMstr_CreateDate", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_CreateDate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to CreateUserName.
         /// </summary>
-        public static string BillMstr_CreateUserName {
+        public static string TransportBillMaster_CreateUserName {
             get {
-                return ResourceManager.GetString("BillMstr_CreateUserName", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_CreateUserName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to BillMstr_Distribution_Title.
+        ///   Looks up a localized string similar to TransportBillMaster_Distribution_Title.
         /// </summary>
-        public static string BillMstr_Distribution_Title {
+        public static string TransportBillMaster_Distribution_Title {
             get {
-                return ResourceManager.GetString("BillMstr_Distribution_Title", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_Distribution_Title", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to EffectiveDate.
         /// </summary>
-        public static string BillMstr_EffectiveDate {
+        public static string TransportBillMaster_EffectiveDate {
             get {
-                return ResourceManager.GetString("BillMstr_EffectiveDate", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_EffectiveDate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to EndTime.
         /// </summary>
-        public static string BillMstr_EndTime {
+        public static string TransportBillMaster_EndTime {
             get {
-                return ResourceManager.GetString("BillMstr_EndTime", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_EndTime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ExternalBillNo.
         /// </summary>
-        public static string BillMstr_ExternalBillNo {
+        public static string TransportBillMaster_ExternalBillNo {
             get {
-                return ResourceManager.GetString("BillMstr_ExternalBillNo", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_ExternalBillNo", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to InvoiceDate.
         /// </summary>
-        public static string BillMstr_InvoiceDate {
+        public static string TransportBillMaster_InvoiceDate {
             get {
-                return ResourceManager.GetString("BillMstr_InvoiceDate", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_InvoiceDate", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to InvoiceNo.
         /// </summary>
-        public static string BillMstr_InvoiceNo {
+        public static string TransportBillMaster_InvoiceNo {
             get {
-                return ResourceManager.GetString("BillMstr_InvoiceNo", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_InvoiceNo", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Distribution.
         /// </summary>
-        public static string BillMstr_PartyName_Distribution {
+        public static string TransportBillMaster_PartyName_Distribution {
             get {
-                return ResourceManager.GetString("BillMstr_PartyName_Distribution", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_PartyName_Distribution", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to PartyNm.
         /// </summary>
-        public static string BillMstr_PartyNm {
+        public static string TransportBillMaster_PartyNm {
             get {
-                return ResourceManager.GetString("BillMstr_PartyNm", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_PartyNm", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ReferenceBillNo.
         /// </summary>
-        public static string BillMstr_ReferenceBillNo {
+        public static string TransportBillMaster_ReferenceBillNo {
             get {
-                return ResourceManager.GetString("BillMstr_ReferenceBillNo", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_ReferenceBillNo", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to SaleTitle.
         /// </summary>
-        public static string BillMstr_SaleTitle {
+        public static string TransportBillMaster_SaleTitle {
             get {
-                return ResourceManager.GetString("BillMstr_SaleTitle", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_SaleTitle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to StartTime.
         /// </summary>
-        public static string BillMstr_StartTime {
+        public static string TransportBillMaster_StartTime {
             get {
-                return ResourceManager.GetString("BillMstr_StartTime", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_StartTime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
-        public static string BillMstr_Status {
+        public static string TransportBillMaster_Status {
             get {
-                return ResourceManager.GetString("BillMstr_Status", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_Status", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Title.
         /// </summary>
-        public static string BillMstr_Title {
+        public static string TransportBillMaster_Title {
             get {
-                return ResourceManager.GetString("BillMstr_Title", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_Title", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to ToCalculate.
         /// </summary>
-        public static string BillMstr_ToCalculate {
+        public static string TransportBillMaster_ToCalculate {
             get {
-                return ResourceManager.GetString("BillMstr_ToCalculate", resourceCulture);
+                return ResourceManager.GetString("TransportBillMaster_ToCalculate", resourceCulture);
             }
         }
     }

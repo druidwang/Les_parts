@@ -25,7 +25,14 @@
                 @Html.LabelFor(model => model.Carrier)
             </div>
             <div class="editor-field-2">
-                @Html.EditorFor(model => model.Carrier)
+                  @{
+    Html.RenderAction("_CarrierComboBox", "Common",
+                    new
+                    {
+                        controlName = "Carrier",
+                        checkPermission = false
+                    });
+                }
             </div>
                <div class="editor-label-2">
                 @Html.LabelFor(model => model.DrivingNo)

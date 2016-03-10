@@ -273,6 +273,7 @@ namespace com.Sconit.Web.Controllers.TMS
                 partyAddress.Address = address;
                 partyAddress.Sequence = int.Parse(sequence);
                 partyAddress.IsPrimary = isPrimary;
+                partyAddress.Type = Sconit.CodeMaster.AddressType.BillAddress;
                 partyMgr.AddPartyAddress(partyAddress);
 
                 SaveSuccessMessage(Resources.MD.Address.Address_Added);
@@ -334,7 +335,7 @@ namespace com.Sconit.Web.Controllers.TMS
 
         private SearchStatementModel PrepareSearchAddressStatement(GridCommand command, PartyAddressSearchModel searchModel, string partyCode)
         {
-            string whereStatement = "  where pa.Party='" + partyCode + "' and  pa.Address.Type='1' ";
+            string whereStatement = "  where pa.Party='" + partyCode + "' and  pa.Type='1' ";
             IList<object> param = new List<object>();
             //HqlStatementHelper.AddLikeStatement("Party", searchModel.Party, HqlStatementHelper.LikeMatchMode.Anywhere, "pa", ref whereStatement, param);
             HqlStatementHelper.AddLikeStatement("Address.Code", searchModel.AddressCode, HqlStatementHelper.LikeMatchMode.Start, "pa", ref whereStatement, param);

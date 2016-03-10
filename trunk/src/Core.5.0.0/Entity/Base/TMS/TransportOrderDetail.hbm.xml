@@ -37,8 +37,10 @@
         <property name="ShipToFax" column="ShipToFax" type="String" length="50" />
         <property name="ShipToContact" column="ShipToContact" type="String" length="50" />
         <property name="Dock" column="Dock" type="String" length="100" />
+		<property name="PalletCode" column="PalletCode" type="String" length="50" />
 		<property name="Distance" column="Distance" type="Decimal"/>	
-		<property name="IsReceived" column="IsRec" type="Boolean"/>	
+		<property name="IsReceived" column="IsRec" type="Boolean"/>
+		<property name="IsValuated" column="IsValuated" type="Boolean"/>
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="255" update="false"/>	

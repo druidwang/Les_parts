@@ -426,4 +426,7 @@
   <data name="Button_Repack" xml:space="preserve">
     <value>Repack</value>
   </data>
+  <data name="Button_Calculate" xml:space="preserve">
+    <value>Calculate</value>
+  </data>
 </root>

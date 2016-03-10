@@ -856,96 +856,80 @@
         @{
             if (Model.Status == com.Sconit.CodeMaster.OrderStatus.Create)
             {
-            @Html.Button(Resources.SYS.Global.Button_Save, "Url_OrderMstr_Distribution_Edit", new Dictionary<string, string>()
+            @Html.Button(Resources.SYS.Global.Button_Save, "Url_TransportOrder_Edit", new Dictionary<string, string>()
 	            {
 	                {"type", "submit"},
 	                {"id", "btnEdit"},
                     {"needconfirm","false"},
-                    {"orderType",((int)Model.Type).ToString()},
                     {"onclick","onSaveDetail()"}
 	            })
-            @Html.Button(Resources.SYS.Global.Button_Submit, "Url_OrderMstr_Distribution_Submit", new Dictionary<string, string>()
+            @Html.Button(Resources.SYS.Global.Button_Submit, "Url_TransportOrder_Submit", new Dictionary<string, string>()
 	            {
 	                {"type", "button"},
-                    {"orderType",((int)Model.Type).ToString()},
 	                {"id", "btnSubmit"},
                     {"needconfirm","true"},
-                    {"onclick","location.href='"+Url.Content("~/DistributionOrder/Submit/" + Model.OrderNo) +"'"}
+                    {"onclick","location.href='"+Url.Content("~/TransportOrder/Submit/" + Model.OrderNo) +"'"}
 	            })
-            @Html.Button(Resources.SYS.Global.Button_Delete, "Url_OrderMstr_Distribution_Delete", new Dictionary<string, string>()
+            @Html.Button(Resources.SYS.Global.Button_Delete, "Url_TransportOrder_Delete", new Dictionary<string, string>()
 	            {
 	                {"type", "button"},
 	                {"id", "btnDelete"},
-                    {"orderType",((int)Model.Type).ToString()},
                     {"needconfirm","true"},
-                    {"onclick","location.href='"+Url.Content("~/DistributionOrder/Delete/" + Model.OrderNo) +"'"}
+                    {"onclick","location.href='"+Url.Content("~/TransportOrder/Delete/" + Model.OrderNo) +"'"}
 	            })
             }
 
             if (Model.Status == com.Sconit.CodeMaster.OrderStatus.Submit)
             {
-            @Html.Button(Resources.SYS.Global.Button_Start, "Url_OrderMstr_Distribution_Start", new Dictionary<string, string>()
+            @Html.Button(Resources.SYS.Global.Button_Start, "Url_TransportOrder_Start", new Dictionary<string, string>()
 	            {
 	                {"type", "button"},
 	                {"id", "btnStart"},
-                    {"orderType",((int)Model.Type).ToString()},
                     {"needconfirm","true"},
-                    {"onclick","location.href='"+Url.Content("~/DistributionOrder/Start/" + Model.OrderNo) +"'"}
+                    {"onclick","location.href='"+Url.Content("~/TransportOrder/Start/" + Model.OrderNo) +"'"}
 	            })
-            @Html.Button(Resources.SYS.Global.Button_Cancel, "Url_OrderMstr_Distribution_Cancel", new Dictionary<string, string>()
-	            {
-	                {"type", "button"},
-	                {"id", "btnCancel"},
-                    //{"orderType",((int)Model.Type).ToString()},
-                    {"needconfirm","true"},
-                    {"onclick","location.href='"+Url.Content("~/ProcurementOrder/Cancel/" + Model.OrderNo) +"'"}
-	            })           
             }
 
             if (Model.Status == com.Sconit.CodeMaster.OrderStatus.InProcess)
             {
-            @Html.Button(Resources.SYS.Global.Button_Close, "Url_OrderMstr_Distribution_Close", new Dictionary<string, string>()
+            @Html.Button(Resources.SYS.Global.Button_Close, "Url_TransportOrder_Close", new Dictionary<string, string>()
 	            {
 	                {"type", "button"},
 	                {"id", "btnClose"},
                     {"needconfirm","true"},
-                    //{"orderType",((int)Model.Type).ToString()},
-                    {"onclick","location.href='"+Url.Content("~/DistributionOrder/Close/" + Model.OrderNo) +"'"}
+                    {"onclick","location.href='"+Url.Content("~/TransportOrder/Close/" + Model.OrderNo) +"'"}
+	            })
+            }
+              if (Model.Status == com.Sconit.CodeMaster.OrderStatus.Close)
+            {
+            @Html.Button(Resources.SYS.Global.Button_Calculate, "Url_TransportOrder_Calculate", new Dictionary<string, string>()
+	            {
+	                {"type", "button"},
+	                {"id", "btnCalculate"},
+                    {"needconfirm","true"},
+                    {"onclick","location.href='"+Url.Content("~/TransportOrder/Calculate/" + Model.OrderNo) +"'"}
 	            })
             }
 
-
-
-            if (Model.Status != com.Sconit.CodeMaster.OrderStatus.Cancel && Model.Status != com.Sconit.CodeMaster.OrderStatus.Create)
-            {
+              if (Model.Status != com.Sconit.CodeMaster.OrderStatus.Cancel && Model.Status != com.Sconit.CodeMaster.OrderStatus.Create)
+              {
             <button type="button" id="btnPrint" onclick="Print()">
                 @Resources.SYS.Global.Button_Print</button>
             <button type="button" id="btnExport" onclick="Export()">
                 @Resources.SYS.Global.Button_Export</button>
-            }
-            if (Model.SubType == com.Sconit.CodeMaster.OrderSubType.Normal)
-            {
+              }
             <button type="button" id="btnBack" onclick="location.href='@Url.Content("~/DistributionOrder/List")'">
                 @Resources.SYS.Global.Button_Back</button>
-            }
-            else
-            {
-            <button type="button" id="btnBack1" onclick="location.href='@Url.Content("~/DistributionOrder/ReturnList")'">
-                @Resources.SYS.Global.Button_Back</button>
-            }
         }
     </div>
 }
 @{
     Html.RenderAction("_OrderDetailList", "TransportOrder", new { flow = Model.Flow, orderNo = Model.OrderNo, orderSubType = (int)Model.SubType });
 }
-<form id="hiddenForm" action="/DistributionOrder/SaveToClient" target="_blank" method="post">
+<form id="hiddenForm" action="/TransportOrder/SaveToClient" target="_blank" method="post">
     <input id="orderNo" name="orderNo" type="hidden" />
 </form>
 <script type="text/javascript">
-    //    function Export(e) {
-    //        window.open("/DistributionOrder/SaveToClient/?orderNo=" + $("#OrderNo").val());
-    //    }
     function Export(e) {
         $("#orderNo").val($("#OrderNo").val());
         $("#hiddenForm").submit();
@@ -958,7 +942,7 @@
         $.ajax({
             type: "post",
             dataType: "text",
-            url: "/DistributionOrder/Print/",
+            url: "/TransportOrder/Print/",
             data: data,
             success: function (data, textStatus) {
                 if (data != "") {

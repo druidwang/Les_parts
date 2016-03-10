@@ -21,5 +21,7 @@ namespace com.Sconit.Service
         void ReleaseTransportOrderMaster(string orderNo);
 
         void StartTransportOrderMaster(string orderNo);
+        void Calculate(string orderNo);
+
     }
 }

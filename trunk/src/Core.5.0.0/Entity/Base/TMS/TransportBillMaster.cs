@@ -13,22 +13,22 @@ namespace com.Sconit.Entity.TMS
     {
         #region O/R Mapping Properties
 
-        [Display(Name = "BillMstr_BillNo", ResourceType = typeof(Resources.TMS.TransportBillMstr))]
+        [Display(Name = "TransportBillMaster_BillNo", ResourceType = typeof(Resources.TMS.TransportBillMaster))]
         public string BillNo { get; set; }
 
         public string CarrierDescription { get; set; }
 
-        [Display(Name = "BillMstr_Carrier", ResourceType = typeof(Resources.TMS.TransportBillMstr))]
+        [Display(Name = "TransportBillMaster_Carrier", ResourceType = typeof(Resources.TMS.TransportBillMaster))]
         public string Carrier { get; set; }
 
         public com.Sconit.CodeMaster.BillType Type { get; set; }
 
         public CodeMaster.BillSubType SubType { get; set; }
 
-        [Display(Name = "BillMstr_Status", ResourceType = typeof(Resources.TMS.TransportBillMstr))]
+        [Display(Name = "TransportBillMaster_Status", ResourceType = typeof(Resources.TMS.TransportBillMaster))]
         public CodeMaster.BillStatus Status { get; set; }
 
-        [Display(Name = "BillMstr_ExternalBillNo", ResourceType = typeof(Resources.TMS.TransportBillMstr))]
+        [Display(Name = "TransportBillMaster_ExternalBillNo", ResourceType = typeof(Resources.TMS.TransportBillMaster))]
         public string ExternalBillNo { get; set; }
 
         public Boolean IsIncludeTax { get; set; }
@@ -38,7 +38,7 @@ namespace com.Sconit.Entity.TMS
 
         public string RefBillNo { get; set; }
 
-        [Display(Name = "BillMstr_BillAddress", ResourceType = typeof(Resources.TMS.TransportBillMstr))]
+        [Display(Name = "TransportBillMaster_BillAddress", ResourceType = typeof(Resources.TMS.TransportBillMaster))]
         public string BillAddress { get; set; }
 
         public string BillAddressDescription { get; set; }
@@ -49,12 +49,15 @@ namespace com.Sconit.Entity.TMS
 
         public Decimal BillAmount { get; set; }
 
+        [Display(Name = "TransportBillMaster_CreateUserName", ResourceType = typeof(Resources.TMS.TransportBillMaster))]
         public string CreateUserName { get; set; }
 
         public Int32 CreateUserId { get; set; }
 
+        [Display(Name = "TransportBillMaster_CreateDate", ResourceType = typeof(Resources.TMS.TransportBillMaster))]
         public DateTime CreateDate { get; set; }
 
+        [Display(Name = "TransportBillMaster_LastModifyUserName", ResourceType = typeof(Resources.TMS.TransportBillMaster))]
         public string LastModifyUserName { get; set; }
 
         public Int32 LastModifyUserId { get; set; }
@@ -85,6 +88,7 @@ namespace com.Sconit.Entity.TMS
 
         public Int32 VoidUser { get; set; }
 
+        [Display(Name = "TransportBillMaster_InvoiceNo", ResourceType = typeof(Resources.TMS.TransportBillMaster))]
         public string InvoiceNo { get; set; }
 
         public DateTime? InvoiceDate { get; set; }

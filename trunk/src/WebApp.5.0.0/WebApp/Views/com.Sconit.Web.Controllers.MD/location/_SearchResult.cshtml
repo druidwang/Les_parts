@@ -21,8 +21,8 @@
                 .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsMRP' <#= IsMRP? checked='checked' : '' #> />");
             columns.Bound(o => o.IsConsignment)
              .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsConsignment' <#= IsConsignment? checked='checked' : '' #> />");
-           // columns.Bound(o => o.IsInventoryFreeze)
-             //          .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsInventoryFreeze' <#= IsInventoryFreeze? checked='checked' : '' #> />"); 
+            columns.Bound(o => o.EnableAdvanceWarehouseManagment)
+                       .ClientTemplate("<input type='checkbox' disabled='disabled' name='EnableAdvanceWarehouseManagment' <#= EnableAdvanceWarehouseManagment? checked='checked' : '' #> />"); 
                  })
         .Scrollable(c => c.Enabled(false))
         .EnableCustomBinding(true)

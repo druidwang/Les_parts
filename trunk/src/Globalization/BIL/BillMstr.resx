@@ -124,67 +124,67 @@
   <data name="ActingBill_Designer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>actingbill.designer.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
-  <data name="BillMstr_BatchBilling" xml:space="preserve">
+  <data name="TransportBillMaster_BatchBilling" xml:space="preserve">
     <value>BatchBilling</value>
   </data>
-  <data name="BillMstr_Billing" xml:space="preserve">
+  <data name="TransportBillMaster_Billing" xml:space="preserve">
     <value>Billing</value>
   </data>
-  <data name="BillMstr_BillNo" xml:space="preserve">
+  <data name="TransportBillMaster_BillNo" xml:space="preserve">
     <value>BillNo</value>
   </data>
-  <data name="BillMstr_CreateDate" xml:space="preserve">
+  <data name="TransportBillMaster_CreateDate" xml:space="preserve">
     <value>CreateDate</value>
   </data>
-  <data name="BillMstr_CreateUserName" xml:space="preserve">
+  <data name="TransportBillMaster_CreateUserName" xml:space="preserve">
     <value>CreateUserName</value>
   </data>
-  <data name="BillMstr_EffectiveDate" xml:space="preserve">
+  <data name="TransportBillMaster_EffectiveDate" xml:space="preserve">
     <value>EffectiveDate</value>
   </data>
-  <data name="BillMstr_EndTime" xml:space="preserve">
+  <data name="TransportBillMaster_EndTime" xml:space="preserve">
     <value>EndTime</value>
   </data>
-  <data name="BillMstr_ExternalBillNo" xml:space="preserve">
+  <data name="TransportBillMaster_ExternalBillNo" xml:space="preserve">
     <value>ExternalBillNo</value>
   </data>
-  <data name="BillMstr_PartyNm" xml:space="preserve">
+  <data name="TransportBillMaster_PartyNm" xml:space="preserve">
     <value>PartyNm</value>
   </data>
-  <data name="BillMstr_StartTime" xml:space="preserve">
+  <data name="TransportBillMaster_StartTime" xml:space="preserve">
     <value>StartTime</value>
   </data>
-  <data name="BillMstr_Status" xml:space="preserve">
+  <data name="TransportBillMaster_Status" xml:space="preserve">
     <value>Status</value>
   </data>
-  <data name="BillMstr_ToCalculate" xml:space="preserve">
+  <data name="TransportBillMaster_ToCalculate" xml:space="preserve">
     <value>ToCalculate</value>
   </data>
-  <data name="BillMstr_SaleTitle" xml:space="preserve">
+  <data name="TransportBillMaster_SaleTitle" xml:space="preserve">
     <value>SaleTitle</value>
   </data>
-  <data name="BillMstr_Title" xml:space="preserve">
+  <data name="TransportBillMaster_Title" xml:space="preserve">
     <value>Title</value>
   </data>
-  <data name="BillMstr_ReferenceBillNo" xml:space="preserve">
+  <data name="TransportBillMaster_ReferenceBillNo" xml:space="preserve">
     <value>ReferenceBillNo</value>
   </data>
-  <data name="BillMstr_InvoiceNo" xml:space="preserve">
+  <data name="TransportBillMaster_InvoiceNo" xml:space="preserve">
     <value>InvoiceNo</value>
   </data>
-  <data name="BillMstr_InvoiceDate" xml:space="preserve">
+  <data name="TransportBillMaster_InvoiceDate" xml:space="preserve">
     <value>InvoiceDate</value>
   </data>
-  <data name="BillMstr_BillAddress" xml:space="preserve">
+  <data name="TransportBillMaster_BillAddress" xml:space="preserve">
     <value>BillAddress</value>
   </data>
-  <data name="BillMstr_BilledAmount" xml:space="preserve">
+  <data name="TransportBillMaster_BilledAmount" xml:space="preserve">
     <value>BilledAmount</value>
   </data>
-  <data name="BillMstr_PartyName_Distribution" xml:space="preserve">
+  <data name="TransportBillMaster_PartyName_Distribution" xml:space="preserve">
     <value>Distribution</value>
   </data>
-  <data name="BillMstr_Distribution_Title" xml:space="preserve">
-    <value>BillMstr_Distribution_Title</value>
+  <data name="TransportBillMaster_Distribution_Title" xml:space="preserve">
+    <value>TransportBillMaster_Distribution_Title</value>
   </data>
 </root>
