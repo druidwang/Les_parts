@@ -275,6 +275,7 @@
     <Compile Include="Base\TMS\TransportFlowMaster.cs" />
     <Compile Include="Base\TMS\TransportFlowRoute.cs" />
     <Compile Include="Base\TMS\TransportOrderDetail.cs" />
+    <Compile Include="Base\TMS\TransportOrderDetailPallet.cs" />
     <Compile Include="Base\TMS\TransportOrderMaster.cs" />
     <Compile Include="Base\TMS\TransportOrderRoute.cs" />
     <Compile Include="Base\TMS\TransportPriceList.cs" />
@@ -658,6 +659,7 @@
     <Compile Include="TMS\TransportFlowMaster.cs" />
     <Compile Include="TMS\TransportFlowRouting.cs" />
     <Compile Include="TMS\TransportOrderDetail.cs" />
+    <Compile Include="TMS\TransportOrderDetailPallet.cs" />
     <Compile Include="TMS\TransportOrderMaster.cs" />
     <Compile Include="TMS\TransportOrderRoute.cs" />
     <Compile Include="TMS\TransportPriceList.cs" />
@@ -1002,6 +1004,7 @@
     <EmbeddedResource Include="Base\FMS\FacilityTrans.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\MaintainPlan.hbm.xml" />
     <Content Include="Base\MD\Pallet.hbm.xml" />
+    <Content Include="Base\TMS\TransportOrderDetailPallet.hbm.xml" />
     <Content Include="Base\WMS\PickOccupy.hbm.xml" />
     <Content Include="Base\WMS\RepackOccupy.hbm.xml" />
   </ItemGroup>
