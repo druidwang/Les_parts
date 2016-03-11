@@ -18,6 +18,7 @@ namespace com.Sconit.Service.Impl
         public INumberControlMgr numberControlMgr { get; set; }
         public ISystemMgr systemMgr { get; set; }
         public IGenericMgr genericMgr { get; set; }
+        public ITransportBillMgr transportBillMgr { get; set; }
 
         #region public methods
         public TransportOrderMaster TransferFlow2Order(string flowCode)
@@ -320,6 +321,8 @@ namespace com.Sconit.Service.Impl
             IList<TransportOrderRoute> transportOrderRouteList = this.genericMgr.FindAll<TransportOrderRoute>("from TransportOrderRoute where OrderNo = ?", orderNo);
             IList<TransportOrderDetail> transportOrderDetailList = PrepareTransportOrderDetail(orderNo, transportOrderMaster.TransportMode, transportOrderMaster.MultiSitePick, ipNoList, transportOrderRouteList);
 
+            this.CalculateShipLoad(transportOrderDetailList);
+
             foreach (TransportOrderDetail TransportOrderDetail in transportOrderDetailList)
             {
                 this.genericMgr.Create(TransportOrderDetail);
@@ -571,7 +574,15 @@ namespace com.Sconit.Service.Impl
             }
 
             #region 计算装载率
+            this.CalculateShipLoad(transportOrderMaster.TransportOrderDetailList);
+            TransportOrderRoute firstTransportOrderRoute = transportOrderMaster.TransportOrderRouteList.OrderBy(r => r.Sequence).First();
+            firstTransportOrderRoute.WeightRate = transportOrderMaster.TransportOrderDetailList.Sum(d => d.Weight) / transportOrderMaster.LoadWeight;
+            firstTransportOrderRoute.LoadRate = transportOrderMaster.TransportOrderDetailList.Sum(d => d.Volume) / transportOrderMaster.LoadWeight;
 
+            if (transportOrderMaster.MinLoadRate.HasValue && transportOrderMaster.MinLoadRate.Value > firstTransportOrderRoute.LoadRate)
+            {
+                throw new BusinessException("运输单{0}不满足最小装载率{1}。", transportOrderMaster.OrderNo, transportOrderMaster.MinLoadRate);
+            }
             #endregion
             #endregion
 
@@ -645,12 +656,43 @@ namespace com.Sconit.Service.Impl
 
         public void StartTransportOrderMaster(String orderNo)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(orderNo))
+            {
+                throw new BusinessException("运单号不能为空。");
+            }
+
+            TransportOrderMaster transportOrderMaster = this.genericMgr.FindAll<TransportOrderMaster>("from TransportOrderMaster where OrderNo = ?", orderNo).SingleOrDefault();
+            if (transportOrderMaster == null)
+            {
+                throw new BusinessException("运单号{0}不存在。", orderNo);
+            }
         }
 
         public void StartTransportOrderMaster(TransportOrderMaster transportOrderMaster)
         {
-            throw new NotImplementedException();
+            if (transportOrderMaster == null)
+            {
+                throw new BusinessException("运单不存在。");
+            }
+
+            if (transportOrderMaster.Status != TransportStatus.Submit)
+            {
+                throw new BusinessException("运单{0}不是释放状态不能放行。", transportOrderMaster.OrderNo);
+            }
+
+            transportOrderMaster.Status = TransportStatus.InProcess;
+            transportOrderMaster.StartDate = DateTime.Now;
+            transportOrderMaster.StartUserId = SecurityContextHolder.Get().Id;
+            transportOrderMaster.StartUserName = SecurityContextHolder.Get().FullName;
+
+            this.genericMgr.Update(transportOrderMaster);
+        }
+        
+
+        [Transaction(TransactionMode.Requires)]
+        public void Calculate(string orderNo)
+        {
+             transportBillMgr.CreateTransportActingBill(orderNo);
         }
         #endregion
 

@@ -277,15 +277,74 @@
             </div>
         </div>
         <div class="editor-footer">
-            @Html.Button(Resources.SYS.Global.Button_Save, "", new Dictionary<string, string>()
+            @{
+            if (Model.Status == com.Sconit.CodeMaster.TransportStatus.Create)
+            {
+            @Html.Button(Resources.SYS.Global.Button_Save, "Url_TransportOrder_Edit", new Dictionary<string, string>()
 	            {
 	                {"type", "submit"},
 	                {"id", "btnEdit"},
-                    {"needconfirm","true"},
+                    {"needconfirm","false"},
                     {"onclick","onSaveDetail()"}
 	            })
+            @Html.Button(Resources.SYS.Global.Button_Submit, "Url_TransportOrder_Submit", new Dictionary<string, string>()
+	            {
+	                {"type", "button"},
+	                {"id", "btnSubmit"},
+                    {"needconfirm","true"},
+                    {"onclick","location.href='"+Url.Content("~/TransportOrder/Submit/" + Model.OrderNo) +"'"}
+	            })
+            @Html.Button(Resources.SYS.Global.Button_Delete, "Url_TransportOrder_Delete", new Dictionary<string, string>()
+	            {
+	                {"type", "button"},
+	                {"id", "btnDelete"},
+                    {"needconfirm","true"},
+                    {"onclick","location.href='"+Url.Content("~/TransportOrder/Delete/" + Model.OrderNo) +"'"}
+	            })
+            }
+
+    if (Model.Status == com.Sconit.CodeMaster.TransportStatus.Submit)
+            {
+            @Html.Button(Resources.SYS.Global.Button_Start, "Url_TransportOrder_Start", new Dictionary<string, string>()
+	            {
+	                {"type", "button"},
+	                {"id", "btnStart"},
+                    {"needconfirm","true"},
+                    {"onclick","location.href='"+Url.Content("~/TransportOrder/Start/" + Model.OrderNo) +"'"}
+	            })
+            }
+
+    if (Model.Status == com.Sconit.CodeMaster.TransportStatus.InProcess)
+            {
+            @Html.Button(Resources.SYS.Global.Button_Close, "Url_TransportOrder_Close", new Dictionary<string, string>()
+	            {
+	                {"type", "button"},
+	                {"id", "btnClose"},
+                    {"needconfirm","true"},
+                    {"onclick","location.href='"+Url.Content("~/TransportOrder/Close/" + Model.OrderNo) +"'"}
+	            })
+            }
+    if (Model.Status == com.Sconit.CodeMaster.TransportStatus.Close)
+            {
+            @Html.Button(Resources.SYS.Global.Button_Calculate, "Url_TransportOrder_Calculate", new Dictionary<string, string>()
+	            {
+	                {"type", "button"},
+	                {"id", "btnCalculate"},
+                    {"needconfirm","true"},
+                    {"onclick","location.href='"+Url.Content("~/TransportOrder/Calculate/" + Model.OrderNo) +"'"}
+	            })
+            }
+
+    if (Model.Status != com.Sconit.CodeMaster.TransportStatus.Cancel && Model.Status != com.Sconit.CodeMaster.TransportStatus.Create)
+              {
+            <button type="button" id="btnPrint" onclick="Print()">
+                @Resources.SYS.Global.Button_Print</button>
+            <button type="button" id="btnExport" onclick="Export()">
+                @Resources.SYS.Global.Button_Export</button>
+              }
             <button type="button" id="btnBack" onclick="location.href='@Url.Content("~/TransportOrder/List")'">
                 @Resources.SYS.Global.Button_Back</button>
+        }
         </div>
     </fieldset>
 }  
