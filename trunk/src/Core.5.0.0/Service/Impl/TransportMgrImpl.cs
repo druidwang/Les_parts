@@ -657,7 +657,7 @@ namespace com.Sconit.Service.Impl
         [Transaction(TransactionMode.Requires)]
         public void Calculate(string orderNo)
         {
-            transportBillMgr.CreateTransportActingBill(orderNo);
+             transportBillMgr.CreateTransportActingBill(orderNo);
         }
         #endregion
 
