@@ -18,7 +18,6 @@ namespace com.Sconit.Service.Impl
         public INumberControlMgr numberControlMgr { get; set; }
         public ISystemMgr systemMgr { get; set; }
         public IGenericMgr genericMgr { get; set; }
-        public ITransportBillMgr transportBillMgr { get; set; }
 
         #region public methods
         public TransportOrderMaster TransferFlow2Order(string flowCode)
@@ -521,7 +520,7 @@ namespace com.Sconit.Service.Impl
             #endregion
         }
 
-        public void ReleaseTransportOrderMaster(TransportOrderMaster transportOrderMaster)
+        private void ReleaseTransportOrderMaster(TransportOrderMaster transportOrderMaster)
         {
             #region 运单校验
             if (transportOrderMaster.Status != TransportStatus.Create)
@@ -652,12 +651,6 @@ namespace com.Sconit.Service.Impl
         public void StartTransportOrderMaster(TransportOrderMaster transportOrderMaster)
         {
             throw new NotImplementedException();
-        }
-
-        [Transaction(TransactionMode.Requires)]
-        public void Calculate(string orderNo)
-        {
-            transportBillMgr.CreateTransportActingBill(orderNo);
         }
         #endregion
 
@@ -850,7 +843,7 @@ namespace com.Sconit.Service.Impl
             }
         }
 
-        private void CalculateLoad(IList<TransportOrderDetail> transportOrderDetailList)
+        private void CalculateShipLoad(IList<TransportOrderDetail> transportOrderDetailList)
         {
             #region 查找所有ASN明细
             StringBuilder selectIpDetailHql = null;
@@ -940,15 +933,28 @@ namespace com.Sconit.Service.Impl
 
             #region 按ASN汇总计算重量和体积
             var ipDetailLoad = from ipDetail in ipDetailList
-                                select new
-                                {
-                                    IpNo = ipDetail.IpNo,
-                                    PalletCode = ipDetail.PalletCode,
-                                    EstBoxCount = ipDetail.UnitCount != 0 ? (ipDetail.Qty / ipDetail.UnitCount) : (decimal?)null,
-                                    EstPalletQty = ipDetail.PalletLotSize != 0 ? ipDetail.Qty / ipDetail.PalletLotSize : (decimal?)null,
-                                    EstVolume = ipDetail.UnitCount != 0 ? ipDetail.PackageVolume * ipDetail.Qty / ipDetail.UnitCount : (decimal?)null,
-                                    EstWeight = ipDetail.UnitCount != 0 ? ipDetail.PackageWeight * ipDetail.Qty / ipDetail.UnitCount : (decimal?)null,
-                                };
+                               select new
+                               {
+                                   IpNo = ipDetail.IpNo,
+                                   PalletCode = ipDetail.PalletCode,
+                                   EstBoxCount = ipDetail.UnitCount != 0 ? (ipDetail.Qty / ipDetail.UnitCount) : (decimal?)null,
+                                   EstPalletQty = ipDetail.PalletLotSize != 0 ? ipDetail.Qty / ipDetail.PalletLotSize : (decimal?)null,
+                                   EstVolume = ipDetail.UnitCount != 0 ? ipDetail.PackageVolume * ipDetail.Qty / ipDetail.UnitCount : (decimal?)null,
+                                   EstWeight = ipDetail.UnitCount != 0 ? ipDetail.PackageWeight * ipDetail.Qty / ipDetail.UnitCount : (decimal?)null,
+                               };
+
+
+            var groupedIpDetailLoad = from i in ipDetailLoad
+                                      group i by new { IpNo = i.IpNo, PalletCode = i.PalletCode } into result
+                                      select new
+                                      {
+                                          IpNo = result.Key.IpNo,
+                                          PalletCode = result.Key.PalletCode,
+                                          EstBoxCount = result.Sum(i => i.EstBoxCount),
+                                          EstPalletQty = result.Sum(i => i.EstPalletQty),
+                                          EstVolume = result.Sum(i => i.EstVolume),
+                                          EstWeight = result.Sum(i => i.EstWeight),
+                                      };
 
             var orderDetailPalletLoad = from odp in transportOrderDetailPalletList
                                         join p in palletList on odp.PalletCode equals p.Code
@@ -956,24 +962,23 @@ namespace com.Sconit.Service.Impl
                                         {
                                             IpNo = odp.IpNo,
                                             PalletQty = odp.PalletQty,
-                                            Volumn = odp.PalletQty * p.Volume,
+                                            Volume = odp.PalletQty * p.Volume,
                                             Weight = odp.PalletQty * p.Weight,
                                         };
 
-            var groupedIpDetailLoad = from i in ipDetailLoad
-                                        group i by new {IpNo = i.IpNo, PalletCode = i.PalletCode} into result
-                                        select new
-                                        {
-                                            IpNo = result.Key.IpNo,
-                                            PalletCode = result.Key.PalletCode,
-                                            EstBoxCount = result.Sum(i => i.EstBoxCount),
-                                            EstPalletQty = result.Sum(i => i.EstPalletQty),
-                                            EstVolume = result.Sum(i => i.EstVolume),
-                                            EstWeight = result.Sum(i => i.EstWeight),
-                                        };
+            var groupedOrderDetailPalletLoad = from o in orderDetailPalletLoad
+                                               group o by o.IpNo into g
+                                               select new
+                                               {
+                                                   IpNo = g.Key,
+                                                   PalletQty = g.Sum(o => o.PalletQty),
+                                                   Volume = g.Sum(o => o.Volume),
+                                                   Weight = g.Sum(o => o.Weight),
+                                               };
+
 
             var groupedIpDetailWithPalletLoad = from i in groupedIpDetailLoad
-                                                join p in palletList on i.PalletCode equals p.Code 
+                                                join p in palletList on i.PalletCode equals p.Code
                                                 into q
                                                 from g in q.DefaultIfEmpty()
                                                 select new
@@ -986,13 +991,32 @@ namespace com.Sconit.Service.Impl
                                                     EstWeight = i.EstWeight + (g.Code != null && g.Weight != 0 ? i.EstPalletQty * g.Weight : 0),
                                                 };
 
+            var groupedIpDetailWithActualPalletLoad = from i in groupedIpDetailWithPalletLoad
+                                                      join p in groupedOrderDetailPalletLoad on i.IpNo equals p.IpNo
+                                                      into q
+                                                      from g in q.DefaultIfEmpty()
+                                                      select new
+                                                      {
+                                                          IpNo = i.IpNo,
+                                                          PalletCode = i.PalletCode,
+                                                          EstBoxCount = i.EstBoxCount,
+                                                          EstPalletQty = i.EstPalletQty,
+                                                          EstVolume = i.EstVolume,
+                                                          EstWeight = i.EstWeight,
+                                                          PalletQty = g.PalletQty,
+                                                          Volume = g.Volume,
+                                                          Weight = g.Weight,
+                                                      };
             foreach (TransportOrderDetail transportOrderDetail in transportOrderDetailList)
             {
-               var p = groupedIpDetailWithPalletLoad.Where(g=>g.IpNo == transportOrderDetail.IpNo);
-               transportOrderDetail.EstBoxCount = (int)Math.Round(p.Sum(d => d.EstBoxCount).Value);
-               transportOrderDetail.EstPalletQty = (int)Math.Round(p.Sum(d => d.EstPalletQty).Value);
-               transportOrderDetail.EstVolume = p.Sum(d => d.EstVolume);
-               transportOrderDetail.EstWeight = p.Sum(d => d.EstWeight);
+                var p = groupedIpDetailWithActualPalletLoad.Where(g => g.IpNo == transportOrderDetail.IpNo);
+                transportOrderDetail.EstBoxCount = (int)Math.Round(p.Sum(d => d.EstBoxCount).Value);
+                transportOrderDetail.EstPalletQty = (int)Math.Round(p.Sum(d => d.EstPalletQty).Value);
+                transportOrderDetail.EstVolume = p.Sum(d => d.EstVolume);
+                transportOrderDetail.EstWeight = p.Sum(d => d.EstWeight);
+                transportOrderDetail.PalletQty = p.Sum(d => d.PalletQty);
+                transportOrderDetail.Volume = p.Sum(d => d.Volume);
+                transportOrderDetail.Weight = p.Sum(d => d.Weight);
             }
             #endregion
 
