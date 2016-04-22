@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<com.Sconit.Entity.BIL.PriceListDetail>
+@model IEnumerable<com.Sconit.Entity.TMS.TransportPriceListDetail>
 <fieldset>
   <script type="text/javascript">
       function PriceListDetailGrid_OnDataBinding(e) {
@@ -24,20 +24,22 @@
         .Columns(columns =>
         {
            // columns.Bound(o => o.PriceListCode).ClientTemplate(string.Format("<a href=\"javascript:onPriceListDetailclick('{0}')\">{1}</a>", "<#= Id #>", "<#= PriceListCode #>")); ;
-            columns.Bound(o => o.Item).ClientTemplate(string.Format("<a href=\"javascript:onPriceListDetailclick('{0}')\">{1}</a>", "<#= Id #>", "<#= Item #>")); 
-            columns.Bound(o => o.ItemDesc);
-            columns.Bound(o => o.Uom);
+            columns.Bound(o => o.ShipFrom).ClientTemplate(string.Format("<a href=\"javascript:onPriceListDetailclick('{0}')\">{1}</a>", "<#= Id #>", "<#= Item #>")); 
+            columns.Bound(o => o.ShipFromDescription);
+            columns.Bound(o => o.ShipTo);
+            columns.Bound(o => o.ShipToDescription);
             columns.Bound(o => o.StartDate).Format("{0:yyyy-MM-dd}");
             columns.Bound(o => o.EndDate).Format("{0:yyyy-MM-dd}");
             columns.Bound(o => o.UnitPrice);
-            columns.Bound(o => o.IsProvisionalEstimate)
-                .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsProvisionalEstimate' <#= IsProvisionalEstimate? checked='checked' : '' #> />");
+            columns.Bound(o => o.PricingMethod);
+            columns.Bound(o => o.IsProvEst)
+                .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsProvEst' <#= IsProvisionalEstimate? checked='checked' : '' #> />");
                  })
         .CellAction(cell =>
             {
                 if (cell.Column.Member == "PriceListCode")
                 {
-                    cell.Text = string.Format("<a href=\"javascript:onPriceListDetailclick('{0}')\">{1}</a>", cell.DataItem.Id, cell.DataItem.PriceListCode);
+                    cell.Text = string.Format("<a href=\"javascript:onPriceListDetailclick('{0}')\">{1}</a>", cell.DataItem.Id, cell.DataItem.PriceList);
                 }
             })
         .Scrollable(c => c.Enabled(false))

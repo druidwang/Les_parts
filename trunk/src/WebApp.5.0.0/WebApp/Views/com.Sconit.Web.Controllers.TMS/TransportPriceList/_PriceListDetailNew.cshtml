@@ -1,5 +1,5 @@
 ﻿@using com.Sconit.Entity.SYS
-@model com.Sconit.Entity.BIL.PriceListDetail
+@model com.Sconit.Entity.TMS.TransportPriceListDetail
  <script type="text/javascript">
      function Item_Change() {
          var combobox = $(this).data("tComboBox");
@@ -39,6 +39,16 @@
              });
          }
      }
+
+
+     function ShipFrom_Change(e) {
+         debugger;
+         var combobox = $(this).data('tComboBox');
+         combobox.value();
+     }
+
+     function Tonnage_DataBinding(e) {
+     }
 </script>
 @using (Html.BeginForm())
 {
@@ -47,7 +57,7 @@
         <div class="editor">
             <div class="editor-label-2">
                 <label for="PriceListDetail_PriceList">
-                    @Resources.BIL.PriceListDetail.PriceListDetail_PriceList
+                    @Resources.TMS.TransportPriceList.TransportPriceList_Code
                 </label>
             </div>
             <div class="editor-field-2">
@@ -59,40 +69,58 @@
             </div>
             <div class="editor-label-2">
                  <label for="PriceListDetail_Item">
-                    @Resources.BIL.PriceListDetail.PriceListDetail_Item
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_ShipFrom
                 </label>
             </div>
             <div class="editor-field-2">
-                    @{
-                        Html.RenderAction("_ItemComboBox", "Common", new
-                        {
-                            controlName = "Item",
-                            coupled = true,
-                            selectedValue = Model != null ? Model.Item : string.Empty
-                     
-                        });
-                    }
-                @Html.ValidationMessageFor(model => model.Item)
+                @{
+                    Html.RenderAction("_AddressComboBox", "Common",
+                         new
+                         {
+                             controlName = "ShipFrom",
+                             type = (int)com.Sconit.CodeMaster.AddressType.ShipAddress,
+                             isChange = true,
+                             enable = true
+                         });
+                }
             </div>
             <div class="editor-label-2">
                  <label for="PriceListDetail_Uom">
-                    @Resources.BIL.PriceListDetail.PriceListDetail_Uom
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_ShipFromDescription
+                </label>
+            </div>
+            <div class="editor-field-2" id="">
+                <input id="ShipFromDescription" name="ShipFromDescription" type="text" readonly="readonly"  />
+            </div>
+
+            <div class="editor-label-2">
+                 <label for="PriceListDetail_Uom">
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_ShipTo
+                </label>
+            </div>
+            <div class="editor-field-2" id="">
+                  @{
+                    Html.RenderAction("_AddressComboBox", "Common",
+                         new
+                         {
+                             controlName = "ShipTo",
+                             type = (int)com.Sconit.CodeMaster.AddressType.ShipAddress,
+                             enable = true
+                         });
+                }
+            </div>
+            <div class="editor-label-2">
+                 <label for="PriceListDetail_Uom">
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_ShipToDescription
                 </label>
             </div>
             <div class="editor-field-2" id="UomDiv">
-                 @{
-                     Html.RenderAction("_NewUomDropDownList", "Common",
-                        new { 
-                              controlName = "Uom",
-                              includeBlankOption = false,
-                              selectedValue = Model != null ? Model.Uom : string.Empty
-                        });
-                }
-                @Html.ValidationMessageFor(model => model.Uom)
+                <input id="ShipToDescription" name="ShipToDescription" type="text" readonly="readonly"  />
             </div>
+
             <div class="editor-label-2">
                  <label for="PriceListDetail_StartDate">
-                    @Resources.BIL.PriceListDetail.PriceListDetail_StartDate
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_StartDate
                 </label>
             </div>
             <div class="editor-field-2">
@@ -101,7 +129,7 @@
             </div>
             <div class="editor-label-2">
                  <label for="PriceListDetail_EndDate">
-                    @Resources.BIL.PriceListDetail.PriceListDetail_EndDate
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_EndDate
                 </label>
             </div>
             <div class="editor-field-2">
@@ -110,7 +138,7 @@
             </div>
             <div class="editor-label-2">
                  <label for="PriceListDetail_UnitPrice">
-                    @Resources.BIL.PriceListDetail.PriceListDetail_UnitPrice
+                    @Html.LabelFor(model => model.UnitPrice)
                 </label>
             </div>
             <div class="editor-field-2">
@@ -118,11 +146,123 @@
                 @Html.ValidationMessageFor(model => model.UnitPrice)
             </div>
             <div  class="editor-label-2">
-                @Html.LabelFor(model => model.IsProvisionalEstimate)
+                @Html.LabelFor(model => model.Currency)
+            </div>
+            <div class="search-field">
+                @{
+                    Html.RenderAction("_CurrencyDropDownList", "Common",
+                    new
+                    {
+                        controlName = "Currency",
+                        includeBlankOption = true
+                    });
+                }
+            </div>
+            <div  class="editor-label-2">
+                @Html.LabelFor(model => model.IsProvEst)
             </div>
             <div class="editor-field-2">
-                @Html.CheckBox("IsProvisionalEstimate", false)
+                @Html.CheckBox("IsProvEst", false)
             </div>
+            <div class="editor-label-2">
+                 <label for="PriceListDetail_Uom">
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_PricingMethod
+                </label>
+            </div>
+            <div class="editor-field-2" id="">
+                @{
+                    Html.RenderAction("_CodeMasterDropDownList", "Common", new
+                    {
+                        code = com.Sconit.CodeMaster.CodeMaster.TransportPricingMethod,
+                        controlName = "PricingMethod",
+                        //selectedValue = (int)Model.Type,
+                        //enable = false
+                    });
+                }
+            </div>
+            <div class="editor-label-2">
+                 <label>
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_Tonnage
+                </label>
+            </div>
+            <div class="editor-field-2" >  
+            @{
+                    Html.RenderAction("_TonnageComboBox", "Common", new
+                    {
+                        controlName = "Tonnage",
+                        checkVehicle = true
+                    });
+                }
+            </div>
+            <div class="editor-label-2">
+                 <label>
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_StartQty
+                </label>
+            </div>
+            <div class="editor-field-2" >  
+                @Html.Telerik().NumericTextBoxFor(model => model.StartQty).DecimalDigits(0).MinValue(0)
+                @Html.ValidationMessageFor(model => model.StartQty)
+            </div>
+            <div class="editor-label-2">
+                 <label>
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_EndQty
+                </label>
+            </div>
+            <div class="editor-field-2" >  
+                @Html.Telerik().NumericTextBoxFor(model => model.EndQty).DecimalDigits(0).MinValue(0)
+                @Html.ValidationMessageFor(model => model.EndQty)
+            </div>
+
+            <div class="editor-label-2">
+                 <label>
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_MinPrice
+                </label>
+            </div>
+            <div class="editor-field-2" >  
+                @Html.Telerik().NumericTextBoxFor(model => model.MinPrice).DecimalDigits(2).MinValue(0)
+                @Html.ValidationMessageFor(model => model.MinPrice)
+            </div>
+            <div class="editor-label-2">
+                 <label>
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_MaxPrice
+                </label>
+            </div>
+            <div class="editor-field-2" >  
+                @Html.Telerik().NumericTextBoxFor(model => model.MaxPrice).DecimalDigits(4).MinValue(0)
+                @Html.ValidationMessageFor(model => model.MaxPrice)
+            </div>
+
+            <div class="editor-label-2">
+                 <label>
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_DeliveryFee
+                </label>
+            </div>
+            <div class="editor-field-2" >  
+                @Html.Telerik().NumericTextBoxFor(model => model.DeliveryFee).DecimalDigits(4).MinValue(0)
+                @Html.ValidationMessageFor(model => model.DeliveryFee)
+            </div>
+
+            <div class="editor-label-2">
+                 <label>
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_ServiceFee
+                </label>
+            </div>
+            <div class="editor-field-2" >  
+                @Html.Telerik().NumericTextBoxFor(model => model.ServiceFee).DecimalDigits(4).MinValue(0)
+                @Html.ValidationMessageFor(model => model.ServiceFee)
+            </div>
+
+            <div class="editor-label-2">
+                 <label>
+                    @Resources.TMS.TransportPriceList.TransportPriceListDetail_LoadingFee
+                </label>
+            </div>
+            <div class="editor-field-2" >  
+                @Html.Telerik().NumericTextBoxFor(model => model.LoadingFee).DecimalDigits(4).MinValue(0)
+                @Html.ValidationMessageFor(model => model.LoadingFee)
+            </div>
+            
+
         </div>
         <div class="editor-footer">
          @Html.Button(Resources.SYS.Global.Button_New, "Url_ProcurementPriceList_Edit", new Dictionary<string, string>()
