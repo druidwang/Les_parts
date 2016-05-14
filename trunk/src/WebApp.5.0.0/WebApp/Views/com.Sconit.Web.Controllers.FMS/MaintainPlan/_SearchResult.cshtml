@@ -12,7 +12,7 @@
             columns.Bound(o => o.Code).ClientTemplate(Html.ActionLink("<#= Code #>", "Edit", "MaintainPlan", new { ID = "<#= Code #>" }, null).ToString());
             columns.Bound(o => o.Description);
             columns.Bound(o => o.FacilityCategory);
-            columns.Bound(o => o.Type);
+            columns.Bound(o => o.TypeDescription);
             columns.Bound(o => o.TypePeriod);
             columns.Bound(o => o.Period);
             columns.Bound(o => o.LeadTime);

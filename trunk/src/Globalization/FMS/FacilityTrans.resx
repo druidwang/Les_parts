@@ -174,4 +174,7 @@
   <data name="FacilityTrans_TransType" xml:space="preserve">
     <value>TransType</value>
   </data>
+  <data name="FacilityTrans_Edit_Title" xml:space="preserve">
+    <value>Edit</value>
+  </data>
 </root>

@@ -8,7 +8,7 @@
         })
         .Columns(columns =>
         {
-            columns.Bound(o => o.FCID).ClientTemplate(Html.ActionLink("<#= FCID #>", "_EditList", "FacilityMaster", new { ID = "<#= FCID #>" }, null).ToString());
+            columns.Bound(o => o.FCID).ClientTemplate(Html.ActionLink("<#= FCID #>", "Edit", "FacilityMaster", new { ID = "<#= FCID #>" }, null).ToString());
             columns.Bound(o => o.Name);
             columns.Bound(o => o.Category);
             columns.Bound(o => o.AssetNo);

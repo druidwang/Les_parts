@@ -3593,6 +3593,51 @@
 
 
         #endregion
+
+        #region MaintainPlan
+        public ActionResult _MaintainPlanComboBox(string controlName, string controlId, string selectedValue, bool? enable, bool? includeBlankOption)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.IncludeBlankOption = includeBlankOption;
+
+
+            IList<MaintainPlan> maintainPlanList = new List<MaintainPlan>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+                maintainPlanList = genericMgr.FindAll<MaintainPlan>("from MaintainPlan m where m.Code = ?", selectedValue);
+            }
+            return PartialView(new SelectList(maintainPlanList, "Code", "Description", selectedValue));
+        }
+
+        public ActionResult _MaintainPlanAjaxLoading(string text, string categoryCode, bool? includeBlankOption)
+        {
+
+            IList<MaintainPlan> maintainPlanList = new List<MaintainPlan>();
+            IList<object> paramList = new List<object>();
+            string hql = "from MaintainPlan m ";
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                hql += "  where m.Code like ? ";
+                paramList.Add(text + "%");
+            }
+
+            maintainPlanList = base.genericMgr.FindAll<MaintainPlan>(hql, paramList.ToArray(), firstRow, maxRow);
+            if (includeBlankOption.HasValue && includeBlankOption.Value)
+            {
+                maintainPlanList.Insert(0, new MaintainPlan());
+            }
+
+            return new JsonResult
+            {
+                Data = new SelectList(maintainPlanList, "Code", "Description")
+            };
+        }
+
+
+
+        #endregion
         #endregion
 
         #region CostCenter

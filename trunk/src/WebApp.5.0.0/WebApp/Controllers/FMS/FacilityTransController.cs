@@ -106,7 +106,8 @@ namespace com.Sconit.Web.Controllers.FMS
             }
             else
             {
-                FacilityTrans facilityTrans = this.genericMgr.FindById<FacilityTrans>(id);
+                FacilityTrans facilityTrans = this.genericMgr.FindById<FacilityTrans>(int.Parse(id));
+                facilityTrans.TransTypeDescription = systemMgr.GetCodeDetailDescription(Sconit.CodeMaster.CodeMaster.FacilityTransType, facilityTrans.TransType.ToString());
                 return View(facilityTrans);
             }
         }
