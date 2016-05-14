@@ -231,7 +231,6 @@
     <Compile Include="Base\ORD\OrderDetailTrace.cs" />
     <Compile Include="Base\ORD\OrderMaster.cs" />
     <Compile Include="Base\ORD\OrderOperation.cs" />
-    <Compile Include="Base\ORD\OrderOpReport.cs" />
     <Compile Include="Base\ORD\OrderTracer.cs" />
     <Compile Include="Base\ORD\PickListDetail.cs" />
     <Compile Include="Base\ORD\PickListMaster.cs" />
@@ -591,7 +590,6 @@
     <Compile Include="ORD\OrderDetailTrace.cs" />
     <Compile Include="ORD\OrderMaster.cs" />
     <Compile Include="ORD\OrderOperation.cs" />
-    <Compile Include="ORD\OrderOpReport.cs" />
     <Compile Include="ORD\OrderTracer.cs" />
     <Compile Include="ORD\PickListDetail.cs" />
     <Compile Include="ORD\PickListMaster.cs" />
@@ -1020,7 +1018,6 @@
     <Content Include="Base\INP\ProdTraceCode.hbm.xml" />
     <Content Include="Base\MD\Pallet.hbm.xml" />
     <Content Include="Base\ORD\OrderOperation.hbm.xml" />
-    <Content Include="Base\ORD\OrderOpReport.hbm.xml" />
     <Content Include="Base\TMS\TransportOrderDetailPallet.hbm.xml" />
     <EmbeddedResource Include="Base\TMS\TransportActingBillDetail.hbm.xml">
       <SubType>Designer</SubType>
