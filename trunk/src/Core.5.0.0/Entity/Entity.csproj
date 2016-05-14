@@ -110,6 +110,12 @@
     <Compile Include="Base\CUST\SubPrintOrder.cs" />
     <Compile Include="Base\CUST\VehicleInFactoryDetail.cs" />
     <Compile Include="Base\CUST\VehicleInFactoryMaster.cs" />
+    <Compile Include="Base\Entity\Base\INP\ProdTraceCode.cs" />
+    <Compile Include="Base\Entity\Base\OrderOpReport\OrderOpReport.cs" />
+    <Compile Include="Base\Entity\Base\OrderOp\OrderOp.cs" />
+    <Compile Include="Base\Entity\INP\ProdTraceCode.cs" />
+    <Compile Include="Base\Entity\OrderOpReport\OrderOpReport.cs" />
+    <Compile Include="Base\Entity\OrderOp\OrderOp.cs" />
     <Compile Include="Base\FMS\FacilityCategory.cs" />
     <Compile Include="Base\FMS\FacilityItem.cs" />
     <Compile Include="Base\FMS\FacilityMaintainPlan.cs" />
@@ -124,6 +130,7 @@
     <Compile Include="Base\INP\InspectMaster.cs" />
     <Compile Include="Base\INP\InspectResult.cs" />
     <Compile Include="Base\INP\InspectResultExt.cs" />
+    <Compile Include="Base\INP\ProdTraceCode.cs" />
     <Compile Include="Base\INP\RejectDetail.cs" />
     <Compile Include="Base\INP\RejectMaster.cs" />
     <Compile Include="Base\INV\ContainerDetail.cs" />
@@ -224,6 +231,7 @@
     <Compile Include="Base\ORD\OrderDetailTrace.cs" />
     <Compile Include="Base\ORD\OrderMaster.cs" />
     <Compile Include="Base\ORD\OrderOperation.cs" />
+    <Compile Include="Base\ORD\OrderOpReport.cs" />
     <Compile Include="Base\ORD\OrderTracer.cs" />
     <Compile Include="Base\ORD\PickListDetail.cs" />
     <Compile Include="Base\ORD\PickListMaster.cs" />
@@ -348,6 +356,7 @@
     <Compile Include="INP\InspectMaster.cs" />
     <Compile Include="INP\InspectResult.cs" />
     <Compile Include="INP\InspectResultExt.cs" />
+    <Compile Include="INP\ProdTraceCode.cs" />
     <Compile Include="INP\ProductionScanDetail.cs" />
     <Compile Include="INP\ProductionScanMaster.cs" />
     <Compile Include="INP\RejectDetail.cs" />
@@ -582,6 +591,7 @@
     <Compile Include="ORD\OrderDetailTrace.cs" />
     <Compile Include="ORD\OrderMaster.cs" />
     <Compile Include="ORD\OrderOperation.cs" />
+    <Compile Include="ORD\OrderOpReport.cs" />
     <Compile Include="ORD\OrderTracer.cs" />
     <Compile Include="ORD\PickListDetail.cs" />
     <Compile Include="ORD\PickListMaster.cs" />
@@ -840,7 +850,6 @@
     <EmbeddedResource Include="Base\ORD\OrderDetail.hbm.xml" />
     <EmbeddedResource Include="Base\ORD\OrderDetailTrace.hbm.xml" />
     <EmbeddedResource Include="Base\ORD\OrderMaster.hbm.xml" />
-    <EmbeddedResource Include="Base\ORD\OrderOperation.hbm.xml" />
     <EmbeddedResource Include="Base\ORD\OrderTracer.hbm.xml" />
     <EmbeddedResource Include="Base\ORD\PickListDetail.hbm.xml" />
     <EmbeddedResource Include="Base\ORD\PickListMaster.hbm.xml" />
@@ -1005,7 +1014,13 @@
     <EmbeddedResource Include="Base\FMS\FacilityStockMaster.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\FacilityTrans.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\MaintainPlan.hbm.xml" />
+    <Content Include="Base\Entity\Base\INP\ProdTraceCode.hbm.xml" />
+    <Content Include="Base\Entity\Base\OrderOpReport\OrderOpReport.hbm.xml" />
+    <Content Include="Base\Entity\Base\OrderOp\OrderOp.hbm.xml" />
+    <Content Include="Base\INP\ProdTraceCode.hbm.xml" />
     <Content Include="Base\MD\Pallet.hbm.xml" />
+    <Content Include="Base\ORD\OrderOperation.hbm.xml" />
+    <Content Include="Base\ORD\OrderOpReport.hbm.xml" />
     <Content Include="Base\TMS\TransportOrderDetailPallet.hbm.xml" />
     <EmbeddedResource Include="Base\TMS\TransportActingBillDetail.hbm.xml">
       <SubType>Designer</SubType>

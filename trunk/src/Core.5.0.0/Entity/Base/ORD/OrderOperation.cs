@@ -10,24 +10,18 @@ namespace com.Sconit.Entity.ORD
 
         public Int32 Id { get; set; }
         public string OrderNo { get; set; }
-        public Int32 OrderDetailId { get; set; }
-        [Display(Name = "OrderOperation_Operation", ResourceType = typeof(Resources.ORD.OrderOperation))]
-        public Int32 Operation { get; set; }
-        [Display(Name = "OrderOperation_OpReference", ResourceType = typeof(Resources.ORD.OrderOperation))]
+        public Int32 OrderDetId { get; set; }
+        public Int32 Op { get; set; }
         public string OpReference { get; set; }
-          [Display(Name = "OrderOperation_SAPOperation", ResourceType = typeof(Resources.ORD.OrderOperation))]
-        public string SAPOperation { get; set; }
-        [Display(Name = "OrderOperation_WorkCenter", ResourceType = typeof(Resources.ORD.OrderOperation))]
-        public string WorkCenter { get; set; }
-        [Display(Name = "OrderOperation_LeadTime", ResourceType = typeof(Resources.ORD.OrderOperation))]
-        public Double LeadTime { get; set; }
-        [Display(Name = "OrderOperation_TimeUnit", ResourceType = typeof(Resources.ORD.OrderOperation))]
-        public com.Sconit.CodeMaster.TimeUnit TimeUnit { get; set; }
+        public string OpDesc { get; set; }
         public string Location { get; set; }
-        [Display(Name = "OrderOperation_IsBackflush", ResourceType = typeof(Resources.ORD.OrderOperation))]
-        public Boolean IsBackflush { get; set; }
-        [Display(Name = "OrderOperation_IsReport", ResourceType = typeof(Resources.ORD.OrderOperation))]
-        public Boolean IsReport { get; set; }
+        public string WorkCenter { get; set; }
+        public Boolean NeedReport { get; set; }
+        public Boolean IsAutoReport { get; set; }
+        public Decimal ReportQty { get; set; }
+        public Decimal ScrapQty { get; set; }
+        public Decimal BackflushQty { get; set; }
+        public Boolean IsRecFG { get; set; }
         public Int32 CreateUserId { get; set; }
         public string CreateUserName { get; set; }
         public DateTime CreateDate { get; set; }
@@ -62,7 +56,7 @@ namespace com.Sconit.Entity.ORD
             {
                 return (this.Id == another.Id);
             }
-        }
+        } 
     }
 
 }
