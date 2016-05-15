@@ -289,6 +289,12 @@ namespace com.Sconit.Service
         decimal GetRoundOrderQty(OrderDetail orderDetail, decimal orderQty);
 
         void CleanOrder(List<string> flowCodeList);
+
+        string PrintTraceCode(string orderNo);
+
+        void ReportOrderOp(int op);
+
+        string ReceiveTraceCode(IList<string> traceCodeList);
     }
 
     public interface ISequenceMgr

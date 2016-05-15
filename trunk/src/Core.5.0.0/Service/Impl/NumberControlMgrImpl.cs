@@ -316,6 +316,7 @@ namespace com.Sconit.Service.Impl
             return HuIds;
         }
 
+
         public IDictionary<string, decimal> GetHuId(OrderDetail orderDetail)
         {
             decimal uc = orderDetail.UnitCount;
@@ -634,6 +635,15 @@ namespace com.Sconit.Service.Impl
             }
         }
         #endregion
+
+        public string GetTraceCode()
+        {
+            {
+                string numberSuffix = GetNextSequence(BusinessConstants.NUMBERCONTROL_TRACECODE);
+                numberSuffix = numberSuffix.PadLeft(9, '0');
+                return ("T" + numberSuffix);
+            }
+        }
 
         #region private methods
         public String GetNextSequence(string code)

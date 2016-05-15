@@ -22,6 +22,7 @@ namespace com.Sconit.Entity
         public static readonly string NUMBERCONTROL_DISTRIBUTIONBILL = "ORD_DISTRIBUTIONBILL";
         public static readonly string NUMBERCONTROL_TRANSPORTATION = "ORD_TRANSPORTATION";
         public static readonly string NUMBERCONTROL_FACILITY = "FMS_FACILITY";
+        public static readonly string NUMBERCONTROL_TRACECODE = "TRACECODE";
 
         public static readonly string VIRTUALSECTION = "299999";
 

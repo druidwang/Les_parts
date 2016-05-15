@@ -110,10 +110,6 @@
     <Compile Include="Base\CUST\SubPrintOrder.cs" />
     <Compile Include="Base\CUST\VehicleInFactoryDetail.cs" />
     <Compile Include="Base\CUST\VehicleInFactoryMaster.cs" />
-    <Compile Include="Base\FMS\CheckListDetail.cs" />
-    <Compile Include="Base\FMS\CheckListMaster.cs" />
-    <Compile Include="Base\FMS\CheckListOrderDetail.cs" />
-    <Compile Include="Base\FMS\CheckListOrderMaster.cs" />
     <Compile Include="Base\FMS\FacilityCategory.cs" />
     <Compile Include="Base\FMS\FacilityItem.cs" />
     <Compile Include="Base\FMS\FacilityMaintainPlan.cs" />
@@ -128,6 +124,7 @@
     <Compile Include="Base\INP\InspectMaster.cs" />
     <Compile Include="Base\INP\InspectResult.cs" />
     <Compile Include="Base\INP\InspectResultExt.cs" />
+    <Compile Include="Base\INP\ProdTraceCode.cs" />
     <Compile Include="Base\INP\RejectDetail.cs" />
     <Compile Include="Base\INP\RejectMaster.cs" />
     <Compile Include="Base\INV\ContainerDetail.cs" />
@@ -209,7 +206,6 @@
     <Compile Include="Base\MD\Uom.cs" />
     <Compile Include="Base\MD\UomConversion.cs" />
     <Compile Include="Base\MD\WorkingCalendar.cs" />
-    <Compile Include="Base\MES\MESScanControlPoint.cs" />
     <Compile Include="Base\MSG\Email.cs" />
     <Compile Include="Base\MSG\Message.cs" />
     <Compile Include="Base\MSG\MessageQueue.cs" />
@@ -338,10 +334,6 @@
     <Compile Include="EntityBase.cs" />
     <Compile Include="Exception\BusinessException.cs" />
     <Compile Include="Exception\TechnicalException.cs" />
-    <Compile Include="FMS\CheckListDetail.cs" />
-    <Compile Include="FMS\CheckListMaster.cs" />
-    <Compile Include="FMS\CheckListOrderDetail.cs" />
-    <Compile Include="FMS\CheckListOrderMaster.cs" />
     <Compile Include="FMS\FacilityCategory.cs" />
     <Compile Include="FMS\FacilityItem.cs" />
     <Compile Include="FMS\FacilityMaintainPlan.cs" />
@@ -357,6 +349,7 @@
     <Compile Include="INP\InspectMaster.cs" />
     <Compile Include="INP\InspectResult.cs" />
     <Compile Include="INP\InspectResultExt.cs" />
+    <Compile Include="INP\ProdTraceCode.cs" />
     <Compile Include="INP\ProductionScanDetail.cs" />
     <Compile Include="INP\ProductionScanMaster.cs" />
     <Compile Include="INP\RejectDetail.cs" />
@@ -451,7 +444,6 @@
     <Compile Include="MD\WorkingCalendar.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="MessageHolder.cs" />
-    <Compile Include="MES\MESScanControlPoint.cs" />
     <Compile Include="MRP\Base\MD\FlowClassify.cs" />
     <Compile Include="MRP\Base\MD\HuTo.cs" />
     <Compile Include="MRP\Base\MD\HuToMapping.cs" />
@@ -850,7 +842,6 @@
     <EmbeddedResource Include="Base\ORD\OrderDetail.hbm.xml" />
     <EmbeddedResource Include="Base\ORD\OrderDetailTrace.hbm.xml" />
     <EmbeddedResource Include="Base\ORD\OrderMaster.hbm.xml" />
-    <EmbeddedResource Include="Base\ORD\OrderOperation.hbm.xml" />
     <EmbeddedResource Include="Base\ORD\OrderTracer.hbm.xml" />
     <EmbeddedResource Include="Base\ORD\PickListDetail.hbm.xml" />
     <EmbeddedResource Include="Base\ORD\PickListMaster.hbm.xml" />
@@ -1015,12 +1006,9 @@
     <EmbeddedResource Include="Base\FMS\FacilityStockMaster.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\FacilityTrans.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\MaintainPlan.hbm.xml" />
-    <EmbeddedResource Include="Base\FMS\CheckListDetail.hbm.xml" />
-    <EmbeddedResource Include="Base\FMS\CheckListMaster.hbm.xml" />
-    <EmbeddedResource Include="Base\FMS\CheckListOrderDetail.hbm.xml" />
-    <EmbeddedResource Include="Base\FMS\CheckListOrderMaster.hbm.xml" />
+    <Content Include="Base\INP\ProdTraceCode.hbm.xml" />
     <Content Include="Base\MD\Pallet.hbm.xml" />
-    <EmbeddedResource Include="Base\MES\MESScanControlPoint.hbm.xml" />
+    <Content Include="Base\ORD\OrderOperation.hbm.xml" />
     <Content Include="Base\TMS\TransportOrderDetailPallet.hbm.xml" />
     <EmbeddedResource Include="Base\TMS\TransportActingBillDetail.hbm.xml">
       <SubType>Designer</SubType>
