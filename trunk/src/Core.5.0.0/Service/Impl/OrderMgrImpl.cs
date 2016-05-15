@@ -5366,7 +5366,7 @@ namespace com.Sconit.Service.Impl
                     else
                     {
                         #region 检查工序合法性
-                        IList<OrderOperation> orderOperationList = this.genericMgr.FindAll<OrderOperation>("from OrderOperation where OrderNo = ? and Operation = ?", new object[] { orderMaster.OrderNo, pauseOperation.Value });
+                        IList<OrderOperation> orderOperationList = this.genericMgr.FindAll<OrderOperation>("from OrderOperation where OrderNo = ? and Op = ?", new object[] { orderMaster.OrderNo, pauseOperation.Value });
 
                         if (orderOperationList == null || orderOperationList.Count == 0)
                         {
@@ -6381,7 +6381,7 @@ namespace com.Sconit.Service.Impl
                     }
                     if (includeOperation)
                     {
-                        orderDetail.OrderOperations = this.genericMgr.FindAll<OrderOperation>("from OrderOperation o where o.OrderDetailId=?", orderDetail.Id);
+                        orderDetail.OrderOperations = this.genericMgr.FindAll<OrderOperation>("from OrderOperation o where o.OrderDetId=?", orderDetail.Id);
                     }
                 }
             }
@@ -8714,7 +8714,7 @@ namespace com.Sconit.Service.Impl
             {
                 if (orderDetail.OrderOperations == null)
                 {
-                    string hql = "from OrderOperation where OrderDetailId = ? order by Operation, OpReference";
+                    string hql = "from OrderOperation where OrderDetId = ? order by Op, OpReference";
 
                     orderDetail.OrderOperations = this.genericMgr.FindAll<OrderOperation>(hql, orderDetail.Id);
                 }
@@ -8747,7 +8747,7 @@ namespace com.Sconit.Service.Impl
                     {
                         if (hql == string.Empty)
                         {
-                            hql = "from OrderOperation where OrderDetailId in (?";
+                            hql = "from OrderOperation where OrderDetId in (?";
                         }
                         else
                         {
@@ -8759,7 +8759,7 @@ namespace com.Sconit.Service.Impl
 
                 if (hql != string.Empty)
                 {
-                    hql += ") order by OrderDetailId, Operation, OpReference";
+                    hql += ") order by OrderDetId, Op, OpReference";
 
                     ((List<OrderOperation>)orderOperationList).AddRange(this.genericMgr.FindAll<OrderOperation>(hql, para.ToArray()));
                 }
