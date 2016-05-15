@@ -1757,7 +1757,7 @@ namespace com.Sconit.Service.Impl
                 foreach (OrderOperation orderOperation in orderOperationList)
                 {
                     orderOperation.OrderNo = orderDetail.OrderNo;
-                    orderOperation.OrderDetailId = orderDetail.Id;
+                    orderOperation.OrderDetId = orderDetail.Id;
                     this.genericMgr.Create(orderOperation);
                 }
             }
@@ -5373,10 +5373,10 @@ namespace com.Sconit.Service.Impl
                             throw new BusinessException("生产单{0}没有工序{1}。", orderMaster.OrderNo, pauseOperation.Value.ToString());
                         }
 
-                        if (orderOperationList.Where(o => o.IsBackflush).Count() > 0)
-                        {
-                            throw new BusinessException("生产单{0}的工序{1}已经回冲物料，不能选择该工序暂停。", orderMaster.OrderNo, pauseOperation.Value.ToString());
-                        }
+                        //if (orderOperationList.Where(o => o.IsBackflush).Count() > 0)
+                        //{
+                        //    throw new BusinessException("生产单{0}的工序{1}已经回冲物料，不能选择该工序暂停。", orderMaster.OrderNo, pauseOperation.Value.ToString());
+                        //}
                         #endregion
                     }
                 }
@@ -8013,12 +8013,10 @@ namespace com.Sconit.Service.Impl
                     IList<OrderOperation> orderOperationList = (from det in routingDetailList
                                                                 select new OrderOperation
                                                                 {
-                                                                    Operation = det.Operation,
+                                                                    Op = det.Operation,
                                                                     OpReference = det.OpReference,
-                                                                    LeadTime = det.LeadTime > 0 ? det.LeadTime : routing.TaktTime,   //默认取工序上的提前期，如果为0择取工艺流程上的节拍时间
-                                                                    TimeUnit = det.LeadTime > 0 ? det.TimeUnit : routing.TaktTimeUnit,
                                                                     Location = det.Location
-                                                                }).OrderBy(det => det.Operation).ThenBy(det => det.OpReference).ToList();
+                                                                }).OrderBy(det => det.Op).ThenBy(det => det.OpReference).ToList();
 
                     orderDetail.OrderOperations = orderOperationList;
                 }
@@ -8115,7 +8113,7 @@ namespace com.Sconit.Service.Impl
                 {
                     //取RoutingDetail上的
                     OrderOperation orderOperation = orderDetail.OrderOperations.Where(
-                            p => p.Operation == bomDetail.Operation
+                            p => p.Op == bomDetail.Operation
                             && p.OpReference == bomDetail.OpReference).SingleOrDefault();
 
                     if (orderOperation != null)
@@ -8206,7 +8204,7 @@ namespace com.Sconit.Service.Impl
                 if (orderDetail.OrderOperations != null)
                 {
                     IList<OrderOperation> orderOperationList = orderDetail.OrderOperations.Where(
-                               p => p.Operation < bomDetail.Operation
+                               p => p.Op < bomDetail.Operation
                         //每道工序对应一个工位，不考虑一道工序多工位的情况
                         //|| (p.Operation == bomDetail.Operation              //同道工序多工位的情况
                         //&& string.Compare(p.OpReference, bomDetail.OpReference) <= 0)
@@ -8216,21 +8214,21 @@ namespace com.Sconit.Service.Impl
                     {
                         foreach (OrderOperation orderOperation in orderOperationList)
                         {
-                            switch (orderOperation.TimeUnit)
-                            {
-                                case com.Sconit.CodeMaster.TimeUnit.Day:
-                                    orderBomDetail.EstimateConsumeTime = orderBomDetail.EstimateConsumeTime.Add(TimeSpan.FromDays(orderOperation.LeadTime));
-                                    break;
-                                case com.Sconit.CodeMaster.TimeUnit.Hour:
-                                    orderBomDetail.EstimateConsumeTime = orderBomDetail.EstimateConsumeTime.Add(TimeSpan.FromHours(orderOperation.LeadTime));
-                                    break;
-                                case com.Sconit.CodeMaster.TimeUnit.Minute:
-                                    orderBomDetail.EstimateConsumeTime = orderBomDetail.EstimateConsumeTime.Add(TimeSpan.FromMinutes(orderOperation.LeadTime));
-                                    break;
-                                case com.Sconit.CodeMaster.TimeUnit.Second:
-                                    orderBomDetail.EstimateConsumeTime = orderBomDetail.EstimateConsumeTime.Add(TimeSpan.FromSeconds(orderOperation.LeadTime));
-                                    break;
-                            };
+                            //switch (orderOperation.TimeUnit)
+                            //{
+                            //    case com.Sconit.CodeMaster.TimeUnit.Day:
+                            //        orderBomDetail.EstimateConsumeTime = orderBomDetail.EstimateConsumeTime.Add(TimeSpan.FromDays(orderOperation.LeadTime));
+                            //        break;
+                            //    case com.Sconit.CodeMaster.TimeUnit.Hour:
+                            //        orderBomDetail.EstimateConsumeTime = orderBomDetail.EstimateConsumeTime.Add(TimeSpan.FromHours(orderOperation.LeadTime));
+                            //        break;
+                            //    case com.Sconit.CodeMaster.TimeUnit.Minute:
+                            //        orderBomDetail.EstimateConsumeTime = orderBomDetail.EstimateConsumeTime.Add(TimeSpan.FromMinutes(orderOperation.LeadTime));
+                            //        break;
+                            //    case com.Sconit.CodeMaster.TimeUnit.Second:
+                            //        orderBomDetail.EstimateConsumeTime = orderBomDetail.EstimateConsumeTime.Add(TimeSpan.FromSeconds(orderOperation.LeadTime));
+                            //        break;
+                            //};
                         }
                     }
                 }
@@ -8770,7 +8768,7 @@ namespace com.Sconit.Service.Impl
                 {
                     if (orderDetail.OrderOperations == null || orderDetail.OrderOperations.Count == 0)
                     {
-                        orderDetail.OrderOperations = orderOperationList.Where(o => o.OrderDetailId == orderDetail.Id).ToList();
+                        orderDetail.OrderOperations = orderOperationList.Where(o => o.OrderDetId == orderDetail.Id).ToList();
                     }
                 }
 
@@ -9946,6 +9944,40 @@ namespace com.Sconit.Service.Impl
             messageQueue.LastModifyDate = DateTime.Now;
             messageQueue.CreateTime = DateTime.Now;
             this.genericMgr.Create(messageQueue);
+        }
+
+
+        [Transaction(TransactionMode.Requires)]
+        public string PrintTraceCode(string orderNo)
+        {
+            OrderDetail orderDetail = this.genericMgr.FindAll<OrderDetail>("from OrderDetail where OrderNo = ?").Single();
+            OrderOperation orderOperation = this.genericMgr.FindAll<OrderOperation>("from OrderOperation where OrderNo = ? order by Op").First();
+
+            ProdTraceCode prodTraceCode = new ProdTraceCode();
+            prodTraceCode.TraceCode = numberControlMgr.GetTraceCode();
+            prodTraceCode.OrderNo = orderDetail.OrderNo;
+            prodTraceCode.OrderDetId = orderDetail.Id;
+            prodTraceCode.Item = orderDetail.Item;
+            prodTraceCode.ItemDesc = orderDetail.ItemDescription;
+            prodTraceCode.OrderOp = orderOperation.Op;
+            prodTraceCode.OrderOpId = orderOperation.Id;
+
+            orderOperation.ReportQty++;
+
+            this.genericMgr.Update(orderOperation);
+            this.genericMgr.Create(prodTraceCode);
+
+            return prodTraceCode.TraceCode;
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public void ReportOrderOp(int op)
+        {
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public void ReceiveTraceCode(IList<string> traceCodeList)
+        {
         }
     }
 

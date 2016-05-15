@@ -72,5 +72,7 @@ namespace com.Sconit.Service
         string GetTransportBillNo(TransportBillMaster billMaster);
 
         string GetFCID(FacilityMaster facilityMaster);
+
+        string GetTraceCode();
     }
 }

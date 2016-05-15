@@ -7,8 +7,10 @@
 		<property name="OrderNo" column="OrderNo" type="String" length="50"/>	
 		<property name="OrderDetId" column="OrderDetId" type="Int32"/>	
 		<property name="Item" column="Item" type="String" length="50"/>	
-		<property name="ItemDesc" column="ItemDesc" type="String" length="100"/>	
-		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
+		<property name="ItemDesc" column="ItemDesc" type="String" length="100"/>
+        <property name="OrderOp" column="OrderOp" type="Int32" update="false"/>
+        <property name="OrderOpId" column="OrderOpId" type="Int32" update="false"/>
+        <property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
 		<property name="LastModifyUserId" column="LastModifyUser" type="Int32"/>	

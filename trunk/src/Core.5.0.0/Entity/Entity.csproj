@@ -110,12 +110,6 @@
     <Compile Include="Base\CUST\SubPrintOrder.cs" />
     <Compile Include="Base\CUST\VehicleInFactoryDetail.cs" />
     <Compile Include="Base\CUST\VehicleInFactoryMaster.cs" />
-    <Compile Include="Base\Entity\Base\INP\ProdTraceCode.cs" />
-    <Compile Include="Base\Entity\Base\OrderOpReport\OrderOpReport.cs" />
-    <Compile Include="Base\Entity\Base\OrderOp\OrderOp.cs" />
-    <Compile Include="Base\Entity\INP\ProdTraceCode.cs" />
-    <Compile Include="Base\Entity\OrderOpReport\OrderOpReport.cs" />
-    <Compile Include="Base\Entity\OrderOp\OrderOp.cs" />
     <Compile Include="Base\FMS\FacilityCategory.cs" />
     <Compile Include="Base\FMS\FacilityItem.cs" />
     <Compile Include="Base\FMS\FacilityMaintainPlan.cs" />
@@ -1012,9 +1006,6 @@
     <EmbeddedResource Include="Base\FMS\FacilityStockMaster.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\FacilityTrans.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\MaintainPlan.hbm.xml" />
-    <Content Include="Base\Entity\Base\INP\ProdTraceCode.hbm.xml" />
-    <Content Include="Base\Entity\Base\OrderOpReport\OrderOpReport.hbm.xml" />
-    <Content Include="Base\Entity\Base\OrderOp\OrderOp.hbm.xml" />
     <Content Include="Base\INP\ProdTraceCode.hbm.xml" />
     <Content Include="Base\MD\Pallet.hbm.xml" />
     <Content Include="Base\ORD\OrderOperation.hbm.xml" />
