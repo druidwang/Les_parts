@@ -13,6 +13,7 @@ namespace com.Sconit.Entity.INP
 		public Int32 OrderDetId { get; set; }
         public Int32 OrderOp { get; set; }
         public Int32 OrderOpId { get; set; }
+        public string HuId { get; set; }
         public string Item { get; set; }
 		public string ItemDesc { get; set; }
 		public Int32 CreateUserId { get; set; }

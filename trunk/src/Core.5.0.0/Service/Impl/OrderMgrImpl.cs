@@ -9950,8 +9950,8 @@ namespace com.Sconit.Service.Impl
         [Transaction(TransactionMode.Requires)]
         public string PrintTraceCode(string orderNo)
         {
-            OrderDetail orderDetail = this.genericMgr.FindAll<OrderDetail>("from OrderDetail where OrderNo = ?").Single();
-            OrderOperation orderOperation = this.genericMgr.FindAll<OrderOperation>("from OrderOperation where OrderNo = ? order by Op").First();
+            OrderDetail orderDetail = this.genericMgr.FindAll<OrderDetail>("from OrderDetail where OrderNo = ?", orderNo).Single();
+            OrderOperation orderOperation = this.genericMgr.FindAll<OrderOperation>("from OrderOperation where OrderNo = ? order by Op", orderNo).First();
 
             ProdTraceCode prodTraceCode = new ProdTraceCode();
             prodTraceCode.TraceCode = numberControlMgr.GetTraceCode();
@@ -9973,11 +9973,66 @@ namespace com.Sconit.Service.Impl
         [Transaction(TransactionMode.Requires)]
         public void ReportOrderOp(int op)
         {
+            OrderOperation orderOperation = this.genericMgr.FindAll<OrderOperation>("from OrderOperation where Op = ?").Single();
+            ProdTraceCode prodTraceCode = this.genericMgr.FindAll<ProdTraceCode>("from ProdTraceCode where Op < ? order by Op, CreateDate", op).FirstOrDefault();
+
+            prodTraceCode.OrderOp = orderOperation.Op;
+            prodTraceCode.OrderOpId = orderOperation.Id;
+
+            orderOperation.ReportQty++;
+
+            this.genericMgr.Update(orderOperation);
+            this.genericMgr.Update(prodTraceCode);
         }
 
         [Transaction(TransactionMode.Requires)]
-        public void ReceiveTraceCode(IList<string> traceCodeList)
+        public string ReceiveTraceCode(IList<string> traceCodeList)
         {
+            string hql = null;
+            IList<Object> parms = new List<Object>();
+            foreach (string traceCode in traceCodeList)
+            {
+                if (hql == null)
+                {
+                    hql = "from ProdTraceCode where TraceCode in (?";
+                }
+                else
+                {
+                    hql += ", ?";
+                }
+                parms.Add(traceCode);
+            }
+            hql += ")";
+
+            IList<ProdTraceCode> prodTraceCodeList = this.genericMgr.FindAll<ProdTraceCode>(hql, parms.ToArray());
+            OrderOperation orderOperation = this.genericMgr.FindAll<OrderOperation>("from OrderOperation where OrderNo = ? order by Op desc", prodTraceCodeList.First().OrderNo).First();
+
+            OrderMaster orderMaster = this.genericMgr.FindAll<OrderMaster>("from OrderMaster where OrderNo = ?", prodTraceCodeList.First().OrderNo).Single();
+            OrderDetail orderDetail = this.genericMgr.FindAll<OrderDetail>("from OrderDetail where Id = ?", prodTraceCodeList.First().OrderDetId).Single();
+            orderDetail.HuQty = prodTraceCodeList.Count();
+
+            Hu hu = huMgr.CreateHu(orderMaster, new List<OrderDetail>() { orderDetail }).Single();
+
+            OrderDetailInput orderDetailInput = new OrderDetailInput();
+            orderDetailInput.HuId = hu.HuId;
+            orderDetailInput.ReceiveQty = hu.Qty;
+            orderDetailInput.LotNo = hu.LotNo;
+            orderDetail.AddOrderDetailInput(orderDetailInput);
+            var receiptMaster = this.ReceiveOrder(new List<OrderDetail>() { orderDetail });
+
+            foreach(ProdTraceCode prodTraceCode in prodTraceCodeList) 
+            {
+                prodTraceCode.OrderOp = orderOperation.Op;
+                prodTraceCode.OrderOpId = orderOperation.Id;
+                prodTraceCode.HuId = hu.HuId;
+
+                this.genericMgr.Update(prodTraceCode);
+            }
+
+            orderOperation.ReportQty += prodTraceCodeList.Count();
+            this.genericMgr.Update(orderOperation);
+
+            return hu.HuId;
         }
     }
 
