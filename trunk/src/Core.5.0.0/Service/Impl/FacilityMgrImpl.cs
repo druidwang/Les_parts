@@ -13,6 +13,9 @@ using NHibernate.Criterion;
 using System.Text;
 using com.Sconit.Entity.VIEW;
 using com.Sconit.Entity.FMS;
+using com.Sconit.Utility;
+using System.Xml;
+using com.Sconit.Entity.MES;
 
 namespace com.Sconit.Service.Impl
 {
@@ -60,6 +63,32 @@ namespace com.Sconit.Service.Impl
 
 
         }
+
+
+
+        [Transaction(TransactionMode.Requires)]
+        public void GetFacilityControlPoint(string facilityName)
+        {
+            string facilityStr =  string.Empty;
+            XmlElement controlPointXml =  ObixHelper.Request_WebRequest(facilityName);
+
+            XmlNodeList nodeList = controlPointXml.ChildNodes;
+          
+
+            MESScanControlPoint mscp = new MESScanControlPoint();
+            mscp.ControlPoint = facilityName;
+            mscp.CreateDate = DateTime.Now;
+            mscp.Op = "1";                                    
+            mscp.OpReference = string.Empty;
+            mscp.ProdItem = "";
+            mscp.ScanDate = "20160515";
+            mscp.ScanTime = "161202";
+            mscp.Status = 0;
+            mscp.TraceCode = "";
+            genericMgr.Create(mscp);
+
+        }
+
         #endregion
 
         #region Private Methods

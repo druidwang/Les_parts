@@ -27,10 +27,14 @@ namespace com.Sconit.Utility
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public static string Request_WebRequest(string uri, int timeout, Encoding encoding, string username, string password)
+        public static XmlElement Request_WebRequest(string uriStr)
         {
-            string result = string.Empty;
-
+          
+            Encoding encoding = Encoding.UTF8;
+            string username = "admin";
+            string password = "Wgs19831024";
+            string baseUri = "http://localhost/obix/config/Yanke/";
+            string uri = baseUri + uriStr;
             WebRequest request = WebRequest.Create(new Uri(uri));
 
             if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
@@ -39,33 +43,58 @@ namespace com.Sconit.Utility
                 request.Headers.Add("Authorization", GetAuthorization(username, password));
             }
 
-            if (timeout > 0)
-                request.Timeout = timeout;
+          
+                request.Timeout = 3000;
 
             WebResponse response = request.GetResponse();
             Stream stream = response.GetResponseStream();
             StreamReader sr = encoding == null ? new StreamReader(stream) : new StreamReader(stream, encoding);
 
-            string xmlValue = string.Empty;
-             XmlDocument doc = new XmlDocument();
-             doc.Load(sr);
+       
+            XmlDocument doc = new XmlDocument();
+            doc.Load(sr);
 
-             XmlElement root =  doc.DocumentElement;
-
-             XmlNodeList listNodes = root.SelectNodes("/obj/ref/config");
-             foreach (XmlNode node in listNodes )
-            {
-                xmlValue += node.InnerText + "\n";
-             }
-
-            result = sr.ReadToEnd();
+            XmlElement rootXml =  doc.DocumentElement;
+   
 
             sr.Close();
             stream.Close();
+            return rootXml;
+    }
 
-            return result;
-    
-             }
+
+        public static void Response_WebRequest(string uriStr, string postData)
+        {
+
+            Encoding encoding = Encoding.UTF8;
+            string username = "admin";
+            string password = "Wgs19831024";
+            string baseUri = "http://localhost/obix/config/Yanke/";
+            string uri = baseUri + uriStr;
+            WebRequest request = WebRequest.Create(new Uri(uri));
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            {
+                request.Credentials = GetCredentialCache(uri, username, password);
+                request.Headers.Add("Authorization", GetAuthorization(username, password));
+            }
+            request.Method = "POST";
+            
+          
+            byte[] byteArray = Encoding.UTF8.GetBytes(postData);
+           
+            request.ContentType = "application/x-www-form-urlencoded";
+        
+            request.ContentLength = byteArray.Length;
+
+            Stream dataStream = request.GetRequestStream();
+         
+            dataStream.Write(byteArray, 0, byteArray.Length);
+        
+            dataStream.Close();
+          
+     
+          
+        }
 
         #region # 生成 Http Basic 访问凭证 #
 

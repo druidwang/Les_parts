@@ -75,6 +75,9 @@ namespace com.Sconit.Web.Controllers.FMS
         [SconitAuthorize(Permissions = "Url_FacilityMaster_View")]
         public ActionResult Index()
         {
+            // ObixHelper.Request_WebRequest("glue_settingval1/in10/");
+           // facilityMgr.GetFacilityControlPoint("glue_settingval1");
+            //  ObixHelper.Response_WebRequest("glue_settingval1/in9/display", "66.6 cm³ {ok}");
             return View();
         }
 
@@ -133,6 +136,7 @@ namespace com.Sconit.Web.Controllers.FMS
         {
             if (ModelState.IsValid)
             {
+                facilityMaster.Category = "DZ_SB4";
                 facilityMgr.CreateFacilityMaster(facilityMaster);
                 SaveSuccessMessage(Resources.FMS.FacilityMaster.FacilityMaster_Added);
                 return RedirectToAction("Edit/" + facilityMaster.FCID);
@@ -185,6 +189,7 @@ namespace com.Sconit.Web.Controllers.FMS
         {
             if (ModelState.IsValid)
             {
+                facilityMaster.Category = "DZ_SB4";
                 facilityMaster.CurrChargePersonName = genericMgr.FindById<User>(facilityMaster.CurrChargePersonId).FullName;
                 this.genericMgr.UpdateWithTrim(facilityMaster);
                 SaveSuccessMessage(Resources.FMS.FacilityMaster.FacilityMaster_Updated);

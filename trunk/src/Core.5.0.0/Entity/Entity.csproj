@@ -209,6 +209,7 @@
     <Compile Include="Base\MD\Uom.cs" />
     <Compile Include="Base\MD\UomConversion.cs" />
     <Compile Include="Base\MD\WorkingCalendar.cs" />
+    <Compile Include="Base\MES\MESScanControlPoint.cs" />
     <Compile Include="Base\MSG\Email.cs" />
     <Compile Include="Base\MSG\Message.cs" />
     <Compile Include="Base\MSG\MessageQueue.cs" />
@@ -450,6 +451,7 @@
     <Compile Include="MD\WorkingCalendar.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="MessageHolder.cs" />
+    <Compile Include="MES\MESScanControlPoint.cs" />
     <Compile Include="MRP\Base\MD\FlowClassify.cs" />
     <Compile Include="MRP\Base\MD\HuTo.cs" />
     <Compile Include="MRP\Base\MD\HuToMapping.cs" />
@@ -1018,6 +1020,7 @@
     <EmbeddedResource Include="Base\FMS\CheckListOrderDetail.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\CheckListOrderMaster.hbm.xml" />
     <Content Include="Base\MD\Pallet.hbm.xml" />
+    <EmbeddedResource Include="Base\MES\MESScanControlPoint.hbm.xml" />
     <Content Include="Base\TMS\TransportOrderDetailPallet.hbm.xml" />
     <EmbeddedResource Include="Base\TMS\TransportActingBillDetail.hbm.xml">
       <SubType>Designer</SubType>
