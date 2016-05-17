@@ -12,5 +12,9 @@ namespace com.Sconit.Service
         void CreateFacilityMaster(FacilityMaster facilityMaster);
 
         void GetFacilityControlPoint(string facilityName);
+
+        void CreateFacilityOrder(string facilityName);
+
+        void GenerateFacilityMaintainPlan();
     }
 }

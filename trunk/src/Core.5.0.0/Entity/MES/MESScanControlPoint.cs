@@ -3,7 +3,7 @@ using System;
 namespace com.Sconit.Entity.MES
 {
 
-    public partial class MESScanControlPoint 
+    public partial class MesScanControlPoint 
     {
         #region Non O/R Mapping Properties
 

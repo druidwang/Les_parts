@@ -205,6 +205,7 @@
     <Compile Include="Controllers\CUST\SubPrintOrderController.cs" />
     <Compile Include="Controllers\CUST\SpecialBarCodeController.cs" />
     <Compile Include="Controllers\FMS\CheckListController.cs" />
+    <Compile Include="Controllers\FMS\FacilityOrderController.cs" />
     <Compile Include="Controllers\FMS\MaintainPlanController.cs" />
     <Compile Include="Controllers\FMS\FacilityTransController.cs" />
     <Compile Include="Controllers\FMS\FacilityMasterController.cs" />
@@ -229,6 +230,8 @@
     <Compile Include="Controllers\MD\SupplierController.cs" />
     <Compile Include="Controllers\MD\UomController.cs" />
     <Compile Include="Controllers\MD\WorkingCalendarController.cs" />
+    <Compile Include="Controllers\MES\FacilityParamaterController.cs" />
+    <Compile Include="Controllers\MES\MesScanControlPointController.cs" />
     <Compile Include="Controllers\MRP\MrpExPlanItemRateController.cs" />
     <Compile Include="Controllers\MRP\MrpProductTypeController.cs" />
     <Compile Include="Controllers\MRP\MrpExWorkHourController.cs">
@@ -411,6 +414,7 @@
     <Compile Include="Models\ReportModels\CustReportModel.cs" />
     <Compile Include="Models\ReportModels\CustReportSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\CheckListSearchModel.cs" />
+    <Compile Include="Models\SearchModels\FMS\FacilityOrderSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\MaintainPlanSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\FacilityTransSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\FacilityMasterSearchModel.cs" />
@@ -422,6 +426,7 @@
     <Compile Include="Models\SearchModels\ISI\TaskSubTypeSearchModel.cs" />
     <Compile Include="Models\SearchModels\MD\SwitchTradingSearchModel.cs" />
     <Compile Include="Models\SearchModels\MD\FlowSearchModel.cs" />
+    <Compile Include="Models\SearchModels\MES\MesScanControlPointSearchModel.cs" />
     <Compile Include="Models\SearchModels\MRP\MrpExPlanItemRate.cs" />
     <Compile Include="Models\SearchModels\MRP\MrpExWorkHourSearchModel.cs" />
     <Compile Include="Models\ORD\ScheduleView.cs" />
@@ -2755,6 +2760,21 @@
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\ReleaseOrder.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\ReceiveTraceCode.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\SearchProdTraceCode.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\FacilityParamater\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\FacilityParamater\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\FacilityParamater\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\FacilityParamater\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\_FacilityOrderDetailList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\New.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>
