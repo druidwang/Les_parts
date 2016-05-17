@@ -9,11 +9,11 @@
         })
         .Columns(columns =>
         {
-            columns.Bound(o => o.FCID).ClientTemplate(Html.ActionLink("<#= Id #>", "Edit", "FacilityTrans", new { ID = "<#= Id #>" }, null).ToString());
+            columns.Bound(o => o.FCID).ClientTemplate(Html.ActionLink("<#= FCID #>", "Edit", "FacilityTrans", new { ID = "<#= Id #>" }, null).ToString());
             columns.Bound(o => o.FacilityName);
             columns.Bound(o => o.AssetNo);
             columns.Bound(o => o.FacilityCategory);
-         //   columns.Bound(o => o.TransType);
+            columns.Bound(o => o.TransTypeDescription);
             columns.Bound(o => o.CreateUserName);
             columns.Bound(o => o.CreateDate);
             

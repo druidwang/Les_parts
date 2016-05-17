@@ -1,18 +1,18 @@
 ﻿@using com.Sconit.Entity.SYS
-@model com.Sconit.Entity.MD.FacilityMasterReference
+@model com.Sconit.Entity.FMS.FacilityMaintainPlan
 @Html.Partial("_AjaxMessage")
-@using (Html.BeginForm("_FacilityMasterRefEdit","FacilityMaster"))
+@using (Html.BeginForm("_FacilityMaintainPlanEdit", "FacilityMaster"))
 {
     <script language="javascript" type="text/javascript">
-        function btnDeleteFacilityMasterRef_Click() {
+        function btnDeleteFacilityMaintainPlan_Click() {
             var data = {
                 "Id": $("#Id").val(),
-                "item": $("#FacilityMaster").val()
+                "FCID": $("#FCID").val()
             };
             $.ajax({
                 type: "post",
                 dataType: "html",
-                url: "/FacilityMaster/FacilityMasterRefDelete/",
+                url: "/FacilityMaster/FacilityMaintainPlanDelete/",
                 data: data,
                 cache: false,
                 success: function (data, textStatus) {
@@ -24,7 +24,7 @@
         }
 
         $(document).ready(function () {
-            $("form[action$='_FacilityMasterRefEdit']").submit(function () {
+            $("form[action$='_FacilityMaintainPlanEdit']").submit(function () {
                 $.post($(this).attr("action"), $(this).serialize(), function (response) {
                     var tabStrip = $("#TabStrip");
                     var tabStripContent1 = tabStrip.data("tTabStrip").getContentElement(1);
@@ -34,14 +34,14 @@
             });
         });
 
-        function btnBackFacilityMasterRef_Click() {
+        function btnBackFacilityMaintainPlan_Click() {
             var data = {
-                "Id": $("#FacilityMaster").val()
+                "Id": $("#Id").val()
             };
             $.ajax({
                 type: "post",
                 dataType: "html",
-                url: "/FacilityMaster/FacilityMasterRefResult/",
+                url: "/FacilityMaster/_FacilityMaintainPlanList/",
                 data: data,
                 cache: false,
                 success: function (data, textStatus) {
@@ -51,54 +51,61 @@
                 }
             });
         }
-</script>
+    </script>
     
     <fieldset>
-        <legend>@Resources.MD.FacilityMasterRef.FacilityMasterRef_Edit_Title</legend>
-            <div class="editor">
+        <legend>@Resources.FMS.FacilityMaintainPlan.FacilityMaintainPlan_Edit_Title</legend>
+        <div class="editor">
+            <div class="editor-label-2">
+                <label for="Location_Code">
+                    @Resources.FMS.FacilityMaintainPlan.FacilityMaintainPlan_FCID
+                </label>
+            </div>
+            <div class="editor-field-2">
+                @Html.DisplayFor(model => model.FCID)
+                @Html.HiddenFor(model => model.FCID)
                 @Html.HiddenFor(model => model.Id)
-                @Html.HiddenFor(model => model.FacilityMaster)
-                @Html.HiddenFor(model => model.Party)
-                @Html.HiddenFor(model => model.ReferenceCode)
-                @Html.HiddenFor(model => model.CreateUserName)
-                @Html.HiddenFor(model => model.CreateDate)
-                @Html.HiddenFor(model => model.LastModifyUserName)
-                @Html.HiddenFor(model => model.LastModifyDate)
+            </div>
             <div class="editor-label-2">
-                @Html.LabelFor(model => model.FacilityMaster)
+                <label for="LocationArea_Code">
+                    @Resources.FMS.FacilityMaintainPlan.FacilityMaintainPlan_Code
+                </label>
             </div>
             <div class="editor-field-2">
-                @Html.DisplayFor(model => model.FacilityMaster)
+                @{
+    Html.RenderAction("_MaintainPlanComboBox", "Common", new
+    {
+        controlName = "Code",
+        selectedValue = Model.MaintainPlan.Code,
+        includeBlankOption = true,
+        coupled = false
+
+    });
+                }
             </div>
             <div class="editor-label-2">
-               @Html.LabelFor(model => model.Party)
-            </div>
-             <div class="editor-field-2">
-                @Html.DisplayFor(model => model.Party)
-            </div>
-            <div class="editor-label-2">
-               @Html.LabelFor(model => model.ReferenceCode)
-            </div>
-             <div class="editor-field-2">
-                @Html.DisplayFor(model => model.ReferenceCode)
-            </div>
-            <div class="editor-label-2">
-                @Html.LabelFor(model => model.IsActive)
+                <label for="LocationArea_Name">
+                    @Resources.FMS.FacilityMaintainPlan.FacilityMaintainPlan_StartDate
+                </label>
             </div>
             <div class="editor-field-2">
-                @Html.CheckBoxFor(model => model.IsActive,new{id="FacilityMasterRefIsActive"})
+                @Html.EditorFor(model => model.StartDate)
+            </div>
+            <div class="editor-label-2">
+                <label for="FacilityMaintainPlan_IsActive">
+                    @Resources.FMS.FacilityMaintainPlan.FacilityMaintainPlan_StartQty
+                </label>
+            </div>
+            <div class="editor-field-2">
+                @Html.EditorFor(model => model.StartQty)
             </div>
         </div>
         <div class="editor-footer">
             <input type="submit" value="@Resources.SYS.Global.Button_Save"/>
-            <button type="button" id="btnDelete" onclick="btnDeleteFacilityMasterRef_Click()">
+            <button type="button" id="btnDelete" onclick="btnDeleteFacilityMaintainPlan_Click()">
                 @Resources.SYS.Global.Button_Delete</button>
-            <button type="button" id="btnBack" onclick="btnBackFacilityMasterRef_Click()">
+            <button type="button" id="btnBack" onclick="btnBackFacilityMaintainPlan_Click()">
                 @Resources.SYS.Global.Button_Back</button>
         </div>
     </fieldset>
 }
-
-
-
-

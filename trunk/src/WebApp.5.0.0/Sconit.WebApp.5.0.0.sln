@@ -4,7 +4,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E15A0BBF-AB50-4EFA-A420-12B19A3CD018}"
 	ProjectSection(SolutionItems) = preProject
 		..\SQL Script\Data Update Sql.sql = ..\SQL Script\Data Update Sql.sql
-		..\SQL Script\DB Update Sql.sql = ..\SQL Script\DB Update Sql.sql
 		..\SQL Script\Init_SYS_Permission.sql = ..\SQL Script\Init_SYS_Permission.sql
 		..\SQL Script\Inti_ACC_PermissionCategory.sql = ..\SQL Script\Inti_ACC_PermissionCategory.sql
 		..\SQL Script\Inti_ACC_PermissionGroup.sql = ..\SQL Script\Inti_ACC_PermissionGroup.sql
@@ -42,9 +41,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LeanEngine", "..\LeanEngine.5.0.0\LeanEngine\LeanEngine.csproj", "{CC3B1860-71A0-4225-919F-9A7DBAD397CC}"
 EndProject
 Global
-	GlobalSection(PowerDesigner) = preSolution
-		HasSWS = 1
-	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Sconit.WebApp.5.0.0.vsmdi
 	EndGlobalSection
@@ -200,5 +196,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(PowerDesigner) = preSolution
+		HasSWS = 1
 	EndGlobalSection
 EndGlobal

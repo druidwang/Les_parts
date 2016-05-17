@@ -294,7 +294,7 @@ namespace com.Sconit.Service
 
         void ReportOrderOp(int op);
 
-        void ReceiveTraceCode(IList<string> traceCodeList);
+        string ReceiveTraceCode(IList<string> traceCodeList);
     }
 
     public interface ISequenceMgr

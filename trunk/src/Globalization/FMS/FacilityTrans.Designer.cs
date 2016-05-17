@@ -106,6 +106,15 @@ namespace Resources.FMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string FacilityTrans_Edit_Title {
+            get {
+                return ResourceManager.GetString("FacilityTrans_Edit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EffDate.
         /// </summary>
         public static string FacilityTrans_EffDate {

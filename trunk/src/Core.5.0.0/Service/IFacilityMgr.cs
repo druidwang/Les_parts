@@ -10,5 +10,7 @@ namespace com.Sconit.Service
     public interface IFacilityMgr
     {
         void CreateFacilityMaster(FacilityMaster facilityMaster);
+
+        void GetFacilityControlPoint(string facilityName);
     }
 }

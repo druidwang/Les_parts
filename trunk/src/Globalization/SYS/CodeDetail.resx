@@ -1840,4 +1840,49 @@
   <data name="CodeDetail_PermissionCategoryType_Carrier" xml:space="preserve">
     <value>Carrier</value>
   </data>
+  <data name="CodeDetail_FacilityTransType_Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_Enable" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_Envelop" xml:space="preserve">
+    <value>Envelop</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_FinishInspect" xml:space="preserve">
+    <value>FinishInspect</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_FinishMaintain" xml:space="preserve">
+    <value>FinishMaintain</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_FinishRepair" xml:space="preserve">
+    <value>FinishRepair</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_FinishUse" xml:space="preserve">
+    <value>FinishUse</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_Lend" xml:space="preserve">
+    <value>Lend</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_Lose" xml:space="preserve">
+    <value>Lose</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_Scrap" xml:space="preserve">
+    <value>Scrap</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_Sell" xml:space="preserve">
+    <value>Sell</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_StartInspect" xml:space="preserve">
+    <value>StartInspect</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_StartMaintain" xml:space="preserve">
+    <value>StartMaintain</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_StartRepair" xml:space="preserve">
+    <value>StartRepair</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_StartUse" xml:space="preserve">
+    <value>StartUse</value>
+  </data>
 </root>
