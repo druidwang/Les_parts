@@ -1168,12 +1168,12 @@
         public ActionResult GetTraceCodeStatus(GridCommand command, string orderNo)
         {
             var result = this.genericMgr.FindAllWithNativeSql<object[]>(@"select TraceCode,
-	            case OrderOp when 1 then 'X' end as Op1,
-	            case OrderOp when 2 then 'X' end as Op2,
-	            case OrderOp when 3 then 'X' end as Op3,
-	            case OrderOp when 4 then 'X' end as Op4,
-	            case OrderOp when 5 then 'X' end as Op5,
-	            case OrderOp when 6 then 'X' end as Op6
+	            case OrderOp when 1 then '√' end as Op1,
+	            case OrderOp when 2 then '√' end as Op2,
+	            case OrderOp when 3 then '√' end as Op3,
+	            case OrderOp when 4 then '√' end as Op4,
+	            case OrderOp when 5 then '√' end as Op5,
+	            case OrderOp when 6 then '√' end as Op6
                     from INP_ProdTraceCode where OrderNo=? order by TraceCode", orderNo);
             int total = this.genericMgr.FindAllWithNativeSql<int>("select count(*) from INP_ProdTraceCode as r1 where OrderNo=?", orderNo).First();
             List<TraceCodeStatus> traceCodeStatusList = new List<TraceCodeStatus>();
@@ -1214,7 +1214,7 @@
                     //do receive order
                     if (string.IsNullOrEmpty(scanedTraceCodes))
                     {
-                        SaveSuccessMessage("未扫入追溯码");
+                        SaveErrorMessage("未扫入追溯码");
                         return Json(new { Status = 2 });
                     }
                     else
@@ -1284,7 +1284,7 @@
                     var prodTrace = this.genericMgr.FindById<ProdTraceCode>(traceCode);
                     if (prodTrace.OrderOp != 5)
                     {
-                        SaveSuccessMessage("该追溯码{0}不可以下线");
+                        SaveErrorMessage("该追溯码{0}不可以下线", traceCode);
                         return Json(new { Status = 0, ProdTrace = prodTrace });
                     }
                     SaveSuccessMessage("");
