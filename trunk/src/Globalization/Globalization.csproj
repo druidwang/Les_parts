@@ -278,6 +278,21 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="FMS\MaintainPlanItem.Designer.cs">
+      <DependentUpon>MaintainPlanItem.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\MaintainPlanItem.en-US.Designer.cs">
+      <DependentUpon>MaintainPlanItem.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\MaintainPlanItem.zh-CN.Designer.cs">
+      <DependentUpon>MaintainPlanItem.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="FMS\FacilityMaintainPlan.Designer.cs">
       <DependentUpon>FacilityMaintainPlan.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -290,6 +305,36 @@
     </Compile>
     <Compile Include="FMS\FacilityMaintainPlan.zh-CN.Designer.cs">
       <DependentUpon>FacilityMaintainPlan.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\FacilityOrderDetail.Designer.cs">
+      <DependentUpon>FacilityOrderDetail.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\FacilityOrderDetail.en-US.Designer.cs">
+      <DependentUpon>FacilityOrderDetail.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\FacilityOrderDetail.zh-CN.Designer.cs">
+      <DependentUpon>FacilityOrderDetail.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\FacilityOrderMaster.Designer.cs">
+      <DependentUpon>FacilityOrderMaster.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\FacilityOrderMaster.en-US.Designer.cs">
+      <DependentUpon>FacilityOrderMaster.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="FMS\FacilityOrderMaster.zh-CN.Designer.cs">
+      <DependentUpon>FacilityOrderMaster.zh-CN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -3506,6 +3551,19 @@
       <LastGenOutput>CheckList.zh-CN.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="FMS\MaintainPlanItem.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MaintainPlanItem.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\MaintainPlanItem.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MaintainPlanItem.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\MaintainPlanItem.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MaintainPlanItem.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="FMS\FacilityMaintainPlan.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FacilityMaintainPlan.en-US.Designer.cs</LastGenOutput>
@@ -3517,6 +3575,34 @@
     <EmbeddedResource Include="FMS\FacilityMaintainPlan.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>FacilityMaintainPlan.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\FacilityOrderDetail.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FacilityOrderDetail.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\FacilityOrderDetail.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FacilityOrderDetail.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\FacilityOrderDetail.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FacilityOrderDetail.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\FacilityOrderMaster.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FacilityOrderMaster.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\FacilityOrderMaster.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FacilityOrderMaster.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FMS\FacilityOrderMaster.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FacilityOrderMaster.zh-CN.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FMS\MaintainPlan.en-US.resx">

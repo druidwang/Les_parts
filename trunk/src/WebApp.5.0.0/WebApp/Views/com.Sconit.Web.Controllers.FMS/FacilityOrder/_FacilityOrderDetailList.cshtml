@@ -1,0 +1,34 @@
+﻿@using com.Sconit.Entity.MD;
+@using com.Sconit.Entity.INV;
+@model IEnumerable<com.Sconit.Entity.FMS.FacilityOrderDetail>   
+
+<fieldset>
+    <legend>@Resources.FMS.FacilityOrderDetail.FacilityOrderDetail_Title_View</legend>
+    @(Html.Telerik().Grid(Model)
+        .Name("FacilityOrderDetail")
+        .DataKeys(keys =>
+        {
+            keys.Add(p => p.Id);
+        })
+        .Editable(editing => editing.Mode(GridEditMode.InCell))
+      
+        .DataBinding(dataBinding =>
+            dataBinding.Ajax()
+            .Select("_SelectBatchEditing", "FacilityOrder", new { inspectNo = (String)ViewBag.inspectNo })
+        )
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.FacilityId).ReadOnly();
+            columns.Bound(o => o.Item).ReadOnly();
+            columns.Bound(o => o.ItemDescription).ReadOnly();
+
+            columns.Bound(o => o.Uom).ReadOnly();
+            columns.Bound(o => o.PlanQty).ReadOnly();
+            columns.Bound(o => o.ActualQty);
+            columns.Bound(o => o.Note);
+            
+        })
+        .Scrollable(c => c.Enabled(false))
+        .Footer(false)
+    )
+</fieldset>

@@ -78,6 +78,7 @@ namespace com.Sconit.Web.Controllers.FMS
             // ObixHelper.Request_WebRequest("glue_settingval1/in10/");
            // facilityMgr.GetFacilityControlPoint("glue_settingval1");
             //  ObixHelper.Response_WebRequest("glue_settingval1/in9/display", "66.6 cm³ {ok}");
+           // facilityMgr.CreateFacilityOrder("FC000000008");
             return View();
         }
 
@@ -436,6 +437,18 @@ namespace com.Sconit.Web.Controllers.FMS
                 SaveSuccessMessage(Resources.FMS.FacilityMaintainPlan.FacilityMaintainPlan_Deleted);
                 return RedirectToAction("FacilityMaintainPlan/" + item);
             }
+        }
+
+
+
+
+
+        [SconitAuthorize(Permissions = "Url_FacilityMaster_View")]
+        public ActionResult GenerateFacilityOrder()
+        {
+           facilityMgr.GenerateFacilityMaintainPlan();
+           return View("Index");
+            
         }
         #endregion
 

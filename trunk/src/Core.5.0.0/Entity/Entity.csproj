@@ -114,6 +114,7 @@
     <Compile Include="Base\FMS\CheckListMaster.cs" />
     <Compile Include="Base\FMS\CheckListOrderDetail.cs" />
     <Compile Include="Base\FMS\CheckListOrderMaster.cs" />
+    <Compile Include="Base\FMS\MaintainPlanItem.cs" />
     <Compile Include="Base\FMS\FacilityCategory.cs" />
     <Compile Include="Base\FMS\FacilityItem.cs" />
     <Compile Include="Base\FMS\FacilityMaintainPlan.cs" />
@@ -121,6 +122,8 @@
     <Compile Include="Base\FMS\FacilityStockDetail.cs" />
     <Compile Include="Base\FMS\FacilityStockMaster.cs" />
     <Compile Include="Base\FMS\FacilityTrans.cs" />
+    <Compile Include="Base\FMS\FacilityOrderDetail.cs" />
+    <Compile Include="Base\FMS\FacilityOrderMaster.cs" />
     <Compile Include="Base\FMS\MaintainPlan.cs" />
     <Compile Include="Base\INP\ConcessionDetail.cs" />
     <Compile Include="Base\INP\ConcessionMaster.cs" />
@@ -210,7 +213,7 @@
     <Compile Include="Base\MD\Uom.cs" />
     <Compile Include="Base\MD\UomConversion.cs" />
     <Compile Include="Base\MD\WorkingCalendar.cs" />
-    <Compile Include="Base\MES\MESScanControlPoint.cs" />
+    <Compile Include="Base\MES\MesScanControlPoint.cs" />
     <Compile Include="Base\MSG\Email.cs" />
     <Compile Include="Base\MSG\Message.cs" />
     <Compile Include="Base\MSG\MessageQueue.cs" />
@@ -350,6 +353,7 @@
     <Compile Include="FMS\FacilityStockDetail.cs" />
     <Compile Include="FMS\FacilityStockMaster.cs" />
     <Compile Include="FMS\FacilityTrans.cs" />
+    <Compile Include="FMS\FacilityOrderMaster.cs" />
     <Compile Include="FMS\MaintainPlan.cs" />
     <Compile Include="IAuditable.cs" />
     <Compile Include="INP\ConcessionDetail.cs" />
@@ -1020,9 +1024,14 @@
     <Content Include="Base\FMS\CheckListMaster.hbm.xml" />
     <Content Include="Base\FMS\CheckListOrderDetail.hbm.xml" />
     <Content Include="Base\FMS\CheckListOrderMaster.hbm.xml" />
+    <EmbeddedResource Include="Base\FMS\FacilityOrderMaster.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\FMS\FacilityOrderDetail.hbm.xml" />
+    <EmbeddedResource Include="Base\FMS\MaintainPlanItem.hbm.xml" />
     <Content Include="Base\INP\ProdTraceCode.hbm.xml" />
     <Content Include="Base\MD\Pallet.hbm.xml" />
-    <Content Include="Base\MES\MESScanControlPoint.hbm.xml" />
+    <EmbeddedResource Include="Base\MES\MesScanControlPoint.hbm.xml" />
     <Content Include="Base\ORD\OrderOperation.hbm.xml" />
     <Content Include="Base\TMS\TransportOrderDetailPallet.hbm.xml" />
     <EmbeddedResource Include="Base\TMS\TransportActingBillDetail.hbm.xml">

@@ -23,8 +23,10 @@
             columns.Bound(o => o.MaintainPlan.Period);
             columns.Bound(o => o.MaintainPlan.LeadTime);
             columns.Bound(o => o.StartDate);
-            columns.Bound(o => o.NextWarnDate);
+
             columns.Bound(o => o.NextMaintainDate);
+
+            columns.Bound(o => o.NextMaintainQty);
                  })
                 .Scrollable(c => c.Enabled(false))
                 .EnableCustomBinding(true)

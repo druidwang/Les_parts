@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
-	<class name="com.Sconit.Entity.MES.MESScanControlPoint, com.Sconit.Entity" table="MES_ScanControlPoint" lazy="false">
+	<class name="com.Sconit.Entity.MES.MesScanControlPoint, com.Sconit.Entity" table="MES_ScanControlPoint" lazy="false">
 		<id name="Id" column="Id" type="Int32" unsaved-value="0" >
 			<generator class="identity" />
 		</id>
@@ -16,5 +16,7 @@
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>
 		<property name="Status" column="Status" type="Int32"/>
 		<property name="Note" column="Note" type="String" length="4000"/>
+		<property name="NoteValue" column="NoteValue" type="String" length="50"/>
+		<property name="Type" column="Type" />
 	</class>
 </hibernate-mapping>
