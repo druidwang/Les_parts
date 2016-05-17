@@ -401,6 +401,7 @@
     <Compile Include="Models\MRP\WarningColor.cs" />
     <Compile Include="Models\MRP\MiMasterData.cs" />
     <Compile Include="Models\MRP\ExProductLineReportData.cs" />
+    <Compile Include="Models\ORD\TraceCodeStatus.cs" />
     <Compile Include="Models\ReportModels\CustReportModel.cs" />
     <Compile Include="Models\ReportModels\CustReportSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\MaintainPlanSearchModel.cs" />
@@ -706,6 +707,7 @@
     <Content Include="Content\2012.2.607\Office2010Blue\slider-h.gif" />
     <Content Include="Content\2012.2.607\Office2010Blue\slider-v.gif" />
     <Content Include="Content\2012.2.607\Office2010Blue\sprite-vertical.png" />
+    <Content Include="Scripts\jquery.timers-1.2.js" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\New.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.WMS\PickSchedule\_SearchResult.cshtml" />
@@ -2734,6 +2736,9 @@
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\MaintainPlan\Edit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\MaintainPlan\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\MaintainPlan\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\Release.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\ReleaseOrder.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\ReceiveTraceCode.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

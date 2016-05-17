@@ -27,6 +27,8 @@
     using com.Sconit.Web.Models.SearchModels.ORD;
     using com.Sconit.Web.Models.SearchModels.PRD;
     using Telerik.Web.Mvc;
+    using NHibernate;
+    using com.Sconit.Entity.INP;
 
     public class ProductionOrderController : WebAppBaseController
     {
@@ -58,6 +60,7 @@
         public IProductionLineMgr productionLineMgr { get; set; }
         public IBomMgr bomMgr { get; set; }
         public IMrpOrderMgr mrpOrderMgr { get; set; }
+        public IHuMgr huMgr { get; set; }
 
 
         #region public method
@@ -611,7 +614,7 @@
         {
             try
             {
-                this.orderMgr.StartOrder(orderNo);
+                this.orderMgr.StartVanOrder(orderNo);
                 var orderMaster = this.genericMgr.FindById<OrderMaster>(orderNo);
                 object obj = new
                 {
@@ -870,13 +873,15 @@
         }
 
         [SconitAuthorize(Permissions = "Url_OrderMstr_Production_View")]
-        public ActionResult _OrderDetailList(string flow, string orderNo)
+        public ActionResult _OrderDetailList(string flow, string orderNo, bool? isReleased)
         {
             ViewBag.Visible = false;
             ViewBag.flow = flow;
             ViewBag.orderNo = orderNo;
             ViewBag.Status = null;
+            ViewBag.IsReleased = isReleased == null ? false : true;
             FlowMaster flowMaster = null;
+
             if (!string.IsNullOrEmpty(flow) && !string.IsNullOrEmpty(orderNo))
             {
                 ViewBag.Visible = true;
@@ -1099,6 +1104,183 @@
             {
                 SaveErrorMessage(ex.Message);
                 return Json(null);
+            }
+        }
+
+        public ActionResult Release()
+        {
+            return View();
+        }
+
+
+        public ActionResult ReleaseCheck(string orderNo)
+        {
+            if (string.IsNullOrEmpty(orderNo))
+            {
+                SaveErrorMessage("订单号不允许为空。");
+                return Json(new { Status=0 });
+            }
+            try
+            {
+                var prodOrder = this.genericMgr.FindById<OrderMaster>(orderNo);
+                if (prodOrder == null)
+                {
+                    SaveErrorMessage("订单{0}不存在。", orderNo);
+                    return Json(new { Status = 0 });
+                }
+            }
+            catch (ObjectNotFoundException ex)
+            {
+                SaveErrorMessage("订单{0}不存在。", orderNo);
+                return Json(new { Status = 0 });
+            }
+            
+            SaveSuccessMessage("");
+            return Json(new { Status = 1 });
+        }
+
+        public ActionResult ReleaseOrder(string orderNo)
+        {
+            OrderMaster orderMaster = new OrderMaster();
+            if (string.IsNullOrEmpty(orderNo))
+            {
+                SaveErrorMessage("订单号不允许为空。");
+                return View(orderMaster);
+            }
+
+            var prodOrder = this.genericMgr.FindById<OrderMaster>(orderNo);
+            if (prodOrder == null)
+            {
+                SaveErrorMessage("订单{0}不存在。", orderNo);
+                return View(orderMaster);
+            }
+            var orderdet = this.genericMgr.FindAll<OrderDetail>("from OrderDetail where OrderNo=?", orderNo).FirstOrDefault();
+            ViewBag.OrderNo = orderNo;
+            ViewBag.Item = orderdet.Item;
+            ViewBag.ItemDescription = orderdet.ItemDescription;
+            ViewBag.OrderedQty = orderdet.OrderedQty;
+            return View(prodOrder);
+
+
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        public ActionResult GetTraceCodeStatus(GridCommand command, string orderNo)
+        {
+            var result = this.genericMgr.FindAllWithNativeSql<object[]>(@"select TraceCode,
+	            case OrderOp when 1 then 'X' end as Op1,
+	            case OrderOp when 2 then 'X' end as Op2,
+	            case OrderOp when 3 then 'X' end as Op3,
+	            case OrderOp when 4 then 'X' end as Op4,
+	            case OrderOp when 5 then 'X' end as Op5,
+	            case OrderOp when 6 then 'X' end as Op6
+                    from INP_ProdTraceCode where OrderNo=? order by TraceCode", orderNo);
+            int total = this.genericMgr.FindAllWithNativeSql<int>("select count(*) from INP_ProdTraceCode as r1 where OrderNo=?", orderNo).First();
+            List<TraceCodeStatus> traceCodeStatusList = new List<TraceCodeStatus>();
+            if (result != null && result.Count > 0)
+            {
+                #region
+                traceCodeStatusList = (from tak in result
+                                         select new TraceCodeStatus
+                                         {
+                                             TraceCode = (string)tak[0],
+                                             Op1 = (string)tak[1],
+                                             Op2 = (string)tak[2],
+                                             Op3 = (string)tak[3],
+                                             Op4 = (string)tak[4],
+                                             Op5 = (string)tak[5],
+                                             Op6 = (string)tak[6]
+                                         }).ToList();
+                #endregion
+            }
+            GridModel<TraceCodeStatus> gridModel = new GridModel<TraceCodeStatus>();
+            gridModel.Total = total;
+            gridModel.Data = traceCodeStatusList;
+            return PartialView(gridModel);
+        }
+
+
+        public ActionResult ReceiveTraceCode()
+        {
+            return View();
+        }
+
+        public ActionResult TraceCodeCheck(string traceCode, string scanedTraceCodes)
+        {
+            if (traceCode.Equals("OK", StringComparison.OrdinalIgnoreCase) || traceCode.Equals("NG", StringComparison.OrdinalIgnoreCase))
+            {
+                if (traceCode.Equals("OK", StringComparison.OrdinalIgnoreCase))
+                {
+                    //do receive order
+                    if (string.IsNullOrEmpty(scanedTraceCodes))
+                    {
+                        SaveSuccessMessage("未扫入追溯码");
+                        return Json(new { Status = 2 });
+                    }
+                    else
+                    {
+                        string hql = string.Empty;
+                        IList<object> param = new List<object>();
+                        string[] traceCodeArray = scanedTraceCodes.Split(',');
+
+                        foreach (string tc in traceCodeArray)
+                        {
+                            if (string.IsNullOrEmpty(hql))
+                            {
+                                hql += "select p from ProdTraceCode as p where p.TraceCode in (?";
+                                param.Add(tc);
+                            }
+                            else
+                            {
+                                hql += ",?";
+                                param.Add(tc);
+                            }
+                        }
+                        if (!string.IsNullOrEmpty(hql))
+                        {
+                            hql += ")";
+                        }
+
+                        var prodTraces = this.genericMgr.FindAll<ProdTraceCode>(hql, param);
+                        
+                        var orderDet = this.genericMgr.FindById<OrderDetail>(prodTraces.FirstOrDefault().OrderDetId);
+                        OrderDetailInput input = new OrderDetailInput();
+                        input.ReceiveQty = Convert.ToDecimal(prodTraces.Count);
+                        orderDet.AddOrderDetailInput(input);
+                        IList<OrderDetail> orderList = new List<OrderDetail>();
+                        orderList.Add(orderDet);
+                        var recMaster = this.orderMgr.ReceiveOrder(orderList);
+                        var recDet = recMaster.ReceiptDetails.FirstOrDefault();
+                        recDet.UnitCount = recDet.ReceivedQty;
+                        var hu = this.huMgr.CreateHu(recMaster, recDet, DateTime.Now).FirstOrDefault();
+                        SaveSuccessMessage("下线成功");
+                        return Json(new { Status = 2, HuId = hu.HuId });
+                    }
+                }
+                else
+                {
+                    SaveWarningMessage("已清空扫描数据");
+                    return Json(new { Status=2 });
+                }
+            }
+            else
+            {
+                try
+                {
+                    var prodTrace = this.genericMgr.FindById<ProdTraceCode>(traceCode);
+                    SaveSuccessMessage("");
+                    return Json(new { Status = 1, ProdTrace = prodTrace });
+                }
+                catch (NHibernate.ObjectNotFoundException exn)
+                {
+                    SaveErrorMessage("不存在{0}的追溯码。", traceCode);
+                    return Json(new { Status = 0 });
+                }
+                catch (Exception e)
+                {
+                    SaveErrorMessage(e.Message);
+                    return Json(new { Status = 0 });
+                }
             }
         }
 
@@ -2651,6 +2833,27 @@
             data.Add(printOrderMstr.OrderDetails);
             AddPrintOrderBomDetail(orderMaster, data);
             string reportFileUrl = reportGen.WriteToFile(orderMaster.OrderTemplate, data);
+            return reportFileUrl;
+        }
+
+        public string PrintTraceCode(string orderNo)
+        {
+            OrderMaster orderMaster = queryMgr.FindById<OrderMaster>(orderNo);
+            //OrderDetail orderDetail = queryMgr.FindById<OrderDetail>(int.Parse(orderDetId));
+            //foreach (var orderDetail in orderDetails)
+            //{
+            //    if (!string.IsNullOrEmpty(orderDetail.Direction))
+            //    {
+            //        orderDetail.Direction = this.genericMgr.FindById<HuTo>(orderDetail.Direction).CodeDescription;
+            //    }
+            //}
+            var traceCode = this.orderMgr.PrintTraceCode(orderMaster.OrderNo);
+            //orderMaster.OrderDetails = orderDetails;
+            IList<object> data = new List<object>();
+            //data.Add(printOrderMstr);
+            data.Add(traceCode);
+
+            string reportFileUrl = reportGen.WriteToFile("TraceCode.xls", data);
             return reportFileUrl;
         }
 

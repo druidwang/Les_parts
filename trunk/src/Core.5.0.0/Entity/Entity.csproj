@@ -1006,9 +1006,9 @@
     <EmbeddedResource Include="Base\FMS\FacilityStockMaster.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\FacilityTrans.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\MaintainPlan.hbm.xml" />
-    <Content Include="Base\INP\ProdTraceCode.hbm.xml" />
+    <EmbeddedResource Include="Base\INP\ProdTraceCode.hbm.xml" />
     <Content Include="Base\MD\Pallet.hbm.xml" />
-    <Content Include="Base\ORD\OrderOperation.hbm.xml" />
+    <EmbeddedResource Include="Base\ORD\OrderOperation.hbm.xml" />
     <Content Include="Base\TMS\TransportOrderDetailPallet.hbm.xml" />
     <EmbeddedResource Include="Base\TMS\TransportActingBillDetail.hbm.xml">
       <SubType>Designer</SubType>

@@ -74,6 +74,7 @@ namespace com.Sconit.SmartDevice.CodeMaster
         Client_WMSPickGoodsQty,
         Client_WMSTransfer,
         Client_WMSShip,
+        Client_WMSRepack,
 
         M_Switch,
     }

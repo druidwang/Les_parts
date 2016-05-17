@@ -9950,8 +9950,8 @@ namespace com.Sconit.Service.Impl
         [Transaction(TransactionMode.Requires)]
         public string PrintTraceCode(string orderNo)
         {
-            OrderDetail orderDetail = this.genericMgr.FindAll<OrderDetail>("from OrderDetail where OrderNo = ?").Single();
-            OrderOperation orderOperation = this.genericMgr.FindAll<OrderOperation>("from OrderOperation where OrderNo = ? order by Op").First();
+            OrderDetail orderDetail = this.genericMgr.FindAll<OrderDetail>("from OrderDetail where OrderNo = ?", orderNo).Single();
+            OrderOperation orderOperation = this.genericMgr.FindAll<OrderOperation>("from OrderOperation where OrderNo = ? order by Op", orderNo).First();
 
             ProdTraceCode prodTraceCode = new ProdTraceCode();
             prodTraceCode.TraceCode = numberControlMgr.GetTraceCode();
@@ -9971,6 +9971,47 @@ namespace com.Sconit.Service.Impl
         }
 
         [Transaction(TransactionMode.Requires)]
+        public List<Hu> ReceiveTraceCode(IList<OrderDetail> orderDetList, List<String> traceCodes)
+        {
+            List<Hu> huList = new List<Hu>();
+            var recMaster = this.ReceiveOrder(orderDetList);
+            foreach (var recDet in recMaster.ReceiptDetails)
+            {
+                recDet.UnitCount = recDet.ReceivedQty;
+                var hus = this.huMgr.CreateHu(recMaster, recDet, DateTime.Now);
+                huList.AddRange(hus);
+                var orderOp = this.genericMgr.FindAll<OrderOperation>("from OrderOperation where OrderDetId=? and Op=?", new object[] { recDet.OrderDetailId, 6 }).Single();
+                orderOp.ReportQty = recDet.ReceivedQty;
+                this.genericMgr.Update(orderOp);
+            }
+            string updateSql = string.Empty;
+            IList<object> param = new List<object>();
+            foreach (string tc in traceCodes)
+            {
+                if (string.IsNullOrEmpty(updateSql))
+                {
+                    updateSql += "update INP_ProdTraceCode set OrderOp=6, OrderOpId=5 where TraceCode in(";
+                    param.Add(tc);
+                }
+                else
+                {
+                    updateSql += ",?";
+                    param.Add(tc);
+                }
+            }
+            if (!string.IsNullOrEmpty(updateSql))
+            {
+                updateSql += ")";
+            }
+            this.genericMgr.FindAllWithNativeSql(updateSql, param.ToArray());
+
+            
+
+            return huList;
+
+        }
+
+        [Transaction(TransactionMode.Requires)]
         public void ReportOrderOp(int op)
         {
         }
@@ -9980,6 +10021,8 @@ namespace com.Sconit.Service.Impl
         {
         }
     }
+
+
 
     [Transactional]
     public class SequenceMgrImpl : BaseMgr, ISequenceMgr
