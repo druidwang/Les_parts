@@ -14,7 +14,7 @@ namespace com.Sconit.Web.Models.SearchModels.ORD
         public string Shipper { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-      
+
 
     }
 }

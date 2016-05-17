@@ -1221,7 +1221,7 @@
                     {
                         string hql = string.Empty;
                         IList<object> param = new List<object>();
-                        string[] traceCodeArray = scanedTraceCodes.Split(',');
+                        string[] traceCodeArray = scanedTraceCodes.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
                         foreach (string tc in traceCodeArray)
                         {
@@ -1242,19 +1242,33 @@
                         }
 
                         var prodTraces = this.genericMgr.FindAll<ProdTraceCode>(hql, param);
-                        
-                        var orderDet = this.genericMgr.FindById<OrderDetail>(prodTraces.FirstOrDefault().OrderDetId);
-                        OrderDetailInput input = new OrderDetailInput();
-                        input.ReceiveQty = Convert.ToDecimal(prodTraces.Count);
-                        orderDet.AddOrderDetailInput(input);
-                        IList<OrderDetail> orderList = new List<OrderDetail>();
-                        orderList.Add(orderDet);
-                        var recMaster = this.orderMgr.ReceiveOrder(orderList);
-                        var recDet = recMaster.ReceiptDetails.FirstOrDefault();
-                        recDet.UnitCount = recDet.ReceivedQty;
-                        var hu = this.huMgr.CreateHu(recMaster, recDet, DateTime.Now).FirstOrDefault();
-                        SaveSuccessMessage("下线成功");
-                        return Json(new { Status = 2, HuId = hu.HuId });
+                        try
+                        {
+                            var orderMastr = this.genericMgr.FindById<OrderMaster>(prodTraces.FirstOrDefault().OrderNo);
+                            var orderDet = this.genericMgr.FindById<OrderDetail>(prodTraces.FirstOrDefault().OrderDetId);
+                            OrderDetailInput input = new OrderDetailInput();
+                            input.ReceiveQty = Convert.ToDecimal(prodTraces.Count);
+                            orderDet.AddOrderDetailInput(input);
+                            IList<OrderDetail> orderList = new List<OrderDetail>();
+                            orderList.Add(orderDet);
+                            var hu = this.orderMgr.ReceiveTraceCode(orderList, traceCodeArray.ToList());
+                            var huReportUrl = PrintHuList(hu, orderMastr.HuTemplate);
+                            SaveSuccessMessage("下线成功");
+                            return Json(new { Status = 2, ReportUrl = huReportUrl });
+                        }
+                        catch (BusinessException ex)
+                        {
+                            foreach (var message in ex.GetMessages())
+                            {
+                                SaveErrorMessage(message.GetMessageString());
+                            }
+                            return Json(new { Status = 0 });
+                        }
+                        catch (Exception e)
+                        {
+                            SaveErrorMessage(e.Message);
+                            return Json(new { Status = 0 });
+                        }
                     }
                 }
                 else
@@ -1268,6 +1282,11 @@
                 try
                 {
                     var prodTrace = this.genericMgr.FindById<ProdTraceCode>(traceCode);
+                    if (prodTrace.OrderOp != 5)
+                    {
+                        SaveSuccessMessage("该追溯码{0}不可以下线");
+                        return Json(new { Status = 0, ProdTrace = prodTrace });
+                    }
                     SaveSuccessMessage("");
                     return Json(new { Status = 1, ProdTrace = prodTrace });
                 }
@@ -1282,6 +1301,53 @@
                     return Json(new { Status = 0 });
                 }
             }
+        }
+
+        public ActionResult SearchProdTraceCode()
+        {
+            return View();
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        public ActionResult _AjaxProdTraceCodeList(GridCommand command, ProdTraceCodeSearchModel searchModel)
+        {
+            if (!string.IsNullOrEmpty(searchModel.TraceCode) || !string.IsNullOrEmpty(searchModel.HuId))
+            {
+                SearchStatementModel searchStatementModel = PrepareTraceCodeSearchStatement(command, searchModel);
+                return PartialView(GetAjaxPageData<ProdTraceCode>(searchStatementModel, command));
+            }
+            else
+            { 
+                return PartialView(new GridModel<ProdTraceCode>());
+            }
+            
+        }
+
+        private SearchStatementModel PrepareTraceCodeSearchStatement(GridCommand command, ProdTraceCodeSearchModel searchModel)
+        {
+            string whereStatement = string.Empty;
+
+            IList<object> param = new List<object>();
+            if (!string.IsNullOrEmpty(searchModel.TraceCode))
+            {
+                HqlStatementHelper.AddLikeStatement("TraceCode", searchModel.TraceCode, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
+            }
+            if (!string.IsNullOrEmpty(searchModel.HuId))
+            {
+                HqlStatementHelper.AddLikeStatement("HuId", searchModel.HuId, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
+            }
+
+
+            string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
+
+            SearchStatementModel searchStatementModel = new SearchStatementModel();
+            searchStatementModel.SelectCountStatement = "select count(*) from ProdTraceCode as p";
+            searchStatementModel.SelectStatement = "select p from ProdTraceCode as p";
+            searchStatementModel.SortingStatement = sortingStatement;
+            searchStatementModel.Parameters = param.ToArray<object>();
+            searchStatementModel.WhereStatement = whereStatement;
+
+            return searchStatementModel;
         }
 
         #region 先注掉，保存物料清单和工艺流程的

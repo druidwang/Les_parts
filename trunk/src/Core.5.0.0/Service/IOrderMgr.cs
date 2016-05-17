@@ -5,6 +5,7 @@ using com.Sconit.Entity.MD;
 using com.Sconit.Entity.ORD;
 using com.Sconit.Entity.SCM;
 using System.IO;
+using com.Sconit.Entity.INV;
 
 namespace com.Sconit.Service
 {
@@ -295,6 +296,8 @@ namespace com.Sconit.Service
         void ReportOrderOp(int op);
 
         string ReceiveTraceCode(IList<string> traceCodeList);
+
+        IList<Hu> ReceiveTraceCode(IList<OrderDetail> orderDetList, IList<String> traceCodes);
     }
 
     public interface ISequenceMgr
