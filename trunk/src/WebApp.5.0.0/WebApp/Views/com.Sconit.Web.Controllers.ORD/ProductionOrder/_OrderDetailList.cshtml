@@ -113,6 +113,10 @@
         var row = $(e.row.childNodes);
         var bom = ((e.dataItem.Bom == undefined || e.dataItem.Bom == "") ? e.dataItem.Item : e.dataItem.Bom);
         $(e.row).find("#BomId").text(bom);
+        var traceCode = $(e.row).find("#TraceCode");
+        if(traceCode !== undefined){
+            traceCode.attr("href", "#");
+        }
     }
 
     function ItemComboBox_DataBinding(e) {
@@ -228,6 +232,10 @@
             if (ViewBag.isEditable)
             {
                 columns.Command(commands => commands.Delete()).Title("操作");
+            }
+            if (ViewBag.IsReleased)
+            {
+                columns.Command(commands => commands.Custom("PrintTraceCode").Text("打印追溯码").HtmlAttributes(new { @onclick = "PrintTraceCode(this)", href = "#", id = "TraceCode" })).Title("操作");
             }
         })
         .ClientEvents(c => c.OnRowDataBound("onRowDataBound").OnDataBound("onDataBound"))
