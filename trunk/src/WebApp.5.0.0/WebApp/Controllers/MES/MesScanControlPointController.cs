@@ -69,7 +69,17 @@ namespace com.Sconit.Web.Controllers.MES
         }
 
 
+        public ActionResult ReportPointStatus()
+        {
+            return View();
+        }
 
+        public ActionResult _GetPointStatus(string controlPoint)
+        {
+            var scanSontrolPointList = this.genericMgr.FindAll<MesScanControlPoint>("from MesScanControlPoint m where m.ControlPoint=? and m.Note='温度'", controlPoint);
+
+            return Json(scanSontrolPointList);
+        }
 
 
         private SearchStatementModel PrepareSearchStatement(GridCommand command, MesScanControlPointSearchModel searchModel)

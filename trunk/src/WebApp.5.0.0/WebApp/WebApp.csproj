@@ -2775,6 +2775,7 @@
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\ReportPointStatus.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

@@ -1323,16 +1323,8 @@
         [GridAction(EnableCustomBinding = true)]
         public ActionResult _AjaxProdTraceCodeList(GridCommand command, ProdTraceCodeSearchModel searchModel)
         {
-            if (!string.IsNullOrEmpty(searchModel.TraceCode) || !string.IsNullOrEmpty(searchModel.HuId))
-            {
-                SearchStatementModel searchStatementModel = PrepareTraceCodeSearchStatement(command, searchModel);
-                return PartialView(GetAjaxPageData<ProdTraceCode>(searchStatementModel, command));
-            }
-            else
-            { 
-                return PartialView(new GridModel<ProdTraceCode>());
-            }
-            
+            SearchStatementModel searchStatementModel = PrepareTraceCodeSearchStatement(command, searchModel);
+            return PartialView(GetAjaxPageData<ProdTraceCode>(searchStatementModel, command)); 
         }
 
         private SearchStatementModel PrepareTraceCodeSearchStatement(GridCommand command, ProdTraceCodeSearchModel searchModel)
@@ -1340,14 +1332,10 @@
             string whereStatement = string.Empty;
 
             IList<object> param = new List<object>();
-            if (!string.IsNullOrEmpty(searchModel.TraceCode))
-            {
-                HqlStatementHelper.AddLikeStatement("TraceCode", searchModel.TraceCode, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
-            }
-            if (!string.IsNullOrEmpty(searchModel.HuId))
-            {
-                HqlStatementHelper.AddLikeStatement("HuId", searchModel.HuId, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
-            }
+
+            HqlStatementHelper.AddLikeStatement("TraceCode", searchModel.TraceCode, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
+
+            HqlStatementHelper.AddLikeStatement("HuId", searchModel.HuId, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
 
 
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
