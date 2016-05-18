@@ -31,12 +31,16 @@
                 cache: false,
                 data: data,
                 success: function (data, textStatus) {
+                    $('#traceCode').val("")
                     if (data.Data.Status === 0) {
                         DisplayJsonMessages(data);
                     }
                     else if (data.Data.Status === 2) {
                         DisplayJsonMessages(data);
                         rows = [];
+                        var grid = $("#ProdTraceCodeGrid").data("tGrid");
+                        grid.dataBind(rows);
+                        PrintOrder(data.Data.huReportUrl);
                     }
                     else {
                         var scanedTraceCodes = $('#scanedTraceCodes').val();

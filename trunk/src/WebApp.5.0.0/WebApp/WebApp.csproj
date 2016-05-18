@@ -433,6 +433,7 @@
     <Compile Include="Models\ORD\ScheduleView.cs" />
     <Compile Include="Models\ORD\WebOrderDetail.cs" />
     <Compile Include="Controllers\WMS\DeliveryBarCodeController.cs" />
+    <Compile Include="Models\SearchModels\ORD\ProdTraceCodeSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\TransportActingBillSearchModel.cs" />
     <Compile Include="Models\SearchModels\TMS\TransportBillSearchModel.cs" />
     <Compile Include="Models\SearchModels\WMS\PackingListSearchModel.cs" />
@@ -2759,6 +2760,7 @@
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\Release.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\ReleaseOrder.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\ReceiveTraceCode.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\SearchProdTraceCode.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\_SearchResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\Index.cshtml" />

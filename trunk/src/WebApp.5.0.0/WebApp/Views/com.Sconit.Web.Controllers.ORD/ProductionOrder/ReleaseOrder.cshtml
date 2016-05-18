@@ -1,4 +1,7 @@
 ﻿@model com.Sconit.Entity.ORD.OrderMaster
+@{
+    Html.RenderAction("_SiteMapPath", "Common", new { MenuContent = "Url_OrderMstr_Production_Release" });
+}
 @Html.Partial("_AjaxMessage")
 @using (Html.BeginForm("_Edit", "ProductionOrder"))
 {
