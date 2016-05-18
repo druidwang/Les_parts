@@ -1160,8 +1160,20 @@
             ViewBag.ItemDescription = orderdet.ItemDescription;
             ViewBag.OrderedQty = orderdet.OrderedQty;
             return View(prodOrder);
+        }
 
+        public string PrintTraceCode(string orderNo)
+        {
+            OrderMaster orderMaster = queryMgr.FindById<OrderMaster>(orderNo);
 
+            var traceCode = this.orderMgr.PrintTraceCode(orderMaster.OrderNo);
+            //orderMaster.OrderDetails = orderDetails;
+            IList<object> data = new List<object>();
+            //data.Add(printOrderMstr);
+            data.Add(traceCode);
+
+            string reportFileUrl = reportGen.WriteToFile("TraceCode.xls", data);
+            return reportFileUrl;
         }
 
         [GridAction(EnableCustomBinding = true)]
@@ -2899,27 +2911,6 @@
             data.Add(printOrderMstr.OrderDetails);
             AddPrintOrderBomDetail(orderMaster, data);
             string reportFileUrl = reportGen.WriteToFile(orderMaster.OrderTemplate, data);
-            return reportFileUrl;
-        }
-
-        public string PrintTraceCode(string orderNo)
-        {
-            OrderMaster orderMaster = queryMgr.FindById<OrderMaster>(orderNo);
-            //OrderDetail orderDetail = queryMgr.FindById<OrderDetail>(int.Parse(orderDetId));
-            //foreach (var orderDetail in orderDetails)
-            //{
-            //    if (!string.IsNullOrEmpty(orderDetail.Direction))
-            //    {
-            //        orderDetail.Direction = this.genericMgr.FindById<HuTo>(orderDetail.Direction).CodeDescription;
-            //    }
-            //}
-            var traceCode = this.orderMgr.PrintTraceCode(orderMaster.OrderNo);
-            //orderMaster.OrderDetails = orderDetails;
-            IList<object> data = new List<object>();
-            //data.Add(printOrderMstr);
-            data.Add(traceCode);
-
-            string reportFileUrl = reportGen.WriteToFile("TraceCode.xls", data);
             return reportFileUrl;
         }
 
