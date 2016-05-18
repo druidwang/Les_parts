@@ -121,6 +121,17 @@ namespace com.Sconit.Service.Impl
 
 
         [Transaction(TransactionMode.Requires)]
+        public bool CheckProductLine(string productline)
+        {
+            bool prodlineStatus = false;
+            XmlElement controlPointXml = ObixHelper.Request_WebRequest(productline);
+            XmlNodeList nodeList = controlPointXml.ChildNodes;
+
+            return prodlineStatus;
+
+        }
+
+        [Transaction(TransactionMode.Requires)]
         public void CreateFacilityOrder(string facilityName)
         {
             string facilityStr = string.Empty;

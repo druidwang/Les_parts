@@ -1,0 +1,61 @@
+﻿@model IEnumerable<com.Sconit.Entity.FMS.CheckListOrderMaster>
+<fieldset>
+    @(Html.Telerik().Grid(Model)
+                .Name("CheckListOrderMasterGrid")
+        .DataKeys(keys =>
+        {
+            keys.Add(p => p.CheckListCode);
+        })
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.CheckListCode).ClientTemplate(Html.ActionLink("<#= OrderNo #>", "Edit", "ProcurementOrder",
+                new { OrderNo = "<#= OrderNo #>", SubType = "<#= SubType #>" }, null).ToString());
+            columns.Bound(o => o.CheckListName).ClientTemplate("<div title=<#= FlowDescription #>><#= Flow #></div>");
+
+            columns.Bound(o => o.CheckDate);
+            columns.Bound(o => o.CheckUser);
+         
+        })
+
+
+        .Scrollable(c => c.Enabled(false))
+        .EnableCustomBinding(true)
+        .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "ProcurementOrder"))
+                .ClientEvents(events => events.OnDataBinding("OrderMasterGrid_OnDataBinding"))
+        .Pageable(settings =>
+        {
+            settings.Total(ViewBag.Total == null ? 0 : ViewBag.Total);
+            settings.PageSize(ViewBag.PageSize);
+            if (ViewBag.Page != null)
+            {
+                settings.PageTo(ViewBag.Page);
+            }
+        })
+        .Sortable()
+        .Resizable(resizing => resizing.Columns(true))
+    )
+    <script type="text/javascript">
+        function OrderMasterGrid_OnDataBinding(e) {
+            e.data = {
+                OrderNo: $('#OrderNo').val(),
+                Flow: $('#Flow').val(),
+                Priority: $('#Priority').val(),
+                PartyFrom: $('#PartyFrom').val(),
+                PartyTo: $('#PartyTo').val(),
+                DateFrom: $('#DateFrom').val(),
+                DateTo: $('#DateTo').val(),
+                Status: $('#Status').val(),
+                CreateUserName: $('#CreateUserName').val(),
+                Type: $('#Type').val(),
+                //SubType: $('#SubType').val(),
+                ReferenceOrderNo: $('#ReferenceOrderNo').val(),
+                ExternalOrderNo: $('#ExternalOrderNo').val(),
+                Sequence: $('#Sequence').val(),
+                TraceCode: $('#TraceCode').val(),
+                QueryOrderType: $('#QueryOrderType').val(),
+                DateType: $("input[type=radio][name=DateType]:checked").val(),
+                MultiStatus: $('#MultiStatus').val()
+            };
+        }
+    </script>
+</fieldset>

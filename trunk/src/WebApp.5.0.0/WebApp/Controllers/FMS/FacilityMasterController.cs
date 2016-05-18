@@ -450,6 +450,16 @@ namespace com.Sconit.Web.Controllers.FMS
            return View("Index");
             
         }
+
+
+        [SconitAuthorize(Permissions = "Url_FacilityMaster_View")]
+        public ActionResult GenerateOrderFromFacility()
+        {
+            string facilityName = "FC000000008";
+            facilityMgr.CreateFacilityOrder(facilityName);
+            return View("Index");
+
+        }
         #endregion
 
       

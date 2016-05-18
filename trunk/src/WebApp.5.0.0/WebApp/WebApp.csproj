@@ -419,6 +419,7 @@
     <Compile Include="Models\SearchModels\FMS\FacilityTransSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\FacilityMasterSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\FacilityCategorySearchModel.cs" />
+    <Compile Include="Models\SearchModels\FMS\CheckListOrderSearchModel.cs" />
     <Compile Include="Models\SearchModels\INV\HuTransSearchModel.cs" />
     <Compile Include="Models\SearchModels\ISI\TaskAddressSearchModel.cs" />
     <Compile Include="Models\SearchModels\ISI\TaskMasterSearchModel.cs" />
@@ -2758,7 +2759,6 @@
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\Release.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\ReleaseOrder.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\ReceiveTraceCode.cshtml" />
-
     <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\_SearchResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\Index.cshtml" />
@@ -2774,6 +2774,10 @@
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\_SearchResult.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -3478,7 +3482,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\Filters\" />
     <Folder Include="Resource\DownLoad\" />
-    <Folder Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\com.Sconit.Web.Controllers.SP\SupplierIpMaster\_CancelSearch.cshtml" />

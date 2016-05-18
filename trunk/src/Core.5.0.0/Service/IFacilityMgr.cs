@@ -16,5 +16,7 @@ namespace com.Sconit.Service
         void CreateFacilityOrder(string facilityName);
 
         void GenerateFacilityMaintainPlan();
+
+        bool CheckProductLine(string productline);
     }
 }
