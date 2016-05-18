@@ -3,7 +3,7 @@
 @using com.Sconit.Entity.SYS;
 @model IEnumerable<com.Sconit.Entity.ORD.OrderOperation>
 <fieldset>
-    @(Html.Telerik().Grid(Model)
+    @(Html.Telerik().Grid<com.Sconit.Entity.ORD.OrderOperation>()
                 .Name("OrderOperation")
         .DataKeys(keys =>
         {
@@ -11,7 +11,7 @@
         })
         .DataBinding(dataBinding =>
             dataBinding.Ajax()
-                            .Select("_SelectOperationBatchEditing", "ProductionOrder", new { orderDetailId = (String)ViewBag.OrderDetailId })
+            .Select("_SelectOperationBatchEditing", "ProductionOrder", new { orderDetailId = (String)ViewBag.OrderDetailId })
         )
         .Columns(columns =>
         {

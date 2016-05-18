@@ -1350,6 +1350,25 @@
             return searchStatementModel;
         }
 
+
+        public ActionResult SearchOrderOperator()
+        {
+            return View();
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        public ActionResult _AjaxOrderOperatorList(GridCommand command, string orderNo)
+        {
+            SearchStatementModel searchStatementModel = PrepareTraceCodeSearchStatement(command, searchModel);
+            return PartialView(GetAjaxPageData<ProdTraceCode>(searchStatementModel, command));
+        }
+
+        [GridAction]
+        public ActionResult _SelectOperationBatchEditing(GridCommand command, string orderDetailId)
+        {
+            IList<OrderOperation> orderOperationList = genericMgr.FindAll<OrderOperation>(selectOrderOperationStatement, orderDetailId);
+            return View(new GridModel(orderOperationList));
+        }
         #region 先注掉，保存物料清单和工艺流程的
         //[AcceptVerbs(HttpVerbs.Post)]
         //[GridAction]

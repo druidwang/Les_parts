@@ -10016,6 +10016,16 @@ namespace com.Sconit.Service.Impl
         [Transaction(TransactionMode.Requires)]
         public void ReportOrderOp(int op)
         {
+            OrderOperation orderOperation = this.genericMgr.FindAll<OrderOperation>("from OrderOperation where Op = ?", op).Single();
+            ProdTraceCode prodTraceCode = this.genericMgr.FindAll<ProdTraceCode>("from ProdTraceCode where Op < ? order by Op, CreateDate", op).FirstOrDefault();
+
+            prodTraceCode.OrderOp = orderOperation.Op;
+            prodTraceCode.OrderOpId = orderOperation.Id;
+
+            orderOperation.ReportQty++;
+
+            this.genericMgr.Update(orderOperation);
+            this.genericMgr.Update(prodTraceCode);
         }
 
         [Transaction(TransactionMode.Requires)]
