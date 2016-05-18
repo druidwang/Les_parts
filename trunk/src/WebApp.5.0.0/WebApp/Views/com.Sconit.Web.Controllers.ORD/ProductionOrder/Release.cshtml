@@ -22,11 +22,12 @@
                 cache: false,
                 data: data,
                 success: function (data, textStatus) {
+                    debugger;
                     if (data.Data.Status === 0) {
                         DisplayJsonMessages(data);
                     }
                     else {
-                        window.location("/ProductionOrder/ReleaseOrder/?orderNo=" + orderNo);
+                        window.location = "/ProductionOrder/ReleaseOrder/?orderNo=" + orderNo;
                     }
                     //                    var content = $("#content");
                     //                    $(content).html(data);
