@@ -59,17 +59,20 @@
 
     $('#btnCreateOp1Scan').click(function () {
         $('form').attr('action', "/MesScanControlPoint/CreateOp1Scan/");
+        $('form').attr('TraceCode',  $('TraceCode').val());
         $('form').submit();
     });
 
     $('#btnCreateOp2Scan').click(function () {
         $('form').attr('action', "/MesScanControlPoint/CreateOp2Scan/");
+        $('form').attr('TraceCode', $('TraceCode').val());
         $('form').submit();
     });
 
 
     $('#btnCreateOp3Scan').click(function () {
         $('form').attr('action', "/MesScanControlPoint/CreateOp3Scan/");
+        $('form').attr('TraceCode', $('TraceCode').val());
         $('form').submit();
     });
 

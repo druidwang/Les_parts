@@ -307,9 +307,21 @@ namespace com.Sconit.Web.Controllers.FMS
                 else
                 {
                     facilityMaintainPlan.MaintainPlan = maintainPlan;
-                    facilityMaintainPlan.NextMaintainDate = facilityMaintainPlan.StartDate;
-                    facilityMaintainPlan.NextWarnDate = facilityMaintainPlan.StartDate;
-                    facilityMaintainPlan.NextMaintainQty = facilityMaintainPlan.StartQty;
+                    if (facilityMaintainPlan.StartQty != 0)
+                    {
+                        facilityMaintainPlan.NextMaintainQty = facilityMaintainPlan.StartQty;
+                        facilityMaintainPlan.NextWarnQty = facilityMaintainPlan.StartQty;
+                        facilityMaintainPlan.NextWarnDate = null;
+                        facilityMaintainPlan.NextMaintainDate = null;
+                        facilityMaintainPlan.StartDate = null;
+                    }
+                    if (facilityMaintainPlan.StartDate.HasValue)
+                    {
+                        facilityMaintainPlan.NextMaintainDate = facilityMaintainPlan.StartDate;
+                        facilityMaintainPlan.NextWarnDate = facilityMaintainPlan.StartDate;
+                    }
+               
+              
                     this.genericMgr.CreateWithTrim(facilityMaintainPlan);
 
                     SaveSuccessMessage(Resources.FMS.FacilityMaintainPlan.FacilityMaintainPlan_Added);
@@ -348,10 +360,23 @@ namespace com.Sconit.Web.Controllers.FMS
             if (ModelState.IsValid)
             {
                 facilityMaintainPlan.MaintainPlan = maintainPlan;
-                facilityMaintainPlan.MaintainPlan = maintainPlan;
-                facilityMaintainPlan.NextMaintainDate = facilityMaintainPlan.StartDate;
-                facilityMaintainPlan.NextWarnDate = facilityMaintainPlan.StartDate;
-                facilityMaintainPlan.NextMaintainQty = facilityMaintainPlan.StartQty;
+                if (facilityMaintainPlan.StartQty != 0)
+                {
+                    facilityMaintainPlan.NextMaintainQty = facilityMaintainPlan.StartQty;
+                    facilityMaintainPlan.NextWarnQty = facilityMaintainPlan.StartQty;
+                    facilityMaintainPlan.NextWarnDate = null;
+                    facilityMaintainPlan.NextMaintainDate = null;
+                    facilityMaintainPlan.StartDate = null;
+                }
+                if (facilityMaintainPlan.StartDate.HasValue)
+                {
+                    facilityMaintainPlan.NextMaintainDate = facilityMaintainPlan.StartDate;
+                    facilityMaintainPlan.NextWarnDate = facilityMaintainPlan.StartDate;
+                }
+               
+              
+              
+             
                 this.genericMgr.UpdateWithTrim(facilityMaintainPlan);
 
                 SaveSuccessMessage(Resources.FMS.FacilityMaintainPlan.FacilityMaintainPlan_Added);

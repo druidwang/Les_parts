@@ -73,8 +73,14 @@ namespace com.Sconit.Web.Controllers.MES
         [SconitAuthorize(Permissions = "Url_MesScanControlPoint_View")]
         public ActionResult CreateOp1Scan(MesScanControlPointSearchModel searchModel)
         {
+
+            if (String.IsNullOrEmpty(searchModel.TraceCode))
+            {
+                SaveErrorMessage("追溯码不能为空");
+                return View("Index");
+            }
             string facilityName = "FC000000011";
-           // string orderNo = "O4FI1100000923";
+            // string orderNo = "O4FI1100000923";
             facilityMgr.GetFacilityControlPoint(facilityName, searchModel.TraceCode);
 
 
@@ -83,16 +89,15 @@ namespace com.Sconit.Web.Controllers.MES
             return View("Index");
         }
 
-        public ActionResult _GetPointStatus(string controlPoint)
-        {
-            var scanSontrolPointList = this.genericMgr.FindAll<MesScanControlPoint>("from MesScanControlPoint m where m.ControlPoint=? and m.Note='温度'", controlPoint);
-
-            return Json(scanSontrolPointList);
-        }
 
         [SconitAuthorize(Permissions = "Url_MesScanControlPoint_View")]
         public ActionResult CreateOp2Scan(MesScanControlPointSearchModel searchModel)
         {
+            if (String.IsNullOrEmpty(searchModel.TraceCode))
+            {
+                SaveErrorMessage("追溯码不能为空");
+                return View("Index");
+            }
             string facilityName = "FC000000012";
 
             facilityMgr.GetFacilityControlPoint(facilityName, searchModel.TraceCode);
@@ -104,12 +109,34 @@ namespace com.Sconit.Web.Controllers.MES
         [SconitAuthorize(Permissions = "Url_MesScanControlPoint_View")]
         public ActionResult CreateOp3Scan(MesScanControlPointSearchModel searchModel)
         {
+            if (String.IsNullOrEmpty(searchModel.TraceCode))
+            {
+                SaveErrorMessage("追溯码不能为空");
+                return View("Index");
+            }
             string facilityName = "FC000000008";
 
             facilityMgr.GetFacilityControlPoint(facilityName, searchModel.TraceCode);
             facilityMgr.GetFacilityParamater(facilityName, "Pressure", "压力", searchModel.TraceCode);
             return View("Index");
         }
+
+        public ActionResult ReportPointStatus()
+        {
+            return View();
+        }
+
+        public ActionResult _GetPointStatus(string controlPoint)
+        {
+            IList<MesScanControlPoint> scanSontrolPointList = new List<MesScanControlPoint>();
+            if (!string.IsNullOrEmpty(controlPoint))
+            {
+                scanSontrolPointList = this.genericMgr.FindAll<MesScanControlPoint>("from MesScanControlPoint m where m.ControlPoint=? and m.Note='温度'", controlPoint);
+            }
+            return Json(scanSontrolPointList);
+        }
+
+
 
         private SearchStatementModel PrepareSearchStatement(GridCommand command, MesScanControlPointSearchModel searchModel)
         {
@@ -119,7 +146,7 @@ namespace com.Sconit.Web.Controllers.MES
 
             HqlStatementHelper.AddLikeStatement("TraceCode", searchModel.TraceCode, HqlStatementHelper.LikeMatchMode.Start, "c", ref whereStatement, param);
             HqlStatementHelper.AddLikeStatement("ControlPoint", searchModel.ControlPoint, HqlStatementHelper.LikeMatchMode.Start, "c", ref whereStatement, param);
-            HqlStatementHelper.AddEqStatement("Type",CodeMaster.FacilityParamaterType.Scan,"c", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("Type", CodeMaster.FacilityParamaterType.Scan, "c", ref whereStatement, param);
 
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
 
