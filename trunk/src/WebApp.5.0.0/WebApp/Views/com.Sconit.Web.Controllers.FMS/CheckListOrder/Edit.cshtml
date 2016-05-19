@@ -55,7 +55,7 @@
         {"needconfirm","true"},
         {"onclick","location.href='"+@Url.Content("~/CheckListOrder/Delete/"+@Model.Code)+"'"}
     })
-      @Html.Button(Resources.SYS.Global.Button_Submit, "Url_CheckListOrder_Edit", new Dictionary<string, string>()
+      @Html.Button("提交", "Url_CheckListOrder_Edit", new Dictionary<string, string>()
 	    {
 	        {"type", "button"},
 	        {"id", "btnSubmit"},

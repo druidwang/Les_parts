@@ -13,7 +13,7 @@
       
         .Columns(columns =>
         {
-            columns.Bound(o => o.Id);
+            columns.Bound(o => o.Id).Hidden();
             columns.Bound(o => o.CheckListDetailCode).ReadOnly().Title("编号工艺要求");
             columns.Bound(o => o.Description).ReadOnly().Title("描述");
             columns.Bound(o => o.MinValue).ReadOnly().Title("最小值");

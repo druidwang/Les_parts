@@ -13,7 +13,7 @@
       
         .Columns(columns =>
         {
-            columns.Bound(o => o.Id);
+            columns.Bound(o => o.Id).Hidden();
             columns.Bound(o => o.Item).ReadOnly().Title("备件代码");
             columns.Bound(o => o.ItemDescription).ReadOnly().Title("备件名称");
             columns.Bound(o => o.LocationFrom).ReadOnly().Title("库位");
