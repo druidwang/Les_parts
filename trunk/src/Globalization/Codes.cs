@@ -1316,7 +1316,8 @@ namespace com.Sconit.CodeMaster
         Day = 4,
         Hour = 5,
         Minute = 6,
-        Second = 7
+        Second = 7,
+        Times = 8
     }
 
 

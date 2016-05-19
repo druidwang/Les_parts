@@ -29,6 +29,7 @@
     using Telerik.Web.Mvc;
     using NHibernate;
     using com.Sconit.Entity.INP;
+    using System.Xml;
 
     public class ProductionOrderController : WebAppBaseController
     {
@@ -383,7 +384,7 @@
                             orderDetail.IsChangeUnitCount = true;
                             orderDetail.IsInspect = false;
                         }
-                            orderDetailList.Add(orderDetail);
+                        orderDetailList.Add(orderDetail);
                     }
                 }
 
@@ -614,6 +615,8 @@
         {
             try
             {
+              
+
                 this.orderMgr.StartVanOrder(orderNo);
                 var orderMaster = this.genericMgr.FindById<OrderMaster>(orderNo);
                 object obj = new
@@ -641,6 +644,20 @@
                 }
                 else
                 {
+                    #region 生产线校验
+                    OrderMaster order = genericMgr.FindById<OrderMaster>(id);
+                    string prodLineStatusStr = order.Flow + "/PL_Status";
+
+
+                    XmlElement plXml = ObixHelper.Request_WebRequest(prodLineStatusStr);
+                    XmlNodeList plNodeList = plXml.ChildNodes;
+                    bool plOK = bool.Parse(plNodeList[2].Attributes["val"].Value);
+                    if (!plOK)
+                    {
+                        throw new BusinessException("生产线" + order.Flow + "状态异常");
+                    }
+                    #endregion
+
                     orderMgr.StartOrder(id);
                 }
 
@@ -1118,7 +1135,7 @@
             if (string.IsNullOrEmpty(orderNo))
             {
                 SaveErrorMessage("生产单号不允许为空。");
-                return Json(new { Status=0 });
+                return Json(new { Status = 0 });
             }
             try
             {
@@ -1128,7 +1145,7 @@
                     SaveErrorMessage("生产单{0}不存在。", orderNo);
                     return Json(new { Status = 0 });
                 }
-                if (prodOrder.Status != Sconit.CodeMaster.OrderStatus.InProcess) 
+                if (prodOrder.Status != Sconit.CodeMaster.OrderStatus.InProcess)
                 {
                     SaveErrorMessage("生产单{0}状态不正确。", orderNo);
                     return Json(new { Status = 0 });
@@ -1139,7 +1156,7 @@
                 SaveErrorMessage("生产单{0}不存在。", orderNo);
                 return Json(new { Status = 0 });
             }
-            
+
             SaveSuccessMessage("");
             return Json(new { Status = 1 });
         }
@@ -1198,16 +1215,16 @@
             {
                 #region
                 traceCodeStatusList = (from tak in result
-                                         select new TraceCodeStatus
-                                         {
-                                             TraceCode = (string)tak[0],
-                                             Op1 = (string)tak[1],
-                                             Op2 = (string)tak[2],
-                                             Op3 = (string)tak[3],
-                                             Op4 = (string)tak[4],
-                                             Op5 = (string)tak[5],
-                                             Op6 = (string)tak[6]
-                                         }).ToList();
+                                       select new TraceCodeStatus
+                                       {
+                                           TraceCode = (string)tak[0],
+                                           Op1 = (string)tak[1],
+                                           Op2 = (string)tak[2],
+                                           Op3 = (string)tak[3],
+                                           Op4 = (string)tak[4],
+                                           Op5 = (string)tak[5],
+                                           Op6 = (string)tak[6]
+                                       }).ToList();
                 #endregion
             }
             GridModel<TraceCodeStatus> gridModel = new GridModel<TraceCodeStatus>();
@@ -1291,7 +1308,7 @@
                 else
                 {
                     SaveWarningMessage("已清空扫描数据");
-                    return Json(new { Status=2 });
+                    return Json(new { Status = 2 });
                 }
             }
             else
@@ -1329,7 +1346,7 @@
         public ActionResult _AjaxProdTraceCodeList(GridCommand command, ProdTraceCodeSearchModel searchModel)
         {
             SearchStatementModel searchStatementModel = PrepareTraceCodeSearchStatement(command, searchModel);
-            return PartialView(GetAjaxPageData<ProdTraceCode>(searchStatementModel, command)); 
+            return PartialView(GetAjaxPageData<ProdTraceCode>(searchStatementModel, command));
         }
 
         private SearchStatementModel PrepareTraceCodeSearchStatement(GridCommand command, ProdTraceCodeSearchModel searchModel)
@@ -1515,7 +1532,7 @@
                 SaveErrorMessage(e.Message);
                 return Json(new { Status = 0 });
             }
-            
+
         }
 
         public ActionResult DoBindTraceCodeToHu(string huId, string traceCode)
@@ -2377,7 +2394,7 @@
                     //}
                     var count = this.genericMgr.FindAll<long>
                                (" select Count(*) from OrderDetail where OrderNo=? and ItemDescription like ?",
-                               new object[] { orderNo, "%"+Resources.EXT.ControllerLan.Con_ForceMaterial +"%"})[0];
+                               new object[] { orderNo, "%" + Resources.EXT.ControllerLan.Con_ForceMaterial + "%" })[0];
                     if (count == 0)
                     {
                         SaveErrorMessage(Resources.EXT.ControllerLan.Con_TheProductionOrderNoNeedBackFlush, orderNo);

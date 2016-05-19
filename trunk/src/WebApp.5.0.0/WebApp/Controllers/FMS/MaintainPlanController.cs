@@ -121,6 +121,7 @@ namespace com.Sconit.Web.Controllers.FMS
                 }
                 else
                 {
+                    
                     this.genericMgr.CreateWithTrim(maintainPlan);
                     SaveSuccessMessage(Resources.FMS.MaintainPlan.MaintainPlan_Added);
                     return RedirectToAction("Edit/" + maintainPlan.Code);

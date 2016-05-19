@@ -2059,6 +2059,15 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to 次数.
+        /// </summary>
+        public static string CodeDetail_MaintainPlanType_TIMES {
+            get {
+                return ResourceManager.GetString("CodeDetail_MaintainPlanType_TIMES", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Week.
         /// </summary>
         public static string CodeDetail_MaintainPlanType_Week {

@@ -215,6 +215,9 @@
   <data name="CodeDetail_MaintainPlanType_Second" xml:space="preserve">
     <value>Second</value>
   </data>
+  <data name="CodeDetail_MaintainPlanType_TIMES" xml:space="preserve">
+    <value>Times</value>
+  </data>
   <data name="CodeDetail_MaintainPlanType_Week" xml:space="preserve">
     <value>Week</value>
   </data>

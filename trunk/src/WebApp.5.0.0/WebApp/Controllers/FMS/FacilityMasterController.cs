@@ -307,6 +307,9 @@ namespace com.Sconit.Web.Controllers.FMS
                 else
                 {
                     facilityMaintainPlan.MaintainPlan = maintainPlan;
+                    facilityMaintainPlan.NextMaintainDate = facilityMaintainPlan.StartDate;
+                    facilityMaintainPlan.NextWarnDate = facilityMaintainPlan.StartDate;
+                    facilityMaintainPlan.NextMaintainQty = facilityMaintainPlan.StartQty;
                     this.genericMgr.CreateWithTrim(facilityMaintainPlan);
 
                     SaveSuccessMessage(Resources.FMS.FacilityMaintainPlan.FacilityMaintainPlan_Added);
@@ -332,6 +335,7 @@ namespace com.Sconit.Web.Controllers.FMS
             }
             else
             {
+               
                 FacilityMaintainPlan facilityMaintainPlan = this.genericMgr.FindById<FacilityMaintainPlan>(id);
                 return PartialView(facilityMaintainPlan);
             }
@@ -344,6 +348,10 @@ namespace com.Sconit.Web.Controllers.FMS
             if (ModelState.IsValid)
             {
                 facilityMaintainPlan.MaintainPlan = maintainPlan;
+                facilityMaintainPlan.MaintainPlan = maintainPlan;
+                facilityMaintainPlan.NextMaintainDate = facilityMaintainPlan.StartDate;
+                facilityMaintainPlan.NextWarnDate = facilityMaintainPlan.StartDate;
+                facilityMaintainPlan.NextMaintainQty = facilityMaintainPlan.StartQty;
                 this.genericMgr.UpdateWithTrim(facilityMaintainPlan);
 
                 SaveSuccessMessage(Resources.FMS.FacilityMaintainPlan.FacilityMaintainPlan_Added);

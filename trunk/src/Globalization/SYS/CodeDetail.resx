@@ -1885,4 +1885,7 @@
   <data name="CodeDetail_FacilityTransType_StartUse" xml:space="preserve">
     <value>StartUse</value>
   </data>
+  <data name="CodeDetail_MaintainPlanType_TIMES" xml:space="preserve">
+    <value>次数</value>
+  </data>
 </root>
