@@ -291,6 +291,8 @@ namespace com.Sconit.Service
 
         void CleanOrder(List<string> flowCodeList);
 
+        string PrintTraceCode();
+
         string PrintTraceCode(string orderNo);
 
         void ReportOrderOp(int op);

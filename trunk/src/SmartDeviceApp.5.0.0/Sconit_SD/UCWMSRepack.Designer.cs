@@ -1,6 +1,6 @@
 ﻿namespace com.Sconit.SmartDevice
 {
-    partial class UCWMSPickGoods
+    partial class UCWMSRepack
     {
         ///// <summary> 
         ///// Required designer variable.

@@ -2782,6 +2782,10 @@
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\SearchOrderOperator.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\PrintTC.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\BindTraceCode.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\BindTraceCodeToHu.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\New.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\Edit.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\_CheckListOrderDetail.cshtml" />

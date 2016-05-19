@@ -6585,6 +6585,9 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         OrderType,
+        
+        /// <remarks/>
+        Carrier,
     }
     
     /// <remarks/>
