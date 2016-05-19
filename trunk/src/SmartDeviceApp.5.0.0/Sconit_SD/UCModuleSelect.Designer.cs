@@ -66,6 +66,7 @@ namespace com.Sconit.SmartDevice
             this.btnInspect = new System.Windows.Forms.Button();
             this.btnQualify = new System.Windows.Forms.Button();
             this.tabWMS = new System.Windows.Forms.TabPage();
+            this.btnWMSRepack = new System.Windows.Forms.Button();
             this.btnWMSShip = new System.Windows.Forms.Button();
             this.btnWMSPickGoodsQty = new System.Windows.Forms.Button();
             this.btnWMSTransfer = new System.Windows.Forms.Button();
@@ -75,7 +76,6 @@ namespace com.Sconit.SmartDevice
             this.btnLogOff = new System.Windows.Forms.Button();
             this.tbKeyCode = new System.Windows.Forms.TextBox();
             this.lblUserStatus = new System.Windows.Forms.Label();
-            this.btnWMSRepack = new System.Windows.Forms.Button();
             this.tabModuleSelect.SuspendLayout();
             this.tabProcurement.SuspendLayout();
             this.tabProduction.SuspendLayout();
@@ -192,7 +192,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnSpChk
             // 
-            this.btnSpChk.Location = new System.Drawing.Point(16, 95);
+            this.btnSpChk.Location = new System.Drawing.Point(16, 71);
             this.btnSpChk.Name = "btnSpChk";
             this.btnSpChk.Size = new System.Drawing.Size(98, 20);
             this.btnSpChk.TabIndex = 13;
@@ -203,7 +203,7 @@ namespace com.Sconit.SmartDevice
             // btnAnDon
             // 
             this.btnAnDon.Enabled = false;
-            this.btnAnDon.Location = new System.Drawing.Point(112, 147);
+            this.btnAnDon.Location = new System.Drawing.Point(112, 123);
             this.btnAnDon.Name = "btnAnDon";
             this.btnAnDon.Size = new System.Drawing.Size(90, 20);
             this.btnAnDon.TabIndex = 6;
@@ -215,7 +215,7 @@ namespace com.Sconit.SmartDevice
             // btnMaterialIn
             // 
             this.btnMaterialIn.Enabled = false;
-            this.btnMaterialIn.Location = new System.Drawing.Point(16, 121);
+            this.btnMaterialIn.Location = new System.Drawing.Point(16, 97);
             this.btnMaterialIn.Name = "btnMaterialIn";
             this.btnMaterialIn.Size = new System.Drawing.Size(90, 20);
             this.btnMaterialIn.TabIndex = 3;
@@ -226,11 +226,11 @@ namespace com.Sconit.SmartDevice
             // 
             // btnFiReceipt
             // 
-            this.btnFiReceipt.Location = new System.Drawing.Point(16, 69);
+            this.btnFiReceipt.Location = new System.Drawing.Point(17, 17);
             this.btnFiReceipt.Name = "btnFiReceipt";
-            this.btnFiReceipt.Size = new System.Drawing.Size(186, 20);
+            this.btnFiReceipt.Size = new System.Drawing.Size(89, 20);
             this.btnFiReceipt.TabIndex = 3;
-            this.btnFiReceipt.Text = "0.后加工生产收货";
+            this.btnFiReceipt.Text = "0.生产收货";
             this.btnFiReceipt.Click += new System.EventHandler(this.UCModuleSelect_Click);
             this.btnFiReceipt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
@@ -257,7 +257,7 @@ namespace com.Sconit.SmartDevice
             // btnProdutionOffline
             // 
             this.btnProdutionOffline.Enabled = false;
-            this.btnProdutionOffline.Location = new System.Drawing.Point(111, 95);
+            this.btnProdutionOffline.Location = new System.Drawing.Point(111, 71);
             this.btnProdutionOffline.Name = "btnProdutionOffline";
             this.btnProdutionOffline.Size = new System.Drawing.Size(90, 20);
             this.btnProdutionOffline.TabIndex = 12;
@@ -269,7 +269,7 @@ namespace com.Sconit.SmartDevice
             // btnForceMaterialIn
             // 
             this.btnForceMaterialIn.Enabled = false;
-            this.btnForceMaterialIn.Location = new System.Drawing.Point(16, 147);
+            this.btnForceMaterialIn.Location = new System.Drawing.Point(16, 123);
             this.btnForceMaterialIn.Name = "btnForceMaterialIn";
             this.btnForceMaterialIn.Size = new System.Drawing.Size(89, 20);
             this.btnForceMaterialIn.TabIndex = 5;
@@ -280,7 +280,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnFilter
             // 
-            this.btnFilter.Location = new System.Drawing.Point(16, 18);
+            this.btnFilter.Location = new System.Drawing.Point(112, 17);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(90, 20);
             this.btnFilter.TabIndex = 1;
@@ -291,7 +291,7 @@ namespace com.Sconit.SmartDevice
             // btnMaterialReturn
             // 
             this.btnMaterialReturn.Enabled = false;
-            this.btnMaterialReturn.Location = new System.Drawing.Point(112, 121);
+            this.btnMaterialReturn.Location = new System.Drawing.Point(112, 97);
             this.btnMaterialReturn.Name = "btnMaterialReturn";
             this.btnMaterialReturn.Size = new System.Drawing.Size(89, 20);
             this.btnMaterialReturn.TabIndex = 4;
@@ -303,7 +303,7 @@ namespace com.Sconit.SmartDevice
             // btnProductionOnline
             // 
             this.btnProductionOnline.Enabled = false;
-            this.btnProductionOnline.Location = new System.Drawing.Point(16, 95);
+            this.btnProductionOnline.Location = new System.Drawing.Point(16, 71);
             this.btnProductionOnline.Name = "btnProductionOnline";
             this.btnProductionOnline.Size = new System.Drawing.Size(90, 20);
             this.btnProductionOnline.TabIndex = 11;
@@ -493,6 +493,16 @@ namespace com.Sconit.SmartDevice
             this.tabWMS.Size = new System.Drawing.Size(226, 195);
             this.tabWMS.Text = "高级仓库";
             // 
+            // btnWMSRepack
+            // 
+            this.btnWMSRepack.Location = new System.Drawing.Point(119, 68);
+            this.btnWMSRepack.Name = "btnWMSRepack";
+            this.btnWMSRepack.Size = new System.Drawing.Size(98, 20);
+            this.btnWMSRepack.TabIndex = 7;
+            this.btnWMSRepack.Text = "6.翻包";
+            this.btnWMSRepack.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnWMSRepack.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
             // btnWMSShip
             // 
             this.btnWMSShip.Location = new System.Drawing.Point(5, 68);
@@ -575,16 +585,6 @@ namespace com.Sconit.SmartDevice
             this.lblUserStatus.Name = "lblUserStatus";
             this.lblUserStatus.Size = new System.Drawing.Size(215, 20);
             this.lblUserStatus.Text = "当前用户:";
-            // 
-            // btnWMSRepack
-            // 
-            this.btnWMSRepack.Location = new System.Drawing.Point(119, 68);
-            this.btnWMSRepack.Name = "btnWMSRepack";
-            this.btnWMSRepack.Size = new System.Drawing.Size(98, 20);
-            this.btnWMSRepack.TabIndex = 7;
-            this.btnWMSRepack.Text = "6.翻包";
-            this.btnWMSRepack.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnWMSRepack.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
             // UCModuleSelect
             // 

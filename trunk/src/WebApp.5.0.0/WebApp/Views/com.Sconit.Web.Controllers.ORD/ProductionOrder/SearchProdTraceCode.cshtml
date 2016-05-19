@@ -27,6 +27,12 @@
     <div class="search-footer">
         <button type="button" id="btnSearch" onclick="SearchClick(this)">
             @Resources.SYS.Global.Button_Search</button>
+            @Html.Button("打印追溯码", "", new Dictionary<string, string>()
+	        {
+	            {"type", "button"},
+	            {"id", "btnPrinctTraceCode"},
+                {"onclick","PrintTraceCode(this)"}
+	        })
     </div>
 </fieldset>
 <fieldset id="traceCodeStats">
@@ -67,5 +73,22 @@
     function SearchClick(e) {
         var grid = $("#ProdTraceCodeGrid").data("tGrid");
         grid.ajaxRequest({ TraceCode: $('#TraceCode').val(), HuId: $('#HuId').val() });
+    }
+
+    function PrintTraceCode(e) {
+        $.ajax({
+            type: "post",
+            dataType: "text",
+            url: "/ProductionOrder/DoPrintTC/",
+            success: function (data, textStatus) {
+                if (data != "") {
+                    PrintOrder(data);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                var errorMessages = XMLHttpRequest.responseText;
+                $message.error(errorMessages);
+            }
+        });
     }
 </script>

@@ -9948,6 +9948,16 @@ namespace com.Sconit.Service.Impl
 
 
         [Transaction(TransactionMode.Requires)]
+        public string PrintTraceCode()
+        {
+            ProdTraceCode prodTraceCode = new ProdTraceCode();
+            prodTraceCode.TraceCode = numberControlMgr.GetTraceCode();
+            this.genericMgr.Create(prodTraceCode);
+
+            return prodTraceCode.TraceCode;
+        }
+
+        [Transaction(TransactionMode.Requires)]
         public string PrintTraceCode(string orderNo)
         {
             OrderDetail orderDetail = this.genericMgr.FindAll<OrderDetail>("from OrderDetail where OrderNo = ?", orderNo).Single();
@@ -9969,6 +9979,7 @@ namespace com.Sconit.Service.Impl
 
             return prodTraceCode.TraceCode;
         }
+
 
         [Transaction(TransactionMode.Requires)]
         public IList<Hu> ReceiveTraceCode(IList<OrderDetail> orderDetList, IList<String> traceCodes)

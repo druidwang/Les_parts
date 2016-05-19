@@ -11,18 +11,13 @@
         })
         .DataBinding(dataBinding =>
             dataBinding.Ajax()
-            .Select("_SelectOperationBatchEditing", "ProductionOrder", new { orderDetailId = (String)ViewBag.OrderDetailId })
+            .Select("_AjaxProdTraceCodeList", "ProductionOrder")
         )
         .Columns(columns =>
         {
-            columns.Bound(o => o.Operation);
-            columns.Bound(o => o.SAPOperation);
-            columns.Bound(o => o.OpReference);
-            columns.Bound(o => o.TimeUnit);
-            columns.Bound(o => o.LeadTime);
-            columns.Bound(o => o.WorkCenter);
-            columns.Bound(o => o.IsReport).ClientTemplate("<input type='checkbox' disabled='disabled' name='IsReport' <#= IsReport? checked='checked' : '' #> />");
-            columns.Bound(o => o.IsBackflush).ClientTemplate("<input type='checkbox' disabled='disabled' name='IsBackflush' <#= IsBackflush? checked='checked' : '' #> />");
+            columns.Bound(o => o.OrderNo);
+            columns.Bound(o => o.OpDesc);
+            columns.Bound(o => o.ReportQty);
         })
                    .Pageable(settings =>
                    {

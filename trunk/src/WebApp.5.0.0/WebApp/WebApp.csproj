@@ -2776,6 +2776,10 @@
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\New.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\ReportPointStatus.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\SearchOrderOperator.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\PrintTC.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\BindTraceCode.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\BindTraceCodeToHu.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>
