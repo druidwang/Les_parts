@@ -67,53 +67,72 @@ namespace com.Sconit.Service.Impl
 
 
         [Transaction(TransactionMode.Requires)]
-        public void GetFacilityControlPoint(string facilityName)
+        public void GetFacilityControlPoint(string facilityName, string traceCode)
         {
-            string facilityStr =  string.Empty;
-            XmlElement controlPointXml =  ObixHelper.Request_WebRequest(facilityName);
+            string opStr = facilityName + "/Op";
+            string opRefStr = facilityName + "/OpRef";
 
-            XmlNodeList nodeList = controlPointXml.ChildNodes;
+            XmlElement opPointXml = ObixHelper.Request_WebRequest(opStr);
+            XmlNodeList opNodeList = opPointXml.ChildNodes;
+
+            XmlElement opRefPointXml = ObixHelper.Request_WebRequest(opRefStr);
+            XmlNodeList opRefNodeList = opRefPointXml.ChildNodes;
+
           
-
+            
             MesScanControlPoint mscp = new MesScanControlPoint();
             mscp.ControlPoint = facilityName;
             mscp.CreateDate = DateTime.Now;
-            mscp.Op = "1";                                    
-            mscp.OpReference = string.Empty;
+            mscp.Op = opNodeList[2].Attributes["val"].Value;
+            mscp.OpReference = opRefNodeList[2].Attributes["val"].Value;     
             mscp.ProdItem = "";
-            mscp.ScanDate = "20160515";
-            mscp.ScanTime = "161202";
+            mscp.ScanDate = DateTime.Now.ToString("yyyyMMdd");
+            mscp.ScanTime = DateTime.Now.ToString("HHmmss");
             mscp.Status = 0;
-            mscp.TraceCode = "";
             mscp.Type = CodeMaster.FacilityParamaterType.Scan;
+            //if (mscp.Op.Equals("1"))
+            //{
+            //    mscp.TraceCode = orderMgr.PrintTraceCode(orderNo);
+            //}
+            //else
+            //{
+            mscp.TraceCode = traceCode;
+            //}
             genericMgr.Create(mscp);
-            orderMgr.ReportOrderOp(int.Parse(mscp.Op));
+
 
         }
 
 
         [Transaction(TransactionMode.Requires)]
-        public void GetFacilityParamater(string facilityName)
+        public void GetFacilityParamater(string facilityName, string paramaterName, string name, string traceCode)
         {
-            string facilityStr = string.Empty;
-            XmlElement controlPointXml = ObixHelper.Request_WebRequest(facilityName);
+            string opStr = facilityName + "/Op";
+            string opRefStr = facilityName + "/OpRef";
+            string paramaterStr = facilityName + "/" + paramaterName;
 
-            XmlNodeList nodeList = controlPointXml.ChildNodes;
+            XmlElement opPointXml = ObixHelper.Request_WebRequest(opStr);
+            XmlNodeList opNodeList = opPointXml.ChildNodes;
 
+            XmlElement opRefPointXml = ObixHelper.Request_WebRequest(opRefStr);
+            XmlNodeList opRefNodeList = opRefPointXml.ChildNodes;
+
+            XmlElement paramaterPointXml = ObixHelper.Request_WebRequest(paramaterStr);
+            XmlNodeList paramaterNodeList = paramaterPointXml.ChildNodes;
 
             MesScanControlPoint mscp = new MesScanControlPoint();
             mscp.ControlPoint = facilityName;
             mscp.CreateDate = DateTime.Now;
-            mscp.Op = "1";
-            mscp.OpReference = string.Empty;
+            mscp.Op = opNodeList[2].Attributes["val"].Value;
+            mscp.OpReference = opRefNodeList[2].Attributes["val"].Value;
             mscp.ProdItem = "";
-            mscp.ScanDate = "20160515";
-            mscp.ScanTime = "161202";
+            mscp.ScanDate = DateTime.Now.ToString("yyyyMMdd");
+            mscp.ScanTime = DateTime.Now.ToString("HHmmss");
             mscp.Status = 0;
-            mscp.TraceCode = "";
-            mscp.Note = "";
-            mscp.NoteValue = "";
+            mscp.Note = name;
+            mscp.NoteValue = paramaterNodeList[2].Attributes["val"].Value;
             mscp.Type = CodeMaster.FacilityParamaterType.Paramater;
+            mscp.TraceCode = traceCode;
             genericMgr.Create(mscp);
            
 
@@ -121,17 +140,31 @@ namespace com.Sconit.Service.Impl
 
 
         [Transaction(TransactionMode.Requires)]
-        public void CreateFacilityOrder(string facilityName)
+        public bool CheckProductLine(string productline)
         {
-            string facilityStr = string.Empty;
-            XmlElement controlPointXml = ObixHelper.Request_WebRequest(facilityName);
-
+            bool prodlineStatus = false;
+            XmlElement controlPointXml = ObixHelper.Request_WebRequest(productline);
             XmlNodeList nodeList = controlPointXml.ChildNodes;
 
-            int accQty = 100;
-            string fcId = "FC000000008";
-            string mpCode = "MP_002";
-            IList<FacilityMaintainPlan> facilityMaintainPlanList = genericMgr.FindAll<FacilityMaintainPlan>("from FacilityMaintainPlan f where f.FCID = ? and f.MaintainPlan.Code = ?", new object[] { fcId, mpCode });
+            return prodlineStatus;
+
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public void CreateFacilityOrder(string facilityName)
+        {
+          
+            string useCounterStr = facilityName + "/UseCounter";
+
+
+            XmlElement useCounterXml = ObixHelper.Request_WebRequest(useCounterStr);
+            XmlNodeList userCounterNodeList = useCounterXml.ChildNodes;
+
+
+            decimal accQty = Decimal.Parse(userCounterNodeList[2].Attributes["val"].Value);
+           
+       
+            IList<FacilityMaintainPlan> facilityMaintainPlanList = genericMgr.FindAll<FacilityMaintainPlan>("from FacilityMaintainPlan f where f.FCID = ? and f.NextMaintainQty > 0", new object[] { facilityName });
             if (facilityMaintainPlanList != null && facilityMaintainPlanList.Count > 0)
             {
                 FacilityMaintainPlan facilityMaintainPlan = facilityMaintainPlanList[0];
@@ -149,8 +182,8 @@ namespace com.Sconit.Service.Impl
                     facilityOrderMaster.Region = string.Empty;
                     genericMgr.Create(facilityOrderMaster);
 
-                
-                    IList<MaintainPlanItem>maintainPlanItemList = genericMgr.FindAll<MaintainPlanItem>("from MaintainPlanItem m where m.MaintainPlanCode = ?", new object[] {  mpCode });
+
+                    IList<MaintainPlanItem> maintainPlanItemList = genericMgr.FindAll<MaintainPlanItem>("from MaintainPlanItem m where m.MaintainPlanCode = ?", new object[] { facilityMaintainPlan.MaintainPlan.Code });
                     foreach (MaintainPlanItem maintainPlanItem in maintainPlanItemList)
                     {
                         FacilityOrderDetail facilityOrderDetail = new FacilityOrderDetail();
@@ -279,16 +312,140 @@ namespace com.Sconit.Service.Impl
 
 
         [Transaction(TransactionMode.Requires)]
-        public void CreateCheckListOrder(string checkListCode)
+        public void CreateCheckListOrder(CheckListOrderMaster checkListOrderMaster)
         {
-            CheckListMaster checkListMaster = genericMgr.FindById<CheckListMaster>(checkListCode);
+            CheckListMaster checkListMaster = genericMgr.FindById<CheckListMaster>(checkListOrderMaster.CheckListCode);
 
-            IList<CheckListDetail> checkListOrderDetailList = genericMgr.FindAll<CheckListDetail>("from CheckListOrderDetail c where c.CheckListCode = ?", new object[] { checkListCode });
+            IList<CheckListDetail> checkListDetailList = genericMgr.FindAll<CheckListDetail>("from CheckListDetail c where c.CheckListCode = ?", new object[] { checkListOrderMaster.CheckListCode });
 
-            CheckListOrderMaster checkListOrderMaster = new CheckListOrderMaster();
-           
-        
+       
+            checkListOrderMaster.Code = "CL" + DateTime.Now.ToString("yyyyMMddHHmmss");
+            checkListOrderMaster.CheckListCode = checkListMaster.Code;
+            checkListOrderMaster.CheckListName = checkListMaster.Name;
+            checkListOrderMaster.Status = CodeMaster.CheckListOrderStatus.Create;
+
+            genericMgr.Create(checkListOrderMaster);
+
+            foreach (CheckListDetail checkListDetail in checkListDetailList)
+            {
+                CheckListOrderDetail checkListOrderDetail = new CheckListOrderDetail();
+                checkListOrderDetail.CheckListCode = checkListDetail.CheckListCode;
+                checkListOrderDetail.CheckListDetailCode = checkListDetail.Code;
+                checkListOrderDetail.MaxValue = checkListDetail.MaxValue;
+                checkListOrderDetail.MinValue = checkListDetail.MinValue;
+                checkListOrderDetail.OrderNo = checkListOrderMaster.Code;
+                checkListOrderDetail.Description = checkListDetail.Description;
+                checkListOrderDetail.IsNormal = true;
+                genericMgr.Create(checkListOrderDetail);
+
+
+            }
+
         }
+
+           [Transaction(TransactionMode.Requires)]
+        public  void ReleaseCheckListOrder(CheckListOrderMaster checkListOrderMaster){
+            checkListOrderMaster.Status = CodeMaster.CheckListOrderStatus.Submit;
+            genericMgr.Update(checkListOrderMaster);
+            foreach (CheckListOrderDetail d in checkListOrderMaster.CheckListOrderDetailList)
+            {
+                genericMgr.Update(d);
+            }
+           }
+
+
+           [Transaction(TransactionMode.Requires)]
+           public void StartFacilityOrder(string facilityOrderNo)
+           {
+               FacilityOrderMaster facilityOrderMaster = genericMgr.FindById<FacilityOrderMaster>(facilityOrderNo);
+
+
+               IList<FacilityOrderDetail> facilityOrderDetailList = genericMgr.FindAll<FacilityOrderDetail>("from FacilityOrderDetail where FacilityOrderNo=?", facilityOrderNo);
+
+               List<string> facilityList = new List<string>();
+               foreach (FacilityOrderDetail d in facilityOrderDetailList)
+               {
+                   genericMgr.Update(d);
+                   if (!facilityList.Contains(d.FacilityId))
+                   {
+                       facilityList.Add(d.FacilityId);
+
+                       #region 记设备事务
+                       FacilityMaster facilityMaster = genericMgr.FindById<FacilityMaster>(d.FacilityId);
+                       FacilityTrans facilityTrans = new FacilityTrans();
+                       facilityTrans.CreateDate = DateTime.Now;
+                       facilityTrans.CreateUserId = facilityMaster.CreateUserId;
+                       facilityTrans.CreateUserName = facilityMaster.CreateUserName;
+                       facilityTrans.EffDate = DateTime.Now.Date;
+                       facilityTrans.FCID = facilityMaster.FCID;
+                       facilityTrans.FromChargePersonId = facilityMaster.CurrChargePersonId;
+                       facilityTrans.FromChargePersonName = facilityMaster.CurrChargePersonName;
+                       facilityTrans.FromOrganization = facilityMaster.ChargeOrganization;
+                       facilityTrans.FromChargeSite = facilityMaster.ChargeSite;
+                       facilityTrans.ToChargePersonId = facilityMaster.CurrChargePersonId;
+                       facilityTrans.ToChargePersonName = facilityMaster.CurrChargePersonName;
+                       facilityTrans.ToOrganization = facilityMaster.ChargeOrganization;
+                       facilityTrans.ToChargeSite = facilityMaster.ChargeSite;
+                       facilityTrans.TransType = CodeMaster.FacilityTransType.StartMaintain;
+                       facilityTrans.Remark = d.Note;
+                       facilityTrans.AssetNo = facilityMaster.AssetNo;
+                       facilityTrans.FacilityName = facilityMaster.Name;
+                       facilityTrans.FacilityCategory = facilityMaster.Category;
+
+                       genericMgr.Create(facilityTrans);
+                       #endregion
+
+                   }
+               }
+
+               facilityOrderMaster.Status = CodeMaster.FacilityOrderStatus.InProcess;
+               genericMgr.Update(facilityOrderMaster);
+
+           }
+
+           [Transaction(TransactionMode.Requires)]
+           public void FinishFacilityOrder(FacilityOrderMaster facilityOrderMaster)
+           {
+               List<string> facilityList = new List<string>();
+               foreach (FacilityOrderDetail d in facilityOrderMaster.FacilityOrderDetails)
+               {
+                   genericMgr.Update(d);
+                   if (!facilityList.Contains(d.FacilityId))
+                   {
+                       facilityList.Add(d.FacilityId);
+
+                       #region 记设备事务
+                       FacilityMaster facilityMaster = genericMgr.FindById<FacilityMaster>(d.FacilityId);
+                       FacilityTrans facilityTrans = new FacilityTrans();
+                       facilityTrans.CreateDate = DateTime.Now;
+                       facilityTrans.CreateUserId = facilityMaster.CreateUserId;
+                       facilityTrans.CreateUserName = facilityMaster.CreateUserName;
+                       facilityTrans.EffDate = DateTime.Now.Date;
+                       facilityTrans.FCID = facilityMaster.FCID;
+                       facilityTrans.FromChargePersonId = facilityMaster.CurrChargePersonId;
+                       facilityTrans.FromChargePersonName = facilityMaster.CurrChargePersonName;
+                       facilityTrans.FromOrganization = facilityMaster.ChargeOrganization;
+                       facilityTrans.FromChargeSite = facilityMaster.ChargeSite;
+                       facilityTrans.ToChargePersonId = facilityMaster.CurrChargePersonId;
+                       facilityTrans.ToChargePersonName = facilityMaster.CurrChargePersonName;
+                       facilityTrans.ToOrganization = facilityMaster.ChargeOrganization;
+                       facilityTrans.ToChargeSite = facilityMaster.ChargeSite;
+                       facilityTrans.TransType = CodeMaster.FacilityTransType.FinishMaintain;
+                       facilityTrans.Remark = d.Note;
+                       facilityTrans.AssetNo = facilityMaster.AssetNo;
+                       facilityTrans.FacilityName = facilityMaster.Name;
+                       facilityTrans.FacilityCategory = facilityMaster.Category;
+                      
+                       genericMgr.Create(facilityTrans);
+                       #endregion
+
+                   }
+               }
+
+               facilityOrderMaster.Status = CodeMaster.FacilityOrderStatus.Close;
+               genericMgr.Update(facilityOrderMaster);
+
+           }
         #endregion
 
         #region Private Methods

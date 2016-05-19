@@ -19,7 +19,7 @@ namespace com.Sconit.Entity.FMS
         public string Description { get; set; }
 
         public string Remark { get; set; }
-        public string Status { get; set; }
+        public CodeMaster.CheckListOrderStatus Status { get; set; }
 
         public string CheckUser { get; set; }
         public DateTime CheckDate { get; set; }

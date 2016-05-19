@@ -136,6 +136,13 @@
 	    {"id", "btnGenerateFacilityOrder"},
         {"onclick","location.href='"+@Url.Content("~/FacilityMaster/GenerateFacilityOrder")+"'"}
 	})
+
+        @Html.Button("定量保养", "Url_FacilityMaster_View", new Dictionary<string, string>()
+	{
+	    {"type", "button"},
+	    {"id", "btnGenerateOrderFromFacility"},
+        {"onclick","location.href='"+@Url.Content("~/FacilityMaster/GenerateOrderFromFacility")+"'"}
+	})
         </div>
 
     }

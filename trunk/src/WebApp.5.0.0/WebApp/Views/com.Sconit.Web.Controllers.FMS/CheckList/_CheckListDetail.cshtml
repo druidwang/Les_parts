@@ -21,8 +21,10 @@
         )
         .Columns(columns =>
         {
-            columns.Bound(o => o.Code);
-            columns.Bound(o => o.Description);
+            columns.Bound(o => o.Code).Title("编号工艺要求");
+            columns.Bound(o => o.Description).Title("描述");
+            columns.Bound(o => o.MinValue).Title("最小值");
+            columns.Bound(o => o.MaxValue).Title("最大值");
             columns.Command(commands => commands.Delete());
             
         })

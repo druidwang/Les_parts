@@ -205,6 +205,7 @@
     <Compile Include="Controllers\CUST\SubPrintOrderController.cs" />
     <Compile Include="Controllers\CUST\SpecialBarCodeController.cs" />
     <Compile Include="Controllers\FMS\CheckListController.cs" />
+    <Compile Include="Controllers\FMS\CheckListOrderController.cs" />
     <Compile Include="Controllers\FMS\FacilityOrderController.cs" />
     <Compile Include="Controllers\FMS\MaintainPlanController.cs" />
     <Compile Include="Controllers\FMS\FacilityTransController.cs" />
@@ -419,6 +420,7 @@
     <Compile Include="Models\SearchModels\FMS\FacilityTransSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\FacilityMasterSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\FacilityCategorySearchModel.cs" />
+    <Compile Include="Models\SearchModels\FMS\CheckListOrderSearchModel.cs" />
     <Compile Include="Models\SearchModels\INV\HuTransSearchModel.cs" />
     <Compile Include="Models\SearchModels\ISI\TaskAddressSearchModel.cs" />
     <Compile Include="Models\SearchModels\ISI\TaskMasterSearchModel.cs" />
@@ -2776,10 +2778,18 @@
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\New.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\ReportPointStatus.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\_SearchResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\SearchOrderOperator.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\PrintTC.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\BindTraceCode.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\ProductionOrder\BindTraceCodeToHu.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\_CheckListOrderDetail.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.FMS\MaintainPlan\_MaintainPlanItem.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>
@@ -3484,7 +3494,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\Filters\" />
     <Folder Include="Resource\DownLoad\" />
-    <Folder Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\com.Sconit.Web.Controllers.SP\SupplierIpMaster\_CancelSearch.cshtml" />

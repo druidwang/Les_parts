@@ -19,6 +19,7 @@ namespace com.Sconit.Web.Controllers.MES
     public class MesScanControlPointController : WebAppBaseController
     {
 
+        public IFacilityMgr facilityMgr { get; set; }
         private static string selectCountStatement = "select count(*) from MesScanControlPoint as c";
 
         /// <summary>
@@ -69,9 +70,17 @@ namespace com.Sconit.Web.Controllers.MES
         }
 
 
-        public ActionResult ReportPointStatus()
+        [SconitAuthorize(Permissions = "Url_MesScanControlPoint_View")]
+        public ActionResult CreateOp1Scan(MesScanControlPointSearchModel searchModel)
         {
-            return View();
+            string facilityName = "FC000000011";
+           // string orderNo = "O4FI1100000923";
+            facilityMgr.GetFacilityControlPoint(facilityName, searchModel.TraceCode);
+
+
+
+            facilityMgr.GetFacilityParamater(facilityName, "Volume", "容量", searchModel.TraceCode);
+            return View("Index");
         }
 
         public ActionResult _GetPointStatus(string controlPoint)
@@ -81,6 +90,26 @@ namespace com.Sconit.Web.Controllers.MES
             return Json(scanSontrolPointList);
         }
 
+        [SconitAuthorize(Permissions = "Url_MesScanControlPoint_View")]
+        public ActionResult CreateOp2Scan(MesScanControlPointSearchModel searchModel)
+        {
+            string facilityName = "FC000000012";
+
+            facilityMgr.GetFacilityControlPoint(facilityName, searchModel.TraceCode);
+
+            facilityMgr.GetFacilityParamater(facilityName, "Temperature", "温度", searchModel.TraceCode);
+            return View("Index");
+        }
+
+        [SconitAuthorize(Permissions = "Url_MesScanControlPoint_View")]
+        public ActionResult CreateOp3Scan(MesScanControlPointSearchModel searchModel)
+        {
+            string facilityName = "FC000000008";
+
+            facilityMgr.GetFacilityControlPoint(facilityName, searchModel.TraceCode);
+            facilityMgr.GetFacilityParamater(facilityName, "Pressure", "压力", searchModel.TraceCode);
+            return View("Index");
+        }
 
         private SearchStatementModel PrepareSearchStatement(GridCommand command, MesScanControlPointSearchModel searchModel)
         {

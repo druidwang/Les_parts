@@ -1022,11 +1022,10 @@
     <EmbeddedResource Include="Base\FMS\MaintainPlan.hbm.xml" />
     <EmbeddedResource Include="Base\ORD\OrderOperation.hbm.xml" />
     <EmbeddedResource Include="Base\INP\ProdTraceCode.hbm.xml" />
-
-    <Content Include="Base\FMS\CheckListDetail.hbm.xml" />
-    <Content Include="Base\FMS\CheckListMaster.hbm.xml" />
-    <Content Include="Base\FMS\CheckListOrderDetail.hbm.xml" />
-    <Content Include="Base\FMS\CheckListOrderMaster.hbm.xml" />
+    <EmbeddedResource Include="Base\FMS\CheckListDetail.hbm.xml" />
+    <EmbeddedResource Include="Base\FMS\CheckListMaster.hbm.xml" />
+    <EmbeddedResource Include="Base\FMS\CheckListOrderDetail.hbm.xml" />
+    <EmbeddedResource Include="Base\FMS\CheckListOrderMaster.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\FacilityOrderMaster.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>

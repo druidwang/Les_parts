@@ -11,7 +11,7 @@
     <property name="FacilityName" column="FacilityName" type="String" length="255" />
     <property name="Description" column="Desc1" type="String" length="2000" />
     <property name="Remark" column="Remark" type="String" length="2000" />
-    <property name="Status" column="Status" type="String" length="50" />
+    <property name="Status" column="Status" />
     <property name="CheckDate" column="CheckDate" type="DateTime" />
     <property name="CheckUser" column="CheckUser" type="String" length="50" />
 	  <property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>

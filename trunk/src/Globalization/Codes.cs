@@ -806,7 +806,8 @@ namespace com.Sconit.CodeMaster
         MaintainPlanType,
         FacilityParamaterType,
         FacilityOrderType,
-        FacilityOrderStatus
+        FacilityOrderStatus,
+        CheckListOrderStatus
     }
 
     public enum MessageType
@@ -1340,7 +1341,14 @@ namespace com.Sconit.CodeMaster
     {
         Create = 0,
         Submit = 1,
-        InProcess = 1,
-        Close = 2
+        InProcess = 2,
+        Close = 3
+    }
+
+
+    public enum CheckListOrderStatus
+    {
+        Create = 0,
+        Submit = 1
     }
 }

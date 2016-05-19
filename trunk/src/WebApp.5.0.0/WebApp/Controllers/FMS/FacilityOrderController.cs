@@ -31,9 +31,9 @@
 
     public class FacilityOrderController : WebAppBaseController
     {
-       
-     
 
+
+        public IFacilityMgr facilityMgr { get; set; }
         private static string selectStatement = "select f from FacilityOrderMaster as f";
 
         private static string selectCountStatement = "select count(*) from FacilityOrderMaster as f";
@@ -92,26 +92,76 @@
             }
         }
 
-     
 
+        [SconitAuthorize(Permissions = "Url_FacilityOrder_View")]
+        public ActionResult Start(string id)
+        {
+            try
+            {
+                facilityMgr.StartFacilityOrder(id);
+                SaveSuccessMessage("保养单开始执行", id);
+            }
+            catch (BusinessException ex)
+            {
+                SaveErrorMessage(ex.GetMessages()[0].GetMessageString());
+            }
+            return RedirectToAction("Edit", new { id = id });
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_FacilityOrder_View")]
+        public JsonResult FinishFacilityOrder(string facilityOrderNo, string idStr, string qtyStr, string noteStr)
+        {
+            try
+            {
+                FacilityOrderMaster facilityOrderMaster = genericMgr.FindById<FacilityOrderMaster>(facilityOrderNo);
+                IList<FacilityOrderDetail> facilityOrderDetailList = genericMgr.FindAll<FacilityOrderDetail>("from FacilityOrderDetail where FacilityOrderNo=?", facilityOrderNo);
+                if (!string.IsNullOrEmpty(idStr))
+                {
+                    string[] idArray = idStr.Split(',');
+                    string[] qtyArray = qtyStr.Split(',');
+                    string[] noteArray = noteStr.Split(',');
+                    for (int i = 0; i < idArray.Count(); i++)
+                    {
+                        if (Convert.ToInt32(idArray[i]) > 0)
+                        {
+                            FacilityOrderDetail facilityOrderDetail = facilityOrderDetailList.Where(p => p.Id == Convert.ToInt32(idArray[i])).FirstOrDefault();
+
+                            facilityOrderDetail.ActualQty = Convert.ToDecimal(qtyArray[i]);
+                            facilityOrderDetail.Note = noteArray[i];
+
+                        }
+                    }
+                }
+                facilityOrderMaster.FacilityOrderDetails = facilityOrderDetailList.ToList();
+                facilityMgr.FinishFacilityOrder(facilityOrderMaster);
+
+                object obj = new { SuccessMessage = "保养完成成功" };
+                return Json(obj);
+            }
+            catch (BusinessException ex)
+            {
+                Response.TrySkipIisCustomErrors = true;
+                Response.StatusCode = 500;
+                Response.Write(ex.GetMessages()[0].GetMessageString());
+                return Json(null);
+            }
+        }
     
 
         [SconitAuthorize(Permissions = "Url_FacilityOrder_View")]
         public ActionResult _FacilityOrderDetailList(string facilityOrderNo)
         {
-          
-            return View();
-        }
 
-        [GridAction]
-        [SconitAuthorize(Permissions = "Url_InspectionOrder_New")]
-        public ActionResult _SelectBatchEditing(string facilityOrderNo)
-        {
+            FacilityOrderMaster order = genericMgr.FindById<FacilityOrderMaster>(facilityOrderNo);
+            ViewBag.IsEndable = order.Status == Sconit.CodeMaster.FacilityOrderStatus.InProcess;
+
             IList<FacilityOrderDetail> facilityOrderDetailList = genericMgr.FindAll<FacilityOrderDetail>(selectFacilityOrderDetailStatement, facilityOrderNo);
 
-            return View(new GridModel(facilityOrderDetailList));
+            return PartialView(facilityOrderDetailList);
         }
 
+    
 
        
         #endregion
