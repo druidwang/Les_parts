@@ -52,6 +52,9 @@
                 $('#huId').focus();
                 $('#traceCode').val("");
                 $('#huId').val("");
+                row = [];
+                var grid = $("#ProdTraceCodeGrid").data("tGrid");
+                grid.dataBind(rows);
             }
             else {
                 var data = {

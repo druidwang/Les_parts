@@ -28,6 +28,12 @@
                         DisplayJsonMessages(data);
                     }
                     else {
+                        if (data.Data.ProdTraces !== undefined && data.Data.ProdTraces.length > 0) {
+                            rows = data.Data.ProdTraces;
+                            var grid = $("#ProdTraceCodeGrid").data("tGrid");
+                            grid.dataBind(rows);
+                        }
+                        $('#orderNo').attr("disabled", "disabled");
                         $('#traceCode').focus();
                     }
                 }
@@ -42,31 +48,40 @@
                 $message.error('追溯码不允许为空。');
                 return;
             }
-            var data = {
-                "traceCode": traceCode,
-                "orderNo" : $('#orderNo').val()
-            };
-            $.ajax({
-                type: "post",
-                dataType: "json",
-                url: "/ProductionOrder/BindCheckTraceCode/",
-                cache: false,
-                data: data,
-                success: function (data, textStatus) {
-                    debugger;
-                    if (data.Data.Status === 0) {
-                        DisplayJsonMessages(data);
+            if (traceCode == "OK") {
+                $('#orderNo').removeAttr("disabled");
+                $('#orderNo').focus();
+                $('#traceCode').val("");
+                $('#huId').val("");
+                row = [];
+                var grid = $("#ProdTraceCodeGrid").data("tGrid");
+                grid.dataBind(rows);
+            }
+            else {
+                var data = {
+                    "traceCode": traceCode,
+                    "orderNo": $('#orderNo').val()
+                };
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: "/ProductionOrder/BindCheckTraceCode/",
+                    cache: false,
+                    data: data,
+                    success: function (data, textStatus) {
+                        debugger;
+                        if (data.Data.Status === 0) {
+                            DisplayJsonMessages(data);
+                        }
+                        else {
+                            rows.push(data.Data.ProdTrace);
+                            var grid = $("#ProdTraceCodeGrid").data("tGrid");
+                            grid.dataBind(rows);
+                            $('#traceCode').val("");
+                        }
                     }
-                    else {
-                        rows.push(data.Data.ProdTrace);
-                        var grid = $("#ProdTraceCodeGrid").data("tGrid");
-                        grid.dataBind(rows);
-                        $('#traceCode').val("");
-                        $('#orderNo').val("");
-                        $('#orderNo').focus();
-                    }
-                }
-            });
+                });
+            }
         }
     }
 
