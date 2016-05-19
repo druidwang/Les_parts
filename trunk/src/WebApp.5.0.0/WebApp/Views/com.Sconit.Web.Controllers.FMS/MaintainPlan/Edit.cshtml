@@ -84,3 +84,6 @@
         </div>
     </fieldset>
 }
+<div id="divMaintainPlanItem">
+    @{Html.RenderAction("_MaintainPlanItem", "MaintainPlan", new { maintainPlanCode = Model.Code });}
+</div>

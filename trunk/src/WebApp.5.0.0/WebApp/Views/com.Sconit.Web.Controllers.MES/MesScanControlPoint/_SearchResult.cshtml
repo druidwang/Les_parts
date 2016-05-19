@@ -11,12 +11,11 @@
         .Columns(columns =>
         {
             columns.Bound(o => o.ControlPoint).Title("设备代码");
-            columns.Bound(o => o.ProdItem).Title("成品物料号");
             columns.Bound(o => o.Op).Title("工序");
             columns.Bound(o => o.OpReference).Title("工位");
             columns.Bound(o => o.TraceCode).Title("追溯码");
-            columns.Bound(o => o.ScanDate).Title("过点日期");
-            columns.Bound(o => o.ScanTime).Title("过点时间");
+            columns.Bound(o => o.ScanDate).Title("运行日期");
+            columns.Bound(o => o.ScanTime).Title("运行时间");
                  })   
                 .Scrollable(c => c.Enabled(false))
                 .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "MesScanControlPoint"))

@@ -186,6 +186,16 @@ namespace com.Sconit.Web.Controllers.FMS
                 return RedirectToAction("List");
             }
         }
+
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_MaintainPlan_Edit")]
+        public ActionResult _MaintainPlanItem(string maintainPlanCode)
+        {
+            IList<MaintainPlanItem> maintainPlanItemList = genericMgr.FindAll<MaintainPlanItem>("from MaintainPlanItem where MaintainPlanCode=?", maintainPlanCode);
+            return PartialView(maintainPlanItemList);
+
+        }
         #endregion
 
         /// <summary>

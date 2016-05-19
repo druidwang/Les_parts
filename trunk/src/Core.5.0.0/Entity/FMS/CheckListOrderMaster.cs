@@ -1,4 +1,6 @@
 using System;
+using com.Sconit.Entity.SYS;
+using System.ComponentModel.DataAnnotations;
 
 namespace com.Sconit.Entity.FMS
 {
@@ -6,8 +8,9 @@ namespace com.Sconit.Entity.FMS
     public partial class CheckListOrderMaster 
     {
         #region Non O/R Mapping Properties
-
-        //TODO: Add Non O/R Mapping Properties here. 
+        [CodeDetailDescriptionAttribute(CodeMaster = com.Sconit.CodeMaster.CodeMaster.CheckListOrderStatus, ValueField = "Status")]
+      
+        public string CheckListOrderStatusDescription { get; set; }
 
         #endregion
     }

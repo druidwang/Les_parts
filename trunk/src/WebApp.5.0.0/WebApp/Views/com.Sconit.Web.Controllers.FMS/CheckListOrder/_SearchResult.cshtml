@@ -4,24 +4,26 @@
                 .Name("CheckListOrderMasterGrid")
         .DataKeys(keys =>
         {
-            keys.Add(p => p.CheckListCode);
+            keys.Add(p => p.Code);
         })
         .Columns(columns =>
         {
-            columns.Bound(o => o.CheckListCode).ClientTemplate(Html.ActionLink("<#= OrderNo #>", "Edit", "ProcurementOrder",
-                new { OrderNo = "<#= OrderNo #>", SubType = "<#= SubType #>" }, null).ToString());
-            columns.Bound(o => o.CheckListName).ClientTemplate("<div title=<#= FlowDescription #>><#= Flow #></div>");
+            columns.Bound(o => o.Code).ClientTemplate(Html.ActionLink("<#= Code #>", "Edit", "CheckListOrder",
+               new { ID = "<#= Code #>" }, null).ToString()).Title("巡检单单号");
+            columns.Bound(o => o.CheckListCode).Title("巡检代码");
 
-            columns.Bound(o => o.CheckDate);
-            columns.Bound(o => o.CheckUser);
-         
+            columns.Bound(o => o.CheckListName).Title("巡检内容");
+
+            columns.Bound(o => o.CheckDate).Title("巡检日期");
+            columns.Bound(o => o.CheckUser).Title("巡检用户");
+            columns.Bound(o => o.CheckListOrderStatusDescription).Title("状态");
         })
 
 
         .Scrollable(c => c.Enabled(false))
         .EnableCustomBinding(true)
-        .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "ProcurementOrder"))
-                .ClientEvents(events => events.OnDataBinding("OrderMasterGrid_OnDataBinding"))
+        .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "CheckListOrder"))
+                        .ClientEvents(events => events.OnDataBinding("CheckListOrderGrid_OnDataBinding"))
         .Pageable(settings =>
         {
             settings.Total(ViewBag.Total == null ? 0 : ViewBag.Total);
@@ -35,26 +37,14 @@
         .Resizable(resizing => resizing.Columns(true))
     )
     <script type="text/javascript">
-        function OrderMasterGrid_OnDataBinding(e) {
+        function CheckListOrderGrid_OnDataBinding(e) {
             e.data = {
-                OrderNo: $('#OrderNo').val(),
-                Flow: $('#Flow').val(),
-                Priority: $('#Priority').val(),
-                PartyFrom: $('#PartyFrom').val(),
-                PartyTo: $('#PartyTo').val(),
+                CheckListOrderNo: $('#CheckListOrderNo').val(),
+                CheckListCode: $('#CheckListCode').val(),
+             
                 DateFrom: $('#DateFrom').val(),
-                DateTo: $('#DateTo').val(),
-                Status: $('#Status').val(),
-                CreateUserName: $('#CreateUserName').val(),
-                Type: $('#Type').val(),
-                //SubType: $('#SubType').val(),
-                ReferenceOrderNo: $('#ReferenceOrderNo').val(),
-                ExternalOrderNo: $('#ExternalOrderNo').val(),
-                Sequence: $('#Sequence').val(),
-                TraceCode: $('#TraceCode').val(),
-                QueryOrderType: $('#QueryOrderType').val(),
-                DateType: $("input[type=radio][name=DateType]:checked").val(),
-                MultiStatus: $('#MultiStatus').val()
+                DateTo: $('#DateTo').val()
+             
             };
         }
     </script>

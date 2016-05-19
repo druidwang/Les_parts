@@ -29,6 +29,7 @@
     using Telerik.Web.Mvc;
     using NHibernate;
     using com.Sconit.Entity.INP;
+    using System.Xml;
 
     public class ProductionOrderController : WebAppBaseController
     {
@@ -1128,6 +1129,17 @@
                     SaveErrorMessage("订单{0}不存在。", orderNo);
                     return Json(new { Status = 0 });
                 }
+
+                #region 生产线状态检查
+                string facilityStr = prodOrder.Flow + "/" + "PL_Status/out";
+                XmlElement controlPointXml = ObixHelper.Request_WebRequest(facilityStr);
+                bool plStatus = bool.Parse(controlPointXml.GetAttribute("val"));
+                if (!plStatus)
+                {
+                    SaveErrorMessage("订单{0}的生产线没有正常启动。", orderNo);
+                    return Json(new { Status = 0 });
+                }
+                #endregion
             }
             catch (ObjectNotFoundException ex)
             {
