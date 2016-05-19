@@ -1362,6 +1362,7 @@
         }
 
         [GridAction(EnableCustomBinding = true)]
+<<<<<<< HEAD
         public ActionResult _AjaxOrderOperatorList(GridCommand command, OrderMasterSearchModel searchModel)
         {
             SearchStatementModel searchStatementModel = PrepareOrderOpSearchStatement(command, searchModel);
@@ -1435,9 +1436,6 @@
                     SaveErrorMessage("生产单{0}状态不正确。", orderNo);
                     return Json(new { Status = 0 });
                 }
-                var prodTraceCodes = this.genericMgr.FindAll<ProdTraceCode>("from ProdTraceCode p where p.OrderNo=?", orderNo);
-                SaveSuccessMessage("");
-                return Json(new { Status = 1, ProdTraces = prodTraceCodes });
             }
             catch (ObjectNotFoundException ex)
             {
@@ -1445,7 +1443,8 @@
                 return Json(new { Status = 0 });
             }
 
-            
+            SaveSuccessMessage("");
+            return Json(new { Status = 1 });
         }
 
         public ActionResult BindCheckTraceCode(string traceCode, string orderNo)
@@ -1564,6 +1563,15 @@
             }
         }
 
+=======
+        public ActionResult _AjaxOrderOperatorList(GridCommand command, ProdTraceCodeSearchModel searchModel)
+        {
+            SearchStatementModel searchStatementModel = PrepareTraceCodeSearchStatement(command,searchModel);
+            return PartialView(GetAjaxPageData<ProdTraceCode>(searchStatementModel, command));
+        }
+
+      
+>>>>>>> 7409eb8af7dd4adbcad0bceef0197a51b83f26a7
         #region 先注掉，保存物料清单和工艺流程的
         //[AcceptVerbs(HttpVerbs.Post)]
         //[GridAction]
