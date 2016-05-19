@@ -29,7 +29,6 @@
     using Telerik.Web.Mvc;
     using NHibernate;
     using com.Sconit.Entity.INP;
-    using System.Xml;
 
     public class ProductionOrderController : WebAppBaseController
     {
@@ -1129,17 +1128,6 @@
                     SaveErrorMessage("订单{0}不存在。", orderNo);
                     return Json(new { Status = 0 });
                 }
-
-                #region 生产线状态检查
-                string facilityStr = prodOrder.Flow + "/" + "PL_Status/out";
-                XmlElement controlPointXml = ObixHelper.Request_WebRequest(facilityStr);
-                bool plStatus = bool.Parse(controlPointXml.GetAttribute("val"));
-                if (!plStatus)
-                {
-                    SaveErrorMessage("订单{0}的生产线没有正常启动。", orderNo);
-                    return Json(new { Status = 0 });
-                }
-                #endregion
             }
             catch (ObjectNotFoundException ex)
             {
@@ -1335,16 +1323,8 @@
         [GridAction(EnableCustomBinding = true)]
         public ActionResult _AjaxProdTraceCodeList(GridCommand command, ProdTraceCodeSearchModel searchModel)
         {
-            if (!string.IsNullOrEmpty(searchModel.TraceCode) || !string.IsNullOrEmpty(searchModel.HuId))
-            {
-                SearchStatementModel searchStatementModel = PrepareTraceCodeSearchStatement(command, searchModel);
-                return PartialView(GetAjaxPageData<ProdTraceCode>(searchStatementModel, command));
-            }
-            else
-            { 
-                return PartialView(new GridModel<ProdTraceCode>());
-            }
-            
+            SearchStatementModel searchStatementModel = PrepareTraceCodeSearchStatement(command, searchModel);
+            return PartialView(GetAjaxPageData<ProdTraceCode>(searchStatementModel, command)); 
         }
 
         private SearchStatementModel PrepareTraceCodeSearchStatement(GridCommand command, ProdTraceCodeSearchModel searchModel)
@@ -1352,14 +1332,10 @@
             string whereStatement = string.Empty;
 
             IList<object> param = new List<object>();
-            if (!string.IsNullOrEmpty(searchModel.TraceCode))
-            {
-                HqlStatementHelper.AddLikeStatement("TraceCode", searchModel.TraceCode, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
-            }
-            if (!string.IsNullOrEmpty(searchModel.HuId))
-            {
-                HqlStatementHelper.AddLikeStatement("HuId", searchModel.HuId, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
-            }
+
+            HqlStatementHelper.AddLikeStatement("TraceCode", searchModel.TraceCode, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
+
+            HqlStatementHelper.AddLikeStatement("HuId", searchModel.HuId, HqlStatementHelper.LikeMatchMode.Start, "p", ref whereStatement, param);
 
 
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
@@ -1374,6 +1350,20 @@
             return searchStatementModel;
         }
 
+
+        public ActionResult SearchOrderOperator()
+        {
+            return View();
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        public ActionResult _AjaxOrderOperatorList(GridCommand command, ProdTraceCodeSearchModel searchModel)
+        {
+            SearchStatementModel searchStatementModel = PrepareTraceCodeSearchStatement(command,searchModel);
+            return PartialView(GetAjaxPageData<ProdTraceCode>(searchStatementModel, command));
+        }
+
+      
         #region 先注掉，保存物料清单和工艺流程的
         //[AcceptVerbs(HttpVerbs.Post)]
         //[GridAction]
