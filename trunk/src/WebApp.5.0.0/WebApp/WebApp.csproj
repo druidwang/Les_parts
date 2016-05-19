@@ -2777,6 +2777,7 @@
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\ReportPointStatus.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\CheckListOrder\_Search.cshtml" />
