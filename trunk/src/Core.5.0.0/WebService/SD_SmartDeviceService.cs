@@ -966,5 +966,11 @@
             SecurityContextHolder.Set(user);
             return this.inventoryMgr.OffBin(huIds);
         }
+
+        [WebMethod]
+        public bool IsHuInContainer(string huId)
+        {
+            return this.inventoryMgr.IsHuInContainer(huId);
+        }
     }
 }
