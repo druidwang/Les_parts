@@ -43,5 +43,7 @@
         bool OnBin(string binCode, List<string> huIds);
 
         bool OffBin(List<string> huIds);
+
+        bool IsHuInContainer(string huId);
     }
 }

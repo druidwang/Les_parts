@@ -350,6 +350,28 @@
         }
 
 
+        public bool IsHuInContainer(string huId)
+        {
+            try
+            {
+                var containerHus = this.genericMgr.FindAll<Entity.INV.ContainerHu>("from ContainerHu c where c.HuId=?", huId);
+                if (containerHus != null || containerHus.Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                //var huList = this.genericMgr.FindEntityWithNativeSql<Entity.INV.Hu>("select h.* from INV_Hu h inner join INV_ContainerHu c on h.HuId=c.HuId where c.ContId=?", containerId).ToList();
+                //return Mapper.Map<List<Entity.INV.Hu>, List<Entity.SI.SD_INV.Hu>>(huList);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #region 客户化代码
         [Transaction(TransactionMode.Requires)]
         public Hu GetDistHu(string huId)
