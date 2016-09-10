@@ -136,7 +136,6 @@
     <Compile Include="Base\INP\RejectMaster.cs" />
     <Compile Include="Base\INV\ContainerHu.cs" />
     <Compile Include="Base\INV\ContainerDetail.cs" />
-    <Compile Include="Base\INV\ContainerHu.cs" />
     <Compile Include="Base\INV\EndingLocationDet.cs" />
     <Compile Include="Base\INV\FreezeTransaction.cs" />
     <Compile Include="Base\INV\Hu.cs" />
@@ -372,7 +371,6 @@
     <Compile Include="INP\RejectMaster.cs" />
     <Compile Include="INV\ContainerHu.cs" />
     <Compile Include="INV\ContainerDetail.cs" />
-    <Compile Include="INV\ContainerHu.cs" />
     <Compile Include="INV\EndingLocationDet.cs" />
     <Compile Include="INV\FreezeTransaction.cs" />
     <Compile Include="INV\Hu.cs" />
