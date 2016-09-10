@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
- 	<class name="com.Sconit.Entity.INV.ContainerDetail, com.Sconit.Entity" table="INV_ContainerDet" lazy="false">
-		<id name="ContainerId" column="ContId" type="String" unsaved-value="null" >
-      		<generator class="assigned" />
-        </id>
-		<version name="Version" column="Version" type="Int32" />	
-		<property name="Container" column="Container" type="String" length="50"/>	
-		<property name="Location" column="Location" type="String" length="50"/>	
-		<property name="IsEmpty" column="IsEmpty" type="Boolean"/>	
-		<property name="ActiveDate" column="ActiveDate" type="DateTime"/>	
+ 	<class name="com.Sconit.Entity.INV.ContainerHu, com.Sconit.Entity" table="INV_ContainerDet" lazy="false">
+	
+    <id name="Id" column="Id" type="Int32" unsaved-value="0" >
+      <generator class="increment" />
+    </id>
+		<property name="ContainerId" column="ContId" type="String" length="50"/>	
+		<property name="HuId" column="HuId" type="String" length="50"/>	
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	

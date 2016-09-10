@@ -134,6 +134,7 @@
     <Compile Include="Base\INP\ProdTraceCode.cs" />
     <Compile Include="Base\INP\RejectDetail.cs" />
     <Compile Include="Base\INP\RejectMaster.cs" />
+    <Compile Include="Base\INV\ContainerHu.cs" />
     <Compile Include="Base\INV\ContainerDetail.cs" />
     <Compile Include="Base\INV\EndingLocationDet.cs" />
     <Compile Include="Base\INV\FreezeTransaction.cs" />
@@ -367,6 +368,7 @@
     <Compile Include="INP\ProductionScanMaster.cs" />
     <Compile Include="INP\RejectDetail.cs" />
     <Compile Include="INP\RejectMaster.cs" />
+    <Compile Include="INV\ContainerHu.cs" />
     <Compile Include="INV\ContainerDetail.cs" />
     <Compile Include="INV\EndingLocationDet.cs" />
     <Compile Include="INV\FreezeTransaction.cs" />
@@ -1032,6 +1034,7 @@
     <EmbeddedResource Include="Base\FMS\FacilityOrderDetail.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\MaintainPlanItem.hbm.xml" />
     <Content Include="Base\INP\ProdTraceCode.hbm.xml" />
+    <EmbeddedResource Include="Base\INV\ContaineHu.hbm.xml" />
     <Content Include="Base\MD\Pallet.hbm.xml" />
     <EmbeddedResource Include="Base\MES\MesScanControlPoint.hbm.xml" />
     <Content Include="Base\ORD\OrderOperation.hbm.xml" />
