@@ -57,6 +57,8 @@ namespace com.Sconit.Service
 
         IDictionary<string, decimal> GetHuId(Item item);
 
+        string GetContainerId(string prefix);
+
         IDictionary<string, decimal> GetHuId(string lotNo, string item, string manufactureParty, decimal qty, decimal unitCount);
 
         string GetNextSequence(string code);

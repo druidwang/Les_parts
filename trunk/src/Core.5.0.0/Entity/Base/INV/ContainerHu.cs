@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.INV
 {
     [Serializable]
-    public partial class ContainerHu : EntityBase
+    public partial class ContainerHu : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
 		
@@ -31,8 +31,9 @@ namespace com.Sconit.Entity.INV
 		public Boolean IsOdd { get; set; }
 		public string SupplierLotNo { get; set; }
 		public string ContainerDesc { get; set; }
-		public Int16 ContainerType { get; set; }
-		public Double ContainerQty { get; set; }
+        public com.Sconit.CodeMaster.InventoryType ContainerType { get; set; }
+		public Decimal ContainerQty { get; set; }
+        public string Container { get; set; }
         
         #endregion
 

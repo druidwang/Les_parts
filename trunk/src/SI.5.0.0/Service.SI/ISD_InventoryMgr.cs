@@ -31,5 +31,19 @@
         Hu GetDistHu(string huId);
 
         Hu ResolveHu(string extHuId);
+
+        com.Sconit.Entity.SI.SD_INV.ContainerDetail GetContainerDetail(string containerId);
+
+        List<com.Sconit.Entity.SI.SD_INV.Hu> GetContainerHu(string containerId);
+
+        bool ContainerBind(string containerId, string huId);
+
+        bool ContainerUnBind(string containerId, string huId);
+
+        bool OnBin(string binCode, List<string> huIds);
+
+        bool OffBin(List<string> huIds);
+
+        bool IsHuInContainer(string huId);
     }
 }

@@ -33,6 +33,8 @@ namespace com.Sconit.SmartDevice.CodeMaster
         Client_HuStatus,
         Client_MiscInOut,
         Client_HuClone,
+        Client_BindContainerIn,
+        Client_BindContainerOut,
         //Client_MiscOut,
 
         //质量
@@ -88,6 +90,10 @@ namespace com.Sconit.SmartDevice.CodeMaster
         INS,
         SEQ,
         MIS,
+        /// <summary>
+        /// 
+        /// </summary>
+        COT,
         T,
         /// <summary>
         /// 生产线实例

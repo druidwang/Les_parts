@@ -46,6 +46,8 @@ namespace com.Sconit.Service.SI
             Mapper.CreateMap<com.Sconit.Entity.INV.Hu, com.Sconit.Entity.SI.SD_INV.Hu>();
             Mapper.CreateMap<com.Sconit.Entity.INV.StockTakeMaster, com.Sconit.Entity.SI.SD_INV.StockTakeMaster>();
             Mapper.CreateMap<com.Sconit.Entity.INV.KanBanCard, com.Sconit.Entity.SI.SD_ORD.AnDonInput>();
+            Mapper.CreateMap<com.Sconit.Entity.INV.ContainerDetail, com.Sconit.Entity.SI.SD_INV.ContainerDetail>();
+            Mapper.CreateMap<com.Sconit.Entity.INV.ContainerHu, com.Sconit.Entity.SI.SD_INV.ContainerHu>();
 
             //ACC
             Mapper.CreateMap<com.Sconit.Entity.ACC.User, com.Sconit.Entity.SI.SD_ACC.User>()

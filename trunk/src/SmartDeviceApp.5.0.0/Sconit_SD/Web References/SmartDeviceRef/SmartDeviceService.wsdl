@@ -2,375 +2,6 @@
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://com.Sconit.WebService.SD.SmartDeviceService/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/">
-      <s:element name="RecSmallChkSparePart">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="spareItem" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="RecSmallChkSparePartResponse">
-        <s:complexType />
-      </s:element>
-      <s:element name="GetPickTasks">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="isPickByHus" type="s:boolean" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetPickTasksResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetPickTasksResult" type="tns:ArrayOfPickTask" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="ArrayOfPickTask">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="PickTask" nillable="true" type="tns:PickTask" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="PickTask">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="Priority" type="tns:OrderPriority" />
-          <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ItemDescription" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Uom" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="BaseUom" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="UnitQty" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="UnitCount" type="s:decimal" />
-          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="OrderQty" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="PickQty" type="s:decimal" />
-          <s:element minOccurs="0" maxOccurs="1" name="Area" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Bin" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="LotNo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="HuId" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="IsPickHu" type="s:boolean" />
-          <s:element minOccurs="0" maxOccurs="1" name="PickGroup" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="PickUserId" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="StartTime" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="WinTime" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="CurrentQty" type="s:decimal" />
-        </s:sequence>
-      </s:complexType>
-      <s:simpleType name="OrderPriority">
-        <s:restriction base="s:string">
-          <s:enumeration value="Normal" />
-          <s:enumeration value="Urgent" />
-        </s:restriction>
-      </s:simpleType>
-      <s:element name="GetPickHu">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetPickHuResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetPickHuResult" type="tns:Hu" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="Hu">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="HuId" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="LotNo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ItemDescription" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ReferenceItemCode" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Uom" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="BaseUom" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="UnitCount" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Qty" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="UnitQty" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="ManufactureDate" type="s:dateTime" />
-          <s:element minOccurs="0" maxOccurs="1" name="ManufactureParty" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="ExpireDate" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="FirstInventoryDate" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="PrintCount" type="s:short" />
-          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:HuStatus" />
-          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Region" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Bin" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="LocationFrom" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="LocationTo" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="IsConsignment" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="QualityType" type="tns:QualityType" />
-          <s:element minOccurs="1" maxOccurs="1" name="IsFreeze" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="IsATP" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="OccupyType" type="tns:OccupyType" />
-          <s:element minOccurs="0" maxOccurs="1" name="OccupyReferenceNo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="SupplierLotNo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="CreateUserName" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="CreateDate" type="s:dateTime" />
-          <s:element minOccurs="0" maxOccurs="1" name="OrderNo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ReceiptNo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Memo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Shift" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Flow" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ItemVersion" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="RefHu" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Direction" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="IsOdd" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="HuOption" type="tns:HuOption" />
-          <s:element minOccurs="0" maxOccurs="1" name="AgingLocation" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="CurrentQty" type="s:decimal" />
-          <s:element minOccurs="0" maxOccurs="1" name="Station" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="OrderDetId" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="IsEffective" type="s:boolean" />
-        </s:sequence>
-      </s:complexType>
-      <s:simpleType name="HuStatus">
-        <s:restriction base="s:string">
-          <s:enumeration value="NA" />
-          <s:enumeration value="Location" />
-          <s:enumeration value="Ip" />
-        </s:restriction>
-      </s:simpleType>
-      <s:simpleType name="QualityType">
-        <s:restriction base="s:string">
-          <s:enumeration value="Qualified" />
-          <s:enumeration value="Inspect" />
-          <s:enumeration value="Reject" />
-        </s:restriction>
-      </s:simpleType>
-      <s:simpleType name="OccupyType">
-        <s:restriction base="s:string">
-          <s:enumeration value="None" />
-          <s:enumeration value="Pick" />
-          <s:enumeration value="Inspect" />
-          <s:enumeration value="Sequence" />
-          <s:enumeration value="MiscOrder" />
-        </s:restriction>
-      </s:simpleType>
-      <s:simpleType name="HuOption">
-        <s:restriction base="s:string">
-          <s:enumeration value="NoNeed" />
-          <s:enumeration value="UnAging" />
-          <s:enumeration value="Aged" />
-          <s:enumeration value="UnFilter" />
-          <s:enumeration value="Filtered" />
-        </s:restriction>
-      </s:simpleType>
-      <s:element name="DoPickTask">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huList" type="tns:ArrayOfHU" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="ArrayOfHU">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="Hu" nillable="true" type="tns:Hu" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="DoPickTaskResponse">
-        <s:complexType />
-      </s:element>
-      <s:element name="GetDeliverMatchHu">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetDeliverMatchHuResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetDeliverMatchHuResult" type="tns:Hu" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetDeliverBarCode">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetDeliverBarCodeResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetDeliverBarCodeResult" type="tns:DeliverBarCode" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="DeliverBarCode">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="BarCode" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="OrderNo" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="OrderSequence" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="StartTime" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="WindowTime" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ItemDescription" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Uom" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="UnitCount" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Qty" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Priority" type="s:short" />
-          <s:element minOccurs="0" maxOccurs="1" name="Station" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Dock" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="IsActive" nillable="true" type="s:boolean" />
-          <s:element minOccurs="0" maxOccurs="1" name="HuId" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="ShipPlanId" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="Flow" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="IsPickHu" type="s:boolean" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="MatchDCToHU">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="MatchDCToHUResponse">
-        <s:complexType />
-      </s:element>
-      <s:element name="TransferToDock">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huIds" type="tns:ArrayOfString" />
-            <s:element minOccurs="0" maxOccurs="1" name="dock" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="ArrayOfString">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="TransferToDockResponse">
-        <s:complexType />
-      </s:element>
-      <s:element name="GetTransOrder">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="orderNo" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetTransOrderResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetTransOrderResult" type="tns:TransportOrderMaster" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="TransportOrderMaster">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="1" name="OrderNo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Flow" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="FlowDescription" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:TransportStatus" />
-          <s:element minOccurs="0" maxOccurs="1" name="Carrier" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Vehicle" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Tonnage" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="DrivingNo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="Driver" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="DriverMobilePhone" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="LoadVolume" nillable="true" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="LoadWeight" nillable="true" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="MinLoadRate" nillable="true" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="IsAutoRelease" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="IsAutoStart" type="s:boolean" />
-          <s:element minOccurs="1" maxOccurs="1" name="MultiSitePick" type="s:boolean" />
-          <s:element minOccurs="0" maxOccurs="1" name="ShipFrom" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="ShipTo" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="TransportMode" type="tns:TransportMode" />
-          <s:element minOccurs="0" maxOccurs="1" name="PriceList" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="BillAddress" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="LicenseNo" type="s:string" />
-          <s:element minOccurs="0" maxOccurs="1" name="TransportOrderDetailList" type="tns:ArrayOfTransportOrderDetail" />
-        </s:sequence>
-      </s:complexType>
-      <s:simpleType name="TransportStatus">
-        <s:restriction base="s:string">
-          <s:enumeration value="Create" />
-          <s:enumeration value="Submit" />
-          <s:enumeration value="InProcess" />
-          <s:enumeration value="Close" />
-          <s:enumeration value="Cancel" />
-        </s:restriction>
-      </s:simpleType>
-      <s:simpleType name="TransportMode">
-        <s:restriction base="s:string">
-          <s:enumeration value="Land" />
-          <s:enumeration value="Sea" />
-          <s:enumeration value="Air" />
-        </s:restriction>
-      </s:simpleType>
-      <s:complexType name="ArrayOfTransportOrderDetail">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="TransportOrderDetail" nillable="true" type="tns:TransportOrderDetail" />
-        </s:sequence>
-      </s:complexType>
-      <s:complexType name="TransportOrderDetail">
-        <s:sequence>
-          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="OrderNo" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="Sequence" type="s:int" />
-          <s:element minOccurs="0" maxOccurs="1" name="IpNo" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="OrderRouteFrom" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="OrderRouteTo" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="EstPalletQty" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="PalletQty" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="EstVolume" nillable="true" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Volume" nillable="true" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="EstWeight" nillable="true" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="Weight" nillable="true" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="EstBoxCount" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="BoxCount" nillable="true" type="s:int" />
-          <s:element minOccurs="1" maxOccurs="1" name="LoadTime" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="1" maxOccurs="1" name="UnloadTime" nillable="true" type="s:dateTime" />
-          <s:element minOccurs="0" maxOccurs="1" name="Dock" type="s:string" />
-          <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:decimal" />
-          <s:element minOccurs="1" maxOccurs="1" name="IsReceived" type="s:boolean" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="GetShipHu">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="deliverBarCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="GetShipHuResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetShipHuResult" type="tns:Hu" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="DoShipWMS">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="transOrder" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="huIds" type="tns:ArrayOfString" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="DoShipWMSResponse">
-        <s:complexType />
-      </s:element>
       <s:element name="GetUser">
         <s:complexType>
           <s:sequence>
@@ -532,6 +163,13 @@
           <s:enumeration value="Other" />
         </s:restriction>
       </s:simpleType>
+      <s:simpleType name="QualityType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Qualified" />
+          <s:enumeration value="Inspect" />
+          <s:enumeration value="Reject" />
+        </s:restriction>
+      </s:simpleType>
       <s:simpleType name="OrderStatus">
         <s:restriction base="s:string">
           <s:enumeration value="Create" />
@@ -637,6 +275,80 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="Hu">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="HuId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LotNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReferenceItemCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Uom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BaseUom" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnitCount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Qty" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnitQty" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ManufactureDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="ManufactureParty" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ExpireDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FirstInventoryDate" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PrintCount" type="s:short" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:HuStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Region" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocationFrom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocationTo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsConsignment" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="QualityType" type="tns:QualityType" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsFreeze" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsATP" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="OccupyType" type="tns:OccupyType" />
+          <s:element minOccurs="0" maxOccurs="1" name="OccupyReferenceNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SupplierLotNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateUserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreateDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReceiptNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Memo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Shift" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Flow" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemVersion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RefHu" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Direction" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsOdd" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="HuOption" type="tns:HuOption" />
+          <s:element minOccurs="0" maxOccurs="1" name="AgingLocation" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrentQty" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Station" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderDetId" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsEffective" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="HuStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="NA" />
+          <s:enumeration value="Location" />
+          <s:enumeration value="Ip" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="OccupyType">
+        <s:restriction base="s:string">
+          <s:enumeration value="None" />
+          <s:enumeration value="Pick" />
+          <s:enumeration value="Inspect" />
+          <s:enumeration value="Sequence" />
+          <s:enumeration value="MiscOrder" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="HuOption">
+        <s:restriction base="s:string">
+          <s:enumeration value="NoNeed" />
+          <s:enumeration value="UnAging" />
+          <s:enumeration value="Aged" />
+          <s:enumeration value="UnFilter" />
+          <s:enumeration value="Filtered" />
+        </s:restriction>
+      </s:simpleType>
       <s:element name="GetIp">
         <s:complexType>
           <s:sequence>
@@ -856,6 +568,11 @@
           <s:element minOccurs="1" maxOccurs="1" name="CurrentQty" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="Carton" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="RemainShippedQty" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfPickListDetailInput">
@@ -1197,6 +914,11 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:complexType name="ArrayOfHU">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Hu" nillable="true" type="tns:Hu" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="DoRepackAndShipOrderResponse">
         <s:complexType />
       </s:element>
@@ -1872,74 +1594,416 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="RecSmallChkSparePart">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="spareItem" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RecSmallChkSparePartResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPickTasks">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="isPickByHus" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPickTasksResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPickTasksResult" type="tns:ArrayOfPickTask" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPickTask">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PickTask" nillable="true" type="tns:PickTask" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PickTask">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Priority" type="tns:OrderPriority" />
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Uom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BaseUom" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnitQty" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnitCount" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderQty" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PickQty" type="s:decimal" />
+          <s:element minOccurs="0" maxOccurs="1" name="Area" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bin" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LotNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HuId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsPickHu" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="PickGroup" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="PickUserId" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="WinTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CurrentQty" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="OrderPriority">
+        <s:restriction base="s:string">
+          <s:enumeration value="Normal" />
+          <s:enumeration value="Urgent" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetPickHu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetPickHuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPickHuResult" type="tns:Hu" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoPickTask">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huList" type="tns:ArrayOfHU" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoPickTaskResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDeliverMatchHu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeliverMatchHuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeliverMatchHuResult" type="tns:Hu" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeliverBarCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDeliverBarCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDeliverBarCodeResult" type="tns:DeliverBarCode" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="DeliverBarCode">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="BarCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderSequence" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="StartTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="WindowTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Uom" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnitCount" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Qty" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Priority" type="s:short" />
+          <s:element minOccurs="0" maxOccurs="1" name="Station" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dock" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsActive" nillable="true" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="HuId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ShipPlanId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Flow" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsPickHu" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MatchDCToHU">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="barCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MatchDCToHUResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="TransferToDock">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huIds" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="dock" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TransferToDockResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTransOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderNo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTransOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTransOrderResult" type="tns:TransportOrderMaster" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TransportOrderMaster">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Flow" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FlowDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="tns:TransportStatus" />
+          <s:element minOccurs="0" maxOccurs="1" name="Carrier" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Vehicle" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Tonnage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DrivingNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Driver" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DriverMobilePhone" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoadVolume" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoadWeight" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="MinLoadRate" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsAutoRelease" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsAutoStart" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="MultiSitePick" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShipFrom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShipTo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="TransportMode" type="tns:TransportMode" />
+          <s:element minOccurs="0" maxOccurs="1" name="PriceList" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BillAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LicenseNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransportOrderDetailList" type="tns:ArrayOfTransportOrderDetail" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="TransportStatus">
+        <s:restriction base="s:string">
+          <s:enumeration value="Create" />
+          <s:enumeration value="Submit" />
+          <s:enumeration value="InProcess" />
+          <s:enumeration value="Close" />
+          <s:enumeration value="Cancel" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="TransportMode">
+        <s:restriction base="s:string">
+          <s:enumeration value="Land" />
+          <s:enumeration value="Sea" />
+          <s:enumeration value="Air" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfTransportOrderDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TransportOrderDetail" nillable="true" type="tns:TransportOrderDetail" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransportOrderDetail">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Id" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="OrderNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sequence" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="IpNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderRouteFrom" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderRouteTo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstPalletQty" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="PalletQty" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstVolume" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Volume" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstWeight" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="Weight" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="EstBoxCount" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BoxCount" nillable="true" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="LoadTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="UnloadTime" nillable="true" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Dock" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Distance" nillable="true" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsReceived" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetShipHu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="deliverBarCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetShipHuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetShipHuResult" type="tns:Hu" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoShipWMS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="transOrder" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="huIds" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoShipWMSResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetContainerDetail">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContainerDetailResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContainerDetailResult" type="tns:ContainerDetail" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ContainerDetail">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ContainerId" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Container" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Location" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IsEmpty" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ContainerDescription" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContainerType" type="tns:InventoryType" />
+          <s:element minOccurs="1" maxOccurs="1" name="ContainerQty" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="ActiveDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreateUserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CreateUserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreateDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastModifyUserId" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastModifyUserName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="LastModifyDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="InventoryType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Quality" />
+          <s:enumeration value="Barcode" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetContainerHu">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContainerHuResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContainerHuResult" type="tns:ArrayOfHU" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ContainerBind">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ContainerBindResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ContainerBindResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ContainerUnBind">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ContainerUnBindResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ContainerUnBindResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OnBin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="binCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="huIds" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OnBinResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="OnBinResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OffBin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huIds" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OffBinResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="OffBinResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsHuInContainer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsHuInContainerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsHuInContainerResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="RecSmallChkSparePartSoapIn">
-    <wsdl:part name="parameters" element="tns:RecSmallChkSparePart" />
-  </wsdl:message>
-  <wsdl:message name="RecSmallChkSparePartSoapOut">
-    <wsdl:part name="parameters" element="tns:RecSmallChkSparePartResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetPickTasksSoapIn">
-    <wsdl:part name="parameters" element="tns:GetPickTasks" />
-  </wsdl:message>
-  <wsdl:message name="GetPickTasksSoapOut">
-    <wsdl:part name="parameters" element="tns:GetPickTasksResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetPickHuSoapIn">
-    <wsdl:part name="parameters" element="tns:GetPickHu" />
-  </wsdl:message>
-  <wsdl:message name="GetPickHuSoapOut">
-    <wsdl:part name="parameters" element="tns:GetPickHuResponse" />
-  </wsdl:message>
-  <wsdl:message name="DoPickTaskSoapIn">
-    <wsdl:part name="parameters" element="tns:DoPickTask" />
-  </wsdl:message>
-  <wsdl:message name="DoPickTaskSoapOut">
-    <wsdl:part name="parameters" element="tns:DoPickTaskResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetDeliverMatchHuSoapIn">
-    <wsdl:part name="parameters" element="tns:GetDeliverMatchHu" />
-  </wsdl:message>
-  <wsdl:message name="GetDeliverMatchHuSoapOut">
-    <wsdl:part name="parameters" element="tns:GetDeliverMatchHuResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetDeliverBarCodeSoapIn">
-    <wsdl:part name="parameters" element="tns:GetDeliverBarCode" />
-  </wsdl:message>
-  <wsdl:message name="GetDeliverBarCodeSoapOut">
-    <wsdl:part name="parameters" element="tns:GetDeliverBarCodeResponse" />
-  </wsdl:message>
-  <wsdl:message name="MatchDCToHUSoapIn">
-    <wsdl:part name="parameters" element="tns:MatchDCToHU" />
-  </wsdl:message>
-  <wsdl:message name="MatchDCToHUSoapOut">
-    <wsdl:part name="parameters" element="tns:MatchDCToHUResponse" />
-  </wsdl:message>
-  <wsdl:message name="TransferToDockSoapIn">
-    <wsdl:part name="parameters" element="tns:TransferToDock" />
-  </wsdl:message>
-  <wsdl:message name="TransferToDockSoapOut">
-    <wsdl:part name="parameters" element="tns:TransferToDockResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetTransOrderSoapIn">
-    <wsdl:part name="parameters" element="tns:GetTransOrder" />
-  </wsdl:message>
-  <wsdl:message name="GetTransOrderSoapOut">
-    <wsdl:part name="parameters" element="tns:GetTransOrderResponse" />
-  </wsdl:message>
-  <wsdl:message name="GetShipHuSoapIn">
-    <wsdl:part name="parameters" element="tns:GetShipHu" />
-  </wsdl:message>
-  <wsdl:message name="GetShipHuSoapOut">
-    <wsdl:part name="parameters" element="tns:GetShipHuResponse" />
-  </wsdl:message>
-  <wsdl:message name="DoShipWMSSoapIn">
-    <wsdl:part name="parameters" element="tns:DoShipWMS" />
-  </wsdl:message>
-  <wsdl:message name="DoShipWMSSoapOut">
-    <wsdl:part name="parameters" element="tns:DoShipWMSResponse" />
-  </wsdl:message>
   <wsdl:message name="GetUserSoapIn">
     <wsdl:part name="parameters" element="tns:GetUser" />
   </wsdl:message>
@@ -2270,51 +2334,115 @@
   <wsdl:message name="DoFilterSoapOut">
     <wsdl:part name="parameters" element="tns:DoFilterResponse" />
   </wsdl:message>
+  <wsdl:message name="RecSmallChkSparePartSoapIn">
+    <wsdl:part name="parameters" element="tns:RecSmallChkSparePart" />
+  </wsdl:message>
+  <wsdl:message name="RecSmallChkSparePartSoapOut">
+    <wsdl:part name="parameters" element="tns:RecSmallChkSparePartResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPickTasksSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPickTasks" />
+  </wsdl:message>
+  <wsdl:message name="GetPickTasksSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPickTasksResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetPickHuSoapIn">
+    <wsdl:part name="parameters" element="tns:GetPickHu" />
+  </wsdl:message>
+  <wsdl:message name="GetPickHuSoapOut">
+    <wsdl:part name="parameters" element="tns:GetPickHuResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoPickTaskSoapIn">
+    <wsdl:part name="parameters" element="tns:DoPickTask" />
+  </wsdl:message>
+  <wsdl:message name="DoPickTaskSoapOut">
+    <wsdl:part name="parameters" element="tns:DoPickTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeliverMatchHuSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeliverMatchHu" />
+  </wsdl:message>
+  <wsdl:message name="GetDeliverMatchHuSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeliverMatchHuResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDeliverBarCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDeliverBarCode" />
+  </wsdl:message>
+  <wsdl:message name="GetDeliverBarCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDeliverBarCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="MatchDCToHUSoapIn">
+    <wsdl:part name="parameters" element="tns:MatchDCToHU" />
+  </wsdl:message>
+  <wsdl:message name="MatchDCToHUSoapOut">
+    <wsdl:part name="parameters" element="tns:MatchDCToHUResponse" />
+  </wsdl:message>
+  <wsdl:message name="TransferToDockSoapIn">
+    <wsdl:part name="parameters" element="tns:TransferToDock" />
+  </wsdl:message>
+  <wsdl:message name="TransferToDockSoapOut">
+    <wsdl:part name="parameters" element="tns:TransferToDockResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTransOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTransOrder" />
+  </wsdl:message>
+  <wsdl:message name="GetTransOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTransOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetShipHuSoapIn">
+    <wsdl:part name="parameters" element="tns:GetShipHu" />
+  </wsdl:message>
+  <wsdl:message name="GetShipHuSoapOut">
+    <wsdl:part name="parameters" element="tns:GetShipHuResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoShipWMSSoapIn">
+    <wsdl:part name="parameters" element="tns:DoShipWMS" />
+  </wsdl:message>
+  <wsdl:message name="DoShipWMSSoapOut">
+    <wsdl:part name="parameters" element="tns:DoShipWMSResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContainerDetailSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContainerDetail" />
+  </wsdl:message>
+  <wsdl:message name="GetContainerDetailSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContainerDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContainerHuSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContainerHu" />
+  </wsdl:message>
+  <wsdl:message name="GetContainerHuSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContainerHuResponse" />
+  </wsdl:message>
+  <wsdl:message name="ContainerBindSoapIn">
+    <wsdl:part name="parameters" element="tns:ContainerBind" />
+  </wsdl:message>
+  <wsdl:message name="ContainerBindSoapOut">
+    <wsdl:part name="parameters" element="tns:ContainerBindResponse" />
+  </wsdl:message>
+  <wsdl:message name="ContainerUnBindSoapIn">
+    <wsdl:part name="parameters" element="tns:ContainerUnBind" />
+  </wsdl:message>
+  <wsdl:message name="ContainerUnBindSoapOut">
+    <wsdl:part name="parameters" element="tns:ContainerUnBindResponse" />
+  </wsdl:message>
+  <wsdl:message name="OnBinSoapIn">
+    <wsdl:part name="parameters" element="tns:OnBin" />
+  </wsdl:message>
+  <wsdl:message name="OnBinSoapOut">
+    <wsdl:part name="parameters" element="tns:OnBinResponse" />
+  </wsdl:message>
+  <wsdl:message name="OffBinSoapIn">
+    <wsdl:part name="parameters" element="tns:OffBin" />
+  </wsdl:message>
+  <wsdl:message name="OffBinSoapOut">
+    <wsdl:part name="parameters" element="tns:OffBinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsHuInContainerSoapIn">
+    <wsdl:part name="parameters" element="tns:IsHuInContainer" />
+  </wsdl:message>
+  <wsdl:message name="IsHuInContainerSoapOut">
+    <wsdl:part name="parameters" element="tns:IsHuInContainerResponse" />
+  </wsdl:message>
   <wsdl:portType name="SD_SmartDeviceServiceSoap">
-    <wsdl:operation name="RecSmallChkSparePart">
-      <wsdl:input message="tns:RecSmallChkSparePartSoapIn" />
-      <wsdl:output message="tns:RecSmallChkSparePartSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetPickTasks">
-      <wsdl:input message="tns:GetPickTasksSoapIn" />
-      <wsdl:output message="tns:GetPickTasksSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetPickHu">
-      <wsdl:input message="tns:GetPickHuSoapIn" />
-      <wsdl:output message="tns:GetPickHuSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="DoPickTask">
-      <wsdl:input message="tns:DoPickTaskSoapIn" />
-      <wsdl:output message="tns:DoPickTaskSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetDeliverMatchHu">
-      <wsdl:input message="tns:GetDeliverMatchHuSoapIn" />
-      <wsdl:output message="tns:GetDeliverMatchHuSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetDeliverBarCode">
-      <wsdl:input message="tns:GetDeliverBarCodeSoapIn" />
-      <wsdl:output message="tns:GetDeliverBarCodeSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="MatchDCToHU">
-      <wsdl:input message="tns:MatchDCToHUSoapIn" />
-      <wsdl:output message="tns:MatchDCToHUSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="TransferToDock">
-      <wsdl:input message="tns:TransferToDockSoapIn" />
-      <wsdl:output message="tns:TransferToDockSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetTransOrder">
-      <wsdl:input message="tns:GetTransOrderSoapIn" />
-      <wsdl:output message="tns:GetTransOrderSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="GetShipHu">
-      <wsdl:input message="tns:GetShipHuSoapIn" />
-      <wsdl:output message="tns:GetShipHuSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="DoShipWMS">
-      <wsdl:input message="tns:DoShipWMSSoapIn" />
-      <wsdl:output message="tns:DoShipWMSSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetUser">
       <wsdl:input message="tns:GetUserSoapIn" />
       <wsdl:output message="tns:GetUserSoapOut" />
@@ -2535,108 +2663,81 @@
       <wsdl:input message="tns:DoFilterSoapIn" />
       <wsdl:output message="tns:DoFilterSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="RecSmallChkSparePart">
+      <wsdl:input message="tns:RecSmallChkSparePartSoapIn" />
+      <wsdl:output message="tns:RecSmallChkSparePartSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPickTasks">
+      <wsdl:input message="tns:GetPickTasksSoapIn" />
+      <wsdl:output message="tns:GetPickTasksSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPickHu">
+      <wsdl:input message="tns:GetPickHuSoapIn" />
+      <wsdl:output message="tns:GetPickHuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoPickTask">
+      <wsdl:input message="tns:DoPickTaskSoapIn" />
+      <wsdl:output message="tns:DoPickTaskSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliverMatchHu">
+      <wsdl:input message="tns:GetDeliverMatchHuSoapIn" />
+      <wsdl:output message="tns:GetDeliverMatchHuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliverBarCode">
+      <wsdl:input message="tns:GetDeliverBarCodeSoapIn" />
+      <wsdl:output message="tns:GetDeliverBarCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MatchDCToHU">
+      <wsdl:input message="tns:MatchDCToHUSoapIn" />
+      <wsdl:output message="tns:MatchDCToHUSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TransferToDock">
+      <wsdl:input message="tns:TransferToDockSoapIn" />
+      <wsdl:output message="tns:TransferToDockSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTransOrder">
+      <wsdl:input message="tns:GetTransOrderSoapIn" />
+      <wsdl:output message="tns:GetTransOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetShipHu">
+      <wsdl:input message="tns:GetShipHuSoapIn" />
+      <wsdl:output message="tns:GetShipHuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoShipWMS">
+      <wsdl:input message="tns:DoShipWMSSoapIn" />
+      <wsdl:output message="tns:DoShipWMSSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContainerDetail">
+      <wsdl:input message="tns:GetContainerDetailSoapIn" />
+      <wsdl:output message="tns:GetContainerDetailSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContainerHu">
+      <wsdl:input message="tns:GetContainerHuSoapIn" />
+      <wsdl:output message="tns:GetContainerHuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ContainerBind">
+      <wsdl:input message="tns:ContainerBindSoapIn" />
+      <wsdl:output message="tns:ContainerBindSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ContainerUnBind">
+      <wsdl:input message="tns:ContainerUnBindSoapIn" />
+      <wsdl:output message="tns:ContainerUnBindSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OnBin">
+      <wsdl:input message="tns:OnBinSoapIn" />
+      <wsdl:output message="tns:OnBinSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OffBin">
+      <wsdl:input message="tns:OffBinSoapIn" />
+      <wsdl:output message="tns:OffBinSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsHuInContainer">
+      <wsdl:input message="tns:IsHuInContainerSoapIn" />
+      <wsdl:output message="tns:IsHuInContainerSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SD_SmartDeviceServiceSoap" type="tns:SD_SmartDeviceServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="RecSmallChkSparePart">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/RecSmallChkSparePart" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetPickTasks">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetPickTasks" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetPickHu">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetPickHu" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DoPickTask">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoPickTask" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetDeliverMatchHu">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetDeliverMatchHu" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetDeliverBarCode">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetDeliverBarCode" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="MatchDCToHU">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/MatchDCToHU" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="TransferToDock">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/TransferToDock" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetTransOrder">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetTransOrder" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetShipHu">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetShipHu" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DoShipWMS">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoShipWMS" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetUser">
       <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetUser" style="document" />
       <wsdl:input>
@@ -3132,108 +3233,171 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="SD_SmartDeviceServiceSoap12" type="tns:SD_SmartDeviceServiceSoap">
-    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="RecSmallChkSparePart">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/RecSmallChkSparePart" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/RecSmallChkSparePart" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetPickTasks">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetPickTasks" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetPickTasks" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetPickHu">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetPickHu" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetPickHu" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="DoPickTask">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoPickTask" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoPickTask" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetDeliverMatchHu">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetDeliverMatchHu" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetDeliverMatchHu" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetDeliverBarCode">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetDeliverBarCode" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetDeliverBarCode" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="MatchDCToHU">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/MatchDCToHU" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/MatchDCToHU" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="TransferToDock">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/TransferToDock" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/TransferToDock" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetTransOrder">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetTransOrder" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetTransOrder" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="GetShipHu">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetShipHu" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetShipHu" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="DoShipWMS">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoShipWMS" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoShipWMS" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetContainerDetail">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetContainerDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContainerHu">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetContainerHu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ContainerBind">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/ContainerBind" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ContainerUnBind">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/ContainerUnBind" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnBin">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/OnBin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OffBin">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/OffBin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsHuInContainer">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInContainer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SD_SmartDeviceServiceSoap12" type="tns:SD_SmartDeviceServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetUser">
       <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetUser" style="document" />
       <wsdl:input>
@@ -3729,13 +3893,175 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RecSmallChkSparePart">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/RecSmallChkSparePart" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPickTasks">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetPickTasks" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPickHu">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetPickHu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoPickTask">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoPickTask" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliverMatchHu">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetDeliverMatchHu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDeliverBarCode">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetDeliverBarCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MatchDCToHU">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/MatchDCToHU" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TransferToDock">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/TransferToDock" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTransOrder">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetTransOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetShipHu">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetShipHu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoShipWMS">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoShipWMS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContainerDetail">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetContainerDetail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContainerHu">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetContainerHu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ContainerBind">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/ContainerBind" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ContainerUnBind">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/ContainerUnBind" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OnBin">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/OnBin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OffBin">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/OffBin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsHuInContainer">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInContainer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="SD_SmartDeviceService">
     <wsdl:port name="SD_SmartDeviceServiceSoap" binding="tns:SD_SmartDeviceServiceSoap">
-      <soap:address location="http://localhost:2015/WebService/SD/SmartDeviceService.asmx" />
+      <soap:address location="http://192.168.15.1:8080/WebService/SD/SmartDeviceService.asmx" />
     </wsdl:port>
     <wsdl:port name="SD_SmartDeviceServiceSoap12" binding="tns:SD_SmartDeviceServiceSoap12">
-      <soap12:address location="http://localhost:2015/WebService/SD/SmartDeviceService.asmx" />
+      <soap12:address location="http://192.168.15.1:8080/WebService/SD/SmartDeviceService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

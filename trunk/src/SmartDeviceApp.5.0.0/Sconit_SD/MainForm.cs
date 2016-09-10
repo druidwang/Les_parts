@@ -136,17 +136,17 @@ namespace com.Sconit.SmartDevice
             }
             else if (module == CodeMaster.TerminalPermission.Client_PutAway)
             {
-                UCPutAway ucPutAway = new UCPutAway(this.user);//.GetUCPutAway(this.user);
-                ucPutAway.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
-                this.AddModule(ucPutAway);
-                ucPutAway.tbBarCode.Focus();
+                var ucBinOn = new UCBinOn(this.user);//.GetUCPickUp(this.user);
+                ucBinOn.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(ucBinOn);
+                ucBinOn.tbBarCode.Focus();
                 this.Text = "上架";
             }
             else if (module == CodeMaster.TerminalPermission.Client_Pickup)
             {
-                var ucPickUp = new UCPickUp(this.user);//.GetUCPickUp(this.user);
-                ucPickUp.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
-                this.AddModule(ucPickUp);
+                var ucBinOn = new UCBinOn(this.user);//.GetUCPickUp(this.user);
+                ucBinOn.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(ucBinOn);
                 this.Text = "下架";
             }
             else if (module == CodeMaster.TerminalPermission.Client_AnDon)
@@ -391,6 +391,22 @@ namespace com.Sconit.SmartDevice
                 this.AddModule(uc);
                 uc.tbBarCode.Focus();
                 this.Text = "发货";
+            }
+            else if (module == CodeMaster.TerminalPermission.Client_BindContainerIn)
+            {
+                UCBindContainer uc = new UCBindContainer(this.user,true);
+                uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(uc);
+                uc.tbBarCode.Focus();
+                this.Text = "容器装箱";
+            }
+            else if (module == CodeMaster.TerminalPermission.Client_BindContainerOut)
+            {
+                UCBindContainer uc = new UCBindContainer(this.user, false);
+                uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(uc);
+                uc.tbBarCode.Focus();
+                this.Text = "容器拆箱";
             }
         }
 

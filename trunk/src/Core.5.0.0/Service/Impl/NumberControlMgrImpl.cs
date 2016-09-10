@@ -34,6 +34,10 @@ namespace com.Sconit.Service.Impl
             parm[0] = new SqlParameter("@CodePrefix", SqlDbType.VarChar, 50);
             parm[0].Value = codePrefix;
 
+
+            parm[1] = new SqlParameter("@NextSequence", SqlDbType.VarChar, 50);
+            parm[1].Direction = ParameterDirection.InputOutput;
+
             sqlDao.ExecuteStoredProcedure("USP_SYS_GetNextSeq", parm);
 
             return parm[1].Value.ToString();
@@ -507,6 +511,20 @@ namespace com.Sconit.Service.Impl
             // return cardNo + ("0000"+seekRand.Next(1, 9999).ToString()).Substring(0, 4);
             return cardNo;
         }
+        #endregion
+
+
+        #region 获取容器号
+
+
+        public string GetContainerId(string prefix)
+        {
+            var containerId = GetNextSequenceo(prefix);
+
+            containerId = containerId.PadLeft(10, '0');
+            return (prefix + containerId);
+        }
+
         #endregion
 
         public string GetBillNo(BillMaster billMaster)

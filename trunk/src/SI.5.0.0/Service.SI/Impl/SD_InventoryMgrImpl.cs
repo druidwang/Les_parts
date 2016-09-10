@@ -250,6 +250,167 @@
             this.locationDetailMgr.InventoryUnFreeze(huIdList);
         }
 
+        public com.Sconit.Entity.SI.SD_INV.ContainerDetail GetContainerDetail(string containerId)
+        {
+            try
+            {
+                var containerDet = this.genericMgr.FindById<com.Sconit.Entity.INV.ContainerDetail>(containerId);
+                return Mapper.Map<Entity.INV.ContainerDetail, Entity.SI.SD_INV.ContainerDetail>(containerDet);
+            }
+            catch (ObjectNotFoundException)
+            {
+                throw new BusinessException("未找到容器{0}。", containerId);
+            }
+        }
+
+        public List<com.Sconit.Entity.SI.SD_INV.Hu> GetContainerHu(string containerId)
+        {
+            try
+            {
+                var huList = this.genericMgr.FindEntityWithNativeSql<Entity.INV.Hu>("select h.* from INV_Hu h inner join INV_ContainerHu c on h.HuId=c.HuId where c.ContId=?", containerId).ToList();
+                return Mapper.Map<List<Entity.INV.Hu>, List<Entity.SI.SD_INV.Hu>>(huList);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public bool ContainerBind(string containerId, string huId)
+        {
+            try
+            {
+                bool bindSuccess = false;
+
+                #region 检查条码是否在别的容器中
+                var existContainerHu = this.genericMgr.FindAll<Entity.INV.ContainerHu>("from ContainerHu h where h.HuId = ? and h.ContainerId = ?", new object[] { huId, containerId }).FirstOrDefault();
+                if (existContainerHu != null)
+                {
+                    throw new BusinessException(string.Format("条码{0}已存在容器{1}中,请先执行容器掏箱。", existContainerHu.HuId, existContainerHu.ContainerId));
+                }
+                #endregion
+
+                var containerDetail = this.genericMgr.FindById<Entity.INV.ContainerDetail>(containerId);
+                var hu = this.genericMgr.FindById<Entity.INV.Hu>(huId);
+                Entity.INV.ContainerHu containerHu = new Entity.INV.ContainerHu();
+
+
+                containerHu.BaseUom = hu.BaseUom;
+                containerHu.HuId = hu.HuId;
+                containerHu.IsOdd = hu.IsOdd;
+                containerHu.Item = hu.Item;
+                containerHu.ItemDesc = hu.ItemDescription;
+                containerHu.LotNo = hu.LotNo;
+                containerHu.ManufactureDate = hu.ManufactureDate;
+                containerHu.ManufactureParty = hu.ManufactureParty;
+                containerHu.Qty = hu.Qty;
+                containerHu.RefItemCode = hu.ReferenceItemCode;
+                containerHu.SupplierLotNo = hu.SupplierLotNo;
+                containerHu.UnitCount = hu.UnitCount;
+                containerHu.UnitQty = hu.UnitQty;
+                containerHu.Uom = hu.Uom;
+
+                containerHu.Container = containerDetail.Container;
+                containerHu.ContainerDesc = containerDetail.ContainerDescription;
+                containerHu.ContainerId = containerDetail.ContainerId;
+                containerHu.ContainerQty = containerDetail.ContainerQty;
+                containerHu.ContainerType = containerDetail.ContainerType;
+
+
+            
+
+                genericMgr.Create(containerHu);
+
+                bindSuccess = true;
+
+                return bindSuccess;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public bool ContainerUnBind(string containerId, string huId)
+        {
+            try
+            {
+                bool bindSuccess = false;
+
+                var containerHu = this.genericMgr.FindAll<Entity.INV.ContainerHu>("from ContainerHu h where h.HuId = ? and h.ContainerId = ?", new object[] { huId, containerId }).FirstOrDefault();
+                if (containerHu == null)
+                {
+                    throw new BusinessException(string.Format("没有找容器{0}和条码{1}的绑定关系。", containerId, huId));
+                }
+                genericMgr.Delete(containerHu);
+
+                bindSuccess = true;
+
+                return bindSuccess;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public bool OnBin(string binCode, List<string> huIds)
+        {
+            var inventoryPutList = new List<Entity.INV.InventoryPut>();
+            foreach (var huId in huIds)
+            {
+                var inventoryPut = new Entity.INV.InventoryPut();
+
+                inventoryPut.Bin = binCode;
+                inventoryPut.HuId = huId;
+                inventoryPutList.Add(inventoryPut);
+            }
+            this.locationDetailMgr.InventoryPut(inventoryPutList);
+            return true;
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public bool OffBin(List<string> huIds)
+        {
+            var inventoryPickList = new List<Entity.INV.InventoryPick>();
+            foreach (var huId in huIds)
+            {
+                var inventoryPick = new Entity.INV.InventoryPick();
+                inventoryPick.HuId = huId;
+                inventoryPickList.Add(inventoryPick);
+            }
+            this.locationDetailMgr.InventoryPick(inventoryPickList);
+            return true;
+        }
+
+
+        public bool IsHuInContainer(string huId)
+        {
+            try
+            {
+                var containerHus = this.genericMgr.FindAll<Entity.INV.ContainerHu>("from ContainerHu c where c.HuId=?", huId);
+                if (containerHus != null && containerHus.Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                //var huList = this.genericMgr.FindEntityWithNativeSql<Entity.INV.Hu>("select h.* from INV_Hu h inner join INV_ContainerHu c on h.HuId=c.HuId where c.ContId=?", containerId).ToList();
+                //return Mapper.Map<List<Entity.INV.Hu>, List<Entity.SI.SD_INV.Hu>>(huList);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         #region 客户化代码
         [Transaction(TransactionMode.Requires)]
         public Hu GetDistHu(string huId)
