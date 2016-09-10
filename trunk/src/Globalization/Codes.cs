@@ -804,6 +804,7 @@ namespace com.Sconit.CodeMaster
         FacilityStatus,
         FacilityTransType,
         MaintainPlanType,
+        FacilityParamaterType,
     }
 
     public enum MessageType
