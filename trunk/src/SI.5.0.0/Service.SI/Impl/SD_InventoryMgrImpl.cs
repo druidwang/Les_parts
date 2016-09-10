@@ -268,7 +268,7 @@
             try
             {
                 var huList = this.genericMgr.FindEntityWithNativeSql<Entity.INV.Hu>("select h.* from INV_Hu h inner join INV_ContainerHu c on h.HuId=c.HuId where c.ContId=?", containerId).ToList();
-                return Mapper.Map<List<Entity.INV.Hu> ,List<Entity.SI.SD_INV.Hu>>(huList);
+                return Mapper.Map<List<Entity.INV.Hu>, List<Entity.SI.SD_INV.Hu>>(huList);
             }
             catch (Exception)
             {
@@ -282,34 +282,32 @@
             try
             {
                 bool bindSuccess = false;
-                var containerDet = this.genericMgr.FindById<Entity.INV.ContainerDetail>(containerId);
+
+                #region 检查条码是否在别的容器中
+                var existContainerHu = this.genericMgr.FindAll<Entity.INV.ContainerHu>("from ContainerHu h where h.HuId = ? and h.ContainerId = ?", new object[] { huId, containerId }).FirstOrDefault();
+                if (existContainerHu != null)
+                {
+                    throw new BusinessException(string.Format("条码{0}已存在容器{1}中,请先执行容器掏箱。", existContainerHu.HuId, existContainerHu.ContainerId));
+                }
+                #endregion
+
+                var containerDetail = this.genericMgr.FindById<Entity.INV.ContainerDetail>(containerId);
                 var hu = this.genericMgr.FindById<Entity.INV.Hu>(huId);
                 Entity.INV.ContainerHu containerHu = new Entity.INV.ContainerHu();
-                containerHu.ContainerId = containerDet.ContainerId;
-                containerHu.ContainerDesc = containerDet.ContainerDescription;
-                containerHu.ContainerQty = containerDet.ContainerQty;
-                //containerHu.ContainerType = containerDet.ContainerType;
-                containerHu.BaseUom = hu.BaseUom;
-                containerHu.HuId = hu.HuId;
-                containerHu.IsOdd = hu.IsOdd;
-                containerHu.Item = hu.Item;
-                containerHu.ItemDesc = hu.ItemDescription;
-                containerHu.ContainerId = containerDet.ContainerId;
-                containerHu.ContainerId = containerDet.ContainerId;
-                containerHu.ContainerId = containerDet.ContainerId;
-                containerHu.ContainerId = containerDet.ContainerId;
-                containerHu.ContainerId = containerDet.ContainerId;
 
-                containerHu.ContainerId = containerDet.ContainerId;
-                containerHu.ContainerId = containerDet.ContainerId;
-                containerHu.ContainerId = containerDet.ContainerId;
-                containerHu.ContainerId = containerDet.ContainerId;
+                Mapper.Map<Entity.INV.Hu, Entity.INV.ContainerHu>(hu, containerHu);
+
+                Mapper.Map<Entity.INV.ContainerDetail, Entity.INV.ContainerHu>(containerDetail, containerHu);
+
+                genericMgr.Create(containerHu);
+
+                bindSuccess = true;
 
                 return bindSuccess;
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }
@@ -317,7 +315,26 @@
         [Transaction(TransactionMode.Requires)]
         public bool ContainerUnBind(string containerId, string huId)
         {
-            return true;
+            try
+            {
+                bool bindSuccess = false;
+
+                var containerHu = this.genericMgr.FindAll<Entity.INV.ContainerHu>("from ContainerHu h where h.HuId = ? and h.ContainerId = ?", new object[] { huId, containerId }).FirstOrDefault();
+                if (containerHu == null)
+                {
+                    throw new BusinessException(string.Format("没有找容器{0}和条码{1}的绑定关系。", containerId, huId));
+                }
+                genericMgr.Delete(containerHu);
+
+                bindSuccess = true;
+
+                return bindSuccess;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [Transaction(TransactionMode.Requires)]

@@ -74,6 +74,22 @@ namespace com.Sconit.Web.Controllers.INV
             }
         }
 
+
+        [HttpGet]
+        [SconitAuthorize(Permissions = "Url_ContainerDetail_View")]
+        public ActionResult Edit(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                ContainerDetail containerDetail = this.genericMgr.FindById<ContainerDetail>(id);
+                return View(containerDetail);
+            }
+        }
+
         [GridAction]
         [SconitAuthorize(Permissions = "Url_ContainerDetail_View")]
         public ActionResult List(GridCommand command, ContainerDetailSearchModel searchModel)
