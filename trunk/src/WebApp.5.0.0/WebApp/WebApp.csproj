@@ -199,6 +199,9 @@
     <Compile Include="Controllers\CUST\CostCenterController.cs" />
     <Compile Include="Controllers\CUST\SubPrintOrderController.cs" />
     <Compile Include="Controllers\CUST\SpecialBarCodeController.cs" />
+    <Compile Include="Controllers\FMS\CheckListController.cs" />
+    <Compile Include="Controllers\FMS\CheckListOrderController.cs" />
+    <Compile Include="Controllers\FMS\FacilityOrderController.cs" />
     <Compile Include="Controllers\FMS\MaintainPlanController.cs" />
     <Compile Include="Controllers\FMS\FacilityTransController.cs" />
     <Compile Include="Controllers\FMS\FacilityMasterController.cs" />
@@ -223,6 +226,8 @@
     <Compile Include="Controllers\MD\SupplierController.cs" />
     <Compile Include="Controllers\MD\UomController.cs" />
     <Compile Include="Controllers\MD\WorkingCalendarController.cs" />
+    <Compile Include="Controllers\MES\FacilityParamaterController.cs" />
+    <Compile Include="Controllers\MES\MesScanControlPointController.cs" />
     <Compile Include="Controllers\MRP\MrpExPlanItemRateController.cs" />
     <Compile Include="Controllers\MRP\MrpProductTypeController.cs" />
     <Compile Include="Controllers\MRP\MrpExWorkHourController.cs">
@@ -404,6 +409,9 @@
     <Compile Include="Models\ORD\TraceCodeStatus.cs" />
     <Compile Include="Models\ReportModels\CustReportModel.cs" />
     <Compile Include="Models\ReportModels\CustReportSearchModel.cs" />
+    <Compile Include="Models\SearchModels\FMS\CheckListOrderSearchModel.cs" />
+    <Compile Include="Models\SearchModels\FMS\CheckListSearchModel.cs" />
+    <Compile Include="Models\SearchModels\FMS\FacilityOrderSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\MaintainPlanSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\FacilityTransSearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\FacilityMasterSearchModel.cs" />
@@ -415,6 +423,7 @@
     <Compile Include="Models\SearchModels\ISI\TaskSubTypeSearchModel.cs" />
     <Compile Include="Models\SearchModels\MD\SwitchTradingSearchModel.cs" />
     <Compile Include="Models\SearchModels\MD\FlowSearchModel.cs" />
+    <Compile Include="Models\SearchModels\MES\MesScanControlPointSearchModel.cs" />
     <Compile Include="Models\SearchModels\MRP\MrpExPlanItemRate.cs" />
     <Compile Include="Models\SearchModels\MRP\MrpExWorkHourSearchModel.cs" />
     <Compile Include="Models\ORD\ScheduleView.cs" />
