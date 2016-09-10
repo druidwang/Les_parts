@@ -117,34 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="PackingList_Created" xml:space="preserve">
-    <value>PackingList Created</value>
+  <data name="PickGroup_Added" xml:space="preserve">
+    <value>PickGroup Added</value>
   </data>
-  <data name="PackingList_CreateDate" xml:space="preserve">
+  <data name="PickGroup_CreateDate" xml:space="preserve">
     <value>CreateDate</value>
   </data>
-  <data name="PackingList_CreateUserName" xml:space="preserve">
+  <data name="PickGroup_CreateUserName" xml:space="preserve">
     <value>CreateUser</value>
   </data>
-  <data name="PackingList_DateFrom" xml:space="preserve">
-    <value>DateFrom</value>
+  <data name="PickGroup_CurrentPickGroup" xml:space="preserve">
+    <value>CurrentPickGroup</value>
   </data>
-  <data name="PackingList_DateTo" xml:space="preserve">
-    <value>DateTo</value>
+  <data name="PickGroup_Deleted" xml:space="preserve">
+    <value>PickGroup Deleted</value>
   </data>
-  <data name="PackingList_Edit_Title" xml:space="preserve">
+  <data name="PickGroup_Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="PickGroup_Edit_Title" xml:space="preserve">
     <value>Edit</value>
   </data>
-  <data name="PackingList_LastModifyDate" xml:space="preserve">
+  <data name="PickGroup_Errors_Existing_PickGroupCode" xml:space="preserve">
+    <value>PickGroupCode Exist</value>
+  </data>
+  <data name="PickGroup_IsActive" xml:space="preserve">
+    <value>IsActive</value>
+  </data>
+  <data name="PickGroup_IsAutoAssign" xml:space="preserve">
+    <value>IsAutoAssign</value>
+  </data>
+  <data name="PickGroup_LastModifyDate" xml:space="preserve">
     <value>LastModifyDate</value>
   </data>
-  <data name="PackingList_LastModifyUserName" xml:space="preserve">
+  <data name="PickGroup_LastModifyUserName" xml:space="preserve">
     <value>LastModifyUserName</value>
   </data>
-  <data name="PackingList_New_Title" xml:space="preserve">
+  <data name="PickGroup_New_Title" xml:space="preserve">
     <value>New</value>
   </data>
-  <data name="PackingList_PackingListCode" xml:space="preserve">
-    <value>PackingListCode</value>
+  <data name="PickGroup_PickGroupCode" xml:space="preserve">
+    <value>PickGroupCode</value>
+  </data>
+  <data name="PickGroup_TabTitle_PickGroup" xml:space="preserve">
+    <value>PickGroup</value>
+  </data>
+  <data name="PickGroup_TabTitle_PickRule" xml:space="preserve">
+    <value>PickRule</value>
+  </data>
+  <data name="PickGroup_TabTitle_PickUser" xml:space="preserve">
+    <value>PickUser</value>
+  </data>
+  <data name="PickGroup_Updated" xml:space="preserve">
+    <value>PickGroup Updated</value>
   </data>
 </root>

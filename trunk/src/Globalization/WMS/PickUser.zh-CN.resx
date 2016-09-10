@@ -141,6 +141,9 @@
   <data name="PickUser_IsActive" xml:space="preserve">
     <value>是否生效</value>
   </data>
+  <data name="PickUser_IsAutoAssign" xml:space="preserve">
+    <value>自动分派任务</value>
+  </data>
   <data name="PickUser_LastModifyDate" xml:space="preserve">
     <value>最后更新日期</value>
   </data>

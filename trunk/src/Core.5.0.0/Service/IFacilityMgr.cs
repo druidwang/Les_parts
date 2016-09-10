@@ -23,7 +23,6 @@ namespace com.Sconit.Service
 
         void CreateCheckListOrder(CheckListOrderMaster checkListOrderMaster);
 
-
         void ReleaseCheckListOrder(CheckListOrderMaster checkListOrderMaster);
 
         void StartFacilityOrder(string facilityOrderNo);

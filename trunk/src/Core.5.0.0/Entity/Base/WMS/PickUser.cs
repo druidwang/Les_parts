@@ -33,7 +33,6 @@ namespace com.Sconit.Entity.WMS
 
         [Display(Name = "PickUser_LastModifyDate", ResourceType = typeof(Resources.WMS.PickUser))]
         public DateTime LastModifyDate { get; set; }
-
         #endregion
 
         public override int GetHashCode()

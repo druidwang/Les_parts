@@ -36,6 +36,8 @@ namespace com.Sconit.Entity.WMS
         public DateTime LastModifyDate { get; set; }
         public Int32 Version { get; set; }
 
+        [Display(Name = "PickGroup_IsAutoAssign", ResourceType = typeof(Resources.WMS.PickGroup))]
+        public Boolean IsAutoAssign { get; set; }
         #endregion
 
         public override int GetHashCode()

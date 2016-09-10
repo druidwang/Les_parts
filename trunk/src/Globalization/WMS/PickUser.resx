@@ -141,6 +141,9 @@
   <data name="PickUser_IsActive" xml:space="preserve">
     <value>IsActive</value>
   </data>
+  <data name="PickUser_IsAutoAssign" xml:space="preserve">
+    <value>IsAutoAssign</value>
+  </data>
   <data name="PickUser_LastModifyDate" xml:space="preserve">
     <value>LastModifyDate</value>
   </data>
