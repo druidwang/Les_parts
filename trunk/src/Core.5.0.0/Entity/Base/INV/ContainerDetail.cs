@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.INV
 {
     [Serializable]
-    public partial class ContainerDetail : EntityBase
+    public partial class ContainerDetail : EntityBase,IAuditable
     {
         #region O/R Mapping Properties
 		

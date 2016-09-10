@@ -1,7 +1,7 @@
 ﻿
 @using com.Sconit.Web.Models.SearchModels.INV
 <fieldset>
-    @using (Html.BeginForm("List", "ContainerDetail"))
+    @using (Html.BeginForm("List", "ContainerHu"))
     {   
         <div class="search">
             <div class="search-label">
@@ -10,7 +10,7 @@
                 </label>
             </div>
             <div class="search-field">
-                @Html.TextBox("Code", TempData["ContainerDetailSearchModel"] != null ? ((ContainerDetailSearchModel)TempData["ContainerDetailSearchModel"]).ContainerId : string.Empty)
+                @Html.TextBox("Code", TempData["ContainerHuSearchModel"] != null ? ((ContainerHuSearchModel)TempData["ContainerHuSearchModel"]).ContainerId : string.Empty)
             </div>
              <div class="search-label">
                 <label for="Container_Description">
@@ -18,7 +18,7 @@
                 </label>
             </div>
             <div class="search-field">
-                @Html.TextBox("Description", TempData["ContainerDetailSearchModel"] != null ? ((ContainerDetailSearchModel)TempData["ContainerDetailSearchModel"]).Container : string.Empty)
+                @Html.TextBox("Description", TempData["ContainerHuSearchModel"] != null ? ((ContainerHuSearchModel)TempData["ContainerHuSearchModel"]).Container : string.Empty)
             </div>
         </div>
         <div class="search-footer">
@@ -28,16 +28,16 @@
             <button type="button" id="btnNew" onclick="location.href='@Url.Content("~/Container/New")'">
                 @Resources.SYS.Global.Button_New</button>*@
         
-        @Html.Button(Resources.SYS.Global.Button_Search, "Url_ContainerDetail_View", new Dictionary<string, string>()
+        @Html.Button(Resources.SYS.Global.Button_Search, "Url_ContainerHu_View", new Dictionary<string, string>()
 	{
 	    {"type", "submit"},
 	    {"id", "btnSearch"}
 	})
-            @Html.Button(Resources.SYS.Global.Button_New, "Url_ContainerDetail_View", new Dictionary<string, string>()
+            @Html.Button(Resources.SYS.Global.Button_New, "Url_ContainerHu_View", new Dictionary<string, string>()
 	{
 	    {"type", "button"},
 	    {"id", "btnNew"},
-        {"onclick","location.href='"+@Url.Content("~/ContainerDetail/New")+"'"}
+        {"onclick","location.href='"+@Url.Content("~/ContainerHu/New")+"'"}
 	})</div>
 
     }

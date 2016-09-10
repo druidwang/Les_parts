@@ -32,7 +32,8 @@ namespace com.Sconit.Entity.INV
 		public string SupplierLotNo { get; set; }
 		public string ContainerDesc { get; set; }
 		public Int16 ContainerType { get; set; }
-		public Double ContainerQty { get; set; }
+		public Decimal ContainerQty { get; set; }
+        public string Container { get; set; }
         
         #endregion
 

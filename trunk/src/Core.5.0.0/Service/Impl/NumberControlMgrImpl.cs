@@ -34,6 +34,10 @@ namespace com.Sconit.Service.Impl
             parm[0] = new SqlParameter("@CodePrefix", SqlDbType.VarChar, 50);
             parm[0].Value = codePrefix;
 
+
+            parm[1] = new SqlParameter("@NextSequence", SqlDbType.VarChar, 50);
+            parm[1].Direction = ParameterDirection.InputOutput;
+
             sqlDao.ExecuteStoredProcedure("USP_SYS_GetNextSeq", parm);
 
             return parm[1].Value.ToString();
@@ -517,7 +521,8 @@ namespace com.Sconit.Service.Impl
         {
             var containerId = GetNextSequenceo(prefix);
 
-            return containerId;
+            containerId = containerId.PadLeft(10, '0');
+            return (prefix + containerId);
         }
 
         #endregion

@@ -30,15 +30,11 @@ using NHibernate;
 
 namespace com.Sconit.Web.Controllers.INV
 {
-    public class ContainerDetailController : WebAppBaseController
+    public class ContainerHuController : WebAppBaseController
     {
 
-        private static string selectCountStatement = "select count(*) from ContainerDetail as c";
-        private static string selectStatement = "select c from ContainerDetail as c";
-
-
-
-        public IContainerMgr containerMgr { get; set; }
+        private static string selectCountStatement = "select count(*) from ContainerHu as c";
+        private static string selectStatement = "select c from ContainerHu as c";
 
 
         #region public method
@@ -48,35 +44,16 @@ namespace com.Sconit.Web.Controllers.INV
         }
 
 
-        [SconitAuthorize(Permissions = "Url_ContainerDetail_View")]
+        [SconitAuthorize(Permissions = "Url_ContainerHu_View")]
         public ActionResult New()
         {
 
             return View();
         }
 
-
-        [HttpPost]
-        [SconitAuthorize(Permissions = "Url_ContainerDetail_View")]
-        public ActionResult New(ContainerDetail containerDetail)
-        {
-            try
-            {
-
-                containerMgr.CreateContainer(containerDetail.Container, containerDetail.CreateQty);
-                SaveSuccessMessage("容器新增成功");
-                return RedirectToAction("List");
-            }
-            catch (Exception ex)
-            {
-                SaveErrorMessage(ex.Message);
-                return View(containerDetail);
-            }
-        }
-
         [GridAction]
-        [SconitAuthorize(Permissions = "Url_ContainerDetail_View")]
-        public ActionResult List(GridCommand command, ContainerDetailSearchModel searchModel)
+        [SconitAuthorize(Permissions = "Url_ContainerHu_View")]
+        public ActionResult List(GridCommand command, HuSearchModel searchModel)
         {
             SearchCacheModel searchCacheModel = this.ProcessSearchModel(command, searchModel);
             if (searchCacheModel.isBack == true)
@@ -88,13 +65,13 @@ namespace com.Sconit.Web.Controllers.INV
         }
 
         [GridAction(EnableCustomBinding = true)]
-        [SconitAuthorize(Permissions = "Url_ContainerDetail_View")]
-        public ActionResult _AjaxList(GridCommand command, ContainerDetailSearchModel searchModel)
+        [SconitAuthorize(Permissions = "Url_ContainerHu_View")]
+        public ActionResult _AjaxList(GridCommand command, ContainerHuSearchModel searchModel)
         {
-            TempData["ContainerDetailSearchModel"] = searchModel;
+            TempData["ContainerHuSearchModel"] = searchModel;
             this.GetCommand(ref command, searchModel);
             SearchStatementModel searchStatementModel = PrepareSearchStatement(command, searchModel);
-            var list = GetAjaxPageData<ContainerDetail>(searchStatementModel, command);
+            var list = GetAjaxPageData<ContainerHu>(searchStatementModel, command);
             return PartialView(list);
         }
 
@@ -103,7 +80,7 @@ namespace com.Sconit.Web.Controllers.INV
         #endregion
 
         #region private method
-        private SearchStatementModel PrepareSearchStatement(GridCommand command, ContainerDetailSearchModel searchModel)
+        private SearchStatementModel PrepareSearchStatement(GridCommand command, ContainerHuSearchModel searchModel)
         {
             string whereStatement = string.Empty;
 
@@ -111,9 +88,7 @@ namespace com.Sconit.Web.Controllers.INV
 
 
             HqlStatementHelper.AddEqStatement("ContainerId", searchModel.ContainerId, "c", ref whereStatement, param);
-            HqlStatementHelper.AddEqStatement("Container", searchModel.Container, "c", ref whereStatement, param);
-
-
+            HqlStatementHelper.AddEqStatement("Container", searchModel.HuId, "c", ref whereStatement, param);
 
 
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);

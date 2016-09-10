@@ -11,7 +11,7 @@ namespace com.Sconit.Service
 {
     public interface IContainerMgr
     {
-        IList<ContainerDetail> CreateContainer(Container container, int qty);
+        IList<ContainerDetail> CreateContainer(string containerCode, int qty);
 
      //   Hu CloneContainer(ContainerDetail oldContainerDetail, int qty);
     }

@@ -27,6 +27,7 @@
 		<property name="SupplierLotNo" column="SupplierLotNo" type="String" length="50"/>	
 		<property name="ContainerDesc" column="ContainerDesc" type="String" length="100"/>	
 		<property name="ContainerType" column="ContainerType" type="Int16"/>	
-		<property name="ContainerQty" column="ContainerQty" type="Double"/>	
+		<property name="ContainerQty" column="ContainerQty" type="Decimal"/>
+		<property name="Container" column="Container" type="String" length="50"/>
   	</class>
 </hibernate-mapping>

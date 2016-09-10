@@ -1008,7 +1008,7 @@
     <EmbeddedResource Include="Base\WMS\PickUser.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Base\INV\ContainerHu.hbm.xml" />
+    <EmbeddedResource Include="Base\INV\ContainerHu.hbm.xml" />
     <Content Include="Base\WMS\UnpickShipPlan.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\DeliveryBarCode.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PackingList.hbm.xml" />

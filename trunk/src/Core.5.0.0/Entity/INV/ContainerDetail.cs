@@ -8,7 +8,7 @@ namespace com.Sconit.Entity.INV
     {
         #region Non O/R Mapping Properties
 
-        //TODO: Add Non O/R Mapping Properties here. 
+        public int CreateQty { get; set; }
 
         #endregion
     }

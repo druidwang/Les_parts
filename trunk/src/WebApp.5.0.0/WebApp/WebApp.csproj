@@ -212,6 +212,7 @@
     <Compile Include="Controllers\FMS\FacilityMasterController.cs" />
     <Compile Include="Controllers\FMS\FacilityCategoryController.cs" />
     <Compile Include="Controllers\INV\ContainerDetailController.cs" />
+    <Compile Include="Controllers\INV\ContainerHuController.cs" />
     <Compile Include="Controllers\INV\HuIdEpDateChangeController.cs" />
     <Compile Include="Controllers\ISI\TaskAddressController.cs" />
     <Compile Include="Controllers\ISI\TaskMasterController.cs" />
@@ -423,6 +424,7 @@
     <Compile Include="Models\SearchModels\FMS\FacilityCategorySearchModel.cs" />
     <Compile Include="Models\SearchModels\FMS\CheckListOrderSearchModel.cs" />
     <Compile Include="Models\SearchModels\INV\ContainerDetailSearchModel.cs" />
+    <Compile Include="Models\SearchModels\INV\ContainerHuSearchModel.cs" />
     <Compile Include="Models\SearchModels\INV\HuTransSearchModel.cs" />
     <Compile Include="Models\SearchModels\ISI\TaskAddressSearchModel.cs" />
     <Compile Include="Models\SearchModels\ISI\TaskMasterSearchModel.cs" />
@@ -2799,6 +2801,10 @@
     <Content Include="Views\com.Sconit.Web.Controllers.INV\ContainerDetail\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.INV\ContainerDetail\List.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.INV\ContainerDetail\New.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\ContainerHu\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\ContainerHu\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\ContainerHu\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\ContainerHu\List.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

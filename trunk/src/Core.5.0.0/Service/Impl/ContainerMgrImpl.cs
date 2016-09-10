@@ -28,11 +28,11 @@ namespace com.Sconit.Service.Impl
 
 
         [Transaction(TransactionMode.Requires)]
-      public  IList<ContainerDetail> CreateContainer(Container container, int qty)
+        public IList<ContainerDetail> CreateContainer(string containerCode, int qty)
         {
             IList<ContainerDetail> containerDetailList = new List<ContainerDetail>();
 
-
+            Container container = genericMgr.FindById<Container>(containerCode);
             for (int i = 0; i < qty; i++)
             {
                 ContainerDetail containerDetail = new ContainerDetail();
