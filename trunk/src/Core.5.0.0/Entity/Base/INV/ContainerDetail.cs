@@ -12,6 +12,9 @@ namespace com.Sconit.Entity.INV
 		public string Container { get; set; }
 		public string Location { get; set; }
 		public Boolean IsEmpty { get; set; }
+		public string ContainerDescription { get; set; }
+		public Int16 ContainerType { get; set; }
+		public Double ContainerQty { get; set; }
 		public DateTime ActiveDate { get; set; }
 		public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
@@ -45,7 +48,7 @@ namespace com.Sconit.Entity.INV
             }
             else
             {
-                return (this.ContainerId == another.ContainerId);
+            	return (this.ContainerId == another.ContainerId);
             }
         } 
     }

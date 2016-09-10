@@ -8,6 +8,9 @@
 		<property name="Container" column="Container" type="String" length="50"/>	
 		<property name="Location" column="Location" type="String" length="50"/>	
 		<property name="IsEmpty" column="IsEmpty" type="Boolean"/>	
+		<property name="ContainerDescription" column="ContainerDesc" type="String" length="100"/>	
+		<property name="ContainerType" column="ContainerType" type="Int16"/>	
+		<property name="ContainerQty" column="Qty" type="Double"/>	
 		<property name="ActiveDate" column="ActiveDate" type="DateTime"/>	
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
