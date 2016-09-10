@@ -921,5 +921,50 @@
             SecurityContextHolder.Set(user);
             this.tmsMgr.Ship(transOrder, huIds);
         }
+
+        [WebMethod]
+        public com.Sconit.Entity.SI.SD_INV.ContainerDetail GetContainerDetail(string containerId)
+        {
+            return this.inventoryMgr.GetContainerDetail(containerId);
+        }
+
+        [WebMethod]
+        public List<Entity.SI.SD_INV.Hu> GetContainerHu(string containerId)
+        {
+            return this.inventoryMgr.GetContainerHu(containerId);
+        }
+
+
+        [WebMethod]
+        public bool ContainerBind(string containerId, string huId, string userCode)
+        { 
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            return this.inventoryMgr.ContainerBind(containerId,huId);
+        }
+
+        [WebMethod]
+        public bool ContainerUnBind(string containerId, string huId, string userCode)
+        { 
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            return this.inventoryMgr.ContainerUnBind(containerId,huId);
+        }
+
+        [WebMethod]
+        public bool OnBin(string binCode, List<string> huIds, string userCode)
+        { 
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            return this.inventoryMgr.OnBin(binCode, huIds);
+        }
+
+        [WebMethod]
+        public bool OffBin(List<string> huIds, string userCode)
+        {
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            return this.inventoryMgr.OffBin(huIds);
+        }
     }
 }

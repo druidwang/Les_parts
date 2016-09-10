@@ -1,13 +1,11 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace com.Sconit.Entity.INV
+namespace com.Sconit.Entity.SI.SD_INV
 {
     [Serializable]
-    public partial class ContainerHu : EntityBase, IAuditable
+    public class ContainerHu
     {
-        #region O/R Mapping Properties
-		
 		public Int32 Id { get; set; }
 		public string ContainerId { get; set; }
 		public string HuId { get; set; }
@@ -32,36 +30,8 @@ namespace com.Sconit.Entity.INV
 		public string SupplierLotNo { get; set; }
 		public string ContainerDesc { get; set; }
 		public Int16 ContainerType { get; set; }
-		public Decimal ContainerQty { get; set; }
-        public string Container { get; set; }
+		public Double ContainerQty { get; set; }
         
-        #endregion
-
-		public override int GetHashCode()
-        {
-			if (Id != 0)
-            {
-                return Id.GetHashCode();
-            }
-            else
-            {
-                return base.GetHashCode();
-            }
-        }
-
-        public override bool Equals(object obj)
-        {
-            ContainerHu another = obj as ContainerHu;
-
-            if (another == null)
-            {
-                return false;
-            }
-            else
-            {
-            	return (this.Id == another.Id);
-            }
-        } 
     }
 	
 }

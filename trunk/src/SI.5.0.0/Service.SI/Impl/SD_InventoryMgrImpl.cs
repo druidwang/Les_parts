@@ -250,6 +250,89 @@
             this.locationDetailMgr.InventoryUnFreeze(huIdList);
         }
 
+        public com.Sconit.Entity.SI.SD_INV.ContainerDetail GetContainerDetail(string containerId)
+        {
+            try
+            {
+                var containerDet = this.genericMgr.FindById<com.Sconit.Entity.INV.ContainerDetail>(containerId);
+                return Mapper.Map<Entity.INV.ContainerDetail, Entity.SI.SD_INV.ContainerDetail>(containerDet);
+            }
+            catch (ObjectNotFoundException)
+            {
+                throw new BusinessException("未找到容器{0}。", containerId);
+            }
+        }
+
+        public List<com.Sconit.Entity.SI.SD_INV.Hu> GetContainerHu(string containerId)
+        {
+            try
+            {
+                var huList = this.genericMgr.FindEntityWithNativeSql<Entity.INV.Hu>("select h.* from INV_Hu h inner join INV_ContainerHu c on h.HuId=c.HuId where c.ContId=?", containerId).ToList();
+                return Mapper.Map<List<Entity.INV.Hu> ,List<Entity.SI.SD_INV.Hu>>(huList);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public bool ContainerBind(string containerId, string huId)
+        {
+            try
+            {
+                bool bindSuccess = false;
+                var containerDet = this.genericMgr.FindById<Entity.INV.ContainerDetail>(containerId);
+                var hu = this.genericMgr.FindById<Entity.INV.Hu>(huId);
+                Entity.INV.ContainerHu containerHu = new Entity.INV.ContainerHu();
+                containerHu.ContainerId = containerDet.ContainerId;
+                containerHu.ContainerDesc = containerDet.ContainerDescription;
+                containerHu.ContainerQty = containerDet.ContainerQty;
+                //containerHu.ContainerType = containerDet.ContainerType;
+                containerHu.BaseUom = hu.BaseUom;
+                containerHu.HuId = hu.HuId;
+                containerHu.IsOdd = hu.IsOdd;
+                containerHu.Item = hu.Item;
+                containerHu.ItemDesc = hu.ItemDescription;
+                containerHu.ContainerId = containerDet.ContainerId;
+                containerHu.ContainerId = containerDet.ContainerId;
+                containerHu.ContainerId = containerDet.ContainerId;
+                containerHu.ContainerId = containerDet.ContainerId;
+                containerHu.ContainerId = containerDet.ContainerId;
+
+                containerHu.ContainerId = containerDet.ContainerId;
+                containerHu.ContainerId = containerDet.ContainerId;
+                containerHu.ContainerId = containerDet.ContainerId;
+                containerHu.ContainerId = containerDet.ContainerId;
+
+                return bindSuccess;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public bool ContainerUnBind(string containerId, string huId)
+        {
+            return true;
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public bool OnBin(string binCode, List<string> huIds)
+        {
+            return true;
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public bool OffBin(List<string> huIds)
+        {
+            return true;
+        }
+
+
         #region 客户化代码
         [Transaction(TransactionMode.Requires)]
         public Hu GetDistHu(string huId)
