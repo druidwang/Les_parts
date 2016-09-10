@@ -805,6 +805,9 @@ namespace com.Sconit.CodeMaster
         FacilityTransType,
         MaintainPlanType,
         FacilityParamaterType,
+        FacilityOrderType,
+        FacilityOrderStatus,
+        CheckListOrderStatus
     }
 
     public enum MessageType
@@ -1313,6 +1316,40 @@ namespace com.Sconit.CodeMaster
         Day = 4,
         Hour = 5,
         Minute = 6,
-        Second = 7
+        Second = 7,
+        Times = 8
+    }
+
+
+    /// <summary>
+    /// 设备信息类型
+    /// </summary>
+    public enum FacilityParamaterType
+    {
+        Scan = 0,
+        Paramater = 1
+    }
+
+
+    public enum FacilityOrderType
+    {
+        Maintain = 1,
+        Fix = 2,
+        Inspect = 3
+    }
+
+    public enum FacilityOrderStatus
+    {
+        Create = 0,
+        Submit = 1,
+        InProcess = 2,
+        Close = 3
+    }
+
+
+    public enum CheckListOrderStatus
+    {
+        Create = 0,
+        Submit = 1
     }
 }

@@ -8,7 +8,7 @@ namespace com.Sconit.Entity.INV
     {
         #region O/R Mapping Properties
 		
-		public string ContId { get; set; }
+		public string ContainerId { get; set; }
 		public string Container { get; set; }
 		public string Location { get; set; }
 		public Boolean IsEmpty { get; set; }
@@ -25,9 +25,9 @@ namespace com.Sconit.Entity.INV
 
 		public override int GetHashCode()
         {
-			if (ContId != null)
+			if (ContainerId != null)
             {
-                return ContId.GetHashCode();
+                return ContainerId.GetHashCode();
             }
             else
             {
@@ -45,7 +45,7 @@ namespace com.Sconit.Entity.INV
             }
             else
             {
-            	return (this.ContId == another.ContId);
+                return (this.ContainerId == another.ContainerId);
             }
         } 
     }

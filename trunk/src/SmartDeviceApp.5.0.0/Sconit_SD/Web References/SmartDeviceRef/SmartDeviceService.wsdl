@@ -425,6 +425,7 @@
           <s:enumeration value="Terminal" />
           <s:enumeration value="SI" />
           <s:enumeration value="OrderType" />
+          <s:enumeration value="Carrier" />
         </s:restriction>
       </s:simpleType>
       <s:complexType name="ArrayOfBarCodeType">

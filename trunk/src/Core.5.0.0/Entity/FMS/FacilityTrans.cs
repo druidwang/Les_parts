@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using com.Sconit.Entity;
+using com.Sconit.Entity.SYS;
+using System.ComponentModel.DataAnnotations;
 
 //TODO: Add other using statements here
 
@@ -11,7 +13,9 @@ namespace com.Sconit.Entity.FMS
     {
         #region Non O/R Mapping Properties
 
-        //TODO: Add Non O/R Mapping Properties here. 
+        [CodeDetailDescriptionAttribute(CodeMaster = com.Sconit.CodeMaster.CodeMaster.FacilityTransType, ValueField = "TransType")]
+        [Display(Name = "FacilityTrans_TransType", ResourceType = typeof(Resources.FMS.FacilityTrans))]
+        public string TransTypeDescription { get; set; }
 
         #endregion
     }

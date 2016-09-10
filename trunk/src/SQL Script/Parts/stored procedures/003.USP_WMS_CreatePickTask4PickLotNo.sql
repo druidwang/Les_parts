@@ -378,9 +378,9 @@ BEGIN
 				declare @UpdateCount int
 				select @UpdateCount = COUNT(1) from #tempShipPlan_003 where (FulfillFullPickQty + FulfillOddPickQty) > 0
 
-				update sp set PickQty = sp.PickQty + tmp.FulfillFullPickQty + tmp.FulfillOddPickQty, LastModifyUser = @CreateUserId, LastModifyUserNm = @CreateUserId, LastModifyDate = @DateTimeNow, [Version] = sp.[Version] + 1
+				update sp set PickQty = sp.PickQty + tmp.TargetPickQty, LastModifyUser = @CreateUserId, LastModifyUserNm = @CreateUserId, LastModifyDate = @DateTimeNow, [Version] = sp.[Version] + 1
 				from #tempShipPlan_003 as tmp inner join WMS_ShipPlan as sp on tmp.ShipPlanId = sp.Id and tmp.[Version] = sp.[Version]
-				where (tmp.FulfillFullPickQty + tmp.FulfillOddPickQty) > 0
+				--where (tmp.FulfillFullPickQty + tmp.FulfillOddPickQty) > 0
 
 				if (@@ROWCOUNT <> @UpdateCount)
 				begin
@@ -400,6 +400,15 @@ BEGIN
 				select UUID, OrderNo, OrderSeq, ShipPlanId, TargetDock, OccupyQty, 0,
 				@CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1
 				from #tempPickOccupy_003
+
+				insert into WMS_UnpickShipPlan(ShipPlanId, Flow, OrderNo, OrderSeq, OrderDetId, StartTime, WindowTime, 
+				Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Qty, ShipQty, [Priority], LocFrom, LocFromNm, LocTo, LocToNm, Station, Dock, 
+				IsActive, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, CloseUser, CloseUserNm, CloseDate, [Version], OrderType)
+				select sp.ShipPlanId, sp.Flow, sp.OrderNo, sp.OrderSeq, sp.OrderDetId, sp.StartTime, sp.WindowTime, 
+				Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Qty, ShipQty, [Priority], LocFrom, LocFromNm, LocTo, LocToNm, Station, Dock, 
+				IsActive, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, CloseUser, CloseUserNm, CloseDate, [Version], OrderType 
+				from #tempShipPlan_003 as tmp inner join WMS_ShipPlan as sp on tmp.ShipPlanId = sp.Id
+				where tmp.TargetPickQty > (tmp.FulfillFullPickQty + tmp.FulfillOddPickQty)
 			end
 
 			if @Trancount = 0 

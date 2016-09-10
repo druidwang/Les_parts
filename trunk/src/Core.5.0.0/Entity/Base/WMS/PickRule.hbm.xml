@@ -5,8 +5,9 @@
       		<generator class="identity" />
         </id>
 		<property name="PickGroupCode" column="PickGroupCode" type="String" length="50"/>	
-		<property name="Location" column="Location" type="String" length="50"/>	
-		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
+		<property name="Location" column="Location" type="String" length="50"/>
+    <property name="Area" column="Area" type="String" length="50"/>
+    <property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
 		<property name="LastModifyUserId" column="LastModifyUser" type="Int32"/>	

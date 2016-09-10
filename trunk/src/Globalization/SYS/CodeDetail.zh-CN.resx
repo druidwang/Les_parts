@@ -1741,4 +1741,52 @@
   <data name="CodeDetail_PermissionCategoryType_Carrier" xml:space="preserve">
     <value>承运商</value>
   </data>
+  <data name="CodeDetail_FacilityTransType_Create" xml:space="preserve">
+    <value>创建</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_Enable" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_Envelop" xml:space="preserve">
+    <value>封存</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_FinishInspect" xml:space="preserve">
+    <value>结束检验</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_FinishMaintain" xml:space="preserve">
+    <value>结束保养</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_FinishRepair" xml:space="preserve">
+    <value>结束维修</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_FinishUse" xml:space="preserve">
+    <value>结束使用</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_Lend" xml:space="preserve">
+    <value>租赁</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_Lose" xml:space="preserve">
+    <value>盘亏</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_Scrap" xml:space="preserve">
+    <value>报废</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_Sell" xml:space="preserve">
+    <value>转让</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_StartInspect" xml:space="preserve">
+    <value>开始检验</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_StartMaintain" xml:space="preserve">
+    <value>开始保养</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_StartRepair" xml:space="preserve">
+    <value>开始维修</value>
+  </data>
+  <data name="CodeDetail_FacilityTransType_StartUse" xml:space="preserve">
+    <value>开始使用</value>
+  </data>
+  <data name="CodeDetail_MaintainPlanType_TIMES" xml:space="preserve">
+    <value>次数</value>
+  </data>
 </root>

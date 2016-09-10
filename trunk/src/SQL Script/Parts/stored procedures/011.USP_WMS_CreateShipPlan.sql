@@ -25,6 +25,10 @@ BEGIN
 		begin try
 			declare @OrderType tinyint
 			declare @Status tinyint
+			declare @IsAutoCreatePickList bit
+			declare @BeginShipPlanId int
+			declare @EndShipPlanId int
+			declare @InsertShipPlanCount int
 
 			if (ISNULL(@OrderNo, '') = '')
 			begin
@@ -32,12 +36,12 @@ BEGIN
 				RAISERROR(@ErrorMsg, 16, 1) 
 			end
 
-			select @OrderType = [Type], @Status = [Status] 
+			select @OrderType = [Type], @Status = [Status], @IsAutoCreatePickList = IsCreatePL
 			from ORD_OrderMstr_2 where OrderNo = @OrderNo
 
 			if (@OrderType = null)
 			begin
-				select @OrderType = [Type], @Status = [Status] 
+				select @OrderType = [Type], @Status = [Status], @IsAutoCreatePickList = IsCreatePL 
 				from ORD_OrderMstr_3 where OrderNo = @OrderNo
 			end
 
@@ -122,6 +126,17 @@ BEGIN
 				left join MD_Location as dl on det.LocFrom = dl.Code
 				where mstr.OrderNo = @OrderNo 
 				and ((det.LocFrom is null and ml.EnableAdvWM = 1) or (det.LocFrom is not null and dl.EnableAdvWM = 1))
+			end
+
+			select @EndShipPlanId = @@IDENTITY, @InsertShipPlanCount = @@ROWCOUNT
+			set @BeginShipPlanId = @EndShipPlanId - @InsertShipPlanCount + 1
+
+			if (@IsAutoCreatePickList = 1)
+			begin
+				declare @CreatePickTaskTable CreatePickTaskTableType
+				insert into @CreatePickTaskTable(Id, PickQty)
+				select Id, ShipQty from WMS_ShipPlan where Id between @BeginShipPlanId and @EndShipPlanId
+				exec USP_WMS_CreatePickTask
 			end
 			
 			if @Trancount = 0 

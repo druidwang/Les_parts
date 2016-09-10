@@ -121,6 +121,7 @@ namespace com.Sconit.Web.Controllers.FMS
                 }
                 else
                 {
+                    
                     this.genericMgr.CreateWithTrim(maintainPlan);
                     SaveSuccessMessage(Resources.FMS.MaintainPlan.MaintainPlan_Added);
                     return RedirectToAction("Edit/" + maintainPlan.Code);
@@ -185,6 +186,16 @@ namespace com.Sconit.Web.Controllers.FMS
                 SaveSuccessMessage(Resources.FMS.MaintainPlan.MaintainPlan_Deleted);
                 return RedirectToAction("List");
             }
+        }
+
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_MaintainPlan_Edit")]
+        public ActionResult _MaintainPlanItem(string maintainPlanCode)
+        {
+            IList<MaintainPlanItem> maintainPlanItemList = genericMgr.FindAll<MaintainPlanItem>("from MaintainPlanItem where MaintainPlanCode=?", maintainPlanCode);
+            return PartialView(maintainPlanItemList);
+
         }
         #endregion
 

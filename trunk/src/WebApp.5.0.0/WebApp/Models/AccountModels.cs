@@ -21,7 +21,7 @@ namespace com.Sconit.Web.Models
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "Errors_Common_FieldRequired", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
         [DataType(DataType.Password)]
         [Display(Name = "User_ConfirmNewPassword", ResourceType = typeof(Resources.ACC.User))]
-        [Compare("NewPassword", ErrorMessageResourceName = "Errors_New_Password_And_Confirm_Password_NotEq", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
+       // [Compare("NewPassword", ErrorMessageResourceName = "Errors_New_Password_And_Confirm_Password_NotEq", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
         public string ConfirmPassword { get; set; }
     }
 
@@ -47,7 +47,7 @@ namespace com.Sconit.Web.Models
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "Errors_Common_FieldRequired", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
         [DataType(DataType.Password)]
         [Display(Name = "User_ConfirmNewPassword", ResourceType = typeof(Resources.ACC.User))]
-        [Compare("NewPassword", ErrorMessageResourceName = "Errors_New_Password_And_Confirm_Password_NotEq", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
+      //  [Compare("NewPassword", ErrorMessageResourceName = "Errors_New_Password_And_Confirm_Password_NotEq", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
         public string ConfirmPassword { get; set; }
     }
 

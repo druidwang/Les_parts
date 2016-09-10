@@ -29,7 +29,8 @@
                     Html.RenderAction("_CodeMasterDropDownList", "Common", new
                     {
                         code = com.Sconit.CodeMaster.CodeMaster.MaintainPlanType,
-                        controlName = "Period"
+                        selectedValue = (int)Model.Type,
+                        controlName = "Type"
                     });
                 }
             </div>
@@ -83,3 +84,6 @@
         </div>
     </fieldset>
 }
+<div id="divMaintainPlanItem">
+    @{Html.RenderAction("_MaintainPlanItem", "MaintainPlan", new { maintainPlanCode = Model.Code });}
+</div>

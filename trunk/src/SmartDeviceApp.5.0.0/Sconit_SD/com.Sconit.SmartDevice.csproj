@@ -59,6 +59,12 @@
     <Compile Include="AppExecutionManager.cs" />
     <Compile Include="CodeMaster.cs" />
     <Compile Include="BusinessException.cs" />
+    <Compile Include="UCWMSRepack.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCWMSRepack.Designer.cs">
+      <DependentUpon>UCWMSRepack.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCWMSShip.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="UCWMSRepack.resx">
+      <DependentUpon>UCWMSRepack.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCWMSShip.resx">
       <DependentUpon>UCWMSShip.cs</DependentUpon>
     </EmbeddedResource>

@@ -4,7 +4,7 @@
     <id name="Id" column="Id" type="Int32" unsaved-value="0" >
       <generator class="identity" />
     </id>
-	<property name="MaintainPlanCode" column="MPCode" type="String" length="50" />
+	<many-to-one name="MaintainPlan" column="MPCode" class="com.Sconit.Entity.FMS.MaintainPlan, com.Sconit.Entity" cascade="none" lazy="proxy" />
 	<property name="FCID" column="FCID"  type="String" length="50" />
     <property name="StartDate" column="StartDate" type="DateTime"  />
     <property name="NextMaintainDate" column="NextMaintainDate" type="DateTime"  />

@@ -384,6 +384,14 @@ namespace com.Sconit.SmartDevice
                 uc.tbBarCode.Focus();
                 this.Text = "移库";
             }
+            else if (module == CodeMaster.TerminalPermission.Client_WMSShip)
+            {
+                UCWMSShip uc = new UCWMSShip(this.user);
+                uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(uc);
+                uc.tbBarCode.Focus();
+                this.Text = "发货";
+            }
         }
 
         private void AddModule(UserControl userControl)
