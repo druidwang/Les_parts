@@ -128,6 +128,7 @@
     <Compile Include="Base\INP\RejectDetail.cs" />
     <Compile Include="Base\INP\RejectMaster.cs" />
     <Compile Include="Base\INV\ContainerDetail.cs" />
+    <Compile Include="Base\INV\ContainerHu.cs" />
     <Compile Include="Base\INV\EndingLocationDet.cs" />
     <Compile Include="Base\INV\FreezeTransaction.cs" />
     <Compile Include="Base\INV\Hu.cs" />
@@ -302,6 +303,7 @@
     <Compile Include="Base\WMS\RepackOccupy.cs" />
     <Compile Include="Base\WMS\RepackTask.cs" />
     <Compile Include="Base\WMS\ShipPlan.cs" />
+    <Compile Include="Base\WMS\UnpickShipPlan.cs" />
     <Compile Include="BIL\ActingBill.cs" />
     <Compile Include="BIL\BillDetail.cs" />
     <Compile Include="BIL\BillMaster.cs" />
@@ -355,6 +357,7 @@
     <Compile Include="INP\RejectDetail.cs" />
     <Compile Include="INP\RejectMaster.cs" />
     <Compile Include="INV\ContainerDetail.cs" />
+    <Compile Include="INV\ContainerHu.cs" />
     <Compile Include="INV\EndingLocationDet.cs" />
     <Compile Include="INV\FreezeTransaction.cs" />
     <Compile Include="INV\Hu.cs" />
@@ -692,6 +695,7 @@
     <Compile Include="WMS\RepackOccupy.cs" />
     <Compile Include="WMS\RepackTask.cs" />
     <Compile Include="WMS\ShipPlan.cs" />
+    <Compile Include="WMS\UnpickShipPlan.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Base\ACC\Permission.hbm.xml" />
@@ -988,6 +992,8 @@
     <EmbeddedResource Include="Base\WMS\PickUser.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Base\INV\ContainerHu.hbm.xml" />
+    <Content Include="Base\WMS\UnpickShipPlan.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\DeliveryBarCode.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PackingList.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PackingListDetail.hbm.xml">
