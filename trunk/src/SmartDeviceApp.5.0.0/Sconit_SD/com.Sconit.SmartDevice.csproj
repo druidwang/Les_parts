@@ -288,6 +288,12 @@
     <EmbeddedResource Include="UCSpChk.resx">
       <DependentUpon>UCSpChk.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCBindContainer.resx">
+      <DependentUpon>UCBindContainer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCBinOn.resx">
+      <DependentUpon>UCBinOn.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -461,11 +467,26 @@
     <Compile Include="UCSpChk.Designer.cs">
       <DependentUpon>UCSpChk.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCBindContainer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCBindContainer.Designer.cs">
+      <DependentUpon>UCBindContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCBinOn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCBinOn.Designer.cs">
+      <DependentUpon>UCBinOn.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
     <None Include="ClassDiagram1.cd" />
     <None Include="Web References\SmartDeviceRef\Bin.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SmartDeviceRef\ContainerDetail.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\SmartDeviceRef\DeliverBarCode.datasource">
@@ -521,10 +542,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:2015/WebService/SD/SmartDeviceService.asmx">
+    <WebReferenceUrl Include="http://192.168.15.1:8080/WebService/SD/SmartDeviceService.asmx">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\SmartDeviceRef\</RelPath>
-      <UpdateFromURL>http://localhost:2015/WebService/SD/SmartDeviceService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://192.168.15.1:8080/WebService/SD/SmartDeviceService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

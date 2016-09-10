@@ -44,6 +44,10 @@ namespace com.Sconit.SmartDevice
             {
                 return CodeMaster.BarCodeType.DC.ToString();
             }
+            else if (barCode.StartsWith("COT"))
+            {
+                return CodeMaster.BarCodeType.COT.ToString();
+            }
             else
             {
                 foreach (var codeType in barCodeTypes)

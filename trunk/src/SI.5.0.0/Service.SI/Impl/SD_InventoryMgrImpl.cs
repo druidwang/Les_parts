@@ -361,12 +361,30 @@
         [Transaction(TransactionMode.Requires)]
         public bool OnBin(string binCode, List<string> huIds)
         {
+            var inventoryPutList = new List<Entity.INV.InventoryPut>();
+            foreach (var huId in huIds)
+            {
+                var inventoryPut = new Entity.INV.InventoryPut();
+
+                inventoryPut.Bin = binCode;
+                inventoryPut.HuId = huId;
+                inventoryPutList.Add(inventoryPut);
+            }
+            this.locationDetailMgr.InventoryPut(inventoryPutList);
             return true;
         }
 
         [Transaction(TransactionMode.Requires)]
         public bool OffBin(List<string> huIds)
         {
+            var inventoryPickList = new List<Entity.INV.InventoryPick>();
+            foreach (var huId in huIds)
+            {
+                var inventoryPick = new Entity.INV.InventoryPick();
+                inventoryPick.HuId = huId;
+                inventoryPickList.Add(inventoryPick);
+            }
+            this.locationDetailMgr.InventoryPick(inventoryPickList);
             return true;
         }
 
@@ -376,7 +394,7 @@
             try
             {
                 var containerHus = this.genericMgr.FindAll<Entity.INV.ContainerHu>("from ContainerHu c where c.HuId=?", huId);
-                if (containerHus != null || containerHus.Count > 0)
+                if (containerHus != null && containerHus.Count > 0)
                 {
                     return true;
                 }

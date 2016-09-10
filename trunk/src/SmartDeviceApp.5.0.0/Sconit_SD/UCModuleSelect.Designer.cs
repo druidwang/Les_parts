@@ -76,6 +76,8 @@ namespace com.Sconit.SmartDevice
             this.btnLogOff = new System.Windows.Forms.Button();
             this.tbKeyCode = new System.Windows.Forms.TextBox();
             this.lblUserStatus = new System.Windows.Forms.Label();
+            this.btnBindContainerOut = new System.Windows.Forms.Button();
+            this.btnBindContainerIn = new System.Windows.Forms.Button();
             this.tabModuleSelect.SuspendLayout();
             this.tabProcurement.SuspendLayout();
             this.tabProduction.SuspendLayout();
@@ -314,6 +316,8 @@ namespace com.Sconit.SmartDevice
             // 
             // tabInventory
             // 
+            this.tabInventory.Controls.Add(this.btnBindContainerOut);
+            this.tabInventory.Controls.Add(this.btnBindContainerIn);
             this.tabInventory.Controls.Add(this.btnBinning);
             this.tabInventory.Controls.Add(this.btnDevanning);
             this.tabInventory.Controls.Add(this.btnHuStatus);
@@ -586,6 +590,26 @@ namespace com.Sconit.SmartDevice
             this.lblUserStatus.Size = new System.Drawing.Size(215, 20);
             this.lblUserStatus.Text = "当前用户:";
             // 
+            // btnBindContainerOut
+            // 
+            this.btnBindContainerOut.Location = new System.Drawing.Point(121, 150);
+            this.btnBindContainerOut.Name = "btnBindContainerOut";
+            this.btnBindContainerOut.Size = new System.Drawing.Size(98, 20);
+            this.btnBindContainerOut.TabIndex = 12;
+            this.btnBindContainerOut.Text = "8.容器拆包";
+            this.btnBindContainerOut.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnBindContainerOut.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnBindContainerIn
+            // 
+            this.btnBindContainerIn.Location = new System.Drawing.Point(15, 150);
+            this.btnBindContainerIn.Name = "btnBindContainerIn";
+            this.btnBindContainerIn.Size = new System.Drawing.Size(98, 20);
+            this.btnBindContainerIn.TabIndex = 11;
+            this.btnBindContainerIn.Text = "7.容器打包";
+            this.btnBindContainerIn.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnBindContainerIn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
             // UCModuleSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -657,5 +681,7 @@ namespace com.Sconit.SmartDevice
         private System.Windows.Forms.Button btnWMSPickGoodsQty;
         private System.Windows.Forms.Button btnWMSShip;
         private System.Windows.Forms.Button btnWMSRepack;
+        private System.Windows.Forms.Button btnBindContainerOut;
+        private System.Windows.Forms.Button btnBindContainerIn;
     }
 }
