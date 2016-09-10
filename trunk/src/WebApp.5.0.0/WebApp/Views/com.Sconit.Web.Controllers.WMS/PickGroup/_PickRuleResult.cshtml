@@ -18,6 +18,7 @@
         .Columns(columns =>
         {
             columns.Bound(o => o.Location).ClientTemplate(string.Format("<a href=\"javascript:onPickRuleclick('{0}')\">{1}</a>", "<#=Id #>", "<#=Location #>"));
+            columns.Bound(o => o.Area);
             columns.Bound(o => o.CreateUserName);
             columns.Bound(o => o.CreateDate);
             columns.Bound(o => o.LastModifyDate);

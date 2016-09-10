@@ -10,6 +10,13 @@ namespace com.Sconit.Entity.MD
 
         //TODO: Add Non O/R Mapping Properties here. 
 
+        public string CodeName
+        {
+            get
+            {
+                return string.IsNullOrEmpty(this.Code) ? "" : this.Code + " [" + this.Name + "]";
+            }
+        }
         #endregion
     }
 }
