@@ -1,0 +1,42 @@
+﻿
+@model IEnumerable<com.Sconit.Entity.INV.ContainerDetail>
+<fieldset>
+    @(Html.Telerik().Grid(Model)
+        .Name("ContainerGrid")
+        .DataKeys(keys =>
+        {
+            keys.Add(p => p.ContainerId);
+        })
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.ContainerId).ClientTemplate(Html.ActionLink("<#= ContainerId #>", "Edit", "ContainerDetail", new { ID = "<#= Code #>" }, null).ToString());
+            columns.Bound(o => o.Container);
+            columns.Bound(o => o.ContainerDescription);
+            columns.Bound(o => o.ContainerQty); 
+                 })
+      
+                .Scrollable(c => c.Enabled(false))
+                .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "ContainerDetail"))
+                .ClientEvents(events => events.OnDataBinding("ContainerDetailGrid_OnDataBinding"))
+                .Pageable(settings =>
+                {
+                    settings.Total(ViewBag.Total != null ? ViewBag.Total : 0);
+                    settings.PageSize(ViewBag.PageSize);
+                    if (ViewBag.Page != null)
+                    {
+                        settings.PageTo(ViewBag.Page);
+                    }
+                })
+                .EnableCustomBinding(true)
+                .Sortable()
+                .Resizable(resizing => resizing.Columns(true))
+            )
+    <script type="text/javascript">
+        function ContainerDetailGrid_OnDataBinding(e) {
+            e.data = {
+                ContainerId: $('#ContainerId').val(),
+                ContainerDescription: $('#ContainerDescription').val()
+            };
+        }
+    </script>
+</fieldset>

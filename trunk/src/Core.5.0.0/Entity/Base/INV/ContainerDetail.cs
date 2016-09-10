@@ -13,8 +13,8 @@ namespace com.Sconit.Entity.INV
 		public string Location { get; set; }
 		public Boolean IsEmpty { get; set; }
 		public string ContainerDescription { get; set; }
-		public Int16 ContainerType { get; set; }
-		public Double ContainerQty { get; set; }
+        public com.Sconit.CodeMaster.InventoryType ContainerType { get; set; }
+		public Decimal ContainerQty { get; set; }
 		public DateTime ActiveDate { get; set; }
 		public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }

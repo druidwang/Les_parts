@@ -509,6 +509,19 @@ namespace com.Sconit.Service.Impl
         }
         #endregion
 
+
+        #region 获取容器号
+
+
+        public string GetContainerId(string prefix)
+        {
+            var containerId = GetNextSequenceo(prefix);
+
+            return containerId;
+        }
+
+        #endregion
+
         public string GetBillNo(BillMaster billMaster)
         {
             if (billMaster.Type == CodeMaster.BillType.Procurement)
