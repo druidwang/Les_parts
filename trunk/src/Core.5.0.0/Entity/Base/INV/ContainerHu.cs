@@ -31,7 +31,7 @@ namespace com.Sconit.Entity.INV
 		public Boolean IsOdd { get; set; }
 		public string SupplierLotNo { get; set; }
 		public string ContainerDesc { get; set; }
-		public Int16 ContainerType { get; set; }
+        public com.Sconit.CodeMaster.InventoryType ContainerType { get; set; }
 		public Decimal ContainerQty { get; set; }
         public string Container { get; set; }
         

@@ -295,9 +295,30 @@
                 var hu = this.genericMgr.FindById<Entity.INV.Hu>(huId);
                 Entity.INV.ContainerHu containerHu = new Entity.INV.ContainerHu();
 
-                Mapper.Map<Entity.INV.Hu, Entity.INV.ContainerHu>(hu, containerHu);
 
-                Mapper.Map<Entity.INV.ContainerDetail, Entity.INV.ContainerHu>(containerDetail, containerHu);
+                containerHu.BaseUom = hu.BaseUom;
+                containerHu.HuId = hu.HuId;
+                containerHu.IsOdd = hu.IsOdd;
+                containerHu.Item = hu.Item;
+                containerHu.ItemDesc = hu.ItemDescription;
+                containerHu.LotNo = hu.LotNo;
+                containerHu.ManufactureDate = hu.ManufactureDate;
+                containerHu.ManufactureParty = hu.ManufactureParty;
+                containerHu.Qty = hu.Qty;
+                containerHu.RefItemCode = hu.ReferenceItemCode;
+                containerHu.SupplierLotNo = hu.SupplierLotNo;
+                containerHu.UnitCount = hu.UnitCount;
+                containerHu.UnitQty = hu.UnitQty;
+                containerHu.Uom = hu.Uom;
+
+                containerHu.Container = containerDetail.Container;
+                containerHu.ContainerDesc = containerDetail.ContainerDescription;
+                containerHu.ContainerId = containerDetail.ContainerId;
+                containerHu.ContainerQty = containerDetail.ContainerQty;
+                containerHu.ContainerType = containerDetail.ContainerType;
+
+
+            
 
                 genericMgr.Create(containerHu);
 

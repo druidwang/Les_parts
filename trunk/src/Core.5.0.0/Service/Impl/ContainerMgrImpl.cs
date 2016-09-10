@@ -37,7 +37,7 @@ namespace com.Sconit.Service.Impl
             {
                 ContainerDetail containerDetail = new ContainerDetail();
                 containerDetail.IsEmpty = true;
-                containerDetail.ContainerId = numberControlMgr.GetContainerId("CONT"); ;
+                containerDetail.ContainerId = numberControlMgr.GetContainerId("COT"); ;
                 containerDetail.ActiveDate = DateTime.Now;
                 containerDetail.Container = container.Code;
                 containerDetail.ContainerDescription = container.Description;
