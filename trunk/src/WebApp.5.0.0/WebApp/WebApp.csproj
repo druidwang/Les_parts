@@ -2774,6 +2774,17 @@
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\FacilityOrder\_SearchResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.FMS\MaintainPlan\_MaintainPlanItem.cshtml" />
+    <Content Include="Views\Common\_LocationAreaComboBox.cshtml" />
+    <Content Include="Views\Common\_MaintainPlanComboBox.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\FacilityParamater\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\FacilityParamater\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\FacilityParamater\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\FacilityParamater\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\ReportPointStatus.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.MES\MesScanControlPoint\_SearchResult.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

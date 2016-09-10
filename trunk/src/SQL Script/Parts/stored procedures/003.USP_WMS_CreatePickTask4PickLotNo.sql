@@ -409,6 +409,15 @@ BEGIN
 				sp.IsActive, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1, sp.OrderType 
 				from #tempShipPlan_003 as tmp inner join WMS_ShipPlan as sp on tmp.ShipPlanId = sp.Id
 				where tmp.TargetPickQty > (tmp.FulfillFullPickQty + tmp.FulfillOddPickQty)
+
+				--自动分配拣货单
+				update pt set PickGroup = pu.PickGroupCode, PickUserId = pu.PickUser, PickUserNm = pu.PickUserNm
+				from WMS_PickTask as pt
+				inner join #tempPickTask_003 as tmp on pt.UUID = tmp.UUID
+				inner join WMS_PickRule as pr on pt.Loc = pr.Location and pt.Area = pr.Area
+				inner join WMS_PickUser as pu on pr.PickGroupCode = pu.PickGroupCode
+				inner join WMS_PickGroup as pg on pr.PickGroupCode = pg.PickGroupCode
+				where pu.IsActive = 1 and pg.IsActive = 1 and pg.IsAutoAssign = 1
 			end
 
 			if @Trancount = 0 

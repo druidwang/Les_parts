@@ -299,7 +299,7 @@
             }
             else if (code == Sconit.CodeMaster.CodeMaster.OrderBillTerm)
             {
-                codeDetailList = codeDetailList.Where(p => p.Value != ((int)com.Sconit.CodeMaster.OrderBillTerm.ConsignmentBilling).ToString()).ToList();
+                //codeDetailList = codeDetailList.Where(p => p.Value != ((int)com.Sconit.CodeMaster.OrderBillTerm.ConsignmentBilling).ToString()).ToList();
             }
             ViewBag.ControlName = controlName;
             ViewBag.ControlId = controlId;

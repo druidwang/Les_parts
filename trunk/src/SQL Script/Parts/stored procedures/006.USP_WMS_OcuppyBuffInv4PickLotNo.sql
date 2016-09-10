@@ -306,7 +306,6 @@ BEGIN
 
 		begin try
 			set @trancount = @@trancount
-
 			if @Trancount = 0
 			begin
 				begin tran

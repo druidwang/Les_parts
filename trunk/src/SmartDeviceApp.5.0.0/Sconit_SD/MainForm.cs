@@ -301,7 +301,7 @@ namespace com.Sconit.SmartDevice
                 ucQuickReturn.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
                 this.AddModule(ucQuickReturn);
                 ucQuickReturn.tbBarCode.Focus();
-                this.Text = "快速退库";
+                this.Text = "领料退库";
             }
 
             else if (module == CodeMaster.TerminalPermission.Client_ProductionOffline)
