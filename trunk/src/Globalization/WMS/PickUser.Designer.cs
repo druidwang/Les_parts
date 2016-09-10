@@ -133,6 +133,15 @@ namespace Resources.WMS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IsAutoAssign.
+        /// </summary>
+        public static string PickUser_IsAutoAssign {
+            get {
+                return ResourceManager.GetString("PickUser_IsAutoAssign", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to LastModifyDate.
         /// </summary>
         public static string PickUser_LastModifyDate {

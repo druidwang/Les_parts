@@ -402,11 +402,11 @@ BEGIN
 				from #tempPickOccupy_003
 
 				insert into WMS_UnpickShipPlan(ShipPlanId, Flow, OrderNo, OrderSeq, OrderDetId, StartTime, WindowTime, 
-				Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Qty, ShipQty, [Priority], LocFrom, LocFromNm, LocTo, LocToNm, Station, Dock, 
-				IsActive, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, CloseUser, CloseUserNm, CloseDate, [Version], OrderType)
-				select sp.ShipPlanId, sp.Flow, sp.OrderNo, sp.OrderSeq, sp.OrderDetId, sp.StartTime, sp.WindowTime, 
-				Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, Qty, ShipQty, [Priority], LocFrom, LocFromNm, LocTo, LocToNm, Station, Dock, 
-				IsActive, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, CloseUser, CloseUserNm, CloseDate, [Version], OrderType 
+				Item, ItemDesc, RefItemCode, Uom, BaseUom, UnitQty, UC, UCDesc, UnpickQty, [Priority], LocFrom, LocFromNm, LocTo, LocToNm, Station, Dock, 
+				IsActive, CreateUser, CreateUserNm, CreateDate, LastModifyUser, LastModifyUserNm, LastModifyDate, [Version], OrderType)
+				select sp.Id, sp.Flow, sp.OrderNo, sp.OrderSeq, sp.OrderDetId, sp.StartTime, sp.WindowTime, 
+				sp.Item, sp.ItemDesc, sp.RefItemCode, sp.Uom, sp.BaseUom, sp.UnitQty, sp.UC, sp.UCDesc, tmp.TargetPickQty - (tmp.FulfillFullPickQty + tmp.FulfillOddPickQty), sp.[Priority], sp.LocFrom, sp.LocFromNm, sp.LocTo, sp.LocToNm, sp.Station, sp.Dock, 
+				sp.IsActive, @CreateUserId, @CreateUserNm, @DateTimeNow, @CreateUserId, @CreateUserNm, @DateTimeNow, 1, sp.OrderType 
 				from #tempShipPlan_003 as tmp inner join WMS_ShipPlan as sp on tmp.ShipPlanId = sp.Id
 				where tmp.TargetPickQty > (tmp.FulfillFullPickQty + tmp.FulfillOddPickQty)
 			end

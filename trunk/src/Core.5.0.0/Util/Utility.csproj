@@ -60,9 +60,6 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\..\Lib\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
-    <Reference Include="NetBIX.oBIX.Client">
-      <HintPath>..\..\Lib\NetBIX.oBIX.Client.dll</HintPath>
-    </Reference>
     <Reference Include="NPOI, Version=1.2.5.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Lib\NPOI.dll</HintPath>
@@ -78,7 +75,6 @@
     <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.XML" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="Telerik.Web.Mvc">
       <HintPath>..\..\Lib\Telerik.Web.Mvc.dll</HintPath>
     </Reference>
@@ -88,7 +84,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BarcodeHelper.cs" />
-    <Compile Include="ObixHelper.cs" />
     <Compile Include="CSVWriter.cs" />
     <Compile Include="DateTimeHelper.cs" />
     <Compile Include="EncryptHelper.cs" />
@@ -104,6 +99,7 @@
     <Compile Include="IWindsorContainer.cs" />
     <Compile Include="LotNoHelper.cs" />
     <Compile Include="MultiButtonAttribute.cs" />
+    <Compile Include="ObixHelper.cs" />
     <Compile Include="Report\Operator\RepDeliveryBarCodeOperator.cs" />
     <Compile Include="Report\Operator\RepBarCodePartsOperator.cs" />
     <Compile Include="Report\Operator\RepBarCodePurchase2DOperator.cs" />
@@ -205,7 +201,6 @@
     <Compile Include="Report\Operator\RepBarCode2DSpecialOperator.cs" />
     <Compile Include="Report\Operator\RepBarCodeExScrapOperator.cs" />
     <Compile Include="Report\Operator\RepRECTransferDetailOperator.cs" />
-    <Compile Include="Report\Operator\RepTraceCodeOperator.cs" />
     <Compile Include="Report\RepTemplate2.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -144,6 +144,9 @@
   <data name="PickGroup_IsActive" xml:space="preserve">
     <value>是否生效</value>
   </data>
+  <data name="PickGroup_IsAutoAssign" xml:space="preserve">
+    <value>自动分派任务</value>
+  </data>
   <data name="PickGroup_LastModifyDate" xml:space="preserve">
     <value>最后更新日期</value>
   </data>

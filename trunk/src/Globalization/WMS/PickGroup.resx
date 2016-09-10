@@ -144,6 +144,9 @@
   <data name="PickGroup_IsActive" xml:space="preserve">
     <value>IsActive</value>
   </data>
+  <data name="PickGroup_IsAutoAssign" xml:space="preserve">
+    <value>IsAutoAssign</value>
+  </data>
   <data name="PickGroup_LastModifyDate" xml:space="preserve">
     <value>LastModifyDate</value>
   </data>
