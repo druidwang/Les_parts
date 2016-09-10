@@ -12,9 +12,11 @@
           //  columns.Bound(o => o.ContainerId).ClientTemplate(Html.ActionLink("<#= ContainerId #>", "Edit", "ContainerHu", new { ID = "<#= ContainerId #>" }, null).ToString());
             columns.Bound(o => o.ContainerId).Title("容器编号");
             columns.Bound(o => o.HuId).Title("条码");
-            columns.Bound(o => o.ContainerDesc).Title("容器类型描述");
-            columns.Bound(o => o.ContainerType).Title("容器类型");
-            columns.Bound(o => o.ContainerQty).Title("容量"); 
+            columns.Bound(o => o.Container).Title("容器");
+
+            columns.Bound(o => o.Item).Title("零件号");
+            columns.Bound(o => o.ItemDesc).Title("零件描述");
+            columns.Bound(o => o.Qty).Title("数量"); 
                  })
       
                 .Scrollable(c => c.Enabled(false))
