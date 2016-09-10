@@ -1964,6 +1964,36 @@
         #endregion
 
         #region LocationArea
+        public ActionResult _LocationAreaComboBox(string controlName, string controlId, string selectedValue, bool? enable, bool? isChange, string location)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.Enable = enable;
+            ViewBag.IsChange = isChange;
+            ViewBag.ControlId = controlId;
+            ViewBag.SelectedValue = selectedValue;
+            ViewBag.Location = location;
+            IList<LocationArea> locationBinList = queryMgr.FindAll<LocationArea>("from LocationArea as l where l.IsActive=? and l.Location=?", new object[] { true, string.IsNullOrEmpty(location) ? "" : location });
+            if (locationBinList == null)
+            {
+                locationBinList = new List<LocationArea>();
+            }
+
+            return PartialView(new SelectList(locationBinList, "Code", "CodeName", selectedValue));
+        }
+
+        public ActionResult _LocationAreaAjaxLoading(string location, string text)
+        {
+            List<object> paramList = new List<object> { text + "%", true };
+            var hql = "from LocationArea as l where l.Code like ? and l.IsActive = ?";
+            if (!string.IsNullOrWhiteSpace(location))
+            {
+                hql += " and Location =? ";
+                paramList.Add(location);
+            }
+            var locationBinList = queryMgr.FindAll<LocationArea>(hql, paramList.ToArray(), firstRow, maxRow);
+            return new JsonResult { Data = new SelectList(locationBinList, "Code", "CodeName") };
+        }
+
         public ActionResult _LocationAreaDropDownList(string controlName, string controlId, string selectedValue, bool? includeBlankOption, string blankOptionDescription, string blankOptionValue, string LocationCode)
         {
             ViewBag.ControlName = controlName;

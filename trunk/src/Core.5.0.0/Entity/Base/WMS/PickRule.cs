@@ -16,6 +16,9 @@ namespace com.Sconit.Entity.WMS
         [Display(Name = "PickRule_Location", ResourceType = typeof(Resources.WMS.PickRule))]
         public string Location { get; set; }
 
+        [Display(Name = "PickRule_LocationArea", ResourceType = typeof(Resources.WMS.PickRule))]
+        public string Area { get; set; }
+
         public Int32 CreateUserId { get; set; }
 
         [Display(Name = "PickRule_CreateUserName", ResourceType = typeof(Resources.WMS.PickRule))]
