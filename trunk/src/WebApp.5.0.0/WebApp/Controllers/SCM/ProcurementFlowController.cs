@@ -15,6 +15,8 @@ using com.Sconit.Entity.SYS;
 using System.Web;
 using System;
 using System.Text;
+using com.Sconit.Entity.PRD;
+using com.Sconit.Entity.Exception;
 
 namespace com.Sconit.Web.Controllers.SCM
 {
@@ -37,6 +39,9 @@ namespace com.Sconit.Web.Controllers.SCM
         private static string selectBindStatement = @"select f
                                                       from FlowBinding as f join f.MasterFlow as mf join f.BindedFlow as bf";
         //private static string userNameDuiplicateVerifyStatement = @"select count(*) from FlowMaster as u where u.Code = ?";
+        private static string selectCountFlowShiftDetailStatement = "select count(*) from FlowShiftDetail as f ";
+
+        private static string selectFlowShiftDetailStatement = "select f from FlowShiftDetail as f ";
 
         public ProcurementFlowController()
         {
@@ -297,6 +302,8 @@ namespace com.Sconit.Web.Controllers.SCM
             ViewBag.NextOrderTime = flowStrategy.NextOrderTime;
             ViewBag.WindowTimeType = flowStrategy.WindowTimeType;
             ViewBag.MrpLeadTime = flowStrategy.RccpLeadTime;
+
+            ViewBag.LeadTimeOption = flowStrategy.LeadTimeOption;
             return PartialView(flowStrategy);
         }
 
@@ -305,11 +312,43 @@ namespace com.Sconit.Web.Controllers.SCM
         public ActionResult _Strategy(FlowStrategy flowStrategy)
         {
             ViewBag.WindowTimeType = flowStrategy.WindowTimeType;
-            if (ModelState.IsValid)
-            {
-                flowMgr.UpdateFlowStrategy(flowStrategy);
-                SaveSuccessMessage(Resources.SCM.FlowStrategy.FlowStrategy_Updated);
-            }
+
+            ViewBag.LeadTimeOption = flowStrategy.LeadTimeOption;
+            //if (ModelState.IsValid)
+            //{
+            //    var hasError = false;
+                    flowMgr.UpdateFlowStrategy(flowStrategy);
+                    SaveSuccessMessage(Resources.SCM.FlowStrategy.FlowStrategy_Updated);
+            //    if (flowStrategy.Strategy == CodeMaster.FlowStrategy.JIT || flowStrategy.Strategy == CodeMaster.FlowStrategy.KB)
+            //    {
+
+            //        if (flowStrategy.WindowTimeType == CodeMaster.WindowTimeType.CycledWindowTime)
+            //        {
+            //            if (flowStrategy.WeekInterval <= 0)
+            //            {
+            //                hasError = true;
+            //                SaveErrorMessage(Resources.SCM.FlowStrategy.FlowStrategy_WeekIntervalCanNotLessThanZero);
+            //            }
+            //        }
+            //    }
+
+            //    if (flowStrategy.Strategy == CodeMaster.FlowStrategy.SEQ)
+            //    {
+            //        if (string.IsNullOrWhiteSpace(flowStrategy.SeqGroup))
+            //        {
+            //            hasError = true;
+            //            SaveErrorMessage(Resources.ErrorMessage.Errors_Common_FieldRequired, Resources.SCM.FlowStrategy.FlowStrategy_SeqGroup);
+            //        }
+            //    }
+
+            //    if (!hasError)
+            //    {
+            //        flowMgr.UpdateFlowStrategy(flowStrategy);
+            //        this.genericMgr.UpdateWithNativeQuery("update SCM_FlowStrategy set MRPTotalAdj=? ,MRPWeight=? where Flow=?", new object[] { flowStrategy.MrpTotalAdjust, flowStrategy.MrpWeight, flowStrategy.Flow });
+            //        SaveSuccessMessage(Resources.SCM.FlowStrategy.FlowStrategy_Updated);
+            //    }
+
+            //}
             return PartialView(flowStrategy);
         }
         #endregion
@@ -664,6 +703,242 @@ namespace com.Sconit.Web.Controllers.SCM
         }
 
         #endregion
+
+        #region FlowShiftDet
+        [HttpGet]
+        [SconitAuthorize(Permissions = "Url_ProcurementFlow_View")]
+        public ActionResult _FlowShiftDetailSearch(string id)
+        {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return HttpNotFound();
+            }
+            ViewBag.flow = id;
+            return PartialView();
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_ProcurementFlow_View")]
+        public ActionResult _AjaxFlowShiftDetailList(GridCommand command, string Shift, string FlowCode)
+        {
+
+            SearchStatementModel searchStatementModel = PrepareFlowShiftDetailSearchStatement(command, Shift, FlowCode);
+            return PartialView(GetAjaxPageData<FlowShiftDetail>(searchStatementModel, command));
+        }
+
+        [GridAction]
+        [SconitAuthorize(Permissions = "Url_ProcurementFlow_View")]
+        public ActionResult _FlowShiftDetailList(GridCommand command, string FlowCode, string Shift)
+        {
+            ViewBag.Shift = Shift;
+            ViewBag.Flow = FlowCode;
+            ViewBag.PageSize = base.ProcessPageSize(command.PageSize);
+            return PartialView();
+        }
+
+        [SconitAuthorize(Permissions = "Url_ProcurementFlow_Edit")]
+        public JsonResult _SaveflowShoftDetailEdit([Bind(Prefix = "inserted")]IEnumerable<FlowShiftDetail> insertedFlowShiftDetails,
+            [Bind(Prefix = "updated")]IEnumerable<FlowShiftDetail> updatedFlowShiftDetails,
+            [Bind(Prefix = "deleted")]IEnumerable<FlowShiftDetail> deletedFlowShiftDetails, string flow)
+        {
+            try
+            {
+                IList<FlowShiftDetail> existFlowShiftDetailList = genericMgr.FindAll<FlowShiftDetail>("from FlowShiftDetail s where s.Flow = ?", flow);
+
+                IList<FlowShiftDetail> deleted = new List<FlowShiftDetail>();
+                if (deletedFlowShiftDetails != null)
+                {
+                    deleted = deletedFlowShiftDetails.ToList();
+                }
+
+                IList<FlowShiftDetail> inserted = new List<FlowShiftDetail>();
+                if (insertedFlowShiftDetails != null)
+                {
+                    foreach (var flowShiftDet in insertedFlowShiftDetails.ToList())
+                    {
+                        if (string.IsNullOrEmpty(flowShiftDet.Shift))
+                        {
+                            throw new BusinessException(Resources.ErrorMessage.Errors_Common_FieldCanNotBeNull, Resources.SCM.FlowShiftDetail.FlowShiftDetail_Shift);
+                        }
+                        if (string.IsNullOrEmpty(flowShiftDet.WindowTime))
+                        {
+                            throw new BusinessException(Resources.ErrorMessage.Errors_Common_FieldCanNotBeNull, Resources.SCM.FlowShiftDetail.FlowShiftDetail_WindowTime);
+                        }
+
+
+                        var insertedEquals = insertedFlowShiftDetails.Where(c => c.Shift == flowShiftDet.Shift);
+
+                        if (insertedEquals.Count() > 1)
+                        {
+                            throw new BusinessException(Resources.PRD.ShiftDetail.ShiftDetail_SameShift);
+                        }
+
+                        if (updatedFlowShiftDetails != null)
+                        {
+                            var updatedEquals = updatedFlowShiftDetails.Where(c => c.Shift == flowShiftDet.Shift);
+                            if (updatedEquals.Count() > 0)
+                            {
+                                throw new BusinessException(Resources.PRD.ShiftDetail.ShiftDetail_SameShift);
+                            }
+                        }
+
+                        if (existFlowShiftDetailList != null)
+                        {
+                            var existEquals = existFlowShiftDetailList.Where(c => c.Shift == flowShiftDet.Shift);
+                            if (existEquals.Count() > 0)
+                            {
+                                throw new BusinessException(Resources.PRD.ShiftDetail.ShiftDetail_SameShift);
+                            }
+                        }
+
+                        string[] windowsArr = flowShiftDet.WindowTime.Split('|');
+                        foreach (var windws in windowsArr)
+                        {
+                            if (string.IsNullOrWhiteSpace(windws))
+                            {
+                                throw new BusinessException(string.Format("窗口时间{0}填写有误，正确的格式( 08:00|10:00|12:00 )", flowShiftDet.WindowTime));
+                            }
+                            if (windws.Length != 5)
+                            {
+                                throw new BusinessException(string.Format("窗口时间{0}填写有误，正确的格式( 08:00|10:00|12:00 )", flowShiftDet.WindowTime));
+                            }
+                            string[] times = windws.Split(':');
+                            int cc = 0;
+                            if (!int.TryParse(times[0], out cc))
+                            {
+                                throw new BusinessException(string.Format("窗口时间{0}填写有误，正确的格式( 08:00|10:00|12:00 )", flowShiftDet.WindowTime));
+                            }
+                            if (cc < 0 || cc > 23)
+                            {
+                                throw new BusinessException(string.Format("窗口时间{0}填写有误，正确的格式( 08:00|10:00|12:00 )", flowShiftDet.WindowTime));
+                            }
+                            if (!int.TryParse(times[1], out cc))
+                            {
+                                throw new BusinessException(string.Format("窗口时间{0}填写有误，正确的格式( 08:00|10:00|12:00 )", flowShiftDet.WindowTime));
+                            }
+                            if (cc < 0 || cc > 59)
+                            {
+                                throw new BusinessException(string.Format("窗口时间{0}填写有误，正确的格式( 08:00|10:00|12:00 )", flowShiftDet.WindowTime));
+                            }
+
+                        }
+
+                        inserted.Add(flowShiftDet);
+                    }
+                }
+
+                IList<FlowShiftDetail> updated = new List<FlowShiftDetail>();
+                if (updatedFlowShiftDetails != null)
+                {
+                    foreach (var flowShiftDet in updatedFlowShiftDetails.ToList())
+                    {
+                        if (string.IsNullOrEmpty(flowShiftDet.Shift))
+                        {
+                            throw new BusinessException(Resources.ErrorMessage.Errors_Common_FieldCanNotBeNull, Resources.SCM.FlowShiftDetail.FlowShiftDetail_Shift);
+                        }
+                        if (string.IsNullOrEmpty(flowShiftDet.WindowTime))
+                        {
+                            throw new BusinessException(Resources.ErrorMessage.Errors_Common_FieldCanNotBeNull, Resources.SCM.FlowShiftDetail.FlowShiftDetail_WindowTime);
+                        }
+                        if (insertedFlowShiftDetails != null)
+                        {
+                            var insertedEquals = insertedFlowShiftDetails.Where(c => c.Shift == flowShiftDet.Shift);
+                            if (insertedEquals.Count() > 0)
+                            {
+                                throw new BusinessException(Resources.PRD.ShiftDetail.ShiftDetail_SameShift);
+                            }
+                        }
+
+                        var updatedEquals = updatedFlowShiftDetails.Where(c => c.Shift == flowShiftDet.Shift && c.Id != flowShiftDet.Id);
+                        if (updatedEquals.Count() > 0)
+                        {
+                            throw new BusinessException(Resources.PRD.ShiftDetail.ShiftDetail_SameShift);
+                        }
+
+                        if (existFlowShiftDetailList != null)
+                        {
+                            var existEquals = existFlowShiftDetailList.Where(c => c.Shift == flowShiftDet.Shift && c.Id != flowShiftDet.Id);
+                            if (existEquals.Count() > 0)
+                            {
+                                throw new BusinessException(Resources.PRD.ShiftDetail.ShiftDetail_SameShift);
+                            }
+                        }
+                        string[] windowsArr = flowShiftDet.WindowTime.Split('|');
+                        foreach (var windws in windowsArr)
+                        {
+                            if (string.IsNullOrWhiteSpace(windws))
+                            {
+                                throw new BusinessException(string.Format("窗口时间{0}填写有误，正确的格式( 08:00|10:00|12:00 )", flowShiftDet.WindowTime));
+                            }
+                            if (windws.Length != 5)
+                            {
+                                throw new BusinessException(string.Format("窗口时间{0}填写有误，正确的格式( 08:00|10:00|12:00 )", flowShiftDet.WindowTime));
+                            }
+                            string[] times = windws.Split(':');
+                            int cc = 0;
+                            if (!int.TryParse(times[0], out cc))
+                            {
+                                throw new BusinessException(string.Format("窗口时间{0}填写有误，正确的格式( 08:00|10:00|12:00 )", flowShiftDet.WindowTime));
+                            }
+                            if (cc < 0 || cc > 23)
+                            {
+                                throw new BusinessException(string.Format("窗口时间{0}填写有误，正确的格式( 08:00|10:00|12:00 )", flowShiftDet.WindowTime));
+                            }
+                            if (!int.TryParse(times[1], out cc))
+                            {
+                                throw new BusinessException(string.Format("窗口时间{0}填写有误，正确的格式( 08:00|10:00|12:00 )", flowShiftDet.WindowTime));
+                            }
+                            if (cc < 0 || cc > 59)
+                            {
+                                throw new BusinessException(string.Format("窗口时间{0}填写有误，正确的格式( 08:00|10:00|12:00 )", flowShiftDet.WindowTime));
+                            }
+                        }
+                        updated.Add(flowShiftDet);
+                    }
+                }
+
+                flowMgr.UpdateFlowShiftDetails(flow.Trim(), inserted, updated, deleted);
+
+                object obj = new { };
+                SaveSuccessMessage(Resources.SCM.FlowShiftDetail.FlowShiftDetail_Save);
+                return Json(obj);
+            }
+            catch (BusinessException ex)
+            {
+                SaveBusinessExceptionMessage(ex);
+                return Json(null);
+            }
+        }
+
+        private SearchStatementModel PrepareFlowShiftDetailSearchStatement(GridCommand command, string Shift, string Flow)
+        {
+            string whereStatement = string.Empty;
+            IList<object> param = new List<object>();
+            HqlStatementHelper.AddEqStatement("Shift", Shift, "f", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("Flow", Flow, "f", ref whereStatement, param);
+            string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
+            SearchStatementModel searchStatementModel = new SearchStatementModel();
+            searchStatementModel.SelectCountStatement = selectCountFlowShiftDetailStatement;
+            searchStatementModel.SelectStatement = selectFlowShiftDetailStatement;
+            searchStatementModel.WhereStatement = whereStatement;
+            searchStatementModel.SortingStatement = sortingStatement;
+            searchStatementModel.Parameters = param.ToArray<object>();
+
+            return searchStatementModel;
+        }
+        #endregion
+
+        //#region _FlowShiftDetailList
+        //[GridAction]
+        //[SconitAuthorize(Permissions = "Url_ProcurementFlow_View")]
+        //public ActionResult _FlowShiftDetailList(GridCommand command, string FlowCode, string Shift)
+        //{
+        //    ViewBag.Shift = Shift;
+        //    ViewBag.Flow = FlowCode;
+        //    ViewBag.PageSize = base.ProcessPageSize(command.PageSize);
+        //    return PartialView();
+        //}
+        //#endregion
 
         #region Import
         [SconitAuthorize(Permissions = "Url_ProcurementFlow_Edit")]

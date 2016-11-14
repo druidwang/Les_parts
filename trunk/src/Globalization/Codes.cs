@@ -807,7 +807,8 @@ namespace com.Sconit.CodeMaster
         FacilityParamaterType,
         FacilityOrderType,
         FacilityOrderStatus,
-        CheckListOrderStatus
+        CheckListOrderStatus,
+        LeadTimeOption,
     }
 
     public enum MessageType
@@ -1351,5 +1352,11 @@ namespace com.Sconit.CodeMaster
     {
         Create = 0,
         Submit = 1
+    }
+
+    public enum LeadTimeOption
+    {
+        Strategy = 0,
+        ShiftDetail = 1,
     }
 }

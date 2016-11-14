@@ -12,8 +12,8 @@ namespace com.Sconit.Entity.SCM
         [StringLength(50, ErrorMessageResourceName = "Errors_Common_FieldLengthExceed", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
         [Display(Name = "FlowStrategy_Flow", ResourceType = typeof(Resources.SCM.FlowStrategy))]
         public string Flow { get; set; }
-        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "Errors_Common_FieldRequired", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
-        [StringLength(100, ErrorMessageResourceName = "Errors_Common_FieldLengthExceed", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
+        //[Required(AllowEmptyStrings = false, ErrorMessageResourceName = "Errors_Common_FieldRequired", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
+        //[StringLength(100, ErrorMessageResourceName = "Errors_Common_FieldLengthExceed", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
         [Display(Name = "FlowStrategy_Desc1", ResourceType = typeof(Resources.SCM.FlowStrategy))]
         public string Description { get; set; }
         [Display(Name = "FlowStrategy_Strategy", ResourceType = typeof(Resources.SCM.FlowStrategy))]
@@ -65,6 +65,21 @@ namespace com.Sconit.Entity.SCM
         public bool IsCheckMrpWeeklyPlan { get; set; }
         [Display(Name = "FlowStrategy_IsCheckMrpMonthlyPlan", ResourceType = typeof(Resources.SCM.FlowStrategy))]
         public bool IsCheckMrpMonthlyPlan { get; set; }
+
+        public Int32 MrpWeight { get; set; }
+
+        public decimal MrpTotal { get; set; }
+
+        public decimal MrpTotalAdjust { get; set; }
+
+
+        [Display(Name = "FlowStrategy_SeqGroup", ResourceType = typeof(Resources.SCM.FlowStrategy))]
+        public string SeqGroup { get; set; }
+
+        [Display(Name = "FlowStrategy_SafeTime", ResourceType = typeof(Resources.SCM.FlowStrategy))]
+        public decimal? SafeTime { get; set; }
+
+        public com.Sconit.CodeMaster.LeadTimeOption LeadTimeOption { get; set; }
         #endregion
 
         public override int GetHashCode()

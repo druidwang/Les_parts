@@ -244,4 +244,13 @@
   <data name="FlowStrategy_RccpLeadTime" xml:space="preserve">
     <value>粗能力提前期</value>
   </data>
+  <data name="FlowStrategy_SafeTime" xml:space="preserve">
+    <value>安全提前期</value>
+  </data>
+  <data name="FlowStrategy_LeadTimeOption" xml:space="preserve">
+    <value>提前期选项</value>
+  </data>
+  <data name="FlowStrategy_SeqGroup" xml:space="preserve">
+    <value>排序组</value>
+  </data>
 </root>

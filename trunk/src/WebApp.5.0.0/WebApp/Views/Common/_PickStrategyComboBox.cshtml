@@ -4,7 +4,8 @@
     string id = string.IsNullOrWhiteSpace(ViewBag.ControlId) ? name : ViewBag.ControlId;
     int? type = ViewBag.Type;
     bool isChange = ViewBag.IsChange != null ? ViewBag.IsChange : false;
-    string onChangeName = "EmptyChange";
+    //string onChangeName = "EmptyChange";
+    string onChangeName = isChange ? "Flow_Change" : "EmptyChange";
 }
 @(Html.Telerik().ComboBox()
                 .Name(name)

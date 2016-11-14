@@ -554,4 +554,8 @@
   <data name="FlowMaster_SalesOrg" xml:space="preserve">
     <value>SalesOrg</value>
   </data>
+  <data name="FlowShiftDetail_TabDetail" xml:space="preserve">
+    <value>ShiftDetailSearch</value>
+    <comment>窗体时间</comment>
+  </data>
 </root>

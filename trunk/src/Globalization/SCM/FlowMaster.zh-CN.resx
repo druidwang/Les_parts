@@ -505,4 +505,8 @@
   <data name="FlowMaster_SalesOrg" xml:space="preserve">
     <value>销售组织</value>
   </data>
+  <data name="FlowShiftDetail_TabDetail" xml:space="preserve">
+    <value>窗口时间</value>
+    <comment>窗口时间</comment>
+  </data>
 </root>

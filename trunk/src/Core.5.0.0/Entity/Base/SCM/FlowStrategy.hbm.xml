@@ -38,5 +38,12 @@
     <property name="IsCheckMrpWeeklyPlan" column="IsCheckMrpWeeklyPlan" type="Boolean" length="50" />
     <property name="IsCheckMrpMonthlyPlan" column="IsCheckMrpMonthlyPlan" type="Boolean" length="50" />
 
+    <property name="SafeTime" column="SafeTime" type="Decimal" />
+    <property name="SeqGroup" column="SeqGroup" type="String" length="50" />
+    <property name="MrpTotalAdjust" column="MrpTotalAdjust" type="Decimal" update="false" />
+    <property name="MrpWeight" column="MrpWeight" type="Int32" update="false" />
+    <property name="MrpTotal" column="MrpTotal" type="Decimal" update="false" />
+
+  
   </class>
 </hibernate-mapping>

@@ -2815,6 +2815,11 @@
     <Content Include="Views\com.Sconit.Web.Controllers.INV\ContainerHu\_SearchResult.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.INV\ContainerHu\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.INV\ContainerHu\List.cshtml" />
+    <Content Include="Views\Common\_FlowStrategyDropDownList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.SCM\ProcurementFlow\_FlowShiftDetailList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.SCM\ProcurementFlow\_FlowShiftDetailSearch.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.SCM\ProcurementFlow\_FlowShiftDetailSearchResult.cshtml" />
+    <Content Include="Views\Common\_ShiftMasterComboBox.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

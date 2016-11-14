@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using com.Sconit.Entity.SCM;
 using System.IO;
+using System;
 
 namespace com.Sconit.Service
 {
@@ -25,5 +26,20 @@ namespace com.Sconit.Service
         FlowMaster GetAuthenticFlow(string flowCode);
 
         void ImportFlow(Stream inputStream, CodeMaster.OrderType flowType);
+
+        #region  
+        //void UpdateFlow(FlowMaster flowMaster, bool isChangeSL);
+        //#region 路线明细导入
+        //void CreateFlowDetailXls(Stream inputStream);
+        //#endregion
+
+        //IList<FlowDetail> GetFlowDetails(IList<Int32> flowDetailIdList);
+        //void DeleteKBFlowDetail(Int32 flowDetailId);
+        void UpdateFlowShiftDetails(string flow, IList<FlowShiftDetail> addFlowShiftDet, IList<FlowShiftDetail> updateFlowShiftDetail, IList<FlowShiftDetail> deleteFlowShiftDet);
+
+        //void BatchTransferDetailXls(Stream stream);
+
+        #endregion
+
     }
 }
