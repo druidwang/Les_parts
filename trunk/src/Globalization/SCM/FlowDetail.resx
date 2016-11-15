@@ -274,6 +274,9 @@
   <data name="FlowDetail_MrpTotal" xml:space="preserve">
     <value>MrpTotal</value>
   </data>
+  <data name="FlowDetail_MrpTotalAdjust" xml:space="preserve">
+    <value>MrpTotalAdjust</value>
+  </data>
   <data name="FlowDetail_MrpWeight" xml:space="preserve">
     <value>MrpWeight</value>
     <comment>MRP权重</comment>

@@ -274,6 +274,42 @@ namespace com.Sconit.Web.Controllers.SCM
 
         #endregion
 
+        //#region Strategy
+        //[HttpGet]
+        //[SconitAuthorize(Permissions = "Url_TransferFlow_View")]
+        //public ActionResult _Strategy(string id)
+        //{
+        //    if (string.IsNullOrWhiteSpace(id))
+        //    {
+        //        return HttpNotFound();
+        //    }
+
+        //    FlowStrategy flowStrategy = this.flowMgr.GetFlowStrategy(id);
+        //    if (flowStrategy == null)
+        //    {
+        //        flowStrategy = new FlowStrategy();
+        //        flowStrategy.Flow = id;
+        //    }
+        //    ViewBag.NextWindowTime = flowStrategy.NextWindowTime;
+        //    ViewBag.NextOrderTime = flowStrategy.NextOrderTime;
+        //    ViewBag.WindowTimeType = flowStrategy.WindowTimeType;
+        //    return PartialView(flowStrategy);
+        //}
+
+        //[HttpPost]
+        //[SconitAuthorize(Permissions = "Url_TransferFlow_Edit")]
+        //public ActionResult _Strategy(FlowStrategy flowStrategy)
+        //{
+        //    ViewBag.WindowTimeType = flowStrategy.WindowTimeType;
+        //    if (ModelState.IsValid)
+        //    {
+        //        flowMgr.UpdateFlowStrategy(flowStrategy);
+        //        SaveSuccessMessage(Resources.SCM.FlowStrategy.FlowStrategy_Updated);
+        //    }
+        //    return PartialView(flowStrategy);
+        //}
+        //#endregion
+
         #region Strategy
         [HttpGet]
         [SconitAuthorize(Permissions = "Url_TransferFlow_View")]

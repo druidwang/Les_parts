@@ -572,7 +572,7 @@
   <data name="FlowMaster_TabStrategy" xml:space="preserve">
     <value>Strategy</value>
     <comment>策略</comment>
-  </data>
+  </data>  
   <data name="FlowMaster_TransferFlow" xml:space="preserve">
     <value>Transfer Flow</value>
     <comment>移库路线</comment>

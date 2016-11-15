@@ -244,4 +244,13 @@
   <data name="FlowStrategy_RccpLeadTime" xml:space="preserve">
     <value>RccpLeadTime</value>
   </data>
+  <data name="FlowStrategy_SafeTime" xml:space="preserve">
+    <value>SafeTime</value>
+  </data>
+  <data name="FlowStrategy_LeadTimeOption" xml:space="preserve">
+    <value>LeadTimeOption</value>
+  </data>
+  <data name="FlowStrategy_SeqGroup" xml:space="preserve">
+    <value>SeqGroup</value>
+  </data>
 </root>

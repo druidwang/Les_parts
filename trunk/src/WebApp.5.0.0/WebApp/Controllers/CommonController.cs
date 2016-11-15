@@ -109,6 +109,10 @@
 
         private static string selectLikePickUserStatement = "from PickUser as p where p.PickGroupCode = ? and p.PickUserName like ?";
 
+        private static string selectEqShiftMasterStatement = "from ShiftMaster as s where s.Code = ?";
+
+        private static string selectLikeShiftMasterStatement = "from ShiftMaster as s where s.Code like ? ";
+
         #endregion
 
         //public IGenericMgr genericMgr { get; set; }
@@ -2536,44 +2540,44 @@
 
         #endregion
 
-        #region　pickstrategy
+        //#region　pickstrategy
 
-        public ActionResult _PickStrategyComboBox(string controlName, string controlId, string selectedValue, int? type, bool? isChange)
-        {
-            ViewBag.ControlName = controlName;
-            ViewBag.ControlId = controlId;
-            ViewBag.Type = type;
-            ViewBag.IsChange = isChange;
+        //public ActionResult _PickStrategyComboBox(string controlName, string controlId, string selectedValue, int? type, bool? isChange)
+        //{
+        //    ViewBag.ControlName = controlName;
+        //    ViewBag.ControlId = controlId;
+        //    ViewBag.Type = type;
+        //    ViewBag.IsChange = isChange;
 
-            //using com.Sconit.CodeMaster;
-            IList<PickStrategy> flowList = new List<PickStrategy>();
-            if (selectedValue != null && selectedValue.Trim() != string.Empty)
-            {
+        //    //using com.Sconit.CodeMaster;
+        //    IList<PickStrategy> flowList = new List<PickStrategy>();
+        //    if (selectedValue != null && selectedValue.Trim() != string.Empty)
+        //    {
 
-                flowList = queryMgr.FindAll<PickStrategy>(selectEqPickStrategyStatement, new object[] { selectedValue.Trim() });
-            }
+        //        flowList = queryMgr.FindAll<PickStrategy>(selectEqPickStrategyStatement, new object[] { selectedValue.Trim() });
+        //    }
 
-            return PartialView(new SelectList(flowList, "Code", "Code", selectedValue));
-        }
+        //    return PartialView(new SelectList(flowList, "Code", "Code", selectedValue));
+        //}
 
 
-        public ActionResult _FlowStrategyAjaxLoading(string text, int? type)
-        {
-            IList<PickStrategy> flowList = new List<PickStrategy>();
+        //public ActionResult _FlowStrategyAjaxLoading(string text, int? type)
+        //{
+        //    IList<PickStrategy> flowList = new List<PickStrategy>();
 
-            string selectLikeFlowStatement = null;
+        //    string selectLikeFlowStatement = null;
 
-            object[] paramList = new object[] { };
-            if (type == null)
-            {
-                selectLikeFlowStatement = "from PickStrategy as w where w.Code like ? ";
-                paramList = new object[] { text + "%" };
-            }
-            flowList = queryMgr.FindAll<PickStrategy>(selectLikeFlowStatement, paramList, firstRow, maxRow);
+        //    object[] paramList = new object[] { };
+        //    if (type == null)
+        //    {
+        //        selectLikeFlowStatement = "from PickStrategy as w where w.Code like ? ";
+        //        paramList = new object[] { text + "%" };
+        //    }
+        //    flowList = queryMgr.FindAll<PickStrategy>(selectLikeFlowStatement, paramList, firstRow, maxRow);
 
-            return new JsonResult { Data = new SelectList(flowList, "Code", "Code") };
-        }
-        #endregion
+        //    return new JsonResult { Data = new SelectList(flowList, "Code", "Code") };
+        //}
+        //#endregion
 
         #region Supplier Combox
         public ActionResult _SupplierComboBox(string controlName, string controlId, string selectedValue, bool? isChange, bool? enable, bool? checkPermission)
@@ -3931,7 +3935,101 @@
         }
         #endregion
 
-        
+        #region ShiftMaster
+        public ActionResult _ShiftMasterComboBox(string controlName, string controlId, string selectedValue, bool? enable, bool? isChange)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Enable = enable;
+
+            ViewBag.isChange = isChange;
+            IList<ShiftMaster> shiftMasterList = new List<ShiftMaster>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+                shiftMasterList = genericMgr.FindAll<ShiftMaster>(selectEqShiftMasterStatement, selectedValue);
+            }
+
+            return PartialView(new SelectList(shiftMasterList, "Code", "CodeName", selectedValue));
+
+        }
+
+        public ActionResult _AjaxLoadingShiftMaster(string text)
+        {
+            IList<ShiftMaster> shiftMasterList = new List<ShiftMaster>();
+            if (text == "")
+                shiftMasterList = genericMgr.FindAll<ShiftMaster>(" from ShiftMaster ", firstRow, maxRow);
+            else
+                shiftMasterList = genericMgr.FindAll<ShiftMaster>(selectLikeShiftMasterStatement, new object[] { "%" + text + "%" }, firstRow, maxRow);
+            return new JsonResult { Data = new SelectList(shiftMasterList, "Code", "CodeName") };
+           
+        }
+        #endregion
+
+
+        #region　pickstrategy
+
+        public ActionResult _PickStrategyComboBox(string controlName, string controlId, string selectedValue, int? type, bool? isChange)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Type = type;
+            ViewBag.IsChange = isChange;
+
+            //using com.Sconit.CodeMaster;
+            IList<PickStrategy> flowList = new List<PickStrategy>();
+            if (selectedValue != null && selectedValue.Trim() != string.Empty)
+            {
+
+                flowList = base.genericMgr.FindAll<PickStrategy>(selectEqPickStrategyStatement, new object[] { selectedValue.Trim() });
+            }
+
+            return PartialView(new SelectList(flowList, "Code", "Code", selectedValue));
+        }
+
+
+        public ActionResult _FlowStrategyAjaxLoading(string text, int? type)
+        {
+            IList<PickStrategy> flowList = new List<PickStrategy>();
+
+            string selectLikeFlowStatement = null;
+
+            object[] paramList = new object[] { };
+            if (type == null)
+            {
+                selectLikeFlowStatement = "from PickStrategy as w where w.Code like ? ";
+                paramList = new object[] { text + "%" };
+            }
+            flowList = base.genericMgr.FindAll<PickStrategy>(selectLikeFlowStatement, paramList, firstRow, maxRow);
+
+            return new JsonResult { Data = new SelectList(flowList, "Code", "Code") };
+        }
+
+        public ActionResult _FlowStrategyDropDownList(string controlName, string controlId, string selectedValue, bool? includeBlankOption, string blankOptionDescription, string blankOptionValue, bool? coupled, bool? isChange, bool? enable)
+        {
+            ViewBag.Enable = enable;
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Coupled = coupled;
+            ViewBag.SelectedValue = selectedValue;
+            ViewBag.IsChange = isChange;
+            IList<CodeDetail> flowStrategyList = systemMgr.GetCodeDetails(com.Sconit.CodeMaster.CodeMaster.FlowStrategy);
+            flowStrategyList = flowStrategyList.Where(f => f.Description != "CodeDetail_FlowStrategy_NA").ToList();
+            if (includeBlankOption.HasValue && includeBlankOption.Value)
+            {
+                flowStrategyList.Add(new CodeDetail { Code = string.Empty, Description = string.Empty });
+            }
+            IList<SelectListItem> itemList = Mapper.Map<IList<CodeDetail>, IList<SelectListItem>>(flowStrategyList);
+            foreach (var item in itemList)
+            {
+                item.Text = systemMgr.TranslateCodeDetailDescription(item.Text);
+            }
+
+            return PartialView(new SelectList(itemList, "Value", "Text", selectedValue));
+        }
+
+        #endregion
+
+
         #region PlanNo
         public ActionResult _PlanNoComboBox(string controlName, string controlId, string selectedValue,
             bool? enable, bool? coupled, string flow, string dateIndex)

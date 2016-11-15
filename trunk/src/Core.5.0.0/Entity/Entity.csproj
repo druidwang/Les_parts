@@ -260,6 +260,7 @@
     <Compile Include="Base\PRD\WorkingShift.cs" />
     <Compile Include="Base\Report\CustReportDetail.cs" />
     <Compile Include="Base\Report\CustReportMaster.cs" />
+    <Compile Include="Base\SCM\FlowShiftDetail.cs" />
     <Compile Include="Base\SCM\FlowBinding.cs" />
     <Compile Include="Base\SCM\FlowDetail.cs" />
     <Compile Include="Base\SCM\FlowMaster.cs" />
@@ -655,6 +656,7 @@
     <Compile Include="SCM\FlowBinding.cs" />
     <Compile Include="SCM\FlowDetail.cs" />
     <Compile Include="SCM\FlowMaster.cs" />
+    <Compile Include="SCM\FlowShiftDetail.cs" />
     <Compile Include="SCM\FlowStrategy.cs" />
     <Compile Include="SCM\PickStrategy.cs" />
     <Compile Include="SCM\ProductLineFacility.cs" />
@@ -1009,6 +1011,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Base\INV\ContainerHu.hbm.xml" />
+    <EmbeddedResource Include="Base\SCM\FlowShiftDetail.hbm.xml" />
     <Content Include="Base\WMS\UnpickShipPlan.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\DeliveryBarCode.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PackingList.hbm.xml" />

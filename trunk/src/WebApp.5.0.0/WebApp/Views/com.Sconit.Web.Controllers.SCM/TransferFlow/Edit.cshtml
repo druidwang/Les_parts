@@ -26,6 +26,11 @@
                 .Text(Resources.SCM.FlowMaster.FlowMaster_TabBinding)
                 .LoadContentFrom("_Binding", "TransferFlow", new { id = Model })
                 .HtmlAttributes(new { onclick = "CleanTabMessage()" });
+
+            tabstrip.Add()
+                .Text(Resources.SCM.FlowMaster.FlowShiftDetail_TabDetail)
+                .LoadContentFrom("_FlowShiftDetailSearch", "ProcurementFlow", new { id = Model })
+                .HtmlAttributes(new { onclick = "CleanTabMessage()" });
         })
         .Render();
 }

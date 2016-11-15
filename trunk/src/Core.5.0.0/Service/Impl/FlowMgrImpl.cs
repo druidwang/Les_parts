@@ -860,5 +860,35 @@
             }
         }
         //public FlowDetail
+
+
+
+         public void UpdateFlowShiftDetails(string flow, IList<FlowShiftDetail> addFlowShiftDet,
+         IList<FlowShiftDetail> updateFlowShiftDetail, IList<FlowShiftDetail> deleteFlowShiftDet)
+        {
+            if (addFlowShiftDet != null)
+            {
+                foreach (var detail in addFlowShiftDet)
+                {
+                    detail.Flow = flow.ToString();
+                    this.genericMgr.Create(detail);
+                }
+            }
+            if (updateFlowShiftDetail != null)
+            {
+                foreach (var detail in updateFlowShiftDetail)
+                {
+                    this.genericMgr.Update(detail);
+                }
+            }
+            if (deleteFlowShiftDet != null)
+            {
+                foreach (var detail in deleteFlowShiftDet)
+                {
+                    this.genericMgr.Delete(detail);
+                }
+            }
+
+        }
     }
 }
