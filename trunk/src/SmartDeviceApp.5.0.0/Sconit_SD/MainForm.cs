@@ -26,6 +26,7 @@ namespace com.Sconit.SmartDevice
             InitializeComponent();
             LoadUCLogin();
             smartDeviceService = new SD_SmartDeviceService();
+            smartDeviceService.Url = Utility.WEBSERVICE_URL;
             timeOut = 20;
         }
 

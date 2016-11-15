@@ -40,6 +40,7 @@ namespace com.Sconit.SmartDevice
         {
             InitializeComponent();
             this.smartDeviceService = new SD_SmartDeviceService();
+            this.smartDeviceService.Url = Utility.WEBSERVICE_URL;
             this.user = user;
             this.InitializeDataGrid();
             this.Reset();

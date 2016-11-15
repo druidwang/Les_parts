@@ -44,6 +44,7 @@ namespace com.Sconit.SmartDevice
         public UCBase(User user)
         {
             this.smartDeviceService = new SD_SmartDeviceService();
+            this.smartDeviceService.Url = Utility.WEBSERVICE_URL;
             this.user = user;
             this.InitializeComponent();
             this.InitializeDataGrid();
