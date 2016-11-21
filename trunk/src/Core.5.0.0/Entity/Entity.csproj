@@ -195,6 +195,7 @@
     <Compile Include="Base\MD\Container.cs" />
     <Compile Include="Base\MD\Currency.cs" />
     <Compile Include="Base\MD\Custodian.cs" />
+    <Compile Include="Base\MD\DefaultBin.cs" />
     <Compile Include="Base\MD\FinanceCalendar.cs" />
     <Compile Include="Base\MD\Item.cs" />
     <Compile Include="Base\MD\ItemCategory.cs" />
@@ -438,6 +439,7 @@
     <Compile Include="MD\Currency.cs" />
     <Compile Include="MD\Custodian.cs" />
     <Compile Include="MD\Customer.cs" />
+    <Compile Include="MD\DefaultBin.cs" />
     <Compile Include="MD\FinanceCalendar.cs" />
     <Compile Include="MD\Item.cs" />
     <Compile Include="MD\ItemCategory.cs" />
@@ -1012,6 +1014,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Base\INV\ContainerHu.hbm.xml" />
     <EmbeddedResource Include="Base\SCM\FlowShiftDetail.hbm.xml" />
+    <Content Include="Base\MD\DefaultBin.hbm.xml" />
     <Content Include="Base\WMS\UnpickShipPlan.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\DeliveryBarCode.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\PackingList.hbm.xml" />
