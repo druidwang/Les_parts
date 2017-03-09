@@ -58,14 +58,14 @@
             <div class="search-field">
                 @Html.CheckBox("AllowNegaInv", TempData["LocationSearchModel"] != null ? ((LocationSearchModel)TempData["LocationSearchModel"]).AllowNegaInv : false)
             </div>
-            <div class="search-label">
+         @*   <div class="search-label">
                 <label for="Location_IsMRP">
                     @Resources.MD.Location.Location_IsMRP
                 </label>
             </div>
             <div class="search-field">
                 @Html.CheckBox("IsMRP", TempData["LocationSearchModel"] != null ? ((LocationSearchModel)TempData["LocationSearchModel"]).IsMRP : false)
-            </div>
+            </div>*@
         </div>
         <div class="search-footer">
             @Html.Hidden("isFromList", true)

@@ -17,12 +17,12 @@
                 .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsActive' <#= IsActive? checked='checked' : '' #> />");
             columns.Bound(o => o.AllowNegative)
                 .ClientTemplate("<input type='checkbox' disabled='disabled' name='AllowNegative' <#= AllowNegative? checked='checked' : '' #> />");
-            columns.Bound(o => o.IsMRP)
-                .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsMRP' <#= IsMRP? checked='checked' : '' #> />");
-            columns.Bound(o => o.IsConsignment)
-             .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsConsignment' <#= IsConsignment? checked='checked' : '' #> />");
-            columns.Bound(o => o.EnableAdvanceWarehouseManagment)
-                       .ClientTemplate("<input type='checkbox' disabled='disabled' name='EnableAdvanceWarehouseManagment' <#= EnableAdvanceWarehouseManagment? checked='checked' : '' #> />"); 
+            //columns.Bound(o => o.IsMRP)
+            //    .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsMRP' <#= IsMRP? checked='checked' : '' #> />");
+            //columns.Bound(o => o.IsConsignment)
+            // .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsConsignment' <#= IsConsignment? checked='checked' : '' #> />");
+            //columns.Bound(o => o.EnableAdvanceWarehouseManagment)
+            //           .ClientTemplate("<input type='checkbox' disabled='disabled' name='EnableAdvanceWarehouseManagment' <#= EnableAdvanceWarehouseManagment? checked='checked' : '' #> />"); 
                  })
         .Scrollable(c => c.Enabled(false))
         .EnableCustomBinding(true)
@@ -49,7 +49,7 @@
                 Region: $('#Region').val(),
                 IsIncludeInActive: $('#IsIncludeInActive').is(':checked'),
                 AllowNegaInv: $('#AllowNegaInv').is(':checked'),
-                IsMRP: $('#IsMRP').is(':checked'),
+              //  IsMRP: $('#IsMRP').is(':checked'),
                 SAPLocation: $('#SAPLocation').val()
             };
         } 

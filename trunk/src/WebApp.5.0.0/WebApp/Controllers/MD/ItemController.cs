@@ -145,8 +145,8 @@ namespace com.Sconit.Web.Controllers.MD
             var itemCategoryList = this.genericMgr.FindAll<ItemCategory>();
             foreach (var listdata in gridModel.Data)
             {
-                listdata.ItemCategoryDesc = GetItemCategory(listdata.ItemCategory,Sconit.CodeMaster.SubCategory.ItemCategory,itemCategoryList).Description;
-                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                listdata.ItemCategoryDesc = GetItemCategory(listdata.ItemCategory,itemCategoryList).Description;
+                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup,itemCategoryList).Description;
             }
             return PartialView(gridModel);
         }
@@ -164,8 +164,8 @@ namespace com.Sconit.Web.Controllers.MD
             var itemCategoryList = this.genericMgr.FindAll<ItemCategory>();
             foreach (var listdata in gridModel.Data)
             {
-                listdata.ItemCategoryDesc = GetItemCategory(listdata.ItemCategory, Sconit.CodeMaster.SubCategory.ItemCategory, itemCategoryList).Description;
-                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                listdata.ItemCategoryDesc = GetItemCategory(listdata.ItemCategory,  itemCategoryList).Description;
+                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup,  itemCategoryList).Description;
             }
             var fileName = string.Format("Item.xls");
             ExportToXLS<Item>(fileName, gridModel.Data.ToList());
@@ -248,6 +248,7 @@ namespace com.Sconit.Web.Controllers.MD
                 //}
                 if (canSave)
                 {
+                    item.ItemCategory = string.Empty;
                     itemMgr.CreateItem(item);
                     SaveSuccessMessage(Resources.MD.Item.Item_Added);
                     return RedirectToAction("_EditList/" + item.Code);

@@ -19,8 +19,8 @@ namespace com.Sconit.Entity.MD
         [Display(Name = "ItemCategory_ParentCategory", ResourceType = typeof(Resources.MD.ItemCategory))]
         public string ParentCategory { get; set; }
         // [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "Errors_Common_FieldRequired", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
-        [Display(Name = "ItemCategory_SubCategory", ResourceType = typeof(Resources.MD.ItemCategory))]
-        public com.Sconit.CodeMaster.SubCategory SubCategory { get; set; }
+        //[Display(Name = "ItemCategory_SubCategory", ResourceType = typeof(Resources.MD.ItemCategory))]
+        //public com.Sconit.CodeMaster.SubCategory SubCategory { get; set; }
         public Int32 CreateUserId { get; set; }
         public string CreateUserName { get; set; }
         public DateTime CreateDate { get; set; }
@@ -32,9 +32,9 @@ namespace com.Sconit.Entity.MD
 
         public override int GetHashCode()
         {
-            if (Code != null && SubCategory != 0)
+            if (Code != null )
             {
-                return Code.GetHashCode() ^ SubCategory.GetHashCode();
+                return Code.GetHashCode();
             }
             else
             {
@@ -52,7 +52,7 @@ namespace com.Sconit.Entity.MD
             }
             else
             {
-                return (this.Code == another.Code) && (this.SubCategory == another.SubCategory);
+                return (this.Code == another.Code);
             }
         }
     }

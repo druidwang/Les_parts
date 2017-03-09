@@ -4,3 +4,5 @@ obj
 *.user
 bin
 /trunk/src/WebApp.5.0.0/WebApp/TempFiles
+/trunk/src/WebApp.5.0.0/WebApp/Config/properties.config
+/trunk/src/WebApp.5.0.0/WebApp/web.config

@@ -9,20 +9,20 @@
         .Columns(columns =>
         {
             columns.Bound(o => o.Code).ClientTemplate(Html.ActionLink("<#= Code #>", "_EditList", "Item", new { ID = "<#= Code #>" }, null).ToString());
-            columns.Bound(o => o.ReferenceCode);
             columns.Bound(o => o.Description);
+            columns.Bound(o => o.ReferenceCode);
             columns.Bound(o => o.Uom);
             columns.Bound(o => o.UnitCount);
             //columns.Bound(o => o.Weight);
            // columns.Bound(o => o.ShortCode);
             //columns.Bound(o => o.ItemPriorityDesc);
-            columns.Bound(o => o.ItemCategory);
-            columns.Bound(o => o.ItemCategoryDesc);
-            columns.Bound(o => o.MaterialsGroup);
-            columns.Bound(o => o.MaterialsGroupDesc);
-            columns.Bound(o => o.Division);
-            columns.Bound(o => o.WarnLeadTime);
-            columns.Bound(o => o.Warranty);
+            //columns.Bound(o => o.ItemCategory);
+            //columns.Bound(o => o.ItemCategoryDesc);
+            //columns.Bound(o => o.MaterialsGroup);
+            //columns.Bound(o => o.MaterialsGroupDesc);
+            //columns.Bound(o => o.Division);
+            //columns.Bound(o => o.WarnLeadTime);
+            //columns.Bound(o => o.Warranty);
             columns.Bound(o => o.IsActive)
                 .ClientTemplate("<input type='checkbox' disabled='disabled' name='IsActive' <#= IsActive? checked='checked' : '' #> />");
         })
@@ -48,10 +48,10 @@
                 Code: $('#Code').val(),
                 Description: $('#Description').val(),
                 ReferenceCode: $('#ReferenceCode').val(),
-                ItemCategory: $('#ItemCategory').val(),
-                MaterialsGroup: $('#MaterialsGroup').val(),
-                IsActive: $('#IsActive').is(':checked'),
-                IsVirtual: $('#IsVirtual').is(':checked')
+//                ItemCategory: $('#ItemCategory').val(),
+//                MaterialsGroup: $('#MaterialsGroup').val(),
+                IsActive: $('#IsActive').is(':checked')
+//                IsVirtual: $('#IsVirtual').is(':checked')
             };
         } 
     </script>

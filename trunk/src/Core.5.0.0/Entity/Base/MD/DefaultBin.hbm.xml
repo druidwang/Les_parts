@@ -6,7 +6,7 @@
         </id>
 		<property name="Location" column="Location" type="String" length="50"/>	
 		<property name="Item" column="Item" type="String" length="50"/>	
-		<property name="DefaultBin" column="DefaultBin" type="String" length="50"/>	
+	
 		<property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	

@@ -6,16 +6,16 @@
         location.href = '/Item/ExportXLS/?Code=' + $('#Code').val()
             + '&Description=' + $('#Description').val()
             + '&ReferenceCode=' + $('#ReferenceCode').val()
-            + '&ItemCategory=' + $('#ItemCategory').val()
-            + '&MaterialsGroup=' + $('#MaterialsGroup').val()
+        //            + '&ItemCategory=' + $('#ItemCategory').val()
+        //            + '&MaterialsGroup=' + $('#MaterialsGroup').val()
             + '&IsActive=' + $("input[type=checkbox][name=IsActive]:checked").val()
-            + '&IsVirtual=' + $("input[type=checkbox][name=IsVirtual]:checked").val()
+        //            + '&IsVirtual=' + $("input[type=checkbox][name=IsVirtual]:checked").val()
     }
 </script>
-
 <fieldset>
     @using (Html.BeginForm("List", "Item"))
     {   
+
         <div class="search">
             <div class="search-label">
                 <label for="Item_Code">
@@ -26,10 +26,12 @@
                 @Html.TextBox("Code", TempData["ItemSearchModel"] != null ? ((ItemSearchModel)TempData["ItemSearchModel"]).Code : string.Empty)
             </div>
             <div class="search-label">
-                <label>
+                <label for="Item_Description">
+                    @Resources.MD.Item.Item_Description
                 </label>
             </div>
             <div class="search-field">
+                @Html.TextBox("Description", TempData["ItemSearchModel"] != null ? ((ItemSearchModel)TempData["ItemSearchModel"]).Description : string.Empty)
             </div>
             <div class="search-label">
                 <label for="Item_Description">
@@ -39,15 +41,7 @@
             <div class="search-field">
                 @Html.TextBox("ReferenceCode", TempData["ItemSearchModel"] != null ? ((ItemSearchModel)TempData["ItemSearchModel"]).ReferenceCode : string.Empty)
             </div>
-            <div class="search-label">
-                <label for="Item_Description">
-                    @Resources.MD.Item.Item_Description
-                </label>
-            </div>
-            <div class="search-field">
-                @Html.TextBox("Description", TempData["ItemSearchModel"] != null ? ((ItemSearchModel)TempData["ItemSearchModel"]).Description : string.Empty)
-            </div>
-            <div class="search-label">
+            @*  <div class="search-label">
                 <label>
                     @Resources.MD.Item.Item_ItemCategory
                 </label>
@@ -78,7 +72,7 @@
             SubCategory = 5
         });
                 }
-            </div>
+            </div>*@
             <div class="search-label">
                 <label for="Item_IsActive">
                     @Resources.MD.Item.Item_IsActive
@@ -87,15 +81,15 @@
             <div class="search-field">
                 @Html.CheckBox("IsActive", TempData["ItemSearchModel"] != null ? ((ItemSearchModel)TempData["ItemSearchModel"]).IsActive : true)
             </div>
-            <div class="search-label">
+            @*   <div class="search-label">
                 <label for="Item_IsActive">
                     @Resources.MD.Item.Item_IsVirtual
                 </label>
             </div>
             <div class="search-field">
                 @Html.CheckBox("IsVirtual", TempData["ItemSearchModel"] != null ? ((ItemSearchModel)TempData["ItemSearchModel"]).IsVirtual : false)
-            </div>
-            <div class="search-label">
+            </div>*@
+            @*   <div class="search-label">
                 <label>
                     <a href='/Resource/Templates/UploadTemplate/Item.xls'>@Resources.EXT.PageLan.TemplateDownload</a>
                 </label>
@@ -108,11 +102,11 @@
                     .Save("Import", "Item")
                     .AutoUpload(true))
                     .ClientEvents(e => e.OnSuccess("TelerikonUpload_OnSuccess")))
-            </div>
+            </div>*@
         </div>
+
         <div class="search-footer">
-            @Html.Hidden("isFromList", true)
-            @*<button type="submit" id="btnSearch">
+            @Html.Hidden("isFromList", true) @*<button type="submit" id="btnSearch">
                 @Resources.SYS.Global.Button_Search</button>
             <button type="button" id="btnNew" onclick="location.href='@Url.Content("~/Item/New")'">
                 @Resources.SYS.Global.Button_New</button>*@

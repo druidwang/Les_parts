@@ -80,7 +80,7 @@ namespace com.Sconit.Web.Controllers.INV
             foreach (var listdata in gridModel.Data)
             {
                 listdata.MaterialsGroup = itemMgr.GetCacheItem(listdata.Item).MaterialsGroup;
-                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup,  itemCategoryList).Description;
             }
             return PartialView(gridModel);
         }
@@ -110,7 +110,7 @@ namespace com.Sconit.Web.Controllers.INV
                     listdata.SupplierLotNo = huDic.ValueOrDefault(listdata.HuId);
                 }
                 listdata.MaterialsGroup = itemMgr.GetCacheItem(listdata.Item).MaterialsGroup;
-                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup, itemCategoryList).Description;
             }
             ExportToXLS<LocationTransaction>("LocationTransReport.xls", gridModel.Data.ToList());
         }

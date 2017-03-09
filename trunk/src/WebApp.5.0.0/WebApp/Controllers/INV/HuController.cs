@@ -103,7 +103,7 @@ namespace com.Sconit.Web.Controllers.INV
                 listdata.ExpireDateValue = listdata.ExpireDate == null ? "" : listdata.ExpireDate.Value.ToString("yyyy-MM-dd");
                 listdata.RemindExpireDateValue = listdata.RemindExpireDate == null ? "" : listdata.RemindExpireDate.Value.ToString("yyyy-MM-dd");
                 listdata.MaterialsGroup = itemMgr.GetCacheItem(listdata.Item).MaterialsGroup;
-                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup, itemCategoryList).Description;
             }
             var filename = "";
             if (searchModel.SearchCondition == 1)
@@ -138,7 +138,7 @@ namespace com.Sconit.Web.Controllers.INV
                 listdata.ExpireDateValue = listdata.ExpireDate == null ? "": listdata.ExpireDate.Value.ToString("yyyy-MM-dd");
                 listdata.RemindExpireDateValue = listdata.RemindExpireDate == null ? "" : listdata.RemindExpireDate.Value.ToString("yyyy-MM-dd");
                 listdata.MaterialsGroup = itemMgr.GetCacheItem(listdata.Item).MaterialsGroup;
-                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup, itemCategoryList).Description;
             }
 
             //foreach (var listData in list.Data)

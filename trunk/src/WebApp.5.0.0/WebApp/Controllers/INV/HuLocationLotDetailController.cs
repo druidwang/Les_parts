@@ -429,7 +429,7 @@ namespace com.Sconit.Web.Controllers.INV
                 }
                 ListData.ItemDescription = itemMgr.GetCacheItem(ListData.Item).FullDescription;
                 ListData.MaterialsGroup = itemMgr.GetCacheItem(ListData.Item).MaterialsGroup;
-                ListData.MaterialsGroupDesc = GetItemCategory(ListData.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                ListData.MaterialsGroupDesc = GetItemCategory(ListData.MaterialsGroup, itemCategoryList).Description;
             }
             return PartialView(List);
         }
@@ -452,7 +452,7 @@ namespace com.Sconit.Web.Controllers.INV
                 }
                 ListData.ItemDescription = itemMgr.GetCacheItem(ListData.Item).FullDescription;
                 ListData.MaterialsGroup = itemMgr.GetCacheItem(ListData.Item).MaterialsGroup;
-                ListData.MaterialsGroupDesc = GetItemCategory(ListData.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                ListData.MaterialsGroupDesc = GetItemCategory(ListData.MaterialsGroup, itemCategoryList).Description;
             }
             return PartialView(List);
         }
@@ -467,7 +467,7 @@ namespace com.Sconit.Web.Controllers.INV
             {
                 ListData.ItemDescription = itemMgr.GetCacheItem(ListData.Item).FullDescription;
                 ListData.MaterialsGroup = itemMgr.GetCacheItem(ListData.Item).MaterialsGroup;
-                ListData.MaterialsGroupDesc = GetItemCategory(ListData.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                ListData.MaterialsGroupDesc = GetItemCategory(ListData.MaterialsGroup,  itemCategoryList).Description;
             }
             return PartialView(List);
         }
@@ -500,7 +500,7 @@ namespace com.Sconit.Web.Controllers.INV
                     }
                     ListData.ItemDescription = itemMgr.GetCacheItem(ListData.Item).FullDescription;
                     ListData.MaterialsGroup = itemMgr.GetCacheItem(ListData.Item).MaterialsGroup;
-                    ListData.MaterialsGroupDesc = GetItemCategory(ListData.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                    ListData.MaterialsGroupDesc = GetItemCategory(ListData.MaterialsGroup, itemCategoryList).Description;
                 }
 
             }
@@ -519,7 +519,7 @@ namespace com.Sconit.Web.Controllers.INV
                     }
                     ListData.ItemDescription = itemMgr.GetCacheItem(ListData.Item).FullDescription;
                     ListData.MaterialsGroup = itemMgr.GetCacheItem(ListData.Item).MaterialsGroup;
-                    ListData.MaterialsGroupDesc = GetItemCategory(ListData.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                    ListData.MaterialsGroupDesc = GetItemCategory(ListData.MaterialsGroup,  itemCategoryList).Description;
                 }
 
             }
@@ -530,7 +530,7 @@ namespace com.Sconit.Web.Controllers.INV
                 {
                     ListData.ItemDescription = itemMgr.GetCacheItem(ListData.Item).FullDescription;
                     ListData.MaterialsGroup = itemMgr.GetCacheItem(ListData.Item).MaterialsGroup;
-                    ListData.MaterialsGroupDesc = GetItemCategory(ListData.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                    ListData.MaterialsGroupDesc = GetItemCategory(ListData.MaterialsGroup, itemCategoryList).Description;
                 }
 
             }

@@ -693,10 +693,10 @@ namespace com.Sconit.Web.Controllers.MD
                 HqlStatementHelper.AddEqStatement("AllowNegative", searchModel.AllowNegaInv, "u", ref whereStatement, param);
             }
 
-            if (searchModel.IsMRP)
-            {
-                HqlStatementHelper.AddEqStatement("IsMRP", searchModel.IsMRP, "u", ref whereStatement, param);
-            }
+            //if (searchModel.IsMRP)
+            //{
+            //    HqlStatementHelper.AddEqStatement("IsMRP", searchModel.IsMRP, "u", ref whereStatement, param);
+            //}
 
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
 

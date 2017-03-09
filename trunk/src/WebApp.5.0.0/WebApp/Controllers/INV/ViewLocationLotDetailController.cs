@@ -399,7 +399,7 @@ namespace com.Sconit.Web.Controllers.INV
             {
                 listdata.ItemDescription = itemMgr.GetCacheItem(listdata.Item).FullDescription;
                 listdata.MaterialsGroup = itemMgr.GetCacheItem(listdata.Item).MaterialsGroup;
-                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup,  itemCategoryList).Description;
             }
             gridData.Data = gridData.Data.GroupBy(p => new
             {

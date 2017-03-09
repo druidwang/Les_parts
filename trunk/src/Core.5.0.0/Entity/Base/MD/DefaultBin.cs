@@ -11,7 +11,7 @@ namespace com.Sconit.Entity.MD
 		public Int32 Id { get; set; }
 		public string Location { get; set; }
 		public string Item { get; set; }
-		public string DefaultBin { get; set; }
+	
 		public Int32 CreateUserId { get; set; }
 		public string CreateUserName { get; set; }
 		public DateTime CreateDate { get; set; }

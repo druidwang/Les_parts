@@ -826,9 +826,9 @@
             return GridModel;
         }
         #region Get materialgroup infor
-        protected ItemCategory GetItemCategory(string code, Sconit.CodeMaster.SubCategory subCategory, IList<ItemCategory> itemCategoryList)
+        protected ItemCategory GetItemCategory(string code,  IList<ItemCategory> itemCategoryList)
         {
-            var itemCategory = itemCategoryList.Where(p => p.Code == code && p.SubCategory == subCategory).FirstOrDefault() ?? new ItemCategory();
+            var itemCategory = itemCategoryList.Where(p => p.Code == code ).FirstOrDefault() ?? new ItemCategory();
             return itemCategory;
         }
         #endregion

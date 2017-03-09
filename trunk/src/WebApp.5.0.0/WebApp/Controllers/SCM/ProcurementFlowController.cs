@@ -989,7 +989,7 @@ namespace com.Sconit.Web.Controllers.SCM
                     flowDetailList.MaterialsGroup = item.MaterialsGroup;
                     flowDetailList.Warranty = item.Warranty;
                     flowDetailList.ItemOption = item.ItemOption;
-                    flowDetailList.MaterialsGroupDesc = GetItemCategory(flowDetailList.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                    flowDetailList.MaterialsGroupDesc = GetItemCategory(flowDetailList.MaterialsGroup,  itemCategoryList).Description;
 
                     flowDetailList.CurrentFlowStrategy = flowStrategys.Where(p => p.Flow == flowMaster.Code).FirstOrDefault()?? new FlowStrategy();
                 }

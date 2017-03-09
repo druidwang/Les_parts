@@ -75,7 +75,7 @@ namespace com.Sconit.Web.Controllers.INV
             foreach (var huData in huTypeList)
             {
                 huData.MaterialsGroup = itemMgr.GetCacheItem(huData.Item).MaterialsGroup;
-                huData.MaterialsGroupDesc = GetItemCategory(huData.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                huData.MaterialsGroupDesc = GetItemCategory(huData.MaterialsGroup, itemCategoryList).Description;
             }
             GridModel<Hu> gridModel = new GridModel<Hu>();
             gridModel.Total = total;
@@ -126,7 +126,7 @@ namespace com.Sconit.Web.Controllers.INV
             foreach (var huData in huTypeList)
             {
                 huData.MaterialsGroup = itemMgr.GetCacheItem(huData.Item).MaterialsGroup;
-                huData.MaterialsGroupDesc = GetItemCategory(huData.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+                huData.MaterialsGroupDesc = GetItemCategory(huData.MaterialsGroup, itemCategoryList).Description;
             }
             GridModel<Hu> gridModel = new GridModel<Hu>();
             gridModel.Total = total;
