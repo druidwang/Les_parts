@@ -1423,4 +1423,7 @@
   <data name="CodeDetail_LeadTimeOption_Strategy" xml:space="preserve">
     <value>Strategy</value>
   </data>
+  <data name="CodeDetail_OrderStatus_Pause" xml:space="preserve">
+    <value>Pause</value>
+  </data>
 </root>

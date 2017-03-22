@@ -1384,4 +1384,7 @@
   <data name="CodeDetail_LeadTimeOption_Strategy" xml:space="preserve">
     <value>策略</value>
   </data>
+  <data name="CodeDetail_OrderStatus_Pause" xml:space="preserve">
+    <value>暂停</value>
+  </data>
 </root>

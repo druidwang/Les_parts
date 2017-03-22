@@ -20,14 +20,14 @@
             <div class="search-field">
                 @Html.TextBox("Name", TempData["PartySearchModel"] != null ? ((PartySearchModel)TempData["PartySearchModel"]).Name : string.Empty)
             </div>
-             <div class="search-label">
+          @*   <div class="search-label">
                 <label for="Supplier_Name">
                     @Resources.MD.Party.Party_Supplier_ShortCode
                 </label>
             </div>
             <div class="search-field">
                 @Html.TextBox("ShortCode", TempData["PartySearchModel"] != null ? ((PartySearchModel)TempData["PartySearchModel"]).ShortCode : string.Empty)
-            </div>
+            </div>*@
         </div>
         <div class="search-footer">
          @Html.Hidden("isFromList", true)

@@ -809,6 +809,7 @@ namespace com.Sconit.CodeMaster
         FacilityOrderStatus,
         CheckListOrderStatus,
         LeadTimeOption,
+        BarCodeMode,
     }
 
     public enum MessageType
@@ -1358,5 +1359,13 @@ namespace com.Sconit.CodeMaster
     {
         Strategy = 0,
         ShiftDetail = 1,
+    }
+
+    public enum BarCodeMode
+    {
+        //NoneBarCode = 0,   //不启用条码
+        Box = 1,            //按箱管理
+        Pallet = 2,         //按托管理
+        LotNo = 3,          //按批号管理
     }
 }

@@ -5918,6 +5918,7 @@
     <EmbeddedResource Include="SCM\PickStrategy.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PickStrategy.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="SCM\ProductLineFacility.en-US.resx" />
     <EmbeddedResource Include="SCM\ProductLineFacility.resx">

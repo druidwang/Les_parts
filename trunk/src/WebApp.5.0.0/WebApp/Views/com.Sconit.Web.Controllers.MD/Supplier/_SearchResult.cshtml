@@ -12,8 +12,8 @@
                 .ClientTemplate(Html.ActionLink("<#=Code#>", "Edit", "Supplier", new { ID = "<#=Code #>" }, null).ToString())
                 .HeaderTemplate(Resources.MD.Party.Party_Supplier_Code);
             columns.Bound(o => o.Name).HeaderTemplate(Resources.MD.Party.Party_Supplier_Name);
-            columns.Bound(o => o.ShortCode).Title(Resources.MD.Party.Party_Supplier_ShortCode);
-            columns.Bound(o => o.PurchaseGroup);
+            //columns.Bound(o => o.ShortCode).Title(Resources.MD.Party.Party_Supplier_ShortCode);
+            //columns.Bound(o => o.PurchaseGroup);
             columns.Bound(o => o.IsActive).ClientTemplate("<input type='checkbox' disabled='disabled' <#= IsActive?checked='checked':'' #> />").HeaderTemplate(Resources.MD.Party.Party_IsActive);
         })
 
@@ -39,7 +39,7 @@
 
                 Code: $('#Code').val(),
                 Name: $('#Name').val(),
-                ShortCode:$("#ShortCode").val(),
+//                ShortCode:$("#ShortCode").val(),
                 IsActive: $('#IsActive').is(':checked')
             };
         } 

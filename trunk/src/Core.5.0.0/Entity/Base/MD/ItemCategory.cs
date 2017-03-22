@@ -18,9 +18,9 @@ namespace com.Sconit.Entity.MD
         public Boolean IsActive { get; set; }
         [Display(Name = "ItemCategory_ParentCategory", ResourceType = typeof(Resources.MD.ItemCategory))]
         public string ParentCategory { get; set; }
-        // [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "Errors_Common_FieldRequired", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
-        //[Display(Name = "ItemCategory_SubCategory", ResourceType = typeof(Resources.MD.ItemCategory))]
-        //public com.Sconit.CodeMaster.SubCategory SubCategory { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "Errors_Common_FieldRequired", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
+        [Display(Name = "ItemCategory_SubCategory", ResourceType = typeof(Resources.MD.ItemCategory))]
+        public com.Sconit.CodeMaster.SubCategory SubCategory { get; set; }
         public Int32 CreateUserId { get; set; }
         public string CreateUserName { get; set; }
         public DateTime CreateDate { get; set; }

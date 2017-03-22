@@ -7,7 +7,7 @@
 		<property name="Description" column="Desc1" type="String" length="100" />	
 		<property name="IsActive" column="IsActive" type="Boolean"  />	
     <property name="ParentCategory" column="ParentCategory" type="String" length="50" />
-    <!--<property name="SubCategory" column="SubCategory"  />-->	
+    <property name="SubCategory" column="SubCategory"  />	
     <property name="CreateUserId" column="CreateUser" type="Int32" update="false"  />	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false" />	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"  />	
