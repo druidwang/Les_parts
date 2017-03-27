@@ -293,10 +293,10 @@
             {
                 codeDetailList = codeDetailList.Where(p => p.Value != ((int)com.Sconit.CodeMaster.HandleResult.Qualify).ToString()).ToList();
             }
-            else if (code == Sconit.CodeMaster.CodeMaster.QualityType)
-            {
-                codeDetailList = codeDetailList.Where(p => p.Value != ((int)com.Sconit.CodeMaster.QualityType.Inspect).ToString()).ToList();
-            }
+            //else if (code == Sconit.CodeMaster.CodeMaster.QualityType)
+            //{
+            //    codeDetailList = codeDetailList.Where(p => p.Value != ((int)com.Sconit.CodeMaster.QualityType.Inspect).ToString()).ToList();
+            //}
             else if(code == Sconit.CodeMaster.CodeMaster.ScheduleType)
             {
                 codeDetailList = codeDetailList.Where(p => p.Sequence > 100).ToList();

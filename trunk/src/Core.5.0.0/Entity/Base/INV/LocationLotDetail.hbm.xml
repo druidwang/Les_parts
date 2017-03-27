@@ -37,11 +37,12 @@
     <property name="ConsigementParty" column="ConsigementParty" type="String" length="50" insert="false" update="false" />
     <property name="IsOdd" column="IsOdd" type="Boolean" insert="false" update="false" />
     <property name="Direction" column="Direction" type="String" length="50" insert="false" update="false" />
+	<property name="SupplierLotNo" column="SupplierLotNo" type="String" length="50"/>
     <sql-insert>
-      exec USP_Split_LocationLotDet_Insert ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+      exec USP_Split_LocationLotDet_Insert ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
     </sql-insert>
     <sql-update>
-      exec USP_Split_LocationLotDet_Update ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+      exec USP_Split_LocationLotDet_Update ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
     </sql-update>
     <sql-delete>
       exec USP_Split_LocationLotDet_Delete ?,?

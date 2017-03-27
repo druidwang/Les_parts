@@ -1861,15 +1861,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   查找类似 Pause 的本地化字符串。
-        /// </summary>
-        public static string CodeDetail_OrderStatus_Pause {
-            get {
-                return ResourceManager.GetString("CodeDetail_OrderStatus_Pause", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Submit 的本地化字符串。
         /// </summary>
         public static string CodeDetail_OrderStatus_Submit {

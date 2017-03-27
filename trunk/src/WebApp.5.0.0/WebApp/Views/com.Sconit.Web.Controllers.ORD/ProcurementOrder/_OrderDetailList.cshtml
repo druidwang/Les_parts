@@ -260,14 +260,14 @@
             {
                 columns.Bound(o => o.UnitPrice).Width(60).ReadOnly(!(ViewBag.status == com.Sconit.CodeMaster.OrderStatus.Create && ViewBag.isEditable)).ClientTemplate("<div title=<#= IsProvisionalEstimateDesc #>><#= UnitPrice #></div>"); ;
             }
-            if (!(ViewBag.status == com.Sconit.CodeMaster.OrderStatus.Create && ViewBag.isEditable))
-            {
-                columns.Bound(o => o.Direction).ReadOnly();
-            }
-            else
-            {
-                columns.Bound(o => o.Direction).EditorTemplateName("HuToGridComboBox").Width(120);
-            }
+            //if (!(ViewBag.status == com.Sconit.CodeMaster.OrderStatus.Create && ViewBag.isEditable))
+            //{
+            //    columns.Bound(o => o.Direction).ReadOnly();
+            //}
+            //else
+            //{
+            //    columns.Bound(o => o.Direction).EditorTemplateName("HuToGridComboBox").Width(120);
+            //}
             if (ViewBag.orderNo != null)
             {
                 columns.Command(commands => commands.Custom("RequiredQty").Text("0")

@@ -4058,10 +4058,10 @@
   </wsdl:binding>
   <wsdl:service name="SD_SmartDeviceService">
     <wsdl:port name="SD_SmartDeviceServiceSoap" binding="tns:SD_SmartDeviceServiceSoap">
-      <soap:address location="http://192.168.15.1:8080/WebService/SD/SmartDeviceService.asmx" />
+      <soap:address location="http://localhost:2015/WebService/SD/SmartDeviceService.asmx" />
     </wsdl:port>
     <wsdl:port name="SD_SmartDeviceServiceSoap12" binding="tns:SD_SmartDeviceServiceSoap12">
-      <soap12:address location="http://192.168.15.1:8080/WebService/SD/SmartDeviceService.asmx" />
+      <soap12:address location="http://localhost:2015/WebService/SD/SmartDeviceService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

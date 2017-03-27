@@ -28,7 +28,7 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         public SD_SmartDeviceService() {
-            this.Url = "http://192.168.15.1:8080/WebService/SD/SmartDeviceService.asmx";
+            this.Url = "http://localhost:2015/WebService/SD/SmartDeviceService.asmx";
         }
         
         /// <remarks/>

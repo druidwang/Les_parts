@@ -542,10 +542,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://192.168.15.1:8080/WebService/SD/SmartDeviceService.asmx">
+    <WebReferenceUrl Include="http://10.136.3.28:8088/WebService/SD/SmartDeviceService.asmx">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\SmartDeviceRef\</RelPath>
-      <UpdateFromURL>http://192.168.15.1:8080/WebService/SD/SmartDeviceService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://10.136.3.28:8088/WebService/SD/SmartDeviceService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

@@ -93,6 +93,8 @@ namespace com.Sconit.Entity.INV
         [Display(Name = "LocationLotDetail_Direction", ResourceType = typeof(Resources.INV.LocationLotDetail))]
         public string Direction { get; set; }
 
+        public string SupplierLotNo { get; set; }
+
         #endregion
 
 		public override int GetHashCode()
