@@ -136,6 +136,7 @@
     <Compile Include="Base\INP\RejectMaster.cs" />
     <Compile Include="Base\INV\ContainerHu.cs" />
     <Compile Include="Base\INV\ContainerDetail.cs" />
+    <Compile Include="Base\INV\Pallet.cs" />
     <Compile Include="Base\INV\EndingLocationDet.cs" />
     <Compile Include="Base\INV\FreezeTransaction.cs" />
     <Compile Include="Base\INV\Hu.cs" />
@@ -373,6 +374,7 @@
     <Compile Include="INP\RejectMaster.cs" />
     <Compile Include="INV\ContainerHu.cs" />
     <Compile Include="INV\ContainerDetail.cs" />
+    <Compile Include="INV\Pallet.cs" />
     <Compile Include="INV\EndingLocationDet.cs" />
     <Compile Include="INV\FreezeTransaction.cs" />
     <Compile Include="INV\Hu.cs" />
@@ -1014,6 +1016,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Base\INV\ContainerHu.hbm.xml" />
     <EmbeddedResource Include="Base\SCM\FlowShiftDetail.hbm.xml" />
+    <EmbeddedResource Include="Base\INV\Pallet.hbm.xml" />
     <Content Include="Base\MD\DefaultBin.hbm.xml" />
     <Content Include="Base\WMS\UnpickShipPlan.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\DeliveryBarCode.hbm.xml" />

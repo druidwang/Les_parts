@@ -663,6 +663,20 @@ namespace com.Sconit.Service.Impl
             }
         }
 
+
+        /// <summary>
+        /// 托盘编号
+        /// </summary>
+        /// <returns></returns>
+        public string GetPalletCode()
+        {
+            {
+                string numberSuffix = GetNextSequence(BusinessConstants.NUMBERCONTROL_PALLETCODE);
+                numberSuffix = numberSuffix.PadLeft(9, '0');
+                return ("TP" + numberSuffix);
+            }
+        }
+
         #region private methods
         public String GetNextSequence(string code)
         {

@@ -143,11 +143,14 @@ namespace com.Sconit.Service.Impl
         }
 
         [Transaction(TransactionMode.Requires)]
-        public IList<Hu> CreateHu(OrderMaster orderMaster, IList<OrderDetail> orderDetailList, bool isScrapHu = false)
+        public IList<Hu> CreateHu(OrderMaster orderMaster, IList<OrderDetail> orderDetailList, bool isScrapHu = false,bool isPrintPallet  = false)
         {
             IList<Hu> huList = new List<Hu>();
             foreach (OrderDetail orderDetail in orderDetailList)
             {
+                ///每条做一个托盘
+                string palletCode = numberControlMgr.GetPalletCode();
+
                 IDictionary<string, decimal> huIdDic = numberControlMgr.GetHuId(orderDetail);
                 if (huIdDic != null && huIdDic.Count > 0)
                 {
@@ -202,6 +205,7 @@ namespace com.Sconit.Service.Impl
                         hu.MaterialsGroup = GetMaterialsGroupDescrption(item.MaterialsGroup);
                         hu.HuOption = GetHuOption(item);
                         hu.Remark = orderDetail.Remark;
+                        hu.PalletCode = palletCode;
 
                         if (item.Warranty > 0)
                         {

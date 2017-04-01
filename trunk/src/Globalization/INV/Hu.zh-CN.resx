@@ -387,4 +387,10 @@
   <data name="Hu_OldExpiredDate" xml:space="preserve">
     <value>旧过期日期</value>
   </data>
+  <data name="Hu_IsPrintPallet" xml:space="preserve">
+    <value>打印托盘</value>
+  </data>
+  <data name="Hu_PalletCode" xml:space="preserve">
+    <value>托盘编号</value>
+  </data>
 </root>

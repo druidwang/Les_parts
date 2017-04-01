@@ -383,6 +383,21 @@
     <Compile Include="FMS\MaintainPlanItem.Designer.cs" />
     <Compile Include="FMS\MaintainPlanItem.en-US.Designer.cs" />
     <Compile Include="FMS\MaintainPlanItem.zh-CN.Designer.cs" />
+    <Compile Include="INV\Pallet.Designer.cs">
+      <DependentUpon>Pallet.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="INV\Pallet.en-US.Designer.cs">
+      <DependentUpon>Pallet.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="INV\Pallet.zh-CN.Designer.cs">
+      <DependentUpon>Pallet.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="ISI\TaskAddress.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3680,6 +3695,19 @@
     <EmbeddedResource Include="FMS\MaintainPlanItem.en-US.resx" />
     <EmbeddedResource Include="FMS\MaintainPlanItem.resx" />
     <EmbeddedResource Include="FMS\MaintainPlanItem.zh-CN.resx" />
+    <EmbeddedResource Include="INV\Pallet.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Pallet.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV\Pallet.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Pallet.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV\Pallet.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Pallet.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ISI\TaskAddress.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>TaskAddress.en-US.Designer.cs</LastGenOutput>

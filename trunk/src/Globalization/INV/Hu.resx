@@ -384,4 +384,10 @@
   <data name="Hu_OldExpiredDate" xml:space="preserve">
     <value>OldExpiredDate</value>
   </data>
+  <data name="Hu_IsPrintPallet" xml:space="preserve">
+    <value>IsPrintPallet</value>
+  </data>
+  <data name="Hu_PalletCode" xml:space="preserve">
+    <value>PalletCode</value>
+  </data>
 </root>

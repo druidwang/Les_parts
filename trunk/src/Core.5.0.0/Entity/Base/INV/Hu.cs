@@ -206,6 +206,12 @@ namespace com.Sconit.Entity.INV
         public DateTime? AgingEndTime { get; set; }
 
         public Int32 RefId { get; set; }
+
+        /// <summary>
+        /// Õ–≈Ã±‡∫≈
+        /// </summary>
+        [Display(Name = "Hu_PalletCode", ResourceType = typeof(Resources.INV.Hu))]
+        public string PalletCode { get; set; }
         #endregion
 
 

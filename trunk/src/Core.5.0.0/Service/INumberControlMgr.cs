@@ -76,5 +76,7 @@ namespace com.Sconit.Service
         string GetFCID(FacilityMaster facilityMaster);
 
         string GetTraceCode();
+
+        string GetPalletCode();
     }
 }

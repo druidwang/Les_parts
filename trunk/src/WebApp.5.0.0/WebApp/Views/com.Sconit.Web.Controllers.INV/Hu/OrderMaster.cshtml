@@ -1,14 +1,14 @@
 ﻿@model com.Sconit.Entity.ORD.OrderMaster
-@Html.Partial("_AjaxMessage") 
+@Html.Partial("_AjaxMessage")
 <script type="text/javascript">
     function OrderQuery(e) {
 
         if ($("#orderNo").val() == "" || $("#orderNo").val() == undefined) {
             $message.error('请根据订单单号进行查询。');
         }
-//        else if ($("#orderNo").val().toString().toUpperCase().indexOf("A") != -1) {
-//            $message.error('不能打印配件生产单号。');
-//        }
+        //        else if ($("#orderNo").val().toString().toUpperCase().indexOf("A") != -1) {
+        //            $message.error('不能打印配件生产单号。');
+        //        }
         else {
             var data = { "orderNo": $("#orderNo").val() };
             $.ajax({
@@ -43,6 +43,8 @@
         var supplierLotNoStr = "";
         var manufactureDateStr = "";
         var remarkStr = "";
+        var isPrintPallet = $("input[type=checkbox][name=IsPrintPallet]:checked").val() == undefined ? false : $("input[type=checkbox][name=IsPrintPallet]:checked").val();
+
 
         for (var rowIndex = 0; rowIndex < rows.length; rowIndex++) {
             var row = $(rows[rowIndex]);
@@ -68,7 +70,7 @@
                     $message.error('第' + (rowIndex + 1) + '行制造时间输入错误.');
                     return;
                 }
-                
+
                 var isChangeUC = row.find("#IsChangeUnitCount").val();
 
                 if (isChangeUC == "false" && (parseFloat(huQty) * 1e10) % (parseFloat(uc) * 1e10) > 0) {
@@ -85,6 +87,7 @@
                     qtyStr = huQty;
                     manufactureDateStr = manufactureDate;
                     remarkStr = remark;
+                    isPrintPallet = isPrintPallet;
                 } else {
                     idStr += "," + id;
                     ucStr += "," + uc;
@@ -92,6 +95,7 @@
                     qtyStr += "," + huQty;
                     manufactureDateStr += "," + manufactureDate;
                     remarkStr += "," + remark;
+                    isPrintPallet = isPrintPallet;
                 }
 
             }
@@ -102,6 +106,7 @@
         }
 
         if (isExport) {
+            $("#IsPrintPallet").val(isPrintPallet);
             $("#OrderDetailidStr").val(idStr);
             $("#OrderDetailucStr").val(ucStr);
             $("#OrderDetailsupplierLotNoStr").val(supplierLotNoStr);
@@ -112,6 +117,7 @@
             $("#hiddenOrderDetailForm").submit();
         } else {
             var data = {
+                "IsPrintPallet": isPrintPallet,
                 "OrderDetailidStr": idStr,
                 "OrderDetailucStr": ucStr,
                 "OrderDetailsupplierLotNoStr": supplierLotNoStr,
@@ -144,49 +150,54 @@
 
   
 </script>
-
-    <fieldset>
-        <div class="search">
-            <div class="search-label">
-                <label for="Hu_OrderNo">
-                   订单号
-                </label>
-            </div>
-            <div class="search-field">
-                @Html.TextBox("orderNo", ViewBag.OrderNo != null ? (string)ViewBag.OrderNo : string.Empty)
-            </div>
-            <div class="search-label">
-            </div>
-            <div class="search-field">
-            </div>
+<fieldset>
+    <div class="search">
+        <div class="search-label">
+            <label for="Hu_OrderNo">
+                @Resources.INV.Hu.Hu_OrderNo
+            </label>
         </div>
-        <div class="editor-footer">
-         <button type="button" id="Search" onclick="OrderQuery()">
-                @Resources.SYS.Global.Button_Search</button>
-           @Html.Button(Resources.SYS.Global.Button_Print, "Url_Inventory_Hu_New", new Dictionary<string, string>()
+        <div class="search-field">
+            @Html.TextBox("orderNo", ViewBag.OrderNo != null ? (string)ViewBag.OrderNo : string.Empty)
+        </div>
+        <div class="search-label">
+            <label>
+                @Resources.INV.Hu.Hu_IsPrintPallet
+            </label>
+        </div>
+        <div class="search-field">
+            @Html.CheckBox("IsPrintPallet", ViewBag.IsPrintPallet != null ? (bool)ViewBag.IsPrintPallet : false)
+        </div>
+    </div>
+    <div class="editor-footer">
+        <button type="button" id="Search" onclick="OrderQuery()">
+            @Resources.SYS.Global.Button_Search</button>
+        @Html.Button(Resources.SYS.Global.Button_Print, "Url_Inventory_Hu_New", new Dictionary<string, string>()
 	            {
 	                {"type", "button"},
 	                {"id", "btnPrint"},
                     {"needconfirm","true"},
                     {"onclick","onCreateByOrderDetail(false)"}
 	            })
-                 @Html.Button(Resources.SYS.Global.Button_Export, "Url_Inventory_Hu_New", new Dictionary<string, string>()
+        @Html.Button(Resources.SYS.Global.Button_Export, "Url_Inventory_Hu_New", new Dictionary<string, string>()
 	            {
 	                {"type", "button"},
 	                {"id", "btnExport"},
                     {"needconfirm","true"},
                     {"onclick","onCreateByOrderDetail(true)"}
 	            })
-        </div>
-    </fieldset>
-    <form id="hiddenOrderDetailForm" action="/Hu/CreateHuByOrderDetail" target="_blank"  method="post">
-        <input id="OrderDetailqtyStr" name="OrderDetailqtyStr" type="hidden" />
-        <input id="OrderDetailremarkStr" name="OrderDetailremarkStr" type="hidden" />
-        <input id="OrderDetailucStr"  name="OrderDetailucStr" type="hidden" />
-        <input id="OrderDetailidStr" name="OrderDetailidStr" type="hidden" />
-        <input id="OrderDetailsupplierLotNoStr" name="OrderDetailsupplierLotNoStr" type="hidden" />
-        <input id="OrderDetailisExport" name="OrderDetailisExport" type="hidden" />
-        <input id="OrderDetailimanufactureDateStr" name="OrderDetailimanufactureDateStr" type="hidden" />
-    </form>
-    <div id="divOrderDeatil">
     </div>
+</fieldset>
+<form id="hiddenOrderDetailForm" action="/Hu/CreateHuByOrderDetail" target="_blank"
+method="post">
+<input id="OrderDetailqtyStr" name="OrderDetailqtyStr" type="hidden" />
+<input id="OrderDetailremarkStr" name="OrderDetailremarkStr" type="hidden" />
+<input id="OrderDetailucStr" name="OrderDetailucStr" type="hidden" />
+<input id="OrderDetailidStr" name="OrderDetailidStr" type="hidden" />
+<input id="OrderDetailsupplierLotNoStr" name="OrderDetailsupplierLotNoStr" type="hidden" />
+<input id="OrderDetailisExport" name="OrderDetailisExport" type="hidden" />
+<input id="OrderDetailimanufactureDateStr" name="OrderDetailimanufactureDateStr"
+    type="hidden" />
+</form>
+<div id="divOrderDeatil">
+</div>

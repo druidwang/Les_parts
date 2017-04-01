@@ -536,7 +536,7 @@ namespace com.Sconit.Web.Controllers.INV
 
         [SconitAuthorize(Permissions = "Url_Inventory_Hu_New")]
         public JsonResult CreateHuByOrderDetail(string OrderDetailidStr, string OrderDetailucStr, string OrderDetailsupplierLotNoStr, string OrderDetailqtyStr
-            , bool OrderDetailisExport, string OrderDetailimanufactureDateStr, string OrderDetailremarkStr)
+            , bool OrderDetailisExport, string OrderDetailimanufactureDateStr, string OrderDetailremarkStr, bool IsPrintPallet)
         {
             try
             {
@@ -578,7 +578,7 @@ namespace com.Sconit.Web.Controllers.INV
                     this.genericMgr.CleanSession();
                     if (orderMaster != null)
                     {
-                        IList<Hu> huList = huMgr.CreateHu(orderMaster, nonZeroOrderDetailList);
+                        IList<Hu> huList = huMgr.CreateHu(orderMaster, nonZeroOrderDetailList, false,IsPrintPallet);
                         foreach (var hu in huList)
                         {
                             hu.ManufacturePartyDescription = orderMaster.PartyFromName;
