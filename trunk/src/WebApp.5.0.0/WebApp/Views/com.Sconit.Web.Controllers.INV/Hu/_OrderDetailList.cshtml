@@ -99,6 +99,8 @@
                     .ClientTemplate("<input class='t-input' id='ManufactureDate'  style='width:90px;' name='ManufactureDateStrFormat' type='text' value='<#= ManufactureDateStrFormat #>' />").Width(90); 
             columns.Bound(o => o.HuQty).ClientTemplate("<input type='text' style='width:70px;' id='HuQty' onblur='OnHuQtyBlur(this)' onfocus='OnHuQtyFocus(this)' name='HuQty' value='<#= HuQty #>' /><span ></span>").Width(70);
             //columns.Bound(o => o.SupplierLotNo).ClientTemplate("<input type='text' style='width:80px;' id='SupplierLotNo'  name='SupplierLotNo' value='<#= SupplierLotNo #>' />").Width(100);
+            columns.Bound(o => o.SupplierLotNo).ClientTemplate("<input type='text' style='width:80px;' id='SupplierLotNo'  name='SupplierLotNo' value='<#= SupplierLotNo #>' />").Width(100);
+            columns.Bound(o => o.Remark).ClientTemplate("<input type='text' style='width:80px;' id='Remark'  name='Remark' value='<#= Remark #>' />").Width(100);
         })
                    .ClientEvents(events => events.OnDataBound("OrderDetailGrid_OnDataBound").OnComplete("TelerikGridView_OnComplete"))
         //.Pageable(settings =>

@@ -50,6 +50,8 @@ namespace com.Sconit.SmartDevice
             this.btnMaterialReturn = new System.Windows.Forms.Button();
             this.btnProductionOnline = new System.Windows.Forms.Button();
             this.tabInventory = new System.Windows.Forms.TabPage();
+            this.btnBindContainerOut = new System.Windows.Forms.Button();
+            this.btnBindContainerIn = new System.Windows.Forms.Button();
             this.btnBinning = new System.Windows.Forms.Button();
             this.btnDevanning = new System.Windows.Forms.Button();
             this.btnHuStatus = new System.Windows.Forms.Button();
@@ -76,8 +78,7 @@ namespace com.Sconit.SmartDevice
             this.btnLogOff = new System.Windows.Forms.Button();
             this.tbKeyCode = new System.Windows.Forms.TextBox();
             this.lblUserStatus = new System.Windows.Forms.Label();
-            this.btnBindContainerOut = new System.Windows.Forms.Button();
-            this.btnBindContainerIn = new System.Windows.Forms.Button();
+            this.btnPurchaseReturn = new System.Windows.Forms.Button();
             this.tabModuleSelect.SuspendLayout();
             this.tabProcurement.SuspendLayout();
             this.tabProduction.SuspendLayout();
@@ -103,6 +104,7 @@ namespace com.Sconit.SmartDevice
             // 
             // tabProcurement
             // 
+            this.tabProcurement.Controls.Add(this.btnPurchaseReturn);
             this.tabProcurement.Controls.Add(this.btnQuickReturn);
             this.tabProcurement.Controls.Add(this.btnPickListOnline);
             this.tabProcurement.Controls.Add(this.btnOrderShip);
@@ -332,6 +334,26 @@ namespace com.Sconit.SmartDevice
             this.tabInventory.Name = "tabInventory";
             this.tabInventory.Size = new System.Drawing.Size(226, 195);
             this.tabInventory.Text = "仓库";
+            // 
+            // btnBindContainerOut
+            // 
+            this.btnBindContainerOut.Location = new System.Drawing.Point(121, 150);
+            this.btnBindContainerOut.Name = "btnBindContainerOut";
+            this.btnBindContainerOut.Size = new System.Drawing.Size(98, 20);
+            this.btnBindContainerOut.TabIndex = 12;
+            this.btnBindContainerOut.Text = "8.容器拆包";
+            this.btnBindContainerOut.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnBindContainerOut.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnBindContainerIn
+            // 
+            this.btnBindContainerIn.Location = new System.Drawing.Point(15, 150);
+            this.btnBindContainerIn.Name = "btnBindContainerIn";
+            this.btnBindContainerIn.Size = new System.Drawing.Size(98, 20);
+            this.btnBindContainerIn.TabIndex = 11;
+            this.btnBindContainerIn.Text = "7.容器打包";
+            this.btnBindContainerIn.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnBindContainerIn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
             // btnBinning
             // 
@@ -590,25 +612,15 @@ namespace com.Sconit.SmartDevice
             this.lblUserStatus.Size = new System.Drawing.Size(215, 20);
             this.lblUserStatus.Text = "当前用户:";
             // 
-            // btnBindContainerOut
+            // btnPurchaseReturn
             // 
-            this.btnBindContainerOut.Location = new System.Drawing.Point(121, 150);
-            this.btnBindContainerOut.Name = "btnBindContainerOut";
-            this.btnBindContainerOut.Size = new System.Drawing.Size(98, 20);
-            this.btnBindContainerOut.TabIndex = 12;
-            this.btnBindContainerOut.Text = "8.容器拆包";
-            this.btnBindContainerOut.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnBindContainerOut.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnBindContainerIn
-            // 
-            this.btnBindContainerIn.Location = new System.Drawing.Point(15, 150);
-            this.btnBindContainerIn.Name = "btnBindContainerIn";
-            this.btnBindContainerIn.Size = new System.Drawing.Size(98, 20);
-            this.btnBindContainerIn.TabIndex = 11;
-            this.btnBindContainerIn.Text = "7.容器打包";
-            this.btnBindContainerIn.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnBindContainerIn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            this.btnPurchaseReturn.Location = new System.Drawing.Point(19, 96);
+            this.btnPurchaseReturn.Name = "btnPurchaseReturn";
+            this.btnPurchaseReturn.Size = new System.Drawing.Size(90, 20);
+            this.btnPurchaseReturn.TabIndex = 7;
+            this.btnPurchaseReturn.Text = "7.采购退货";
+            this.btnPurchaseReturn.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnPurchaseReturn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
             // UCModuleSelect
             // 
@@ -683,5 +695,6 @@ namespace com.Sconit.SmartDevice
         private System.Windows.Forms.Button btnWMSRepack;
         private System.Windows.Forms.Button btnBindContainerOut;
         private System.Windows.Forms.Button btnBindContainerIn;
+        private System.Windows.Forms.Button btnPurchaseReturn;
     }
 }

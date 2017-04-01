@@ -507,10 +507,10 @@ namespace com.Sconit.Web.Controllers.INV
                 {
                     throw new BusinessException(Resources.EXT.ControllerLan.Con_LackTheOrderNumberPermission, searchModel.OrderNo);
                 }
-                if (orderMaster.Type != com.Sconit.CodeMaster.OrderType.Production)
-                {
-                    throw new BusinessException(Resources.EXT.ControllerLan.Con_InputOrderNumberIsNotProductionOrderNumber, searchModel.OrderNo);
-                }
+                //if (orderMaster.Type != com.Sconit.CodeMaster.OrderType.Production)
+                //{
+                //    throw new BusinessException(Resources.EXT.ControllerLan.Con_InputOrderNumberIsNotProductionOrderNumber, searchModel.OrderNo);
+                //}
                 var orderDetailList = this.genericMgr.FindAll<OrderDetail>
                  (" from OrderDetail where OrderNo = ?", searchModel.OrderNo);
 
@@ -519,7 +519,7 @@ namespace com.Sconit.Web.Controllers.INV
                     orderDetail.ManufactureParty = orderMaster.PartyFrom;
                     orderDetail.HuQty = orderDetail.OrderedQty;
                     orderDetail.LotNo = LotNoHelper.GenerateLotNo();
-                    orderDetail.ManufactureDateStrFormat = orderMaster.StartTime.ToString("yyyy-MM-dd");
+                    orderDetail.ManufactureDateStrFormat = DateTime.Now.ToString("yyyy-MM-dd");
                     if (!orderDetail.IsChangeUnitCount)
                     {
                         //orderDetail.HuQty = Math.Ceiling(orderDetail.HuQty / orderDetail.UnitCount) * orderDetail.UnitCount;
@@ -536,7 +536,7 @@ namespace com.Sconit.Web.Controllers.INV
 
         [SconitAuthorize(Permissions = "Url_Inventory_Hu_New")]
         public JsonResult CreateHuByOrderDetail(string OrderDetailidStr, string OrderDetailucStr, string OrderDetailsupplierLotNoStr, string OrderDetailqtyStr
-            , bool OrderDetailisExport, string OrderDetailimanufactureDateStr)
+            , bool OrderDetailisExport, string OrderDetailimanufactureDateStr, string OrderDetailremarkStr)
         {
             try
             {
@@ -548,6 +548,8 @@ namespace com.Sconit.Web.Controllers.INV
                     string[] ucArray = OrderDetailucStr.Split(',');
                     string[] supplierLotNoArray = OrderDetailsupplierLotNoStr.Split(',');
                     string[] qtyArray = OrderDetailqtyStr.Split(',');
+                    string[] remarkArray = OrderDetailremarkStr.Split(',');
+
                     OrderMaster orderMaster = null;
 
                     if (idArray != null && idArray.Count() > 0)
@@ -568,6 +570,8 @@ namespace com.Sconit.Web.Controllers.INV
                             orderDetail.LotNo = Utility.LotNoHelper.GenerateLotNo(orderDetail.ManufactureDate);
                             orderDetail.ManufactureParty = orderMaster.PartyFrom;
                             orderDetail.HuQty = Convert.ToDecimal(qtyArray[i]);
+                            orderDetail.Remark = remarkArray[i];
+
                             nonZeroOrderDetailList.Add(orderDetail);
                         }
                     }

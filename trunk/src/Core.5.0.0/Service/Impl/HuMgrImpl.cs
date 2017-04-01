@@ -201,6 +201,8 @@ namespace com.Sconit.Service.Impl
 
                         hu.MaterialsGroup = GetMaterialsGroupDescrption(item.MaterialsGroup);
                         hu.HuOption = GetHuOption(item);
+                        hu.Remark = orderDetail.Remark;
+
                         if (item.Warranty > 0)
                         {
                             hu.ExpireDate = hu.ManufactureDate.AddDays(item.Warranty);

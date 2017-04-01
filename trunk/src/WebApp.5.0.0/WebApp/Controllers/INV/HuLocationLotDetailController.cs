@@ -278,16 +278,16 @@ namespace com.Sconit.Web.Controllers.INV
             {
                 whereStatement += string.Format(" and ld.QualityType ={0}", searchModel.QualityType);
             }
-            if (!string.IsNullOrWhiteSpace(searchModel.HuOptionHuLot))
-            {
-                string huOPtionSql = " and hu.HuOption in( ";
-                string[] huOptionHuLots = searchModel.HuOptionHuLot.Split(',');
-                for (int ir = 0; ir < huOptionHuLots.Length; ir++)
-                {
-                    huOPtionSql += "'" + huOptionHuLots[ir] + "',";
-                }
-                whereStatement += huOPtionSql.Substring(0, huOPtionSql.Length - 1) + ")";
-            }
+            //if (!string.IsNullOrWhiteSpace(searchModel.HuOptionHuLot))
+            //{
+            //    string huOPtionSql = " and hu.HuOption in( ";
+            //    string[] huOptionHuLots = searchModel.HuOptionHuLot.Split(',');
+            //    for (int ir = 0; ir < huOptionHuLots.Length; ir++)
+            //    {
+            //        huOPtionSql += "'" + huOptionHuLots[ir] + "',";
+            //    }
+            //    whereStatement += huOPtionSql.Substring(0, huOPtionSql.Length - 1) + ")";
+            //}
             if (!string.IsNullOrWhiteSpace(searchModel.LotNoFrom) && !string.IsNullOrWhiteSpace(searchModel.LotNoTo))
             {
                 whereStatement += string.Format(" and ld.LotNo between '{0}' and '{1}' ", searchModel.LotNoFrom, searchModel.LotNoTo);

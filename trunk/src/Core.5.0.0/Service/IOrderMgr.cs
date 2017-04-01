@@ -300,6 +300,8 @@ namespace com.Sconit.Service
         string ReceiveTraceCode(IList<string> traceCodeList);
 
         IList<Hu> ReceiveTraceCode(IList<OrderDetail> orderDetList, IList<String> traceCodes);
+
+        OrderMaster GetOrderMasterByOrderNoAndExtNo(string orderNo, bool includeDetail, bool includeOperation, bool includeBomDetail);
     }
 
     public interface ISequenceMgr

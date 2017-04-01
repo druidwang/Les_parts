@@ -5,6 +5,8 @@ namespace com.Sconit.Service.SI
 {
     public interface ISD_OrderMgr
     {
+        Entity.SI.SD_ORD.OrderMaster GetOrderByOrderNoAndExtNo(string orderNo, bool includeDetail);
+
         Entity.SI.SD_ORD.OrderMaster GetOrder(string orderNo, bool includeDetail);
 
         Entity.SI.SD_ORD.OrderMaster GetOrderKeyParts(string orderNo);

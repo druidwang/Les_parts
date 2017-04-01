@@ -111,6 +111,14 @@ namespace com.Sconit.SmartDevice
                 ucReceive.tbBarCode.Focus();
                 this.Text = "收货";
             }
+            else if (module == CodeMaster.TerminalPermission.Client_PurchaseReturn)
+            {
+                UCPurchaseReturn ucPurchaseReturn = new UCPurchaseReturn(this.user);
+                ucPurchaseReturn.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(ucPurchaseReturn);
+                ucPurchaseReturn.tbBarCode.Focus();
+                this.Text = "采购退货";
+            }
             else if (module == CodeMaster.TerminalPermission.Client_Transfer)
             {
                 UCTransfer ucTransfer = new UCTransfer(this.user);//.GetUCTransfer(this.user);

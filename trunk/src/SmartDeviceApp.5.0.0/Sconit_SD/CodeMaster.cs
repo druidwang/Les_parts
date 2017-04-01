@@ -21,6 +21,7 @@ namespace com.Sconit.SmartDevice.CodeMaster
         Client_QuickPick,
         Client_SQShip,//Ë«ÇÅ·¢»õ
         Client_QuickSeqShip,
+        Client_PurchaseReturn,
 
         //²Ö¿â
         Client_Transfer,
@@ -141,6 +142,10 @@ namespace com.Sconit.SmartDevice.CodeMaster
         /// </summary>
         DC,
         DATE,
+        /// <summary>
+        /// ÍÐÅÌ
+        /// </summary>
+        TP
     }
 
     public enum MaterialInType

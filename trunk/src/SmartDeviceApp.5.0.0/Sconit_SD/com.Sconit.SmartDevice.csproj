@@ -294,6 +294,9 @@
     <EmbeddedResource Include="UCBinOn.resx">
       <DependentUpon>UCBinOn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCPurchaseReturn.resx">
+      <DependentUpon>UCPurchaseReturn.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -479,6 +482,12 @@
     <Compile Include="UCBinOn.Designer.cs">
       <DependentUpon>UCBinOn.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCPurchaseReturn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPurchaseReturn.Designer.cs">
+      <DependentUpon>UCPurchaseReturn.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -542,10 +551,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://10.136.3.28:8088/WebService/SD/SmartDeviceService.asmx">
+    <WebReferenceUrl Include="http://localhost:2015/WebService/SD/SmartDeviceService.asmx">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\SmartDeviceRef\</RelPath>
-      <UpdateFromURL>http://10.136.3.28:8088/WebService/SD/SmartDeviceService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://localhost:2015/WebService/SD/SmartDeviceService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

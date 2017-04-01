@@ -32,6 +32,422 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoFilter", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Hu DoFilter(string huId, decimal outQty, string userCode) {
+            object[] results = this.Invoke("DoFilter", new object[] {
+                        huId,
+                        outQty,
+                        userCode});
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginDoFilter(string huId, decimal outQty, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("DoFilter", new object[] {
+                        huId,
+                        outQty,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public Hu EndDoFilter(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/RecSmallChkSparePart", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void RecSmallChkSparePart(string huId, string spareItem, string userCode) {
+            this.Invoke("RecSmallChkSparePart", new object[] {
+                        huId,
+                        spareItem,
+                        userCode});
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginRecSmallChkSparePart(string huId, string spareItem, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("RecSmallChkSparePart", new object[] {
+                        huId,
+                        spareItem,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public void EndRecSmallChkSparePart(System.IAsyncResult asyncResult) {
+            this.EndInvoke(asyncResult);
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetPickTasks", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public PickTask[] GetPickTasks(string userCode, bool isPickByHus) {
+            object[] results = this.Invoke("GetPickTasks", new object[] {
+                        userCode,
+                        isPickByHus});
+            return ((PickTask[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetPickTasks(string userCode, bool isPickByHus, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetPickTasks", new object[] {
+                        userCode,
+                        isPickByHus}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public PickTask[] EndGetPickTasks(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((PickTask[])(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetPickHu", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Hu GetPickHu(string huId, string userCode) {
+            object[] results = this.Invoke("GetPickHu", new object[] {
+                        huId,
+                        userCode});
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetPickHu(string huId, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetPickHu", new object[] {
+                        huId,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public Hu EndGetPickHu(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoPickTask", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DoPickTask(Hu[] huList, string userCode) {
+            this.Invoke("DoPickTask", new object[] {
+                        huList,
+                        userCode});
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginDoPickTask(Hu[] huList, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("DoPickTask", new object[] {
+                        huList,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public void EndDoPickTask(System.IAsyncResult asyncResult) {
+            this.EndInvoke(asyncResult);
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetDeliverMatchHu", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Hu GetDeliverMatchHu(string huId, string userCode) {
+            object[] results = this.Invoke("GetDeliverMatchHu", new object[] {
+                        huId,
+                        userCode});
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetDeliverMatchHu(string huId, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetDeliverMatchHu", new object[] {
+                        huId,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public Hu EndGetDeliverMatchHu(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetDeliverBarCode", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public DeliverBarCode GetDeliverBarCode(string barCode, string userCode) {
+            object[] results = this.Invoke("GetDeliverBarCode", new object[] {
+                        barCode,
+                        userCode});
+            return ((DeliverBarCode)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetDeliverBarCode(string barCode, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetDeliverBarCode", new object[] {
+                        barCode,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public DeliverBarCode EndGetDeliverBarCode(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((DeliverBarCode)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/MatchDCToHU", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void MatchDCToHU(string huId, string barCode, string userCode) {
+            this.Invoke("MatchDCToHU", new object[] {
+                        huId,
+                        barCode,
+                        userCode});
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginMatchDCToHU(string huId, string barCode, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("MatchDCToHU", new object[] {
+                        huId,
+                        barCode,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public void EndMatchDCToHU(System.IAsyncResult asyncResult) {
+            this.EndInvoke(asyncResult);
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/TransferToDock", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void TransferToDock(string[] huIds, string dock, string userCode) {
+            this.Invoke("TransferToDock", new object[] {
+                        huIds,
+                        dock,
+                        userCode});
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginTransferToDock(string[] huIds, string dock, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("TransferToDock", new object[] {
+                        huIds,
+                        dock,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public void EndTransferToDock(System.IAsyncResult asyncResult) {
+            this.EndInvoke(asyncResult);
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetTransOrder", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public TransportOrderMaster GetTransOrder(string orderNo) {
+            object[] results = this.Invoke("GetTransOrder", new object[] {
+                        orderNo});
+            return ((TransportOrderMaster)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetTransOrder(string orderNo, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetTransOrder", new object[] {
+                        orderNo}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public TransportOrderMaster EndGetTransOrder(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((TransportOrderMaster)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetShipHu", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Hu GetShipHu(string huId, string deliverBarCode) {
+            object[] results = this.Invoke("GetShipHu", new object[] {
+                        huId,
+                        deliverBarCode});
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetShipHu(string huId, string deliverBarCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetShipHu", new object[] {
+                        huId,
+                        deliverBarCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public Hu EndGetShipHu(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoShipWMS", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public void DoShipWMS(string transOrder, string[] huIds, string userCode) {
+            this.Invoke("DoShipWMS", new object[] {
+                        transOrder,
+                        huIds,
+                        userCode});
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginDoShipWMS(string transOrder, string[] huIds, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("DoShipWMS", new object[] {
+                        transOrder,
+                        huIds,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public void EndDoShipWMS(System.IAsyncResult asyncResult) {
+            this.EndInvoke(asyncResult);
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetContainerDetail", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ContainerDetail GetContainerDetail(string containerId) {
+            object[] results = this.Invoke("GetContainerDetail", new object[] {
+                        containerId});
+            return ((ContainerDetail)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetContainerDetail(string containerId, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetContainerDetail", new object[] {
+                        containerId}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public ContainerDetail EndGetContainerDetail(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((ContainerDetail)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetContainerHu", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Hu[] GetContainerHu(string containerId) {
+            object[] results = this.Invoke("GetContainerHu", new object[] {
+                        containerId});
+            return ((Hu[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetContainerHu(string containerId, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetContainerHu", new object[] {
+                        containerId}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public Hu[] EndGetContainerHu(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((Hu[])(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/ContainerBind", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool ContainerBind(string containerId, string huId, string userCode) {
+            object[] results = this.Invoke("ContainerBind", new object[] {
+                        containerId,
+                        huId,
+                        userCode});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginContainerBind(string containerId, string huId, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("ContainerBind", new object[] {
+                        containerId,
+                        huId,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndContainerBind(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/ContainerUnBind", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool ContainerUnBind(string containerId, string huId, string userCode) {
+            object[] results = this.Invoke("ContainerUnBind", new object[] {
+                        containerId,
+                        huId,
+                        userCode});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginContainerUnBind(string containerId, string huId, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("ContainerUnBind", new object[] {
+                        containerId,
+                        huId,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndContainerUnBind(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/OnBin", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool OnBin(string binCode, string[] huIds, string userCode) {
+            object[] results = this.Invoke("OnBin", new object[] {
+                        binCode,
+                        huIds,
+                        userCode});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginOnBin(string binCode, string[] huIds, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("OnBin", new object[] {
+                        binCode,
+                        huIds,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndOnBin(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/OffBin", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool OffBin(string[] huIds, string userCode) {
+            object[] results = this.Invoke("OffBin", new object[] {
+                        huIds,
+                        userCode});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginOffBin(string[] huIds, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("OffBin", new object[] {
+                        huIds,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndOffBin(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInContainer", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool IsHuInContainer(string huId) {
+            object[] results = this.Invoke("IsHuInContainer", new object[] {
+                        huId});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginIsHuInContainer(string huId, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("IsHuInContainer", new object[] {
+                        huId}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndIsHuInContainer(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetUser", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public User GetUser(string userCode, string hashedPassword) {
             object[] results = this.Invoke("GetUser", new object[] {
@@ -71,6 +487,28 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         public OrderMaster EndGetOrder(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((OrderMaster)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetOrderByOrderNoAndExtNo", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public OrderMaster GetOrderByOrderNoAndExtNo(string orderNo, bool includeDetail) {
+            object[] results = this.Invoke("GetOrderByOrderNoAndExtNo", new object[] {
+                        orderNo,
+                        includeDetail});
+            return ((OrderMaster)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetOrderByOrderNoAndExtNo(string orderNo, bool includeDetail, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetOrderByOrderNoAndExtNo", new object[] {
+                        orderNo,
+                        includeDetail}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public OrderMaster EndGetOrderByOrderNoAndExtNo(System.IAsyncResult asyncResult) {
             object[] results = this.EndInvoke(asyncResult);
             return ((OrderMaster)(results[0]));
         }
@@ -1236,1612 +1674,103 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
             object[] results = this.EndInvoke(asyncResult);
             return ((Hu)(results[0]));
         }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoFilter", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Hu DoFilter(string huId, decimal outQty, string userCode) {
-            object[] results = this.Invoke("DoFilter", new object[] {
-                        huId,
-                        outQty,
-                        userCode});
-            return ((Hu)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginDoFilter(string huId, decimal outQty, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("DoFilter", new object[] {
-                        huId,
-                        outQty,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public Hu EndDoFilter(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((Hu)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/RecSmallChkSparePart", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void RecSmallChkSparePart(string huId, string spareItem, string userCode) {
-            this.Invoke("RecSmallChkSparePart", new object[] {
-                        huId,
-                        spareItem,
-                        userCode});
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginRecSmallChkSparePart(string huId, string spareItem, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("RecSmallChkSparePart", new object[] {
-                        huId,
-                        spareItem,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public void EndRecSmallChkSparePart(System.IAsyncResult asyncResult) {
-            this.EndInvoke(asyncResult);
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetPickTasks", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public PickTask[] GetPickTasks(string userCode, bool isPickByHus) {
-            object[] results = this.Invoke("GetPickTasks", new object[] {
-                        userCode,
-                        isPickByHus});
-            return ((PickTask[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginGetPickTasks(string userCode, bool isPickByHus, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("GetPickTasks", new object[] {
-                        userCode,
-                        isPickByHus}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public PickTask[] EndGetPickTasks(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((PickTask[])(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetPickHu", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Hu GetPickHu(string huId, string userCode) {
-            object[] results = this.Invoke("GetPickHu", new object[] {
-                        huId,
-                        userCode});
-            return ((Hu)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginGetPickHu(string huId, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("GetPickHu", new object[] {
-                        huId,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public Hu EndGetPickHu(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((Hu)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoPickTask", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void DoPickTask(Hu[] huList, string userCode) {
-            this.Invoke("DoPickTask", new object[] {
-                        huList,
-                        userCode});
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginDoPickTask(Hu[] huList, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("DoPickTask", new object[] {
-                        huList,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public void EndDoPickTask(System.IAsyncResult asyncResult) {
-            this.EndInvoke(asyncResult);
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetDeliverMatchHu", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Hu GetDeliverMatchHu(string huId, string userCode) {
-            object[] results = this.Invoke("GetDeliverMatchHu", new object[] {
-                        huId,
-                        userCode});
-            return ((Hu)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginGetDeliverMatchHu(string huId, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("GetDeliverMatchHu", new object[] {
-                        huId,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public Hu EndGetDeliverMatchHu(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((Hu)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetDeliverBarCode", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public DeliverBarCode GetDeliverBarCode(string barCode, string userCode) {
-            object[] results = this.Invoke("GetDeliverBarCode", new object[] {
-                        barCode,
-                        userCode});
-            return ((DeliverBarCode)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginGetDeliverBarCode(string barCode, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("GetDeliverBarCode", new object[] {
-                        barCode,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public DeliverBarCode EndGetDeliverBarCode(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((DeliverBarCode)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/MatchDCToHU", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void MatchDCToHU(string huId, string barCode, string userCode) {
-            this.Invoke("MatchDCToHU", new object[] {
-                        huId,
-                        barCode,
-                        userCode});
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginMatchDCToHU(string huId, string barCode, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("MatchDCToHU", new object[] {
-                        huId,
-                        barCode,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public void EndMatchDCToHU(System.IAsyncResult asyncResult) {
-            this.EndInvoke(asyncResult);
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/TransferToDock", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void TransferToDock(string[] huIds, string dock, string userCode) {
-            this.Invoke("TransferToDock", new object[] {
-                        huIds,
-                        dock,
-                        userCode});
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginTransferToDock(string[] huIds, string dock, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("TransferToDock", new object[] {
-                        huIds,
-                        dock,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public void EndTransferToDock(System.IAsyncResult asyncResult) {
-            this.EndInvoke(asyncResult);
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetTransOrder", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public TransportOrderMaster GetTransOrder(string orderNo) {
-            object[] results = this.Invoke("GetTransOrder", new object[] {
-                        orderNo});
-            return ((TransportOrderMaster)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginGetTransOrder(string orderNo, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("GetTransOrder", new object[] {
-                        orderNo}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public TransportOrderMaster EndGetTransOrder(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((TransportOrderMaster)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetShipHu", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Hu GetShipHu(string huId, string deliverBarCode) {
-            object[] results = this.Invoke("GetShipHu", new object[] {
-                        huId,
-                        deliverBarCode});
-            return ((Hu)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginGetShipHu(string huId, string deliverBarCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("GetShipHu", new object[] {
-                        huId,
-                        deliverBarCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public Hu EndGetShipHu(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((Hu)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoShipWMS", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void DoShipWMS(string transOrder, string[] huIds, string userCode) {
-            this.Invoke("DoShipWMS", new object[] {
-                        transOrder,
-                        huIds,
-                        userCode});
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginDoShipWMS(string transOrder, string[] huIds, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("DoShipWMS", new object[] {
-                        transOrder,
-                        huIds,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public void EndDoShipWMS(System.IAsyncResult asyncResult) {
-            this.EndInvoke(asyncResult);
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetContainerDetail", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ContainerDetail GetContainerDetail(string containerId) {
-            object[] results = this.Invoke("GetContainerDetail", new object[] {
-                        containerId});
-            return ((ContainerDetail)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginGetContainerDetail(string containerId, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("GetContainerDetail", new object[] {
-                        containerId}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public ContainerDetail EndGetContainerDetail(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((ContainerDetail)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetContainerHu", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Hu[] GetContainerHu(string containerId) {
-            object[] results = this.Invoke("GetContainerHu", new object[] {
-                        containerId});
-            return ((Hu[])(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginGetContainerHu(string containerId, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("GetContainerHu", new object[] {
-                        containerId}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public Hu[] EndGetContainerHu(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((Hu[])(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/ContainerBind", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool ContainerBind(string containerId, string huId, string userCode) {
-            object[] results = this.Invoke("ContainerBind", new object[] {
-                        containerId,
-                        huId,
-                        userCode});
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginContainerBind(string containerId, string huId, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("ContainerBind", new object[] {
-                        containerId,
-                        huId,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public bool EndContainerBind(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/ContainerUnBind", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool ContainerUnBind(string containerId, string huId, string userCode) {
-            object[] results = this.Invoke("ContainerUnBind", new object[] {
-                        containerId,
-                        huId,
-                        userCode});
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginContainerUnBind(string containerId, string huId, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("ContainerUnBind", new object[] {
-                        containerId,
-                        huId,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public bool EndContainerUnBind(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/OnBin", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool OnBin(string binCode, string[] huIds, string userCode) {
-            object[] results = this.Invoke("OnBin", new object[] {
-                        binCode,
-                        huIds,
-                        userCode});
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginOnBin(string binCode, string[] huIds, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("OnBin", new object[] {
-                        binCode,
-                        huIds,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public bool EndOnBin(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/OffBin", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool OffBin(string[] huIds, string userCode) {
-            object[] results = this.Invoke("OffBin", new object[] {
-                        huIds,
-                        userCode});
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginOffBin(string[] huIds, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("OffBin", new object[] {
-                        huIds,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public bool EndOffBin(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInContainer", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool IsHuInContainer(string huId) {
-            object[] results = this.Invoke("IsHuInContainer", new object[] {
-                        huId});
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginIsHuInContainer(string huId, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("IsHuInContainer", new object[] {
-                        huId}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public bool EndIsHuInContainer(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((bool)(results[0]));
-        }
     }
     
     /// <remarks/>
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public partial class User {
+    public partial class Hu {
         
-        private int idField;
+        private string huIdField;
         
-        private string codeField;
-        
-        private string passwordField;
-        
-        private string firstNameField;
-        
-        private string lastNameField;
-        
-        private string emailField;
-        
-        private string telPhoneField;
-        
-        private string mobilePhoneField;
-        
-        private string languageField;
-        
-        private bool isActiveField;
-        
-        private Permission[] permissionsField;
-        
-        private BarCodeType[] barCodeTypesField;
-        
-        /// <remarks/>
-        public int Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Code {
-            get {
-                return this.codeField;
-            }
-            set {
-                this.codeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Password {
-            get {
-                return this.passwordField;
-            }
-            set {
-                this.passwordField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string FirstName {
-            get {
-                return this.firstNameField;
-            }
-            set {
-                this.firstNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LastName {
-            get {
-                return this.lastNameField;
-            }
-            set {
-                this.lastNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Email {
-            get {
-                return this.emailField;
-            }
-            set {
-                this.emailField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string TelPhone {
-            get {
-                return this.telPhoneField;
-            }
-            set {
-                this.telPhoneField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string MobilePhone {
-            get {
-                return this.mobilePhoneField;
-            }
-            set {
-                this.mobilePhoneField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Language {
-            get {
-                return this.languageField;
-            }
-            set {
-                this.languageField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsActive {
-            get {
-                return this.isActiveField;
-            }
-            set {
-                this.isActiveField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public Permission[] Permissions {
-            get {
-                return this.permissionsField;
-            }
-            set {
-                this.permissionsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public BarCodeType[] BarCodeTypes {
-            get {
-                return this.barCodeTypesField;
-            }
-            set {
-                this.barCodeTypesField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public partial class Permission {
-        
-        private int userIdField;
-        
-        private string permissionCodeField;
-        
-        private string permissionCategoryField;
-        
-        private PermissionCategoryType permissionCategoryTypeField;
-        
-        /// <remarks/>
-        public int UserId {
-            get {
-                return this.userIdField;
-            }
-            set {
-                this.userIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string PermissionCode {
-            get {
-                return this.permissionCodeField;
-            }
-            set {
-                this.permissionCodeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string PermissionCategory {
-            get {
-                return this.permissionCategoryField;
-            }
-            set {
-                this.permissionCategoryField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public PermissionCategoryType PermissionCategoryType {
-            get {
-                return this.permissionCategoryTypeField;
-            }
-            set {
-                this.permissionCategoryTypeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum PermissionCategoryType {
-        
-        /// <remarks/>
-        Menu,
-        
-        /// <remarks/>
-        Url,
-        
-        /// <remarks/>
-        Region,
-        
-        /// <remarks/>
-        Customer,
-        
-        /// <remarks/>
-        Supplier,
-        
-        /// <remarks/>
-        Terminal,
-        
-        /// <remarks/>
-        SI,
-        
-        /// <remarks/>
-        OrderType,
-        
-        /// <remarks/>
-        Carrier,
-    }
-    
-    /// <remarks/>
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public partial class ContainerDetail {
-        
-        private string containerIdField;
-        
-        private string containerField;
-        
-        private string locationField;
-        
-        private bool isEmptyField;
-        
-        private string containerDescriptionField;
-        
-        private InventoryType containerTypeField;
-        
-        private decimal containerQtyField;
-        
-        private System.DateTime activeDateField;
-        
-        private int createUserIdField;
-        
-        private string createUserNameField;
-        
-        private System.DateTime createDateField;
-        
-        private int lastModifyUserIdField;
-        
-        private string lastModifyUserNameField;
-        
-        private System.DateTime lastModifyDateField;
-        
-        private int versionField;
-        
-        /// <remarks/>
-        public string ContainerId {
-            get {
-                return this.containerIdField;
-            }
-            set {
-                this.containerIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Container {
-            get {
-                return this.containerField;
-            }
-            set {
-                this.containerField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Location {
-            get {
-                return this.locationField;
-            }
-            set {
-                this.locationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsEmpty {
-            get {
-                return this.isEmptyField;
-            }
-            set {
-                this.isEmptyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ContainerDescription {
-            get {
-                return this.containerDescriptionField;
-            }
-            set {
-                this.containerDescriptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public InventoryType ContainerType {
-            get {
-                return this.containerTypeField;
-            }
-            set {
-                this.containerTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal ContainerQty {
-            get {
-                return this.containerQtyField;
-            }
-            set {
-                this.containerQtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime ActiveDate {
-            get {
-                return this.activeDateField;
-            }
-            set {
-                this.activeDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int CreateUserId {
-            get {
-                return this.createUserIdField;
-            }
-            set {
-                this.createUserIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string CreateUserName {
-            get {
-                return this.createUserNameField;
-            }
-            set {
-                this.createUserNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime CreateDate {
-            get {
-                return this.createDateField;
-            }
-            set {
-                this.createDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int LastModifyUserId {
-            get {
-                return this.lastModifyUserIdField;
-            }
-            set {
-                this.lastModifyUserIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LastModifyUserName {
-            get {
-                return this.lastModifyUserNameField;
-            }
-            set {
-                this.lastModifyUserNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime LastModifyDate {
-            get {
-                return this.lastModifyDateField;
-            }
-            set {
-                this.lastModifyDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int Version {
-            get {
-                return this.versionField;
-            }
-            set {
-                this.versionField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum InventoryType {
-        
-        /// <remarks/>
-        Quality,
-        
-        /// <remarks/>
-        Barcode,
-    }
-    
-    /// <remarks/>
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public partial class TransportOrderDetail {
-        
-        private int idField;
-        
-        private string orderNoField;
-        
-        private int sequenceField;
-        
-        private string ipNoField;
-        
-        private int orderRouteFromField;
-        
-        private int orderRouteToField;
-        
-        private System.Nullable<int> estPalletQtyField;
-        
-        private System.Nullable<int> palletQtyField;
-        
-        private System.Nullable<decimal> estVolumeField;
-        
-        private System.Nullable<decimal> volumeField;
-        
-        private System.Nullable<decimal> estWeightField;
-        
-        private System.Nullable<decimal> weightField;
-        
-        private System.Nullable<int> estBoxCountField;
-        
-        private System.Nullable<int> boxCountField;
-        
-        private System.Nullable<System.DateTime> loadTimeField;
-        
-        private System.Nullable<System.DateTime> unloadTimeField;
-        
-        private string dockField;
-        
-        private System.Nullable<decimal> distanceField;
-        
-        private bool isReceivedField;
-        
-        /// <remarks/>
-        public int Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string OrderNo {
-            get {
-                return this.orderNoField;
-            }
-            set {
-                this.orderNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int Sequence {
-            get {
-                return this.sequenceField;
-            }
-            set {
-                this.sequenceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string IpNo {
-            get {
-                return this.ipNoField;
-            }
-            set {
-                this.ipNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int OrderRouteFrom {
-            get {
-                return this.orderRouteFromField;
-            }
-            set {
-                this.orderRouteFromField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int OrderRouteTo {
-            get {
-                return this.orderRouteToField;
-            }
-            set {
-                this.orderRouteToField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> EstPalletQty {
-            get {
-                return this.estPalletQtyField;
-            }
-            set {
-                this.estPalletQtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> PalletQty {
-            get {
-                return this.palletQtyField;
-            }
-            set {
-                this.palletQtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<decimal> EstVolume {
-            get {
-                return this.estVolumeField;
-            }
-            set {
-                this.estVolumeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<decimal> Volume {
-            get {
-                return this.volumeField;
-            }
-            set {
-                this.volumeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<decimal> EstWeight {
-            get {
-                return this.estWeightField;
-            }
-            set {
-                this.estWeightField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<decimal> Weight {
-            get {
-                return this.weightField;
-            }
-            set {
-                this.weightField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> EstBoxCount {
-            get {
-                return this.estBoxCountField;
-            }
-            set {
-                this.estBoxCountField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> BoxCount {
-            get {
-                return this.boxCountField;
-            }
-            set {
-                this.boxCountField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> LoadTime {
-            get {
-                return this.loadTimeField;
-            }
-            set {
-                this.loadTimeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> UnloadTime {
-            get {
-                return this.unloadTimeField;
-            }
-            set {
-                this.unloadTimeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Dock {
-            get {
-                return this.dockField;
-            }
-            set {
-                this.dockField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<decimal> Distance {
-            get {
-                return this.distanceField;
-            }
-            set {
-                this.distanceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsReceived {
-            get {
-                return this.isReceivedField;
-            }
-            set {
-                this.isReceivedField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public partial class TransportOrderMaster {
-        
-        private string orderNoField;
-        
-        private string flowField;
-        
-        private string flowDescriptionField;
-        
-        private TransportStatus statusField;
-        
-        private string carrierField;
-        
-        private string vehicleField;
-        
-        private string tonnageField;
-        
-        private string drivingNoField;
-        
-        private string driverField;
-        
-        private string driverMobilePhoneField;
-        
-        private System.Nullable<decimal> loadVolumeField;
-        
-        private System.Nullable<decimal> loadWeightField;
-        
-        private System.Nullable<decimal> minLoadRateField;
-        
-        private bool isAutoReleaseField;
-        
-        private bool isAutoStartField;
-        
-        private bool multiSitePickField;
-        
-        private string shipFromField;
-        
-        private string shipToField;
-        
-        private TransportMode transportModeField;
-        
-        private string priceListField;
-        
-        private string billAddressField;
-        
-        private string licenseNoField;
-        
-        private TransportOrderDetail[] transportOrderDetailListField;
-        
-        /// <remarks/>
-        public string OrderNo {
-            get {
-                return this.orderNoField;
-            }
-            set {
-                this.orderNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Flow {
-            get {
-                return this.flowField;
-            }
-            set {
-                this.flowField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string FlowDescription {
-            get {
-                return this.flowDescriptionField;
-            }
-            set {
-                this.flowDescriptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public TransportStatus Status {
-            get {
-                return this.statusField;
-            }
-            set {
-                this.statusField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Carrier {
-            get {
-                return this.carrierField;
-            }
-            set {
-                this.carrierField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Vehicle {
-            get {
-                return this.vehicleField;
-            }
-            set {
-                this.vehicleField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Tonnage {
-            get {
-                return this.tonnageField;
-            }
-            set {
-                this.tonnageField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string DrivingNo {
-            get {
-                return this.drivingNoField;
-            }
-            set {
-                this.drivingNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Driver {
-            get {
-                return this.driverField;
-            }
-            set {
-                this.driverField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string DriverMobilePhone {
-            get {
-                return this.driverMobilePhoneField;
-            }
-            set {
-                this.driverMobilePhoneField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<decimal> LoadVolume {
-            get {
-                return this.loadVolumeField;
-            }
-            set {
-                this.loadVolumeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<decimal> LoadWeight {
-            get {
-                return this.loadWeightField;
-            }
-            set {
-                this.loadWeightField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<decimal> MinLoadRate {
-            get {
-                return this.minLoadRateField;
-            }
-            set {
-                this.minLoadRateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsAutoRelease {
-            get {
-                return this.isAutoReleaseField;
-            }
-            set {
-                this.isAutoReleaseField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsAutoStart {
-            get {
-                return this.isAutoStartField;
-            }
-            set {
-                this.isAutoStartField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool MultiSitePick {
-            get {
-                return this.multiSitePickField;
-            }
-            set {
-                this.multiSitePickField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ShipFrom {
-            get {
-                return this.shipFromField;
-            }
-            set {
-                this.shipFromField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ShipTo {
-            get {
-                return this.shipToField;
-            }
-            set {
-                this.shipToField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public TransportMode TransportMode {
-            get {
-                return this.transportModeField;
-            }
-            set {
-                this.transportModeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string PriceList {
-            get {
-                return this.priceListField;
-            }
-            set {
-                this.priceListField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string BillAddress {
-            get {
-                return this.billAddressField;
-            }
-            set {
-                this.billAddressField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LicenseNo {
-            get {
-                return this.licenseNoField;
-            }
-            set {
-                this.licenseNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public TransportOrderDetail[] TransportOrderDetailList {
-            get {
-                return this.transportOrderDetailListField;
-            }
-            set {
-                this.transportOrderDetailListField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum TransportStatus {
-        
-        /// <remarks/>
-        Create,
-        
-        /// <remarks/>
-        Submit,
-        
-        /// <remarks/>
-        InProcess,
-        
-        /// <remarks/>
-        Close,
-        
-        /// <remarks/>
-        Cancel,
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum TransportMode {
-        
-        /// <remarks/>
-        Land,
-        
-        /// <remarks/>
-        Sea,
-        
-        /// <remarks/>
-        Air,
-    }
-    
-    /// <remarks/>
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public partial class DeliverBarCode {
-        
-        private string barCodeField;
-        
-        private string orderNoField;
-        
-        private int orderSequenceField;
-        
-        private System.Nullable<System.DateTime> startTimeField;
-        
-        private System.Nullable<System.DateTime> windowTimeField;
+        private string lotNoField;
         
         private string itemField;
         
         private string itemDescriptionField;
         
+        private string referenceItemCodeField;
+        
         private string uomField;
+        
+        private string baseUomField;
         
         private decimal unitCountField;
         
         private decimal qtyField;
         
-        private short priorityField;
+        private decimal unitQtyField;
         
-        private string stationField;
+        private System.DateTime manufactureDateField;
         
-        private string dockField;
+        private string manufacturePartyField;
         
-        private System.Nullable<bool> isActiveField;
+        private System.Nullable<System.DateTime> expireDateField;
         
-        private string huIdField;
+        private System.Nullable<System.DateTime> firstInventoryDateField;
         
-        private int versionField;
+        private short printCountField;
         
-        private int shipPlanIdField;
+        private HuStatus statusField;
+        
+        private string locationField;
+        
+        private string regionField;
+        
+        private string binField;
+        
+        private string locationFromField;
+        
+        private string locationToField;
+        
+        private bool isConsignmentField;
+        
+        private QualityType qualityTypeField;
+        
+        private bool isFreezeField;
+        
+        private bool isATPField;
+        
+        private OccupyType occupyTypeField;
+        
+        private string occupyReferenceNoField;
+        
+        private string supplierLotNoField;
+        
+        private string createUserNameField;
+        
+        private System.DateTime createDateField;
+        
+        private string orderNoField;
+        
+        private string receiptNoField;
+        
+        private string memoField;
+        
+        private string shiftField;
         
         private string flowField;
         
-        private bool isPickHuField;
+        private string itemVersionField;
         
-        /// <remarks/>
-        public string BarCode {
-            get {
-                return this.barCodeField;
-            }
-            set {
-                this.barCodeField = value;
-            }
-        }
+        private string refHuField;
         
-        /// <remarks/>
-        public string OrderNo {
-            get {
-                return this.orderNoField;
-            }
-            set {
-                this.orderNoField = value;
-            }
-        }
+        private string directionField;
         
-        /// <remarks/>
-        public int OrderSequence {
-            get {
-                return this.orderSequenceField;
-            }
-            set {
-                this.orderSequenceField = value;
-            }
-        }
+        private bool isOddField;
         
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> StartTime {
-            get {
-                return this.startTimeField;
-            }
-            set {
-                this.startTimeField = value;
-            }
-        }
+        private HuOption huOptionField;
         
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> WindowTime {
-            get {
-                return this.windowTimeField;
-            }
-            set {
-                this.windowTimeField = value;
-            }
-        }
+        private string agingLocationField;
         
-        /// <remarks/>
-        public string Item {
-            get {
-                return this.itemField;
-            }
-            set {
-                this.itemField = value;
-            }
-        }
+        private decimal currentQtyField;
         
-        /// <remarks/>
-        public string ItemDescription {
-            get {
-                return this.itemDescriptionField;
-            }
-            set {
-                this.itemDescriptionField = value;
-            }
-        }
+        private string stationField;
         
-        /// <remarks/>
-        public string Uom {
-            get {
-                return this.uomField;
-            }
-            set {
-                this.uomField = value;
-            }
-        }
+        private int orderDetIdField;
         
-        /// <remarks/>
-        public decimal UnitCount {
-            get {
-                return this.unitCountField;
-            }
-            set {
-                this.unitCountField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal Qty {
-            get {
-                return this.qtyField;
-            }
-            set {
-                this.qtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public short Priority {
-            get {
-                return this.priorityField;
-            }
-            set {
-                this.priorityField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Station {
-            get {
-                return this.stationField;
-            }
-            set {
-                this.stationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Dock {
-            get {
-                return this.dockField;
-            }
-            set {
-                this.dockField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<bool> IsActive {
-            get {
-                return this.isActiveField;
-            }
-            set {
-                this.isActiveField = value;
-            }
-        }
+        private bool isEffectiveField;
         
         /// <remarks/>
         public string HuId {
@@ -2854,111 +1783,12 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
-        public int Version {
+        public string LotNo {
             get {
-                return this.versionField;
+                return this.lotNoField;
             }
             set {
-                this.versionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int ShipPlanId {
-            get {
-                return this.shipPlanIdField;
-            }
-            set {
-                this.shipPlanIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Flow {
-            get {
-                return this.flowField;
-            }
-            set {
-                this.flowField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsPickHu {
-            get {
-                return this.isPickHuField;
-            }
-            set {
-                this.isPickHuField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public partial class PickTask {
-        
-        private int idField;
-        
-        private OrderPriority priorityField;
-        
-        private string itemField;
-        
-        private string itemDescriptionField;
-        
-        private string uomField;
-        
-        private string baseUomField;
-        
-        private decimal unitQtyField;
-        
-        private decimal unitCountField;
-        
-        private string locationField;
-        
-        private decimal orderQtyField;
-        
-        private decimal pickQtyField;
-        
-        private string areaField;
-        
-        private string binField;
-        
-        private string lotNoField;
-        
-        private string huIdField;
-        
-        private bool isPickHuField;
-        
-        private string pickGroupField;
-        
-        private System.Nullable<int> pickUserIdField;
-        
-        private System.DateTime startTimeField;
-        
-        private System.DateTime winTimeField;
-        
-        private decimal currentQtyField;
-        
-        /// <remarks/>
-        public int Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public OrderPriority Priority {
-            get {
-                return this.priorityField;
-            }
-            set {
-                this.priorityField = value;
+                this.lotNoField = value;
             }
         }
         
@@ -2979,6 +1809,16 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
             }
             set {
                 this.itemDescriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ReferenceItemCode {
+            get {
+                return this.referenceItemCodeField;
+            }
+            set {
+                this.referenceItemCodeField = value;
             }
         }
         
@@ -3003,6 +1843,26 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
+        public decimal UnitCount {
+            get {
+                return this.unitCountField;
+            }
+            set {
+                this.unitCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Qty {
+            get {
+                return this.qtyField;
+            }
+            set {
+                this.qtyField = value;
+            }
+        }
+        
+        /// <remarks/>
         public decimal UnitQty {
             get {
                 return this.unitQtyField;
@@ -3013,12 +1873,64 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
-        public decimal UnitCount {
+        public System.DateTime ManufactureDate {
             get {
-                return this.unitCountField;
+                return this.manufactureDateField;
             }
             set {
-                this.unitCountField = value;
+                this.manufactureDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ManufactureParty {
+            get {
+                return this.manufacturePartyField;
+            }
+            set {
+                this.manufacturePartyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> ExpireDate {
+            get {
+                return this.expireDateField;
+            }
+            set {
+                this.expireDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> FirstInventoryDate {
+            get {
+                return this.firstInventoryDateField;
+            }
+            set {
+                this.firstInventoryDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public short PrintCount {
+            get {
+                return this.printCountField;
+            }
+            set {
+                this.printCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public HuStatus Status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
             }
         }
         
@@ -3033,32 +1945,12 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
-        public decimal OrderQty {
+        public string Region {
             get {
-                return this.orderQtyField;
+                return this.regionField;
             }
             set {
-                this.orderQtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal PickQty {
-            get {
-                return this.pickQtyField;
-            }
-            set {
-                this.pickQtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Area {
-            get {
-                return this.areaField;
-            }
-            set {
-                this.areaField = value;
+                this.regionField = value;
             }
         }
         
@@ -3073,73 +1965,222 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
-        public string LotNo {
+        public string LocationFrom {
             get {
-                return this.lotNoField;
+                return this.locationFromField;
             }
             set {
-                this.lotNoField = value;
+                this.locationFromField = value;
             }
         }
         
         /// <remarks/>
-        public string HuId {
+        public string LocationTo {
             get {
-                return this.huIdField;
+                return this.locationToField;
             }
             set {
-                this.huIdField = value;
+                this.locationToField = value;
             }
         }
         
         /// <remarks/>
-        public bool IsPickHu {
+        public bool IsConsignment {
             get {
-                return this.isPickHuField;
+                return this.isConsignmentField;
             }
             set {
-                this.isPickHuField = value;
+                this.isConsignmentField = value;
             }
         }
         
         /// <remarks/>
-        public string PickGroup {
+        public QualityType QualityType {
             get {
-                return this.pickGroupField;
+                return this.qualityTypeField;
             }
             set {
-                this.pickGroupField = value;
+                this.qualityTypeField = value;
             }
         }
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<int> PickUserId {
+        public bool IsFreeze {
             get {
-                return this.pickUserIdField;
+                return this.isFreezeField;
             }
             set {
-                this.pickUserIdField = value;
+                this.isFreezeField = value;
             }
         }
         
         /// <remarks/>
-        public System.DateTime StartTime {
+        public bool IsATP {
             get {
-                return this.startTimeField;
+                return this.isATPField;
             }
             set {
-                this.startTimeField = value;
+                this.isATPField = value;
             }
         }
         
         /// <remarks/>
-        public System.DateTime WinTime {
+        public OccupyType OccupyType {
             get {
-                return this.winTimeField;
+                return this.occupyTypeField;
             }
             set {
-                this.winTimeField = value;
+                this.occupyTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OccupyReferenceNo {
+            get {
+                return this.occupyReferenceNoField;
+            }
+            set {
+                this.occupyReferenceNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SupplierLotNo {
+            get {
+                return this.supplierLotNoField;
+            }
+            set {
+                this.supplierLotNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CreateUserName {
+            get {
+                return this.createUserNameField;
+            }
+            set {
+                this.createUserNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime CreateDate {
+            get {
+                return this.createDateField;
+            }
+            set {
+                this.createDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OrderNo {
+            get {
+                return this.orderNoField;
+            }
+            set {
+                this.orderNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ReceiptNo {
+            get {
+                return this.receiptNoField;
+            }
+            set {
+                this.receiptNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Memo {
+            get {
+                return this.memoField;
+            }
+            set {
+                this.memoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Shift {
+            get {
+                return this.shiftField;
+            }
+            set {
+                this.shiftField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Flow {
+            get {
+                return this.flowField;
+            }
+            set {
+                this.flowField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ItemVersion {
+            get {
+                return this.itemVersionField;
+            }
+            set {
+                this.itemVersionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string RefHu {
+            get {
+                return this.refHuField;
+            }
+            set {
+                this.refHuField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Direction {
+            get {
+                return this.directionField;
+            }
+            set {
+                this.directionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsOdd {
+            get {
+                return this.isOddField;
+            }
+            set {
+                this.isOddField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public HuOption HuOption {
+            get {
+                return this.huOptionField;
+            }
+            set {
+                this.huOptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string AgingLocation {
+            get {
+                return this.agingLocationField;
+            }
+            set {
+                this.agingLocationField = value;
             }
         }
         
@@ -3152,17 +2193,104 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
                 this.currentQtyField = value;
             }
         }
+        
+        /// <remarks/>
+        public string Station {
+            get {
+                return this.stationField;
+            }
+            set {
+                this.stationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int OrderDetId {
+            get {
+                return this.orderDetIdField;
+            }
+            set {
+                this.orderDetIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsEffective {
+            get {
+                return this.isEffectiveField;
+            }
+            set {
+                this.isEffectiveField = value;
+            }
+        }
     }
     
     /// <remarks/>
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum OrderPriority {
+    public enum HuStatus {
         
         /// <remarks/>
-        Normal,
+        NA,
         
         /// <remarks/>
-        Urgent,
+        Location,
+        
+        /// <remarks/>
+        Ip,
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum QualityType {
+        
+        /// <remarks/>
+        Qualified,
+        
+        /// <remarks/>
+        Inspect,
+        
+        /// <remarks/>
+        Reject,
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum OccupyType {
+        
+        /// <remarks/>
+        None,
+        
+        /// <remarks/>
+        Pick,
+        
+        /// <remarks/>
+        Inspect,
+        
+        /// <remarks/>
+        Sequence,
+        
+        /// <remarks/>
+        MiscOrder,
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum HuOption {
+        
+        /// <remarks/>
+        NoNeed,
+        
+        /// <remarks/>
+        UnAging,
+        
+        /// <remarks/>
+        Aged,
+        
+        /// <remarks/>
+        UnFilter,
+        
+        /// <remarks/>
+        Filtered,
     }
     
     /// <remarks/>
@@ -3645,20 +2773,6 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
                 this.qualityTypeField = value;
             }
         }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum QualityType {
-        
-        /// <remarks/>
-        Qualified,
-        
-        /// <remarks/>
-        Inspect,
-        
-        /// <remarks/>
-        Reject,
     }
     
     /// <remarks/>
@@ -6838,609 +5952,6 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public partial class Hu {
-        
-        private string huIdField;
-        
-        private string lotNoField;
-        
-        private string itemField;
-        
-        private string itemDescriptionField;
-        
-        private string referenceItemCodeField;
-        
-        private string uomField;
-        
-        private string baseUomField;
-        
-        private decimal unitCountField;
-        
-        private decimal qtyField;
-        
-        private decimal unitQtyField;
-        
-        private System.DateTime manufactureDateField;
-        
-        private string manufacturePartyField;
-        
-        private System.Nullable<System.DateTime> expireDateField;
-        
-        private System.Nullable<System.DateTime> firstInventoryDateField;
-        
-        private short printCountField;
-        
-        private HuStatus statusField;
-        
-        private string locationField;
-        
-        private string regionField;
-        
-        private string binField;
-        
-        private string locationFromField;
-        
-        private string locationToField;
-        
-        private bool isConsignmentField;
-        
-        private QualityType qualityTypeField;
-        
-        private bool isFreezeField;
-        
-        private bool isATPField;
-        
-        private OccupyType occupyTypeField;
-        
-        private string occupyReferenceNoField;
-        
-        private string supplierLotNoField;
-        
-        private string createUserNameField;
-        
-        private System.DateTime createDateField;
-        
-        private string orderNoField;
-        
-        private string receiptNoField;
-        
-        private string memoField;
-        
-        private string shiftField;
-        
-        private string flowField;
-        
-        private string itemVersionField;
-        
-        private string refHuField;
-        
-        private string directionField;
-        
-        private bool isOddField;
-        
-        private HuOption huOptionField;
-        
-        private string agingLocationField;
-        
-        private decimal currentQtyField;
-        
-        private string stationField;
-        
-        private int orderDetIdField;
-        
-        private bool isEffectiveField;
-        
-        /// <remarks/>
-        public string HuId {
-            get {
-                return this.huIdField;
-            }
-            set {
-                this.huIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LotNo {
-            get {
-                return this.lotNoField;
-            }
-            set {
-                this.lotNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Item {
-            get {
-                return this.itemField;
-            }
-            set {
-                this.itemField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ItemDescription {
-            get {
-                return this.itemDescriptionField;
-            }
-            set {
-                this.itemDescriptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ReferenceItemCode {
-            get {
-                return this.referenceItemCodeField;
-            }
-            set {
-                this.referenceItemCodeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Uom {
-            get {
-                return this.uomField;
-            }
-            set {
-                this.uomField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string BaseUom {
-            get {
-                return this.baseUomField;
-            }
-            set {
-                this.baseUomField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal UnitCount {
-            get {
-                return this.unitCountField;
-            }
-            set {
-                this.unitCountField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal Qty {
-            get {
-                return this.qtyField;
-            }
-            set {
-                this.qtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal UnitQty {
-            get {
-                return this.unitQtyField;
-            }
-            set {
-                this.unitQtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime ManufactureDate {
-            get {
-                return this.manufactureDateField;
-            }
-            set {
-                this.manufactureDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ManufactureParty {
-            get {
-                return this.manufacturePartyField;
-            }
-            set {
-                this.manufacturePartyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> ExpireDate {
-            get {
-                return this.expireDateField;
-            }
-            set {
-                this.expireDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
-        public System.Nullable<System.DateTime> FirstInventoryDate {
-            get {
-                return this.firstInventoryDateField;
-            }
-            set {
-                this.firstInventoryDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public short PrintCount {
-            get {
-                return this.printCountField;
-            }
-            set {
-                this.printCountField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public HuStatus Status {
-            get {
-                return this.statusField;
-            }
-            set {
-                this.statusField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Location {
-            get {
-                return this.locationField;
-            }
-            set {
-                this.locationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Region {
-            get {
-                return this.regionField;
-            }
-            set {
-                this.regionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Bin {
-            get {
-                return this.binField;
-            }
-            set {
-                this.binField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LocationFrom {
-            get {
-                return this.locationFromField;
-            }
-            set {
-                this.locationFromField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string LocationTo {
-            get {
-                return this.locationToField;
-            }
-            set {
-                this.locationToField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsConsignment {
-            get {
-                return this.isConsignmentField;
-            }
-            set {
-                this.isConsignmentField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public QualityType QualityType {
-            get {
-                return this.qualityTypeField;
-            }
-            set {
-                this.qualityTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsFreeze {
-            get {
-                return this.isFreezeField;
-            }
-            set {
-                this.isFreezeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsATP {
-            get {
-                return this.isATPField;
-            }
-            set {
-                this.isATPField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public OccupyType OccupyType {
-            get {
-                return this.occupyTypeField;
-            }
-            set {
-                this.occupyTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string OccupyReferenceNo {
-            get {
-                return this.occupyReferenceNoField;
-            }
-            set {
-                this.occupyReferenceNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string SupplierLotNo {
-            get {
-                return this.supplierLotNoField;
-            }
-            set {
-                this.supplierLotNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string CreateUserName {
-            get {
-                return this.createUserNameField;
-            }
-            set {
-                this.createUserNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime CreateDate {
-            get {
-                return this.createDateField;
-            }
-            set {
-                this.createDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string OrderNo {
-            get {
-                return this.orderNoField;
-            }
-            set {
-                this.orderNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ReceiptNo {
-            get {
-                return this.receiptNoField;
-            }
-            set {
-                this.receiptNoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Memo {
-            get {
-                return this.memoField;
-            }
-            set {
-                this.memoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Shift {
-            get {
-                return this.shiftField;
-            }
-            set {
-                this.shiftField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Flow {
-            get {
-                return this.flowField;
-            }
-            set {
-                this.flowField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string ItemVersion {
-            get {
-                return this.itemVersionField;
-            }
-            set {
-                this.itemVersionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string RefHu {
-            get {
-                return this.refHuField;
-            }
-            set {
-                this.refHuField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Direction {
-            get {
-                return this.directionField;
-            }
-            set {
-                this.directionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsOdd {
-            get {
-                return this.isOddField;
-            }
-            set {
-                this.isOddField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public HuOption HuOption {
-            get {
-                return this.huOptionField;
-            }
-            set {
-                this.huOptionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string AgingLocation {
-            get {
-                return this.agingLocationField;
-            }
-            set {
-                this.agingLocationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public decimal CurrentQty {
-            get {
-                return this.currentQtyField;
-            }
-            set {
-                this.currentQtyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Station {
-            get {
-                return this.stationField;
-            }
-            set {
-                this.stationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public int OrderDetId {
-            get {
-                return this.orderDetIdField;
-            }
-            set {
-                this.orderDetIdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool IsEffective {
-            get {
-                return this.isEffectiveField;
-            }
-            set {
-                this.isEffectiveField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum HuStatus {
-        
-        /// <remarks/>
-        NA,
-        
-        /// <remarks/>
-        Location,
-        
-        /// <remarks/>
-        Ip,
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum OccupyType {
-        
-        /// <remarks/>
-        None,
-        
-        /// <remarks/>
-        Pick,
-        
-        /// <remarks/>
-        Inspect,
-        
-        /// <remarks/>
-        Sequence,
-        
-        /// <remarks/>
-        MiscOrder,
-    }
-    
-    /// <remarks/>
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
-    public enum HuOption {
-        
-        /// <remarks/>
-        NoNeed,
-        
-        /// <remarks/>
-        UnAging,
-        
-        /// <remarks/>
-        Aged,
-        
-        /// <remarks/>
-        UnFilter,
-        
-        /// <remarks/>
-        Filtered,
-    }
-    
-    /// <remarks/>
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
     public partial class OrderDetailInput {
         
         private int idField;
@@ -8498,6 +7009,1517 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         MIS,
+    }
+    
+    /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class Permission {
+        
+        private int userIdField;
+        
+        private string permissionCodeField;
+        
+        private string permissionCategoryField;
+        
+        private PermissionCategoryType permissionCategoryTypeField;
+        
+        /// <remarks/>
+        public int UserId {
+            get {
+                return this.userIdField;
+            }
+            set {
+                this.userIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PermissionCode {
+            get {
+                return this.permissionCodeField;
+            }
+            set {
+                this.permissionCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PermissionCategory {
+            get {
+                return this.permissionCategoryField;
+            }
+            set {
+                this.permissionCategoryField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public PermissionCategoryType PermissionCategoryType {
+            get {
+                return this.permissionCategoryTypeField;
+            }
+            set {
+                this.permissionCategoryTypeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum PermissionCategoryType {
+        
+        /// <remarks/>
+        Menu,
+        
+        /// <remarks/>
+        Url,
+        
+        /// <remarks/>
+        Region,
+        
+        /// <remarks/>
+        Customer,
+        
+        /// <remarks/>
+        Supplier,
+        
+        /// <remarks/>
+        Terminal,
+        
+        /// <remarks/>
+        SI,
+        
+        /// <remarks/>
+        OrderType,
+        
+        /// <remarks/>
+        Carrier,
+    }
+    
+    /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class User {
+        
+        private int idField;
+        
+        private string codeField;
+        
+        private string passwordField;
+        
+        private string firstNameField;
+        
+        private string lastNameField;
+        
+        private string emailField;
+        
+        private string telPhoneField;
+        
+        private string mobilePhoneField;
+        
+        private string languageField;
+        
+        private bool isActiveField;
+        
+        private Permission[] permissionsField;
+        
+        private BarCodeType[] barCodeTypesField;
+        
+        /// <remarks/>
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Password {
+            get {
+                return this.passwordField;
+            }
+            set {
+                this.passwordField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FirstName {
+            get {
+                return this.firstNameField;
+            }
+            set {
+                this.firstNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LastName {
+            get {
+                return this.lastNameField;
+            }
+            set {
+                this.lastNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Email {
+            get {
+                return this.emailField;
+            }
+            set {
+                this.emailField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TelPhone {
+            get {
+                return this.telPhoneField;
+            }
+            set {
+                this.telPhoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string MobilePhone {
+            get {
+                return this.mobilePhoneField;
+            }
+            set {
+                this.mobilePhoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Language {
+            get {
+                return this.languageField;
+            }
+            set {
+                this.languageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsActive {
+            get {
+                return this.isActiveField;
+            }
+            set {
+                this.isActiveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public Permission[] Permissions {
+            get {
+                return this.permissionsField;
+            }
+            set {
+                this.permissionsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BarCodeType[] BarCodeTypes {
+            get {
+                return this.barCodeTypesField;
+            }
+            set {
+                this.barCodeTypesField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class ContainerDetail {
+        
+        private string containerIdField;
+        
+        private string containerField;
+        
+        private string locationField;
+        
+        private bool isEmptyField;
+        
+        private string containerDescriptionField;
+        
+        private InventoryType containerTypeField;
+        
+        private decimal containerQtyField;
+        
+        private System.DateTime activeDateField;
+        
+        private int createUserIdField;
+        
+        private string createUserNameField;
+        
+        private System.DateTime createDateField;
+        
+        private int lastModifyUserIdField;
+        
+        private string lastModifyUserNameField;
+        
+        private System.DateTime lastModifyDateField;
+        
+        private int versionField;
+        
+        /// <remarks/>
+        public string ContainerId {
+            get {
+                return this.containerIdField;
+            }
+            set {
+                this.containerIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Container {
+            get {
+                return this.containerField;
+            }
+            set {
+                this.containerField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Location {
+            get {
+                return this.locationField;
+            }
+            set {
+                this.locationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsEmpty {
+            get {
+                return this.isEmptyField;
+            }
+            set {
+                this.isEmptyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ContainerDescription {
+            get {
+                return this.containerDescriptionField;
+            }
+            set {
+                this.containerDescriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public InventoryType ContainerType {
+            get {
+                return this.containerTypeField;
+            }
+            set {
+                this.containerTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal ContainerQty {
+            get {
+                return this.containerQtyField;
+            }
+            set {
+                this.containerQtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime ActiveDate {
+            get {
+                return this.activeDateField;
+            }
+            set {
+                this.activeDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int CreateUserId {
+            get {
+                return this.createUserIdField;
+            }
+            set {
+                this.createUserIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string CreateUserName {
+            get {
+                return this.createUserNameField;
+            }
+            set {
+                this.createUserNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime CreateDate {
+            get {
+                return this.createDateField;
+            }
+            set {
+                this.createDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int LastModifyUserId {
+            get {
+                return this.lastModifyUserIdField;
+            }
+            set {
+                this.lastModifyUserIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LastModifyUserName {
+            get {
+                return this.lastModifyUserNameField;
+            }
+            set {
+                this.lastModifyUserNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime LastModifyDate {
+            get {
+                return this.lastModifyDateField;
+            }
+            set {
+                this.lastModifyDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Version {
+            get {
+                return this.versionField;
+            }
+            set {
+                this.versionField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum InventoryType {
+        
+        /// <remarks/>
+        Quality,
+        
+        /// <remarks/>
+        Barcode,
+    }
+    
+    /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class TransportOrderDetail {
+        
+        private int idField;
+        
+        private string orderNoField;
+        
+        private int sequenceField;
+        
+        private string ipNoField;
+        
+        private int orderRouteFromField;
+        
+        private int orderRouteToField;
+        
+        private System.Nullable<int> estPalletQtyField;
+        
+        private System.Nullable<int> palletQtyField;
+        
+        private System.Nullable<decimal> estVolumeField;
+        
+        private System.Nullable<decimal> volumeField;
+        
+        private System.Nullable<decimal> estWeightField;
+        
+        private System.Nullable<decimal> weightField;
+        
+        private System.Nullable<int> estBoxCountField;
+        
+        private System.Nullable<int> boxCountField;
+        
+        private System.Nullable<System.DateTime> loadTimeField;
+        
+        private System.Nullable<System.DateTime> unloadTimeField;
+        
+        private string dockField;
+        
+        private System.Nullable<decimal> distanceField;
+        
+        private bool isReceivedField;
+        
+        /// <remarks/>
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OrderNo {
+            get {
+                return this.orderNoField;
+            }
+            set {
+                this.orderNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Sequence {
+            get {
+                return this.sequenceField;
+            }
+            set {
+                this.sequenceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IpNo {
+            get {
+                return this.ipNoField;
+            }
+            set {
+                this.ipNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int OrderRouteFrom {
+            get {
+                return this.orderRouteFromField;
+            }
+            set {
+                this.orderRouteFromField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int OrderRouteTo {
+            get {
+                return this.orderRouteToField;
+            }
+            set {
+                this.orderRouteToField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> EstPalletQty {
+            get {
+                return this.estPalletQtyField;
+            }
+            set {
+                this.estPalletQtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> PalletQty {
+            get {
+                return this.palletQtyField;
+            }
+            set {
+                this.palletQtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> EstVolume {
+            get {
+                return this.estVolumeField;
+            }
+            set {
+                this.estVolumeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> Volume {
+            get {
+                return this.volumeField;
+            }
+            set {
+                this.volumeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> EstWeight {
+            get {
+                return this.estWeightField;
+            }
+            set {
+                this.estWeightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> Weight {
+            get {
+                return this.weightField;
+            }
+            set {
+                this.weightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> EstBoxCount {
+            get {
+                return this.estBoxCountField;
+            }
+            set {
+                this.estBoxCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> BoxCount {
+            get {
+                return this.boxCountField;
+            }
+            set {
+                this.boxCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> LoadTime {
+            get {
+                return this.loadTimeField;
+            }
+            set {
+                this.loadTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> UnloadTime {
+            get {
+                return this.unloadTimeField;
+            }
+            set {
+                this.unloadTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Dock {
+            get {
+                return this.dockField;
+            }
+            set {
+                this.dockField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> Distance {
+            get {
+                return this.distanceField;
+            }
+            set {
+                this.distanceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsReceived {
+            get {
+                return this.isReceivedField;
+            }
+            set {
+                this.isReceivedField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class TransportOrderMaster {
+        
+        private string orderNoField;
+        
+        private string flowField;
+        
+        private string flowDescriptionField;
+        
+        private TransportStatus statusField;
+        
+        private string carrierField;
+        
+        private string vehicleField;
+        
+        private string tonnageField;
+        
+        private string drivingNoField;
+        
+        private string driverField;
+        
+        private string driverMobilePhoneField;
+        
+        private System.Nullable<decimal> loadVolumeField;
+        
+        private System.Nullable<decimal> loadWeightField;
+        
+        private System.Nullable<decimal> minLoadRateField;
+        
+        private bool isAutoReleaseField;
+        
+        private bool isAutoStartField;
+        
+        private bool multiSitePickField;
+        
+        private string shipFromField;
+        
+        private string shipToField;
+        
+        private TransportMode transportModeField;
+        
+        private string priceListField;
+        
+        private string billAddressField;
+        
+        private string licenseNoField;
+        
+        private TransportOrderDetail[] transportOrderDetailListField;
+        
+        /// <remarks/>
+        public string OrderNo {
+            get {
+                return this.orderNoField;
+            }
+            set {
+                this.orderNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Flow {
+            get {
+                return this.flowField;
+            }
+            set {
+                this.flowField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string FlowDescription {
+            get {
+                return this.flowDescriptionField;
+            }
+            set {
+                this.flowDescriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TransportStatus Status {
+            get {
+                return this.statusField;
+            }
+            set {
+                this.statusField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Carrier {
+            get {
+                return this.carrierField;
+            }
+            set {
+                this.carrierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Vehicle {
+            get {
+                return this.vehicleField;
+            }
+            set {
+                this.vehicleField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Tonnage {
+            get {
+                return this.tonnageField;
+            }
+            set {
+                this.tonnageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DrivingNo {
+            get {
+                return this.drivingNoField;
+            }
+            set {
+                this.drivingNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Driver {
+            get {
+                return this.driverField;
+            }
+            set {
+                this.driverField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string DriverMobilePhone {
+            get {
+                return this.driverMobilePhoneField;
+            }
+            set {
+                this.driverMobilePhoneField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> LoadVolume {
+            get {
+                return this.loadVolumeField;
+            }
+            set {
+                this.loadVolumeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> LoadWeight {
+            get {
+                return this.loadWeightField;
+            }
+            set {
+                this.loadWeightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<decimal> MinLoadRate {
+            get {
+                return this.minLoadRateField;
+            }
+            set {
+                this.minLoadRateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsAutoRelease {
+            get {
+                return this.isAutoReleaseField;
+            }
+            set {
+                this.isAutoReleaseField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsAutoStart {
+            get {
+                return this.isAutoStartField;
+            }
+            set {
+                this.isAutoStartField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool MultiSitePick {
+            get {
+                return this.multiSitePickField;
+            }
+            set {
+                this.multiSitePickField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ShipFrom {
+            get {
+                return this.shipFromField;
+            }
+            set {
+                this.shipFromField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ShipTo {
+            get {
+                return this.shipToField;
+            }
+            set {
+                this.shipToField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TransportMode TransportMode {
+            get {
+                return this.transportModeField;
+            }
+            set {
+                this.transportModeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PriceList {
+            get {
+                return this.priceListField;
+            }
+            set {
+                this.priceListField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BillAddress {
+            get {
+                return this.billAddressField;
+            }
+            set {
+                this.billAddressField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LicenseNo {
+            get {
+                return this.licenseNoField;
+            }
+            set {
+                this.licenseNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public TransportOrderDetail[] TransportOrderDetailList {
+            get {
+                return this.transportOrderDetailListField;
+            }
+            set {
+                this.transportOrderDetailListField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum TransportStatus {
+        
+        /// <remarks/>
+        Create,
+        
+        /// <remarks/>
+        Submit,
+        
+        /// <remarks/>
+        InProcess,
+        
+        /// <remarks/>
+        Close,
+        
+        /// <remarks/>
+        Cancel,
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum TransportMode {
+        
+        /// <remarks/>
+        Land,
+        
+        /// <remarks/>
+        Sea,
+        
+        /// <remarks/>
+        Air,
+    }
+    
+    /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class DeliverBarCode {
+        
+        private string barCodeField;
+        
+        private string orderNoField;
+        
+        private int orderSequenceField;
+        
+        private System.Nullable<System.DateTime> startTimeField;
+        
+        private System.Nullable<System.DateTime> windowTimeField;
+        
+        private string itemField;
+        
+        private string itemDescriptionField;
+        
+        private string uomField;
+        
+        private decimal unitCountField;
+        
+        private decimal qtyField;
+        
+        private short priorityField;
+        
+        private string stationField;
+        
+        private string dockField;
+        
+        private System.Nullable<bool> isActiveField;
+        
+        private string huIdField;
+        
+        private int versionField;
+        
+        private int shipPlanIdField;
+        
+        private string flowField;
+        
+        private bool isPickHuField;
+        
+        /// <remarks/>
+        public string BarCode {
+            get {
+                return this.barCodeField;
+            }
+            set {
+                this.barCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string OrderNo {
+            get {
+                return this.orderNoField;
+            }
+            set {
+                this.orderNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int OrderSequence {
+            get {
+                return this.orderSequenceField;
+            }
+            set {
+                this.orderSequenceField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> StartTime {
+            get {
+                return this.startTimeField;
+            }
+            set {
+                this.startTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<System.DateTime> WindowTime {
+            get {
+                return this.windowTimeField;
+            }
+            set {
+                this.windowTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Item {
+            get {
+                return this.itemField;
+            }
+            set {
+                this.itemField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ItemDescription {
+            get {
+                return this.itemDescriptionField;
+            }
+            set {
+                this.itemDescriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Uom {
+            get {
+                return this.uomField;
+            }
+            set {
+                this.uomField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal UnitCount {
+            get {
+                return this.unitCountField;
+            }
+            set {
+                this.unitCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal Qty {
+            get {
+                return this.qtyField;
+            }
+            set {
+                this.qtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public short Priority {
+            get {
+                return this.priorityField;
+            }
+            set {
+                this.priorityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Station {
+            get {
+                return this.stationField;
+            }
+            set {
+                this.stationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Dock {
+            get {
+                return this.dockField;
+            }
+            set {
+                this.dockField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<bool> IsActive {
+            get {
+                return this.isActiveField;
+            }
+            set {
+                this.isActiveField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string HuId {
+            get {
+                return this.huIdField;
+            }
+            set {
+                this.huIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Version {
+            get {
+                return this.versionField;
+            }
+            set {
+                this.versionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int ShipPlanId {
+            get {
+                return this.shipPlanIdField;
+            }
+            set {
+                this.shipPlanIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Flow {
+            get {
+                return this.flowField;
+            }
+            set {
+                this.flowField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsPickHu {
+            get {
+                return this.isPickHuField;
+            }
+            set {
+                this.isPickHuField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class PickTask {
+        
+        private int idField;
+        
+        private OrderPriority priorityField;
+        
+        private string itemField;
+        
+        private string itemDescriptionField;
+        
+        private string uomField;
+        
+        private string baseUomField;
+        
+        private decimal unitQtyField;
+        
+        private decimal unitCountField;
+        
+        private string locationField;
+        
+        private decimal orderQtyField;
+        
+        private decimal pickQtyField;
+        
+        private string areaField;
+        
+        private string binField;
+        
+        private string lotNoField;
+        
+        private string huIdField;
+        
+        private bool isPickHuField;
+        
+        private string pickGroupField;
+        
+        private System.Nullable<int> pickUserIdField;
+        
+        private System.DateTime startTimeField;
+        
+        private System.DateTime winTimeField;
+        
+        private decimal currentQtyField;
+        
+        /// <remarks/>
+        public int Id {
+            get {
+                return this.idField;
+            }
+            set {
+                this.idField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public OrderPriority Priority {
+            get {
+                return this.priorityField;
+            }
+            set {
+                this.priorityField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Item {
+            get {
+                return this.itemField;
+            }
+            set {
+                this.itemField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ItemDescription {
+            get {
+                return this.itemDescriptionField;
+            }
+            set {
+                this.itemDescriptionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Uom {
+            get {
+                return this.uomField;
+            }
+            set {
+                this.uomField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string BaseUom {
+            get {
+                return this.baseUomField;
+            }
+            set {
+                this.baseUomField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal UnitQty {
+            get {
+                return this.unitQtyField;
+            }
+            set {
+                this.unitQtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal UnitCount {
+            get {
+                return this.unitCountField;
+            }
+            set {
+                this.unitCountField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Location {
+            get {
+                return this.locationField;
+            }
+            set {
+                this.locationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal OrderQty {
+            get {
+                return this.orderQtyField;
+            }
+            set {
+                this.orderQtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal PickQty {
+            get {
+                return this.pickQtyField;
+            }
+            set {
+                this.pickQtyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Area {
+            get {
+                return this.areaField;
+            }
+            set {
+                this.areaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Bin {
+            get {
+                return this.binField;
+            }
+            set {
+                this.binField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LotNo {
+            get {
+                return this.lotNoField;
+            }
+            set {
+                this.lotNoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string HuId {
+            get {
+                return this.huIdField;
+            }
+            set {
+                this.huIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool IsPickHu {
+            get {
+                return this.isPickHuField;
+            }
+            set {
+                this.isPickHuField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PickGroup {
+            get {
+                return this.pickGroupField;
+            }
+            set {
+                this.pickGroupField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(IsNullable=true)]
+        public System.Nullable<int> PickUserId {
+            get {
+                return this.pickUserIdField;
+            }
+            set {
+                this.pickUserIdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime StartTime {
+            get {
+                return this.startTimeField;
+            }
+            set {
+                this.startTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime WinTime {
+            get {
+                return this.winTimeField;
+            }
+            set {
+                this.winTimeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal CurrentQty {
+            get {
+                return this.currentQtyField;
+            }
+            set {
+                this.currentQtyField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public enum OrderPriority {
+        
+        /// <remarks/>
+        Normal,
+        
+        /// <remarks/>
+        Urgent,
     }
     
     /// <remarks/>

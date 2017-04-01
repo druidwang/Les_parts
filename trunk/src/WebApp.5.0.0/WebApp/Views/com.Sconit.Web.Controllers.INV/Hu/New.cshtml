@@ -18,18 +18,18 @@
                .HtmlAttributes(new { onclick = "CleanTabMessage()" });
             
             tabstrip.Add()
-                .Text(Resources.INV.Hu.Hu_Tab_OrderMaster_Production)
+                .Text(Resources.INV.Hu.Hu_Tab_OrderMaster)
                 .LoadContentFrom("OrderMaster", "Hu")
                 .HtmlAttributes(new { onclick = "CleanTabMessage()" });
             
-            tabstrip.Add()
-                .Text(Resources.INV.Hu.Hu_Tab_IPMaster)
-                .LoadContentFrom("IpMaster", "Hu")
-                .HtmlAttributes(new { onclick = "CleanTabMessage()" });
-            tabstrip.Add()
-               .Text(Resources.INV.Hu.Hu_Tab_Parts)
-               .LoadContentFrom("Parts", "Hu")
-               .HtmlAttributes(new { onclick = "CleanTabMessage()" });
+            //tabstrip.Add()
+            //    .Text(Resources.INV.Hu.Hu_Tab_IPMaster)
+            //    .LoadContentFrom("IpMaster", "Hu")
+            //    .HtmlAttributes(new { onclick = "CleanTabMessage()" });
+            //tabstrip.Add()
+            //   .Text(Resources.INV.Hu.Hu_Tab_Parts)
+            //   .LoadContentFrom("Parts", "Hu")
+            //   .HtmlAttributes(new { onclick = "CleanTabMessage()" });
         })
         .Render();
 }

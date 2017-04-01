@@ -25,6 +25,7 @@
 		<property name="ReceivedQty" column="RecQty" type="Decimal"/>
         <property name="IsClose" column="IsClose" type="Boolean"/>
         <property name="WMSSeq" column="WMSSeq" type="String" length="50" />
+		<property name="IsMatchHu" column="IsMatchHu" type="Boolean"/>
         <property name="CreateUserId" column="CreateUser" type="Int32" update="false"/>	
 		<property name="CreateUserName" column="CreateUserNm" type="String" length="100" update="false"/>	
 		<property name="CreateDate" column="CreateDate" type="DateTime" update="false"/>	
@@ -32,10 +33,10 @@
 		<property name="LastModifyUserName" column="LastModifyUserNm" type="String" length="100"/>	
 		<property name="LastModifyDate" column="LastModifyDate" type="DateTime"/>
     <sql-insert>
-      exec USP_Split_IpLocationDet_Insert ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+      exec USP_Split_IpLocationDet_Insert ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
     </sql-insert>
     <sql-update>
-      exec USP_Split_IpLocationDet_Update ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
+      exec USP_Split_IpLocationDet_Update ?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?
     </sql-update>
     <sql-delete>
       exec USP_Split_IpLocationDet_Delete ?,?

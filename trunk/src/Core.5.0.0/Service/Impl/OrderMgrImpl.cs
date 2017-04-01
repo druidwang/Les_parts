@@ -6389,6 +6389,35 @@ namespace com.Sconit.Service.Impl
         }
         #endregion
 
+
+        #region 根据订单号或者外部订单号加载订单
+        public OrderMaster GetOrderMasterByOrderNoAndExtNo(string orderNo, bool includeDetail, bool includeOperation, bool includeBomDetail)
+        {
+            IList<OrderMaster> orderMasterList = this.genericMgr.FindAll<OrderMaster>("from OrderMaster m where m.OrderNo = ? or m.ExternalOrderNo = ?", new string[] { orderNo, orderNo });
+
+            OrderMaster orderMaster = orderMasterList.FirstOrDefault();
+            if (orderMaster != null)
+            {
+                if (includeDetail || includeOperation || includeBomDetail)
+                {
+                    orderMaster.OrderDetails = this.genericMgr.FindAll<OrderDetail>("from OrderDetail o where o.OrderNo=?", orderMaster.OrderNo);
+                    foreach (OrderDetail orderDetail in orderMaster.OrderDetails)
+                    {
+                        if (includeBomDetail)
+                        {
+                            orderDetail.OrderBomDetails = this.genericMgr.FindAll<OrderBomDetail>("from OrderBomDetail o where o.OrderDetailId=?", orderDetail.Id);
+                        }
+                        if (includeOperation)
+                        {
+                            orderDetail.OrderOperations = this.genericMgr.FindAll<OrderOperation>("from OrderOperation o where o.OrderDetailId=?", orderDetail.Id);
+                        }
+                    }
+                }
+            }
+            return orderMaster;
+        }
+        #endregion
+
         #region 根据投料的条码查找投料的工位
         public IList<OrderOperation> FindFeedOrderOperation(string orderNo, string huId)
         {

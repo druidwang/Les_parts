@@ -94,6 +94,19 @@
         }
 
         [WebMethod]
+        public OrderMaster GetOrderByOrderNoAndExtNo(string orderNo, bool includeDetail)
+        {
+            try
+            {
+                return this.orderMgr.GetOrderByOrderNoAndExtNo(orderNo, includeDetail);
+            }
+            catch (BusinessException ex)
+            {
+                throw new SoapException(GetBusinessExMessage(ex), SoapException.ServerFaultCode, string.Empty);
+            }
+        }
+
+        [WebMethod]
         public Hu GetMaterialInHu(string orderNo, string hu, string station)
         {
             try

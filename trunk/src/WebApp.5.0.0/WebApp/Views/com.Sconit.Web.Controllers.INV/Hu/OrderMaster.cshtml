@@ -4,11 +4,11 @@
     function OrderQuery(e) {
 
         if ($("#orderNo").val() == "" || $("#orderNo").val() == undefined) {
-            $message.error('请根据生产单号进行查询。');
+            $message.error('请根据订单单号进行查询。');
         }
-        else if ($("#orderNo").val().toString().toUpperCase().indexOf("A") != -1) {
-            $message.error('不能打印配件生产单号。');
-        }
+//        else if ($("#orderNo").val().toString().toUpperCase().indexOf("A") != -1) {
+//            $message.error('不能打印配件生产单号。');
+//        }
         else {
             var data = { "orderNo": $("#orderNo").val() };
             $.ajax({
@@ -42,6 +42,7 @@
         var qtyStr = "";
         var supplierLotNoStr = "";
         var manufactureDateStr = "";
+        var remarkStr = "";
 
         for (var rowIndex = 0; rowIndex < rows.length; rowIndex++) {
             var row = $(rows[rowIndex]);
@@ -75,18 +76,22 @@
                     //return;
                 }
                 var supplierLotNo = row.find("#SupplierLotNo").val();
+                var remark = row.find("#Remark").val();
+
                 if (idStr == "") {
                     idStr = id;
                     ucStr = uc;
-                    supplierLotNoStr = "";
+                    supplierLotNoStr = supplierLotNo;
                     qtyStr = huQty;
                     manufactureDateStr = manufactureDate;
+                    remarkStr = remark;
                 } else {
                     idStr += "," + id;
                     ucStr += "," + uc;
-                    supplierLotNoStr += "," + "";
+                    supplierLotNoStr += "," + supplierLotNo;
                     qtyStr += "," + huQty;
                     manufactureDateStr += "," + manufactureDate;
+                    remarkStr += "," + remark;
                 }
 
             }
@@ -100,6 +105,7 @@
             $("#OrderDetailidStr").val(idStr);
             $("#OrderDetailucStr").val(ucStr);
             $("#OrderDetailsupplierLotNoStr").val(supplierLotNoStr);
+            $("#OrderDetailremarkStr").val(remarkStr);
             $("#OrderDetailimanufactureDateStr").val(manufactureDateStr);
             $("#OrderDetailqtyStr").val(qtyStr);
             $("#OrderDetailisExport").val(isExport);
@@ -111,7 +117,8 @@
                 "OrderDetailsupplierLotNoStr": supplierLotNoStr,
                 "OrderDetailqtyStr": qtyStr,
                 "OrderDetailisExport": isExport,
-                "OrderDetailimanufactureDateStr": manufactureDateStr
+                "OrderDetailimanufactureDateStr": manufactureDateStr,
+                "OrderDetailremarkStr": remarkStr
             }
             $.ajax({
                 type: "post",
@@ -142,7 +149,7 @@
         <div class="search">
             <div class="search-label">
                 <label for="Hu_OrderNo">
-                   生产单号
+                   订单号
                 </label>
             </div>
             <div class="search-field">
@@ -174,6 +181,7 @@
     </fieldset>
     <form id="hiddenOrderDetailForm" action="/Hu/CreateHuByOrderDetail" target="_blank"  method="post">
         <input id="OrderDetailqtyStr" name="OrderDetailqtyStr" type="hidden" />
+        <input id="OrderDetailremarkStr" name="OrderDetailremarkStr" type="hidden" />
         <input id="OrderDetailucStr"  name="OrderDetailucStr" type="hidden" />
         <input id="OrderDetailidStr" name="OrderDetailidStr" type="hidden" />
         <input id="OrderDetailsupplierLotNoStr" name="OrderDetailsupplierLotNoStr" type="hidden" />

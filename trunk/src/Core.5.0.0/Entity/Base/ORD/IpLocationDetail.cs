@@ -61,6 +61,8 @@ namespace com.Sconit.Entity.ORD
 		//[Display(Name = "Version", ResourceType = typeof(Resources.ORD.IpLocationDetail))]
 		public Int32 Version { get; set; }
         public string WMSSeq { get; set; }
+
+        public Boolean IsMatchHu { get; set; }
         #endregion
 
 		public override int GetHashCode()

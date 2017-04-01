@@ -279,7 +279,7 @@
 
         public static bool HasPermission(OrderMaster orderMaster, bool isSupplier = false)
         {
-            return HasPermission(orderMaster.Type, orderMaster.IsCheckPartyFromAuthority, orderMaster.IsCheckPartyToAuthority, orderMaster.PartyFrom, orderMaster.PartyTo, isSupplier);
+            return HasPermission(orderMaster.Type, orderMaster.IsCheckPartyFromAuthority, orderMaster.IsCheckPartyToAuthority, orderMaster.PartyFrom, orderMaster.PartyTo, isSupplier, true, orderMaster.SubType == OrderSubType.Return);
         }
 
         public static bool HasPermission(FlowMaster flowMaster, bool isSupplier = false, bool isCreateOrder = false)
@@ -302,7 +302,7 @@
             return HasPermission(receiptMaster.OrderType, receiptMaster.IsCheckPartyFromAuthority, receiptMaster.IsCheckPartyToAuthority, receiptMaster.PartyFrom, receiptMaster.PartyTo, isSupplier, false);
         }
 
-        public static bool HasPermission(OrderType orderType, bool isCheckPartyFromAuthority, bool isCheckPartyToAuthority, string partyFrom, string partyTo, bool isSupplier, bool isCreateOrder = true)
+        public static bool HasPermission(OrderType orderType, bool isCheckPartyFromAuthority, bool isCheckPartyToAuthority, string partyFrom, string partyTo, bool isSupplier, bool isCreateOrder = true, bool isReturn = false)
         {
             try
             {
@@ -348,13 +348,27 @@
                 else if (orderType == OrderType.Procurement || orderType == OrderType.CustomerGoods || orderType == OrderType.SubContract || orderType == OrderType.ScheduleLine)
                 {
                     //采购的不看供应商权限，只要有目的区域权限就可以
-                    if (isSupplier == true)
+                    if (isReturn)
                     {
-                        hasPermission = supplierPersmissions.Contains(partyFrom);
+                        if (isSupplier == true)
+                        {
+                            hasPermission = supplierPersmissions.Contains(partyTo);
+                        }
+                        else
+                        {
+                            hasPermission = regionPermissions.Contains(partyFrom);
+                        }
                     }
                     else
                     {
-                        hasPermission = regionPermissions.Contains(partyTo);
+                        if (isSupplier == true)
+                        {
+                            hasPermission = supplierPersmissions.Contains(partyFrom);
+                        }
+                        else
+                        {
+                            hasPermission = regionPermissions.Contains(partyTo);
+                        }
                     }
                     //if (isCheckPartyToAuthority && !isSupplier)
                     //{

@@ -38,6 +38,8 @@ namespace com.Sconit.SmartDevice
             dicObject.Add(CodeMaster.TerminalPermission.Client_OrderShip, new List<object> { this.btnOrderShip, 0, Keys.D4, Keys.NumPad4 });
             dicObject.Add(CodeMaster.TerminalPermission.Client_Receive, new List<object> { this.btnReceive, 0, Keys.D5, Keys.NumPad5 });
             dicObject.Add(CodeMaster.TerminalPermission.Client_QuickReturn, new List<object> { this.btnQuickReturn, 0, Keys.D6, Keys.NumPad6 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_PurchaseReturn, new List<object> { this.btnPurchaseReturn, 0, Keys.D7, Keys.NumPad7 });
+
             //生产
             dicObject.Add(CodeMaster.TerminalPermission.Client_Filter, new List<object> { this.btnFilter, 1, Keys.D1, Keys.NumPad1 });
             dicObject.Add(CodeMaster.TerminalPermission.Client_StartAging, new List<object> { this.btnStartAging, 1, Keys.D2, Keys.NumPad2 });

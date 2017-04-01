@@ -43,6 +43,18 @@
             return sdOrderMaster;
         }
 
+        public Entity.SI.SD_ORD.OrderMaster GetOrderByOrderNoAndExtNo(string orderNo, bool includeDetail)
+        {
+            Entity.ORD.OrderMaster orderMaster = orderMgr.GetOrderMasterByOrderNoAndExtNo(orderNo, includeDetail, false, false);
+            var sdOrderMaster = Mapper.Map<Entity.ORD.OrderMaster, Entity.SI.SD_ORD.OrderMaster>(orderMaster);
+
+            if (sdOrderMaster != null && sdOrderMaster.OrderDetails != null && sdOrderMaster.OrderDetails.Count > 0)
+            {
+                sdOrderMaster.OrderDetails = Mapper.Map<IList<Entity.ORD.OrderDetail>, List<Entity.SI.SD_ORD.OrderDetail>>(orderMaster.OrderDetails).OrderBy(s => s.Sequence).ToList();
+            }
+            return sdOrderMaster;
+        }
+
         public Entity.SI.SD_INV.Hu GetHuByOrderNo(string orderNo)
         {
             Entity.ORD.OrderMaster orderMaster = orderMgr.LoadOrderMaster(orderNo, true, false, false);
@@ -633,7 +645,7 @@
             {
                 var shipFrom = (this.genericMgr.FindAll<Address>(
                     " select a from PartyAddress p join p.Address as a where p.Party = ? and p.Type =?",
-                    new object[] {orderMaster.PartyFrom, (int)CodeMaster.AddressType.ShipAddress }, 0, 1) ?? new List<Address>()).FirstOrDefault();
+                    new object[] { orderMaster.PartyFrom, (int)CodeMaster.AddressType.ShipAddress }, 0, 1) ?? new List<Address>()).FirstOrDefault();
                 if (shipFrom != null)
                 {
                     orderMaster.ShipFrom = shipFrom.Code;
@@ -646,7 +658,7 @@
 
                 var shipTo = (this.genericMgr.FindAll<Address>(
                     " select a from PartyAddress p join p.Address as a where p.Party = ? and p.Type =? ",
-                    new object[]{ orderMaster.PartyTo, (int)CodeMaster.AddressType.ShipAddress }, 0, 1) ?? new List<Address>()).FirstOrDefault();
+                    new object[] { orderMaster.PartyTo, (int)CodeMaster.AddressType.ShipAddress }, 0, 1) ?? new List<Address>()).FirstOrDefault();
                 if (shipTo != null)
                 {
                     orderMaster.ShipTo = shipTo.Code;
@@ -1617,25 +1629,25 @@
             hu.Memo = baseHu.ItemVersion + " " + baseHu.Remark;
             return hu;
         }
-         public void RecSmallChkSparePart(string huId, string spareItem, string userCode)
-         {
-             try
-             {
-                 SmallSparePartChk smallSparePartChk = new SmallSparePartChk();
-                 Hu hu = genericMgr.FindById<Hu>(huId);
-                 Item spareItem1 = itemMgr.GetCacheItem(spareItem);
-                 smallSparePartChk.Huid = hu.HuId;
-                 smallSparePartChk.HuItem = hu.Item;
-                 smallSparePartChk.HuItemDesc = hu.ItemDescription;
-                 smallSparePartChk.HuQty = hu.Qty;
-                 smallSparePartChk.SpareItem = spareItem1.Code;
-                 smallSparePartChk.SpareItemDesc = spareItem1.Description;
-                 genericMgr.Create(smallSparePartChk);
-             }
+        public void RecSmallChkSparePart(string huId, string spareItem, string userCode)
+        {
+            try
+            {
+                SmallSparePartChk smallSparePartChk = new SmallSparePartChk();
+                Hu hu = genericMgr.FindById<Hu>(huId);
+                Item spareItem1 = itemMgr.GetCacheItem(spareItem);
+                smallSparePartChk.Huid = hu.HuId;
+                smallSparePartChk.HuItem = hu.Item;
+                smallSparePartChk.HuItemDesc = hu.ItemDescription;
+                smallSparePartChk.HuQty = hu.Qty;
+                smallSparePartChk.SpareItem = spareItem1.Code;
+                smallSparePartChk.SpareItemDesc = spareItem1.Description;
+                genericMgr.Create(smallSparePartChk);
+            }
             catch
             {
                 throw new BusinessException(@Resources.PRD.SmallSparePartChk.SmallSparePartChk_FailToSave);
             }
-         }
+        }
     }
 }

@@ -55,10 +55,15 @@ namespace com.Sconit.SmartDevice
 
             if (this.orderMasters.Count == 0 && this.ipMaster == null)
             {
-                if (base.op == CodeMaster.BarCodeType.ORD.ToString())
+                if (base.op == CodeMaster.BarCodeType.ORD.ToString() || base.op == null)
                 {
                     this.orderMasters = new List<OrderMaster>();
-                    var orderMaster = smartDeviceService.GetOrder(base.barCode, true);
+                    var orderMaster = smartDeviceService.GetOrderByOrderNoAndExtNo(base.barCode, true);
+
+                    if (orderMaster == null)
+                    {
+                        throw new BusinessException("订单不存在");
+                    }
                     if (orderMaster.IsPause)
                     {
                         throw new BusinessException("订单已暂停");

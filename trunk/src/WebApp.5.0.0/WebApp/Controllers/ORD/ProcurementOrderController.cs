@@ -229,6 +229,7 @@
             return View();
         }
 
+
         [AcceptVerbs(HttpVerbs.Post)]
         [GridAction]
         [SconitAuthorize(Permissions = "Url_OrderMstr_Procurement_Edit,Url_OrderMstr_Procurement_ReturnNew,Url_OrderMstr_Procurement_QuickNew")]
@@ -319,12 +320,13 @@
 
                 if (orderMaster.SubType == com.Sconit.CodeMaster.OrderSubType.Return)
                 {
-                    flow = flowMgr.GetReverseFlow(flow, null);                  
+                    flow = flowMgr.GetReverseFlow(flow, null);
                     //  this.genericMgr.CleanSession();
                 }
                 DateTime effectiveDate = orderMaster.EffectiveDate.HasValue ? orderMaster.EffectiveDate.Value : DateTime.Now;
                 OrderMaster newOrder = orderMgr.TransferFlow2Order(flow, null, effectiveDate, false);
                 newOrder.IsQuick = orderMaster.IsQuick;
+           
 
                 if (orderMaster.WindowTime == DateTime.MinValue)
                 {
@@ -337,12 +339,12 @@
 
                 newOrder.WindowTime = orderMaster.WindowTime;
                 newOrder.StartTime = orderMaster.StartTime;
-                if (newOrder.WindowTime == newOrder.StartTime)
-                {
-                    var flowStrategy = this.genericMgr.FindById<FlowStrategy>(orderMaster.Flow);
-                    newOrder.StartTime = newOrder.WindowTime.AddHours(
-                        -Utility.DateTimeHelper.TimeTranfer(flowStrategy.LeadTime, flowStrategy.TimeUnit, Sconit.CodeMaster.TimeUnit.Hour));
-                }
+                //if (newOrder.WindowTime == newOrder.StartTime)
+                //{
+                //    var flowStrategy = this.genericMgr.FindById<FlowStrategy>(orderMaster.Flow);
+                //    newOrder.StartTime = newOrder.WindowTime.AddHours(
+                //        -Utility.DateTimeHelper.TimeTranfer(flowStrategy.LeadTime, flowStrategy.TimeUnit, Sconit.CodeMaster.TimeUnit.Hour));
+                //}
 
                 newOrder.ReferenceOrderNo = orderMaster.ReferenceOrderNo;
                 newOrder.ExternalOrderNo = orderMaster.ExternalOrderNo;
@@ -355,7 +357,11 @@
                 if (orderMaster.SubType == com.Sconit.CodeMaster.OrderSubType.Return)
                 {
                     newOrder.SubType = orderMaster.SubType;
-                    newOrder.IsAutoRelease = false;
+                    //newOrder.IsAutoRelease = false;
+
+                  //  newOrder.IsAutoRelease = orderMaster.IsAutoRelease;
+                    newOrder.IsAutoReceive = true;
+
                     if (newOrder.IsQuick)
                     {
                         newOrder.IsShipScanHu = false;
@@ -1420,13 +1426,13 @@
         {
             OrderMaster orderMaster = queryMgr.FindById<OrderMaster>(orderNo);
             IList<OrderDetail> orderDetails = queryMgr.FindAll<OrderDetail>("select od from OrderDetail as od where od.OrderNo=?", orderNo);
-            foreach (var orderDetail in orderDetails)
-            {
-                if (!string.IsNullOrEmpty(orderDetail.Direction))
-                {
-                    orderDetail.Direction = this.genericMgr.FindById<HuTo>(orderDetail.Direction).CodeDescription;
-                }
-            }
+            //foreach (var orderDetail in orderDetails)
+            //{
+            //    if (!string.IsNullOrEmpty(orderDetail.Direction))
+            //    {
+            //        orderDetail.Direction = this.genericMgr.FindById<HuTo>(orderDetail.Direction).CodeDescription;
+            //    }
+            //}
             orderMaster.OrderDetails = orderDetails;
             PrintOrderMaster printOrderMstr = Mapper.Map<OrderMaster, PrintOrderMaster>(orderMaster);
             IList<object> data = new List<object>();

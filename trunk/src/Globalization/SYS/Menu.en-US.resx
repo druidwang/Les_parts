@@ -3105,4 +3105,7 @@
   <data name="Description_Visualization" xml:space="preserve">
     <value>Visualization</value>
   </data>
+  <data name="Procurement_IpMaster_Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
 </root>

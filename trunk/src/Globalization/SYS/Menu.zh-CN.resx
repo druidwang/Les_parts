@@ -3107,4 +3107,7 @@
   <data name="Name_Visualization" xml:space="preserve">
     <value>目视管理</value>
   </data>
+  <data name="Procurement_IpMaster_Confirm" xml:space="preserve">
+    <value>发货确认</value>
+  </data>
 </root>
