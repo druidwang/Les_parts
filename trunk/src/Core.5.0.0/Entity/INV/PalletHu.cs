@@ -7,7 +7,7 @@ using com.Sconit.Entity.SYS;
 
 namespace com.Sconit.Entity.INV
 {
-    public partial class Pallet
+    public partial class PalletHu
     {
         #region Non O/R Mapping Properties
         #endregion

@@ -136,7 +136,7 @@
     <Compile Include="Base\INP\RejectMaster.cs" />
     <Compile Include="Base\INV\ContainerHu.cs" />
     <Compile Include="Base\INV\ContainerDetail.cs" />
-    <Compile Include="Base\INV\Pallet.cs" />
+    <Compile Include="Base\INV\PalletHu.cs" />
     <Compile Include="Base\INV\EndingLocationDet.cs" />
     <Compile Include="Base\INV\FreezeTransaction.cs" />
     <Compile Include="Base\INV\Hu.cs" />
@@ -374,7 +374,7 @@
     <Compile Include="INP\RejectMaster.cs" />
     <Compile Include="INV\ContainerHu.cs" />
     <Compile Include="INV\ContainerDetail.cs" />
-    <Compile Include="INV\Pallet.cs" />
+    <Compile Include="INV\PalletHu.cs" />
     <Compile Include="INV\EndingLocationDet.cs" />
     <Compile Include="INV\FreezeTransaction.cs" />
     <Compile Include="INV\Hu.cs" />
@@ -1016,7 +1016,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Base\INV\ContainerHu.hbm.xml" />
     <EmbeddedResource Include="Base\SCM\FlowShiftDetail.hbm.xml" />
-    <EmbeddedResource Include="Base\INV\Pallet.hbm.xml" />
+    <EmbeddedResource Include="Base\INV\PalletHu.hbm.xml" />
     <Content Include="Base\MD\DefaultBin.hbm.xml" />
     <Content Include="Base\WMS\UnpickShipPlan.hbm.xml" />
     <EmbeddedResource Include="Base\WMS\DeliveryBarCode.hbm.xml" />
@@ -1049,7 +1049,7 @@
     <EmbeddedResource Include="Base\FMS\FacilityOrderDetail.hbm.xml" />
     <EmbeddedResource Include="Base\FMS\MaintainPlanItem.hbm.xml" />
     <Content Include="Base\INP\ProdTraceCode.hbm.xml" />
-    <Content Include="Base\MD\Pallet.hbm.xml" />
+    <EmbeddedResource Include="Base\MD\Pallet.hbm.xml" />
     <EmbeddedResource Include="Base\MES\MesScanControlPoint.hbm.xml" />
     <Content Include="Base\ORD\OrderOperation.hbm.xml" />
     <Content Include="Base\TMS\TransportOrderDetailPallet.hbm.xml" />

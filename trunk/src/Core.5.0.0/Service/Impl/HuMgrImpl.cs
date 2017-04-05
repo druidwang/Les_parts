@@ -143,13 +143,18 @@ namespace com.Sconit.Service.Impl
         }
 
         [Transaction(TransactionMode.Requires)]
-        public IList<Hu> CreateHu(OrderMaster orderMaster, IList<OrderDetail> orderDetailList, bool isScrapHu = false,bool isPrintPallet  = false)
+        public IList<Hu> CreateHu(OrderMaster orderMaster, IList<OrderDetail> orderDetailList, bool isScrapHu = false, bool isPrintPallet = false)
         {
             IList<Hu> huList = new List<Hu>();
             foreach (OrderDetail orderDetail in orderDetailList)
             {
+                string palletCode = string.Empty;
                 ///每条做一个托盘
-                string palletCode = numberControlMgr.GetPalletCode();
+                if (isPrintPallet)
+                {
+                    palletCode = numberControlMgr.GetPalletCode();
+
+                }
 
                 IDictionary<string, decimal> huIdDic = numberControlMgr.GetHuId(orderDetail);
                 if (huIdDic != null && huIdDic.Count > 0)
@@ -220,6 +225,24 @@ namespace com.Sconit.Service.Impl
                         huList.Add(hu);
                     }
                 }
+
+                #region 托盘
+                if (isPrintPallet)
+                {
+                    Pallet pallet = new Pallet();
+                    pallet.Code = palletCode;
+                    pallet.Description = huList.First().Item + "|" + huList.First().ItemDescription + "|" + huList.Count();
+                    this.genericMgr.Create(pallet);
+
+                    foreach (Hu hu in huList)
+                    {
+                        PalletHu palletHu = new PalletHu();
+                        palletHu.HuId = hu.HuId;
+                        palletHu.PalletCode = palletCode;
+                        genericMgr.Create(palletHu);
+                    }
+                }
+                #endregion
             }
             return huList;
         }

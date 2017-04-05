@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace com.Sconit.Entity.MD
 {
     [Serializable]
-    public partial class Pallet : EntityBase
+    public partial class Pallet : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
 		
