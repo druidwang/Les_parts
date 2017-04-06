@@ -4210,6 +4210,24 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 New 的本地化字符串。
+        /// </summary>
+        public static string Inventory_Pallet_New {
+            get {
+                return ResourceManager.GetString("Inventory_Pallet_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Search 的本地化字符串。
+        /// </summary>
+        public static string Inventory_Pallet_View {
+            get {
+                return ResourceManager.GetString("Inventory_Pallet_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 StockTake 的本地化字符串。
         /// </summary>
         public static string Inventory_StockTake {

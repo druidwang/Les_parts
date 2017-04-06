@@ -7,23 +7,40 @@ namespace com.Sconit.Entity.MD
     public partial class Pallet : EntityBase, IAuditable
     {
         #region O/R Mapping Properties
-		
-		public string Code { get; set; }
-		public string Description { get; set; }
-		public Decimal Volume { get; set; }
-		public Decimal Weight { get; set; }
-		public Int32 CreateUserId { get; set; }
-		public string CreateUserName { get; set; }
-		public DateTime CreateDate { get; set; }
-		public Int32 LastModifyUserId { get; set; }
-		public string LastModifyUserName { get; set; }
-		public DateTime LastModifyDate { get; set; }
-        
+
+        [Display(Name = "Pallet_Code", ResourceType = typeof(Resources.INV.Pallet))]
+        public string Code { get; set; }
+
+        [Display(Name = "Pallet_Description", ResourceType = typeof(Resources.INV.Pallet))]
+        public string Description { get; set; }
+
+        [Display(Name = "Pallet_Volume", ResourceType = typeof(Resources.INV.Pallet))]
+        public Decimal Volume { get; set; }
+
+        [Display(Name = "Pallet_Weight", ResourceType = typeof(Resources.INV.Pallet))]
+        public Decimal Weight { get; set; }
+
+        public Int32 CreateUserId { get; set; }
+
+        [Display(Name = "Pallet_CreateUserName", ResourceType = typeof(Resources.INV.Pallet))]
+        public string CreateUserName { get; set; }
+
+        [Display(Name = "Pallet_CreateDate", ResourceType = typeof(Resources.INV.Pallet))]
+        public DateTime CreateDate { get; set; }
+
+        public Int32 LastModifyUserId { get; set; }
+
+        [Display(Name = "Pallet_LastModifyUserName", ResourceType = typeof(Resources.INV.Pallet))]
+        public string LastModifyUserName { get; set; }
+
+        [Display(Name = "Pallet_LastModifyDate", ResourceType = typeof(Resources.INV.Pallet))]
+        public DateTime LastModifyDate { get; set; }
+
         #endregion
 
-		public override int GetHashCode()
+        public override int GetHashCode()
         {
-			if (Code != null)
+            if (Code != null)
             {
                 return Code.GetHashCode();
             }
@@ -43,9 +60,9 @@ namespace com.Sconit.Entity.MD
             }
             else
             {
-            	return (this.Code == another.Code);
+                return (this.Code == another.Code);
             }
-        } 
+        }
     }
-	
+
 }

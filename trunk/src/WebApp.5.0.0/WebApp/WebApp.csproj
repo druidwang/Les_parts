@@ -219,6 +219,7 @@
     <Compile Include="Controllers\ISI\TaskSubTypeController.cs" />
     <Compile Include="Controllers\MD\AddressController.cs" />
     <Compile Include="Controllers\MD\ContainerController.cs" />
+    <Compile Include="Controllers\INV\PalletController.cs" />
     <Compile Include="Controllers\MD\SwitchTradingController.cs" />
     <Compile Include="Controllers\MD\CurrencyController.cs" />
     <Compile Include="Controllers\MD\CustodianController.cs" />
@@ -430,6 +431,7 @@
     <Compile Include="Models\SearchModels\ISI\TaskMasterSearchModel.cs" />
     <Compile Include="Models\SearchModels\ISI\TaskStatusSearchModel.cs" />
     <Compile Include="Models\SearchModels\ISI\TaskSubTypeSearchModel.cs" />
+    <Compile Include="Models\SearchModels\INV\PalletSearchModel.cs" />
     <Compile Include="Models\SearchModels\MD\SwitchTradingSearchModel.cs" />
     <Compile Include="Models\SearchModels\MD\FlowSearchModel.cs" />
     <Compile Include="Models\SearchModels\MES\MesScanControlPointSearchModel.cs" />
@@ -2820,6 +2822,10 @@
     <Content Include="Views\com.Sconit.Web.Controllers.SCM\ProcurementFlow\_FlowShiftDetailSearch.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.SCM\ProcurementFlow\_FlowShiftDetailSearchResult.cshtml" />
     <Content Include="Views\Common\_ShiftMasterComboBox.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\Pallet\List.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\Pallet\Index.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\Pallet\_Search.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\Pallet\_SearchResult.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

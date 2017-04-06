@@ -3108,4 +3108,10 @@
   <data name="Procurement_IpMaster_Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="Inventory_Pallet_New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="Inventory_Pallet_View" xml:space="preserve">
+    <value>Search</value>
+  </data>
 </root>
