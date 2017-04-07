@@ -11,6 +11,7 @@ namespace com.Sconit.Entity.MD
         [Display(Name = "Pallet_Code", ResourceType = typeof(Resources.INV.Pallet))]
         public string Code { get; set; }
 
+        [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "Errors_Common_FieldRequired", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
         [Display(Name = "Pallet_Description", ResourceType = typeof(Resources.INV.Pallet))]
         public string Description { get; set; }
 
