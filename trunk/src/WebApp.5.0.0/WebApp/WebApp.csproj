@@ -2826,6 +2826,9 @@
     <Content Include="Views\com.Sconit.Web.Controllers.INV\Pallet\Index.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.INV\Pallet\_Search.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.INV\Pallet\_SearchResult.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\Pallet\Edit.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\Pallet\_PalletHuList.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\Pallet\New.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

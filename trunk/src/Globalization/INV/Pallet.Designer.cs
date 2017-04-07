@@ -61,6 +61,15 @@ namespace Resources.INV {
         }
         
         /// <summary>
+        ///   查找类似 Pallet Added 的本地化字符串。
+        /// </summary>
+        public static string Pallet_Added {
+            get {
+                return ResourceManager.GetString("Pallet_Added", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Code 的本地化字符串。
         /// </summary>
         public static string Pallet_Code {
@@ -133,11 +142,29 @@ namespace Resources.INV {
         }
         
         /// <summary>
+        ///   查找类似 New 的本地化字符串。
+        /// </summary>
+        public static string Pallet_New_Title {
+            get {
+                return ResourceManager.GetString("Pallet_New_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 StartDate 的本地化字符串。
         /// </summary>
         public static string Pallet_StartDate {
             get {
                 return ResourceManager.GetString("Pallet_StartDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Hu 的本地化字符串。
+        /// </summary>
+        public static string Pallet_Tab_Hu {
+            get {
+                return ResourceManager.GetString("Pallet_Tab_Hu", resourceCulture);
             }
         }
         
@@ -156,6 +183,15 @@ namespace Resources.INV {
         public static string Pallet_Weight {
             get {
                 return ResourceManager.GetString("Pallet_Weight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Hu 的本地化字符串。
+        /// </summary>
+        public static string PalletHu_Title_View {
+            get {
+                return ResourceManager.GetString("PalletHu_Title_View", resourceCulture);
             }
         }
     }

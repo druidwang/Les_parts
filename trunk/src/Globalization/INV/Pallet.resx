@@ -150,4 +150,13 @@
   <data name="Pallet_Weight" xml:space="preserve">
     <value>Weight</value>
   </data>
+  <data name="PalletHu_Title_View" xml:space="preserve">
+    <value>Hu</value>
+  </data>
+  <data name="Pallet_Added" xml:space="preserve">
+    <value>Pallet Added</value>
+  </data>
+  <data name="Pallet_Tab_Hu" xml:space="preserve">
+    <value>Hu</value>
+  </data>
 </root>

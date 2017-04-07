@@ -1,98 +1,4 @@
 ﻿@model IEnumerable<com.Sconit.Entity.MD.Pallet>
-<script type="text/javascript">
-    $(function () {
-        $("#checkAll").click(function () {
-            $('input[name="checkedRecords"]').attr("checked", this.checked);
-            $("#btnEdit").attr("style", this.checked ? "display:inline" : "display:none");
-            $("#btnExport").attr("style", this.checked ? "display:inline" : "display:none");
-        });
-    });
-
-
-
-    function showButtons() {
-        var $checkRecords = $("input[name='checkedRecords']");
-        var showButton = false;
-        for (var i = 0; i < $checkRecords.length; i++) {
-            if ($checkRecords[i].checked) {
-                showButton = true;
-                break;
-            }
-        }
-        $("#checkAll").attr("checked", $checkRecords.length == $("input[name='checkedRecords']:checked").length ? true : false);
-        $("#btnEdit").attr("style", showButton ? "display:inline" : "display:none");
-        $("#btnExport").attr("style", showButton ? "display:inline" : "display:none");
-    }
-
-
-    function CheckedExport(isExport) {
-        var $checkRecords = $("input[name='checkedRecords']");
-
-        var checkedOrders = "";
-        for (var i = 0; i < $checkRecords.length; i++) {
-            if ($checkRecords[i].checked) {
-                if (checkedOrders == "") {
-                    checkedOrders = $checkRecords[i].value;
-                } else {
-                    checkedOrders += "," + $checkRecords[i].value;
-                }
-            }
-        }
-        if (checkedOrders == "") {
-            alert('Must Check One');
-            return;
-        }
-
-        var data = {
-            "checkedOrders": checkedOrders
-        };
-        //debugger
-        if (isExport) {
-            $.ajax({
-                type: "post",
-                dataType: "Json",
-                url: "/Hu/CheckExportTemplate/",
-                data: data,
-                cache: false,
-                success: function (data, textStatus) {
-
-                    if (data.Message != "OK") {
-                        $message.error(data.Message)
-                    }
-                    else {
-                        $("#checkedOrders").val(checkedOrders);
-                        $("#hiddenForm").submit();
-                    }
-
-                }
-            });
-        } else {
-            $.ajax({
-                type: "post",
-                dataType: "Json",
-                data: data,
-                async: false,
-                url: "/Pallet/_PrintHuList/",
-                cache: false,
-                success: function (data, textStatus) {
-                    $message.success("条码打印成功");
-
-                    for (var i = 0; i < data.PrintUrl.length; i++) {
-                        PrintOrder(data.PrintUrl[i]);
-                    }
-                    //if (data.PrintUrl != "") {
-                    //PrintOrder(data.PrintUrl);
-                    //}
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    var errorMessages = XMLHttpRequest.responseText;
-
-                    $message.error(errorMessages);
-                }
-            });
-        }
-    }
-</script>
 <fieldset>
     @(Html.Telerik().Grid(Model)
                 .Name("PalletGrid")
@@ -102,11 +8,8 @@
         })
         .Columns(columns =>
         {
-            columns.Bound(o => o.Code)
-              .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' onClick='showButtons();' value='<#= Code #>'   />")
-              .HeaderTemplate("<input type='checkbox' id='checkAll' name='checkAll' />")
-              .Width(36).HtmlAttributes(new { style = "text-align:center" });
-            columns.Bound(o => o.Code);
+         
+            columns.Bound(o => o.Code).ClientTemplate(Html.ActionLink("<#= Code #>", "Edit", "Pallet", new { Id = "<#= Code #>" }, null).ToString());
             columns.Bound(o => o.Description);
             columns.Bound(o => o.Volume);
             columns.Bound(o => o.Weight);
@@ -145,6 +48,3 @@
 
     </script>
 </fieldset>
-<form id="hiddenForm" action="/Pallet/SaveToClientTo" target="_blank" method="post">
-<input id="checkedOrders" name="checkedOrders" type="hidden" />
-</form>

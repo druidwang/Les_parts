@@ -150,4 +150,13 @@
   <data name="Pallet_Weight" xml:space="preserve">
     <value>重量</value>
   </data>
+  <data name="PalletHu_Title_View" xml:space="preserve">
+    <value>条码</value>
+  </data>
+  <data name="Pallet_Added" xml:space="preserve">
+    <value>托盘新增成功</value>
+  </data>
+  <data name="Pallet_Tab_Hu" xml:space="preserve">
+    <value>条码</value>
+  </data>
 </root>

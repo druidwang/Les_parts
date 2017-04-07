@@ -41,21 +41,14 @@ namespace com.Sconit.Web.Controllers.INV
 
         public IHuMgr huMgr { get; set; }
 
+        public INumberControlMgr numberControlMgr { get; set; }
+
 
         #region public method
         [SconitAuthorize(Permissions = "Url_Inventory_Pallet_View")]
         public ActionResult Index()
         {
             ViewBag.CreateUserName = this.CurrentUser.FullName;
-            return View();
-        }
-
-
-        [SconitAuthorize(Permissions = "Url_Inventory_Pallet_New")]
-        public ActionResult New()
-        {
-            TempData["PalletSearchModel"] = null;
-
             return View();
         }
 
@@ -90,6 +83,55 @@ namespace com.Sconit.Web.Controllers.INV
             return PartialView(list);
         }
 
+        [SconitAuthorize(Permissions = "Url_Inventory_Pallet_View")]
+        public ActionResult Edit(string id)
+        {
+            Pallet pallet = genericMgr.FindById<Pallet>(id);
+
+            return View("Edit", string.Empty, pallet);
+        }
+
+
+        [SconitAuthorize(Permissions = "Url_Inventory_Pallet_View")]
+        public ActionResult _PalletHuList(string palletCode)
+        {
+            string hql = "select p from PalletHu as p where p.PalletCode = ?";
+            IList<PalletHu> palletHuList = genericMgr.FindAll<PalletHu>(hql, palletCode);
+            //foreach (var receiptDetail in receiptDetailList)
+            //{
+            //    receiptDetail.ReceiptLocationDetails = this.genericMgr.FindAll<ReceiptLocationDetail>
+            //        ("from ReceiptLocationDetail where ReceiptDetailId =? ", receiptDetail.Id);
+            //}
+            return PartialView(palletHuList);
+        }
+
+
+        /// <summary>
+        /// New action
+        /// </summary>
+        /// <returns>rediret view</returns>
+        [SconitAuthorize(Permissions = "Url_Inventory_Pallet_New")]
+        public ActionResult New()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [SconitAuthorize(Permissions = "Url_Inventory_Pallet_New")]
+        public ActionResult New(Pallet pallet)
+        {
+            if (ModelState.IsValid)
+            {
+                pallet.Code = numberControlMgr.GetPalletCode();
+
+                genericMgr.CreateWithTrim(pallet);
+                SaveSuccessMessage(Resources.INV.Pallet.Pallet_Added);
+                return RedirectToAction("Edit/" + pallet.Code);
+            }
+
+            return View(pallet);
+        }
 
 
         #region 打印导出
@@ -296,8 +338,8 @@ namespace com.Sconit.Web.Controllers.INV
             return reportGen.WriteToFile(huTemplate, data);
         }
 
-    
-    
+
+
         #endregion
 
         #endregion
@@ -312,7 +354,7 @@ namespace com.Sconit.Web.Controllers.INV
             HqlStatementHelper.AddEqStatement("Code", searchModel.Code, "p", ref whereStatement, param);
             HqlStatementHelper.AddLikeStatement("Description", searchModel.Description, HqlStatementHelper.LikeMatchMode.Anywhere, "p", ref whereStatement, param);
 
-         
+
 
             if (searchModel.StartDate != null & searchModel.EndDate != null)
             {
@@ -332,7 +374,7 @@ namespace com.Sconit.Web.Controllers.INV
             {
                 if (string.IsNullOrEmpty(whereStatement))
                 {
-                    whereStatement += "  where exists (select 1 from PalletHu as h  where h.PalletCode = p.Code and h.HuId = '" + searchModel.HuId +"') ";
+                    whereStatement += "  where exists (select 1 from PalletHu as h  where h.PalletCode = p.Code and h.HuId = '" + searchModel.HuId + "') ";
                 }
                 else
                 {
