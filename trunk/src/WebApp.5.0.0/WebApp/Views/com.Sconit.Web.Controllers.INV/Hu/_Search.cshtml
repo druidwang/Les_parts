@@ -45,12 +45,12 @@
                 @Html.TextBox("LotNoTo", TempData["HuSearchModel"] != null ? ((HuSearchModel)TempData["HuSearchModel"]).LotNoTo : string.Empty)
             </div>
             <div class="search-label">
-                <label for="Hu_CreateUserName">
-                    @Resources.INV.Hu.Hu_SupplierLotNo
+                <label for="Hu_PalletCode">
+                    @Resources.INV.Hu.Hu_PalletCode
                 </label>
             </div>
             <div class="search-field">
-                @Html.TextBox("SupplierLotNo", TempData["HuSearchModel"] != null ? ((HuSearchModel)TempData["HuSearchModel"]).SupplierLotNo : string.Empty)
+                @Html.TextBox("PalletCode", TempData["HuSearchModel"] != null ? ((HuSearchModel)TempData["HuSearchModel"]).PalletCode : string.Empty)
             </div>
             <div class="search-label">
                 <label for="Hu_CreateUserName">

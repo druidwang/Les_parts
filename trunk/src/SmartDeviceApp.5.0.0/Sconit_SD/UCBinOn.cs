@@ -75,7 +75,7 @@ namespace com.Sconit.SmartDevice
                     {
                         throw new BusinessException("条码不在库存中,不能装入容器");
                     }
-                    else if(hu.IsFreeze)
+                    else if (hu.IsFreeze)
                     {
                         throw new BusinessException("条码被冻结,不能装入容器");
                     }
@@ -86,8 +86,36 @@ namespace com.Sconit.SmartDevice
                     else
                     {
                         hus.Add(hu);
-                        
+
                         this.isCancel = false;
+                    }
+                }
+                else if (op == CodeMaster.BarCodeType.TP.ToString())
+                {
+                    Hu[] huArray = smartDeviceService.GetHuListByPallet(barCode);
+                    foreach (Hu hu in huArray)
+                    {
+                        if (hu == null)
+                        {
+                            throw new BusinessException("此条码不存在");
+                        }
+                        else if (hu.Status != HuStatus.Location)
+                        {
+                            throw new BusinessException("条码不在库存中,不能装入容器");
+                        }
+                        else if (hu.IsFreeze)
+                        {
+                            throw new BusinessException("条码被冻结,不能装入容器");
+                        }
+                        else if (hu.OccupyType != OccupyType.None)
+                        {
+                            throw new BusinessException("条码被{0}占用!", hu.OccupyReferenceNo);
+                        }
+                        else
+                        {
+                            hus.Add(hu);
+                            this.isCancel = false;
+                        }
                     }
                 }
                 else
@@ -131,7 +159,7 @@ namespace com.Sconit.SmartDevice
                 throw new BusinessException("未扫入物料条码,不可以提交");
             }
 
-            smartDeviceService.OnBin(this._bin.Code ,hus.Select(h => h.HuId).ToArray(), this.user.Code);
+            smartDeviceService.OnBin(this._bin.Code, hus.Select(h => h.HuId).ToArray(), this.user.Code);
             this.Reset();
             this.lblMessage.ForeColor = Color.Green;
             this.lblMessage.Text = "操作成功";

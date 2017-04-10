@@ -148,6 +148,8 @@ namespace com.Sconit.PrintModel.INV
         public string OrderNo { get; set; }
 
         public string IpNo { get; set; }
+
+        public string PalletCode { get; set; }
         #endregion
 
     }

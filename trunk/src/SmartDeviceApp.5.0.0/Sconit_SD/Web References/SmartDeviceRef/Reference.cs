@@ -32,6 +32,28 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoAging", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Hu DoAging(string huId, string userCode) {
+            object[] results = this.Invoke("DoAging", new object[] {
+                        huId,
+                        userCode});
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginDoAging(string huId, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("DoAging", new object[] {
+                        huId,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public Hu EndDoAging(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoFilter", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Hu DoFilter(string huId, decimal outQty, string userCode) {
             object[] results = this.Invoke("DoFilter", new object[] {
@@ -621,6 +643,26 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         public Hu EndGetHu(System.IAsyncResult asyncResult) {
             object[] results = this.EndInvoke(asyncResult);
             return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetHuListByPallet", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Hu[] GetHuListByPallet(string palletCode) {
+            object[] results = this.Invoke("GetHuListByPallet", new object[] {
+                        palletCode});
+            return ((Hu[])(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetHuListByPallet(string palletCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetHuListByPallet", new object[] {
+                        palletCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public Hu[] EndGetHuListByPallet(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((Hu[])(results[0]));
         }
         
         /// <remarks/>
@@ -1649,28 +1691,6 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         public Hu EndStartAging(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((Hu)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoAging", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Hu DoAging(string huId, string userCode) {
-            object[] results = this.Invoke("DoAging", new object[] {
-                        huId,
-                        userCode});
-            return ((Hu)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginDoAging(string huId, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("DoAging", new object[] {
-                        huId,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public Hu EndDoAging(System.IAsyncResult asyncResult) {
             object[] results = this.EndInvoke(asyncResult);
             return ((Hu)(results[0]));
         }

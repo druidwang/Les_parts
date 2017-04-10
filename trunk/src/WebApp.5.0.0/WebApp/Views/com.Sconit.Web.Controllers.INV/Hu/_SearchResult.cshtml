@@ -25,18 +25,6 @@
     }
 
 
-    function HuMasterGrid_OnDataBinding(e) {
-        e.data = {
-            HuId: $('#HuId').val(),
-            Item: $('#Item').val(),
-            lotNo: $('#LotNo').val(),
-            lotNo: $('#LotNoTo').val(),
-            StartDate: $('#StartDate').val(),
-            EndDate: $('#EndDate').val()
-        }
-    }
-
-
     function CheckedExport(isExport) {
         var $checkRecords = $("input[name='checkedRecords']");
 
@@ -118,9 +106,10 @@
               .ClientTemplate("<input type='checkbox' id='checkedRecords' name='checkedRecords' onClick='showButtons();' value='<#= HuId #>'   />")
               .HeaderTemplate("<input type='checkbox' id='checkAll' name='checkAll' />")
               .Width(36).HtmlAttributes(new { style = "text-align:center" });
-            columns.Bound(o => o.PalletCode);
+       
             columns.Bound(o => o.HuId).ClientTemplate(Html.ActionLink("<#= HuId #>", "HuDetail", "Hu", new { Id = "<#= HuId #>" }, null).ToString());
             columns.Bound(o => o.LotNo).Title(@Resources.INV.Hu.Hu_manufacture_date);
+            columns.Bound(o => o.PalletCode);
             columns.Bound(o => o.Item);
             columns.Bound(o => o.ItemDescription);
             columns.Bound(o => o.ItemVersion);
@@ -167,7 +156,7 @@
                 CreateUserName: $('#CreateUserName').val(),
                 StartDate: $('#StartDate').val(),
                 EndDate: $('#EndDate').val(),
-                SupplierLotNo: $('#SupplierLotNo').val(),
+                PalletCode: $('#PalletCode').val(),
                 LotNo: $('#LotNo').val(),
                 LotNoTo: $('#LotNoTo').val(),
                 Item: $('#Item').val()

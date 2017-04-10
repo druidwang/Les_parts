@@ -46,15 +46,14 @@ namespace com.Sconit.Utility.Report.Operator
             this.SetColumnCell(pageIndex, 1, 0, "物料号：");
             this.SetColumnCell(pageIndex, 2, 0, "名   称：");
             this.SetColumnCell(pageIndex, 3, 0, "数   量：");
-            this.SetColumnCell(pageIndex, 4, 0, "供应商批号：");
-            this.SetColumnCell(pageIndex, 5, 0, "采购送货单：");
-            this.SetColumnCell(pageIndex, 8, 0, "打印人：");
+            this.SetColumnCell(pageIndex, 4, 0, "采购送货单：");
+            this.SetColumnCell(pageIndex, 7, 0, "打印人：");
 
-            this.SetColumnCell(pageIndex, 3, 2, "参考号：");
+            this.SetColumnCell(pageIndex, 3, 2, "托盘号：");
             this.SetColumnCell(pageIndex, 4, 2, "制造日期：");
-            this.SetColumnCell(pageIndex, 5, 2, "FIFO期限：");
+   
 
-            this.SetColumnCell(pageIndex, 8, 2, "打印时间：");
+            this.SetColumnCell(pageIndex, 7, 2, "打印时间：");
 
             //this.CopyCellColumn(pageIndex, 0, 0, "A1");
             //this.CopyCellColumn(pageIndex, 1, 0, "A2");
@@ -132,29 +131,26 @@ namespace com.Sconit.Utility.Report.Operator
                     this.SetColumnCell(pageIndex, 2, 1, hu.ItemDescription);
                     //数量+单位
                     this.SetColumnCell(pageIndex, 3, 1, string.Format("{0} {1}", hu.Qty.ToString("0.###"), hu.Uom));
-                    //供应商批号
-                    this.SetColumnCell(pageIndex, 4, 1, hu.SupplierLotNo);
                     //送货单
-                    this.SetColumnCell(pageIndex, 5, 1, hu.IpNo);
+                    this.SetColumnCell(pageIndex, 4, 1, hu.OrderNo);
+        
 
-                    //参考物料号
-                    this.SetColumnCell(pageIndex, 3, 3, hu.ReferenceItemCode);
+                    //托盘号
+                    this.SetColumnCell(pageIndex, 3, 3, hu.PalletCode);
                     //制造时间
                     this.SetColumnCell(pageIndex, 4, 3, hu.LotNo);
-                    //fifo时间
-                    this.SetColumnCell(pageIndex, 5, 3, hu.ExpireDate != null ? hu.ExpireDate.Value.ToString("yyyy/MM/dd") : string.Empty);
-
+                  
                     // 条码
                     string barCode = Utility.BarcodeHelper.GetBarcodeStr(hu.HuId, this.barCodeFontName);
-                    this.SetColumnCell(pageIndex, 6, 0, barCode);//ItemDescription
+                    this.SetColumnCell(pageIndex, 5, 0, barCode);//ItemDescription
 
                     // 条码号
-                    this.SetColumnCell(pageIndex, 7, 0, hu.HuId);
+                    this.SetColumnCell(pageIndex, 6, 0, hu.HuId);
 
                     //打印人
-                    this.SetColumnCell(pageIndex, 8, 1, userName);
+                    this.SetColumnCell(pageIndex, 7, 1, userName);
                     // 打印时间
-                    this.SetColumnCell(pageIndex, 8, 3, DateTime.Now.ToString("yyyy/MM/dd HH:mm"));
+                    this.SetColumnCell(pageIndex, 7, 3, DateTime.Now.ToString("yyyy/MM/dd HH:mm"));
 
                     pageIndex++;
                 }

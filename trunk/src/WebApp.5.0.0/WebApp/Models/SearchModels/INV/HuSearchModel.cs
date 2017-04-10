@@ -29,5 +29,7 @@ namespace com.Sconit.Web.Models.SearchModels.INV
         public DateTime? RemindExpireDate_End { get; set; }
         public int SearchCondition { get; set; }
         public string SupplierLotNo { get; set; }
+
+        public string PalletCode { get; set; }
     }
 }

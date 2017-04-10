@@ -603,7 +603,7 @@ namespace com.Sconit.Web.Controllers.INV
                         }
                         else
                         {
-                            string printUrl = PrintHuList(huList, orderMaster.HuTemplate);
+                            string printUrl = PrintHuList(huList, orderMaster.HuTemplate,IsPrintPallet);
                             object obj = new { SuccessMessage = string.Format(Resources.EXT.ControllerLan.Con_BarcodePrintedSuccessfully_1, huList.Count), PrintUrl = printUrl };
                             return Json(obj);
                         }
@@ -1292,7 +1292,7 @@ namespace com.Sconit.Web.Controllers.INV
             return Json(obj);
         }
 
-        public string PrintHuList(IList<Hu> huList, string huTemplate)
+        public string PrintHuList(IList<Hu> huList, string huTemplate,bool isPrintPallet = false)
         {
             foreach (var hu in huList)
             {
@@ -1302,6 +1302,32 @@ namespace com.Sconit.Web.Controllers.INV
                 }
             }
             IList<PrintHu> printHuList = Mapper.Map<IList<Hu>, IList<PrintHu>>(huList);
+
+            #region 处理托盘
+            if (isPrintPallet)
+            {
+                PrintHu palletHu = printHuList.FirstOrDefault();
+                if (palletHu != null)
+                {
+                    PrintHu hu = new PrintHu();
+                    hu.CreateDate = palletHu.CreateDate;
+                    hu.CreateUserId = palletHu.CreateUserId;
+                    hu.CreateUserName = palletHu.CreateUserName;
+                    hu.Item = palletHu.Item;
+                    hu.ItemDescription = palletHu.ItemDescription;
+                    hu.HuId = palletHu.PalletCode;
+                    hu.PalletCode = palletHu.PalletCode;
+                    hu.ManufactureParty = palletHu.ManufactureParty;
+                    hu.ManufacturePartyDescription = palletHu.ManufacturePartyDescription;
+                    hu.ManufactureDate = palletHu.ManufactureDate;
+                    hu.LotNo = palletHu.LotNo;
+                    hu.OrderNo = palletHu.OrderNo;
+                    hu.Qty = printHuList.Count();
+                    hu.Uom = "箱";
+                    printHuList.Add(hu);
+                }
+            }
+            #endregion
 
             IList<object> data = new List<object>();
             data.Add(printHuList);
@@ -1390,7 +1416,7 @@ namespace com.Sconit.Web.Controllers.INV
             HqlStatementHelper.AddLikeStatement("HuId", searchModel.HuId, HqlStatementHelper.LikeMatchMode.Anywhere, "h", ref whereStatement, param);
             HqlStatementHelper.AddLikeStatement("CreateUserName", searchModel.CreateUserName, HqlStatementHelper.LikeMatchMode.Start, "h", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "h", ref whereStatement, param);
-            HqlStatementHelper.AddEqStatement("SupplierLotNo", searchModel.SupplierLotNo, "h", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("PalletCode", searchModel.PalletCode, "h", ref whereStatement, param);
 
             if (searchModel.LotNo != null & searchModel.LotNoTo != null)
             {

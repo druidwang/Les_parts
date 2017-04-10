@@ -172,6 +172,19 @@
         }
 
         [WebMethod]
+        public List<Entity.SI.SD_INV.Hu> GetHuListByPallet(string palletCode)
+        {
+            try
+            {
+                return this.inventoryMgr.GetPalletHu(palletCode);
+            }
+            catch (BusinessException ex)
+            {
+                throw new SoapException(GetBusinessExMessage(ex), SoapException.ServerFaultCode, string.Empty);
+            }
+        }
+
+        [WebMethod]
         public Hu CloneHu(string huId, decimal qty, string userCode)
         {
             try

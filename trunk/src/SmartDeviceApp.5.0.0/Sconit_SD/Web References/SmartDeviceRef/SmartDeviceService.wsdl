@@ -2,19 +2,18 @@
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://com.Sconit.WebService.SD.SmartDeviceService/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/">
-      <s:element name="DoFilter">
+      <s:element name="DoAging">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
-            <s:element minOccurs="1" maxOccurs="1" name="outQty" type="s:decimal" />
             <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="DoFilterResponse">
+      <s:element name="DoAgingResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="DoFilterResult" type="tns:Hu" />
+            <s:element minOccurs="0" maxOccurs="1" name="DoAgingResult" type="tns:Hu" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -99,6 +98,22 @@
           <s:enumeration value="Filtered" />
         </s:restriction>
       </s:simpleType>
+      <s:element name="DoFilter">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="outQty" type="s:decimal" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DoFilterResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DoFilterResult" type="tns:Hu" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="RecSmallChkSparePart">
         <s:complexType>
           <s:sequence>
@@ -1114,6 +1129,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="GetHuListByPallet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="palletCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHuListByPalletResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHuListByPalletResult" type="tns:ArrayOfHU" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="CloneHu">
         <s:complexType>
           <s:sequence>
@@ -2002,23 +2031,14 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="DoAging">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="DoAgingResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="DoAgingResult" type="tns:Hu" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="DoAgingSoapIn">
+    <wsdl:part name="parameters" element="tns:DoAging" />
+  </wsdl:message>
+  <wsdl:message name="DoAgingSoapOut">
+    <wsdl:part name="parameters" element="tns:DoAgingResponse" />
+  </wsdl:message>
   <wsdl:message name="DoFilterSoapIn">
     <wsdl:part name="parameters" element="tns:DoFilter" />
   </wsdl:message>
@@ -2180,6 +2200,12 @@
   </wsdl:message>
   <wsdl:message name="GetHuSoapOut">
     <wsdl:part name="parameters" element="tns:GetHuResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHuListByPalletSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHuListByPallet" />
+  </wsdl:message>
+  <wsdl:message name="GetHuListByPalletSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHuListByPalletResponse" />
   </wsdl:message>
   <wsdl:message name="CloneHuSoapIn">
     <wsdl:part name="parameters" element="tns:CloneHu" />
@@ -2457,13 +2483,11 @@
   <wsdl:message name="StartAgingSoapOut">
     <wsdl:part name="parameters" element="tns:StartAgingResponse" />
   </wsdl:message>
-  <wsdl:message name="DoAgingSoapIn">
-    <wsdl:part name="parameters" element="tns:DoAging" />
-  </wsdl:message>
-  <wsdl:message name="DoAgingSoapOut">
-    <wsdl:part name="parameters" element="tns:DoAgingResponse" />
-  </wsdl:message>
   <wsdl:portType name="SD_SmartDeviceServiceSoap">
+    <wsdl:operation name="DoAging">
+      <wsdl:input message="tns:DoAgingSoapIn" />
+      <wsdl:output message="tns:DoAgingSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="DoFilter">
       <wsdl:input message="tns:DoFilterSoapIn" />
       <wsdl:output message="tns:DoFilterSoapOut" />
@@ -2571,6 +2595,10 @@
     <wsdl:operation name="GetHu">
       <wsdl:input message="tns:GetHuSoapIn" />
       <wsdl:output message="tns:GetHuSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHuListByPallet">
+      <wsdl:input message="tns:GetHuListByPalletSoapIn" />
+      <wsdl:output message="tns:GetHuListByPalletSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="CloneHu">
       <wsdl:input message="tns:CloneHuSoapIn" />
@@ -2756,13 +2784,18 @@
       <wsdl:input message="tns:StartAgingSoapIn" />
       <wsdl:output message="tns:StartAgingSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="DoAging">
-      <wsdl:input message="tns:DoAgingSoapIn" />
-      <wsdl:output message="tns:DoAgingSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SD_SmartDeviceServiceSoap" type="tns:SD_SmartDeviceServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoAging">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoAging" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DoFilter">
       <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoFilter" style="document" />
       <wsdl:input>
@@ -2999,6 +3032,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetHu">
       <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetHu" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHuListByPallet">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetHuListByPallet" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3420,18 +3462,18 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DoAging">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoAging" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="SD_SmartDeviceServiceSoap12" type="tns:SD_SmartDeviceServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoAging">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoAging" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="DoFilter">
       <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoFilter" style="document" />
       <wsdl:input>
@@ -3668,6 +3710,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetHu">
       <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetHu" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHuListByPallet">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetHuListByPallet" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4082,15 +4133,6 @@
     </wsdl:operation>
     <wsdl:operation name="StartAging">
       <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/StartAging" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DoAging">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoAging" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

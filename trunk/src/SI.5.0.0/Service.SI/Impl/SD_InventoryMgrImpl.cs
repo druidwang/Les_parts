@@ -276,6 +276,30 @@
             }
         }
 
+
+        public List<com.Sconit.Entity.SI.SD_INV.Hu> GetPalletHu(string palletCode)
+        {
+            try
+            {
+                var hus = this.genericMgr.FindEntityWithNativeSql<Entity.INV.Hu>("select h.* from INV_Hu h inner join INV_PalletHu c on h.HuId=c.HuId where c.PalletCode = ?", palletCode).ToList();
+
+                List<com.Sconit.Entity.SI.SD_INV.Hu> huList = new List<com.Sconit.Entity.SI.SD_INV.Hu>();
+                foreach (Entity.INV.Hu h in hus)
+                {
+                    HuStatus huStatus = huMgr.GetHuStatus(h.HuId.ToUpper());
+                    var hu = Mapper.Map<HuStatus, Entity.SI.SD_INV.Hu>(huStatus);
+                    hu.AgingLocation = itemMgr.GetCacheItem(hu.Item).Location;
+                    huList.Add(hu);
+                }
+
+                return huList;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         [Transaction(TransactionMode.Requires)]
         public bool ContainerBind(string containerId, string huId)
         {
@@ -318,7 +342,7 @@
                 containerHu.ContainerType = containerDetail.ContainerType;
 
 
-            
+
 
                 genericMgr.Create(containerHu);
 

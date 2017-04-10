@@ -147,6 +147,31 @@ namespace com.Sconit.SmartDevice
                     this.isContinueScanOrder = false;
 
                 }
+                else if (base.op == CodeMaster.BarCodeType.TP.ToString())
+                {
+                    if ((this.orderMasters == null || this.orderMasters.Count() == 0) && (this.ipMaster == null))
+                    {
+                        throw new BusinessException("请先扫描订单。");
+                    }
+                    Hu[] huArray = smartDeviceService.GetHuListByPallet(barCode);
+
+                    if (this.ipMaster == null)
+                    {
+                        foreach (Hu hu in huArray)
+                        {
+                            this.MatchOrderMaster(hu);
+                        }
+                    }
+                    else
+                    {
+                        foreach (Hu hu in huArray)
+                        {
+                            this.MatchIpMaster(hu);
+                        }
+                    }
+                    this.isContinueScanOrder = false;
+
+                }
                 else if (base.op == CodeMaster.BarCodeType.B.ToString())
                 {
                     base.barCode = base.barCode.Substring(2, base.barCode.Length - 2);

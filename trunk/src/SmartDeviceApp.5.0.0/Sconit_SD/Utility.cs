@@ -50,6 +50,10 @@ namespace com.Sconit.SmartDevice
             {
                 return CodeMaster.BarCodeType.COT.ToString();
             }
+            else if (barCode.StartsWith("TP"))
+            {
+                return CodeMaster.BarCodeType.TP.ToString();
+            }
             else
             {
                 foreach (var codeType in barCodeTypes)

@@ -391,6 +391,14 @@ namespace com.Sconit.Service.Impl
         }
 
         [Transaction(TransactionMode.Requires)]
+        public IList<Hu> GetHuListByPallet(string palletCode)
+        {
+            string hql = "select h from Hu as h inner join PalletHu as p on h.HuId = p.HuId where p.PalletCode = ?";
+            IList<Hu> huList = this.genericMgr.FindAll<Hu>(hql, palletCode);
+            return huList;
+        }
+
+        [Transaction(TransactionMode.Requires)]
         public Hu CloneHu(Hu oldHu, decimal qty)
         {
             if (qty <= 0)
