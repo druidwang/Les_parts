@@ -4177,6 +4177,13 @@ namespace com.Sconit.Service.Impl
                 RecordPickTransaction(locationLotDetail);
                 locationLotDetail.Bin = null;
                 this.genericMgr.Update(locationLotDetail);
+
+
+                #region 条码和托盘取消关联
+                Hu hu = genericMgr.FindById<Hu>(locationLotDetail.HuId);
+                hu.PalletCode = string.Empty;
+                this.genericMgr.Update(hu);
+                #endregion
             }
         }
         private void RecordPickTransaction(LocationLotDetail locationLotDetail)

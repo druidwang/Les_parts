@@ -288,6 +288,7 @@
                 {
                     HuStatus huStatus = huMgr.GetHuStatus(h.HuId.ToUpper());
                     var hu = Mapper.Map<HuStatus, Entity.SI.SD_INV.Hu>(huStatus);
+                    hu.CurrentQty = hu.Qty;
                     hu.AgingLocation = itemMgr.GetCacheItem(hu.Item).Location;
                     huList.Add(hu);
                 }
