@@ -39,8 +39,8 @@ namespace com.Sconit.Utility.Report.Operator
             this.SetMergedRegionColumn(pageIndex, 2, 1, 2, 3);
             //this.SetMergedRegionColumn(pageIndex, 5, 0, 5, 1);
             //this.SetMergedRegionColumn(pageIndex, 7, 1, 7, 3);
+            this.SetMergedRegionColumn(pageIndex, 5, 0, 5, 3);
             this.SetMergedRegionColumn(pageIndex, 6, 0, 6, 3);
-            this.SetMergedRegionColumn(pageIndex, 7, 0, 7, 3);
 
             this.SetColumnCell(pageIndex, 0, 0, "供应商：");
             this.SetColumnCell(pageIndex, 1, 0, "物料号：");
