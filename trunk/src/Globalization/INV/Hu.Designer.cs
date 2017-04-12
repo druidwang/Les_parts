@@ -169,6 +169,15 @@ namespace Resources.INV {
         }
         
         /// <summary>
+        ///   查找类似 ExternalOrderNo 的本地化字符串。
+        /// </summary>
+        public static string Hu_ExternalOrderNo {
+            get {
+                return ResourceManager.GetString("Hu_ExternalOrderNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 FirstInventoryDate 的本地化字符串。
         /// </summary>
         public static string Hu_FirstInventoryDate {

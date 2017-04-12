@@ -212,6 +212,13 @@ namespace com.Sconit.Entity.INV
         /// </summary>
         [Display(Name = "Hu_PalletCode", ResourceType = typeof(Resources.INV.Hu))]
         public string PalletCode { get; set; }
+
+
+
+        [Display(Name = "Hu_ExternalOrderNo", ResourceType = typeof(Resources.INV.Hu))]
+        public string ExternalOrderNo { get; set; }
+
+
         #endregion
 
 

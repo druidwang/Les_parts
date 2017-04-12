@@ -393,4 +393,7 @@
   <data name="Hu_PalletCode" xml:space="preserve">
     <value>托盘编号</value>
   </data>
+  <data name="Hu_ExternalOrderNo" xml:space="preserve">
+    <value>外部订单号</value>
+  </data>
 </root>

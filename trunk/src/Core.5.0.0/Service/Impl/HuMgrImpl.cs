@@ -211,6 +211,7 @@ namespace com.Sconit.Service.Impl
                         hu.HuOption = GetHuOption(item);
                         hu.Remark = orderDetail.Remark;
                         hu.PalletCode = palletCode;
+                        hu.ExternalOrderNo = orderMaster.ExternalOrderNo;
 
                         if (item.Warranty > 0)
                         {

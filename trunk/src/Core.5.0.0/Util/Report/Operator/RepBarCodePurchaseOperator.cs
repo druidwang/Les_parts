@@ -132,7 +132,7 @@ namespace com.Sconit.Utility.Report.Operator
                     //数量+单位
                     this.SetColumnCell(pageIndex, 3, 1, string.Format("{0} {1}", hu.Qty.ToString("0.###"), hu.Uom));
                     //送货单
-                    this.SetColumnCell(pageIndex, 4, 1, hu.OrderNo);
+                    this.SetColumnCell(pageIndex, 4, 1, hu.ExternalOrderNo);
         
 
                     //托盘号

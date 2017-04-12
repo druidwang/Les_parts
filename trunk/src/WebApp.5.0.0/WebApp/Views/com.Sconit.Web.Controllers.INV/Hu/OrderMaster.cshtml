@@ -3,14 +3,14 @@
 <script type="text/javascript">
     function OrderQuery(e) {
 
-        if ($("#orderNo").val() == "" || $("#orderNo").val() == undefined) {
-            $message.error('请根据订单单号进行查询。');
+        if (($("#OrderNo").val() == "" || $("#OrderNo").val() == undefined) && ($("#ExternalOrderNo").val() == "" || $("#ExternalOrderNo").val() == undefined)) {
+            $message.error('请根据订单单号或外部单号进行查询。');
         }
         //        else if ($("#orderNo").val().toString().toUpperCase().indexOf("A") != -1) {
         //            $message.error('不能打印配件生产单号。');
         //        }
         else {
-            var data = { "orderNo": $("#orderNo").val() };
+            var data = { "OrderNo": $("#OrderNo").val(), "ExternalOrderNo": $("#ExternalOrderNo").val() };
             $.ajax({
                 type: "Post",
                 dataType: "html",
@@ -152,13 +152,21 @@
 </script>
 <fieldset>
     <div class="search">
+         <div class="search-label">
+            <label for="Hu_ExternalOrderNo">
+                @Resources.INV.Hu.Hu_ExternalOrderNo
+            </label>
+        </div>
+        <div class="search-field">
+            @Html.TextBox("ExternalOrderNo", ViewBag.ExternalOrderNo != null ? (string)ViewBag.ExternalOrderNo : string.Empty)
+        </div>
         <div class="search-label">
             <label for="Hu_OrderNo">
                 @Resources.INV.Hu.Hu_OrderNo
             </label>
         </div>
         <div class="search-field">
-            @Html.TextBox("orderNo", ViewBag.OrderNo != null ? (string)ViewBag.OrderNo : string.Empty)
+            @Html.TextBox("OrderNo", ViewBag.OrderNo != null ? (string)ViewBag.OrderNo : string.Empty)
         </div>
         <div class="search-label">
             <label>

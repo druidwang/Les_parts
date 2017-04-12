@@ -83,7 +83,7 @@
         })
                 // .Editable(editing => editing.Mode(GridEditMode.InCell))
         .DataBinding(dataBinding => dataBinding.Ajax()
-                        .Select("_AjaxOrderDetailList", "Hu", new { orderNo = ViewBag.OrderNo }))
+                                                .Select("_AjaxOrderDetailList", "Hu", new { OrderNo = ViewBag.OrderNo, ExternalOrderNo = ViewBag.ExternalOrderNo }))
         .Columns(columns =>
         {
             columns.Bound(o => o.Id).Hidden().ClientTemplate("<input type='text' style='width:40px;' id='Id'  name='Id' value='<#= Id #>' />").Hidden();

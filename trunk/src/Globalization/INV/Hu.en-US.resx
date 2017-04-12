@@ -357,4 +357,7 @@
   <data name="Hu_PalletCode" xml:space="preserve">
     <value>PalletCode</value>
   </data>
+  <data name="Hu_ExternalOrderNo" xml:space="preserve">
+    <value>ExternalOrderNo</value>
+  </data>
 </root>

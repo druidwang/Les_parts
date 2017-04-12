@@ -56,6 +56,7 @@
     <property name="AgingEndTime" column="AgingEndTime" type="DateTime"/>
     <property name="RefId" column="RefId" type="Int32"  />
 	<property name="PalletCode" column="PalletCode" type="String" length="50"/>
+	<property name="ExternalOrderNo" column="ExtOrderNo" type="String" length="50"/>
 
   </class>
 </hibernate-mapping>

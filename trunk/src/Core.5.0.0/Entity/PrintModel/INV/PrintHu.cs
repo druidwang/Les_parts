@@ -150,6 +150,8 @@ namespace com.Sconit.PrintModel.INV
         public string IpNo { get; set; }
 
         public string PalletCode { get; set; }
+
+        public string ExternalOrderNo { get; set; }
         #endregion
 
     }

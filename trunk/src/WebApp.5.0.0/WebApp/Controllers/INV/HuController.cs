@@ -490,6 +490,7 @@ namespace com.Sconit.Web.Controllers.INV
         public ActionResult OrderDetailList(GridCommand command, OrderMasterSearchModel searchModel)
         {
             ViewBag.OrderNo = searchModel.OrderNo;
+            ViewBag.ExternalOrderNo = searchModel.ExternalOrderNo;
             TempData["OrderMasterSearchModel"] = searchModel;
             ViewBag.PageSize = base.ProcessPageSize(command.PageSize);
             return PartialView();
@@ -502,7 +503,17 @@ namespace com.Sconit.Web.Controllers.INV
             try
             {
                 com.Sconit.Entity.ACC.User user = SecurityContextHolder.Get();
-                var orderMaster = this.genericMgr.FindById<OrderMaster>(searchModel.OrderNo);
+                var orderMaster = new OrderMaster();
+                if (!string.IsNullOrEmpty(searchModel.OrderNo))
+                {
+                    orderMaster = this.genericMgr.FindById<OrderMaster>(searchModel.OrderNo);
+                }
+                else if (!string.IsNullOrEmpty(searchModel.ExternalOrderNo))
+                {
+                    orderMaster = this.genericMgr.FindAll<OrderMaster>(" from OrderMaster where ExternalOrderNo = ?", searchModel.ExternalOrderNo).FirstOrDefault();
+                    searchModel.OrderNo = orderMaster.OrderNo;
+                }
+                
                 if (!Utility.SecurityHelper.HasPermission(orderMaster))
                 {
                     throw new BusinessException(Resources.EXT.ControllerLan.Con_LackTheOrderNumberPermission, searchModel.OrderNo);
