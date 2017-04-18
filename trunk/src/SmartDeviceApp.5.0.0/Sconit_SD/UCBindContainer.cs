@@ -12,7 +12,7 @@ namespace com.Sconit.SmartDevice
 {
     public partial class UCBindContainer : UCBase
     {
-        private ContainerDetail _containerDetail;
+        private Pallet _pallet;
         private bool _isIn = false;
         private static UCBindContainer _ucBindContainer;
         private static object obj = new object();
@@ -52,19 +52,19 @@ namespace com.Sconit.SmartDevice
             this.tbBarCode.Text = string.Empty;
             string op = Utility.GetBarCodeType(this.user.BarCodeTypes, barCode);
 
-            if (barCode.Length < 3)
-            {
-                throw new BusinessException("条码格式不合法");
-            }
+            //if (barCode.Length < 3)
+            //{
+            //    throw new BusinessException("条码格式不合法");
+            //}
 
-            if (this._containerDetail == null && !this.isCancel)
+            if (this._pallet == null && !this.isCancel)
             {
-                if (op == CodeMaster.BarCodeType.COT.ToString())
+                if (op == CodeMaster.BarCodeType.TP.ToString())
                 {
-                    this._containerDetail = smartDeviceService.GetContainerDetail(barCode);
-                    if (this._containerDetail == null)
+                    this._pallet = smartDeviceService.GetPallet(barCode);
+                    if (this._pallet == null)
                     {
-                        throw new BusinessException("扫描的容器不存在");
+                        throw new BusinessException("扫描的托盘不存在");
                     }
                     else
                     {
@@ -74,7 +74,7 @@ namespace com.Sconit.SmartDevice
                 }
                 else
                 {
-                    throw new BusinessException("请先扫描容器条码");
+                    throw new BusinessException("请先扫描托盘条码");
                 }
             }
             else if (!this.isCancel)
@@ -88,11 +88,11 @@ namespace com.Sconit.SmartDevice
                     }
                     else if (hu.Status != HuStatus.Location)
                     {
-                        throw new BusinessException("条码不在库存中,不能装入容器");
+                        throw new BusinessException("条码不在库存中,不能装入托盘");
                     }
                     else if(hu.IsFreeze)
                     {
-                        throw new BusinessException("条码被冻结,不能装入容器");
+                        throw new BusinessException("条码被冻结,不能装入托盘");
                     }
                     else if (hu.OccupyType != OccupyType.None)
                     {
@@ -100,23 +100,23 @@ namespace com.Sconit.SmartDevice
                     }
                     else
                     {
-                        var isHuInContainer = smartDeviceService.IsHuInContainer(hu.HuId);
+                        var isHuInPallet = smartDeviceService.IsHuInPallet(hu.HuId);
                         if (this._isIn == true)
                         {
-                            if (isHuInContainer == true)
+                            if (isHuInPallet == true)
                             {
-                                throw new BusinessException("条码已在容器中!");
+                                throw new BusinessException("条码已在托盘中!");
                             }
-                            this.smartDeviceService.ContainerBind(this._containerDetail.ContainerId, hu.HuId, this.user.Code);
+                            this.smartDeviceService.PalletBind(this._pallet.Code, hu.HuId, this.user.Code);
                         }
                         else
                         { 
-                            //如果是拆，检查条码是否是在容器中
-                            if (isHuInContainer == false)
+                            //如果是拆，检查条码是否是在托盘中
+                            if (isHuInPallet == false)
                             {
-                                throw new BusinessException("条码未在容器中!");
+                                throw new BusinessException("条码未在托盘中!");
                             }
-                            this.smartDeviceService.ContainerUnBind(this._containerDetail.ContainerId, hu.HuId, this.user.Code);
+                            this.smartDeviceService.PalletUnBind(this._pallet.Code, hu.HuId, this.user.Code);
                         }
                         //hus.Add(hu);
                         
@@ -148,9 +148,9 @@ namespace com.Sconit.SmartDevice
 
         protected override void gvHuListDataBind()
         {
-            if(this._containerDetail != null)
+            if(this._pallet != null)
             {
-                this.hus = smartDeviceService.GetContainerHu(this._containerDetail.ContainerId).ToList();
+                this.hus = smartDeviceService.GetHuListByPallet(this._pallet.Code).ToList();
             }
             base.gvHuListDataBind();
         }
@@ -195,8 +195,8 @@ namespace com.Sconit.SmartDevice
         protected override void Reset()
         {
             this.hus = new List<Hu>();
-            this._containerDetail = null;
-            base.lblMessage.Text = "请扫描容器条码";
+            this._pallet = null;
+            base.lblMessage.Text = "请扫描托盘条码";
             base.lblMessage.ForeColor = Color.Black;
             //this.lblMessage.Text = string.Empty;
             this.tbBarCode.Text = string.Empty;

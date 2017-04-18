@@ -47,5 +47,12 @@
         bool IsHuInContainer(string huId);
 
         List<com.Sconit.Entity.SI.SD_INV.Hu> GetPalletHu(string palletCode);
+
+        bool IsHuInPallet(string huId);
+
+
+        bool PalletBind(string palletCode, string huId);
+
+        bool PalletUnBind(string palletCode, string huId);
     }
 }

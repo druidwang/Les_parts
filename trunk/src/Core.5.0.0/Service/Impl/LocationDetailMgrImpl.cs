@@ -4044,6 +4044,24 @@ namespace com.Sconit.Service.Impl
                 ((List<InventoryTransaction>)totalIssInventoryTransactionList).AddRange(issInventoryTransactionList);
                 ((List<InventoryTransaction>)inventoryTransactionList).AddRange(issInventoryTransactionList);
                 RecordLocationTransaction(inventoryRePack, effectiveDate, issInventoryTransactionList, true);
+
+                #region 把托盘关系去掉
+                if (!string.IsNullOrEmpty(inventoryRePack.CurrentHu.PalletCode))
+                {
+
+                    var palletHu = this.genericMgr.FindAll<Entity.INV.PalletHu>("from PalletHu h where h.HuId = ? and h.PalletCode = ?", new object[] { inventoryRePack.CurrentHu.HuId, inventoryRePack.CurrentHu.PalletCode }).FirstOrDefault();
+                    if (palletHu != null)
+                    {
+                        genericMgr.Delete(palletHu);
+                    }
+
+
+                    Hu repackHu = genericMgr.FindById<Hu>(inventoryRePack.CurrentHu.HuId);
+                    repackHu.PalletCode = string.Empty;
+                    genericMgr.Update(repackHu);
+                }
+                #endregion
+
             }
             #endregion
 

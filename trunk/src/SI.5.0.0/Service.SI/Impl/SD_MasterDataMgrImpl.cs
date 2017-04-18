@@ -25,6 +25,13 @@
         }
 
         [Transaction(TransactionMode.Requires)]
+        public Entity.SI.SD_MD.Pallet GetPallet(string palletCode)
+        {
+            var palletBase = this.genericMgr.FindById<Entity.MD.Pallet>(palletCode);
+            return Mapper.Map<Entity.MD.Pallet, Entity.SI.SD_MD.Pallet>(palletBase);
+        }
+
+        [Transaction(TransactionMode.Requires)]
         public string GetEntityPreference(Entity.SYS.EntityPreference.CodeEnum entityEnum)
         {
             return this.systemMgr.GetEntityPreferenceValue(entityEnum);

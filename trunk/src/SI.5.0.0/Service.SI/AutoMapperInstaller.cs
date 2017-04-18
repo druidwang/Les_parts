@@ -59,6 +59,7 @@ namespace com.Sconit.Service.SI
             Mapper.CreateMap<com.Sconit.Entity.MD.Location, com.Sconit.Entity.SI.SD_MD.Location>();
             Mapper.CreateMap<com.Sconit.Entity.MD.LocationBin, com.Sconit.Entity.SI.SD_MD.Bin>();
             Mapper.CreateMap<com.Sconit.Entity.MD.Item, com.Sconit.Entity.SI.SD_MD.Item>();
+            Mapper.CreateMap<com.Sconit.Entity.MD.Pallet, com.Sconit.Entity.SI.SD_MD.Pallet>();
 
             //SCM
             Mapper.CreateMap<com.Sconit.Entity.SCM.FlowMaster, com.Sconit.Entity.SI.SD_SCM.FlowMaster>();

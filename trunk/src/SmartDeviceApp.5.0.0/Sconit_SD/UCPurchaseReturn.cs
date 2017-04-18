@@ -53,13 +53,13 @@ namespace com.Sconit.SmartDevice
                     orderMasters = new List<OrderMaster>();
                 }
                 var orderMaster = base.smartDeviceService.GetOrder(base.barCode, true);
-            
+
                 //检查订单类型
-                if (orderMaster.Type != OrderType.Procurement && orderMaster.SubType !=OrderSubType.Return )
+                if (orderMaster.Type != OrderType.Procurement && orderMaster.SubType != OrderSubType.Return)
                 {
                     throw new BusinessException("扫描的不是采购退货单。");
                 }
-             
+
                 if (!orderMaster.IsShipByOrder)
                 {
                     throw new BusinessException("不允许按订单退货。");
@@ -90,14 +90,14 @@ namespace com.Sconit.SmartDevice
                 {
                     throw new BusinessException("请先扫描订单");
                 }
-                //List<Hu> huList = smartDeviceService.GetHuByPalletNo(base.barCode);
-                //if (huList != null && huList.Count > 0)
-                //{
-                // foreach(Hu hu in huList)
-                // {
-                //    this.MatchHu(hu);
-                // }
-                //}
+                Hu[] huList = smartDeviceService.GetHuListByPallet(base.barCode);
+                if (huList != null && huList.Count() > 0)
+                {
+                    foreach (Hu hu in huList)
+                    {
+                        this.MatchHu(hu);
+                    }
+                }
             }
             else if (base.op == CodeMaster.BarCodeType.DATE.ToString())
             {
@@ -171,7 +171,7 @@ namespace com.Sconit.SmartDevice
                         orderDetailInputList.AddRange(orderDetail.OrderDetailInputs);
                     }
                 }
-             
+
                 if (orderDetailInputList.Count == 0)
                 {
                     throw new BusinessException("没有扫描条码");

@@ -417,6 +417,14 @@ namespace com.Sconit.SmartDevice
                 uc.tbBarCode.Focus();
                 this.Text = "容器拆箱";
             }
+            else if (module == CodeMaster.TerminalPermission.Client_ProductionReceive)
+            {
+                UCProductionReceive uc = new UCProductionReceive(this.user);
+                uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(uc);
+                uc.tbBarCode.Focus();
+                this.Text = "成品入库";
+            }
         }
 
         private void AddModule(UserControl userControl)

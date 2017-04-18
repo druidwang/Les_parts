@@ -888,11 +888,18 @@
             foreach (var inspectDetail in printInspectMaster.InspectDetails)
             {
                 //Exception occurs when "FailCode" is null ,here eliminate exception since null value is rational
-                inspectDetail.FailCode = this.genericMgr.FindAll<InspectResult>(" from InspectResult as i where i.InspectDetailId=? ", inspectDetail.Id).FirstOrDefault().FailCode ?? inspectDetail.FailCode;
-                if (!string.IsNullOrWhiteSpace(inspectDetail.FailCode))
+
+                IList<InspectResult> inspectResultList = this.genericMgr.FindAll<InspectResult>(" from InspectResult as i where i.InspectDetailId=? ", inspectDetail.Id);
+                if (inspectResultList != null && inspectResultList.Count > 0)
                 {
-                    inspectDetail.FailCode = failCodeDic[inspectDetail.FailCode].CodeDescription;
+                    inspectDetail.FailCode = inspectResultList.FirstOrDefault().FailCode ?? inspectDetail.FailCode;
+                    if (!string.IsNullOrWhiteSpace(inspectDetail.FailCode))
+                    {
+                        inspectDetail.FailCode = failCodeDic[inspectDetail.FailCode].CodeDescription;
+                    }
                 }
+
+
             }
 
             data.Add(printInspectMaster);

@@ -436,6 +436,119 @@
             }
         }
 
+        #region pallet
+        public bool IsHuInPallet(string huId)
+        {
+            try
+            {
+                var palletHus = this.genericMgr.FindAll<Entity.INV.PalletHu>("from PalletHu c where c.HuId=?", huId);
+                if (palletHus != null && palletHus.Count > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        [Transaction(TransactionMode.Requires)]
+        public bool PalletBind(string palletCode, string huId)
+        {
+            try
+            {
+                bool bindSuccess = false;
+                var pallet = this.genericMgr.FindById<Entity.MD.Pallet>(palletCode);
+                var hu = this.genericMgr.FindById<Entity.INV.Hu>(huId);
+
+                #region 检查条码是否在别的托盘中
+                var existPalletHu = this.genericMgr.FindAll<Entity.INV.PalletHu>("from PalletHu h where h.HuId = ? ", new object[] { huId }).FirstOrDefault();
+                if (existPalletHu != null)
+                {
+                    throw new BusinessException(string.Format("条码{0}已存在托盘{1}中,请先执行托盘掏箱。", existPalletHu.HuId, existPalletHu.PalletCode));
+                }
+                #endregion
+
+                #region 检查是否与托盘物料相同
+                var currentPalletHu = this.genericMgr.FindAll<Entity.INV.PalletHu>("from PalletHu h where h.PalletCode = ? ", new object[] { palletCode }).FirstOrDefault();
+                if (currentPalletHu != null)
+                {
+
+                    var currenthu = this.genericMgr.FindById<Entity.INV.Hu>(currentPalletHu.HuId);
+                    if (currenthu.Item != hu.Item)
+                    {
+                        throw new BusinessException(string.Format("条码{0}的物料与托盘{1}中物料不同,不能放在同一托盘。", huId, palletCode));
+                    }
+                }
+                #endregion
+
+              
+                Entity.INV.PalletHu palletHu = new Entity.INV.PalletHu();
+
+                #region 对照关系
+                palletHu.PalletCode = palletCode;
+                palletHu.HuId = hu.HuId;
+                genericMgr.Create(palletHu);
+                #endregion
+
+
+                #region 条码托盘
+                hu.PalletCode = palletCode;
+                genericMgr.Update(hu);
+                #endregion
+
+
+                bindSuccess = true;
+
+                return bindSuccess;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public bool PalletUnBind(string palletCode, string huId)
+        {
+            try
+            {
+                bool bindSuccess = false;
+
+                var palletHu = this.genericMgr.FindAll<Entity.INV.PalletHu>("from PalletHu h where h.HuId = ? and h.PalletCode = ?", new object[] { huId, palletCode }).FirstOrDefault();
+                if (palletHu == null)
+                {
+                    throw new BusinessException(string.Format("没有找托盘{0}和条码{1}的绑定关系。", palletCode, huId));
+                }
+                genericMgr.Delete(palletHu);
+
+
+                #region 条码托盘
+                var hu = this.genericMgr.FindById<Entity.INV.Hu>(huId);
+                hu.PalletCode = string.Empty;
+                genericMgr.Update(hu);
+                #endregion
+
+
+                bindSuccess = true;
+
+                return bindSuccess;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        #endregion
+
         #region 客户化代码
         [Transaction(TransactionMode.Requires)]
         public Hu GetDistHu(string huId)

@@ -12,5 +12,7 @@ namespace com.Sconit.Service.SI
         DateTime GetEffDate(string date);
 
         string GetEntityPreference(Entity.SYS.EntityPreference.CodeEnum entityEnum);
+
+        Entity.SI.SD_MD.Pallet GetPallet(string palletCode);
     }
 }

@@ -513,6 +513,19 @@
             }
         }
 
+        [WebMethod]
+        public Entity.SI.SD_MD.Pallet GetPallet(string palletCode)
+        {
+            try
+            {
+                return this.masterDataMgr.GetPallet(palletCode);
+            }
+            catch (BusinessException ex)
+            {
+                throw new SoapException(GetBusinessExMessage(ex), SoapException.ServerFaultCode, string.Empty);
+            }
+        }
+
         #endregion
 
 
@@ -997,6 +1010,28 @@
         public bool IsHuInContainer(string huId)
         {
             return this.inventoryMgr.IsHuInContainer(huId);
+        }
+
+        [WebMethod]
+        public bool IsHuInPallet(string huId)
+        {
+            return this.inventoryMgr.IsHuInPallet(huId);
+        }
+
+        [WebMethod]
+        public bool PalletBind(string palletCode, string huId, string userCode)
+        {
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            return this.inventoryMgr.PalletBind(palletCode, huId);
+        }
+
+        [WebMethod]
+        public bool PalletUnBind(string containerId, string huId, string userCode)
+        {
+            var user = sdSecurityMgr.GetBaseUser(userCode);
+            SecurityContextHolder.Set(user);
+            return this.inventoryMgr.PalletUnBind(containerId, huId);
         }
     }
 }

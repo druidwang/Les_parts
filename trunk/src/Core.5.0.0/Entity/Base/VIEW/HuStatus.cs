@@ -85,6 +85,8 @@ namespace com.Sconit.Entity.VIEW
         public string UnitCountDescription { get; set; }
         public CodeMaster.HuOption HuOption { get; set; }
         public string Direction { get; set; }
+
+        public string PalletCode { get; set; }
         #endregion
 
 		public override int GetHashCode()

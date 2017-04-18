@@ -29,26 +29,15 @@ namespace com.Sconit.SmartDevice
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabModuleSelect = new System.Windows.Forms.TabControl();
-            this.tabProcurement = new System.Windows.Forms.TabPage();
-            this.btnQuickReturn = new System.Windows.Forms.Button();
-            this.btnPickListOnline = new System.Windows.Forms.Button();
-            this.btnOrderShip = new System.Windows.Forms.Button();
-            this.btnPickListShip = new System.Windows.Forms.Button();
-            this.btnPickList = new System.Windows.Forms.Button();
-            this.btnReceive = new System.Windows.Forms.Button();
-            this.tabProduction = new System.Windows.Forms.TabPage();
-            this.btnSpChk = new System.Windows.Forms.Button();
-            this.btnAnDon = new System.Windows.Forms.Button();
-            this.btnMaterialIn = new System.Windows.Forms.Button();
-            this.btnFiReceipt = new System.Windows.Forms.Button();
-            this.btnAging = new System.Windows.Forms.Button();
-            this.btnStartAging = new System.Windows.Forms.Button();
-            this.btnProdutionOffline = new System.Windows.Forms.Button();
-            this.btnForceMaterialIn = new System.Windows.Forms.Button();
-            this.btnFilter = new System.Windows.Forms.Button();
-            this.btnMaterialReturn = new System.Windows.Forms.Button();
-            this.btnProductionOnline = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnLogOff = new System.Windows.Forms.Button();
+            this.tbKeyCode = new System.Windows.Forms.TextBox();
+            this.lblUserStatus = new System.Windows.Forms.Label();
+            this.tabQuality = new System.Windows.Forms.TabPage();
+            this.btnFreeze = new System.Windows.Forms.Button();
+            this.btnUnfreeze = new System.Windows.Forms.Button();
+            this.btnInspect = new System.Windows.Forms.Button();
+            this.btnQualify = new System.Windows.Forms.Button();
             this.tabInventory = new System.Windows.Forms.TabPage();
             this.btnBindContainerOut = new System.Windows.Forms.Button();
             this.btnBindContainerIn = new System.Windows.Forms.Button();
@@ -62,398 +51,54 @@ namespace com.Sconit.SmartDevice
             this.btnPutAway = new System.Windows.Forms.Button();
             this.btnPickUp = new System.Windows.Forms.Button();
             this.btnTransfer = new System.Windows.Forms.Button();
-            this.tabQuality = new System.Windows.Forms.TabPage();
-            this.btnFreeze = new System.Windows.Forms.Button();
-            this.btnUnfreeze = new System.Windows.Forms.Button();
-            this.btnInspect = new System.Windows.Forms.Button();
-            this.btnQualify = new System.Windows.Forms.Button();
-            this.tabWMS = new System.Windows.Forms.TabPage();
-            this.btnWMSRepack = new System.Windows.Forms.Button();
-            this.btnWMSShip = new System.Windows.Forms.Button();
-            this.btnWMSPickGoodsQty = new System.Windows.Forms.Button();
-            this.btnWMSTransfer = new System.Windows.Forms.Button();
-            this.btnWMSDeliverBarCode = new System.Windows.Forms.Button();
-            this.btnWMSPickGoods = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnLogOff = new System.Windows.Forms.Button();
-            this.tbKeyCode = new System.Windows.Forms.TextBox();
-            this.lblUserStatus = new System.Windows.Forms.Label();
+            this.tabModuleSelect = new System.Windows.Forms.TabControl();
+            this.tabProcurement = new System.Windows.Forms.TabPage();
             this.btnPurchaseReturn = new System.Windows.Forms.Button();
+            this.btnQuickReturn = new System.Windows.Forms.Button();
+            this.btnPickListOnline = new System.Windows.Forms.Button();
+            this.btnOrderShip = new System.Windows.Forms.Button();
+            this.btnPickListShip = new System.Windows.Forms.Button();
+            this.btnPickList = new System.Windows.Forms.Button();
+            this.btnReceive = new System.Windows.Forms.Button();
+            this.btnProductionReceive = new System.Windows.Forms.Button();
+            this.tabQuality.SuspendLayout();
+            this.tabInventory.SuspendLayout();
             this.tabModuleSelect.SuspendLayout();
             this.tabProcurement.SuspendLayout();
-            this.tabProduction.SuspendLayout();
-            this.tabInventory.SuspendLayout();
-            this.tabQuality.SuspendLayout();
-            this.tabWMS.SuspendLayout();
             this.SuspendLayout();
             // 
-            // tabModuleSelect
-            // 
-            this.tabModuleSelect.Controls.Add(this.tabProcurement);
-            this.tabModuleSelect.Controls.Add(this.tabProduction);
-            this.tabModuleSelect.Controls.Add(this.tabInventory);
-            this.tabModuleSelect.Controls.Add(this.tabQuality);
-            this.tabModuleSelect.Controls.Add(this.tabWMS);
-            this.tabModuleSelect.Location = new System.Drawing.Point(3, 13);
-            this.tabModuleSelect.Name = "tabModuleSelect";
-            this.tabModuleSelect.SelectedIndex = 0;
-            this.tabModuleSelect.Size = new System.Drawing.Size(234, 224);
-            this.tabModuleSelect.TabIndex = 0;
-            this.tabModuleSelect.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            this.tabModuleSelect.SelectedIndexChanged += new System.EventHandler(this.tabModuleSelect_SelectedIndexChanged);
-            // 
-            // tabProcurement
-            // 
-            this.tabProcurement.Controls.Add(this.btnPurchaseReturn);
-            this.tabProcurement.Controls.Add(this.btnQuickReturn);
-            this.tabProcurement.Controls.Add(this.btnPickListOnline);
-            this.tabProcurement.Controls.Add(this.btnOrderShip);
-            this.tabProcurement.Controls.Add(this.btnPickListShip);
-            this.tabProcurement.Controls.Add(this.btnPickList);
-            this.tabProcurement.Controls.Add(this.btnReceive);
-            this.tabProcurement.Location = new System.Drawing.Point(4, 25);
-            this.tabProcurement.Name = "tabProcurement";
-            this.tabProcurement.Size = new System.Drawing.Size(226, 195);
-            this.tabProcurement.Text = "收发";
-            // 
-            // btnQuickReturn
-            // 
-            this.btnQuickReturn.Location = new System.Drawing.Point(115, 70);
-            this.btnQuickReturn.Name = "btnQuickReturn";
-            this.btnQuickReturn.Size = new System.Drawing.Size(90, 20);
-            this.btnQuickReturn.TabIndex = 6;
-            this.btnQuickReturn.Text = "6.领料退库";
-            this.btnQuickReturn.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnQuickReturn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnPickListOnline
-            // 
-            this.btnPickListOnline.Location = new System.Drawing.Point(19, 18);
-            this.btnPickListOnline.Name = "btnPickListOnline";
-            this.btnPickListOnline.Size = new System.Drawing.Size(90, 20);
-            this.btnPickListOnline.TabIndex = 1;
-            this.btnPickListOnline.Text = "1.拣货上线";
-            this.btnPickListOnline.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnPickListOnline.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnOrderShip
-            // 
-            this.btnOrderShip.Location = new System.Drawing.Point(115, 44);
-            this.btnOrderShip.Name = "btnOrderShip";
-            this.btnOrderShip.Size = new System.Drawing.Size(90, 20);
-            this.btnOrderShip.TabIndex = 4;
-            this.btnOrderShip.Text = "4.订单发货";
-            this.btnOrderShip.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnOrderShip.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnPickListShip
-            // 
-            this.btnPickListShip.Location = new System.Drawing.Point(19, 44);
-            this.btnPickListShip.Name = "btnPickListShip";
-            this.btnPickListShip.Size = new System.Drawing.Size(90, 20);
-            this.btnPickListShip.TabIndex = 3;
-            this.btnPickListShip.Text = "3.拣货发货";
-            this.btnPickListShip.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnPickListShip.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnPickList
-            // 
-            this.btnPickList.Location = new System.Drawing.Point(115, 18);
-            this.btnPickList.Name = "btnPickList";
-            this.btnPickList.Size = new System.Drawing.Size(90, 20);
-            this.btnPickList.TabIndex = 2;
-            this.btnPickList.Text = "2.拣货";
-            this.btnPickList.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnPickList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnReceive
-            // 
-            this.btnReceive.Location = new System.Drawing.Point(19, 70);
-            this.btnReceive.Name = "btnReceive";
-            this.btnReceive.Size = new System.Drawing.Size(90, 20);
-            this.btnReceive.TabIndex = 5;
-            this.btnReceive.Text = "5.收货";
-            this.btnReceive.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnReceive.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // tabProduction
-            // 
-            this.tabProduction.Controls.Add(this.btnSpChk);
-            this.tabProduction.Controls.Add(this.btnAnDon);
-            this.tabProduction.Controls.Add(this.btnMaterialIn);
-            this.tabProduction.Controls.Add(this.btnFiReceipt);
-            this.tabProduction.Controls.Add(this.btnAging);
-            this.tabProduction.Controls.Add(this.btnStartAging);
-            this.tabProduction.Controls.Add(this.btnProdutionOffline);
-            this.tabProduction.Controls.Add(this.btnForceMaterialIn);
-            this.tabProduction.Controls.Add(this.btnFilter);
-            this.tabProduction.Controls.Add(this.btnMaterialReturn);
-            this.tabProduction.Controls.Add(this.btnProductionOnline);
-            this.tabProduction.Location = new System.Drawing.Point(4, 25);
-            this.tabProduction.Name = "tabProduction";
-            this.tabProduction.Size = new System.Drawing.Size(226, 195);
-            this.tabProduction.Text = "生产";
-            // 
-            // btnSpChk
-            // 
-            this.btnSpChk.Location = new System.Drawing.Point(16, 71);
-            this.btnSpChk.Name = "btnSpChk";
-            this.btnSpChk.Size = new System.Drawing.Size(98, 20);
-            this.btnSpChk.TabIndex = 13;
-            this.btnSpChk.Text = "4.小料配料检查";
-            this.btnSpChk.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnSpChk.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnAnDon
-            // 
-            this.btnAnDon.Enabled = false;
-            this.btnAnDon.Location = new System.Drawing.Point(112, 123);
-            this.btnAnDon.Name = "btnAnDon";
-            this.btnAnDon.Size = new System.Drawing.Size(90, 20);
-            this.btnAnDon.TabIndex = 6;
-            this.btnAnDon.Text = "6.按灯";
-            this.btnAnDon.Visible = false;
-            this.btnAnDon.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnAnDon.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnMaterialIn
-            // 
-            this.btnMaterialIn.Enabled = false;
-            this.btnMaterialIn.Location = new System.Drawing.Point(16, 97);
-            this.btnMaterialIn.Name = "btnMaterialIn";
-            this.btnMaterialIn.Size = new System.Drawing.Size(90, 20);
-            this.btnMaterialIn.TabIndex = 3;
-            this.btnMaterialIn.Text = "3.投料";
-            this.btnMaterialIn.Visible = false;
-            this.btnMaterialIn.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnMaterialIn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnFiReceipt
-            // 
-            this.btnFiReceipt.Location = new System.Drawing.Point(17, 17);
-            this.btnFiReceipt.Name = "btnFiReceipt";
-            this.btnFiReceipt.Size = new System.Drawing.Size(89, 20);
-            this.btnFiReceipt.TabIndex = 3;
-            this.btnFiReceipt.Text = "0.生产收货";
-            this.btnFiReceipt.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnFiReceipt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnAging
-            // 
-            this.btnAging.Location = new System.Drawing.Point(112, 43);
-            this.btnAging.Name = "btnAging";
-            this.btnAging.Size = new System.Drawing.Size(90, 20);
-            this.btnAging.TabIndex = 3;
-            this.btnAging.Text = "3.老化结束";
-            this.btnAging.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnAging.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnStartAging
-            // 
-            this.btnStartAging.Location = new System.Drawing.Point(16, 43);
-            this.btnStartAging.Name = "btnStartAging";
-            this.btnStartAging.Size = new System.Drawing.Size(90, 20);
-            this.btnStartAging.TabIndex = 2;
-            this.btnStartAging.Text = "2.老化开始";
-            this.btnStartAging.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnStartAging.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnProdutionOffline
-            // 
-            this.btnProdutionOffline.Enabled = false;
-            this.btnProdutionOffline.Location = new System.Drawing.Point(111, 71);
-            this.btnProdutionOffline.Name = "btnProdutionOffline";
-            this.btnProdutionOffline.Size = new System.Drawing.Size(90, 20);
-            this.btnProdutionOffline.TabIndex = 12;
-            this.btnProdutionOffline.Text = "2.下线";
-            this.btnProdutionOffline.Visible = false;
-            this.btnProdutionOffline.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnProdutionOffline.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnForceMaterialIn
-            // 
-            this.btnForceMaterialIn.Enabled = false;
-            this.btnForceMaterialIn.Location = new System.Drawing.Point(16, 123);
-            this.btnForceMaterialIn.Name = "btnForceMaterialIn";
-            this.btnForceMaterialIn.Size = new System.Drawing.Size(89, 20);
-            this.btnForceMaterialIn.TabIndex = 5;
-            this.btnForceMaterialIn.Text = "5.强制投料";
-            this.btnForceMaterialIn.Visible = false;
-            this.btnForceMaterialIn.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnForceMaterialIn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnFilter
-            // 
-            this.btnFilter.Location = new System.Drawing.Point(112, 17);
-            this.btnFilter.Name = "btnFilter";
-            this.btnFilter.Size = new System.Drawing.Size(90, 20);
-            this.btnFilter.TabIndex = 1;
-            this.btnFilter.Text = "1.过滤";
-            this.btnFilter.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnFilter.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnMaterialReturn
-            // 
-            this.btnMaterialReturn.Enabled = false;
-            this.btnMaterialReturn.Location = new System.Drawing.Point(112, 97);
-            this.btnMaterialReturn.Name = "btnMaterialReturn";
-            this.btnMaterialReturn.Size = new System.Drawing.Size(89, 20);
-            this.btnMaterialReturn.TabIndex = 4;
-            this.btnMaterialReturn.Text = "4.退料";
-            this.btnMaterialReturn.Visible = false;
-            this.btnMaterialReturn.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnMaterialReturn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnProductionOnline
-            // 
-            this.btnProductionOnline.Enabled = false;
-            this.btnProductionOnline.Location = new System.Drawing.Point(16, 71);
-            this.btnProductionOnline.Name = "btnProductionOnline";
-            this.btnProductionOnline.Size = new System.Drawing.Size(90, 20);
-            this.btnProductionOnline.TabIndex = 11;
-            this.btnProductionOnline.Text = "1.上线";
-            this.btnProductionOnline.Visible = false;
-            this.btnProductionOnline.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnProductionOnline.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // tabInventory
-            // 
-            this.tabInventory.Controls.Add(this.btnBindContainerOut);
-            this.tabInventory.Controls.Add(this.btnBindContainerIn);
-            this.tabInventory.Controls.Add(this.btnBinning);
-            this.tabInventory.Controls.Add(this.btnDevanning);
-            this.tabInventory.Controls.Add(this.btnHuStatus);
-            this.tabInventory.Controls.Add(this.btnHuClone);
-            this.tabInventory.Controls.Add(this.btnMiscInOut);
-            this.tabInventory.Controls.Add(this.btnStockTaking);
-            this.tabInventory.Controls.Add(this.btnReBinning);
-            this.tabInventory.Controls.Add(this.btnPutAway);
-            this.tabInventory.Controls.Add(this.btnPickUp);
-            this.tabInventory.Controls.Add(this.btnTransfer);
-            this.tabInventory.Location = new System.Drawing.Point(4, 25);
-            this.tabInventory.Name = "tabInventory";
-            this.tabInventory.Size = new System.Drawing.Size(226, 195);
-            this.tabInventory.Text = "仓库";
-            // 
-            // btnBindContainerOut
-            // 
-            this.btnBindContainerOut.Location = new System.Drawing.Point(121, 150);
-            this.btnBindContainerOut.Name = "btnBindContainerOut";
-            this.btnBindContainerOut.Size = new System.Drawing.Size(98, 20);
-            this.btnBindContainerOut.TabIndex = 12;
-            this.btnBindContainerOut.Text = "8.容器拆包";
-            this.btnBindContainerOut.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnBindContainerOut.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnBindContainerIn
-            // 
-            this.btnBindContainerIn.Location = new System.Drawing.Point(15, 150);
-            this.btnBindContainerIn.Name = "btnBindContainerIn";
-            this.btnBindContainerIn.Size = new System.Drawing.Size(98, 20);
-            this.btnBindContainerIn.TabIndex = 11;
-            this.btnBindContainerIn.Text = "7.容器打包";
-            this.btnBindContainerIn.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnBindContainerIn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnBinning
-            // 
-            this.btnBinning.Location = new System.Drawing.Point(15, 70);
-            this.btnBinning.Name = "btnBinning";
-            this.btnBinning.Size = new System.Drawing.Size(90, 20);
-            this.btnBinning.TabIndex = 5;
-            this.btnBinning.Text = "5.装箱";
-            this.btnBinning.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnBinning.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnDevanning
-            // 
-            this.btnDevanning.Location = new System.Drawing.Point(121, 70);
-            this.btnDevanning.Name = "btnDevanning";
-            this.btnDevanning.Size = new System.Drawing.Size(100, 20);
-            this.btnDevanning.TabIndex = 6;
-            this.btnDevanning.Text = "6.拆箱含寄售";
-            this.btnDevanning.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnDevanning.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnHuStatus
-            // 
-            this.btnHuStatus.Location = new System.Drawing.Point(121, 96);
-            this.btnHuStatus.Name = "btnHuStatus";
-            this.btnHuStatus.Size = new System.Drawing.Size(90, 20);
-            this.btnHuStatus.TabIndex = 8;
-            this.btnHuStatus.Text = "8.条码状态";
-            this.btnHuStatus.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnHuStatus.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnHuClone
-            // 
-            this.btnHuClone.Location = new System.Drawing.Point(121, 122);
-            this.btnHuClone.Name = "btnHuClone";
-            this.btnHuClone.Size = new System.Drawing.Size(90, 20);
-            this.btnHuClone.TabIndex = 10;
-            this.btnHuClone.Text = "0.条码克隆";
-            this.btnHuClone.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnHuClone.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnMiscInOut
-            // 
-            this.btnMiscInOut.Location = new System.Drawing.Point(15, 122);
-            this.btnMiscInOut.Name = "btnMiscInOut";
-            this.btnMiscInOut.Size = new System.Drawing.Size(100, 20);
-            this.btnMiscInOut.TabIndex = 9;
-            this.btnMiscInOut.Text = "9.计划外出入";
-            this.btnMiscInOut.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnMiscInOut.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnStockTaking
-            // 
-            this.btnStockTaking.Location = new System.Drawing.Point(15, 96);
-            this.btnStockTaking.Name = "btnStockTaking";
-            this.btnStockTaking.Size = new System.Drawing.Size(90, 20);
-            this.btnStockTaking.TabIndex = 7;
-            this.btnStockTaking.Text = "7.盘点";
-            this.btnStockTaking.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnStockTaking.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnReBinning
-            // 
-            this.btnReBinning.Location = new System.Drawing.Point(121, 18);
-            this.btnReBinning.Name = "btnReBinning";
-            this.btnReBinning.Size = new System.Drawing.Size(90, 20);
-            this.btnReBinning.TabIndex = 2;
-            this.btnReBinning.Text = "2.翻箱";
-            this.btnReBinning.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnReBinning.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnPutAway
-            // 
-            this.btnPutAway.Location = new System.Drawing.Point(15, 44);
-            this.btnPutAway.Name = "btnPutAway";
-            this.btnPutAway.Size = new System.Drawing.Size(90, 20);
-            this.btnPutAway.TabIndex = 3;
-            this.btnPutAway.Text = "3.上架";
-            this.btnPutAway.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnPutAway.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnPickUp
-            // 
-            this.btnPickUp.Location = new System.Drawing.Point(121, 44);
-            this.btnPickUp.Name = "btnPickUp";
-            this.btnPickUp.Size = new System.Drawing.Size(90, 20);
-            this.btnPickUp.TabIndex = 4;
-            this.btnPickUp.Text = "4.下架";
-            this.btnPickUp.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnPickUp.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnTransfer
-            // 
-            this.btnTransfer.Location = new System.Drawing.Point(15, 18);
-            this.btnTransfer.Name = "btnTransfer";
-            this.btnTransfer.Size = new System.Drawing.Size(90, 20);
-            this.btnTransfer.TabIndex = 1;
-            this.btnTransfer.Text = "1.移库";
-            this.btnTransfer.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnTransfer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(159, 266);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(72, 20);
+            this.btnExit.TabIndex = 2;
+            this.btnExit.Text = "退出";
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnLogOff
+            // 
+            this.btnLogOff.Location = new System.Drawing.Point(81, 266);
+            this.btnLogOff.Name = "btnLogOff";
+            this.btnLogOff.Size = new System.Drawing.Size(72, 20);
+            this.btnLogOff.TabIndex = 1;
+            this.btnLogOff.Text = "注销";
+            this.btnLogOff.Click += new System.EventHandler(this.btnLogOff_Click);
+            // 
+            // tbKeyCode
+            // 
+            this.tbKeyCode.Location = new System.Drawing.Point(7, 266);
+            this.tbKeyCode.Name = "tbKeyCode";
+            this.tbKeyCode.Size = new System.Drawing.Size(51, 23);
+            this.tbKeyCode.TabIndex = 3;
+            this.tbKeyCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbKeyCode_KeyUp);
+            // 
+            // lblUserStatus
+            // 
+            this.lblUserStatus.Location = new System.Drawing.Point(12, 243);
+            this.lblUserStatus.Name = "lblUserStatus";
+            this.lblUserStatus.Size = new System.Drawing.Size(215, 20);
+            this.lblUserStatus.Text = "当前用户:";
             // 
             // tabQuality
             // 
@@ -506,111 +151,172 @@ namespace com.Sconit.SmartDevice
             this.btnQualify.Click += new System.EventHandler(this.UCModuleSelect_Click);
             this.btnQualify.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
-            // tabWMS
+            // tabInventory
             // 
-            this.tabWMS.Controls.Add(this.btnWMSRepack);
-            this.tabWMS.Controls.Add(this.btnWMSShip);
-            this.tabWMS.Controls.Add(this.btnWMSPickGoodsQty);
-            this.tabWMS.Controls.Add(this.btnWMSTransfer);
-            this.tabWMS.Controls.Add(this.btnWMSDeliverBarCode);
-            this.tabWMS.Controls.Add(this.btnWMSPickGoods);
-            this.tabWMS.Location = new System.Drawing.Point(4, 25);
-            this.tabWMS.Name = "tabWMS";
-            this.tabWMS.Size = new System.Drawing.Size(226, 195);
-            this.tabWMS.Text = "高级仓库";
+            this.tabInventory.Controls.Add(this.btnBindContainerOut);
+            this.tabInventory.Controls.Add(this.btnBindContainerIn);
+            this.tabInventory.Controls.Add(this.btnBinning);
+            this.tabInventory.Controls.Add(this.btnDevanning);
+            this.tabInventory.Controls.Add(this.btnHuStatus);
+            this.tabInventory.Controls.Add(this.btnHuClone);
+            this.tabInventory.Controls.Add(this.btnMiscInOut);
+            this.tabInventory.Controls.Add(this.btnStockTaking);
+            this.tabInventory.Controls.Add(this.btnReBinning);
+            this.tabInventory.Controls.Add(this.btnPutAway);
+            this.tabInventory.Controls.Add(this.btnPickUp);
+            this.tabInventory.Controls.Add(this.btnTransfer);
+            this.tabInventory.Location = new System.Drawing.Point(4, 25);
+            this.tabInventory.Name = "tabInventory";
+            this.tabInventory.Size = new System.Drawing.Size(226, 195);
+            this.tabInventory.Text = "仓库";
             // 
-            // btnWMSRepack
+            // btnBindContainerOut
             // 
-            this.btnWMSRepack.Location = new System.Drawing.Point(119, 68);
-            this.btnWMSRepack.Name = "btnWMSRepack";
-            this.btnWMSRepack.Size = new System.Drawing.Size(98, 20);
-            this.btnWMSRepack.TabIndex = 7;
-            this.btnWMSRepack.Text = "6.翻包";
-            this.btnWMSRepack.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnWMSRepack.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            this.btnBindContainerOut.Location = new System.Drawing.Point(121, 150);
+            this.btnBindContainerOut.Name = "btnBindContainerOut";
+            this.btnBindContainerOut.Size = new System.Drawing.Size(98, 20);
+            this.btnBindContainerOut.TabIndex = 12;
+            this.btnBindContainerOut.Text = "12.托盘拆包";
+            this.btnBindContainerOut.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnBindContainerOut.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
-            // btnWMSShip
+            // btnBindContainerIn
             // 
-            this.btnWMSShip.Location = new System.Drawing.Point(5, 68);
-            this.btnWMSShip.Name = "btnWMSShip";
-            this.btnWMSShip.Size = new System.Drawing.Size(98, 20);
-            this.btnWMSShip.TabIndex = 6;
-            this.btnWMSShip.Text = "5.发货";
-            this.btnWMSShip.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnWMSShip.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            this.btnBindContainerIn.Location = new System.Drawing.Point(15, 150);
+            this.btnBindContainerIn.Name = "btnBindContainerIn";
+            this.btnBindContainerIn.Size = new System.Drawing.Size(100, 20);
+            this.btnBindContainerIn.TabIndex = 11;
+            this.btnBindContainerIn.Text = "11.托盘打包";
+            this.btnBindContainerIn.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnBindContainerIn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
-            // btnWMSPickGoodsQty
+            // btnBinning
             // 
-            this.btnWMSPickGoodsQty.Location = new System.Drawing.Point(5, 42);
-            this.btnWMSPickGoodsQty.Name = "btnWMSPickGoodsQty";
-            this.btnWMSPickGoodsQty.Size = new System.Drawing.Size(98, 20);
-            this.btnWMSPickGoodsQty.TabIndex = 5;
-            this.btnWMSPickGoodsQty.Text = "3.批次拣货";
-            this.btnWMSPickGoodsQty.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnWMSPickGoodsQty.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            this.btnBinning.Location = new System.Drawing.Point(15, 70);
+            this.btnBinning.Name = "btnBinning";
+            this.btnBinning.Size = new System.Drawing.Size(100, 20);
+            this.btnBinning.TabIndex = 5;
+            this.btnBinning.Text = "5.装箱";
+            this.btnBinning.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnBinning.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
-            // btnWMSTransfer
+            // btnDevanning
             // 
-            this.btnWMSTransfer.Location = new System.Drawing.Point(119, 42);
-            this.btnWMSTransfer.Name = "btnWMSTransfer";
-            this.btnWMSTransfer.Size = new System.Drawing.Size(98, 20);
-            this.btnWMSTransfer.TabIndex = 4;
-            this.btnWMSTransfer.Text = "4.移库";
-            this.btnWMSTransfer.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnWMSTransfer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            this.btnDevanning.Location = new System.Drawing.Point(121, 70);
+            this.btnDevanning.Name = "btnDevanning";
+            this.btnDevanning.Size = new System.Drawing.Size(98, 20);
+            this.btnDevanning.TabIndex = 6;
+            this.btnDevanning.Text = "6.拆箱";
+            this.btnDevanning.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnDevanning.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
-            // btnWMSDeliverBarCode
+            // btnHuStatus
             // 
-            this.btnWMSDeliverBarCode.Location = new System.Drawing.Point(119, 16);
-            this.btnWMSDeliverBarCode.Name = "btnWMSDeliverBarCode";
-            this.btnWMSDeliverBarCode.Size = new System.Drawing.Size(101, 20);
-            this.btnWMSDeliverBarCode.TabIndex = 3;
-            this.btnWMSDeliverBarCode.Text = "2.配送标签扫描";
-            this.btnWMSDeliverBarCode.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnWMSDeliverBarCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            this.btnHuStatus.Location = new System.Drawing.Point(121, 96);
+            this.btnHuStatus.Name = "btnHuStatus";
+            this.btnHuStatus.Size = new System.Drawing.Size(98, 20);
+            this.btnHuStatus.TabIndex = 8;
+            this.btnHuStatus.Text = "8.条码状态";
+            this.btnHuStatus.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnHuStatus.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
-            // btnWMSPickGoods
+            // btnHuClone
             // 
-            this.btnWMSPickGoods.Location = new System.Drawing.Point(5, 16);
-            this.btnWMSPickGoods.Name = "btnWMSPickGoods";
-            this.btnWMSPickGoods.Size = new System.Drawing.Size(98, 20);
-            this.btnWMSPickGoods.TabIndex = 2;
-            this.btnWMSPickGoods.Text = "1.条码拣货";
-            this.btnWMSPickGoods.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnWMSPickGoods.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            this.btnHuClone.Location = new System.Drawing.Point(121, 122);
+            this.btnHuClone.Name = "btnHuClone";
+            this.btnHuClone.Size = new System.Drawing.Size(98, 20);
+            this.btnHuClone.TabIndex = 10;
+            this.btnHuClone.Text = "10.条码克隆";
+            this.btnHuClone.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnHuClone.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
-            // btnExit
+            // btnMiscInOut
             // 
-            this.btnExit.Location = new System.Drawing.Point(159, 266);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(72, 20);
-            this.btnExit.TabIndex = 2;
-            this.btnExit.Text = "退出";
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnMiscInOut.Location = new System.Drawing.Point(15, 122);
+            this.btnMiscInOut.Name = "btnMiscInOut";
+            this.btnMiscInOut.Size = new System.Drawing.Size(100, 20);
+            this.btnMiscInOut.TabIndex = 9;
+            this.btnMiscInOut.Text = "9.计划外出入";
+            this.btnMiscInOut.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnMiscInOut.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
-            // btnLogOff
+            // btnStockTaking
             // 
-            this.btnLogOff.Location = new System.Drawing.Point(81, 266);
-            this.btnLogOff.Name = "btnLogOff";
-            this.btnLogOff.Size = new System.Drawing.Size(72, 20);
-            this.btnLogOff.TabIndex = 1;
-            this.btnLogOff.Text = "注销";
-            this.btnLogOff.Click += new System.EventHandler(this.btnLogOff_Click);
+            this.btnStockTaking.Location = new System.Drawing.Point(15, 96);
+            this.btnStockTaking.Name = "btnStockTaking";
+            this.btnStockTaking.Size = new System.Drawing.Size(100, 20);
+            this.btnStockTaking.TabIndex = 7;
+            this.btnStockTaking.Text = "7.盘点";
+            this.btnStockTaking.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnStockTaking.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
-            // tbKeyCode
+            // btnReBinning
             // 
-            this.tbKeyCode.Location = new System.Drawing.Point(7, 266);
-            this.tbKeyCode.Name = "tbKeyCode";
-            this.tbKeyCode.Size = new System.Drawing.Size(51, 23);
-            this.tbKeyCode.TabIndex = 3;
-            this.tbKeyCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbKeyCode_KeyUp);
+            this.btnReBinning.Location = new System.Drawing.Point(121, 18);
+            this.btnReBinning.Name = "btnReBinning";
+            this.btnReBinning.Size = new System.Drawing.Size(98, 20);
+            this.btnReBinning.TabIndex = 2;
+            this.btnReBinning.Text = "2.翻箱";
+            this.btnReBinning.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnReBinning.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
-            // lblUserStatus
+            // btnPutAway
             // 
-            this.lblUserStatus.Location = new System.Drawing.Point(12, 243);
-            this.lblUserStatus.Name = "lblUserStatus";
-            this.lblUserStatus.Size = new System.Drawing.Size(215, 20);
-            this.lblUserStatus.Text = "当前用户:";
+            this.btnPutAway.Location = new System.Drawing.Point(15, 44);
+            this.btnPutAway.Name = "btnPutAway";
+            this.btnPutAway.Size = new System.Drawing.Size(100, 20);
+            this.btnPutAway.TabIndex = 3;
+            this.btnPutAway.Text = "3.上架";
+            this.btnPutAway.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnPutAway.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnPickUp
+            // 
+            this.btnPickUp.Location = new System.Drawing.Point(121, 44);
+            this.btnPickUp.Name = "btnPickUp";
+            this.btnPickUp.Size = new System.Drawing.Size(99, 20);
+            this.btnPickUp.TabIndex = 4;
+            this.btnPickUp.Text = "4.下架";
+            this.btnPickUp.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnPickUp.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnTransfer
+            // 
+            this.btnTransfer.Location = new System.Drawing.Point(15, 18);
+            this.btnTransfer.Name = "btnTransfer";
+            this.btnTransfer.Size = new System.Drawing.Size(100, 20);
+            this.btnTransfer.TabIndex = 1;
+            this.btnTransfer.Text = "1.移库";
+            this.btnTransfer.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnTransfer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // tabModuleSelect
+            // 
+            this.tabModuleSelect.Controls.Add(this.tabProcurement);
+            this.tabModuleSelect.Controls.Add(this.tabInventory);
+            this.tabModuleSelect.Controls.Add(this.tabQuality);
+            this.tabModuleSelect.Location = new System.Drawing.Point(3, 13);
+            this.tabModuleSelect.Name = "tabModuleSelect";
+            this.tabModuleSelect.SelectedIndex = 0;
+            this.tabModuleSelect.Size = new System.Drawing.Size(234, 224);
+            this.tabModuleSelect.TabIndex = 0;
+            this.tabModuleSelect.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            this.tabModuleSelect.SelectedIndexChanged += new System.EventHandler(this.tabModuleSelect_SelectedIndexChanged);
+            // 
+            // tabProcurement
+            // 
+            this.tabProcurement.Controls.Add(this.btnProductionReceive);
+            this.tabProcurement.Controls.Add(this.btnPurchaseReturn);
+            this.tabProcurement.Controls.Add(this.btnQuickReturn);
+            this.tabProcurement.Controls.Add(this.btnPickListOnline);
+            this.tabProcurement.Controls.Add(this.btnOrderShip);
+            this.tabProcurement.Controls.Add(this.btnPickListShip);
+            this.tabProcurement.Controls.Add(this.btnPickList);
+            this.tabProcurement.Controls.Add(this.btnReceive);
+            this.tabProcurement.Location = new System.Drawing.Point(4, 25);
+            this.tabProcurement.Name = "tabProcurement";
+            this.tabProcurement.Size = new System.Drawing.Size(226, 195);
+            this.tabProcurement.Text = "收发";
             // 
             // btnPurchaseReturn
             // 
@@ -621,6 +327,76 @@ namespace com.Sconit.SmartDevice
             this.btnPurchaseReturn.Text = "7.采购退货";
             this.btnPurchaseReturn.Click += new System.EventHandler(this.UCModuleSelect_Click);
             this.btnPurchaseReturn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnQuickReturn
+            // 
+            this.btnQuickReturn.Location = new System.Drawing.Point(115, 70);
+            this.btnQuickReturn.Name = "btnQuickReturn";
+            this.btnQuickReturn.Size = new System.Drawing.Size(100, 20);
+            this.btnQuickReturn.TabIndex = 6;
+            this.btnQuickReturn.Text = "6.领料退库";
+            this.btnQuickReturn.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnQuickReturn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnPickListOnline
+            // 
+            this.btnPickListOnline.Location = new System.Drawing.Point(19, 18);
+            this.btnPickListOnline.Name = "btnPickListOnline";
+            this.btnPickListOnline.Size = new System.Drawing.Size(90, 20);
+            this.btnPickListOnline.TabIndex = 1;
+            this.btnPickListOnline.Text = "1.拣货上线";
+            this.btnPickListOnline.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnPickListOnline.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnOrderShip
+            // 
+            this.btnOrderShip.Location = new System.Drawing.Point(115, 44);
+            this.btnOrderShip.Name = "btnOrderShip";
+            this.btnOrderShip.Size = new System.Drawing.Size(100, 20);
+            this.btnOrderShip.TabIndex = 4;
+            this.btnOrderShip.Text = "4.订单发货";
+            this.btnOrderShip.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnOrderShip.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnPickListShip
+            // 
+            this.btnPickListShip.Location = new System.Drawing.Point(19, 44);
+            this.btnPickListShip.Name = "btnPickListShip";
+            this.btnPickListShip.Size = new System.Drawing.Size(90, 20);
+            this.btnPickListShip.TabIndex = 3;
+            this.btnPickListShip.Text = "3.拣货发货";
+            this.btnPickListShip.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnPickListShip.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnPickList
+            // 
+            this.btnPickList.Location = new System.Drawing.Point(115, 18);
+            this.btnPickList.Name = "btnPickList";
+            this.btnPickList.Size = new System.Drawing.Size(100, 20);
+            this.btnPickList.TabIndex = 2;
+            this.btnPickList.Text = "2.拣货";
+            this.btnPickList.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnPickList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnReceive
+            // 
+            this.btnReceive.Location = new System.Drawing.Point(19, 70);
+            this.btnReceive.Name = "btnReceive";
+            this.btnReceive.Size = new System.Drawing.Size(90, 20);
+            this.btnReceive.TabIndex = 5;
+            this.btnReceive.Text = "5.收货";
+            this.btnReceive.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnReceive.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnProductionReceive
+            // 
+            this.btnProductionReceive.Location = new System.Drawing.Point(115, 96);
+            this.btnProductionReceive.Name = "btnProductionReceive";
+            this.btnProductionReceive.Size = new System.Drawing.Size(100, 20);
+            this.btnProductionReceive.TabIndex = 10;
+            this.btnProductionReceive.Text = "8.成品入库";
+            this.btnProductionReceive.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnProductionReceive.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
             // UCModuleSelect
             // 
@@ -634,67 +410,47 @@ namespace com.Sconit.SmartDevice
             this.Name = "UCModuleSelect";
             this.Size = new System.Drawing.Size(240, 295);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            this.tabQuality.ResumeLayout(false);
+            this.tabInventory.ResumeLayout(false);
             this.tabModuleSelect.ResumeLayout(false);
             this.tabProcurement.ResumeLayout(false);
-            this.tabProduction.ResumeLayout(false);
-            this.tabInventory.ResumeLayout(false);
-            this.tabQuality.ResumeLayout(false);
-            this.tabWMS.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabModuleSelect;
-        private System.Windows.Forms.TabPage tabProcurement;
+        private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnLogOff;
+        private System.Windows.Forms.TextBox tbKeyCode;
+        private System.Windows.Forms.Label lblUserStatus;
+        private System.Windows.Forms.TabPage tabQuality;
+        private System.Windows.Forms.Button btnFreeze;
+        private System.Windows.Forms.Button btnUnfreeze;
+        private System.Windows.Forms.Button btnInspect;
+        private System.Windows.Forms.Button btnQualify;
         private System.Windows.Forms.TabPage tabInventory;
-        private System.Windows.Forms.Button btnReceive;
+        private System.Windows.Forms.Button btnBinning;
+        private System.Windows.Forms.Button btnHuStatus;
+        private System.Windows.Forms.Button btnHuClone;
+        private System.Windows.Forms.Button btnMiscInOut;
         private System.Windows.Forms.Button btnStockTaking;
         private System.Windows.Forms.Button btnReBinning;
         private System.Windows.Forms.Button btnPutAway;
         private System.Windows.Forms.Button btnPickUp;
         private System.Windows.Forms.Button btnTransfer;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.TabPage tabProduction;
-        private System.Windows.Forms.Button btnHuStatus;
-        private System.Windows.Forms.Button btnMaterialIn;
-        private System.Windows.Forms.Button btnProdutionOffline;
-        private System.Windows.Forms.Button btnProductionOnline;
-        private System.Windows.Forms.Button btnBinning;
-        private System.Windows.Forms.Button btnDevanning;
-        private System.Windows.Forms.Button btnLogOff;
+        private System.Windows.Forms.TabControl tabModuleSelect;
+        private System.Windows.Forms.TabPage tabProcurement;
+        private System.Windows.Forms.Button btnPurchaseReturn;
+        private System.Windows.Forms.Button btnQuickReturn;
         private System.Windows.Forms.Button btnPickListOnline;
         private System.Windows.Forms.Button btnOrderShip;
-        private System.Windows.Forms.Button btnQuickReturn;
         private System.Windows.Forms.Button btnPickListShip;
         private System.Windows.Forms.Button btnPickList;
-        private System.Windows.Forms.Button btnAnDon;
-        private System.Windows.Forms.TabPage tabQuality;
-        private System.Windows.Forms.Button btnInspect;
-        private System.Windows.Forms.Button btnQualify;
-        private System.Windows.Forms.Button btnMaterialReturn;
-        private System.Windows.Forms.Button btnHuClone;
-        private System.Windows.Forms.Button btnMiscInOut;
-        private System.Windows.Forms.Button btnFreeze;
-        private System.Windows.Forms.Button btnUnfreeze;
-        private System.Windows.Forms.Button btnForceMaterialIn;
-        private System.Windows.Forms.Button btnFiReceipt;
-        private System.Windows.Forms.Button btnStartAging;
-        private System.Windows.Forms.Button btnFilter;
-        private System.Windows.Forms.TextBox tbKeyCode;
-        private System.Windows.Forms.Button btnAging;
-        private System.Windows.Forms.Label lblUserStatus;
-        private System.Windows.Forms.Button btnSpChk;
-        private System.Windows.Forms.TabPage tabWMS;
-        private System.Windows.Forms.Button btnWMSPickGoods;
-        private System.Windows.Forms.Button btnWMSDeliverBarCode;
-        private System.Windows.Forms.Button btnWMSTransfer;
-        private System.Windows.Forms.Button btnWMSPickGoodsQty;
-        private System.Windows.Forms.Button btnWMSShip;
-        private System.Windows.Forms.Button btnWMSRepack;
+        private System.Windows.Forms.Button btnReceive;
         private System.Windows.Forms.Button btnBindContainerOut;
         private System.Windows.Forms.Button btnBindContainerIn;
-        private System.Windows.Forms.Button btnPurchaseReturn;
+        private System.Windows.Forms.Button btnDevanning;
+        private System.Windows.Forms.Button btnProductionReceive;
     }
 }

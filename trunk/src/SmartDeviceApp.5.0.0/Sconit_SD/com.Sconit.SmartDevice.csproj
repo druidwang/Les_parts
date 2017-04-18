@@ -297,6 +297,9 @@
     <EmbeddedResource Include="UCPurchaseReturn.resx">
       <DependentUpon>UCPurchaseReturn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCProductionReceive.resx">
+      <DependentUpon>UCProductionReceive.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -488,6 +491,12 @@
     <Compile Include="UCPurchaseReturn.Designer.cs">
       <DependentUpon>UCPurchaseReturn.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCProductionReceive.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCProductionReceive.Designer.cs">
+      <DependentUpon>UCProductionReceive.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
@@ -523,6 +532,9 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\SmartDeviceRef\OrderMaster.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\SmartDeviceRef\Pallet.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\SmartDeviceRef\PickListMaster.datasource">

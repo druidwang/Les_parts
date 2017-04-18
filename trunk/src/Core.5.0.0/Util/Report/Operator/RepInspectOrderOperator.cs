@@ -108,9 +108,9 @@ namespace com.Sconit.Utility.Report.Operator
                     //待检数
                     this.SetRowCell(pageIndex, rowIndex, 7, inspectDetail.InspectQty.ToString("0.###"));
                     //合格数
-                    this.SetRowCell(pageIndex, rowIndex, 8, inspectDetail.QualifyQty.ToString("0.###"));
+                    this.SetRowCell(pageIndex, rowIndex, 8, inspectDetail.QualifyQty > 0 ? inspectDetail.QualifyQty.ToString("0.###") : "");
                     //不合格数
-                    this.SetRowCell(pageIndex, rowIndex, 9, inspectDetail.RejectQty.ToString("0.###"));
+                    this.SetRowCell(pageIndex, rowIndex, 9, inspectDetail.RejectQty > 0 ? inspectDetail.RejectQty.ToString("0.###") : "");
                     //失效模式
                     this.SetRowCell(pageIndex, rowIndex, 10, inspectDetail.FailCode);
                     //备注
@@ -162,11 +162,11 @@ namespace com.Sconit.Utility.Report.Operator
             //报验人(制单人)
             this.SetRowCell(4, 8, inspectMaster.CreateUserName);
             //送货单号???
-            this.SetRowCell(5, 2, inspectMaster.IpNo);
+            this.SetRowCell(5, 2, inspectMaster.Region);
             //收货单号
             this.SetRowCell(5, 8, inspectMaster.ReceiptNo);
             //区域
-            this.SetRowCell(6, 2, inspectMaster.Region);
+          //  this.SetRowCell(6, 2, inspectMaster.Region);
             //this.SetRowCell(5, 6, inspectMaster.CreateDate.ToString("yyyy-MM-dd HH:mm:ss"));
         }
 

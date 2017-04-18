@@ -32,6 +32,28 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/StartAging", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Hu StartAging(string huId, string userCode) {
+            object[] results = this.Invoke("StartAging", new object[] {
+                        huId,
+                        userCode});
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginStartAging(string huId, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("StartAging", new object[] {
+                        huId,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public Hu EndStartAging(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((Hu)(results[0]));
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoAging", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public Hu DoAging(string huId, string userCode) {
             object[] results = this.Invoke("DoAging", new object[] {
@@ -465,6 +487,74 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         public bool EndIsHuInContainer(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInPallet", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool IsHuInPallet(string huId) {
+            object[] results = this.Invoke("IsHuInPallet", new object[] {
+                        huId});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginIsHuInPallet(string huId, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("IsHuInPallet", new object[] {
+                        huId}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndIsHuInPallet(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/PalletBind", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool PalletBind(string palletCode, string huId, string userCode) {
+            object[] results = this.Invoke("PalletBind", new object[] {
+                        palletCode,
+                        huId,
+                        userCode});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginPalletBind(string palletCode, string huId, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("PalletBind", new object[] {
+                        palletCode,
+                        huId,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndPalletBind(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/PalletUnBind", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool PalletUnBind(string containerId, string huId, string userCode) {
+            object[] results = this.Invoke("PalletUnBind", new object[] {
+                        containerId,
+                        huId,
+                        userCode});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginPalletUnBind(string containerId, string huId, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("PalletUnBind", new object[] {
+                        containerId,
+                        huId,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndPalletUnBind(System.IAsyncResult asyncResult) {
             object[] results = this.EndInvoke(asyncResult);
             return ((bool)(results[0]));
         }
@@ -1188,6 +1278,26 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/GetPallet", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public Pallet GetPallet(string palletCode) {
+            object[] results = this.Invoke("GetPallet", new object[] {
+                        palletCode});
+            return ((Pallet)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginGetPallet(string palletCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("GetPallet", new object[] {
+                        palletCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public Pallet EndGetPallet(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((Pallet)(results[0]));
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoTransfer", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public void DoTransfer(FlowMaster flowMaster, FlowDetailInput[] flowDetailInputList, string userCode) {
             this.Invoke("DoTransfer", new object[] {
@@ -1671,28 +1781,6 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         /// <remarks/>
         public void EndDoFiReceipt(System.IAsyncResult asyncResult) {
             this.EndInvoke(asyncResult);
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/StartAging", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public Hu StartAging(string huId, string userCode) {
-            object[] results = this.Invoke("StartAging", new object[] {
-                        huId,
-                        userCode});
-            return ((Hu)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginStartAging(string huId, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("StartAging", new object[] {
-                        huId,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public Hu EndStartAging(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((Hu)(results[0]));
         }
     }
     
@@ -2700,6 +2788,37 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
             }
             set {
                 this.noteField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://com.Sconit.WebService.SD.SmartDeviceService/")]
+    public partial class Pallet {
+        
+        private string codeField;
+        
+        private string descriptionField;
+        
+        /// <remarks/>
+        public string Code {
+            get {
+                return this.codeField;
+            }
+            set {
+                this.codeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Description {
+            get {
+                return this.descriptionField;
+            }
+            set {
+                this.descriptionField = value;
             }
         }
     }

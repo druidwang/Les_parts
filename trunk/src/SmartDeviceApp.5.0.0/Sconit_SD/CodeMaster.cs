@@ -22,6 +22,8 @@ namespace com.Sconit.SmartDevice.CodeMaster
         Client_SQShip,//Ë«ÇÅ·¢»õ
         Client_QuickSeqShip,
         Client_PurchaseReturn,
+        Client_ProductionReceive,
+
 
         //²Ö¿â
         Client_Transfer,
