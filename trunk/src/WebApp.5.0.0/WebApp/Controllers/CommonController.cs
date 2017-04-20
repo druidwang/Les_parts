@@ -141,7 +141,7 @@
 
         #region MoveType
 
-        public ActionResult _MoveTypeDropDownList(string controlName, string controlId, string selectedValue, bool? includeBlankOption, string blankOptionDescription, string blankOptionValue, bool? coupled, string IOType, bool? isChange, string SubType, bool? enable)
+        public ActionResult _MoveTypeDropDownList(string controlName, string controlId, string selectedValue, bool? includeBlankOption, string blankOptionDescription, string blankOptionValue, bool? coupled, string IOType, bool? isChange, string SubType, bool? enable,bool? isInitInventory)
         {
             ViewBag.ControlName = controlName;
             ViewBag.ControlId = controlId;
@@ -161,6 +161,22 @@
                 hql += " and m.IOType=? ";
                 objs.Add(IOType);
             }
+
+            if (isInitInventory != null)
+            {
+                if (isInitInventory.Value)
+                {
+                    hql += " and m.MoveType=? ";
+                    objs.Add(0);
+                }
+                else
+                {
+                    hql += " and m.MoveType != ? ";
+                    objs.Add(0);
+                }
+
+            }
+
 
             IList<MiscOrderMoveType> MoveTypeList = queryMgr.FindAll<MiscOrderMoveType>(hql, objs.ToArray());
             if (MoveTypeList == null)

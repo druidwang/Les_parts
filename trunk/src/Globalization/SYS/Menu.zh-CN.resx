@@ -3116,4 +3116,7 @@
   <data name="Inventory_Pallet_View" xml:space="preserve">
     <value>查询</value>
   </data>
+  <data name="Inventory_InMiscOrder_InitInventory" xml:space="preserve">
+    <value>库存初始化</value>
+  </data>
 </root>

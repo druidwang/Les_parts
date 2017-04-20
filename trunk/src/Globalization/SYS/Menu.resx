@@ -3120,4 +3120,7 @@
   <data name="Inventory_Pallet_View" xml:space="preserve">
     <value>Search</value>
   </data>
+  <data name="Inventory_InMiscOrder_InitInventory" xml:space="preserve">
+    <value>InitInventory</value>
+  </data>
 </root>

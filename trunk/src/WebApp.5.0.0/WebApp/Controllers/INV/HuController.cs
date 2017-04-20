@@ -1335,6 +1335,7 @@ namespace com.Sconit.Web.Controllers.INV
                     hu.OrderNo = palletHu.OrderNo;
                     hu.Qty = printHuList.Count();
                     hu.Uom = "箱";
+                    hu.ExternalOrderNo = palletHu.ExternalOrderNo;
                     printHuList.Add(hu);
                 }
             }

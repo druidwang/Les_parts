@@ -4120,6 +4120,15 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 InitInventory 的本地化字符串。
+        /// </summary>
+        public static string Inventory_InMiscOrder_InitInventory {
+            get {
+                return ResourceManager.GetString("Inventory_InMiscOrder_InitInventory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 New 的本地化字符串。
         /// </summary>
         public static string Inventory_InMiscOrder_New {

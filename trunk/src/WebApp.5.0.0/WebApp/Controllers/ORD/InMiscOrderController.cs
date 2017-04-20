@@ -520,6 +520,92 @@ namespace com.Sconit.Web.Controllers.ORD
         #endregion
         #endregion
 
+
+        #region intiInventory
+
+        [SconitAuthorize(Permissions = "Url_Inventory_InMiscOrder_InitInventory")]
+        public ActionResult InitInventory(string MoveType)
+        {
+
+            if (!string.IsNullOrWhiteSpace(MoveType))
+            {
+                MiscOrderMoveType miscOrderMoveType = genericMgr.FindAll<MiscOrderMoveType>("from MiscOrderMoveType as m where m.MoveType=? and m.IOType=?", new object[] { MoveType, com.Sconit.CodeMaster.MiscOrderType.GR })[0];
+                TempData["MiscOrderMoveType"] = miscOrderMoveType;
+            }
+            MiscOrderMaster miscOrderMaster = new MiscOrderMaster();
+            miscOrderMaster.EffectiveDate = System.DateTime.Now;
+            miscOrderMaster.MoveType = MoveType;
+            return View(miscOrderMaster);
+        }
+
+        [HttpPost]
+        [SconitAuthorize(Permissions = "Url_Inventory_InMiscOrder_InitInventory")]
+        public ActionResult InitInventory(MiscOrderMaster MiscOrderMaster)
+        {
+            MiscOrderMoveType MiscOrderMoveType = null;
+            if (ModelState.IsValid)
+            {
+                MiscOrderMoveType = genericMgr.FindAll<MiscOrderMoveType>("from MiscOrderMoveType as m where m.MoveType=? and m.IOType=?", new object[] { MiscOrderMaster.MoveType, com.Sconit.CodeMaster.MiscOrderType.GR })[0];
+
+                if (MiscOrderMoveType.CheckAsn && MiscOrderMaster.Asn == null)
+                {
+                    SaveErrorMessage(Resources.EXT.ControllerLan.Con_ShipOrderCanNotBeEmpty);
+                }
+                else if (MiscOrderMoveType.CheckRecLoc && MiscOrderMaster.ReceiveLocation == null)
+                {
+                    SaveErrorMessage(Resources.EXT.ControllerLan.Con_ShippingLocationCanNotBeEmpty);
+                }
+                else if (MiscOrderMoveType.CheckNote && MiscOrderMaster.Note == null)
+                {
+                    SaveErrorMessage(Resources.EXT.ControllerLan.Con_MoveReasonCanNotBeEmpty);
+                }
+                else if (MiscOrderMoveType.CheckCostCenter && MiscOrderMaster.CostCenter == null)
+                {
+                    SaveErrorMessage(Resources.EXT.ControllerLan.Con_CostCenterCanNotBeEmpty);
+                }
+                else if (MiscOrderMoveType.CheckRefNo && MiscOrderMaster.ReferenceNo == null)
+                {
+                    SaveErrorMessage(Resources.EXT.ControllerLan.Con_refertoCountCanNotBeEmpty);
+                }
+                else if (MiscOrderMoveType.CheckDeliverRegion && MiscOrderMaster.DeliverRegion == null)
+                {
+                    SaveErrorMessage(Resources.EXT.ControllerLan.Con_ShippingPlantCanNotBeEmpty);
+                }
+                else if (MiscOrderMoveType.CheckWBS && MiscOrderMaster.WBS == null)
+                {
+                    SaveErrorMessage(Resources.EXT.ControllerLan.Con_WBSCanNotBeEmpty);
+                }
+                else
+                {
+                    try
+                    {
+                        MiscOrderMaster.MoveType = MiscOrderMoveType.MoveType;
+                        MiscOrderMaster.CancelMoveType = MiscOrderMoveType.CancelMoveType;
+                        miscOrderMgr.CreateMiscOrder(MiscOrderMaster);
+                        SaveSuccessMessage(Resources.EXT.ControllerLan.Con_AddedSuccessfully);
+                        return RedirectToAction("Edit/" + MiscOrderMaster.MiscOrderNo);
+
+                    }
+                    catch (Exception ex)
+                    {
+                        SaveErrorMessage(ex.Message);
+                    }
+
+                }
+            }
+            else
+            {
+                if (MiscOrderMaster.MoveType != null)
+                {
+                    MiscOrderMoveType = genericMgr.FindAll<MiscOrderMoveType>("from MiscOrderMoveType as m where m.MoveType=? and m.IOType=?", new object[] { MiscOrderMaster.MoveType, com.Sconit.CodeMaster.MiscOrderType.GR })[0];
+                }
+            }
+
+            TempData["MiscOrderMoveType"] = MiscOrderMoveType;
+            return View(MiscOrderMaster);
+        }
+        #endregion
+
         #endregion
 
         #region private method
