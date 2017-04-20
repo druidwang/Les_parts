@@ -48,7 +48,7 @@
                 </label>
             </div>
             <div class="editor-field-2">
-                @Html.TextBox("BinSequence", TempData["LocationBinSearchModel"] != null ? ((LocationBinSearchModel)TempData["LocationBinSearchModel"]).Sequence : 10)
+                @Html.TextBox("BinSequence", TempData["LocationBinSearchModel"] != null ? ((LocationBinSearchModel)TempData["LocationBinSearchModel"]).Sequence : null)
             </div>
              <div class="search-label">
                 <label for="Location_AllowNegaInv">
