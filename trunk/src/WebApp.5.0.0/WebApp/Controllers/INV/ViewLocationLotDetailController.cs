@@ -151,17 +151,17 @@ namespace com.Sconit.Web.Controllers.INV
             {
                 gridModelData.ItemDescription = itemlist.ValueOrDefault(gridModelData.Item).FullDescription;
             }
-            //var itemCategoryList = this.genericMgr.FindAll<ItemCategory>();
-            //var locationDic = this.genericMgr.FindAll<Location>().GroupBy(p => p.Code).ToDictionary(d => d.Key, d => d.First());
-            //foreach (LocationDetailView locationDetail in gridModel.Data)
-            //{
-            //    Item item = this.itemMgr.GetCacheItem(locationDetail.Item);
-            //    locationDetail.ItemDescription = item.Description;
-            //    locationDetail.Uom = item.Uom;
-            //    locationDetail.LocationName = locationDic[locationDetail.Location].Name;
-            //    locationDetail.MaterialsGroup = item.MaterialsGroup;
-            //    locationDetail.MaterialsGroupDesc = GetItemCategory(locationDetail.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
-            //}
+            var itemCategoryList = this.genericMgr.FindAll<ItemCategory>();
+            var locationDic = this.genericMgr.FindAll<Location>().GroupBy(p => p.Code).ToDictionary(d => d.Key, d => d.First());
+            foreach (LocationDetailView locationDetail in gridModel.Data)
+            {
+                Item item = this.itemMgr.GetCacheItem(locationDetail.Item);
+                locationDetail.ItemDescription = item.Description;
+                locationDetail.Uom = item.Uom;
+                locationDetail.LocationName = locationDic[locationDetail.Location].Name;
+                locationDetail.MaterialsGroup = item.MaterialsGroup;
+              //  locationDetail.MaterialsGroupDesc = GetItemCategory(locationDetail.MaterialsGroup, Sconit.CodeMaster.SubCategory.MaterialsGroup, itemCategoryList).Description;
+            }
 
             return PartialView(gridModel);
         }
@@ -312,17 +312,18 @@ namespace com.Sconit.Web.Controllers.INV
             parameters[4] = new SqlParameter("@Page", SqlDbType.Int);
             parameters[4].Value = command.Page;
 
-            parameters[5] = new SqlParameter("@SummaryLevel", SqlDbType.VarChar, 50);
-            parameters[5].Value = searchModel.Level;
+            parameters[5] = new SqlParameter("@IsSummaryBySAPLoc", SqlDbType.Bit);
+            parameters[5].Value = searchModel.TypeLocation == "1" ? true : false;
 
-            parameters[6] = new SqlParameter("@IsGroupByManufactureParty", SqlDbType.Bit);
-            parameters[6].Value = searchModel.hideSupper;
+            parameters[6] = new SqlParameter("@SummaryLevel", SqlDbType.VarChar, 50);
+            parameters[6].Value = searchModel.Level;
 
-            parameters[7] = new SqlParameter("@IsGroupByLotNo", SqlDbType.Bit);
-            parameters[7].Value = searchModel.hideLotNo;
+            parameters[7] = new SqlParameter("@IsGroupByManufactureParty", SqlDbType.Bit);
+            parameters[7].Value = searchModel.hideSupper;
 
-            parameters[8] = new SqlParameter("@IsSummaryBySAPLoc", SqlDbType.Bit);
-            parameters[8].Value = searchModel.TypeLocation == "1" ? true : false;
+            parameters[8] = new SqlParameter("@IsGroupByLotNo", SqlDbType.Bit);
+            parameters[8].Value = searchModel.hideLotNo;
+
 
             parameters[9] = new SqlParameter("@IsOnlyShowQtyInv", SqlDbType.Bit);
             parameters[9].Value = searchModel.IsOnlyShowQtyInv;

@@ -66,7 +66,7 @@
             return;
         }
         if ($("#onsumitType").val() == 0) {
-        //debugger
+            //debugger
             var Sequences = new Array();
             var Items = new Array();
             var ReferenceItemCodes = new Array();
@@ -83,7 +83,7 @@
 
             var isProcurement = ($("#IsProcurement").val().toUpperCase() == "TRUE");
             var isFromReferenceOrder = ($("#IsFromReferenceOrder").val().toUpperCase() == "TRUE");
-            var rows = grid.$tbody.children("tr:not(.t-no-data)").filter("tr:visible");//grid.$tbody.children("tr:not(.t-no-data)").filter("tr:visible");
+            var rows = grid.$tbody.children("tr:not(.t-no-data)").filter("tr:visible"); //grid.$tbody.children("tr:not(.t-no-data)").filter("tr:visible");
             var i = 0;
             var orderedIndex = grid.columns.length - 3;
             for (var rowIndex = 0; rowIndex < rows.length; rowIndex++) {
@@ -118,6 +118,7 @@
                 "WindowTime": $("#WindowTime").val(),
                 "EffectiveDate": $("#EffectiveDate").val(),
                 "ReferenceOrderNo": $("#ReferenceOrderNo").val(),
+                "ExternalOrderNo": $("#ExternalOrderNo").val(),
                 "Priority": $("input[type=radio][name=Priority]:checked").val()
             }
             var made = {
@@ -203,6 +204,12 @@
             <div class="editor-field-2">
                 @(Html.Telerik().DateTimePicker().Format("yyyy-MM-dd HH:mm").Name("StartTime"))
                 @Html.ValidationMessageFor(model => model.StartTime)
+            </div>
+            <div class="editor-label-2">
+                @Html.LabelFor(model => model.ExternalOrderNo)
+            </div>
+            <div class="editor-field-2">
+                @Html.EditorFor(model => model.ExternalOrderNo)
             </div>
             <div class="editor-label-2">
                 @Html.LabelFor(model => model.ReferenceOrderNo)
