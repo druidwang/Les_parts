@@ -15,6 +15,8 @@ namespace com.Sconit.Service
 
         IList<Hu> CreateHu(FlowMaster flowMaster, IList<FlowDetail> flowDetailList);
 
+        IList<Hu> CreateHu(FlowMaster flowMaster, IList<FlowDetail> flowDetailList, string externalOrderNo, bool isPrintPallet = false);
+
         IList<Hu> CreateHu(OrderMaster orderMaster, IList<OrderDetail> orderDetailList, bool isScrapHu = false,bool isPrintPallet = false);
 
         IList<Hu> CreateHu(IpMaster ipMaster, IList<IpDetail> ipDetailList);

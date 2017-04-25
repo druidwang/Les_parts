@@ -54,6 +54,28 @@
         };
 
     }
+
+    function Print(e) {
+      
+        var data = {
+            "miscOrderNo": $("#MiscOrderNo").val()
+        };
+        $.ajax({
+            type: "post",
+            dataType: "text",
+            url: "/InMiscOrder/Print/",
+            data: data,
+            success: function (data, textStatus) {
+                if (data != "") {
+                    PrintOrder(data);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                var errorMessages = XMLHttpRequest.responseText;
+                $message.error(errorMessages);
+            }
+        });
+    }
 </script>
 @using (Html.BeginForm())
 {
@@ -269,8 +291,11 @@
 	            })
                 }
             }
+            <button type="button" id="btnPrint" onclick="Print()">
+                @Resources.SYS.Global.Button_Print</button>
             <button type="button" id="btnBack" onclick="location.href='@Url.Content("~/InMiscOrder/List")'">
                 @Resources.SYS.Global.Button_Back</button>
+
         </div>
     </fieldset>
     

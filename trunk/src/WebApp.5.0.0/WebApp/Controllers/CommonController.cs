@@ -2242,13 +2242,14 @@
 
                 if (isCreateHu)
                 {
-                    selectLikeFlowStatement += " and f.Type in (?,?,?,?,?) ";
+                    selectLikeFlowStatement += " and f.Type in (?,?,?,?,?,?) ";
                     paramList = new object[] { true, text + "%", 
                         (int)com.Sconit.CodeMaster.OrderType.CustomerGoods,
                         (int)com.Sconit.CodeMaster.OrderType.Procurement, 
                         (int)com.Sconit.CodeMaster.OrderType.SubContract, 
                         (int)com.Sconit.CodeMaster.OrderType.Production, 
-                        (int)com.Sconit.CodeMaster.OrderType.ScheduleLine };
+                        (int)com.Sconit.CodeMaster.OrderType.ScheduleLine,
+                        (int)com.Sconit.CodeMaster.OrderType.Distribution};
                 }
             }
             else if ((int)type == (int)com.Sconit.CodeMaster.OrderType.Procurement)

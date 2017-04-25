@@ -326,7 +326,7 @@ namespace com.Sconit.Web.Controllers.INV
 
         [SconitAuthorize(Permissions = "Url_Inventory_Hu_New")]
         public JsonResult CreateHuByFlow(string FlowidStr, string FlowucStr, string FlowsupplierLotNoStr, string FlowqtyStr, bool FlowisExport,
-             string FlowmanufactureDateStr, string FlowremarkStr, bool FlowCheckExport)
+             string FlowmanufactureDateStr, string FlowremarkStr, bool FlowCheckExport, string ExternalOrderNo, bool IsPrintPallet)
         {
             try
             {
@@ -438,7 +438,7 @@ namespace com.Sconit.Web.Controllers.INV
                             return Json(new { FlowCheckExport = flowCheckExport });
                         }
 
-                        IList<Hu> huList = huMgr.CreateHu(flowMaster, nonZeroFlowDetailList);
+                        IList<Hu> huList = huMgr.CreateHu(flowMaster, nonZeroFlowDetailList,ExternalOrderNo,IsPrintPallet);
                         string manufacturePartyDescription = queryMgr.FindById<Party>(flowMaster.PartyFrom).Name;
                         foreach (var hu in huList)
                         {
@@ -463,7 +463,7 @@ namespace com.Sconit.Web.Controllers.INV
                         }
                         else
                         {
-                            string printUrl = PrintHuList(huList, flowMaster.HuTemplate);
+                            string printUrl = PrintHuList(huList, flowMaster.HuTemplate,IsPrintPallet);
                             object obj = new { SuccessMessage = string.Format(Resources.EXT.ControllerLan.Con_BarcodePrintedSuccessfully_1, huList.Count), PrintUrl = printUrl };
                             return Json(obj);
                         }

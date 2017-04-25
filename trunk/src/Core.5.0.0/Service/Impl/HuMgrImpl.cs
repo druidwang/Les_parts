@@ -86,14 +86,30 @@ namespace com.Sconit.Service.Impl
         [Transaction(TransactionMode.Requires)]
         public IList<Hu> CreateHu(FlowMaster flowMaster, IList<FlowDetail> flowDetailList)
         {
+           return  CreateHu( flowMaster,  flowDetailList,string.Empty);
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public IList<Hu> CreateHu(FlowMaster flowMaster, IList<FlowDetail> flowDetailList, string externalOrderNo, bool isPrintPallet = false)
+        {
             IList<Hu> huList = new List<Hu>();
             foreach (FlowDetail flowDetail in flowDetailList)
             {
+                string palletCode = string.Empty;
+                ///每条做一个托盘
+                if (isPrintPallet)
+                {
+                    palletCode = numberControlMgr.GetPalletCode();
+
+                }
+                        
+
                 IDictionary<string, decimal> huIdDic = numberControlMgr.GetHuId(flowDetail);
                 if (huIdDic != null && huIdDic.Count > 0)
                 {
                     foreach (string huId in huIdDic.Keys)
                     {
+                      
                         var item = this.itemMgr.GetCacheItem(flowDetail.Item);
                         if (string.IsNullOrWhiteSpace(flowDetail.ReferenceItemCode))
                         {
@@ -106,7 +122,18 @@ namespace com.Sconit.Service.Impl
                         hu.ItemDescription = item.Description;
                         hu.BaseUom = flowDetail.BaseUom;
                         hu.Qty = huIdDic[huId];
-                        hu.ManufactureParty = flowDetail.ManufactureParty;
+
+                        if (flowMaster.Type == CodeMaster.OrderType.Distribution)
+                        {
+                            //销售的用主机厂记在制造商上面
+                            hu.ManufactureParty = flowMaster.PartyTo;
+                        }
+                        else
+                        {
+                            hu.ManufactureParty = flowDetail.ManufactureParty;
+                          
+                        }
+
                         hu.ManufactureDate = flowDetail.ManufactureDate;
                         hu.PrintCount = 0;
                         hu.ConcessionCount = 0;
@@ -125,6 +152,10 @@ namespace com.Sconit.Service.Impl
                         hu.HuTemplate = flowMaster.HuTemplate;
                         hu.HuOption = GetHuOption(item);
                         hu.Remark = flowDetail.Remark;
+                        
+                        hu.PalletCode = palletCode;
+                        hu.ExternalOrderNo = externalOrderNo;
+
                         if (item.Warranty > 0)
                         {
                             hu.ExpireDate = hu.ManufactureDate.AddDays(item.Warranty);
@@ -138,6 +169,24 @@ namespace com.Sconit.Service.Impl
                         huList.Add(hu);
                     }
                 }
+
+                #region 托盘
+                if (isPrintPallet)
+                {
+                    Pallet pallet = new Pallet();
+                    pallet.Code = palletCode;
+                    pallet.Description = huList.First().Item + "|" + huList.First().ItemDescription + "|" + huList.Count();
+                    this.genericMgr.Create(pallet);
+
+                    foreach (Hu hu in huList)
+                    {
+                        PalletHu palletHu = new PalletHu();
+                        palletHu.HuId = hu.HuId;
+                        palletHu.PalletCode = palletCode;
+                        genericMgr.Create(palletHu);
+                    }
+                }
+                #endregion
             }
             return huList;
         }

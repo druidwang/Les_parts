@@ -1888,4 +1888,7 @@
   <data name="CodeDetail_MaintainPlanType_TIMES" xml:space="preserve">
     <value>次数</value>
   </data>
+  <data name="BarCodeFinishGoods" xml:space="preserve">
+    <value>BarCodeFinishGoods</value>
+  </data>
 </root>

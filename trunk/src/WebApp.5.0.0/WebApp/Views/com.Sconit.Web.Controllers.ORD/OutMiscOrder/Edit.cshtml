@@ -46,9 +46,9 @@
     function onUploadError(e) {
         //debugger;
         $('.t-upload-files').remove();
-        var errorMessages =  e.XMLHttpRequest.responseText ;
+        var errorMessages = e.XMLHttpRequest.responseText;
         $message.error(errorMessages);
-        
+
         e.preventDefault();
     }
 
@@ -58,6 +58,28 @@
 
     }
     function doClick(bl) {
+    }
+
+    function Print(e) {
+
+        var data = {
+            "miscOrderNo": $("#MiscOrderNo").val()
+        };
+        $.ajax({
+            type: "post",
+            dataType: "text",
+            url: "/OutMiscOrder/Print/",
+            data: data,
+            success: function (data, textStatus) {
+                if (data != "") {
+                    PrintOrder(data);
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                var errorMessages = XMLHttpRequest.responseText;
+                $message.error(errorMessages);
+            }
+        });
     }
 </script>
 @using (Html.BeginForm())
@@ -207,12 +229,12 @@
                 @Html.DisplayFor(model => model.QualityTypeDescription)
             </div>
             <div class="search-label">
-            <label>
-                <a href='/Resource/Templates/UploadTemplate/OutMiscOrder.xls'>@Resources.EXT.PageLan.TemplateDownload</a>
-            </label>
-        </div>
-        <div class="search-field">
-            @(Html.Telerik().Upload()
+                <label>
+                    <a href='/Resource/Templates/UploadTemplate/OutMiscOrder.xls'>@Resources.EXT.PageLan.TemplateDownload</a>
+                </label>
+            </div>
+            <div class="search-field">
+                @(Html.Telerik().Upload()
                     .Name("attachments")
                     .Multiple(false)
                     .Async(async => async
@@ -224,8 +246,7 @@
                                          .ClientEvents(c => c
                                                 .OnUpload("onUpload")
                                                ))
-        </div>
-
+            </div>
             @Html.Hidden("MiscOrderNo", Model.MiscOrderNo)
             @Html.Hidden("MoveType", Model.MoveType)
             @Html.Hidden("CancelMoveType", Model.CancelMoveType)
@@ -241,7 +262,7 @@
             @{
                 if (Model.Status == com.Sconit.CodeMaster.MiscOrderStatus.Create)
                 {   
-                    @Html.Button(Resources.SYS.Global.Button_Save, "Url_Inventory_OutMiscOrder_New", new Dictionary<string, string>()
+                @Html.Button(Resources.SYS.Global.Button_Save, "Url_Inventory_OutMiscOrder_New", new Dictionary<string, string>()
 	            {
 	                {"type", "submit"},
 	                {"id", "btnSave"},
@@ -275,12 +296,14 @@
 	            })
                 }
             }
+            <button type="button" id="btnPrint" onclick="Print()">
+                @Resources.SYS.Global.Button_Print</button>
             <button type="button" id="btnBack" onclick="location.href='@Url.Content("~/OutMiscOrder/List")'">
                 @Resources.SYS.Global.Button_Back</button>
         </div>
     </fieldset>
-     <div id="divOutMiscOrderDetailList">
-    @{
+    <div id="divOutMiscOrderDetailList">
+        @{
          
                 if (Model.IsScanHu)
                 {
@@ -290,6 +313,6 @@
                 {
                     Html.RenderAction("_MiscOrderDetailNoScanHu", "OutMiscOrder", new { MiscOrderNo = Model.MiscOrderNo, MoveType = Model.MoveType, Status = Model.Status });
                 }
-     }
-     </div>
+        }
+    </div>
 }

@@ -14,6 +14,8 @@ using com.Sconit.Entity.MD;
 using com.Sconit.Entity.Exception;
 using com.Sconit.Web.Models.ORD;
 using com.Sconit.Entity.INV;
+using com.Sconit.PrintModel.ORD;
+using AutoMapper;
 
 namespace com.Sconit.Web.Controllers.ORD
 {
@@ -526,6 +528,22 @@ namespace com.Sconit.Web.Controllers.ORD
 
 
         #endregion
+        #endregion
+
+
+
+        #region print
+        public string Print(string miscOrderNo)
+        {
+            MiscOrderMaster miscOrderMaster = queryMgr.FindById<MiscOrderMaster>(miscOrderNo);
+            IList<MiscOrderDetail> miscOrderDetails = queryMgr.FindAll<MiscOrderDetail>("select od from MiscOrderDetail as od where od.MiscOrderNo=?", miscOrderNo);
+            miscOrderMaster.MiscOrderDetails = miscOrderDetails;
+            PrintMiscOrderMaster printPickListMaster = Mapper.Map<MiscOrderMaster, PrintMiscOrderMaster>(miscOrderMaster);
+            IList<object> data = new List<object>();
+            data.Add(printPickListMaster);
+            data.Add(printPickListMaster.MiscOrderDetails);
+            return reportGen.WriteToFile("MiscOrder.xls", data);
+        }
         #endregion
 
         #endregion

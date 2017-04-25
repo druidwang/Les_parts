@@ -33,7 +33,7 @@ namespace com.Sconit.Utility.Report.Operator
                 IList<PrintMiscOrderDetail> miscOrderDetailList = (IList<PrintMiscOrderDetail>)list[1];
 
                 if (miscOrderMaster == null
-                    || miscOrderDetailList == null || miscOrderDetailList.Count == 0)
+                    && (miscOrderDetailList == null || miscOrderDetailList.Count == 0))
                 {
                     return false;
                 }

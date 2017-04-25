@@ -38,6 +38,8 @@
         var manufactureDateStr = "";
         var remarkStr;
         var hasError = false;
+        var isPrintPallet = $("input[type=checkbox][name=IsPrintPallet]:checked").val() == undefined ? false : $("input[type=checkbox][name=IsPrintPallet]:checked").val();
+        var externalOrderNo = $("#ExternalOrderNo").val();
 
         for (var rowIndex = 0; rowIndex < rows.length; rowIndex++) {
             var row = $(rows[rowIndex]);
@@ -68,13 +70,13 @@
                 if (!z.test(manufactureDate)) {
                     $message.error('第' + (rowIndex + 1) + '行制造时间输入错误.');
                 }
-                
+
                 if (isChangeUC == "false" && (parseFloat(huQty) * 1e10) % (parseFloat(uc) * 1e10) > 0) {
                     $message.error('行' + (rowIndex + 1).toString() + '的数量' + huQty.toString("0.##") + '不是单包装' + uc.toString("0.##") + '的整数倍,该条不能修改单包装.');
                     return;
                 }
                 supplierLotNo = row.find("#SupplierLotNo").val();
-                 if (idStr == "") {
+                if (idStr == "") {
                     idStr = id;
                     ucStr = uc;
                     supplierLotNoStr = supplierLotNo;
@@ -100,6 +102,7 @@
         }
 
         var data = {
+            "IsPrintPallet": isPrintPallet,
             "FlowidStr": idStr,
             "FlowucStr": ucStr,
             "FlowsupplierLotNoStr": supplierLotNoStr,
@@ -107,7 +110,8 @@
             "FlowisExport": isExport,
             "FlowmanufactureDateStr": manufactureDateStr,
             "FlowCheckExport": isExport,
-            "FlowremarkStr": remarkStr
+            "FlowremarkStr": remarkStr,
+            "ExternalOrderNo": externalOrderNo
         }
         $.ajax({
             type: "post",
@@ -117,7 +121,7 @@
             url: "/Hu/CreateHuByFlow/",
             cache: false,
             success: function (data, textStatus) {
-                
+
                 DisplayJsonMessages(data);
                 if (isExport && data.FlowCheckExport == "OK") {
                     $("#FlowidStr").val(idStr);
@@ -132,14 +136,14 @@
                 }
                 else {
                     if (data.PrintUrl != "" && data.PrintUrl != undefined) {
-                        
+
                         PrintOrder(data.PrintUrl);
                     }
                 }
             },
 
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                
+
                 var errorMessages = XMLHttpRequest.responseText;
                 $message.error(errorMessages);
             }
@@ -180,6 +184,22 @@
                     
             }
         </div>
+        <div class="search-label">
+            <label for="Hu_ExternalOrderNo">
+                @Resources.INV.Hu.Hu_ExternalOrderNo
+            </label>
+        </div>
+        <div class="search-field">
+            @Html.TextBox("ExternalOrderNo", ViewBag.ExternalOrderNo != null ? (string)ViewBag.ExternalOrderNo : string.Empty)
+        </div>
+        <div class="search-label">
+            <label>
+                @Resources.INV.Hu.Hu_IsPrintPallet
+            </label>
+        </div>
+        <div class="search-field">
+            @Html.CheckBox("IsPrintPallet", ViewBag.IsPrintPallet != null ? (bool)ViewBag.IsPrintPallet : false)
+        </div>
     </div>
     <div class="editor-footer">
         <button type="button" id="Search" onclick="FlowQuery()">@Resources.SYS.Global.Button_Search</button>
@@ -199,18 +219,15 @@
 	            })
     </div>
 </fieldset>
-<form id="hiddenFlowForm" action="/Hu/CreateHuByFlow" target="_blank"
-    method="post">
-    <input id="FlowqtyStr" name="FlowqtyStr" type="hidden" />
-    <input id="FlowucStr" name="FlowucStr" type="hidden" />
-    <input id="FlowidStr" name="FlowidStr" type="hidden" />
-    <input id="FlowremarkStr" name="FlowremarkStr" type="hidden" />
-    <input id="FlowsupplierLotNoStr" name="FlowsupplierLotNoStr" type="hidden" />
-    <input id="FlowisExport" name="FlowisExport" type="hidden" />
-    <input id="FlowCheckExport" name="FlowCheckExport" type="hidden" />
-    <input id="FlowmanufactureDateStr" name="FlowmanufactureDateStr" type="hidden" />
+<form id="hiddenFlowForm" action="/Hu/CreateHuByFlow" target="_blank" method="post">
+<input id="FlowqtyStr" name="FlowqtyStr" type="hidden" />
+<input id="FlowucStr" name="FlowucStr" type="hidden" />
+<input id="FlowidStr" name="FlowidStr" type="hidden" />
+<input id="FlowremarkStr" name="FlowremarkStr" type="hidden" />
+<input id="FlowsupplierLotNoStr" name="FlowsupplierLotNoStr" type="hidden" />
+<input id="FlowisExport" name="FlowisExport" type="hidden" />
+<input id="FlowCheckExport" name="FlowCheckExport" type="hidden" />
+<input id="FlowmanufactureDateStr" name="FlowmanufactureDateStr" type="hidden" />
 </form>
 <div id="divFlowDetail">
 </div>
-
-

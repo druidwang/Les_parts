@@ -177,8 +177,6 @@
         <div class="editor-field-1">
             @Html.TextBoxFor(model => model.ExtraLocationFrom)
         </div>*@
-
-
             <div class="editor-label-2">
                 @Html.LabelFor(model => model.ShipFrom)
             </div>
@@ -281,7 +279,7 @@
      });
                 }
             </div>
-             <div class="editor-label-2">
+            <div class="editor-label-2">
                 @Html.LabelFor(model => model.SalesOrg)
             </div>
             <div class="editor-field-2">
@@ -300,12 +298,25 @@
                 @Html.EditorFor(model => model.Dock)
                 @Html.ValidationMessageFor(model => model.Dock)
             </div>
-           
         </div>
     </fieldset>
     <fieldset>
         <legend>@Resources.SCM.FlowMaster.FlowMaster_LegendBarCode</legend>
         <div class="editor">
+            <div class="editor-label-2">
+                @Html.LabelFor(model => model.HuTemplate)
+            </div>
+            <div class="editor-field-2">
+                @{
+    Html.RenderAction("_CodeMasterDropDownList", "Common",
+        new
+        {
+            code = com.Sconit.CodeMaster.CodeMaster.HuTemplate,
+            controlName = "HuTemplate",
+            selectedValue = Model != null ? Model.HuTemplate : string.Empty
+        });
+                }
+            </div>
             <div class="editor-label-2">
                 @Html.LabelFor(model => model.IsShipScanHu)
             </div>
@@ -507,7 +518,7 @@
             <div class="editor-field-3">
                 @Html.CheckBox("IsAutoReceive", false)
             </div>
-             @*<div class="editor-label-3">
+            @*<div class="editor-label-3">
                 @Html.LabelFor(model => model.IsAutoBill)
             </div>
             <div class="editor-field-3">
@@ -541,7 +552,6 @@
 	    {"id", "btnNew"},
         {"needconfirm","true"}
 	})
-
         <button type="button" id="btnBack" onclick="location.href='@Url.Content("~/DistributionFlow/List")'">
             @Resources.SYS.Global.Button_Back</button>
     </div>
