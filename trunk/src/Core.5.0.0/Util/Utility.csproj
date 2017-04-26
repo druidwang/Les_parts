@@ -100,6 +100,7 @@
     <Compile Include="LotNoHelper.cs" />
     <Compile Include="MultiButtonAttribute.cs" />
     <Compile Include="ObixHelper.cs" />
+    <Compile Include="Report\Operator\RepPalletOperator.cs" />
     <Compile Include="Report\Operator\RepBarCodeFGOperator.cs" />
     <Compile Include="Report\Operator\RepDeliveryBarCodeOperator.cs" />
     <Compile Include="Report\Operator\RepBarCodePartsOperator.cs" />

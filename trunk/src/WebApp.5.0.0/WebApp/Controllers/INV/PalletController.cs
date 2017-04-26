@@ -229,29 +229,49 @@ namespace com.Sconit.Web.Controllers.INV
             }
         }
 
-        public string Print(string huId)
+        public string Print(string code)
         {
-            Hu hu = queryMgr.FindById<Hu>(huId);
-            if (!string.IsNullOrEmpty(hu.ManufactureParty))
+            Pallet pallet = queryMgr.FindById<Pallet>(code);
+            IList<PalletHu> palletHuList = genericMgr.FindAll<PalletHu>("from PalletHu where PalletCode = ?", code);
+            PalletHu palletHu = palletHuList.FirstOrDefault();
+            if (palletHuList == null || palletHuList.Count == 0)
             {
-                hu.ManufacturePartyDescription = queryMgr.FindById<Party>(hu.ManufactureParty).Name;
+                throw new BusinessException("托盘明细为空");
             }
-            if (!string.IsNullOrWhiteSpace(hu.Direction))
-            {
-                hu.Direction = this.genericMgr.FindById<HuTo>(hu.Direction).CodeDescription;
-            }
-            string huTemplate = hu.HuTemplate;
-            if (string.IsNullOrWhiteSpace(huTemplate))
-            {
-                huTemplate = this.systemMgr.GetEntityPreferenceValue(Entity.SYS.EntityPreference.CodeEnum.DefaultBarCodeTemplate);
-            }
+
+            Hu pHu = genericMgr.FindById<Hu>(palletHu.HuId);
+
             IList<PrintHu> huList = new List<PrintHu>();
-            PrintHu printHu = Mapper.Map<Hu, PrintHu>(hu);
-            huList.Add(printHu);
+            PrintHu printHu = Mapper.Map<Hu, PrintHu>(pHu);
+
+
+            PrintHu hu = new PrintHu();
+            hu.CreateDate = printHu.CreateDate;
+            hu.CreateUserId = printHu.CreateUserId;
+            hu.CreateUserName = printHu.CreateUserName;
+            hu.Item = printHu.Item;
+            hu.ItemDescription = printHu.ItemDescription;
+            hu.HuId = printHu.PalletCode;
+            hu.PalletCode = printHu.PalletCode;
+            hu.ManufactureParty = printHu.ManufactureParty;
+            hu.ManufacturePartyDescription = genericMgr.FindById<Party>(printHu.ManufactureParty).Name;
+            hu.ManufactureDate = printHu.ManufactureDate;
+            hu.LotNo = printHu.LotNo;
+            hu.OrderNo = printHu.OrderNo;
+            hu.Qty = palletHuList.Count();
+            hu.Uom = "箱";
+            hu.ExternalOrderNo = printHu.ExternalOrderNo;
+
+
+            huList.Add(hu);
+
             IList<object> data = new List<object>();
             data.Add(huList);
             data.Add(CurrentUser.FullName);
-            return reportGen.WriteToFile(huTemplate, data);
+            return reportGen.WriteToFile("Pallet.xls", data);
+
+
+
         }
         [HttpPost]
         public JsonResult CheckExportTemplate(string checkedOrders)

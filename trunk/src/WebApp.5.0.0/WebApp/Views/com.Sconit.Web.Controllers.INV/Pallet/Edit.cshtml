@@ -5,13 +5,12 @@
 @using com.Sconit.Entity.SYS
 @model com.Sconit.Entity.MD.Pallet
 <fieldset>
-   
     <div class="editor-label-2">
         @Html.LabelFor(model => model.Code)
     </div>
     <div class="editor-field-2">
         @Html.DisplayFor(model => model.Code)
-
+        @Html.HiddenFor(model => model.Code)
     </div>
     <div class="editor-label-2">
         @Html.LabelFor(model => model.Description)
@@ -31,7 +30,6 @@
     <div class="editor-field-2">
         @Html.DisplayFor(model => model.Weight)
     </div>
-
     <div class="editor-label-2">
         @Html.LabelFor(model => model.CreateUserName)
     </div>
@@ -57,7 +55,6 @@
         @Html.DisplayFor(model => model.LastModifyDate)
     </div>
 </fieldset>
-
 <div class="search-footer">
     <button type="button" id="btnPrint" onclick="Print()">
         @Resources.SYS.Global.Button_Print</button>
@@ -66,20 +63,14 @@
     <button type="button" id="btnSearch" onclick="location.href='@Url.Content("~/Pallet/List")'">
         @Resources.SYS.Global.Button_Back</button>
 </div>
-
-<fieldset id ="husList">
+<fieldset id="husList">
     <legend>@Resources.INV.Pallet.Pallet_Tab_Hu</legend>
-
     @{
         Html.RenderAction("_PalletHuList", "Pallet", new { palletCode = Model.Code });
     }
 </fieldset>
-
-
-
-<form id="hiddenForm" action="/Pallet/SaveToClient" target="_blank"
-    method="post">
-    <input id="huId" name="huId" type="hidden" />
+<form id="hiddenForm" action="/Pallet/SaveToClient" target="_blank" method="post">
+<input id="huId" name="huId" type="hidden" />
 </form>
 <script type="text/javascript">
     var alreadyLoaded;
@@ -91,7 +82,7 @@
 
     function Print(e) {
         var data = {
-            "Code": $("#Code").val()
+            "code": $("#Code").val()
         };
         $.ajax({
             type: "post",
