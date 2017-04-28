@@ -135,7 +135,7 @@ namespace com.Sconit.Web.Controllers.INV
             var itemCategoryList = this.genericMgr.FindAll<ItemCategory>();
             foreach (var listdata in list.Data)
             {
-                listdata.ExpireDateValue = listdata.ExpireDate == null ? "": listdata.ExpireDate.Value.ToString("yyyy-MM-dd");
+                listdata.ExpireDateValue = listdata.ExpireDate == null ? "" : listdata.ExpireDate.Value.ToString("yyyy-MM-dd");
                 listdata.RemindExpireDateValue = listdata.RemindExpireDate == null ? "" : listdata.RemindExpireDate.Value.ToString("yyyy-MM-dd");
                 listdata.MaterialsGroup = itemMgr.GetCacheItem(listdata.Item).MaterialsGroup;
                 listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup, itemCategoryList).Description;
@@ -438,7 +438,7 @@ namespace com.Sconit.Web.Controllers.INV
                             return Json(new { FlowCheckExport = flowCheckExport });
                         }
 
-                        IList<Hu> huList = huMgr.CreateHu(flowMaster, nonZeroFlowDetailList,ExternalOrderNo,IsPrintPallet);
+                        IList<Hu> huList = huMgr.CreateHu(flowMaster, nonZeroFlowDetailList, ExternalOrderNo, IsPrintPallet);
                         string manufacturePartyDescription = queryMgr.FindById<Party>(flowMaster.PartyFrom).Name;
                         foreach (var hu in huList)
                         {
@@ -463,7 +463,7 @@ namespace com.Sconit.Web.Controllers.INV
                         }
                         else
                         {
-                            string printUrl = PrintHuList(huList, flowMaster.HuTemplate,IsPrintPallet);
+                            string printUrl = PrintHuList(huList, flowMaster.HuTemplate, IsPrintPallet);
                             object obj = new { SuccessMessage = string.Format(Resources.EXT.ControllerLan.Con_BarcodePrintedSuccessfully_1, huList.Count), PrintUrl = printUrl };
                             return Json(obj);
                         }
@@ -513,7 +513,7 @@ namespace com.Sconit.Web.Controllers.INV
                     orderMaster = this.genericMgr.FindAll<OrderMaster>(" from OrderMaster where ExternalOrderNo = ?", searchModel.ExternalOrderNo).FirstOrDefault();
                     searchModel.OrderNo = orderMaster.OrderNo;
                 }
-                
+
                 if (!Utility.SecurityHelper.HasPermission(orderMaster))
                 {
                     throw new BusinessException(Resources.EXT.ControllerLan.Con_LackTheOrderNumberPermission, searchModel.OrderNo);
@@ -589,7 +589,7 @@ namespace com.Sconit.Web.Controllers.INV
                     this.genericMgr.CleanSession();
                     if (orderMaster != null)
                     {
-                        IList<Hu> huList = huMgr.CreateHu(orderMaster, nonZeroOrderDetailList, false,IsPrintPallet);
+                        IList<Hu> huList = huMgr.CreateHu(orderMaster, nonZeroOrderDetailList, false, IsPrintPallet);
                         foreach (var hu in huList)
                         {
                             hu.ManufacturePartyDescription = orderMaster.PartyFromName;
@@ -614,7 +614,7 @@ namespace com.Sconit.Web.Controllers.INV
                         }
                         else
                         {
-                            string printUrl = PrintHuList(huList, orderMaster.HuTemplate,IsPrintPallet);
+                            string printUrl = PrintHuList(huList, orderMaster.HuTemplate, IsPrintPallet);
                             object obj = new { SuccessMessage = string.Format(Resources.EXT.ControllerLan.Con_BarcodePrintedSuccessfully_1, huList.Count), PrintUrl = printUrl };
                             return Json(obj);
                         }
@@ -901,8 +901,8 @@ namespace com.Sconit.Web.Controllers.INV
         {
             IList<FlowMaster> flowMasterList = genericMgr.FindAllIn<FlowMaster>("from FlowMaster as i where i.ResourceGroup=? and IsActive=1 ", new object[] { com.Sconit.CodeMaster.ResourceGroup.FI });
             var mlist = from c in CurrentUser.RegionPermissions
-                       join p in flowMasterList on c equals p.PartyFrom
-                       select new { p };
+                        join p in flowMasterList on c equals p.PartyFrom
+                        select new { p };
 
             ViewBag.PrintHuPermissions = mlist.ToList().Count() > 1;
             return PartialView();
@@ -1303,43 +1303,55 @@ namespace com.Sconit.Web.Controllers.INV
             return Json(obj);
         }
 
-        public string PrintHuList(IList<Hu> huList, string huTemplate,bool isPrintPallet = false)
+        public string PrintHuList(IList<Hu> huList, string huTemplate, bool isPrintPallet = false)
         {
-            foreach (var hu in huList)
-            {
-                if (!string.IsNullOrWhiteSpace(hu.Direction))
-                {
-                    hu.Direction = this.genericMgr.FindById<HuTo>(hu.Direction).CodeDescription;
-                }
-            }
-            IList<PrintHu> printHuList = Mapper.Map<IList<Hu>, IList<PrintHu>>(huList);
 
             #region 处理托盘
             if (isPrintPallet)
             {
-                PrintHu palletHu = printHuList.FirstOrDefault();
-                if (palletHu != null)
+                string currentItem = string.Empty;
+                List<Hu> palletHuList = new List<Hu>();
+                foreach (var ihu in huList)
                 {
-                    PrintHu hu = new PrintHu();
-                    hu.CreateDate = palletHu.CreateDate;
-                    hu.CreateUserId = palletHu.CreateUserId;
-                    hu.CreateUserName = palletHu.CreateUserName;
-                    hu.Item = palletHu.Item;
-                    hu.ItemDescription = palletHu.ItemDescription;
-                    hu.HuId = palletHu.PalletCode;
-                    hu.PalletCode = palletHu.PalletCode;
-                    hu.ManufactureParty = palletHu.ManufactureParty;
-                    hu.ManufacturePartyDescription = palletHu.ManufacturePartyDescription;
-                    hu.ManufactureDate = palletHu.ManufactureDate;
-                    hu.LotNo = palletHu.LotNo;
-                    hu.OrderNo = palletHu.OrderNo;
-                    hu.Qty = printHuList.Count();
-                    hu.Uom = "箱";
-                    hu.ExternalOrderNo = palletHu.ExternalOrderNo;
-                    printHuList.Add(hu);
+                 
+                    if (ihu.Item != currentItem)
+                    {
+                        Hu palletHu = huList.Where(p => p.Item == ihu.Item).FirstOrDefault();
+                        if (palletHu != null)
+                        {
+                            Hu hu = new Hu();
+                            hu.CreateDate = palletHu.CreateDate;
+                            hu.CreateUserId = palletHu.CreateUserId;
+                            hu.CreateUserName = palletHu.CreateUserName;
+                            hu.Item = palletHu.Item;
+                            hu.ItemDescription = palletHu.ItemDescription;
+                            hu.HuId = palletHu.PalletCode;
+                            hu.PalletCode = palletHu.PalletCode;
+                            hu.ManufactureParty = palletHu.ManufactureParty;
+                            hu.ManufacturePartyDescription = palletHu.ManufacturePartyDescription;
+                            hu.ManufactureDate = palletHu.ManufactureDate;
+                            hu.LotNo = palletHu.LotNo;
+                            hu.OrderNo = palletHu.OrderNo;
+                            hu.Qty = huList.Where(p => p.Item == ihu.Item).Count();
+                            hu.Uom = "箱";
+                            hu.ExternalOrderNo = palletHu.ExternalOrderNo;
+                            palletHuList.Add(hu);
+                        }
+                        currentItem = ihu.Item;
+                    }
+                }
+
+                foreach (Hu h in palletHuList)
+                {
+                    huList.Add(h);
                 }
             }
             #endregion
+            IList<PrintHu> printHuList = Mapper.Map<IList<Hu>, IList<PrintHu>>(huList);
+
+
+
+
 
             IList<object> data = new List<object>();
             data.Add(printHuList);
@@ -1387,7 +1399,7 @@ namespace com.Sconit.Web.Controllers.INV
 
                     hu.MaterialsGroup = GetMaterialsGroupDescrption(item.MaterialsGroup);
                     //hu.HuOption = GetHuOption(item);
-                    
+
                     huList.Add(hu);
                 }
             }
