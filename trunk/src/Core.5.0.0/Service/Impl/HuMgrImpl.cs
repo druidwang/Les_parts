@@ -173,12 +173,13 @@ namespace com.Sconit.Service.Impl
                 #region 托盘
                 if (isPrintPallet)
                 {
+                    var palletHuList = huList.Where(p => p.Item == flowDetail.Item);
                     Pallet pallet = new Pallet();
                     pallet.Code = palletCode;
-                    pallet.Description = huList.First().Item + "|" + huList.First().ItemDescription + "|" + huList.Count();
+                    pallet.Description = palletHuList.First().Item + "|" + palletHuList.First().ItemDescription + "|" + palletHuList.Count();
                     this.genericMgr.Create(pallet);
 
-                    foreach (Hu hu in huList)
+                    foreach (Hu hu in palletHuList)
                     {
                         PalletHu palletHu = new PalletHu();
                         palletHu.HuId = hu.HuId;
@@ -279,12 +280,13 @@ namespace com.Sconit.Service.Impl
                 #region 托盘
                 if (isPrintPallet)
                 {
+                    var palletHuList = huList.Where(p => p.Item == orderDetail.Item);
                     Pallet pallet = new Pallet();
                     pallet.Code = palletCode;
-                    pallet.Description = huList.First().Item + "|" + huList.First().ItemDescription + "|" + huList.Count();
+                    pallet.Description = palletHuList.First().Item + "|" + palletHuList.First().ItemDescription + "|" + palletHuList.Count();
                     this.genericMgr.Create(pallet);
 
-                    foreach (Hu hu in huList)
+                    foreach (Hu hu in palletHuList)
                     {
                         PalletHu palletHu = new PalletHu();
                         palletHu.HuId = hu.HuId;

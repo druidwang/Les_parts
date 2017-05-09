@@ -152,14 +152,6 @@
 </script>
 <fieldset>
     <div class="search">
-         <div class="search-label">
-            <label for="Hu_ExternalOrderNo">
-                @Resources.INV.Hu.Hu_ExternalOrderNo
-            </label>
-        </div>
-        <div class="search-field">
-            @Html.TextBox("ExternalOrderNo", ViewBag.ExternalOrderNo != null ? (string)ViewBag.ExternalOrderNo : string.Empty)
-        </div>
         <div class="search-label">
             <label for="Hu_OrderNo">
                 @Resources.INV.Hu.Hu_OrderNo
@@ -167,6 +159,14 @@
         </div>
         <div class="search-field">
             @Html.TextBox("OrderNo", ViewBag.OrderNo != null ? (string)ViewBag.OrderNo : string.Empty)
+        </div>
+        <div class="search-label">
+            <label for="Hu_ExternalOrderNo">
+                @Resources.INV.Hu.Hu_ExternalOrderNo
+            </label>
+        </div>
+        <div class="search-field">
+            @Html.TextBox("ExternalOrderNo", ViewBag.ExternalOrderNo != null ? (string)ViewBag.ExternalOrderNo : string.Empty)
         </div>
         <div class="search-label">
             <label>

@@ -510,10 +510,10 @@ namespace com.Sconit.Service.Impl
         public void CreateOrder(OrderMaster orderMaster, bool expandOrderBomDetail)
         {
             #region 检查
-            if (!Utility.SecurityHelper.HasPermission(orderMaster))
-            {
-                throw new BusinessException("没有此订单的操作权限。");
-            }
+            //if (!Utility.SecurityHelper.HasPermission(orderMaster))
+            //{
+            //    throw new BusinessException("没有此订单的操作权限。");
+            //}
 
             if (orderMaster.OrderDetails != null && orderMaster.OrderDetails.Count() > 0)
             {
@@ -726,10 +726,10 @@ namespace com.Sconit.Service.Impl
         [Transaction(TransactionMode.Requires)]
         public void UpdateOrder(OrderMaster orderMaster)
         {
-            if (!Utility.SecurityHelper.HasPermission(orderMaster))
-            {
-                throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
-            }
+            //if (!Utility.SecurityHelper.HasPermission(orderMaster))
+            //{
+            //    throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
+            //}
 
             if (orderMaster.OrderNo == null)
             {
@@ -758,10 +758,10 @@ namespace com.Sconit.Service.Impl
         {
             OrderMaster orderMaster = genericMgr.FindById<OrderMaster>(orderNo);
 
-            if (!Utility.SecurityHelper.HasPermission(orderMaster))
-            {
-                //throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
-            }
+            //if (!Utility.SecurityHelper.HasPermission(orderMaster))
+            //{
+            //    //throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
+            //}
 
             if (orderMaster.Status == com.Sconit.CodeMaster.OrderStatus.Create)
             {
@@ -1073,10 +1073,10 @@ namespace com.Sconit.Service.Impl
             OrderDetail orderDetail = genericMgr.FindById<OrderDetail>(orderDetailIds[0]);
             OrderMaster orderMaster = genericMgr.FindById<OrderMaster>(orderDetail.OrderNo);
 
-            if (!Utility.SecurityHelper.HasPermission(orderMaster))
-            {
-                //throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
-            }
+            //if (!Utility.SecurityHelper.HasPermission(orderMaster))
+            //{
+            //    //throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
+            //}
 
             BeforeDeleteOrderDetails(orderMaster);
             ProcessDeleteOrderDetails(orderMaster, orderDetailIds);
@@ -1212,10 +1212,10 @@ namespace com.Sconit.Service.Impl
             OrderBinding orderBinding = genericMgr.FindById<OrderBinding>(orderBindingIds[0]);
             OrderMaster orderMaster = genericMgr.FindById<OrderMaster>(orderBinding.OrderNo);
 
-            if (!Utility.SecurityHelper.HasPermission(orderMaster))
-            {
-                //throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
-            }
+            //if (!Utility.SecurityHelper.HasPermission(orderMaster))
+            //{
+            //    //throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
+            //}
             BeforeDeleteOrderBindings(orderMaster);
             ProcessDeleteOrderBindings(orderBindingIds);
         }
@@ -1808,10 +1808,10 @@ namespace com.Sconit.Service.Impl
             OrderOperation orderOperation = genericMgr.FindById<OrderOperation>(orderOperationIds[0]);
             OrderMaster orderMaster = genericMgr.FindById<OrderMaster>(orderOperation.OrderNo);
 
-            if (!Utility.SecurityHelper.HasPermission(orderMaster))
-            {
-                //throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
-            }
+            //if (!Utility.SecurityHelper.HasPermission(orderMaster))
+            //{
+            //    //throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
+            //}
 
 
             BeforeDeleteOrderOperations(orderMaster);
@@ -2018,10 +2018,10 @@ namespace com.Sconit.Service.Impl
             OrderBomDetail orderBomDetail = genericMgr.FindById<OrderBomDetail>(orderBomDetailIds[0]);
             OrderMaster orderMaster = genericMgr.FindById<OrderMaster>(orderBomDetail.OrderNo);
 
-            if (!Utility.SecurityHelper.HasPermission(orderMaster))
-            {
-                //throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
-            }
+            //if (!Utility.SecurityHelper.HasPermission(orderMaster))
+            //{
+            //    //throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
+            //}
 
             BeforeDeleteOrderBomDetails(orderMaster);
             ProcessDeleteOrderBomDetails(orderBomDetailIds);
@@ -2141,10 +2141,10 @@ namespace com.Sconit.Service.Impl
         [Transaction(TransactionMode.Requires)]
         public void ReleaseOrder(OrderMaster orderMaster)
         {
-            if (!Utility.SecurityHelper.HasPermission(orderMaster))
-            {
-                throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
-            }
+            //if (!Utility.SecurityHelper.HasPermission(orderMaster))
+            //{
+            //    throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
+            //}
 
             if (orderMaster.Status == com.Sconit.CodeMaster.OrderStatus.Create)
             {
@@ -2455,10 +2455,10 @@ namespace com.Sconit.Service.Impl
         [Transaction(TransactionMode.Requires)]
         public void StartOrder(OrderMaster orderMaster)
         {
-            if (!Utility.SecurityHelper.HasPermission(orderMaster))
-            {
-                throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
-            }
+            //if (!Utility.SecurityHelper.HasPermission(orderMaster))
+            //{
+            //    throw new BusinessException("没有此订单{0}的操作权限。", orderMaster.OrderNo);
+            //}
 
             if (orderMaster.Status == com.Sconit.CodeMaster.OrderStatus.Submit)
             {
@@ -3089,8 +3089,8 @@ namespace com.Sconit.Service.Impl
                 var itemDesc = orderDetails.First().ItemDescription;
                 if (minLotNo != null && string.Compare(maxLotNo, minLotNo) > 0)
                 {
-                    //throw new BusinessException(string.Format("物料{0}[{1}]{2}违反了先进先出,不能发货",
-                    //    orderDetails.Key.Item, orderDetails.First().ItemDescription, directionDesc));
+                    throw new BusinessException(string.Format("物料{0}[{1}]{2}违反了先进先出,不能发货",
+                        orderDetails.Key.Item, orderDetails.First().ItemDescription, directionDesc));
                 }
             }
 

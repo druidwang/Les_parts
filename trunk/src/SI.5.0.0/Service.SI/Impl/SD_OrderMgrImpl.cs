@@ -15,6 +15,7 @@
     using com.Sconit.Entity.CUST;
     using com.Sconit.Entity.PRD;
 
+
     [Transactional]
     public class SD_OrderMgrImpl : BaseMgr, ISD_OrderMgr
     {
@@ -669,6 +670,14 @@
                     orderMaster.ShipToContact = shipTo.ContactPersonName;
                 }
             }
+
+            #region 加一段强制先进先出
+            bool isForceFifo = bool.Parse(systemMgr.GetEntityPreferenceValue(com.Sconit.Entity.SYS.EntityPreference.CodeEnum.IsForceFIFO));
+            if (string.IsNullOrEmpty(flowMaster.Bin) && isForceFifo)
+            {
+                orderMaster.IsShipFifo = true;
+            }
+            #endregion
 
             orderMaster.OrderDetails = new List<Entity.ORD.OrderDetail>();
             int seq = 1;

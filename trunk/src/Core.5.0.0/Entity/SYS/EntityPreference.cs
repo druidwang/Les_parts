@@ -70,6 +70,9 @@ namespace com.Sconit.Entity.SYS
 
             //默认配送标签模板
             DefaultDeliveryBarCodeTemplate = 90114,
+
+            //强制移库先进先出
+            IsForceFIFO = 110220,
         }
 
         [Display(Name = "EntityPreference_Desc", ResourceType = typeof(Resources.SYS.EntityPreference))]

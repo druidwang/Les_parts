@@ -58,7 +58,7 @@ namespace com.Sconit.SmartDevice
                 if (base.op == CodeMaster.BarCodeType.ORD.ToString() || base.op == null)
                 {
                     this.orderMasters = new List<OrderMaster>();
-                    var orderMaster = smartDeviceService.GetOrderByOrderNoAndExtNo(base.barCode, true);
+                    var orderMaster = smartDeviceService.GetOrder(base.barCode, true);
 
                     if (orderMaster == null)
                     {

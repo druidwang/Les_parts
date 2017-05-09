@@ -70,10 +70,10 @@ namespace com.Sconit.SmartDevice
             dicObject.Add(CodeMaster.TerminalPermission.Client_BindContainerOut, new List<object> { this.btnBindContainerOut, 2, Keys.D0, Keys.NumPad0 });
 
             //质量
-            dicObject.Add(CodeMaster.TerminalPermission.Client_Inspect, new List<object> { this.btnInspect, 3, Keys.D1, Keys.NumPad1 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_Qualify, new List<object> { this.btnQualify, 3, Keys.D2, Keys.NumPad2 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_Freeze, new List<object> { this.btnFreeze, 3, Keys.D3, Keys.NumPad3 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_UnFreeze, new List<object> { this.btnUnfreeze, 3, Keys.D3, Keys.NumPad3 });
+            //dicObject.Add(CodeMaster.TerminalPermission.Client_Inspect, new List<object> { this.btnInspect, 3, Keys.D1, Keys.NumPad1 });
+            //dicObject.Add(CodeMaster.TerminalPermission.Client_Qualify, new List<object> { this.btnQualify, 3, Keys.D2, Keys.NumPad2 });
+            //dicObject.Add(CodeMaster.TerminalPermission.Client_Freeze, new List<object> { this.btnFreeze, 3, Keys.D3, Keys.NumPad3 });
+            //dicObject.Add(CodeMaster.TerminalPermission.Client_UnFreeze, new List<object> { this.btnUnfreeze, 3, Keys.D3, Keys.NumPad3 });
             //dicObject.Add(CodeMaster.TerminalPermission.Client_WorkerWaste, new List<object> { this.btnWorkerWaste, 3, Keys.D6, Keys.NumPad6 });
             //dicObject.Add(CodeMaster.TerminalPermission.Client_Reject, new List<object> { this.btnReject, 3, Keys.D3, Keys.NumPad3 });
 
