@@ -153,9 +153,9 @@ namespace com.Sconit.SmartDevice
             }
             else if (module == CodeMaster.TerminalPermission.Client_Pickup)
             {
-                var ucBinOn = new UCBinOn(this.user);//.GetUCPickUp(this.user);
-                ucBinOn.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
-                this.AddModule(ucBinOn);
+                var ucPickup = new UCPickUp(this.user);//.GetUCPickUp(this.user);
+                ucPickup.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(ucPickup);
                 this.Text = "下架";
             }
             else if (module == CodeMaster.TerminalPermission.Client_AnDon)
@@ -407,7 +407,7 @@ namespace com.Sconit.SmartDevice
                 uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
                 this.AddModule(uc);
                 uc.tbBarCode.Focus();
-                this.Text = "容器装箱";
+                this.Text = "托盘打包";
             }
             else if (module == CodeMaster.TerminalPermission.Client_BindContainerOut)
             {
@@ -415,7 +415,7 @@ namespace com.Sconit.SmartDevice
                 uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
                 this.AddModule(uc);
                 uc.tbBarCode.Focus();
-                this.Text = "容器拆箱";
+                this.Text = "托盘拆包";
             }
             else if (module == CodeMaster.TerminalPermission.Client_ProductionReceive)
             {

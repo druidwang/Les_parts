@@ -23,7 +23,7 @@ namespace com.Sconit.SmartDevice
         {
             this._isIn = isIn;
             this.InitializeComponent();
-            base.btnOrder.Text = "OK";
+            base.btnOrder.Text = "确定";
             this.Reset();
         }
 

@@ -32,14 +32,16 @@ namespace com.Sconit.SmartDevice
             #region Object Dictionary
             Dictionary<CodeMaster.TerminalPermission, List<object>> dicObject = new Dictionary<CodeMaster.TerminalPermission, List<object>>();
             //收发
-            dicObject.Add(CodeMaster.TerminalPermission.Client_PickListOnline, new List<object> { this.btnPickListOnline, 0, Keys.D1, Keys.NumPad1 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_PickList, new List<object> { this.btnPickList, 0, Keys.D2, Keys.NumPad2 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_PickListShip, new List<object> { this.btnPickListShip, 0, Keys.D3, Keys.NumPad3 });
+
+            dicObject.Add(CodeMaster.TerminalPermission.Client_Receive, new List<object> { this.btnReceive, 0, Keys.D1, Keys.NumPad1 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_PurchaseReturn, new List<object> { this.btnPurchaseReturn, 0, Keys.D2, Keys.NumPad2 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_ProductionReceive, new List<object> { this.btnProductionReceive, 0, Keys.D3, Keys.NumPad3 });
             dicObject.Add(CodeMaster.TerminalPermission.Client_OrderShip, new List<object> { this.btnOrderShip, 0, Keys.D4, Keys.NumPad4 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_Receive, new List<object> { this.btnReceive, 0, Keys.D5, Keys.NumPad5 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_QuickReturn, new List<object> { this.btnQuickReturn, 0, Keys.D6, Keys.NumPad6 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_PurchaseReturn, new List<object> { this.btnPurchaseReturn, 0, Keys.D7, Keys.NumPad7 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_ProductionReceive, new List<object> { this.btnProductionReceive, 0, Keys.D8, Keys.NumPad8 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_QuickReturn, new List<object> { this.btnQuickReturn, 0, Keys.D5, Keys.NumPad5 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_PickListOnline, new List<object> { this.btnPickListOnline, 0, Keys.D6, Keys.NumPad6 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_PickList, new List<object> { this.btnPickList, 0, Keys.D7, Keys.NumPad7 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_PickListShip, new List<object> { this.btnPickListShip, 0, Keys.D8, Keys.NumPad8 });
+
 
             //生产
             //dicObject.Add(CodeMaster.TerminalPermission.Client_Filter, new List<object> { this.btnFilter, 1, Keys.D1, Keys.NumPad1 });

@@ -44,7 +44,7 @@
                 type: "Post",
                 dataType: "text",
                 url: "/ProcurementOrder/_WindowTime/",
-                data: { "windowTime": e.value.toLocaleString(), "flow": $("#Flow").val() },
+                data: { "windowTime": e.value.toUTCString(), "flow": $("#Flow").val() },
                 success: function (data, textStatus) {
                     var newDate = new Date(data);
                     // $("#StartTime").val(data);

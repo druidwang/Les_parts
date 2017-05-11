@@ -113,6 +113,11 @@
                 i = 1;
             }
 
+            if ($("#ManufactureParty").val() == "" || $("#ManufactureParty").val() == undefined) {
+                str += "制造商不能为空。"
+                i = 1;
+            }
+
             if ($("#HuQty").val() == "" || $("#HuQty").val() == undefined) {
                 str += "数量不能为空。"
                 i = 1;
@@ -122,7 +127,7 @@
                 return;
             }
             if (isExport) {
-            
+
                 $("#IsExport").val(isExport);
                 $("#ItemId").submit();
             } else {
@@ -135,7 +140,7 @@
                     "IsExport": isExport,
                     "SupplierLotNo": $("#SupplierLotNo").val(),
                     "HuTemplate": $("#HuTemplate").val(),
-                    "Direction": $("#Direction").val(),
+                    "ManufactureParty": $("#ManufactureParty").val(),
                     "HuOption": $("#HuOption").val(),
                     "Remark": $("#Remark").val()
                 }
@@ -161,8 +166,9 @@
             }
         }
     </script>
-    @using (Html.BeginForm("CreateHuByItem", "Hu",FormMethod.Post,new{Id="ItemId"}))
+    @using (Html.BeginForm("CreateHuByItem", "Hu", FormMethod.Post, new { Id = "ItemId" }))
     {   
+
         <div class="search">
             <div class="search-label">
                 <label>
@@ -171,14 +177,14 @@
             </div>
             <div class="search-field">
                 @{
-            Html.RenderAction("_ItemComboBox", "Common",
-                new
-                {
-                    controlName = "ItemCode",
-                    selectedValue = Model != null ? Model.Code : string.Empty,
-                    coupled = true
-                });
-                }
+        Html.RenderAction("_ItemComboBox", "Common",
+            new
+            {
+                controlName = "ItemCode",
+                selectedValue = Model != null ? Model.Code : string.Empty,
+                coupled = true
+            });
+ }
             </div>
             <div class="search-label">
                 <label>
@@ -196,14 +202,14 @@
             <div class="search-field">
                 <div id="UomDropDownList">
                     @{
-            Html.RenderAction("_UomDropDownList", "Common",
-                new
-                {
-                    controlName = "HuUom",
-                    includeBlankOption = false,
-                    selectedValue = Model != null ? Model.HuUom : string.Empty
-                });
-                    }
+        Html.RenderAction("_UomDropDownList", "Common",
+            new
+            {
+                controlName = "HuUom",
+                includeBlankOption = false,
+                selectedValue = Model != null ? Model.HuUom : string.Empty
+            });
+ }
                 </div>
             </div>
             <div class="search-label">
@@ -240,6 +246,21 @@
             </div>
             <div class="search-label">
                 <label>
+                    @Resources.MD.Item.Item_ManufactureParty
+                </label>
+            </div>
+            <div class="search-field">
+                @{
+        Html.RenderAction("_PartyDropDownList", "Common",
+        new
+        {
+            controlName = "ManufactureParty"
+
+        });
+                }
+            </div>
+            <div class="search-label">
+                <label>
                     @Resources.MD.Item.Item_ManufactureDate
                 </label>
             </div>
@@ -248,24 +269,22 @@
                     .Value(DateTime.Now)
                     .HtmlAttributes(new { style = "margin-bottom: 1.3em;width:200px" }))
             </div>
-
             <div class="search-label">
                 <label>
                     @Resources.SCM.FlowMaster.FlowMaster_HuTemplate</label>
             </div>
             <div class="search-field">
                 @{
-            Html.RenderAction("_CodeMasterDropDownList", "Common",
-                new
-                {
-                    code = com.Sconit.CodeMaster.CodeMaster.HuTemplate,
-                    controlName = "HuTemplate",
-                });
-                }
-            <input id="IsExport" name="IsExport" type="hidden" />
+        Html.RenderAction("_CodeMasterDropDownList", "Common",
+            new
+            {
+                code = com.Sconit.CodeMaster.CodeMaster.HuTemplate,
+                controlName = "HuTemplate",
+            });
+ }
+                <input id="IsExport" name="IsExport" type="hidden" />
             </div>
-
-            <div class="search-label">
+            @*     <div class="search-label">
                 <label>
                     @Resources.ORD.OrderDetail.OrderDetail_Direction</label>
             </div>
@@ -278,23 +297,21 @@
                     includeBlankOption = true
                 });
                 }
-            </div>
-
+            </div>*@
             <div class="search-label">
                 <label>
                     @Resources.ORD.OrderMaster.OrderMaster_BarCodeOption</label>
             </div>
             <div class="search-field">
                 @{
-            Html.RenderAction("_CodeMasterDropDownList", "Common",
-                new
-                {
-                    code = com.Sconit.CodeMaster.CodeMaster.HuOption,
-                    controlName = "HuOption",
-                });
-                }
+        Html.RenderAction("_CodeMasterDropDownList", "Common",
+            new
+            {
+                code = com.Sconit.CodeMaster.CodeMaster.HuOption,
+                controlName = "HuOption",
+            });
+ }
             </div>
-
             <div class="search-label">
                 <label>
                     @Resources.MD.Item.Item_SupplierLotNo
@@ -303,16 +320,18 @@
             <div class="search-field">
                 @Html.TextBox("SupplierLotNo", Model != null ? Model.SupplierLotNo : string.Empty)
             </div>
-
         </div>
+
         <div class="search-label">
             <label for="OrderMaster_Dock">
                 @Resources.ORD.OrderMaster.OrderMaster_Remarks
             </label>
         </div>
+
         <div class="search-field">
             @Html.TextBox("Remark", string.Empty)
         </div>
+
         <div class="editor-footer">
             @Html.Button(Resources.SYS.Global.Button_Print, "Url_Inventory_Hu_New", new Dictionary<string, string>()
 	                {
@@ -321,7 +340,7 @@
                         {"needconfirm","true"},
                         {"onclick","onCreateByItem(false)"}
 	                })
-             @Html.Button(Resources.SYS.Global.Button_Export, "Url_Inventory_Hu_New", new Dictionary<string, string>()
+            @Html.Button(Resources.SYS.Global.Button_Export, "Url_Inventory_Hu_New", new Dictionary<string, string>()
 	                {
 	                    {"type", "button"},
 	                    {"id", "btnExport"},
@@ -330,4 +349,4 @@
 	                })
         </div>
     }
-    </fieldset>
+</fieldset>

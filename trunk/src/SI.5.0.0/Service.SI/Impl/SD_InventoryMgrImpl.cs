@@ -471,7 +471,7 @@
                 var existPalletHu = this.genericMgr.FindAll<Entity.INV.PalletHu>("from PalletHu h where h.HuId = ? ", new object[] { huId }).FirstOrDefault();
                 if (existPalletHu != null)
                 {
-                    throw new BusinessException(string.Format("条码{0}已存在托盘{1}中,请先执行托盘掏箱。", existPalletHu.HuId, existPalletHu.PalletCode));
+                    throw new BusinessException(string.Format("条码{0}已存在托盘{1}中,请先执行托盘拆包。", existPalletHu.HuId, existPalletHu.PalletCode));
                 }
                 #endregion
 

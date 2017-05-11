@@ -96,7 +96,26 @@ namespace com.Sconit.SmartDevice
                 }
                 Hu hu = smartDeviceService.GetHu(base.barCode);
 
+                if (!string.IsNullOrEmpty(hu.PalletCode))
+                {
+                    throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
+                }
+
                 this.MatchHu(hu);
+            }
+            else if (base.op == CodeMaster.BarCodeType.TP.ToString())
+            {
+                if ((this.orderMasters == null || this.orderMasters.Count() == 0))
+                {
+                    throw new BusinessException("请先扫描订单。");
+                }
+                Hu[] huArray = smartDeviceService.GetHuListByPallet(barCode);
+
+                foreach (Hu hu in huArray)
+                {
+                    this.MatchHu(hu);
+                }
+
             }
             else if (base.op == CodeMaster.BarCodeType.DATE.ToString())
             {

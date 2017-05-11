@@ -39,7 +39,7 @@
                 type: "post",
                 dataType: "text",
                 url: "/DistributionOrder/_WindowTime/",
-                data: { "windowTime": e.value.format("yyyy-MM-dd hh:mm"), "flow": $("#Flow").val() },
+                data: { "windowTime": e.value.toUTCString(), "flow": $("#Flow").val() },
                 success: function (data, textStatus) {
                     var newDate = new Date(data);
                     $("#StartTime").val(data);

@@ -952,10 +952,10 @@ namespace com.Sconit.Web.Controllers.INV
                         {
                             hu.ManufacturePartyDescription = queryMgr.FindById<Party>(hu.ManufactureParty).Name;
                         }
-                        if (!string.IsNullOrWhiteSpace(hu.Direction))
-                        {
-                            hu.Direction = this.genericMgr.FindById<HuTo>(hu.Direction).CodeDescription;
-                        }
+                        //if (!string.IsNullOrWhiteSpace(hu.Direction))
+                        //{
+                        //    hu.Direction = this.genericMgr.FindById<HuTo>(hu.Direction).CodeDescription;
+                        //}
                     }
                 }
                 if (IsExport)
