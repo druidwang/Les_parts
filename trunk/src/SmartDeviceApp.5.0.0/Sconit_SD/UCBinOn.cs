@@ -83,6 +83,10 @@ namespace com.Sconit.SmartDevice
                     {
                         throw new BusinessException("条码被{0}占用!", hu.OccupyReferenceNo);
                     }
+                    else if (!string.IsNullOrEmpty(hu.PalletCode))
+                    {
+                        throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
+                    }
                     else
                     {
                         hus.Add(hu);

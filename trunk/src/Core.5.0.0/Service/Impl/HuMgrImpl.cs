@@ -93,14 +93,18 @@ namespace com.Sconit.Service.Impl
         public IList<Hu> CreateHu(FlowMaster flowMaster, IList<FlowDetail> flowDetailList, string externalOrderNo, bool isPrintPallet = false)
         {
             IList<Hu> huList = new List<Hu>();
+            string palletCode = string.Empty;
+            int currentFlowDetailId = 0;
             foreach (FlowDetail flowDetail in flowDetailList)
             {
-                string palletCode = string.Empty;
                 ///每条做一个托盘
                 if (isPrintPallet)
                 {
-                    palletCode = numberControlMgr.GetPalletCode();
-
+                    if (currentFlowDetailId != flowDetail.Id)
+                    {
+                        palletCode = numberControlMgr.GetPalletCode();
+                        currentFlowDetailId = flowDetail.Id;
+                    }
                 }
                         
 
@@ -169,13 +173,19 @@ namespace com.Sconit.Service.Impl
                         huList.Add(hu);
                     }
                 }
+            }
 
-                #region 托盘
-                if (isPrintPallet)
+            #region 托盘
+            if (isPrintPallet)
+            {
+                var itemList = huList.Select(p => p.Item).Distinct();
+                foreach (string itemCode in itemList)
                 {
-                    var palletHuList = huList.Where(p => p.Item == flowDetail.Item);
+                   
+                    var palletHuList = huList.Where(p => p.Item == itemCode);
+                    string itemPalletCode = palletHuList.First().PalletCode;
                     Pallet pallet = new Pallet();
-                    pallet.Code = palletCode;
+                    pallet.Code = itemPalletCode;
                     pallet.Description = palletHuList.First().Item + "|" + palletHuList.First().ItemDescription + "|" + palletHuList.Count();
                     this.genericMgr.Create(pallet);
 
@@ -183,12 +193,13 @@ namespace com.Sconit.Service.Impl
                     {
                         PalletHu palletHu = new PalletHu();
                         palletHu.HuId = hu.HuId;
-                        palletHu.PalletCode = palletCode;
+                        palletHu.PalletCode = itemPalletCode;
                         genericMgr.Create(palletHu);
                     }
                 }
-                #endregion
             }
+            #endregion
+
             return huList;
         }
 
@@ -196,15 +207,21 @@ namespace com.Sconit.Service.Impl
         public IList<Hu> CreateHu(OrderMaster orderMaster, IList<OrderDetail> orderDetailList, bool isScrapHu = false, bool isPrintPallet = false)
         {
             IList<Hu> huList = new List<Hu>();
+            string palletCode = string.Empty;
+            int orderDetailId = 0;
             foreach (OrderDetail orderDetail in orderDetailList)
             {
-                string palletCode = string.Empty;
+             
                 ///每条做一个托盘
                 if (isPrintPallet)
                 {
-                    palletCode = numberControlMgr.GetPalletCode();
-
+                    if (orderDetailId != orderDetail.Id)
+                    {
+                        palletCode = numberControlMgr.GetPalletCode();
+                        orderDetailId = orderDetail.Id;
+                    }
                 }
+
 
                 IDictionary<string, decimal> huIdDic = numberControlMgr.GetHuId(orderDetail);
                 if (huIdDic != null && huIdDic.Count > 0)
@@ -277,25 +294,33 @@ namespace com.Sconit.Service.Impl
                     }
                 }
 
-                #region 托盘
-                if (isPrintPallet)
-                {
-                    var palletHuList = huList.Where(p => p.Item == orderDetail.Item);
-                    Pallet pallet = new Pallet();
-                    pallet.Code = palletCode;
-                    pallet.Description = palletHuList.First().Item + "|" + palletHuList.First().ItemDescription + "|" + palletHuList.Count();
-                    this.genericMgr.Create(pallet);
-
-                    foreach (Hu hu in palletHuList)
-                    {
-                        PalletHu palletHu = new PalletHu();
-                        palletHu.HuId = hu.HuId;
-                        palletHu.PalletCode = palletCode;
-                        genericMgr.Create(palletHu);
-                    }
-                }
-                #endregion
             }
+
+            #region 托盘
+            if (isPrintPallet)
+            {
+                  var itemList = huList.Select(p => p.Item).Distinct();
+                  foreach (string itemCode in itemList)
+                  {
+                      var palletHuList = huList.Where(p => p.Item == itemCode);
+                      string itemPalletCode = palletHuList.First().PalletCode;
+
+                      Pallet pallet = new Pallet();
+                      pallet.Code = itemPalletCode;
+                      pallet.Description = palletHuList.First().Item + "|" + palletHuList.First().ItemDescription + "|" + palletHuList.Count();
+                      this.genericMgr.Create(pallet);
+
+                      foreach (Hu hu in palletHuList)
+                      {
+                          PalletHu palletHu = new PalletHu();
+                          palletHu.HuId = hu.HuId;
+                          palletHu.PalletCode = itemPalletCode;
+                          genericMgr.Create(palletHu);
+                      }
+                  }
+            }
+            #endregion
+
             return huList;
         }
 

@@ -715,6 +715,25 @@
             }
             this.orderMgr.CreateOrder(orderMaster);
 
+            #region 加一段托盘解绑的逻辑
+            var hus = this.genericMgr.FindAllIn<Hu>(" from Hu where HuId in(?", flowDetailInputList.Select(p => p.HuId));
+            var palletHus = this.genericMgr.FindAllIn<PalletHu>(" from PalletHu where HuId in(?", flowDetailInputList.Select(p => p.HuId));
+            foreach (Hu h in hus)
+            {
+                if (!string.IsNullOrEmpty(h.PalletCode))
+                {
+                    h.PalletCode = string.Empty;
+                    genericMgr.Update(h);
+
+                   var palletHu = palletHus.Where(p=>p.HuId == h.HuId).FirstOrDefault();
+                   if (palletHu != null)
+                   {
+                       genericMgr.Delete(palletHu);
+                   }
+                }
+            }
+            #endregion
+
             if (!string.IsNullOrWhiteSpace(flowMaster.Bin) && orderMaster.Status == CodeMaster.OrderStatus.Close)
             {
                 var inventoryPutList = flowDetailInputList.Where(p => !string.IsNullOrWhiteSpace(p.HuId))

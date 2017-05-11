@@ -47,6 +47,8 @@ namespace com.Sconit.Entity.SI.SD_INV
         public CodeMaster.HuOption HuOption { get; set; }
         public string AgingLocation { get; set; }
 
+        public string PalletCode { get; set; }
+
         #region  ¸¨Öú×Ö¶Î
         public decimal CurrentQty { get; set; }
         public string Station { get; set; }
