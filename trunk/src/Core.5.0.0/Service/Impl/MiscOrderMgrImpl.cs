@@ -313,7 +313,7 @@ namespace com.Sconit.Service.Impl
                 {
                     //Item item = this.genericMgr.FindById<Item>(miscOrderDetail.Item);
 
-                    miscOrderDetail.MiscOrderNo = miscOrderMaster.MiscOrderNo;
+                    miscOrderDetail.MiscOrderNo = miscOrderMaster.MiscOrderNo.ToUpper();
                     miscOrderDetail.Sequence = ++maxSeq;
                     //miscOrderDetail.Item = miscOrderDetail.Item;
                     //miscOrderDetail.ItemDescription = item.Description;
@@ -939,7 +939,7 @@ namespace com.Sconit.Service.Impl
             this.locationDetailMgr.CancelInventoryOtherInOut(miscOrderMaster, effectiveDate);
         }
         [Transaction(TransactionMode.Requires)]
-        public void Import201202MiscOrder(Stream inputStream, string wMSNo, string moveTypeSet, string cancelMoveTypeSet,string miscType)
+        public void Import201202MiscOrder(Stream inputStream, string wMSNo, string moveTypeSet, string cancelMoveTypeSet, string miscType)
         {
             #region 导入数据
             if (inputStream.Length == 0)
@@ -1127,7 +1127,7 @@ namespace com.Sconit.Service.Impl
                     //    businessException.AddMessage(string.Format("第{0}行:区域{1}不存在库位{2}。", rowCount, regionCode, locationCode));
                     //}
                 }
-                else if (moveTypeSet=="201")
+                else if (moveTypeSet == "201")
                 {
                     businessException.AddMessage(string.Format("第{0}行:成本中心不能为空。", rowCount));
                 }
@@ -1192,7 +1192,7 @@ namespace com.Sconit.Service.Impl
                     miscOrderDetail.MoveType = moveType;
                     miscOrderDetail.EffectiveDate = effectiveDate;
                     miscOrderDetail.Location = locationCode;
-                    miscOrderDetail.Region= regionCode;
+                    miscOrderDetail.Region = regionCode;
                     miscOrderDetail.Item = item.Code;
                     miscOrderDetail.ItemDescription = item.Description;
                     miscOrderDetail.ReferenceItemCode = item.ReferenceCode;
@@ -1221,8 +1221,8 @@ namespace com.Sconit.Service.Impl
             var allLocation = activeDetailList.Select(p => p.Location).Distinct();
             foreach (var location in allLocation)
             {
-                var outDetail = activeDetailList.Where(a => a.MoveType == moveTypeSet && a.Location==(string)location).ToList();
-                
+                var outDetail = activeDetailList.Where(a => a.MoveType == moveTypeSet && a.Location == (string)location).ToList();
+
                 if (outDetail != null && outDetail.Count > 0)
                 {
                     MiscOrderDetail fisrDet = outDetail.First();
@@ -1275,29 +1275,29 @@ namespace com.Sconit.Service.Impl
             {
                 master.QualityType = com.Sconit.CodeMaster.QualityType.Qualified;
                 activeDetailList = (from p in master.MiscOrderDetails
-                 group p by new
-                 {
-                     p.Item,
-                     p.ItemDescription,
-                     p.ReferenceItemCode,
-                     p.Uom,
-                     p.BaseUom,
-                     p.UnitCount,
-                     p.Location
-                 } into g
-                 select new MiscOrderDetail
-                 {
-                     Sequence = g.Max(p => p.Sequence),
-                     Item = g.Key.Item,
-                     ItemDescription = g.Key.ItemDescription,
-                     ReferenceItemCode = g.Key.ReferenceItemCode,
-                     Uom = g.Key.Uom,
-                     BaseUom = g.Key.BaseUom,
-                     UnitCount = g.Key.UnitCount,
-                     UnitQty = 1,
-                     Location = g.Key.Location,
-                     Qty = g.Sum(p => p.Qty),
-                 }).ToList();
+                                    group p by new
+                                    {
+                                        p.Item,
+                                        p.ItemDescription,
+                                        p.ReferenceItemCode,
+                                        p.Uom,
+                                        p.BaseUom,
+                                        p.UnitCount,
+                                        p.Location
+                                    } into g
+                                    select new MiscOrderDetail
+                                    {
+                                        Sequence = g.Max(p => p.Sequence),
+                                        Item = g.Key.Item,
+                                        ItemDescription = g.Key.ItemDescription,
+                                        ReferenceItemCode = g.Key.ReferenceItemCode,
+                                        Uom = g.Key.Uom,
+                                        BaseUom = g.Key.BaseUom,
+                                        UnitCount = g.Key.UnitCount,
+                                        UnitQty = 1,
+                                        Location = g.Key.Location,
+                                        Qty = g.Sum(p => p.Qty),
+                                    }).ToList();
                 master.MiscOrderDetails = new List<MiscOrderDetail>();
                 this.CreateMiscOrder(master);
                 BatchUpdateMiscOrderDetails(master, activeDetailList, null, null);
@@ -1446,6 +1446,77 @@ namespace com.Sconit.Service.Impl
 
             #region 新增明细
             CreateMiscOrderDetail(miscOrderDetailList, miscOrder.MiscOrderNo);
+            #endregion
+        }
+
+
+        [Transaction(TransactionMode.Requires)]
+        public void QuickCreateMiscOrder(IList<string> addHuIdList, string locationCode, string binCode, int type)
+        {
+            MiscOrderMaster miscOrderMaster = new MiscOrderMaster();
+            miscOrderMaster.MiscOrderNo = this.numberControlMgr.GetMiscOrderNo(miscOrderMaster);
+            miscOrderMaster.EffectiveDate = DateTime.Now;
+            miscOrderMaster.QualityType = CodeMaster.QualityType.Qualified;
+            miscOrderMaster.IsScanHu = true;
+            miscOrderMaster.CreateDate = DateTime.Now;
+            User user = SecurityContextHolder.Get();
+            miscOrderMaster.CreateUserId = user.Id;
+            miscOrderMaster.CreateUserName = user.Name;
+
+            if (type == 1)
+            {
+                MiscOrderMoveType moveType = genericMgr.FindAll<MiscOrderMoveType>("from MiscOrderMoveType as m where m.MoveType=? and m.IOType=?", new object[] { "101", type })[0];
+
+                miscOrderMaster.Type = CodeMaster.MiscOrderType.GR;
+                miscOrderMaster.MoveType = moveType.MoveType;
+                miscOrderMaster.CancelMoveType = moveType.CancelMoveType;
+
+                if (!string.IsNullOrEmpty(binCode))
+                {
+                    LocationBin bin = genericMgr.FindById<LocationBin>(binCode);
+                    Location location = genericMgr.FindById<Location>(bin.Location);
+                    miscOrderMaster.Location = bin.Location;
+                    miscOrderMaster.Region = location.Region;
+                }
+                else if (!string.IsNullOrEmpty(locationCode))
+                {
+                    Location location = genericMgr.FindById<Location>(locationCode);
+                    miscOrderMaster.Location = location.Code;
+                    miscOrderMaster.Region = location.Region;
+                }
+            }
+            else
+            {
+                MiscOrderMoveType moveType = genericMgr.FindAll<MiscOrderMoveType>("from MiscOrderMoveType as m where m.MoveType=? and m.IOType=?", new object[] { "102", type })[0];
+                miscOrderMaster.Type = CodeMaster.MiscOrderType.GI;
+                miscOrderMaster.MoveType = moveType.MoveType;
+                miscOrderMaster.CancelMoveType = moveType.CancelMoveType;
+
+                Location location = genericMgr.FindById<Location>(locationCode);
+                miscOrderMaster.Location = location.Code;
+                miscOrderMaster.Region = location.Region;
+            }
+
+            this.CreateMiscOrder(miscOrderMaster);
+
+            BatchUpdateMiscOrderDetails(miscOrderMaster, addHuIdList, null);
+            this.genericMgr.FlushSession();
+            CloseMiscOrder(miscOrderMaster.MiscOrderNo);
+
+            #region 上架
+            if (type == 1 && !string.IsNullOrEmpty(binCode))
+            {
+                var inventoryPutList = new List<Entity.INV.InventoryPut>();
+                foreach (var huId in addHuIdList)
+                {
+                    var inventoryPut = new Entity.INV.InventoryPut();
+
+                    inventoryPut.Bin = binCode;
+                    inventoryPut.HuId = huId;
+                    inventoryPutList.Add(inventoryPut);
+                }
+                this.locationDetailMgr.InventoryPut(inventoryPutList);
+            }
             #endregion
         }
 

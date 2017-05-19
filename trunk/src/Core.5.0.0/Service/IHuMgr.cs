@@ -38,5 +38,7 @@ namespace com.Sconit.Service
         IList<Hu> CreateHu(OrderDetail orderDetail, Boolean isRepack, string manufactureParty, string lotNo, decimal totalQty, decimal unitQty, decimal huQty, string oldHus, string binTo, Boolean isRepackForOrder);
 
         IList<Hu> GetHuListByPallet(string palletCode);
+
+
     }
 }

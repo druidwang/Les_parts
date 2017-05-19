@@ -141,7 +141,7 @@
 
         #region MoveType
 
-        public ActionResult _MoveTypeDropDownList(string controlName, string controlId, string selectedValue, bool? includeBlankOption, string blankOptionDescription, string blankOptionValue, bool? coupled, string IOType, bool? isChange, string SubType, bool? enable,bool? isInitInventory)
+        public ActionResult _MoveTypeDropDownList(string controlName, string controlId, string selectedValue, bool? includeBlankOption, string blankOptionDescription, string blankOptionValue, bool? coupled, string IOType, bool? isChange, string SubType, bool? enable, bool? isInitInventory)
         {
             ViewBag.ControlName = controlName;
             ViewBag.ControlId = controlId;
@@ -292,7 +292,7 @@
             }
             else if (code == com.Sconit.CodeMaster.CodeMaster.OrderSubType)
             {
-                if(orderType.HasValue && orderType.Value == (int)com.Sconit.CodeMaster.OrderType.Production)
+                if (orderType.HasValue && orderType.Value == (int)com.Sconit.CodeMaster.OrderType.Production)
                 {
                     codeDetailList = codeDetailList.Where(p =>
                         p.Value != ((int)com.Sconit.CodeMaster.OrderSubType.Return).ToString())
@@ -313,7 +313,7 @@
             //{
             //    codeDetailList = codeDetailList.Where(p => p.Value != ((int)com.Sconit.CodeMaster.QualityType.Inspect).ToString()).ToList();
             //}
-            else if(code == Sconit.CodeMaster.CodeMaster.ScheduleType)
+            else if (code == Sconit.CodeMaster.CodeMaster.ScheduleType)
             {
                 codeDetailList = codeDetailList.Where(p => p.Sequence > 100).ToList();
             }
@@ -1404,7 +1404,7 @@
                     sAPSnapShotInvList.Add(sAPSnapShotInv);
                 }
             }
-            return PartialView(new SelectList(sAPSnapShotInvList.OrderByDescending(p=>p.MesInvSnaptime), "MesInvSnaptime", "MesInvSnaptime", selectedValue));
+            return PartialView(new SelectList(sAPSnapShotInvList.OrderByDescending(p => p.MesInvSnaptime), "MesInvSnaptime", "MesInvSnaptime", selectedValue));
         }
         #endregion
         #region ProDuctType
@@ -1708,7 +1708,7 @@
         #endregion
 
         #region PriceList
-        public ActionResult _PriceListComboBox(string controlName, string controlId, string selectedValue, bool? enable, bool? isChange, bool? checkParty,string interfacePriceType)
+        public ActionResult _PriceListComboBox(string controlName, string controlId, string selectedValue, bool? enable, bool? isChange, bool? checkParty, string interfacePriceType)
         {
             ViewBag.ControlName = controlName;
             ViewBag.ControlId = controlId;
@@ -1725,7 +1725,7 @@
             return PartialView(new SelectList(priceList, "Code", "Code", selectedValue));
         }
 
-        public ActionResult _AjaxLoadingPriceList(string party, string text, bool checkParty,string interfacePriceType)
+        public ActionResult _AjaxLoadingPriceList(string party, string text, bool checkParty, string interfacePriceType)
         {
             IList<PriceListMaster> priceListMasterList = new List<PriceListMaster>();
 
@@ -2238,12 +2238,12 @@
             if (type == null)
             {
                 selectLikeFlowStatement = "from FlowMaster as f where f.IsActive = ? and  f.Code like ? ";
-                paramList = new object[] { true, text + "%" };
+                paramList = new object[] { true, "%" + text + "%" };
 
                 if (isCreateHu)
                 {
                     selectLikeFlowStatement += " and f.Type in (?,?,?,?,?,?) ";
-                    paramList = new object[] { true, text + "%", 
+                    paramList = new object[] { true, "%" +text + "%", 
                         (int)com.Sconit.CodeMaster.OrderType.CustomerGoods,
                         (int)com.Sconit.CodeMaster.OrderType.Procurement, 
                         (int)com.Sconit.CodeMaster.OrderType.SubContract, 
@@ -2257,7 +2257,7 @@
                 if (isSupplier)
                 {
                     selectLikeFlowStatement = "from FlowMaster as f where f.IsActive = ? and f.Code like ? and f.Type in (?,?,?,?) ";
-                    paramList = new object[] { true, text + "%", 
+                    paramList = new object[] { true, "%" +text + "%", 
                         (int)com.Sconit.CodeMaster.OrderType.CustomerGoods, 
                         (int)com.Sconit.CodeMaster.OrderType.Procurement, 
                         (int)com.Sconit.CodeMaster.OrderType.SubContract, 
@@ -2269,7 +2269,7 @@
                     if (isCreateOrder && !allowManualCreateProcurementOrder)
                     {
                         selectLikeFlowStatement = "from FlowMaster as f where f.IsActive = ? and f.Code like ? and f.Type in (?,?) ";
-                        paramList = new object[] { true, text + "%", 
+                        paramList = new object[] { true, "%" + text + "%", 
                             (int)com.Sconit.CodeMaster.OrderType.Transfer, 
                             (int)com.Sconit.CodeMaster.OrderType.SubContractTransfer };
                     }
@@ -2278,7 +2278,7 @@
                         if (isReturn == false)
                         {
                             selectLikeFlowStatement = "from FlowMaster as f where f.IsActive = ? and f.Code like ? and f.Type in(?,?,?,?,?,?)";
-                            paramList = new object[] { true, text + "%", 
+                            paramList = new object[] { true, "%" +text + "%", 
                                 (int)com.Sconit.CodeMaster.OrderType.Transfer, 
                                 (int)com.Sconit.CodeMaster.OrderType.SubContractTransfer,
                                 (int)com.Sconit.CodeMaster.OrderType.Procurement, 
@@ -2290,7 +2290,7 @@
                         else
                         {
                             selectLikeFlowStatement = "from FlowMaster as f where f.IsActive = ? and f.Code like ? and f.Type in(?,?,?,?,?)";
-                            paramList = new object[] { true, text + "%", 
+                            paramList = new object[] { true, "%" +text + "%", 
                                 (int)com.Sconit.CodeMaster.OrderType.Transfer, 
                                 (int)com.Sconit.CodeMaster.OrderType.SubContractTransfer,
                                 (int)com.Sconit.CodeMaster.OrderType.Procurement, 
@@ -2306,13 +2306,13 @@
                 if (isSupplier)
                 {
                     selectLikeFlowStatement = "from FlowMaster as f where f.IsActive = ? and  f.Code like ? and f.Type =? ";
-                    paramList = new object[] { true, text + "%" ,
+                    paramList = new object[] { true,"%" + text + "%" ,
                     (int)com.Sconit.CodeMaster.OrderType.Distribution,};
                 }
                 else
                 {
                     selectLikeFlowStatement = "from FlowMaster as f where f.IsActive = ? and  f.Code like ? and f.Type in (?,?,?)";
-                    paramList = new object[] { true, text + "%" ,
+                    paramList = new object[] { true, "%" + text + "%" ,
                     (int)com.Sconit.CodeMaster.OrderType.Transfer,
                     (int)com.Sconit.CodeMaster.OrderType.SubContractTransfer,
                     (int)com.Sconit.CodeMaster.OrderType.Distribution};
@@ -2325,14 +2325,14 @@
                 {
                     selectLikeFlowStatement += @" and exists (select 1 from FlowMaster as p where p.LocationFrom = f.LocationTo
                        and p.ResourceGroup =? and p.IsActive = ? ) ";
-                    paramList = new object[] { true, text + "%",
+                    paramList = new object[] { true, "%" + text + "%",
                     (int)com.Sconit.CodeMaster.OrderType.Transfer,
                     (int)com.Sconit.CodeMaster.OrderType.SubContractTransfer,
                     (int)resourceGroup,true};
                 }
                 else
                 {
-                    paramList = new object[] { true, text + "%",
+                    paramList = new object[] { true, "%" + text + "%",
                     (int)com.Sconit.CodeMaster.OrderType.Transfer,
                     (int)com.Sconit.CodeMaster.OrderType.SubContractTransfer };
                 }
@@ -2340,11 +2340,11 @@
             else if ((int)type == (int)com.Sconit.CodeMaster.OrderType.Production)
             {
                 selectLikeFlowStatement = "from FlowMaster as f where f.IsActive = ? and f.Code like ? and f.Type in (?) ";
-                paramList = new object[] { true, text + "%", (int)com.Sconit.CodeMaster.OrderType.Production };
+                paramList = new object[] { true, "%" + text + "%", (int)com.Sconit.CodeMaster.OrderType.Production };
                 if (resourceGroup != null)
                 {
                     selectLikeFlowStatement += "and resourceGroup =? ";
-                    paramList = new object[] { true, text + "%", (int)com.Sconit.CodeMaster.OrderType.Production, resourceGroup };
+                    paramList = new object[] { true, "%" + text + "%", (int)com.Sconit.CodeMaster.OrderType.Production, resourceGroup };
                 }
                 if (isVanOrder)
                 {
@@ -2370,7 +2370,7 @@
 
         #region Flow
         public ActionResult _TransportFlowComboBox(string controlName, string controlId, string selectedValue,
-            int? type, bool? isChange, bool? enable,bool? coupled, bool? includeBlankOption)
+            int? type, bool? isChange, bool? enable, bool? coupled, bool? includeBlankOption)
         {
             ViewBag.ControlName = controlName;
             ViewBag.ControlId = controlId;
@@ -2390,7 +2390,7 @@
 
         public ActionResult _AjaxLoadingTransportFlow(string text, int? type, bool? includeBlankOption)
         {
-            IList<TransportFlowMaster> flowList = this.genericMgr.FindAll<TransportFlowMaster>("from TransportFlowMaster t where t.Code like ?", text+"%");
+            IList<TransportFlowMaster> flowList = this.genericMgr.FindAll<TransportFlowMaster>("from TransportFlowMaster t where t.Code like ?", text + "%");
             if (includeBlankOption.HasValue && includeBlankOption.Value)
             {
                 flowList.Insert(0, new TransportFlowMaster());
@@ -2431,14 +2431,14 @@
             return new JsonResult { Data = new SelectList(driverList, "Code", "CodeDescription", text) };
         }
 
-        public ActionResult _VehicleComboBox(string controlName, string controlId, string selectedValue, bool? isChange , bool? enable)
+        public ActionResult _VehicleComboBox(string controlName, string controlId, string selectedValue, bool? isChange, bool? enable)
         {
             ViewBag.ControlName = controlName;
             ViewBag.ControlId = controlId;
             ViewBag.Enable = enable;
             ViewBag.IsChange = isChange;
 
-            IList<Vehicle>vehicleList = new List<Vehicle>();
+            IList<Vehicle> vehicleList = new List<Vehicle>();
             if (selectedValue != null && selectedValue.Trim() != string.Empty)
             {
                 vehicleList = queryMgr.FindAll<Vehicle>("from Vehicle v where v.Code like ?", selectedValue);
@@ -2481,7 +2481,7 @@
             else
             {
                 tonnageList = this.genericMgr.FindAll<Tonnage>("from Tonnage t where t.Code like ?", text + "%");
-            }  
+            }
             if (includeBlankOption.HasValue && includeBlankOption.Value)
             {
                 tonnageList.Insert(0, new Tonnage());
@@ -3546,7 +3546,7 @@
             };
         }
 
-    
+
 
         #endregion
 
@@ -3621,7 +3621,7 @@
             IList<FacilityCategory> facilityCategoryList = new List<FacilityCategory>();
             IList<object> paramList = new List<object>();
             string hql = "from FacilityCategory f ";
-           
+
 
             if (!string.IsNullOrEmpty(text))
             {
@@ -3931,13 +3931,13 @@
             return PartialView(new SelectList(pickScheduleList, "PickScheduleNo", "PickScheduleNo", selectedValue));
         }
 
-        public ActionResult _PickScheduleAjaxLoading(string text,  bool? includeBlankOption)
+        public ActionResult _PickScheduleAjaxLoading(string text, bool? includeBlankOption)
         {
             IList<PickSchedule> pickScheduleList = new List<PickSchedule>();
             FlowMaster flowMstr = new FlowMaster();
 
             string sql = @" from PickSchedule as p where p.PickScheduleNo like ? ";
-            string codeLike ="%" + text + "%";
+            string codeLike = "%" + text + "%";
 
             pickScheduleList = queryMgr.FindAll<PickSchedule>(sql, codeLike);
 
@@ -3978,7 +3978,7 @@
             else
                 shiftMasterList = genericMgr.FindAll<ShiftMaster>(selectLikeShiftMasterStatement, new object[] { "%" + text + "%" }, firstRow, maxRow);
             return new JsonResult { Data = new SelectList(shiftMasterList, "Code", "CodeName") };
-           
+
         }
         #endregion
 

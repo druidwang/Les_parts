@@ -223,7 +223,7 @@ namespace com.Sconit.SmartDevice
                     throw new BusinessException("未扫入物料条码,不可以提交");
                 }
 
-                smartDeviceService.BatchUpdateMiscOrderDetails(this.miscOrderMaster.MiscOrderNo, hus.Select(h => h.HuId).ToArray(), this.user.Code);
+                smartDeviceService.ConfirmMiscOrder(this.miscOrderMaster.MiscOrderNo, hus.Select(h => h.HuId).ToArray(), this.user.Code);
                 if (this.miscOrderMaster.Type == MiscOrderType.GI)
                 {
                     this.lblMessage.Text = "出库成功";

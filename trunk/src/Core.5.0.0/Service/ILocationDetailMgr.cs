@@ -128,5 +128,7 @@ namespace com.Sconit.Service
         Dictionary<string, decimal> GetPurchaseInTransQty(string location, List<string> items);
 
         void SettleLocaitonLotDetail(List<Int64> locationLotDetIdList);
+
+        IList<Hu> Repack(string huId, IList<ProductBarCode> checkedProductBarCodeList, IList<ProductBarCode> uncheckedProductBarCodeList);
     }
 }

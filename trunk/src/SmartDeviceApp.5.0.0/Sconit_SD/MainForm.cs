@@ -425,6 +425,30 @@ namespace com.Sconit.SmartDevice
                 uc.tbBarCode.Focus();
                 this.Text = "成品入库";
             }
+            else if (module == CodeMaster.TerminalPermission.Client_QuickTransfer)
+            {
+                UCQuickTransfer uc = new UCQuickTransfer(this.user);
+                uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(uc);
+                uc.tbBarCode.Focus();
+                this.Text = "车间领料";
+            }
+            else if (module == CodeMaster.TerminalPermission.Client_ProductionReturn)
+            {
+                UCProductionReturn uc = new UCProductionReturn(this.user);
+                uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(uc);
+                uc.tbBarCode.Focus();
+                this.Text = "成品入库冲销";
+            }
+            else if (module == CodeMaster.TerminalPermission.Client_DistributionReturn)
+            {
+                UCDistributionReturn uc = new UCDistributionReturn(this.user);
+                uc.ModuleSelectionEvent += new ModuleSelectHandler(this.SwitchModule);
+                this.AddModule(uc);
+                uc.tbBarCode.Focus();
+                this.Text = "销售退货";
+            }
         }
 
         private void AddModule(UserControl userControl)

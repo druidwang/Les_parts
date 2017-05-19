@@ -27,6 +27,7 @@ using System.Data.SqlClient;
 using System.Data;
 using com.Sconit.Entity.SYS;
 using NHibernate;
+using NHibernate.Criterion;
 
 namespace com.Sconit.Web.Controllers.INV
 {
@@ -53,6 +54,8 @@ namespace com.Sconit.Web.Controllers.INV
         //public IOrderMgr orderMgr { get; set; }
         public IHuMgr huMgr { get; set; }
         //public IReportGen reportGen { get; set; }
+
+        public ILocationDetailMgr locationDetailMgr { get; set; }
 
         #region public method
         public ActionResult Index()
@@ -1313,7 +1316,7 @@ namespace com.Sconit.Web.Controllers.INV
                 List<Hu> palletHuList = new List<Hu>();
                 foreach (var ihu in huList)
                 {
-                 
+
                     if (ihu.Item != currentItem)
                     {
                         Hu palletHu = huList.Where(p => p.Item == ihu.Item).FirstOrDefault();
@@ -1332,8 +1335,8 @@ namespace com.Sconit.Web.Controllers.INV
                             hu.ManufactureDate = palletHu.ManufactureDate;
                             hu.LotNo = palletHu.LotNo;
                             hu.OrderNo = palletHu.OrderNo;
-                            hu.Qty = huList.Where(p => p.Item == ihu.Item).Count();
-                            hu.Uom = "箱";
+                            hu.Qty = huList.Where(p => p.Item == ihu.Item).Sum(p=>p.Qty);
+                            hu.Uom = palletHu.Uom + "(" + huList.Where(p => p.Item == ihu.Item).Count() + "箱)";
                             hu.ExternalOrderNo = palletHu.ExternalOrderNo;
                             palletHuList.Add(hu);
                         }
@@ -1426,6 +1429,114 @@ namespace com.Sconit.Web.Controllers.INV
             { }
             return materialsGroupCode;
         }
+        #endregion
+
+
+
+        #region repack
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_Inventory_Hu_Repack")]
+        public ActionResult RepackIndex()
+        {
+            return View();
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_Inventory_Hu_Repack")]
+        public ActionResult Repack(GridCommand command, HuSearchModel searchModel)
+        {
+            SearchCacheModel searchCacheModel = this.ProcessSearchModel(command, searchModel);
+            if (!string.IsNullOrEmpty(searchModel.HuId))
+            {
+                TempData["_AjaxMessage"] = "";
+            }
+            else
+            {
+                SaveWarningMessage(Resources.SYS.ErrorMessage.Errors_NoConditions);
+            }
+
+            ViewBag.PageSize = base.ProcessPageSize(command.PageSize);
+            return View();
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_Inventory_Hu_Repack")]
+        public ActionResult _AjaxRepackProductBarCodeList(GridCommand command, HuSearchModel searchModel)
+        {
+            if (string.IsNullOrEmpty(searchModel.HuId))
+            {
+                return PartialView(new GridModel(new List<OrderMaster>()));
+            }
+            else
+            {
+                IList<ProductBarCode> productBarCodeList = genericMgr.FindAll<ProductBarCode>(" from ProductBarCode where HuId = ?", searchModel.HuId);
+
+                return PartialView(new GridModel<ProductBarCode>(productBarCodeList));
+            }
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_Inventory_Hu_Repack")]
+        public ActionResult _ReceiveOrderDetailList(string checkedOrders)
+        {
+            string[] checkedOrderArray = checkedOrders.Split(',');
+            DetachedCriteria criteria = DetachedCriteria.For<OrderDetail>();
+            criteria.Add(Expression.In("OrderNo", checkedOrderArray));
+            criteria.Add(Expression.LtProperty("ReceivedQty", "OrderedQty"));
+            IList<OrderDetail> orderDetailList = genericMgr.FindAll<OrderDetail>(criteria);
+            return PartialView(orderDetailList);
+        }
+
+
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_Inventory_Hu_Repack")]
+        public JsonResult RepackProductBarCode(string checkedProductBarCodes, string huId)
+        {
+            try
+            {
+                IList<ProductBarCode> checkedProductBarCodeList = new List<ProductBarCode>();   //选中的
+
+                if (string.IsNullOrEmpty(checkedProductBarCodes))
+                {
+                    throw new BusinessException(Resources.INV.Hu.HU_ProductBarCode_Not_Check);
+
+                }
+
+                var productBarCodes = this.genericMgr.FindAll<ProductBarCode>(" from ProductBarCode where HuId = ?", huId);
+                string[] barcodeArray = checkedProductBarCodes.Split(',');
+
+
+                for (int i = 0; i < barcodeArray.Count(); i++)
+                {
+                    var productBarCode = productBarCodes.Where(p => p.Code == barcodeArray[i]).FirstOrDefault();
+                    if (productBarCode != null)
+                    {
+                        checkedProductBarCodeList.Add(productBarCode);
+                        productBarCodes.Remove(productBarCode);
+                    }
+                }
+
+                #region 打印
+                IList<Hu> huList = locationDetailMgr.Repack(huId, checkedProductBarCodeList, productBarCodes);
+                string printUrl = PrintHuList(huList, huList.First().HuTemplate, false);
+                object obj = new { SuccessMessage = string.Format(Resources.INV.Hu.HU_Repacked, huList.Count), PrintUrl = printUrl };
+                return Json(obj);
+                #endregion
+
+
+            }
+            catch (BusinessException ex)
+            {
+                Response.TrySkipIisCustomErrors = true;
+                Response.StatusCode = 500;
+                Response.Write(ex.GetMessages()[0].GetMessageString());
+                return Json(null);
+            }
+
+        }
+
         #endregion
 
         #endregion

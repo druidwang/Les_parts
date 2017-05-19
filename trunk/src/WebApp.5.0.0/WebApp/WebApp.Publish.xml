@@ -7,6 +7,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickGroup/Edit.cshtml" publishTime="12/11/2015 15:35:32" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportOrder/_OrderDetailList.cshtml" publishTime="11/29/2015 20:45:13" />
     <file relUrl="Views/Common/_CostCenterComboBox.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Content/Images/Icon/odd_MinusAlert.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/2012.2.607/Transparent/loading.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Currency/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/Bom/_Search_Detail.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -21,6 +22,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionReceipt/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/Shared/EditorTemplates/SectionFilterByFlow.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProductLine/_FeedQtyDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.MRP/WorkCalendar/FiView.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ACC/UserFavorite/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Jquery-ui/Pepper-grinder/images/ui-bg_fine-grain_15_ffffff_60x60.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Icon/sign_out_en.png" publishTime="04/08/2015 09:57:03" />
@@ -58,7 +60,6 @@
     <file relUrl="Views/Common/_CustomerComboBox.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/TransferFlow/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/SubConctractingTransferFlow/_DetailSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSchedule/FiList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/ItemDiscontinue/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProductLineMap/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/CustomerGoodsFlow/_Binding.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -145,7 +146,6 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionReworkMiscOrder/DetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/IpLocationMaster.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionOrder/_ReceiptSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Content/Images/Login/but2.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionOrder/_Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/KanBanCard/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/ProdLineEx/New.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -159,6 +159,7 @@
     <file relUrl="Content/Images/Main/Nav_Inactive.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.CUST/CostCenter/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/RejectOrder/Return.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SAPPPMES0003List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Common/Icons/Mvc/TabStrip.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierReturnReceipt/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ISS/Issue/Index.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -170,7 +171,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ShipmentMaster/ShipmentIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/RccpPlanFi/MachineWeek.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/DistributionPriceList/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="bin/com.Sconit.LeanEngine.dll" publishTime="04/06/2017 11:52:05" />
+    <file relUrl="bin/com.Sconit.LeanEngine.dll" publishTime="05/18/2017 09:02:30" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionReceipt/DetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/PickList/OldShipIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/LocInAndOutSearch1.png" publishTime="04/08/2015 09:57:03" />
@@ -272,7 +273,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/RejectOrder/_WorkersWasteDetail.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/Vista/editor.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementIpMaster/_IpDetail.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Resource/Templates/Excel/ASN_Purchase.xls" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Resource/Templates/Excel/ASN_Purchase.xls" publishTime="04/24/2017 16:16:58" />
     <file relUrl="Content/Images/Nav/temp/`RushDO.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/InitiationTemplates.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierOrderIssue/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -294,11 +295,12 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SITransferLogIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProdIO/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/Transparent/sprite.png" publishTime="04/08/2015 09:57:03" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/StockTake/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementSQOrder/_OrderDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/DetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Common/Icons/Suites/sitefinity.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/RccpPlan/RccpTrans.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/Common/_ProductTypeDropDownList.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.WMS/RepackTask/_RepackHuList.cshtml" publishTime="01/11/2016 14:32:26" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/PickList/ShipEdit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/Common/_CarrierComboBox.cshtml" publishTime="11/12/2015 16:26:10" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpPlan/_GetMrpPlanList.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -338,19 +340,21 @@
     <file relUrl="bin/Telerik.Web.Mvc.dll" publishTime="04/08/2015 09:57:02" />
     <file relUrl="Content/2012.2.607/WebBlue/treeview-line.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.Report/CustReport/_Edit.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Scripts/Sconit.Message.js" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Scripts/Sconit.Message.js" publishTime="05/11/2017 12:46:22" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionIpMaster/DetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementIpGap/AdjustList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/ProductLinePause.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/PickList/_SearchDetailResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MES/MesScanControlPoint/List.cshtml" publishTime="05/15/2016 19:04:18" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/OrderDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="bin/en-US/com.Sconit.Globalization.resources.dll" publishTime="04/06/2017 11:52:03" />
+    <file relUrl="Resource/Templates/Excel/Pallet.xls" publishTime="04/26/2017 09:18:49" />
+    <file relUrl="bin/en-US/com.Sconit.Globalization.resources.dll" publishTime="05/18/2017 09:02:28" />
     <file relUrl="Content/Images/Test_big.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/2012.2.607/Simple/treeview-nodes.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Item/_SearchResult.cshtml" publishTime="03/09/2017 11:10:22" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementIpGap/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/InMiscOrder/List.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.CUST/ItemTrace/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_SAPSDCancelSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/ShipGroup/New.cshtml" publishTime="12/17/2015 14:00:12" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierOrderIssue/_ShipOrderDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -363,7 +367,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/Carrier/_Edit.cshtml" publishTime="07/27/2015 14:02:18" />
     <file relUrl="Content/2012.2.607/Office2007/slider-h.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/InspectionOrder/Index.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.SCM/DistributionFlow/New.cshtml" publishTime="03/08/2017 14:27:38" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.SCM/DistributionFlow/New.cshtml" publishTime="04/25/2017 14:09:35" />
     <file relUrl="Content/Images/Nav/HuInbound.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SAPPPMES0002List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/ReceiveIndex.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -390,7 +394,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/ShipGroup/_PickUserList.cshtml" publishTime="12/17/2015 14:00:11" />
     <file relUrl="Views/com.Sconit.Web.Controllers.CUST/ItemTrace/New.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/WebBlue/slider-v.gif" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="bin/com.Sconit.Entity.SI.dll" publishTime="04/06/2017 11:52:08" />
+    <file relUrl="bin/com.Sconit.Entity.SI.dll" publishTime="05/18/2017 09:02:33" />
     <file relUrl="Views/com.Sconit.Web.Controllers.FMS/CheckList/Index.cshtml" publishTime="05/11/2016 15:54:09" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_SAPPPMES0003Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Icon/delete.gif" publishTime="04/08/2015 09:57:03" />
@@ -432,7 +436,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/_RequisitionSectionPlanList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_GetSapPPMES0003Grid.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/Simple/loading.gif" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="bin/com.Sconit.WebApp.dll" publishTime="04/06/2017 11:52:28" />
+    <file relUrl="bin/com.Sconit.WebApp.dll" publishTime="05/19/2017 10:16:07" />
     <file relUrl="Scripts/jquery.validate.js" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/_ReturnSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportOrder/List.cshtml" publishTime="11/29/2015 20:45:13" />
@@ -474,7 +478,6 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/RepackTask/Edit.cshtml" publishTime="01/05/2016 10:23:16" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/HuIdEpDateChange/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/_PRReceiveOrderDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportFlow/_SearchResult.cshtml" publishTime="11/29/2015 20:45:13" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportOrder/_Search.cshtml" publishTime="11/29/2015 20:45:13" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/_ReceiveSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSnapProdLineEx/InstanceViewIndex.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -501,6 +504,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickGroup/_PickUserResult.cshtml" publishTime="12/15/2015 14:46:18" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/Bom/Edit_Master.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Common/Icons/Sl/Chart.gif" publishTime="04/08/2015 09:57:03" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportFlow/_BindingNew.cshtml" publishTime="11/12/2015 16:26:10" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/CostCenterMiscOrder/_MiscOrderDetail.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierPrintHu/IpMaster.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/WorkCalendar/_GetWorkCalendarMiList.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -512,7 +516,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/Routing/RoutingDetailEdit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/Office2010Silver/slider-v.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/TransferFlow.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/FlowMaster.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/FlowMaster.cshtml" publishTime="04/25/2017 15:20:33" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportFlow/Index.cshtml" publishTime="11/12/2015 16:26:10" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementSQOrder/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/AsnMonitoring.png" publishTime="04/08/2015 09:57:03" />
@@ -557,7 +561,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierBill/_BillDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/RepackGroup/_PickUserResult.cshtml" publishTime="12/17/2015 13:35:32" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/ProductionFlow/_Binding.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/_OrderDetailList.cshtml" publishTime="03/28/2017 12:40:00" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/_OrderDetailList.cshtml" publishTime="04/12/2017 16:22:31" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/RepackGroup/New.cshtml" publishTime="12/15/2015 21:38:44" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/StockTake/_StockTakeMasterSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpExPlanItemRate/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -568,7 +572,7 @@
     <file relUrl="Content/2012.2.607/Office2007/editor.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/ShelfLifeWarningIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/SubconctractingFlow/_Binded.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportFlow/_BindingNew.cshtml" publishTime="11/12/2015 16:26:10" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/_NondeliverySearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SAPBomList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/RepackGroup/_SearchResult.cshtml" publishTime="12/15/2015 21:58:26" />
     <file relUrl="Content/Images/Nav/Information.png" publishTime="04/08/2015 09:57:03" />
@@ -615,12 +619,13 @@
     <file relUrl="Content/2012.2.607/Telerik/treeview-nodes.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/DistributionBill/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Scripts/2012.2.607/telerik.grid.reordering.min.js" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Resource/Templates/Excel/PickList.xls" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Resource/Templates/Excel/PickList.xls" publishTime="04/24/2017 16:17:11" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/HuLocationLotDetail/HuTrans.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/temp/iconTask.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementReceipt/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/Shared/EditorTemplates/DefectGridComboBox.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SYS/SNRule/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/Common/_ProductTypeDropDownList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierOrder/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/createNewFolder.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Icon/Inv.gif" publishTime="04/08/2015 09:57:03" />
@@ -663,7 +668,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/CostCenterMiscOrder/ScrapDetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Scripts/MicrosoftMvcValidation.debug.js" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/InspectionOrder.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Content/Common/Icons/Suites_32/WinForms.png" publishTime="04/08/2015 09:57:03" />
+    <file relUrl="Views/Shared/EditorTemplates/PriceListForeignKey.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.Report/Inventory/InventoryIp.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Icon/reply.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SYS/CodeMaster/List.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -674,7 +679,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/DistributionBill/_BillDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/Shared/_Footer.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/ProductionFlow/_Detail.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="bin/com.Sconit.Service.SI.dll" publishTime="04/06/2017 11:52:11" />
+    <file relUrl="bin/com.Sconit.Service.SI.dll" publishTime="05/19/2017 08:13:13" />
     <file relUrl="Views/com.Sconit.Web.Controllers.CUST/SubPrintOrder/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/PickStrategy/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProdLineLocationDetail/List.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -726,6 +731,7 @@
     <file relUrl="Resource/Templates/Excel/REC_Sale.xls" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/Black/loading.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSchedule/_ExSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.Report/PPM/_ReturnSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/ActingSalesBillInitiation.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.CUST/GeneralLedger/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Region/_ShipAddressNew.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -735,13 +741,14 @@
     <file relUrl="Content/Images/Nav/temp/inventory.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickGroup/_PickRuleResult.cshtml" publishTime="09/10/2016 12:36:39" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_GetSapMMMES0002Grid.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/RepackIndex.cshtml" publishTime="05/12/2017 10:29:53" />
     <file relUrl="Content/Images/LeftHead.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/HistoricalInventory.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/ReleaseOrder.cshtml" publishTime="05/18/2016 10:18:33" />
     <file relUrl="Content/Images/Nav/SOMonitoring.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Region/_BillAddress.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Scripts/2012.2.607/telerik.grid.filtering.min.js" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Pallet/_Search.cshtml" publishTime="04/06/2017 11:46:19" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Pallet/_Search.cshtml" publishTime="04/06/2017 16:07:58" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/DeliveryBarCode/List.cshtml" publishTime="12/29/2015 09:40:14" />
     <file relUrl="Content/Images/Nav/CustKpSelect.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/CostCenterMiscOrder/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -750,7 +757,6 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/ProcurementPriceList/_PriceListDetailEdit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProdIO/ForceMaterial.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/Machine/New.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Content/Images/Icon/odd_InTransit.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/WorkingCalendar/ShiftMstrEdit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.Report/CustReport/_DetailSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/ShipPlan/List.cshtml" publishTime="12/01/2015 15:37:00" />
@@ -779,6 +785,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Region/_BillAddressList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/PanelBar/FirstLook/mailInbox.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ISS/IssueDetail/Index.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementIpGap/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Scripts/2012.2.607/telerik.datetimepicker.min.js" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Icon/refresh_en.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/SubconctractingFlow/New.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -822,7 +829,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Container/New.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Common/Icons/Ajax/Editor.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ItemExchangeProd/_AgeingList.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/Common/_TonnageComboBox.cshtml" publishTime="12/31/2015 16:31:09" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_SAPSDNormalSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Main/History_Active.psd" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementIpMaster/_ReceiveIpDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/TransferFlow/New.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -830,7 +837,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierBill/_ActingBillGroupList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSchedule/_ExSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/plugin.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Resource/Templates/Excel/MiscOrder.xls" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Resource/Templates/Excel/MiscOrder.xls" publishTime="04/24/2017 16:17:44" />
     <file relUrl="Content/2012.2.607/Sitefinity/slider-h.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/ProcessWO.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Icon/help_en.png" publishTime="04/08/2015 09:57:03" />
@@ -854,7 +861,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/Carrier/Edit.cshtml" publishTime="07/28/2015 14:45:59" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/progressCursorTracker.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementIpGap/Index.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Content/Images/Nav/temp/save.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierScheduling/ShipEdit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/ProcurementBill/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="App_GlobalResources/EditorLocalization.resx" publishTime="04/08/2015 09:57:03" />
@@ -969,7 +976,6 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementSQOrder/CancelIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Container/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSnap/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Customer/_ShipAddressNew.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/RccpPlanMi/LoadDetail.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Common/Icons/Suites/orm.png" publishTime="04/08/2015 09:57:03" />
@@ -1000,7 +1006,7 @@
     <file relUrl="Views/Shared/EditorTemplates/FailCodeIncludeQualifyGridComboBox.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ISS/IssueTypeTo/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Resource/Templates/UploadTemplate/StockTake.xls" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.Report/PPM/_ReturnSearch.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_SAPUomConvertionSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionFiScraptOrder/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Test_Lit.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/2012.2.607/Office2010Blue/sprite-vertical.png" publishTime="04/08/2015 09:57:03" />
@@ -1036,7 +1042,6 @@
     <file relUrl="Views/Common/_LocationComboBox.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportBill/_ActingBillGroupList.cshtml" publishTime="01/19/2016 09:51:35" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/StockTake/_StockTakeResult.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Content/2012.2.607/Outlook/treeview-nodes.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/BatchProcessSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionReceipt/DetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/PickList/NewDetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1149,6 +1154,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/ShipGroup/_PickRuleNew.cshtml" publishTime="12/17/2015 14:02:28" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierReceipt/Edit.cshtml" publishTime="02/15/2016 14:15:13" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProdLineLocationDetail/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/_RepackProductBarCodeList.cshtml" publishTime="05/12/2017 13:38:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierIpMaster/_Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionReceipt/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ISI/TaskMaster/_TaskStatusNew.cshtml" publishTime="07/23/2015 10:31:00" />
@@ -1161,7 +1167,6 @@
     <file relUrl="Content/Images/Nav/temp/Image26.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/DistributionBill/_Search.cshtml" publishTime="03/07/2016 16:58:25" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierIpMaster/_CancelSearch.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_SAPSDNormalSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Common/Icons/favicon.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/WOReturn.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Scripts/jquery.timers-1.2.js" publishTime="05/17/2016 09:42:44" />
@@ -1185,7 +1190,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpPlanEx/Demand.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Icon/sign_out.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SAPMMMES0002List.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="bin/com.Sconit.Globalization.dll" publishTime="04/06/2017 11:52:03" />
+    <file relUrl="bin/com.Sconit.Globalization.dll" publishTime="05/18/2017 09:02:27" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSnap/_MrpSnapError.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/RushWO.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/RePrintWO.png" publishTime="04/08/2015 09:57:03" />
@@ -1242,7 +1247,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionOrder/NewFromPlan.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/Outlook/loading.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/List.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/Item.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/Item.cshtml" publishTime="05/11/2017 14:18:12" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/CostCenterMiscOrder/ScrapEdit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="bin/Castle.Windsor.dll" publishTime="04/08/2015 09:57:02" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SAPMMMES0001Index.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1274,7 +1279,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementReceipt/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Customer/_ShipAddress.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/Routing/RoutingMasterNew.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Config/properties.config" publishTime="03/23/2017 11:45:30" />
+    <file relUrl="Config/properties.config" publishTime="05/19/2017 10:13:23" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/CustomerGoodsFlow/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierBill/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickSchedule/Edit.cshtml" publishTime="11/27/2015 14:07:44" />
@@ -1295,7 +1300,7 @@
     <file relUrl="Content/Images/Nav/InventoryManagement.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/ItemDiscontinue/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionTrailMiscOrder/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/Edit.cshtml" publishTime="04/06/2017 16:17:20" />
     <file relUrl="Content/Images/Nav/temp/iconFolderOpened.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionOrder/ReturnDetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Icon/write.gif" publishTime="04/08/2015 09:57:03" />
@@ -1306,9 +1311,8 @@
     <file relUrl="Content/Images/Icon/signout.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/CustomerGoodsFlow/_DetailSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="App_GlobalResources/GridLocalization.resx" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.SCM/CustomerGoodsFlow/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Custodian/List.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="bin/com.Sconit.Utility.dll" publishTime="04/06/2017 11:52:07" />
+    <file relUrl="bin/com.Sconit.Utility.dll" publishTime="05/18/2017 09:02:33" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpExScrap/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/InspectionOrder/_JudgeEdit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Icon/InTransit.gif" publishTime="04/08/2015 09:57:03" />
@@ -1323,14 +1327,14 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/DistributionPriceList/_PriceListDetailNew.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Main/Warning.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/Trans.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Content/Images/Nav/InvAdjust.png" publishTime="04/08/2015 09:57:03" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ReturnReceipt/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.CUST/VehicleInFactory/_VehicleInFactoryDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportBill/_PlanBillList.cshtml" publishTime="01/19/2016 09:51:35" />
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/MauallySettleCsBill/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Currency/List.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/_SearchResult.cshtml" publishTime="04/01/2017 12:39:15" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/_SearchResult.cshtml" publishTime="04/10/2017 10:06:53" />
     <file relUrl="Content/2012.2.607/Forest/sprite.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="DownLoad.htm" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="DownLoad.htm" publishTime="04/11/2017 08:59:48" />
     <file relUrl="Content/Images/Main/Transparent.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionReceipt/DetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SAPPPMES0004Index.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1353,7 +1357,7 @@
     <file relUrl="Views/Common/_VehicleComboBox.cshtml" publishTime="12/31/2015 16:31:09" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MaterialPlan/SupplierPlan.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ISI/TaskMaster/Edit.cshtml" publishTime="06/02/2015 14:18:12" />
-    <file relUrl="bin/zh-CN/com.Sconit.Globalization.resources.dll" publishTime="04/06/2017 11:52:03" />
+    <file relUrl="bin/zh-CN/com.Sconit.Globalization.resources.dll" publishTime="05/18/2017 09:02:30" />
     <file relUrl="Content/Jquery-ui/Flick/jquery-ui-1.10.3.custom.min.css" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Region/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/Office2007/sprite-vertical.png" publishTime="04/08/2015 09:57:03" />
@@ -1404,7 +1408,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportPriceList/_Search.cshtml" publishTime="11/29/2015 20:45:13" />
     <file relUrl="Content/Images/Nav/InvTrans.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.FMS/FacilityTrans/_Search.cshtml" publishTime="02/29/2016 14:08:14" />
-    <file relUrl="bin/com.Sconit.Service.dll" publishTime="04/06/2017 11:52:10" />
+    <file relUrl="bin/com.Sconit.Service.dll" publishTime="05/19/2017 08:13:12" />
     <file relUrl="Content/Images/Nav/WOMonitoring.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/2012.2.607/WebBlue/imagebrowser.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/ProcurementBill/Index.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1428,7 +1432,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/_PartsDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/StockTake/_StockTakeResultIsScanHuSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Region/New.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.MD/location/_LocationBin.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.MD/location/_LocationBin.cshtml" publishTime="04/19/2017 13:38:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/location/_Edit.cshtml" publishTime="03/09/2017 10:31:01" />
     <file relUrl="Content/Images/Nav/Supplier.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/IpDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1462,6 +1466,7 @@
     <file relUrl="Content/PanelBar/Descriptions/ClientSideApi.html" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/RccpPlanEx/AllotSection.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Content/Common/Icons/Suites_32/WinForms.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportFlow/_DetailEdit.cshtml" publishTime="11/12/2015 16:26:10" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/ItemKit/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/Carrier/List.cshtml" publishTime="07/27/2015 14:02:18" />
@@ -1472,22 +1477,21 @@
     <file relUrl="Views/Shared/EditorTemplates/CarrierGridForeignKey.cshtml" publishTime="11/12/2015 16:26:10" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierOrder/_DetaiSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/CustomerGoodsFlow.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.MD/Supplier/_ShipAddressList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/telerik.office2010black.min.css" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/Customer.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpExPlanItemRate/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ISS/IssueLevel/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/InspectionOrder/JudgeIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickGroup/_PickRule.cshtml" publishTime="12/14/2015 16:57:54" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/New.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/New.cshtml" publishTime="05/11/2017 13:04:25" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Customer/_BillAddressList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.CUST/VehicleInFactory/_ViewVehicleInFactoryDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/temp/1ASN.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/SubConctractingTransferFlow/New.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/Common/_AssembliesDropDownList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/ItemCategory/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/ShipAdjustment.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/error_1.gif" publishTime="04/08/2015 09:57:03" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.TMS/Vehicle/New.cshtml" publishTime="03/08/2016 15:14:50" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/SubconctractingFlow/_Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Jquery-ui/Smoothness/images/ui-bg_glass_75_dadada_1x400.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/DistributionFlow/List.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1547,6 +1551,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.FMS/CheckListOrder/_SearchResult.cshtml" publishTime="05/19/2016 11:23:00" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/ViewLocationLotDetail/CustomerConsignmentIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SAPPPMES0001List.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/PickList/_ShipSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/OutMiscOrder/_MiscOrderDetailIsScanHu.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/SupplierMenu.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpExWorkHour/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1554,7 +1559,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/ProductionFlow/_DetailSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/FZCompleteOld.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionFiScraptOrder/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.CUST/ItemTrace/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/Common/_AssembliesDropDownList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/ShipPlan/Index.cshtml" publishTime="12/01/2015 15:35:43" />
     <file relUrl="Content/Images/Nav/temp/iconExternalLink.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProdLineLocationDetFeed/List.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1590,7 +1595,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpExScrap/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_SAPItemSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Customer/_BillAddressEdit.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Content/Images/Icon/ToBeIn.gif" publishTime="04/08/2015 09:57:03" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SAPSDNormalIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionReworkMiscOrder/New.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementIpMaster/DetailUnitPriceList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PackingList/Assign.cshtml" publishTime="01/11/2016 10:05:35" />
@@ -1697,7 +1702,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/ProductionFlow/_FacilitySearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PackingList/Index.cshtml" publishTime="01/11/2016 14:08:58" />
     <file relUrl="Content/Images/Nav/Console.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.TMS/Vehicle/New.cshtml" publishTime="03/08/2016 15:14:50" />
+    <file relUrl="Content/2012.2.607/Sunset/sprite.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Region/_ShipAddressResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="WebService/SecurityService.asmx" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/Index1.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1723,6 +1728,7 @@
     <file relUrl="Content/Images/Nav/server.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.CUST/ItemProperty/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpProductType/New.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Content/Images/Icon/ToBeIn.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/RepackTask/_RepackTaskList.cshtml" publishTime="01/04/2016 16:48:54" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_SAPBomSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/Default/imagebrowser.png" publishTime="04/08/2015 09:57:03" />
@@ -1735,7 +1741,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ItemExchangeProd/_FilterList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/RejectOrder/DetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/ShelfLifeWarningList.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Config/component-report.config" publishTime="03/08/2017 14:27:38" />
+    <file relUrl="Config/component-report.config" publishTime="04/26/2017 09:02:33" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionIpGap/_AdjustIpDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.Report/CustReport/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/_ResumeSearch.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1773,7 +1779,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.ACC/PermissionGroup/_PermissionGroupPermission.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/Quota/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierPrintHu/New.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.SCM/DistributionFlow/_Edit.cshtml" publishTime="03/08/2017 14:27:38" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.SCM/DistributionFlow/_Edit.cshtml" publishTime="04/25/2017 13:57:21" />
     <file relUrl="Content/2012.2.607/Hay/slider-v.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/2012.2.607/Office2010Blue/sprite.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.CUST/HuMemo/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1785,7 +1791,6 @@
     <file relUrl="Views/Common/_PriceListComboBox.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/Vehicle/Edit.cshtml" publishTime="03/08/2016 15:15:00" />
     <file relUrl="Views/Common/_FacilityCategoryComboBox.cshtml" publishTime="02/22/2016 13:59:07" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/_NondeliverySearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Common/Icons/edit.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/MaterialInIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/TransferFlow/_DetailSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1834,6 +1839,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/InspectResultExt/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickWindowTime/Index.cshtml" publishTime="11/20/2015 16:42:48" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/ShipGroup/_SearchResult.cshtml" publishTime="12/17/2015 14:02:28" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierOrder/_SearchReturnDetailResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Config/log4net.config" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionAdjustMiscOrder/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/CustomerGoodsFlow/_Strategy.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1917,7 +1923,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierPrintHu/OrderMaster.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpPlanEx/_ItemPlan.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/_SearchDetailResult.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="bin/com.Sconit.Entity.dll" publishTime="04/06/2017 11:52:06" />
+    <file relUrl="bin/com.Sconit.Entity.dll" publishTime="05/18/2017 09:02:32" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/TransferHu/New.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpPlanEx/_MrpItemPlanList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/ConcessionOrder/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -1927,7 +1933,7 @@
     <file relUrl="Views/Common/_PickGroupComboBox.cshtml" publishTime="12/27/2015 22:19:42" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_GetSapSDNormalGrid.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="WebService/ORD/OrderService.asmx" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/SearchProdTraceCode.cshtml" publishTime="05/19/2016 18:14:57" />
+    <file relUrl="Content/Images/Nav/InvAdjust.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSnap/InventoryBalance.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/temp/`MRP.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/Backflush.png" publishTime="04/08/2015 09:57:03" />
@@ -1978,11 +1984,12 @@
     <file relUrl="Scripts/2012.2.607/telerik.upload.min.js" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/location/_LocationAreaList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/Shared/_AjaxMessage.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Pallet/New.cshtml" publishTime="04/07/2017 10:48:48" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/CustomerGoodsFlow/_Binded.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/StockTake/_StockTakeDetail.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Resource/Templates/Excel/ORD_Purchase.xls" publishTime="03/29/2017 09:52:33" />
     <file relUrl="Views/Common/_MrpSnapMasterComboBox.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/_Search.cshtml" publishTime="04/10/2017 10:05:49" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/ReturnDetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/DistributionPriceList/_PriceListDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/DistributionOrder.png" publishTime="04/08/2015 09:57:03" />
@@ -1993,14 +2000,14 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionIpGap/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportOrder/DetailList.cshtml" publishTime="11/29/2015 20:45:13" />
     <file relUrl="Scripts/jquery-ui.min.js" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickWindowTime/_SearchResult.cshtml" publishTime="11/24/2015 16:51:51" />
+    <file relUrl="Content/Images/Login/but2.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/ProcurementFlow/_DetailSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/SetWOComponentLotNo.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="App_GlobalResources/UploadLocalization.en.resx" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementSQOrder/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementIpMaster/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Common/Icons/Ajax/Scheduler.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Resource/Templates/Excel/InspectOrder.xls" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Resource/Templates/Excel/InspectOrder.xls" publishTime="04/13/2017 15:43:54" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Supplier/_BillAddressList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSchedule/_FiSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Customer/_BillAddress.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2017,6 +2024,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/InspectionOrder/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionIpMaster/_ReceiveSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/ShipmentMonitoring.png" publishTime="04/08/2015 09:57:03" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/InMiscOrder/InitInventory.cshtml" publishTime="04/20/2017 09:18:25" />
     <file relUrl="Views/com.Sconit.Web.Controllers.FMS/FacilityOrder/New.cshtml" publishTime="05/16/2016 14:39:45" />
     <file relUrl="Views/com.Sconit.Web.Controllers.CUST/CostCenter/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/SupplyChainRouting.png" publishTime="04/08/2015 09:57:03" />
@@ -2048,7 +2056,7 @@
     <file relUrl="Content/Images/Main/On_loading2.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Scripts/telerik.extensions.js" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/PanelBar/FirstLook/mailItems.gif" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/InMiscOrder/New.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/InMiscOrder/New.cshtml" publishTime="04/20/2017 09:43:32" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Region/_BillAddressNew.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpPlanMi/TrackView.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/HuLocationLotDetail/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2072,7 +2080,7 @@
     <file relUrl="Resource/document/供应商门户操作手册.zip" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportPriceList/_PriceListDetail.cshtml" publishTime="05/11/2016 10:37:33" />
     <file relUrl="Resource/Templates/UploadTemplate/OutMiscOrder.xls" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="bin/com.Sconit.WebService.dll" publishTime="04/06/2017 11:52:12" />
+    <file relUrl="bin/com.Sconit.WebService.dll" publishTime="05/19/2017 08:13:14" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierSortMaster/DetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/Common/_CodeMasterMultiSelectBox.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/Common/_ItemCategoryDropDownList.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2082,6 +2090,8 @@
     <file relUrl="Content/Images/Nav/Feed.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Container/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ACC/UserFavorite/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/_RepackSearch.cshtml" publishTime="05/12/2017 13:37:46" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.CUST/ItemProperty/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/Routing/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Icon/odd_ToBeOut.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/RejectOrder/WorkersWaste.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2116,7 +2126,6 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/RccpPlanEx/ClassifyQty.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Scripts/MicrosoftMvcValidation.js" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.FMS/FacilityOrder/Edit.cshtml" publishTime="05/19/2016 14:54:25" />
-    <file relUrl="Content/Common/Icons/Suites_32/REP.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/ItemCategory/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Scripts/MicrosoftMvcAjax.debug.js" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/Machine/_InstanceSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2130,13 +2139,12 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/InspectionOrder/InspectionResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierReturnReceipt/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/DetailUnitPriceList.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Content/Images/Nav/ProcurementPriceList.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionOrder/DetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_SAPPPMES0005Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementIpMaster/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSnap/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/Shared/EditorTemplates/ItemGridForeignKey.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Content/Images/Nav/temp/save.png" publishTime="04/08/2015 09:57:03" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/SearchProdTraceCode.cshtml" publishTime="05/19/2016 18:14:57" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/ContainerDetail/New.cshtml" publishTime="09/10/2016 18:13:54" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ISS/Issue/New.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Error.gif" publishTime="04/08/2015 09:57:03" />
@@ -2183,19 +2191,19 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/ItemCategory/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickGroup/_PickUserEdit.cshtml" publishTime="12/15/2015 14:45:29" />
     <file relUrl="Content/Images/Nav/SO_Delivery.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/New.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/New.cshtml" publishTime="05/11/2017 13:11:44" />
     <file relUrl="Content/Images/Nav/temp/dash_iconInventory.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ISS/IssueLevel/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Common/Icons/Suites_32/WPF.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/Production.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/ProcurementFlow/_FlowShiftDetailSearchResult.cshtml" publishTime="03/08/2017 14:27:38" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/StockTake/_StockTakeDetailIsScanHuSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SAPSDNormalIndex.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSchedule/FiList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSnapMachine/InstanceIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierOrder/ReturnList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI_EDI/EDIShippingSchedule/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Common/Icons/Suites/mvc.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/OrderMaster.cshtml" publishTime="04/01/2017 11:08:53" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/OrderMaster.cshtml" publishTime="05/09/2017 11:13:00" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/ProcurementFlow/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/WorkingCalendar/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ReturnReceipt/_ReceiptDetail.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2218,6 +2226,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/ProcurementPriceList/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/Office2010Black/sprite-vertical.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ShipmentMaster/GooutIndex.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Pallet/_PalletHuList.cshtml" publishTime="04/07/2017 08:53:30" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_SAPCustomerSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/WorkCalendar/MiView.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Login/SIH/Login_top_stripe.png" publishTime="04/08/2015 09:57:03" />
@@ -2279,6 +2288,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/ShipGroup/_PickUserEdit.cshtml" publishTime="12/17/2015 14:02:28" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportOrder/BatchProcessList.cshtml" publishTime="11/29/2015 20:45:13" />
     <file relUrl="Content/2012.2.607/Telerik/imagebrowser.png" publishTime="04/08/2015 09:57:03" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Pallet/Edit.cshtml" publishTime="04/26/2017 09:23:30" />
     <file relUrl="Views/com.Sconit.Web.Controllers.FMS/CheckList/_CheckListDetail.cshtml" publishTime="05/17/2016 11:13:07" />
     <file relUrl="Content/Images/Icon/down.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierBill/_Search.cshtml" publishTime="03/07/2016 16:58:27" />
@@ -2365,7 +2375,7 @@
     <file relUrl="Content/Images/Nav/temp/file-16-word.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpPlanMi/DailyPlan.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Item/_ItemRefNew.cshtml" publishTime="03/14/2016 15:02:15" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Pallet/_SearchResult.cshtml" publishTime="04/06/2017 11:06:43" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Pallet/_SearchResult.cshtml" publishTime="04/06/2017 16:08:23" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/Item/_ItemRefEdit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Message/ico_min.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/StockTake/_StockTakeMasterEdit.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2384,7 +2394,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/ProcurementFlow/_FlowShiftDetailList.cshtml" publishTime="03/08/2017 14:27:38" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/ProcurementFlow/_DetailSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/ViewInventory.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.MD/WorkingCalendar/SpecialTime.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/ItemExchange/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ISS/IssueNo/New.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/InspectionOrder/JudgeEdit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/Office2010Black/editor.png" publishTime="04/08/2015 09:57:03" />
@@ -2418,7 +2428,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickTask/Edit.cshtml" publishTime="11/29/2015 21:29:26" />
     <file relUrl="Content/Jquery-ui/Flick/images/ui-bg_flat_55_ffffff_40x100.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/2012.2.607/Default/treeview-nodes-rtl.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/InMiscOrder/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/InMiscOrder/Edit.cshtml" publishTime="04/25/2017 09:57:48" />
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/MauallySettleCsBill/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSnap/ActiveOrder.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ACC/Role/New.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2489,7 +2499,7 @@
     <file relUrl="Content/Images/Nav/temp/start.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/DefectCode/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProdIO/ProdIOMI.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Resource/Templates/Excel/BIL_SaleBill.xls" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSnap/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/CostCenterMiscOrder/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/Warehouse.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/components.png" publishTime="04/08/2015 09:57:03" />
@@ -2540,7 +2550,7 @@
     <file relUrl="Content/Images/Nav/temp/folder_open.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_SAPBomSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/Common/_CodeMasterDropDownList.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/HuDetail.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/HuDetail.cshtml" publishTime="04/10/2017 10:30:48" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ISI/TaskAddress/Index.cshtml" publishTime="05/15/2015 13:40:21" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierOrder/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionFiScraptOrder/ScrapDetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2579,7 +2589,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/ItemDiscontinue/New.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionOrder/DetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/ContainerDetail/List.cshtml" publishTime="09/10/2016 17:03:58" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.INV/StockTake/Index.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Content/Images/Nav/ProcurementPriceList.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickGroup/List.cshtml" publishTime="12/10/2015 11:34:33" />
     <file relUrl="Content/2012.2.607/Sunset/slider-h.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSnap/MrpFlowDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2598,7 +2608,7 @@
     <file relUrl="Content/2012.2.607/Office2010Black/loading.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierReceipt/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/POPlanBill.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ReturnReceipt/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Content/Common/Icons/Suites_32/REP.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/RccpPlanEx/ItemLoad.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpPlanEx/TrackView_bak.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementIpMaster/ReceiveList.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2654,7 +2664,8 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProductLine/MaterialInIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierPrintHu/FlowDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/Driver/_Search.cshtml" publishTime="11/03/2015 14:17:36" />
-    <file relUrl="bin/com.Sconit.Persistence.dll" publishTime="04/06/2017 11:52:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickWindowTime/_SearchResult.cshtml" publishTime="11/24/2015 16:51:51" />
+    <file relUrl="bin/com.Sconit.Persistence.dll" publishTime="05/18/2017 09:02:30" />
     <file relUrl="Views/com.Sconit.Web.Controllers.CUST/ItemTrace/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProductLineMap/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Jquery-ui/Smoothness/jquery-ui-1.10.3.custom.min.css" publishTime="04/08/2015 09:57:03" />
@@ -2666,7 +2677,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.BIL/ProcurementPriceList/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ISI/TaskSubType/List.cshtml" publishTime="04/30/2015 14:17:52" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/InventoryFreeze/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="web.config" publishTime="04/06/2017 11:54:22" />
+    <file relUrl="web.config" publishTime="05/15/2017 14:35:39" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/location/New.cshtml" publishTime="03/09/2017 10:27:26" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ACC/User/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="WebService/MSG/SMSService.asmx" publishTime="04/08/2015 09:57:04" />
@@ -2699,6 +2710,7 @@
     <file relUrl="Content/2012.2.607/Hay/sprite.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpPlanEx/_MrpOrderList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/ProductionIOReport.png" publishTime="04/08/2015 09:57:03" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.INV/Hu/Repack.cshtml" publishTime="05/12/2017 11:08:30" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierReturnReceipt/_SearchDetailResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProductLine/MaterialInSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/Carrier/_BillAddress.cshtml" publishTime="07/27/2015 14:02:18" />
@@ -2757,7 +2769,6 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickGroup/New.cshtml" publishTime="09/10/2016 14:44:32" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/ProcurementFlow/_BindingNew.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/approve.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.WMS/RepackTask/_RepackHuList.cshtml" publishTime="01/11/2016 14:32:26" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/ViewLocationLotDetail/SupplierConsignmentList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProdIO/ProdIOFI.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/_DetailSearch.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2772,7 +2783,6 @@
     <file relUrl="Content/Images/Nav/InventoryReport.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementReceipt/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/generalSetup.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Content/2012.2.607/Sunset/sprite.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Icon/SafeStock.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionOrder/_OrderDetailListFromPlan.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSnap/_TransitOrderSearch.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2827,7 +2837,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/InMiscOrder/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickWindowTime/Edit.cshtml" publishTime="11/24/2015 10:14:18" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/SequenceMaster/DetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/OutMiscOrder/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/OutMiscOrder/Edit.cshtml" publishTime="04/25/2017 10:34:36" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportOrder/New.cshtml" publishTime="02/16/2016 16:10:48" />
     <file relUrl="Views/com.Sconit.Web.Controllers.FMS/FacilityMaster/_FacilityMaintainPlanList.cshtml" publishTime="03/16/2016 15:23:46" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SAPUomConvertionList.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2907,7 +2917,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/_ReceiveSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/ShipGroup/_Edit.cshtml" publishTime="12/17/2015 14:02:28" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/RejectOrder/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.CUST/ItemProperty/List.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Content/2012.2.607/Outlook/treeview-nodes.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INV/StockTake/StockTakeMasterList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/MrpSnap/InventoryBalanceList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.Report/ExPlanExecutionControl/List.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2921,13 +2931,12 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/ShipPlan/_ShipPlanList.cshtml" publishTime="01/03/2016 19:16:27" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/QuickNew.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/ProcurementFlow.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionOrder/New.cshtml" publishTime="07/15/2015 10:28:28" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/WorkingCalendar/New.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProductLineMap/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/ProdLineEx/_InstanceSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/CostCenterMiscOrder/ScrapIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.CUST/DeferredFeedCounter/Index.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Resource/Templates/Excel/BarCodePurchase.xls" publishTime="03/27/2017 12:11:28" />
+    <file relUrl="Resource/Templates/Excel/BarCodePurchase.xls" publishTime="04/11/2017 10:15:14" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MD/WorkingCalendar/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierOrderIssue/Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Resource/Templates/Excel/BarCodeEX2D.xls" publishTime="04/08/2015 09:57:04" />
@@ -2935,7 +2944,7 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/RepackGroup/Index.cshtml" publishTime="12/15/2015 21:07:50" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementIpGap/_AdjustSearch.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierBill/Index.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/Import.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProcurementOrder/Import.cshtml" publishTime="05/11/2017 13:04:36" />
     <file relUrl="Content/Images/Nav/InventoryTrans.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/2012.2.607/Office2010Silver/gradient.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/2012.2.607/telerik.web20.min.css" publishTime="04/08/2015 09:57:03" />
@@ -2958,9 +2967,9 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SAPPPMES0006Index.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.INP/QualityDoor/New.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.MRP/HuTo/New.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/PickList/_ShipSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.MD/WorkingCalendar/SpecialTime.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/Quality.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.INV/ItemExchange/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.SCM/CustomerGoodsFlow/List.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/CostCenterMiscOrder/DetailIndex.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.Report/CustReport/_Detail.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.Report/PPM/_SearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -2982,20 +2991,20 @@
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/Driver/New.cshtml" publishTime="11/03/2015 15:59:15" />
     <file relUrl="Content/Images/Nav/ContainerSearch.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionReceipt/Edit.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/SAPPPMES0003List.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.MRP/WorkCalendar/FiView.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Resource/Templates/Excel/BIL_SaleBill.xls" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.ORD/DistributionOrder/New.cshtml" publishTime="05/11/2017 13:04:41" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportFlow/_DetailSearch.cshtml" publishTime="11/12/2015 16:26:10" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionFiScraptOrder/ScrapNew.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.SCM/ProductionFlow/_Strategy.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.CUST/VehicleInFactory/_Search.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.WMS/PickTask/_Search.cshtml" publishTime="12/07/2015 14:15:12" />
     <file relUrl="Content/Images/Icon/down_time.gif" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.SP/SupplierOrder/_SearchReturnDetailResult.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.MD/Supplier/_ShipAddressList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProdIO/_SummarySearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionFiScraptOrder/_MiscOrderDetailIsScanHu.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/2012.2.607/Outlook/sprite.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/_OrderBomDetail.cshtml" publishTime="04/08/2015 09:57:04" />
-    <file relUrl="Views/com.Sconit.Web.Controllers.SI/SAPInterface/_SAPUomConvertionSearchResult.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Views/Common/_TonnageComboBox.cshtml" publishTime="12/31/2015 16:31:09" />
     <file relUrl="Views/com.Sconit.Web.Controllers.ORD/ProductionOrder/_MaterialInOrderDetailList.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/SOPlanBill.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.PRD/ProdIO/Index.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -3019,7 +3028,7 @@
     <file relUrl="Content/Images/Nav/RushDO.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Login/right02.jpg" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/PutAway.png" publishTime="04/08/2015 09:57:03" />
-    <file relUrl="Content/Images/Icon/odd_MinusAlert.gif" publishTime="04/08/2015 09:57:03" />
+    <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportFlow/_SearchResult.cshtml" publishTime="11/29/2015 20:45:13" />
     <file relUrl="Scripts/2012.2.607/telerik.timepicker.min.js" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Content/Images/Nav/PS.PNG" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/com.Sconit.Web.Controllers.Report/IOB/CustomerPlanBillIOBIndex.cshtml" publishTime="04/08/2015 09:57:04" />
@@ -3086,7 +3095,7 @@
     <file relUrl="Content/Images/Icon/close.png" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Views/Common/_PurchasePlanMasterComboBox.cshtml" publishTime="04/08/2015 09:57:04" />
     <file relUrl="Views/com.Sconit.Web.Controllers.TMS/TransportFlow/_DetailSearchResult.cshtml" publishTime="11/12/2015 16:26:10" />
-    <file relUrl="Views/Shared/EditorTemplates/PriceListForeignKey.cshtml" publishTime="04/08/2015 09:57:04" />
+    <file relUrl="Content/Images/Icon/odd_InTransit.gif" publishTime="04/08/2015 09:57:03" />
     <file relUrl="Content/Images/Nav/ProcurementOrder.png" publishTime="04/08/2015 09:57:03" />
   </publishProfile>
 </publishData>

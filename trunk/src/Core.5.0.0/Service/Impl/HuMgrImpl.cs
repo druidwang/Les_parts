@@ -86,7 +86,7 @@ namespace com.Sconit.Service.Impl
         [Transaction(TransactionMode.Requires)]
         public IList<Hu> CreateHu(FlowMaster flowMaster, IList<FlowDetail> flowDetailList)
         {
-           return  CreateHu( flowMaster,  flowDetailList,string.Empty);
+            return CreateHu(flowMaster, flowDetailList, string.Empty);
         }
 
         [Transaction(TransactionMode.Requires)]
@@ -106,14 +106,14 @@ namespace com.Sconit.Service.Impl
                         currentFlowDetailId = flowDetail.Id;
                     }
                 }
-                        
+
 
                 IDictionary<string, decimal> huIdDic = numberControlMgr.GetHuId(flowDetail);
                 if (huIdDic != null && huIdDic.Count > 0)
                 {
                     foreach (string huId in huIdDic.Keys)
                     {
-                      
+
                         var item = this.itemMgr.GetCacheItem(flowDetail.Item);
                         if (string.IsNullOrWhiteSpace(flowDetail.ReferenceItemCode))
                         {
@@ -135,7 +135,7 @@ namespace com.Sconit.Service.Impl
                         else
                         {
                             hu.ManufactureParty = flowDetail.ManufactureParty;
-                          
+
                         }
 
                         hu.ManufactureDate = flowDetail.ManufactureDate;
@@ -156,7 +156,7 @@ namespace com.Sconit.Service.Impl
                         hu.HuTemplate = flowMaster.HuTemplate;
                         hu.HuOption = GetHuOption(item);
                         hu.Remark = flowDetail.Remark;
-                        
+
                         hu.PalletCode = palletCode;
                         hu.ExternalOrderNo = externalOrderNo;
 
@@ -181,7 +181,7 @@ namespace com.Sconit.Service.Impl
                 var itemList = huList.Select(p => p.Item).Distinct();
                 foreach (string itemCode in itemList)
                 {
-                   
+
                     var palletHuList = huList.Where(p => p.Item == itemCode);
                     string itemPalletCode = palletHuList.First().PalletCode;
                     Pallet pallet = new Pallet();
@@ -211,7 +211,7 @@ namespace com.Sconit.Service.Impl
             int orderDetailId = 0;
             foreach (OrderDetail orderDetail in orderDetailList)
             {
-             
+
                 ///每条做一个托盘
                 if (isPrintPallet)
                 {
@@ -299,25 +299,25 @@ namespace com.Sconit.Service.Impl
             #region 托盘
             if (isPrintPallet)
             {
-                  var itemList = huList.Select(p => p.Item).Distinct();
-                  foreach (string itemCode in itemList)
-                  {
-                      var palletHuList = huList.Where(p => p.Item == itemCode);
-                      string itemPalletCode = palletHuList.First().PalletCode;
+                var itemList = huList.Select(p => p.Item).Distinct();
+                foreach (string itemCode in itemList)
+                {
+                    var palletHuList = huList.Where(p => p.Item == itemCode);
+                    string itemPalletCode = palletHuList.First().PalletCode;
 
-                      Pallet pallet = new Pallet();
-                      pallet.Code = itemPalletCode;
-                      pallet.Description = palletHuList.First().Item + "|" + palletHuList.First().ItemDescription + "|" + palletHuList.Count();
-                      this.genericMgr.Create(pallet);
+                    Pallet pallet = new Pallet();
+                    pallet.Code = itemPalletCode;
+                    pallet.Description = palletHuList.First().Item + "|" + palletHuList.First().ItemDescription + "|" + palletHuList.Count();
+                    this.genericMgr.Create(pallet);
 
-                      foreach (Hu hu in palletHuList)
-                      {
-                          PalletHu palletHu = new PalletHu();
-                          palletHu.HuId = hu.HuId;
-                          palletHu.PalletCode = itemPalletCode;
-                          genericMgr.Create(palletHu);
-                      }
-                  }
+                    foreach (Hu hu in palletHuList)
+                    {
+                        PalletHu palletHu = new PalletHu();
+                        palletHu.HuId = hu.HuId;
+                        palletHu.PalletCode = itemPalletCode;
+                        genericMgr.Create(palletHu);
+                    }
+                }
             }
             #endregion
 
@@ -592,6 +592,8 @@ namespace com.Sconit.Service.Impl
 
             return null;
         }
+
+     
 
         #region private methods
         private void WrapHuStatus(HuStatus huStatus, LocationLotDetail locationLotDetail)

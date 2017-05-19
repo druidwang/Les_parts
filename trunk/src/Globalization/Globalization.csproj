@@ -383,6 +383,21 @@
     <Compile Include="FMS\MaintainPlanItem.Designer.cs" />
     <Compile Include="FMS\MaintainPlanItem.en-US.Designer.cs" />
     <Compile Include="FMS\MaintainPlanItem.zh-CN.Designer.cs" />
+    <Compile Include="INV\ProductBarCode.Designer.cs">
+      <DependentUpon>ProductBarCode.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="INV\ProductBarCode.en-US.Designer.cs">
+      <DependentUpon>ProductBarCode.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="INV\ProductBarCode.zh-CN.Designer.cs">
+      <DependentUpon>ProductBarCode.zh-CN.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="INV\Pallet.zh-CN.Designer.cs">
       <DependentUpon>Pallet.zh-CN.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -3710,6 +3725,19 @@
     <EmbeddedResource Include="FMS\MaintainPlanItem.en-US.resx" />
     <EmbeddedResource Include="FMS\MaintainPlanItem.resx" />
     <EmbeddedResource Include="FMS\MaintainPlanItem.zh-CN.resx" />
+    <EmbeddedResource Include="INV\ProductBarCode.en-US.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductBarCode.en-US.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV\ProductBarCode.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductBarCode.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="INV\ProductBarCode.zh-CN.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProductBarCode.zh-CN.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="INV\Pallet.zh-CN.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Pallet.zh-CN.Designer.cs</LastGenOutput>

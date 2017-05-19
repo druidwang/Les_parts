@@ -48,13 +48,13 @@ namespace com.Sconit.SmartDevice
             this.btnTransfer = new System.Windows.Forms.Button();
             this.tabModuleSelect = new System.Windows.Forms.TabControl();
             this.tabProcurement = new System.Windows.Forms.TabPage();
+            this.btnProductionReturn = new System.Windows.Forms.Button();
+            this.btnQuickTransfer = new System.Windows.Forms.Button();
+            this.btnDistributionReturn = new System.Windows.Forms.Button();
             this.btnProductionReceive = new System.Windows.Forms.Button();
             this.btnPurchaseReturn = new System.Windows.Forms.Button();
             this.btnQuickReturn = new System.Windows.Forms.Button();
-            this.btnPickListOnline = new System.Windows.Forms.Button();
             this.btnOrderShip = new System.Windows.Forms.Button();
-            this.btnPickListShip = new System.Windows.Forms.Button();
-            this.btnPickList = new System.Windows.Forms.Button();
             this.btnReceive = new System.Windows.Forms.Button();
             this.tabInventory.SuspendLayout();
             this.tabModuleSelect.SuspendLayout();
@@ -63,7 +63,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(176, 266);
+            this.btnExit.Location = new System.Drawing.Point(169, 266);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(72, 20);
             this.btnExit.TabIndex = 2;
@@ -72,7 +72,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnLogOff
             // 
-            this.btnLogOff.Location = new System.Drawing.Point(98, 266);
+            this.btnLogOff.Location = new System.Drawing.Point(94, 266);
             this.btnLogOff.Name = "btnLogOff";
             this.btnLogOff.Size = new System.Drawing.Size(72, 20);
             this.btnLogOff.TabIndex = 1;
@@ -247,34 +247,64 @@ namespace com.Sconit.SmartDevice
             // 
             // tabProcurement
             // 
+            this.tabProcurement.Controls.Add(this.btnProductionReturn);
+            this.tabProcurement.Controls.Add(this.btnQuickTransfer);
+            this.tabProcurement.Controls.Add(this.btnDistributionReturn);
             this.tabProcurement.Controls.Add(this.btnProductionReceive);
             this.tabProcurement.Controls.Add(this.btnPurchaseReturn);
             this.tabProcurement.Controls.Add(this.btnQuickReturn);
-            this.tabProcurement.Controls.Add(this.btnPickListOnline);
             this.tabProcurement.Controls.Add(this.btnOrderShip);
-            this.tabProcurement.Controls.Add(this.btnPickListShip);
-            this.tabProcurement.Controls.Add(this.btnPickList);
             this.tabProcurement.Controls.Add(this.btnReceive);
             this.tabProcurement.Location = new System.Drawing.Point(4, 25);
             this.tabProcurement.Name = "tabProcurement";
             this.tabProcurement.Size = new System.Drawing.Size(233, 195);
             this.tabProcurement.Text = "收发";
             // 
+            // btnProductionReturn
+            // 
+            this.btnProductionReturn.Location = new System.Drawing.Point(119, 87);
+            this.btnProductionReturn.Name = "btnProductionReturn";
+            this.btnProductionReturn.Size = new System.Drawing.Size(110, 20);
+            this.btnProductionReturn.TabIndex = 13;
+            this.btnProductionReturn.Text = "6.成品入库冲销";
+            this.btnProductionReturn.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnProductionReturn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnQuickTransfer
+            // 
+            this.btnQuickTransfer.Location = new System.Drawing.Point(5, 50);
+            this.btnQuickTransfer.Name = "btnQuickTransfer";
+            this.btnQuickTransfer.Size = new System.Drawing.Size(104, 20);
+            this.btnQuickTransfer.TabIndex = 12;
+            this.btnQuickTransfer.Text = "3.车间领料";
+            this.btnQuickTransfer.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnQuickTransfer.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnDistributionReturn
+            // 
+            this.btnDistributionReturn.Location = new System.Drawing.Point(119, 123);
+            this.btnDistributionReturn.Name = "btnDistributionReturn";
+            this.btnDistributionReturn.Size = new System.Drawing.Size(110, 20);
+            this.btnDistributionReturn.TabIndex = 11;
+            this.btnDistributionReturn.Text = "8.销售退货";
+            this.btnDistributionReturn.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnDistributionReturn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
             // btnProductionReceive
             // 
-            this.btnProductionReceive.Location = new System.Drawing.Point(19, 51);
+            this.btnProductionReceive.Location = new System.Drawing.Point(5, 87);
             this.btnProductionReceive.Name = "btnProductionReceive";
-            this.btnProductionReceive.Size = new System.Drawing.Size(90, 20);
+            this.btnProductionReceive.Size = new System.Drawing.Size(104, 20);
             this.btnProductionReceive.TabIndex = 10;
-            this.btnProductionReceive.Text = "3.成品入库";
+            this.btnProductionReceive.Text = "5.成品入库";
             this.btnProductionReceive.Click += new System.EventHandler(this.UCModuleSelect_Click);
             this.btnProductionReceive.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
             // btnPurchaseReturn
             // 
-            this.btnPurchaseReturn.Location = new System.Drawing.Point(123, 15);
+            this.btnPurchaseReturn.Location = new System.Drawing.Point(119, 15);
             this.btnPurchaseReturn.Name = "btnPurchaseReturn";
-            this.btnPurchaseReturn.Size = new System.Drawing.Size(90, 20);
+            this.btnPurchaseReturn.Size = new System.Drawing.Size(111, 20);
             this.btnPurchaseReturn.TabIndex = 7;
             this.btnPurchaseReturn.Text = "2.采购退货";
             this.btnPurchaseReturn.Click += new System.EventHandler(this.UCModuleSelect_Click);
@@ -282,61 +312,31 @@ namespace com.Sconit.SmartDevice
             // 
             // btnQuickReturn
             // 
-            this.btnQuickReturn.Location = new System.Drawing.Point(19, 86);
+            this.btnQuickReturn.Location = new System.Drawing.Point(119, 50);
             this.btnQuickReturn.Name = "btnQuickReturn";
-            this.btnQuickReturn.Size = new System.Drawing.Size(90, 20);
+            this.btnQuickReturn.Size = new System.Drawing.Size(110, 20);
             this.btnQuickReturn.TabIndex = 6;
-            this.btnQuickReturn.Text = "5.领料退库";
+            this.btnQuickReturn.Text = "4.领料退库";
             this.btnQuickReturn.Click += new System.EventHandler(this.UCModuleSelect_Click);
             this.btnQuickReturn.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
-            // btnPickListOnline
-            // 
-            this.btnPickListOnline.Location = new System.Drawing.Point(123, 86);
-            this.btnPickListOnline.Name = "btnPickListOnline";
-            this.btnPickListOnline.Size = new System.Drawing.Size(90, 20);
-            this.btnPickListOnline.TabIndex = 1;
-            this.btnPickListOnline.Text = "6.拣货上线";
-            this.btnPickListOnline.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnPickListOnline.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
             // btnOrderShip
             // 
-            this.btnOrderShip.Location = new System.Drawing.Point(123, 51);
+            this.btnOrderShip.Location = new System.Drawing.Point(5, 123);
             this.btnOrderShip.Name = "btnOrderShip";
-            this.btnOrderShip.Size = new System.Drawing.Size(90, 20);
+            this.btnOrderShip.Size = new System.Drawing.Size(104, 20);
             this.btnOrderShip.TabIndex = 4;
-            this.btnOrderShip.Text = "4.订单发货";
+            this.btnOrderShip.Text = "7.销售发货";
             this.btnOrderShip.Click += new System.EventHandler(this.UCModuleSelect_Click);
             this.btnOrderShip.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
-            // btnPickListShip
-            // 
-            this.btnPickListShip.Location = new System.Drawing.Point(123, 122);
-            this.btnPickListShip.Name = "btnPickListShip";
-            this.btnPickListShip.Size = new System.Drawing.Size(90, 20);
-            this.btnPickListShip.TabIndex = 3;
-            this.btnPickListShip.Text = "8.拣货发货";
-            this.btnPickListShip.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnPickListShip.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
-            // btnPickList
-            // 
-            this.btnPickList.Location = new System.Drawing.Point(19, 122);
-            this.btnPickList.Name = "btnPickList";
-            this.btnPickList.Size = new System.Drawing.Size(90, 20);
-            this.btnPickList.TabIndex = 2;
-            this.btnPickList.Text = "7.拣货";
-            this.btnPickList.Click += new System.EventHandler(this.UCModuleSelect_Click);
-            this.btnPickList.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
-            // 
             // btnReceive
             // 
-            this.btnReceive.Location = new System.Drawing.Point(19, 15);
+            this.btnReceive.Location = new System.Drawing.Point(5, 15);
             this.btnReceive.Name = "btnReceive";
-            this.btnReceive.Size = new System.Drawing.Size(90, 20);
+            this.btnReceive.Size = new System.Drawing.Size(104, 20);
             this.btnReceive.TabIndex = 5;
-            this.btnReceive.Text = "1.收货";
+            this.btnReceive.Text = "1.采购收货";
             this.btnReceive.Click += new System.EventHandler(this.UCModuleSelect_Click);
             this.btnReceive.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
@@ -379,14 +379,14 @@ namespace com.Sconit.SmartDevice
         private System.Windows.Forms.TabPage tabProcurement;
         private System.Windows.Forms.Button btnPurchaseReturn;
         private System.Windows.Forms.Button btnQuickReturn;
-        private System.Windows.Forms.Button btnPickListOnline;
         private System.Windows.Forms.Button btnOrderShip;
-        private System.Windows.Forms.Button btnPickListShip;
-        private System.Windows.Forms.Button btnPickList;
         private System.Windows.Forms.Button btnReceive;
         private System.Windows.Forms.Button btnBindContainerOut;
         private System.Windows.Forms.Button btnBindContainerIn;
         private System.Windows.Forms.Button btnDevanning;
         private System.Windows.Forms.Button btnProductionReceive;
+        private System.Windows.Forms.Button btnProductionReturn;
+        private System.Windows.Forms.Button btnQuickTransfer;
+        private System.Windows.Forms.Button btnDistributionReturn;
     }
 }

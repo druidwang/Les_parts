@@ -393,4 +393,13 @@
   <data name="Hu_ExternalOrderNo" xml:space="preserve">
     <value>ExternalOrderNo</value>
   </data>
+  <data name="HU_ProductBarCode_Not_Check" xml:space="preserve">
+    <value>Must Check One ProductBarCode</value>
+  </data>
+  <data name="Hu_QtyNotMatch" xml:space="preserve">
+    <value>Qty Not Match</value>
+  </data>
+  <data name="HU_Repacked" xml:space="preserve">
+    <value>Hu Repacked</value>
+  </data>
 </root>

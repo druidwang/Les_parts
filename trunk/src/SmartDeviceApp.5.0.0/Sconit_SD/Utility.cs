@@ -74,7 +74,7 @@ namespace com.Sconit.SmartDevice
 
         public static bool HasPermission(OrderMaster orderMaster, User user)
         {
-            return HasPermission(user.Permissions, orderMaster.Type, orderMaster.IsCheckPartyFromAuthority, orderMaster.IsCheckPartyToAuthority, orderMaster.PartyFrom, orderMaster.PartyTo); ;
+            return HasPermission(user.Permissions, orderMaster.Type, orderMaster.IsCheckPartyFromAuthority, orderMaster.IsCheckPartyToAuthority, orderMaster.PartyFrom, orderMaster.PartyTo, orderMaster.SubType == OrderSubType.Return ? true : false); ;
         }
 
         public static bool HasPermission(FlowMaster flowMaster, User user)
@@ -88,6 +88,11 @@ namespace com.Sconit.SmartDevice
         }
 
         public static bool HasPermission(Permission[] permissions, OrderType? orderType, bool isCheckPartyFromAuthority, bool isCheckPartyToAuthority, string partyFrom, string partyTo)
+        {
+            return HasPermission(permissions, orderType, isCheckPartyFromAuthority, isCheckPartyToAuthority, partyFrom, partyTo, false);
+        }
+
+        public static bool HasPermission(Permission[] permissions, OrderType? orderType, bool isCheckPartyFromAuthority, bool isCheckPartyToAuthority, string partyFrom, string partyTo, bool isReturn)
         {
             bool hasPermission = true;
             if (orderType == null || orderType == OrderType.Transfer || orderType == OrderType.Production || orderType == OrderType.SubContractTransfer)
@@ -120,26 +125,56 @@ namespace com.Sconit.SmartDevice
             }
             else if (orderType == OrderType.Procurement || orderType == OrderType.SubContract || orderType == OrderType.ScheduleLine)
             {
-                if (isCheckPartyToAuthority)
+                if (!isReturn)
                 {
-                    hasPermission = permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Supplier).Select(t => t.PermissionCode).Contains(partyFrom)
-                        && permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Region).Select(t => t.PermissionCode).Contains(partyTo);
+                    if (isCheckPartyToAuthority)
+                    {
+                        hasPermission = permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Supplier).Select(t => t.PermissionCode).Contains(partyFrom)
+                            && permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Region).Select(t => t.PermissionCode).Contains(partyTo);
+                    }
+                    else
+                    {
+                        hasPermission = permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Supplier).Select(t => t.PermissionCode).Contains(partyFrom);
+                    }
                 }
                 else
                 {
-                    hasPermission = permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Supplier).Select(t => t.PermissionCode).Contains(partyFrom);
+                    if (isCheckPartyToAuthority)
+                    {
+                        hasPermission = permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Supplier).Select(t => t.PermissionCode).Contains(partyTo)
+                            && permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Region).Select(t => t.PermissionCode).Contains(partyFrom);
+                    }
+                    else
+                    {
+                        hasPermission = permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Supplier).Select(t => t.PermissionCode).Contains(partyTo);
+                    }
                 }
             }
             else if (orderType == OrderType.Distribution || orderType == OrderType.CustomerGoods)
             {
-                if (isCheckPartyFromAuthority)
+                if (!isReturn)
                 {
-                    hasPermission = permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Region).Select(t => t.PermissionCode).Contains(partyFrom)
-                        && permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Customer).Select(t => t.PermissionCode).Contains(partyTo);
+                    if (isCheckPartyFromAuthority)
+                    {
+                        hasPermission = permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Region).Select(t => t.PermissionCode).Contains(partyFrom)
+                            && permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Customer).Select(t => t.PermissionCode).Contains(partyTo);
+                    }
+                    else
+                    {
+                        hasPermission = permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Customer).Select(t => t.PermissionCode).Contains(partyTo);
+                    }
                 }
                 else
                 {
-                    hasPermission = permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Customer).Select(t => t.PermissionCode).Contains(partyTo);
+                    if (isCheckPartyFromAuthority)
+                    {
+                        hasPermission = permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Region).Select(t => t.PermissionCode).Contains(partyTo)
+                            && permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Customer).Select(t => t.PermissionCode).Contains(partyFrom);
+                    }
+                    else
+                    {
+                        hasPermission = permissions.Where(t => t.PermissionCategoryType == PermissionCategoryType.Customer).Select(t => t.PermissionCode).Contains(partyFrom);
+                    }
                 }
             }
             return hasPermission;

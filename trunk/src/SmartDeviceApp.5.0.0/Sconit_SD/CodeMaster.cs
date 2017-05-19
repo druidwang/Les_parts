@@ -23,6 +23,9 @@ namespace com.Sconit.SmartDevice.CodeMaster
         Client_QuickSeqShip,
         Client_PurchaseReturn,
         Client_ProductionReceive,
+        Client_QuickTransfer,     //车间发料
+        Client_ProductionReturn,   //成品入库冲销
+        Client_DistributionReturn,  //销售退货
 
 
         //仓库

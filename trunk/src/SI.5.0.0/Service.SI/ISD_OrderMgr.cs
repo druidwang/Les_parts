@@ -27,6 +27,10 @@ namespace com.Sconit.Service.SI
 
         void BatchUpdateMiscOrderDetails(string miscOrderNo, IList<string> addHuIdList);
 
+        void ConfirmMiscOrder(string miscOrderNo, IList<string> addHuIdList);
+
+        void QuickCreateMiscOrder(IList<string> addHuIdList,string locationCode,string binCode, int type);
+
         void StartVanOrder(string orderNo, string location, IList<com.Sconit.Entity.SI.SD_INV.Hu> feedHuList);
 
         void StartVanOrder(string orderNo, string feedOrderNo);

@@ -300,6 +300,15 @@
     <EmbeddedResource Include="UCProductionReceive.resx">
       <DependentUpon>UCProductionReceive.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCQuickTransfer.resx">
+      <DependentUpon>UCQuickTransfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCProductionReturn.resx">
+      <DependentUpon>UCProductionReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCDistributionReturn.resx">
+      <DependentUpon>UCDistributionReturn.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -496,6 +505,24 @@
     </Compile>
     <Compile Include="UCProductionReceive.Designer.cs">
       <DependentUpon>UCProductionReceive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCQuickTransfer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCQuickTransfer.Designer.cs">
+      <DependentUpon>UCQuickTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCProductionReturn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCProductionReturn.Designer.cs">
+      <DependentUpon>UCProductionReturn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCDistributionReturn.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCDistributionReturn.Designer.cs">
+      <DependentUpon>UCDistributionReturn.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

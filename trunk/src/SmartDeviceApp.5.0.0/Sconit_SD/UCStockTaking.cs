@@ -294,6 +294,10 @@ namespace com.Sconit.SmartDevice
                         throw new BusinessException("请不要重复扫描条码");
                     }
                     Hu hu = this.smartDeviceService.GetHu(barCode);
+                    if (!string.IsNullOrEmpty(hu.PalletCode))
+                    {
+                        throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
+                    }
                     if (hu.Qty <= 0)
                     {
                         throw new BusinessException("此条码的数量需大于0");
@@ -311,6 +315,34 @@ namespace com.Sconit.SmartDevice
                     this.gvHuListDataBind();
 
                     this.isCancel = false;
+                }
+                else if (op == CodeMaster.BarCodeType.TP.ToString())
+                {
+                    if (this.binList.Count > 0 && string.IsNullOrEmpty(this.binCode))
+                    {
+                        throw new BusinessException("此盘点单需先扫描库格条码");
+                    }
+                    Hu[] huList = smartDeviceService.GetHuListByPallet(barCode);
+                    foreach (Hu hu in huList)
+                    {
+                        if (hus.Where(h => h.HuId == hu.HuId).ToList().Count > 0)
+                        {
+                            throw new BusinessException("请不要重复扫描条码");
+                        }
+                        if (hu.Qty <= 0)
+                        {
+                            throw new BusinessException("此条码的数量需大于0");
+                        }
+                      
+                        hu.Region = this.binCode;
+                        hu.Location = this.locationCode != null ? this.locationCode : string.Empty;
+                        hu.CurrentQty = hu.Qty;
+                        this.hus.Insert(0, hu);
+                        //detailStringArray.Add(new string[] { hu.HuId, this.binCode, this.locationCode != null ? this.locationCode : string.Empty });
+                        this.gvHuListDataBind();
+
+                        this.isCancel = false;
+                    }
                 }
                 else
                 {

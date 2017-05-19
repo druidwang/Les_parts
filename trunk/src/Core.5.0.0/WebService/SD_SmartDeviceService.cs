@@ -227,6 +227,35 @@
         }
 
         [WebMethod]
+        public void ConfirmMiscOrder(string miscOrderNo,
+            List<string> addHuIdList, string userCode)
+        {
+            try
+            {
+                SecurityContextHolder.Set(sdSecurityMgr.GetBaseUser(userCode));
+                this.orderMgr.ConfirmMiscOrder(miscOrderNo, addHuIdList);
+            }
+            catch (BusinessException ex)
+            {
+                throw new SoapException(GetBusinessExMessage(ex), SoapException.ServerFaultCode, string.Empty);
+            }
+        }
+
+        [WebMethod]
+        public void QuickCreateMiscOrder(List<string> addHuIdList, string locationCode, string binCode, int type, string userCode)
+        {
+            try
+            {
+                SecurityContextHolder.Set(sdSecurityMgr.GetBaseUser(userCode));
+                this.orderMgr.QuickCreateMiscOrder(addHuIdList, locationCode, binCode, type);
+            }
+            catch (BusinessException ex)
+            {
+                throw new SoapException(GetBusinessExMessage(ex), SoapException.ServerFaultCode, string.Empty);
+            }
+        }
+
+        [WebMethod]
         public List<string> GetItemTraces(string orderNo)
         {
             return orderMgr.GetItemTraces(orderNo);

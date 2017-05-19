@@ -37,5 +37,7 @@ namespace com.Sconit.Service
 
         void CreateMiscOrderDetailFromXls(Stream inputStream, string miscOrderNo);
         void Import201202MiscOrder(Stream inputStream, string wMSNo, string moveType, string cancelMoveType, string miscType);
+
+        void QuickCreateMiscOrder(IList<string> addHuIdList, string locationCode, string binCode, int type);
     }
 }

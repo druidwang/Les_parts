@@ -2,7 +2,7 @@
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://com.Sconit.WebService.SD.SmartDeviceService/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/">
-      <s:element name="StartAging">
+      <s:element name="DoReceiveProdOrder">
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
@@ -10,10 +10,10 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="StartAgingResponse">
+      <s:element name="DoReceiveProdOrderResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="StartAgingResult" type="tns:Hu" />
+            <s:element minOccurs="0" maxOccurs="1" name="DoReceiveProdOrderResult" type="tns:Hu" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -60,6 +60,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="IsOdd" type="s:boolean" />
           <s:element minOccurs="1" maxOccurs="1" name="HuOption" type="tns:HuOption" />
           <s:element minOccurs="0" maxOccurs="1" name="AgingLocation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PalletCode" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="CurrentQty" type="s:decimal" />
           <s:element minOccurs="0" maxOccurs="1" name="Station" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="OrderDetId" type="s:int" />
@@ -98,6 +99,37 @@
           <s:enumeration value="Filtered" />
         </s:restriction>
       </s:simpleType>
+      <s:element name="DoFiReceipt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huIdList" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DoFiReceiptResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="StartAging">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="StartAgingResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="StartAgingResult" type="tns:Hu" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="DoAging">
         <s:complexType>
           <s:sequence>
@@ -297,11 +329,6 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:complexType name="ArrayOfString">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
-        </s:sequence>
-      </s:complexType>
       <s:element name="TransferToDockResponse">
         <s:complexType />
       </s:element>
@@ -1281,6 +1308,32 @@
       <s:element name="BatchUpdateMiscOrderDetailsResponse">
         <s:complexType />
       </s:element>
+      <s:element name="ConfirmMiscOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="miscOrderNo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="addHuIdList" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConfirmMiscOrderResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="QuickCreateMiscOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="addHuIdList" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="locationCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="binCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="type" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QuickCreateMiscOrderResponse">
+        <s:complexType />
+      </s:element>
       <s:element name="GetItemTraces">
         <s:complexType>
           <s:sequence>
@@ -1535,6 +1588,7 @@
           <s:enumeration value="WebAddress" />
           <s:enumeration value="StartUpTime" />
           <s:enumeration value="DefaultDeliveryBarCodeTemplate" />
+          <s:enumeration value="IsForceFIFO" />
         </s:restriction>
       </s:simpleType>
       <s:element name="GetEntityPreferenceResponse">
@@ -2071,34 +2125,20 @@
           </s:sequence>
         </s:complexType>
       </s:element>
-      <s:element name="DoReceiveProdOrder">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="DoReceiveProdOrderResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="DoReceiveProdOrderResult" type="tns:Hu" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="DoFiReceipt">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huIdList" type="tns:ArrayOfString" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="DoFiReceiptResponse">
-        <s:complexType />
-      </s:element>
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="DoReceiveProdOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:DoReceiveProdOrder" />
+  </wsdl:message>
+  <wsdl:message name="DoReceiveProdOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:DoReceiveProdOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="DoFiReceiptSoapIn">
+    <wsdl:part name="parameters" element="tns:DoFiReceipt" />
+  </wsdl:message>
+  <wsdl:message name="DoFiReceiptSoapOut">
+    <wsdl:part name="parameters" element="tns:DoFiReceiptResponse" />
+  </wsdl:message>
   <wsdl:message name="StartAgingSoapIn">
     <wsdl:part name="parameters" element="tns:StartAging" />
   </wsdl:message>
@@ -2314,6 +2354,18 @@
   </wsdl:message>
   <wsdl:message name="BatchUpdateMiscOrderDetailsSoapOut">
     <wsdl:part name="parameters" element="tns:BatchUpdateMiscOrderDetailsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmMiscOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:ConfirmMiscOrder" />
+  </wsdl:message>
+  <wsdl:message name="ConfirmMiscOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:ConfirmMiscOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="QuickCreateMiscOrderSoapIn">
+    <wsdl:part name="parameters" element="tns:QuickCreateMiscOrder" />
+  </wsdl:message>
+  <wsdl:message name="QuickCreateMiscOrderSoapOut">
+    <wsdl:part name="parameters" element="tns:QuickCreateMiscOrderResponse" />
   </wsdl:message>
   <wsdl:message name="GetItemTracesSoapIn">
     <wsdl:part name="parameters" element="tns:GetItemTraces" />
@@ -2561,19 +2613,15 @@
   <wsdl:message name="CancelReceiveProdOrderSoapOut">
     <wsdl:part name="parameters" element="tns:CancelReceiveProdOrderResponse" />
   </wsdl:message>
-  <wsdl:message name="DoReceiveProdOrderSoapIn">
-    <wsdl:part name="parameters" element="tns:DoReceiveProdOrder" />
-  </wsdl:message>
-  <wsdl:message name="DoReceiveProdOrderSoapOut">
-    <wsdl:part name="parameters" element="tns:DoReceiveProdOrderResponse" />
-  </wsdl:message>
-  <wsdl:message name="DoFiReceiptSoapIn">
-    <wsdl:part name="parameters" element="tns:DoFiReceipt" />
-  </wsdl:message>
-  <wsdl:message name="DoFiReceiptSoapOut">
-    <wsdl:part name="parameters" element="tns:DoFiReceiptResponse" />
-  </wsdl:message>
   <wsdl:portType name="SD_SmartDeviceServiceSoap">
+    <wsdl:operation name="DoReceiveProdOrder">
+      <wsdl:input message="tns:DoReceiveProdOrderSoapIn" />
+      <wsdl:output message="tns:DoReceiveProdOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DoFiReceipt">
+      <wsdl:input message="tns:DoFiReceiptSoapIn" />
+      <wsdl:output message="tns:DoFiReceiptSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="StartAging">
       <wsdl:input message="tns:StartAgingSoapIn" />
       <wsdl:output message="tns:StartAgingSoapOut" />
@@ -2717,6 +2765,14 @@
     <wsdl:operation name="BatchUpdateMiscOrderDetails">
       <wsdl:input message="tns:BatchUpdateMiscOrderDetailsSoapIn" />
       <wsdl:output message="tns:BatchUpdateMiscOrderDetailsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmMiscOrder">
+      <wsdl:input message="tns:ConfirmMiscOrderSoapIn" />
+      <wsdl:output message="tns:ConfirmMiscOrderSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QuickCreateMiscOrder">
+      <wsdl:input message="tns:QuickCreateMiscOrderSoapIn" />
+      <wsdl:output message="tns:QuickCreateMiscOrderSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetItemTraces">
       <wsdl:input message="tns:GetItemTracesSoapIn" />
@@ -2882,17 +2938,27 @@
       <wsdl:input message="tns:CancelReceiveProdOrderSoapIn" />
       <wsdl:output message="tns:CancelReceiveProdOrderSoapOut" />
     </wsdl:operation>
-    <wsdl:operation name="DoReceiveProdOrder">
-      <wsdl:input message="tns:DoReceiveProdOrderSoapIn" />
-      <wsdl:output message="tns:DoReceiveProdOrderSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="DoFiReceipt">
-      <wsdl:input message="tns:DoFiReceiptSoapIn" />
-      <wsdl:output message="tns:DoFiReceiptSoapOut" />
-    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SD_SmartDeviceServiceSoap" type="tns:SD_SmartDeviceServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoReceiveProdOrder">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoReceiveProdOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoFiReceipt">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoFiReceipt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="StartAging">
       <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/StartAging" style="document" />
       <wsdl:input>
@@ -3210,6 +3276,24 @@
     </wsdl:operation>
     <wsdl:operation name="BatchUpdateMiscOrderDetails">
       <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/BatchUpdateMiscOrderDetails" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmMiscOrder">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/ConfirmMiscOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QuickCreateMiscOrder">
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/QuickCreateMiscOrder" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -3586,27 +3670,27 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="DoReceiveProdOrder">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoReceiveProdOrder" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DoFiReceipt">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoFiReceipt" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="SD_SmartDeviceServiceSoap12" type="tns:SD_SmartDeviceServiceSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoReceiveProdOrder">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoReceiveProdOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoFiReceipt">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoFiReceipt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="StartAging">
       <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/StartAging" style="document" />
       <wsdl:input>
@@ -3924,6 +4008,24 @@
     </wsdl:operation>
     <wsdl:operation name="BatchUpdateMiscOrderDetails">
       <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/BatchUpdateMiscOrderDetails" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConfirmMiscOrder">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/ConfirmMiscOrder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QuickCreateMiscOrder">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/QuickCreateMiscOrder" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -4293,24 +4395,6 @@
     </wsdl:operation>
     <wsdl:operation name="CancelReceiveProdOrder">
       <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/CancelReceiveProdOrder" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DoReceiveProdOrder">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoReceiveProdOrder" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="DoFiReceipt">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/DoFiReceipt" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

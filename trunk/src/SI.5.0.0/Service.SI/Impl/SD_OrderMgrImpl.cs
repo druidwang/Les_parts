@@ -107,6 +107,20 @@
         }
 
         [Transaction(TransactionMode.Requires)]
+        public void ConfirmMiscOrder(string miscOrderNo, IList<string> addHuIdList)
+        {
+            this.miscOrderMgr.BatchUpdateMiscOrderDetails(miscOrderNo, addHuIdList, null);
+            this.genericMgr.FlushSession();
+            this.miscOrderMgr.CloseMiscOrder(miscOrderNo);
+        }
+
+        [Transaction(TransactionMode.Requires)]
+        public void QuickCreateMiscOrder(IList<string> addHuIdList, string locationCode, string binCode, int type)
+        {
+            this.miscOrderMgr.QuickCreateMiscOrder(addHuIdList, locationCode, binCode, type);
+        }
+
+        [Transaction(TransactionMode.Requires)]
         public void StartVanOrder(string orderNo, string location, IList<com.Sconit.Entity.SI.SD_INV.Hu> feedHuList)
         {
             bool isForce = false;
@@ -725,11 +739,11 @@
                     h.PalletCode = string.Empty;
                     genericMgr.Update(h);
 
-                   var palletHu = palletHus.Where(p=>p.HuId == h.HuId).FirstOrDefault();
-                   if (palletHu != null)
-                   {
-                       genericMgr.Delete(palletHu);
-                   }
+                    var palletHu = palletHus.Where(p => p.HuId == h.HuId).FirstOrDefault();
+                    if (palletHu != null)
+                    {
+                        genericMgr.Delete(palletHu);
+                    }
                 }
             }
             #endregion

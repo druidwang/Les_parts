@@ -547,6 +547,15 @@ namespace Resources.INV {
         }
         
         /// <summary>
+        ///   查找类似 Must Check One ProductBarCode 的本地化字符串。
+        /// </summary>
+        public static string HU_ProductBarCode_Not_Check {
+            get {
+                return ResourceManager.GetString("HU_ProductBarCode_Not_Check", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Qty 的本地化字符串。
         /// </summary>
         public static string Hu_Qty {
@@ -579,6 +588,15 @@ namespace Resources.INV {
         public static string Hu_Qty2 {
             get {
                 return ResourceManager.GetString("Hu_Qty2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Qty Not Match 的本地化字符串。
+        /// </summary>
+        public static string Hu_QtyNotMatch {
+            get {
+                return ResourceManager.GetString("Hu_QtyNotMatch", resourceCulture);
             }
         }
         
@@ -651,6 +669,15 @@ namespace Resources.INV {
         public static string Hu_RemindExpireDate_start {
             get {
                 return ResourceManager.GetString("Hu_RemindExpireDate_start", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Hu Repacked 的本地化字符串。
+        /// </summary>
+        public static string HU_Repacked {
+            get {
+                return ResourceManager.GetString("HU_Repacked", resourceCulture);
             }
         }
         

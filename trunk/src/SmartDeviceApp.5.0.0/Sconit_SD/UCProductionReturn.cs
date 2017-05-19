@@ -11,40 +11,38 @@ using System.Web.Services.Protocols;
 
 namespace com.Sconit.SmartDevice
 {
-    public partial class UCProductionReceive : UCBase
+    public partial class UCProductionReturn : UCBase
     {
-        private MiscOrderMaster miscOrderMaster;
+     
 
-        private static UCProductionReceive ucProductionReceive;
+        private static UCProductionReturn ucProductionReturn;
         private static object obj = new object();
         private Location location;
-        private Bin bin;
 
-
-        public UCProductionReceive(User user)
+        public UCProductionReturn(User user)
             : base(user)
         {
             this.InitializeComponent();
-            base.lblMessage.Text = "请先扫描库位或库格";
+            base.lblMessage.Text = "请先扫描库位";
             base.btnOrder.Text = "确定";
         }
 
-        public static UCProductionReceive GetUCProductionReceive(User user)
+        public static UCProductionReturn GetUCProductionReturn(User user)
         {
-            if (ucProductionReceive == null)
+            if (ucProductionReturn == null)
             {
                 lock (obj)
                 {
-                    if (ucProductionReceive == null)
+                    if (ucProductionReturn == null)
                     {
-                        ucProductionReceive = new UCProductionReceive(user);
+                        ucProductionReturn = new UCProductionReturn(user);
                     }
                 }
             }
-            ucProductionReceive.user = user;
-            ucProductionReceive.lblMessage.Text = "请扫描成品入库单";
-            ucProductionReceive.Reset();
-            return ucProductionReceive;
+            ucProductionReturn.user = user;
+            ucProductionReturn.lblMessage.Text = "请扫描成品条码/托盘";
+            ucProductionReturn.Reset();
+            return ucProductionReturn;
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
@@ -65,50 +63,44 @@ namespace com.Sconit.SmartDevice
         {
             base.ScanBarCode();
 
-            if (bin == null && location == null)
+
+            if ( location == null)
             {
-                if (base.op == CodeMaster.BarCodeType.B.ToString())
-                {
-
-                    base.barCode = base.barCode.Substring(2, base.barCode.Length - 2);
-                    bin = smartDeviceService.GetBin(base.barCode);
-
-                    this.lblMessage.Text = "目的库格:" + bin.Code;
-                }
-                else if (base.op == CodeMaster.BarCodeType.L.ToString())
+                if (base.op == CodeMaster.BarCodeType.L.ToString())
                 {
 
                     base.barCode = base.barCode.Substring(2, base.barCode.Length - 2);
                     location = smartDeviceService.GetLocation(base.barCode);
 
-                    this.lblMessage.Text = "目的库位:" + location.Code;
+                    this.lblMessage.Text = "成品入库冲销库位:" + location.Code;
                 }
             }
 
             else if (op == CodeMaster.BarCodeType.HU.ToString())
             {
-
                 if (hus.Where(h => h.HuId == barCode).ToList().Count > 0)
                 {
                     throw new BusinessException("请不要重复扫描条码");
                 }
                 Hu hu = this.smartDeviceService.GetHu(barCode);
-                if (!string.IsNullOrEmpty(hu.PalletCode))
-                {
-                    throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
-                }
                 if (hu == null)
                 {
                     throw new BusinessException("此条码不存在");
                 }
-                else if (hu.Status == HuStatus.Location)
+                if (!string.IsNullOrEmpty(hu.PalletCode))
                 {
-                    throw new BusinessException("条码已在库存中,不能入库");
+                    throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
+                }
+                else if (hu.Status != HuStatus.Location)
+                {
+                    throw new BusinessException("条码不在库存中,不能出库");
                 }
                 else if (hu.IsFreeze)
                 {
-                    throw new BusinessException("条码被冻结,不能入库");
+                    throw new BusinessException("条码被冻结,不能出库");
                 }
+            
+              
                 else if (hu.OccupyType != OccupyType.None)
                 {
                     throw new BusinessException("条码被{0}占用!", hu.OccupyReferenceNo);
@@ -119,7 +111,6 @@ namespace com.Sconit.SmartDevice
                     this.gvHuListDataBind();
                     this.isCancel = false;
                 }
-
             }
 
             else if (op == CodeMaster.BarCodeType.TP.ToString())
@@ -133,14 +124,16 @@ namespace com.Sconit.SmartDevice
                         throw new BusinessException("请不要重复扫描条码");
                     }
 
-                    else if (hu.Status == HuStatus.Location)
+                    else if (hu.Status != HuStatus.Location)
                     {
-                        throw new BusinessException("条码已在库存中,不能入库");
+                        throw new BusinessException("条码不在库存中,不能出库");
                     }
                     else if (hu.IsFreeze)
                     {
-                        throw new BusinessException("条码被冻结,不能入库");
+                        throw new BusinessException("条码被冻结,不能出库");
                     }
+                 
+               
                     else if (hu.OccupyType != OccupyType.None)
                     {
                         throw new BusinessException("条码被{0}占用!", hu.OccupyReferenceNo);
@@ -157,7 +150,7 @@ namespace com.Sconit.SmartDevice
             {
                 throw new BusinessException("条码格式不合法");
             }
-           
+
         }
 
 
@@ -170,9 +163,11 @@ namespace com.Sconit.SmartDevice
                 {
                     throw new BusinessException("未扫入物料条码,不可以提交");
                 }
-                smartDeviceService.QuickCreateMiscOrder(hus.Select(h => h.HuId).ToArray(),location == null ? string.Empty:location.Code,bin == null? string.Empty:bin.Code,1,this.user.Code);
 
-                this.lblMessage.Text = "入库成功";
+               
+                smartDeviceService.QuickCreateMiscOrder(hus.Select(h => h.HuId).ToArray(), location.Code, string.Empty, 0, this.user.Code);
+
+                this.lblMessage.Text = "入库冲销成功";
 
                 this.Reset();
                 this.isMark = true;
@@ -206,7 +201,7 @@ namespace com.Sconit.SmartDevice
             if (this.hus == null || this.hus.Count == 0)
             {
                 this.Reset();
-                this.lblMessage.Text = "请扫描条码";
+                this.lblMessage.Text = "请扫描成品入库单";
                 return null;
             }
 
@@ -221,11 +216,11 @@ namespace com.Sconit.SmartDevice
         protected override void Reset()
         {
             this.hus = new List<Hu>();
-            this.miscOrderMaster = null;
+
             this.gvHuListDataBind();
-            this.location = null;
-            this.bin = null;
+            //this.lblMessage.Text = string.Empty;
             this.tbBarCode.Text = string.Empty;
+            this.location = null;
             this.isCancel = false;
             this.isMasterBind = true;
             this.tbBarCode.Focus();

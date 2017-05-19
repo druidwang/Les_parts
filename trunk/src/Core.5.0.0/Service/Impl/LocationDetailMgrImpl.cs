@@ -6082,6 +6082,74 @@ namespace com.Sconit.Service.Impl
                   .ToDictionary(d => d.Item, d => d.Qty);
         }
 
+
+
+
+        [Transaction(TransactionMode.Requires)]
+        public IList<Hu> Repack(string repackHuId, IList<ProductBarCode> checkedProductBarCodeList, IList<ProductBarCode> uncheckedProductBarCodeList)
+        {
+            IList<Hu> oldHuList = new List<Hu>();
+            IList<Hu> newHuList = new List<Hu>();
+            Hu hu = genericMgr.FindById<Hu>(repackHuId);
+            oldHuList.Add(hu);
+
+            #region 创建条码
+            Hu hu1 = huMgr.CloneHu(hu, checkedProductBarCodeList.Sum(p => p.Qty));
+            Hu hu2 = huMgr.CloneHu(hu, uncheckedProductBarCodeList.Sum(p => p.Qty));
+            newHuList.Add(hu1);
+            newHuList.Add(hu2);
+            genericMgr.Create(hu1);
+            genericMgr.Create(hu2);
+            this.genericMgr.FlushSession();
+            #endregion
+
+
+            #region 翻包
+            if (hu.Qty != hu1.Qty + hu2.Qty)
+            {
+                throw new BusinessException(Resources.INV.Hu.Hu_QtyNotMatch);
+            }
+
+            var inventoryPackList = new List<Entity.INV.InventoryRePack>();
+            foreach (var h in oldHuList)
+            {
+                var inventoryUnPack = new Entity.INV.InventoryRePack();
+                inventoryUnPack.HuId = h.HuId;
+                inventoryUnPack.Type = CodeMaster.RePackType.Out;
+                inventoryPackList.Add(inventoryUnPack);
+            }
+            foreach (var h in newHuList)
+            {
+                var inventoryUnPack = new Entity.INV.InventoryRePack();
+                inventoryUnPack.HuId = h.HuId;
+                inventoryUnPack.Type = CodeMaster.RePackType.In;
+                inventoryPackList.Add(inventoryUnPack);
+            }
+
+            InventoryRePack(inventoryPackList);
+            #endregion
+
+
+            #region 重建对照关系
+            foreach (ProductBarCode p in checkedProductBarCodeList)
+            {
+                p.HuId = hu1.HuId;
+                genericMgr.Update(p);
+            }
+
+            foreach (ProductBarCode p in uncheckedProductBarCodeList)
+            {
+                p.HuId = hu2.HuId;
+                genericMgr.Update(p);
+
+            }
+
+            #endregion
+
+            return newHuList;
+
+        }
+
         #endregion
 
         #region private methods

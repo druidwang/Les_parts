@@ -2831,6 +2831,10 @@
     <Content Include="Views\com.Sconit.Web.Controllers.INV\Pallet\New.cshtml" />
     <Content Include="Views\com.Sconit.Web.Controllers.ORD\InMiscOrder\InitInventory.cshtml" />
     <Content Include="Resource\Templates\Excel\Pallet.xls" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\Hu\RepackIndex.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\Hu\_RepackSearch.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\Hu\Repack.cshtml" />
+    <Content Include="Views\com.Sconit.Web.Controllers.INV\Hu\_RepackProductBarCodeList.cshtml" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
       <SubType>Designer</SubType>

@@ -396,4 +396,13 @@
   <data name="Hu_ExternalOrderNo" xml:space="preserve">
     <value>外部订单号</value>
   </data>
+  <data name="HU_ProductBarCode_Not_Check" xml:space="preserve">
+    <value>请选择条码</value>
+  </data>
+  <data name="HU_Repacked" xml:space="preserve">
+    <value>翻包成功</value>
+  </data>
+  <data name="Hu_QtyNotMatch" xml:space="preserve">
+    <value>翻箱前后数量不匹配</value>
+  </data>
 </root>

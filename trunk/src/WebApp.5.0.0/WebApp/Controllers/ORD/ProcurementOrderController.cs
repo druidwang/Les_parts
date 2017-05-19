@@ -274,6 +274,8 @@
                     {
                         orderDetail.Remark = Remarks[i];
                     }
+
+
                     orderDetList.Add(orderDetail);
                 }
 
@@ -298,6 +300,11 @@
                     foreach (OrderDetail orderDetail in orderDetList)
                     {
                         OrderDetail newOrderDetail = RefreshOrderDetail(flowDetailList, orderDetail, orderMaster.SubType);
+
+                        #region 科尔本逻辑先写死强制检验
+                        newOrderDetail.IsInspect = true;
+                        #endregion
+
                         orderDetailList.Add(newOrderDetail);
                     }
                 }
@@ -326,7 +333,7 @@
                 DateTime effectiveDate = orderMaster.EffectiveDate.HasValue ? orderMaster.EffectiveDate.Value : DateTime.Now;
                 OrderMaster newOrder = orderMgr.TransferFlow2Order(flow, null, effectiveDate, false);
                 newOrder.IsQuick = orderMaster.IsQuick;
-           
+
 
                 if (orderMaster.WindowTime == DateTime.MinValue)
                 {
@@ -359,7 +366,7 @@
                     newOrder.SubType = orderMaster.SubType;
                     //newOrder.IsAutoRelease = false;
 
-                  //  newOrder.IsAutoRelease = orderMaster.IsAutoRelease;
+                    //  newOrder.IsAutoRelease = orderMaster.IsAutoRelease;
                     newOrder.IsAutoReceive = true;
 
                     if (newOrder.IsQuick)
