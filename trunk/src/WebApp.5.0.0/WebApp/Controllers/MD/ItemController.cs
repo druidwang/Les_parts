@@ -354,6 +354,7 @@ namespace com.Sconit.Web.Controllers.MD
                 //}
                 if (canSave)
                 {
+                    item.ItemCategory = string.Empty;
                     this.itemMgr.UpdateItem(item);
                     SaveSuccessMessage(Resources.MD.Item.Item_Updated);
                 }
