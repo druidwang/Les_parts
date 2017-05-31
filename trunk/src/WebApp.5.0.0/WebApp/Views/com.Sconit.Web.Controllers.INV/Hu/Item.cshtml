@@ -8,6 +8,7 @@
                 if (combobox == undefined) {
                     return;
                 }
+
                 if (combobox.selectedIndex == undefined || combobox.selectedIndex == -1) {
                     combobox.value("");
                     combobox.reload();
@@ -27,12 +28,18 @@
                         }
                     });
 
+
                     $("#Description").val("");
                     $("#HuUnitCount").val("");
                     $("#MinUnitCount").val("");
                     $("#supplierLotNo").val("");
 
                 } else {
+
+                    $('#ManufactureParty').data('tComboBox').value('');
+                    $('#ManufactureParty').data('tComboBox').text('');
+                    $("#ManufactureParty").data("tComboBox").reload();
+
                     var data = {
                         "itemCode": e.value
                     };
@@ -82,12 +89,21 @@
                                         $("#UomDropDownList").html(data);
                                     }
                                 });
+
+                            
                             }
                         }
                     });
                 }
 
             }
+        }
+
+
+        function ManufactureParty_DataBinding(e) {
+            e.data = {
+                item: $("#ItemCode").val()
+            };
         }
 
         function onCreateByItem(isExport) {
@@ -250,14 +266,16 @@
                 </label>
             </div>
             <div class="search-field">
+               <div id="ManufacturePartyDropDownList">
                 @{
-        Html.RenderAction("_PartyDropDownList", "Common",
+        Html.RenderAction("_ManufacturePartyComboBox", "Common",
         new
         {
             controlName = "ManufactureParty"
 
         });
                 }
+                </div>
             </div>
             <div class="search-label">
                 <label>

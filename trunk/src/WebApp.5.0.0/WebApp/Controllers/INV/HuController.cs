@@ -533,7 +533,8 @@ namespace com.Sconit.Web.Controllers.INV
                     orderDetail.ManufactureParty = orderMaster.PartyFrom;
                     orderDetail.HuQty = orderDetail.OrderedQty;
                     orderDetail.LotNo = LotNoHelper.GenerateLotNo();
-                    orderDetail.ManufactureDateStrFormat = DateTime.Now.ToString("yyyy-MM-dd");
+                   // orderDetail.ManufactureDateStrFormat = DateTime.Now.ToString("yyyy-MM-dd");
+                    orderDetail.ManufactureDateStrFormat = orderMaster.WindowTime.ToString("yyyy-MM-dd");
                     if (!orderDetail.IsChangeUnitCount)
                     {
                         //orderDetail.HuQty = Math.Ceiling(orderDetail.HuQty / orderDetail.UnitCount) * orderDetail.UnitCount;

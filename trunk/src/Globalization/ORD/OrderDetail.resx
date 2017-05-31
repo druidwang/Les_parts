@@ -336,4 +336,7 @@
   <data name="OrderDetail_ManufactureParty1" xml:space="preserve">
     <value>制造商</value>
   </data>
+  <data name="OrderDetail_WindowTime" xml:space="preserve">
+    <value>WindowTime</value>
+  </data>
 </root>

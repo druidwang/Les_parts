@@ -336,4 +336,7 @@
   <data name="OrderDetail_QualityType" xml:space="preserve">
     <value>质量状态</value>
   </data>
+  <data name="OrderDetail_WindowTime" xml:space="preserve">
+    <value>送货日期</value>
+  </data>
 </root>

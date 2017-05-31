@@ -409,4 +409,7 @@
     <value>WMSSeq</value>
     <comment>SAP序号</comment>
   </data>
+  <data name="OrderDetail_WindowTime" xml:space="preserve">
+    <value>WindowTime</value>
+  </data>
 </root>
