@@ -2667,7 +2667,6 @@
 
         public ActionResult _AjaxLoadingItemManufactureParty(string text, string item)
         {
-
             string hql = "select p from Supplier p where p.Code in (select distinct  m.PartyFrom from FlowMaster as m where exists (select 1 from FlowDetail as d where d.Flow=m.Code and d.Item='" + item + "') and m.Type=" + (int)com.Sconit.CodeMaster.OrderType.Procurement + ")";
             IList<Supplier> supplierList = genericMgr.FindAll<Supplier>(hql);
             return new JsonResult { Data = new SelectList(supplierList, "Code", "CodeDescription", supplierList.FirstOrDefault() == null ? string.Empty : supplierList.First().Code) };

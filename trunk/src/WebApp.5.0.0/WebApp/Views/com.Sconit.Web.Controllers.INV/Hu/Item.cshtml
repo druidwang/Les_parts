@@ -90,7 +90,7 @@
                                     }
                                 });
 
-                            
+
                             }
                         }
                     });
@@ -158,7 +158,8 @@
                     "HuTemplate": $("#HuTemplate").val(),
                     "ManufactureParty": $("#ManufactureParty").val(),
                     "HuOption": $("#HuOption").val(),
-                    "Remark": $("#Remark").val()
+                    "Remark": $("#Remark").val(),
+                    "IsPrintPallet":   $("input[type=checkbox][name=IsPrintPallet]:checked").val() == undefined ? false : $("input[type=checkbox][name=IsPrintPallet]:checked").val()
                 }
                 $.ajax({
                     type: "post",
@@ -266,15 +267,15 @@
                 </label>
             </div>
             <div class="search-field">
-               <div id="ManufacturePartyDropDownList">
-                @{
+                <div id="ManufacturePartyDropDownList">
+                    @{
         Html.RenderAction("_ManufacturePartyComboBox", "Common",
         new
         {
             controlName = "ManufactureParty"
 
         });
-                }
+                    }
                 </div>
             </div>
             <div class="search-label">
@@ -341,7 +342,7 @@
         </div>
 
         <div class="search-label">
-            <label for="OrderMaster_Dock">
+            <label>
                 @Resources.ORD.OrderMaster.OrderMaster_Remarks
             </label>
         </div>
@@ -350,6 +351,14 @@
             @Html.TextBox("Remark", string.Empty)
         </div>
 
+        <div class="search-label">
+            <label>
+                @Resources.INV.Hu.Hu_IsPrintPallet
+            </label>
+        </div>
+        <div class="search-field">
+            @Html.CheckBox("IsPrintPallet", Model != null ? (bool)Model.IsPrintPallet : false)
+        </div>
         <div class="editor-footer">
             @Html.Button(Resources.SYS.Global.Button_Print, "Url_Inventory_Hu_New", new Dictionary<string, string>()
 	                {

@@ -386,8 +386,14 @@ namespace com.Sconit.Service.Impl
         {
             IList<Hu> huList = new List<Hu>();
             IDictionary<string, decimal> huIdDic = numberControlMgr.GetHuId(item);
+            string palletCode = string.Empty;
             if (huIdDic != null && huIdDic.Count > 0)
             {
+                if (item.IsPrintPallet)
+                {
+                    palletCode = numberControlMgr.GetPalletCode();
+                }
+
                 foreach (string huId in huIdDic.Keys)
                 {
                     Hu hu = new Hu();
@@ -414,6 +420,7 @@ namespace com.Sconit.Service.Impl
                     hu.Remark = item.Remark;
                     hu.HuOption = item.HuOption;
                     hu.HuTemplate = item.HuTemplate;
+                    hu.PalletCode = palletCode;
                     if (item.Warranty > 0)
                     {
                         hu.ExpireDate = hu.ManufactureDate.AddDays(item.Warranty);
@@ -426,6 +433,27 @@ namespace com.Sconit.Service.Impl
                     //this.AsyncSendPrintData(hu);
                     huList.Add(hu);
                 }
+
+
+                #region 托盘
+                if (item.IsPrintPallet)
+                {
+
+                    Pallet pallet = new Pallet();
+                    pallet.Code = palletCode;
+                    pallet.Description = item.Code + "|" + item.Description + "|" + huList.Count();
+                    this.genericMgr.Create(pallet);
+
+                    foreach (Hu hu in huList)
+                    {
+                        PalletHu palletHu = new PalletHu();
+                        palletHu.HuId = hu.HuId;
+                        palletHu.PalletCode = palletCode;
+                        genericMgr.Create(palletHu);
+                    }
+
+                }
+                #endregion
 
             }
             return huList;
@@ -593,7 +621,7 @@ namespace com.Sconit.Service.Impl
             return null;
         }
 
-     
+
 
         #region private methods
         private void WrapHuStatus(HuStatus huStatus, LocationLotDetail locationLotDetail)

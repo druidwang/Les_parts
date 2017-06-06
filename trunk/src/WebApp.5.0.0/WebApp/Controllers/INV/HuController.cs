@@ -925,7 +925,7 @@ namespace com.Sconit.Web.Controllers.INV
 
         [SconitAuthorize(Permissions = "Url_Inventory_Hu_New")]
         public JsonResult CreateHuByItem(string ItemCode, string HuUom, decimal HuUnitCount, decimal HuQty, string ManufactureParty,
-            bool IsExport, string SupplierLotNo, string ManufactureDate, string Direction, int HuOption, string HuTemplate, string Remark)
+            bool IsExport, string SupplierLotNo, string ManufactureDate, string Direction, int HuOption, string HuTemplate, string Remark, bool IsPrintPallet)
         {
             try
             {
@@ -940,6 +940,7 @@ namespace com.Sconit.Web.Controllers.INV
                 item.HuOption = (CodeMaster.HuOption)HuOption;
                 item.Deriction = Direction;
                 item.Remark = Remark;
+                item.IsPrintPallet = IsPrintPallet;
                 string huTemplate = HuTemplate;
                 if (string.IsNullOrWhiteSpace(huTemplate))
                 {
@@ -978,7 +979,7 @@ namespace com.Sconit.Web.Controllers.INV
                 }
                 else
                 {
-                    string printUrl = PrintHuList(huList, huTemplate);
+                    string printUrl = PrintHuList(huList, huTemplate, item.IsPrintPallet);
                     object obj = new { SuccessMessage = string.Format(Resources.EXT.ControllerLan.Con_BarcodePrintedSuccessfully_1, huList.Count), PrintUrl = printUrl };
                     return Json(obj);
                 }

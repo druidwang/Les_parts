@@ -59,6 +59,8 @@ namespace com.Sconit.Entity.MD
         public string ItemPriorityDesc { get; set; }
 
         public string HuTemplate { get; set; }
+
+        public bool IsPrintPallet { get; set; }
         public string CodeDescription
         {
             get

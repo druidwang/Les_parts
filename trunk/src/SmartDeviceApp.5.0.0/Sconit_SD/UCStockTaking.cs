@@ -294,10 +294,10 @@ namespace com.Sconit.SmartDevice
                         throw new BusinessException("请不要重复扫描条码");
                     }
                     Hu hu = this.smartDeviceService.GetHu(barCode);
-                    if (!string.IsNullOrEmpty(hu.PalletCode))
-                    {
-                        throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
-                    }
+                    //if (!string.IsNullOrEmpty(hu.PalletCode))
+                    //{
+                    //    throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
+                    //}
                     if (hu.Qty <= 0)
                     {
                         throw new BusinessException("此条码的数量需大于0");

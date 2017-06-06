@@ -232,34 +232,35 @@ namespace com.Sconit.Web.Controllers.INV
         public string Print(string code)
         {
             Pallet pallet = queryMgr.FindById<Pallet>(code);
-            IList<PalletHu> palletHuList = genericMgr.FindAll<PalletHu>("from PalletHu where PalletCode = ?", code);
-            PalletHu palletHu = palletHuList.FirstOrDefault();
+            IList<Hu> palletHuList = genericMgr.FindAll<Hu>("from Hu where PalletCode = ?", code);
+
             if (palletHuList == null || palletHuList.Count == 0)
             {
                 throw new BusinessException("托盘明细为空");
             }
 
-            Hu pHu = genericMgr.FindById<Hu>(palletHu.HuId);
-
+            Hu palletHu = palletHuList.First();
             IList<PrintHu> huList = new List<PrintHu>();
-            PrintHu printHu = Mapper.Map<Hu, PrintHu>(pHu);
+            PrintHu printHu = Mapper.Map<Hu, PrintHu>(palletHu);
 
 
             PrintHu hu = new PrintHu();
-            hu.CreateDate = printHu.CreateDate;
-            hu.CreateUserId = printHu.CreateUserId;
-            hu.CreateUserName = printHu.CreateUserName;
+            hu.CreateDate = pallet.CreateDate;
+            hu.CreateUserId = pallet.CreateUserId;
+            hu.CreateUserName = pallet.CreateUserName;
             hu.Item = printHu.Item;
             hu.ItemDescription = printHu.ItemDescription;
-            hu.HuId = printHu.PalletCode;
-            hu.PalletCode = printHu.PalletCode;
+            hu.HuId = pallet.Code;
+            hu.PalletCode = pallet.Code;
             hu.ManufactureParty = printHu.ManufactureParty;
             hu.ManufacturePartyDescription = genericMgr.FindById<Party>(printHu.ManufactureParty).Name;
             hu.ManufactureDate = printHu.ManufactureDate;
             hu.LotNo = printHu.LotNo;
             hu.OrderNo = printHu.OrderNo;
-            hu.Qty = palletHuList.Count();
-            hu.Uom = "箱";
+
+            hu.Qty = palletHuList.Sum(p => p.Qty);
+            hu.Uom = palletHu.Uom + "(" + palletHuList.Count() + "箱)";
+
             hu.ExternalOrderNo = printHu.ExternalOrderNo;
 
 

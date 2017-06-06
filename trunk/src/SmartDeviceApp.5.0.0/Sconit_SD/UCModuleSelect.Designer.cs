@@ -115,6 +115,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnBindContainerOut
             // 
+            this.btnBindContainerOut.Enabled = false;
             this.btnBindContainerOut.Location = new System.Drawing.Point(128, 150);
             this.btnBindContainerOut.Name = "btnBindContainerOut";
             this.btnBindContainerOut.Size = new System.Drawing.Size(98, 20);
@@ -125,6 +126,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnBindContainerIn
             // 
+            this.btnBindContainerIn.Enabled = false;
             this.btnBindContainerIn.Location = new System.Drawing.Point(15, 150);
             this.btnBindContainerIn.Name = "btnBindContainerIn";
             this.btnBindContainerIn.Size = new System.Drawing.Size(100, 20);
@@ -135,6 +137,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnBinning
             // 
+            this.btnBinning.Enabled = false;
             this.btnBinning.Location = new System.Drawing.Point(15, 70);
             this.btnBinning.Name = "btnBinning";
             this.btnBinning.Size = new System.Drawing.Size(100, 20);
@@ -145,6 +148,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnDevanning
             // 
+            this.btnDevanning.Enabled = false;
             this.btnDevanning.Location = new System.Drawing.Point(128, 70);
             this.btnDevanning.Name = "btnDevanning";
             this.btnDevanning.Size = new System.Drawing.Size(98, 20);
@@ -155,6 +159,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnHuStatus
             // 
+            this.btnHuStatus.Enabled = false;
             this.btnHuStatus.Location = new System.Drawing.Point(128, 96);
             this.btnHuStatus.Name = "btnHuStatus";
             this.btnHuStatus.Size = new System.Drawing.Size(98, 20);
@@ -165,6 +170,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnHuClone
             // 
+            this.btnHuClone.Enabled = false;
             this.btnHuClone.Location = new System.Drawing.Point(128, 122);
             this.btnHuClone.Name = "btnHuClone";
             this.btnHuClone.Size = new System.Drawing.Size(98, 20);
@@ -175,6 +181,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnMiscInOut
             // 
+            this.btnMiscInOut.Enabled = false;
             this.btnMiscInOut.Location = new System.Drawing.Point(15, 122);
             this.btnMiscInOut.Name = "btnMiscInOut";
             this.btnMiscInOut.Size = new System.Drawing.Size(100, 20);
@@ -185,6 +192,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnStockTaking
             // 
+            this.btnStockTaking.Enabled = false;
             this.btnStockTaking.Location = new System.Drawing.Point(15, 96);
             this.btnStockTaking.Name = "btnStockTaking";
             this.btnStockTaking.Size = new System.Drawing.Size(100, 20);
@@ -195,6 +203,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnReBinning
             // 
+            this.btnReBinning.Enabled = false;
             this.btnReBinning.Location = new System.Drawing.Point(128, 18);
             this.btnReBinning.Name = "btnReBinning";
             this.btnReBinning.Size = new System.Drawing.Size(98, 20);
@@ -205,6 +214,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnPutAway
             // 
+            this.btnPutAway.Enabled = false;
             this.btnPutAway.Location = new System.Drawing.Point(15, 44);
             this.btnPutAway.Name = "btnPutAway";
             this.btnPutAway.Size = new System.Drawing.Size(100, 20);
@@ -215,6 +225,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnPickUp
             // 
+            this.btnPickUp.Enabled = false;
             this.btnPickUp.Location = new System.Drawing.Point(128, 44);
             this.btnPickUp.Name = "btnPickUp";
             this.btnPickUp.Size = new System.Drawing.Size(99, 20);
@@ -225,6 +236,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnTransfer
             // 
+            this.btnTransfer.Enabled = false;
             this.btnTransfer.Location = new System.Drawing.Point(15, 18);
             this.btnTransfer.Name = "btnTransfer";
             this.btnTransfer.Size = new System.Drawing.Size(100, 20);
@@ -262,6 +274,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnProductionReturn
             // 
+            this.btnProductionReturn.Enabled = false;
             this.btnProductionReturn.Location = new System.Drawing.Point(119, 87);
             this.btnProductionReturn.Name = "btnProductionReturn";
             this.btnProductionReturn.Size = new System.Drawing.Size(110, 20);
@@ -272,6 +285,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnQuickTransfer
             // 
+            this.btnQuickTransfer.Enabled = false;
             this.btnQuickTransfer.Location = new System.Drawing.Point(5, 50);
             this.btnQuickTransfer.Name = "btnQuickTransfer";
             this.btnQuickTransfer.Size = new System.Drawing.Size(104, 20);
@@ -282,6 +296,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnDistributionReturn
             // 
+            this.btnDistributionReturn.Enabled = false;
             this.btnDistributionReturn.Location = new System.Drawing.Point(119, 123);
             this.btnDistributionReturn.Name = "btnDistributionReturn";
             this.btnDistributionReturn.Size = new System.Drawing.Size(110, 20);
@@ -292,6 +307,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnProductionReceive
             // 
+            this.btnProductionReceive.Enabled = false;
             this.btnProductionReceive.Location = new System.Drawing.Point(5, 87);
             this.btnProductionReceive.Name = "btnProductionReceive";
             this.btnProductionReceive.Size = new System.Drawing.Size(104, 20);
@@ -302,6 +318,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnPurchaseReturn
             // 
+            this.btnPurchaseReturn.Enabled = false;
             this.btnPurchaseReturn.Location = new System.Drawing.Point(119, 15);
             this.btnPurchaseReturn.Name = "btnPurchaseReturn";
             this.btnPurchaseReturn.Size = new System.Drawing.Size(111, 20);
@@ -312,6 +329,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnQuickReturn
             // 
+            this.btnQuickReturn.Enabled = false;
             this.btnQuickReturn.Location = new System.Drawing.Point(119, 50);
             this.btnQuickReturn.Name = "btnQuickReturn";
             this.btnQuickReturn.Size = new System.Drawing.Size(110, 20);
@@ -322,6 +340,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnOrderShip
             // 
+            this.btnOrderShip.Enabled = false;
             this.btnOrderShip.Location = new System.Drawing.Point(5, 123);
             this.btnOrderShip.Name = "btnOrderShip";
             this.btnOrderShip.Size = new System.Drawing.Size(104, 20);
@@ -332,6 +351,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnReceive
             // 
+            this.btnReceive.Enabled = false;
             this.btnReceive.Location = new System.Drawing.Point(5, 15);
             this.btnReceive.Name = "btnReceive";
             this.btnReceive.Size = new System.Drawing.Size(104, 20);

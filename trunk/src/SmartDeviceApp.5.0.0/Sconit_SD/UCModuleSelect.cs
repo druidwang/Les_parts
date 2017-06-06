@@ -98,26 +98,29 @@ namespace com.Sconit.SmartDevice
 
             foreach (var keyValuePair in dicObject)
             {
-                dicModule.Add(keyValuePair.Key, keyValuePair.Value);
+                //dicModule.Add(keyValuePair.Key, keyValuePair.Value);
                 //((Button)((keyValuePair.Value)[0])).Enabled = false;
-                //if (permissionList != null)
-                //{
-                //    foreach (string permission in permissionList)
-                //    {
-                //        if (permission == keyValuePair.Key.ToString())
-                //        {
-                //            ((Button)((keyValuePair.Value)[0])).Enabled = true;
-                //            dicModule.Add(keyValuePair.Key, keyValuePair.Value);
-                //            break;
-                //        }
-                //        //if (permission == CodeMaster.TerminalPermission.Client_Qualify.ToString() && dicModule.All(d => d.Key.ToString() != "Client_Reject"))
-                //        //{
-                //        //    this.btnReject.Enabled = true;
-                //        //    dicModule.Add(CodeMaster.TerminalPermission.Client_Reject, new List<object> { this.btnReject, 3, Keys.D3, Keys.NumPad3 });
-                //        //    break;
-                //        //}
-                //    }
-                //}
+                if (permissionList != null)
+                {
+                    foreach (string permission in permissionList)
+                    {
+                        if (permission == keyValuePair.Key.ToString())
+                        {
+                            if (!dicModule.ContainsKey(keyValuePair.Key))
+                            {
+                                ((Button)((keyValuePair.Value)[0])).Enabled = true;
+                                dicModule.Add(keyValuePair.Key, keyValuePair.Value);
+                                break;
+                            }
+                        }
+                        //if (permission == CodeMaster.TerminalPermission.Client_Qualify.ToString() && dicModule.All(d => d.Key.ToString() != "Client_Reject"))
+                        //{
+                        //    this.btnReject.Enabled = true;
+                        //    dicModule.Add(CodeMaster.TerminalPermission.Client_Reject, new List<object> { this.btnReject, 3, Keys.D3, Keys.NumPad3 });
+                        //    break;
+                        //}
+                    }
+                }
             }
         }
 

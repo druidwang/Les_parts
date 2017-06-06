@@ -86,18 +86,18 @@ namespace com.Sconit.SmartDevice
                     {
                         throw new BusinessException("此条码不存在");
                     }
-                    else if (hu.Status != HuStatus.Location)
-                    {
-                        throw new BusinessException("条码不在库存中,不能装入托盘");
-                    }
-                    else if(hu.IsFreeze)
-                    {
-                        throw new BusinessException("条码被冻结,不能装入托盘");
-                    }
-                    else if (hu.OccupyType != OccupyType.None)
-                    {
-                        throw new BusinessException("条码被{0}占用!", hu.OccupyReferenceNo);
-                    }
+                    //else if (hu.Status != HuStatus.Location)
+                    //{
+                    //    throw new BusinessException("条码不在库存中,不能装入托盘");
+                    //}
+                    //else if(hu.IsFreeze)
+                    //{
+                    //    throw new BusinessException("条码被冻结,不能装入托盘");
+                    //}
+                    //else if (hu.OccupyType != OccupyType.None)
+                    //{
+                    //    throw new BusinessException("条码被{0}占用!", hu.OccupyReferenceNo);
+                    //}
                     else
                     {
                         var isHuInPallet = smartDeviceService.IsHuInPallet(hu.HuId);
