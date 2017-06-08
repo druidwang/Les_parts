@@ -66,6 +66,9 @@
     <Compile Include="BaseWebService.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="MESService.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="WCSService.cs">
       <SubType>Component</SubType>
     </Compile>

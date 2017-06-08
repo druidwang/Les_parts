@@ -142,6 +142,7 @@
   <ItemGroup>
     <Compile Include="AutoMapperInstaller.cs" />
     <Compile Include="BaseMgr.cs" />
+    <Compile Include="Impl\MES\MESServicesMgr.cs" />
     <Compile Include="Impl\SD_TMSMgrImpl.cs" />
     <Compile Include="Impl\SD_WMSMgrImpl.cs" />
     <Compile Include="ISD_TMSMgr.cs" />
@@ -170,6 +171,7 @@
     <Compile Include="IEDI_ScheduleMgr.cs" />
     <Compile Include="ISD_SecurityMgr.cs" />
     <Compile Include="Impl\Job\JobDataMap.cs" />
+    <Compile Include="MES\IMESServicesMgr.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -628,6 +630,7 @@
       <CachedSettingsPropName>com_Sconit_Service_SI_SDMES0002_ZWS_SDMES0002</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

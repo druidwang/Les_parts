@@ -1526,6 +1526,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="WebService\EDI\ScheduleService.asmx" />
+    <Content Include="WebService\MES\MESService.asmx" />
     <Content Include="WebService\MSG\EmailService.asmx" />
     <Content Include="WebService\ORD\LeanEngineService.asmx" />
     <Content Include="WebService\ORD\OrderService.asmx" />
