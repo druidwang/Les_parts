@@ -25,10 +25,10 @@ namespace com.Sconit.WebService
         }
 
         [WebMethod]
-        public string CreatePallet(string BoxNo, string BoxCount, string Printer, string CreateUser, string CreateDate)
+        public string CreatePallet(List<string> BoxNos, string BoxCount, string Printer, string CreateUser, string CreateDate)
         {
             SecurityContextHolder.Set(securityMgr.GetUser("Monitor"));
-            return mesServicesMgr.CreatePallet(BoxNo, BoxCount, Printer, CreateUser, CreateDate);
+            return mesServicesMgr.CreatePallet(BoxNos, BoxCount, Printer, CreateUser, CreateDate);
         }
     }
 }

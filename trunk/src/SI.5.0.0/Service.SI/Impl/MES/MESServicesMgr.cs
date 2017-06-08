@@ -16,7 +16,7 @@ namespace com.Sconit.Service.SI.Impl.MES
         }
 
 
-        public string CreatePallet(string BoxNo, string BoxCount, string Printer, string CreateUser, string CreateDate)
+        public string CreatePallet(List<string> BoxNos, string BoxCount, string Printer, string CreateUser, string CreateDate)
         {
             var kp = "KP00000001";
             return kp;
