@@ -147,6 +147,9 @@
   <data name="LocationTransaction_Item" xml:space="preserve">
     <value>Item</value>
   </data>
+  <data name="LocationTransaction_ItemDescription" xml:space="preserve">
+    <value>ItemDescription</value>
+  </data>
   <data name="LocationTransaction_Location" xml:space="preserve">
     <value>Location</value>
   </data>

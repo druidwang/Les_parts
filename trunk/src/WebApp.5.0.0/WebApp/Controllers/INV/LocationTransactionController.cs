@@ -79,8 +79,9 @@ namespace com.Sconit.Web.Controllers.INV
             var itemCategoryList = this.genericMgr.FindAll<ItemCategory>();
             foreach (var listdata in gridModel.Data)
             {
-                listdata.MaterialsGroup = itemMgr.GetCacheItem(listdata.Item).MaterialsGroup;
-                listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup,  itemCategoryList).Description;
+                listdata.ItemDescription = itemMgr.GetCacheItem(listdata.Item).Description;
+              //  listdata.MaterialsGroup = itemMgr.GetCacheItem(listdata.Item).MaterialsGroup;
+              //  listdata.MaterialsGroupDesc = GetItemCategory(listdata.MaterialsGroup,  itemCategoryList).Description;
             }
             return PartialView(gridModel);
         }

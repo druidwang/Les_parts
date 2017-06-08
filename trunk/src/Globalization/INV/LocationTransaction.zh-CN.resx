@@ -147,6 +147,9 @@
   <data name="LocationTransaction_Item" xml:space="preserve">
     <value>物料</value>
   </data>
+  <data name="LocationTransaction_ItemDescription" xml:space="preserve">
+    <value>物料名称</value>
+  </data>
   <data name="LocationTransaction_Location" xml:space="preserve">
     <value>库位</value>
   </data>

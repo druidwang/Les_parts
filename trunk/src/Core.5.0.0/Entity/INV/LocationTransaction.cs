@@ -12,11 +12,11 @@ namespace com.Sconit.Entity.INV
         [Display(Name = "Hu_SupplierLotNo", ResourceType = typeof(Resources.INV.Hu))]
         public string SupplierLotNo { get; set; }
 
-        [Export(ExportName = "LocationTransReport", ExportSeq = 103)]
+        //[Export(ExportName = "LocationTransReport", ExportSeq = 103)]
         [Display(Name = "Item_MaterialsGroup", ResourceType = typeof(Resources.MD.Item))]
         public string MaterialsGroup { get; set; }
 
-        [Export(ExportName = "LocationTransReport", ExportSeq = 106)]
+        //[Export(ExportName = "LocationTransReport", ExportSeq = 106)]
         [Display(Name = "Item_MaterialsGroupDesc", ResourceType = typeof(Resources.MD.Item))]
         public string MaterialsGroupDesc { get; set; }
 
@@ -49,6 +49,11 @@ namespace com.Sconit.Entity.INV
                 }
             }
         }
+
+
+        [Export(ExportName = "LocationTransReport", ExportSeq = 101)]
+        [Display(Name = "LocationTransaction_ItemDescription", ResourceType = typeof(Resources.INV.LocationTransaction))]
+        public string ItemDescription { get; set; }
 
         #region ±®±Ì”√
 
