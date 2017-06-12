@@ -1776,6 +1776,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="Item" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Uom" type="s:string" />
           <s:element minOccurs="1" maxOccurs="1" name="QualityType" type="tns:QualityType" />
+          <s:element minOccurs="0" maxOccurs="1" name="LocFrom" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="GetPallet">

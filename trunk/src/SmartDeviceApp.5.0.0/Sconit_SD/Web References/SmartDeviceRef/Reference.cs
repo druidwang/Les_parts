@@ -2903,6 +2903,8 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         private QualityType qualityTypeField;
         
+        private string locFromField;
+        
         /// <remarks/>
         public string HuId {
             get {
@@ -2970,6 +2972,16 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
             }
             set {
                 this.qualityTypeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string LocFrom {
+            get {
+                return this.locFromField;
+            }
+            set {
+                this.locFromField = value;
             }
         }
     }

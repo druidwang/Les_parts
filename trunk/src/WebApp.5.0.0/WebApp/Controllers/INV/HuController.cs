@@ -920,6 +920,17 @@ namespace com.Sconit.Web.Controllers.INV
                 item.MinUnitCount = item.UnitCount;
             }
 
+            #region hutemplate
+            if (item.ItemCategory == "CP")
+            {
+                item.HuTemplate = "BarCodeFG.xls";
+            }
+            else
+            {
+                item.HuTemplate = "BarCodePurchase.xls";
+            }
+            #endregion
+
             return this.Json(item);
         }
 

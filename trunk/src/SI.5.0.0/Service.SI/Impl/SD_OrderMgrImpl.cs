@@ -573,186 +573,198 @@
         [Transaction(TransactionMode.Requires)]
         public void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList)
         {
-            if (flowDetailInputList == null || flowDetailInputList.Count == 0)
-            {
-                throw new BusinessException("没有可以移库的明细");
-            }
-            if (flowDetailInputList.GroupBy(p => p.QualityType).Count() > 1)
-            {
-                throw new BusinessException("不同质量状态的条码不能合并成一张订单移库");
-            }
-
-            var orderMaster = new Entity.ORD.OrderMaster();
-            var locationFrom = this.genericMgr.FindById<Entity.MD.Location>(flowMaster.LocationFrom);
-            var locationTo = this.genericMgr.FindById<Entity.MD.Location>(flowMaster.LocationTo);
-            var partyFrom = this.genericMgr.FindById<Entity.MD.Party>(flowMaster.PartyFrom);
-            var partyTo = this.genericMgr.FindById<Entity.MD.Party>(flowMaster.PartyTo);
-
-            orderMaster.LocationFrom = locationFrom.Code;
-            orderMaster.IsShipScanHu = true;
-            orderMaster.IsReceiveScanHu = true;
-            orderMaster.LocationFromName = locationFrom.Name;
-            orderMaster.LocationTo = locationTo.Code;
-            orderMaster.LocationToName = locationTo.Name;
-            orderMaster.PartyFrom = partyFrom.Code;
-            orderMaster.PartyFromName = partyFrom.Name;
-            orderMaster.PartyTo = partyTo.Code;
-            orderMaster.PartyToName = partyTo.Name;
-            orderMaster.Type = !locationTo.Region.StartsWith("S", StringComparison.OrdinalIgnoreCase) ? CodeMaster.OrderType.Transfer : CodeMaster.OrderType.SubContractTransfer;
-            orderMaster.StartTime = DateTime.Now;
-            orderMaster.WindowTime = DateTime.Now;
-            orderMaster.EffectiveDate = flowMaster.EffectiveDate;
-            orderMaster.Flow = flowMaster.Code;
-            orderMaster.IsShipFulfillUC = false;
-            orderMaster.IsQuick = true;
-            orderMaster.IsPrintReceipt = true;
-            orderMaster.QualityType = flowDetailInputList.First().QualityType;
-            orderMaster.OrderTemplate = "ORD_Transfer.xls";
-            orderMaster.AsnTemplate = "ASN_Transfer.xls";
-            orderMaster.ReceiptTemplate = "REC_InvIn.xls";
-            orderMaster.IsAsnUniqueReceive = true;
-
-            if (!string.IsNullOrWhiteSpace(flowMaster.Code))
-            {
-                var baseFlowMaster = this.genericMgr.FindById<FlowMaster>(flowMaster.Code);
-
-                orderMaster.IsQuick = false;
-
-                orderMaster.IsShipScanHu = baseFlowMaster.IsShipScanHu;
-                orderMaster.IsReceiveScanHu = baseFlowMaster.IsReceiveScanHu;
-                orderMaster.IsAutoReceive = baseFlowMaster.IsAutoReceive;
-                orderMaster.IsAutoRelease = true;//baseFlowMaster.IsAutoRelease;
-                orderMaster.IsAutoStart = true;//baseFlowMaster.IsAutoStart;
-                orderMaster.IsAutoShip = true;//baseFlowMaster.IsAutoShip;
-                orderMaster.IsInspect = baseFlowMaster.IsInspect;
-                orderMaster.IsPrintAsn = baseFlowMaster.IsPrintAsn;
-                orderMaster.IsPrintOrder = baseFlowMaster.IsPrintOrder;
-                orderMaster.IsPrintReceipt = baseFlowMaster.IsPrintRceipt;
-                orderMaster.IsShipByOrder = baseFlowMaster.IsShipByOrder;
-                orderMaster.OrderTemplate = baseFlowMaster.OrderTemplate;
-                orderMaster.AsnTemplate = baseFlowMaster.AsnTemplate;
-                orderMaster.ReceiptTemplate = baseFlowMaster.ReceiptTemplate;
-                orderMaster.IsShipFifo = baseFlowMaster.IsShipFifo;
-                orderMaster.IsAsnUniqueReceive = baseFlowMaster.IsAsnUniqueReceive;
-
-                if (!string.IsNullOrWhiteSpace(baseFlowMaster.ShipFrom))
-                {
-                    var shipFrom = this.genericMgr.FindById<Address>(baseFlowMaster.ShipFrom);
-                    orderMaster.ShipFrom = shipFrom.Code;
-                    orderMaster.ShipFromAddress = shipFrom.AddressContent;
-                    orderMaster.ShipFromCell = shipFrom.MobilePhone;
-                    orderMaster.ShipFromTel = shipFrom.TelPhone;
-                    orderMaster.ShipFromFax = shipFrom.Fax;
-                    orderMaster.ShipFromContact = shipFrom.ContactPersonName;
-                }
-                if (!string.IsNullOrWhiteSpace(baseFlowMaster.ShipTo))
-                {
-                    var shipTo = this.genericMgr.FindById<Address>(baseFlowMaster.ShipTo);
-                    orderMaster.ShipTo = shipTo.Code;
-                    orderMaster.ShipToAddress = shipTo.AddressContent;
-                    orderMaster.ShipToCell = shipTo.MobilePhone;
-                    orderMaster.ShipToTel = shipTo.TelPhone;
-                    orderMaster.ShipToFax = shipTo.Fax;
-                    orderMaster.ShipToContact = shipTo.ContactPersonName;
-                }
-            }
-            else
-            {
-                var shipFrom = (this.genericMgr.FindAll<Address>(
-                    " select a from PartyAddress p join p.Address as a where p.Party = ? and p.Type =?",
-                    new object[] { orderMaster.PartyFrom, (int)CodeMaster.AddressType.ShipAddress }, 0, 1) ?? new List<Address>()).FirstOrDefault();
-                if (shipFrom != null)
-                {
-                    orderMaster.ShipFrom = shipFrom.Code;
-                    orderMaster.ShipFromAddress = shipFrom.AddressContent;
-                    orderMaster.ShipFromCell = shipFrom.MobilePhone;
-                    orderMaster.ShipFromTel = shipFrom.TelPhone;
-                    orderMaster.ShipFromFax = shipFrom.Fax;
-                    orderMaster.ShipFromContact = shipFrom.ContactPersonName;
-                }
-
-                var shipTo = (this.genericMgr.FindAll<Address>(
-                    " select a from PartyAddress p join p.Address as a where p.Party = ? and p.Type =? ",
-                    new object[] { orderMaster.PartyTo, (int)CodeMaster.AddressType.ShipAddress }, 0, 1) ?? new List<Address>()).FirstOrDefault();
-                if (shipTo != null)
-                {
-                    orderMaster.ShipTo = shipTo.Code;
-                    orderMaster.ShipToAddress = shipTo.AddressContent;
-                    orderMaster.ShipToCell = shipTo.MobilePhone;
-                    orderMaster.ShipToTel = shipTo.TelPhone;
-                    orderMaster.ShipToFax = shipTo.Fax;
-                    orderMaster.ShipToContact = shipTo.ContactPersonName;
-                }
-            }
-
-            #region 加一段强制先进先出
-            bool isForceFifo = bool.Parse(systemMgr.GetEntityPreferenceValue(com.Sconit.Entity.SYS.EntityPreference.CodeEnum.IsForceFIFO));
-            if (string.IsNullOrEmpty(flowMaster.Bin) && isForceFifo)
-            {
-                orderMaster.IsShipFifo = true;
-            }
+            #region 按库位分多个订单
+            var locCodes = flowDetailInputList.Select(p => p.LocFrom).Distinct();
             #endregion
 
-            orderMaster.OrderDetails = new List<Entity.ORD.OrderDetail>();
-            int seq = 1;
-            var groupHus = this.genericMgr.FindAllIn<Hu>(" from Hu where HuId in(?", flowDetailInputList.Select(p => p.HuId))
-                .GroupBy(r => new { r.Item, r.Uom, r.Direction, r.UnitCount, r.BaseUom });
-            foreach (var groupHu in groupHus)
+            foreach (string locFrom in locCodes)
             {
-                var baseOrderDetail = new Entity.ORD.OrderDetail();
-                baseOrderDetail.BaseUom = groupHu.Key.BaseUom;
-                baseOrderDetail.Item = groupHu.Key.Item;
-                baseOrderDetail.UnitCount = groupHu.Key.UnitCount;
-                baseOrderDetail.Uom = groupHu.Key.Uom;
-                baseOrderDetail.Direction = groupHu.Key.Direction;
-
-                baseOrderDetail.ItemDescription = groupHu.First().ItemDescription;
-                baseOrderDetail.OrderType = orderMaster.Type;
-                baseOrderDetail.QualityType = orderMaster.QualityType;
-                baseOrderDetail.Sequence = seq++;
-
-                baseOrderDetail.OrderDetailInputs = new List<Entity.ORD.OrderDetailInput>();
-                foreach (var hu in groupHu)
+                List<Entity.SI.SD_SCM.FlowDetailInput> matchedFlowDetailInputList = flowDetailInputList.Where(p => p.LocFrom == locFrom).ToList();
+                if (matchedFlowDetailInputList == null || matchedFlowDetailInputList.Count == 0)
                 {
-                    var baseOrderDetailInput = new Entity.ORD.OrderDetailInput();
-                    baseOrderDetailInput.HuId = hu.HuId;
-                    baseOrderDetailInput.ReceiveQty = hu.Qty;
-                    baseOrderDetailInput.Bin = flowMaster.Bin;
-                    baseOrderDetailInput.LotNo = hu.LotNo;
-                    baseOrderDetailInput.ShipQty = hu.Qty;
-                    baseOrderDetail.OrderDetailInputs.Add(baseOrderDetailInput);
-
-                    baseOrderDetail.RequiredQty += baseOrderDetailInput.ShipQty;
-                    baseOrderDetail.OrderedQty += baseOrderDetailInput.ShipQty;
+                    throw new BusinessException("没有可以移库的明细");
                 }
-                orderMaster.OrderDetails.Add(baseOrderDetail);
-            }
-            this.orderMgr.CreateOrder(orderMaster);
-
-            #region 加一段托盘解绑的逻辑
-            var hus = this.genericMgr.FindAllIn<Hu>(" from Hu where HuId in(?", flowDetailInputList.Select(p => p.HuId));
-            var palletHus = this.genericMgr.FindAllIn<PalletHu>(" from PalletHu where HuId in(?", flowDetailInputList.Select(p => p.HuId));
-            foreach (Hu h in hus)
-            {
-                if (!string.IsNullOrEmpty(h.PalletCode))
+                if (matchedFlowDetailInputList.GroupBy(p => p.QualityType).Count() > 1)
                 {
-                    h.PalletCode = string.Empty;
-                    genericMgr.Update(h);
+                    throw new BusinessException("不同质量状态的条码不能合并成一张订单移库");
+                }
 
-                    var palletHu = palletHus.Where(p => p.HuId == h.HuId).FirstOrDefault();
-                    if (palletHu != null)
+                var orderMaster = new Entity.ORD.OrderMaster();
+                var locationFrom = this.genericMgr.FindById<Entity.MD.Location>(locFrom);
+                var locationTo = this.genericMgr.FindById<Entity.MD.Location>(flowMaster.LocationTo);
+                var partyFrom = this.genericMgr.FindById<Entity.MD.Party>(flowMaster.PartyFrom);
+                var partyTo = this.genericMgr.FindById<Entity.MD.Party>(flowMaster.PartyTo);
+
+                orderMaster.LocationFrom = locationFrom.Code;
+                orderMaster.IsShipScanHu = true;
+                orderMaster.IsReceiveScanHu = true;
+                orderMaster.LocationFromName = locationFrom.Name;
+                orderMaster.LocationTo = locationTo.Code;
+                orderMaster.LocationToName = locationTo.Name;
+                orderMaster.PartyFrom = partyFrom.Code;
+                orderMaster.PartyFromName = partyFrom.Name;
+                orderMaster.PartyTo = partyTo.Code;
+                orderMaster.PartyToName = partyTo.Name;
+                orderMaster.Type = !locationTo.Region.StartsWith("S", StringComparison.OrdinalIgnoreCase) ? CodeMaster.OrderType.Transfer : CodeMaster.OrderType.SubContractTransfer;
+                orderMaster.StartTime = DateTime.Now;
+                orderMaster.WindowTime = DateTime.Now;
+                orderMaster.EffectiveDate = flowMaster.EffectiveDate;
+                orderMaster.Flow = flowMaster.Code;
+                orderMaster.IsShipFulfillUC = false;
+                orderMaster.IsQuick = true;
+                orderMaster.IsPrintReceipt = true;
+                orderMaster.QualityType = matchedFlowDetailInputList.First().QualityType;
+                orderMaster.OrderTemplate = "ORD_Transfer.xls";
+                orderMaster.AsnTemplate = "ASN_Transfer.xls";
+                orderMaster.ReceiptTemplate = "REC_InvIn.xls";
+                orderMaster.IsAsnUniqueReceive = true;
+
+                if (!string.IsNullOrWhiteSpace(flowMaster.Code))
+                {
+                    var baseFlowMaster = this.genericMgr.FindById<FlowMaster>(flowMaster.Code);
+
+                    orderMaster.IsQuick = false;
+
+                    orderMaster.IsShipScanHu = baseFlowMaster.IsShipScanHu;
+                    orderMaster.IsReceiveScanHu = baseFlowMaster.IsReceiveScanHu;
+                    orderMaster.IsAutoReceive = baseFlowMaster.IsAutoReceive;
+                    orderMaster.IsAutoRelease = true;//baseFlowMaster.IsAutoRelease;
+                    orderMaster.IsAutoStart = true;//baseFlowMaster.IsAutoStart;
+                    orderMaster.IsAutoShip = true;//baseFlowMaster.IsAutoShip;
+                    orderMaster.IsInspect = baseFlowMaster.IsInspect;
+                    orderMaster.IsPrintAsn = baseFlowMaster.IsPrintAsn;
+                    orderMaster.IsPrintOrder = baseFlowMaster.IsPrintOrder;
+                    orderMaster.IsPrintReceipt = baseFlowMaster.IsPrintRceipt;
+                    orderMaster.IsShipByOrder = baseFlowMaster.IsShipByOrder;
+                    orderMaster.OrderTemplate = baseFlowMaster.OrderTemplate;
+                    orderMaster.AsnTemplate = baseFlowMaster.AsnTemplate;
+                    orderMaster.ReceiptTemplate = baseFlowMaster.ReceiptTemplate;
+                    orderMaster.IsShipFifo = baseFlowMaster.IsShipFifo;
+                    orderMaster.IsAsnUniqueReceive = baseFlowMaster.IsAsnUniqueReceive;
+
+                    if (!string.IsNullOrWhiteSpace(baseFlowMaster.ShipFrom))
                     {
-                        genericMgr.Delete(palletHu);
+                        var shipFrom = this.genericMgr.FindById<Address>(baseFlowMaster.ShipFrom);
+                        orderMaster.ShipFrom = shipFrom.Code;
+                        orderMaster.ShipFromAddress = shipFrom.AddressContent;
+                        orderMaster.ShipFromCell = shipFrom.MobilePhone;
+                        orderMaster.ShipFromTel = shipFrom.TelPhone;
+                        orderMaster.ShipFromFax = shipFrom.Fax;
+                        orderMaster.ShipFromContact = shipFrom.ContactPersonName;
+                    }
+                    if (!string.IsNullOrWhiteSpace(baseFlowMaster.ShipTo))
+                    {
+                        var shipTo = this.genericMgr.FindById<Address>(baseFlowMaster.ShipTo);
+                        orderMaster.ShipTo = shipTo.Code;
+                        orderMaster.ShipToAddress = shipTo.AddressContent;
+                        orderMaster.ShipToCell = shipTo.MobilePhone;
+                        orderMaster.ShipToTel = shipTo.TelPhone;
+                        orderMaster.ShipToFax = shipTo.Fax;
+                        orderMaster.ShipToContact = shipTo.ContactPersonName;
                     }
                 }
-            }
-            #endregion
+                else
+                {
+                    var shipFrom = (this.genericMgr.FindAll<Address>(
+                        " select a from PartyAddress p join p.Address as a where p.Party = ? and p.Type =?",
+                        new object[] { orderMaster.PartyFrom, (int)CodeMaster.AddressType.ShipAddress }, 0, 1) ?? new List<Address>()).FirstOrDefault();
+                    if (shipFrom != null)
+                    {
+                        orderMaster.ShipFrom = shipFrom.Code;
+                        orderMaster.ShipFromAddress = shipFrom.AddressContent;
+                        orderMaster.ShipFromCell = shipFrom.MobilePhone;
+                        orderMaster.ShipFromTel = shipFrom.TelPhone;
+                        orderMaster.ShipFromFax = shipFrom.Fax;
+                        orderMaster.ShipFromContact = shipFrom.ContactPersonName;
+                    }
 
-            if (!string.IsNullOrWhiteSpace(flowMaster.Bin) && orderMaster.Status == CodeMaster.OrderStatus.Close)
-            {
-                var inventoryPutList = flowDetailInputList.Where(p => !string.IsNullOrWhiteSpace(p.HuId))
-                    .Select(p => new InventoryPut { HuId = p.HuId, Bin = flowMaster.Bin }).ToList();
-                locationDetailMgr.InventoryPut(inventoryPutList);
+                    var shipTo = (this.genericMgr.FindAll<Address>(
+                        " select a from PartyAddress p join p.Address as a where p.Party = ? and p.Type =? ",
+                        new object[] { orderMaster.PartyTo, (int)CodeMaster.AddressType.ShipAddress }, 0, 1) ?? new List<Address>()).FirstOrDefault();
+                    if (shipTo != null)
+                    {
+                        orderMaster.ShipTo = shipTo.Code;
+                        orderMaster.ShipToAddress = shipTo.AddressContent;
+                        orderMaster.ShipToCell = shipTo.MobilePhone;
+                        orderMaster.ShipToTel = shipTo.TelPhone;
+                        orderMaster.ShipToFax = shipTo.Fax;
+                        orderMaster.ShipToContact = shipTo.ContactPersonName;
+                    }
+                }
+
+                #region 加一段强制先进先出
+                bool isForceFifo = bool.Parse(systemMgr.GetEntityPreferenceValue(com.Sconit.Entity.SYS.EntityPreference.CodeEnum.IsForceFIFO));
+                if (string.IsNullOrEmpty(flowMaster.Bin) && isForceFifo)
+                {
+                    orderMaster.IsShipFifo = true;
+                }
+                #endregion
+
+                orderMaster.OrderDetails = new List<Entity.ORD.OrderDetail>();
+                int seq = 1;
+                var groupHus = this.genericMgr.FindAllIn<Hu>(" from Hu where HuId in(?", matchedFlowDetailInputList.Select(p => p.HuId))
+                    .GroupBy(r => new { r.Item, r.Uom, r.Direction, r.UnitCount, r.BaseUom});
+
+
+                foreach (var groupHu in groupHus)
+                {
+                    var baseOrderDetail = new Entity.ORD.OrderDetail();
+                    baseOrderDetail.BaseUom = groupHu.Key.BaseUom;
+                    baseOrderDetail.Item = groupHu.Key.Item;
+                    baseOrderDetail.UnitCount = groupHu.Key.UnitCount;
+                    baseOrderDetail.Uom = groupHu.Key.Uom;
+
+
+                    baseOrderDetail.ItemDescription = groupHu.First().ItemDescription;
+                    baseOrderDetail.OrderType = orderMaster.Type;
+                    baseOrderDetail.QualityType = orderMaster.QualityType;
+                    baseOrderDetail.Sequence = seq++;
+
+
+
+                    baseOrderDetail.OrderDetailInputs = new List<Entity.ORD.OrderDetailInput>();
+                    foreach (var hu in groupHu)
+                    {
+                        var baseOrderDetailInput = new Entity.ORD.OrderDetailInput();
+                        baseOrderDetailInput.HuId = hu.HuId;
+                        baseOrderDetailInput.ReceiveQty = hu.Qty;
+                        baseOrderDetailInput.Bin = flowMaster.Bin;
+                        baseOrderDetailInput.LotNo = hu.LotNo;
+                        baseOrderDetailInput.ShipQty = hu.Qty;
+                        baseOrderDetail.OrderDetailInputs.Add(baseOrderDetailInput);
+
+                        baseOrderDetail.RequiredQty += baseOrderDetailInput.ShipQty;
+                        baseOrderDetail.OrderedQty += baseOrderDetailInput.ShipQty;
+                    }
+                    orderMaster.OrderDetails.Add(baseOrderDetail);
+                }
+                this.orderMgr.CreateOrder(orderMaster);
+
+                #region 加一段托盘解绑的逻辑
+                var hus = this.genericMgr.FindAllIn<Hu>(" from Hu where HuId in(?", matchedFlowDetailInputList.Select(p => p.HuId));
+                var palletHus = this.genericMgr.FindAllIn<PalletHu>(" from PalletHu where HuId in(?", matchedFlowDetailInputList.Select(p => p.HuId));
+                foreach (Hu h in hus)
+                {
+                    if (!string.IsNullOrEmpty(h.PalletCode))
+                    {
+                        h.PalletCode = string.Empty;
+                        genericMgr.Update(h);
+
+                        var palletHu = palletHus.Where(p => p.HuId == h.HuId).FirstOrDefault();
+                        if (palletHu != null)
+                        {
+                            genericMgr.Delete(palletHu);
+                        }
+                    }
+                }
+                #endregion
+
+                if (!string.IsNullOrWhiteSpace(flowMaster.Bin) && orderMaster.Status == CodeMaster.OrderStatus.Close)
+                {
+                    var inventoryPutList = matchedFlowDetailInputList.Where(p => !string.IsNullOrWhiteSpace(p.HuId))
+                        .Select(p => new InventoryPut { HuId = p.HuId, Bin = flowMaster.Bin }).ToList();
+                    locationDetailMgr.InventoryPut(inventoryPutList);
+                }
             }
         }
 
