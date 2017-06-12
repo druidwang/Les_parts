@@ -49,7 +49,7 @@
                 @Html.LabelFor(model => model.UnitCount)
             </div>
             <div class="editor-field-2">
-                @Html.Telerik().NumericTextBoxFor(model => model.UnitCount).DecimalDigits(3).MinValue(0.0001M)
+                @Html.Telerik().NumericTextBoxFor(model => model.UnitCount).DecimalDigits(0).MinValue(0.0001M)
                 @Html.ValidationMessageFor(model => model.UnitCount)
             </div>
         @*    <div class="editor-label-2">

@@ -622,6 +622,19 @@ namespace com.Sconit.Service.Impl
         }
 
 
+        public string CreatePallet(List<string> boxNos, string boxCount, string printer, string createUser, string createDate)
+        {
+            IList<Hu> huList = genericMgr.FindAllIn<Hu>(@"select h from  Hu h where  h.HuId = ? ", boxNos.ToArray());
+
+            if (huList.Count != Convert.ToInt32(boxCount))
+            {
+                throw new BusinessException();
+            }
+
+            return string.Empty;
+        }
+
+
 
         #region private methods
         private void WrapHuStatus(HuStatus huStatus, LocationLotDetail locationLotDetail)

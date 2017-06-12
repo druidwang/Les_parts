@@ -49,6 +49,10 @@ namespace com.Sconit.Entity.SI.SD_SCM
         public string Item { get; set; }
         public string Uom { get; set; }
         public CodeMaster.QualityType QualityType { get; set; }
+
+
+        //为了快速往车间发料支持多库位
+        public string LocFrom { get; set; }
     }
 
 }
