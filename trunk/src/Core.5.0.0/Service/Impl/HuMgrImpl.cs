@@ -14,6 +14,7 @@ using com.Sconit.Utility;
 using com.Sconit.Entity.Exception;
 using NHibernate;
 using com.Sconit.Entity.CUST;
+using com.Sconit.Entity.ACC;
 
 namespace com.Sconit.Service.Impl
 {
@@ -622,16 +623,68 @@ namespace com.Sconit.Service.Impl
         }
 
 
+        [Transaction(TransactionMode.Requires)]
         public string CreatePallet(List<string> boxNos, string boxCount, string printer, string createUser, string createDate)
         {
-            IList<Hu> huList = genericMgr.FindAllIn<Hu>(@"select h from  Hu h where  h.HuId = ? ", boxNos.ToArray());
 
-            if (huList.Count != Convert.ToInt32(boxCount))
+            User user = genericMgr.FindAll<User>(" u from User u where u.Code = ?", createUser).FirstOrDefault();
+
+            ////先不写了，自动创建用户
+
+            string[] huidArray = boxNos.ToArray();
+            if (huidArray.Count() != Convert.ToInt32(boxCount))
             {
-                throw new BusinessException();
+                throw new BusinessException("箱条码为{0},箱数为{1}", huidArray.Count().ToString(), boxCount);
             }
 
-            return string.Empty;
+            IList<Hu> huList = new List<Hu>();
+            foreach (string huid in huidArray)
+            {
+                Hu hu = genericMgr.FindById<Hu>(huid);
+                if (hu == null)
+                {
+                    throw new BusinessException("箱条码{0}不存在", huid);
+                }
+                huList.Add(hu);
+            }
+
+
+
+            #region 托盘
+            var itemList = huList.Select(p => p.Item).Distinct();
+            if (itemList.Count() > 1)
+            {
+                throw new BusinessException("箱条码对应的零件号为多个，不能打印在同一托盘");
+            }
+            Pallet pallet = new Pallet();
+            string palletCode = numberControlMgr.GetPalletCode();
+            pallet.Code = palletCode;
+            pallet.Description = huList.First().Item + "|" + huList.First().ItemDescription + "|" + huList.Count();
+            this.genericMgr.Create(pallet);
+
+            foreach (Hu hu in huList)
+            {
+                PalletHu palletHu = new PalletHu();
+                palletHu.HuId = hu.HuId;
+                palletHu.PalletCode = palletCode;
+                genericMgr.Create(palletHu);
+            }
+            #endregion
+
+            #region 更新条码
+            foreach (Hu h in huList)
+            {
+                h.PalletCode = palletCode;
+                h.LastModifyDate = DateTime.Now;
+                h.LastModifyUserId = user.Id;
+                h.LastModifyUserName = user.FullName;
+                genericMgr.Update(h);
+            }
+
+            #endregion
+
+
+            return palletCode;
         }
 
 
