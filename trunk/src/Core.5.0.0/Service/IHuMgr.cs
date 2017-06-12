@@ -39,6 +39,8 @@ namespace com.Sconit.Service
 
         IList<Hu> GetHuListByPallet(string palletCode);
 
+        string CreatePallet(List<string> boxNos, string boxCount, string printer, string createUser, string createDate);
+
 
     }
 }
