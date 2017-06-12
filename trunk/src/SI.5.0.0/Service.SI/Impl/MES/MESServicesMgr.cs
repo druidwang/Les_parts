@@ -21,5 +21,17 @@ namespace com.Sconit.Service.SI.Impl.MES
             var kp = "KP00000001";
             return kp;
         }
+
+    
+
+        public Entity.SI.MES.InventoryResponse  GetInventory(Entity.SI.MES.InventoryRequest request)
+        {
+            var response = new Entity.SI.MES.InventoryResponse();
+            response.RequestId = request.RequestId;
+            response.IsEnd = false;
+            response.Inventorys = new List<Entity.SI.MES.Inventory>();
+            response.Inventorys.Add(new Entity.SI.MES.Inventory { BarCode = "HU00000001", BatchNo = "1111111", FactoryCode = "", MaterialCode = "Item1", Quantity = 10, Type = 1, WarehouseCode = "10079" });
+            return response;
+        }
     }
 }	
