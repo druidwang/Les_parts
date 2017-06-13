@@ -270,7 +270,7 @@ namespace com.Sconit.SmartDevice
                     {
                         if (!this.flowMaster.PartyFrom.Equals(hu.Region, StringComparison.OrdinalIgnoreCase))
                         {
-                            throw new BusinessException("当前条码{0}的来源区域{1}与其他物料的来源区域{2}不一致。", hu.HuId, hu.Location, this.flowMaster.LocationFrom);
+                            throw new BusinessException("当前条码{0}的来源区域{1}与其他物料的来源区域{2}不一致。", hu.HuId, hu.Region, this.flowMaster.PartyFrom);
                         }
                     }
 

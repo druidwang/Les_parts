@@ -268,16 +268,21 @@ namespace com.Sconit.SmartDevice
                     }
                     else
                     {
-                        if (!this.flowMaster.LocationFrom.Equals(hu.Location, StringComparison.OrdinalIgnoreCase))
+                        //if (!this.flowMaster.LocationFrom.Equals(hu.Location, StringComparison.OrdinalIgnoreCase))
+                        //{
+                        //    throw new BusinessException("当前条码{0}的来源库位{1}与其他物料的来源库位{2}不一致。", hu.HuId, hu.Location, this.flowMaster.LocationFrom);
+                        //}
+
+                        if (!this.flowMaster.PartyFrom.Equals(hu.Region, StringComparison.OrdinalIgnoreCase))
                         {
-                            throw new BusinessException("当前条码{0}的来源库位{1}与其他物料的来源库位{2}不一致。", hu.HuId, hu.Location, this.flowMaster.LocationFrom);
+                            throw new BusinessException("当前条码{0}的来源区域{1}与其他物料的来源区域{2}不一致。", hu.HuId, hu.Region, this.flowMaster.PartyFrom);
                         }
                     }
 
                     var q = flowDetails
                         .Where(f => f.Item.Equals(hu.Item, StringComparison.OrdinalIgnoreCase)
                             && f.Uom.Equals(hu.Uom, StringComparison.OrdinalIgnoreCase)
-                            && f.UnitCount == hu.UnitCount);
+                            && f.UnitCount == hu.UnitCount && f.LocationFrom == hu.Location);
                     if (q.Count() > 0)
                     {
                         matchedFlowDetail = q.Single();
@@ -403,6 +408,7 @@ namespace com.Sconit.SmartDevice
                 input.Item = hu.Item;
                 input.Uom = hu.Uom;
                 input.QualityType = hu.QualityType;
+                input.LocFrom = hu.Location;
 
                 flowDetailInputs.Add(input);
                 matchedFlowDetail.FlowDetailInputs = flowDetailInputs.ToArray();

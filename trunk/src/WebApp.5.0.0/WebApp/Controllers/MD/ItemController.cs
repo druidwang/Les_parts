@@ -248,7 +248,11 @@ namespace com.Sconit.Web.Controllers.MD
                 //}
                 if (canSave)
                 {
-                    item.ItemCategory = string.Empty;
+                    //if(item.Code.StartsWith("1"))
+                    //{
+                    //    item.ItemCategory = "CP";
+                    //}
+                    //item.ItemCategory = string.Empty;
                     itemMgr.CreateItem(item);
                     SaveSuccessMessage(Resources.MD.Item.Item_Added);
                     return RedirectToAction("_EditList/" + item.Code);
@@ -354,7 +358,7 @@ namespace com.Sconit.Web.Controllers.MD
                 //}
                 if (canSave)
                 {
-                    item.ItemCategory = string.Empty;
+                    //item.ItemCategory = string.Empty;
                     this.itemMgr.UpdateItem(item);
                     SaveSuccessMessage(Resources.MD.Item.Item_Updated);
                 }
