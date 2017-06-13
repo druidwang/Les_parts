@@ -30,5 +30,12 @@ namespace com.Sconit.WebService
             SecurityContextHolder.Set(securityMgr.GetUser("Monitor"));
             return mesServicesMgr.CreatePallet(BoxNos, BoxCount, Printer, CreateUser, CreateDate);
         }
+
+        [WebMethod]
+        public Entity.SI.MES.InventoryResponse GetInventory(Entity.SI.MES.InventoryRequest request)
+        {
+            SecurityContextHolder.Set(securityMgr.GetUser("Monitor"));
+            return mesServicesMgr.GetInventory(request);
+        }
     }
 }
