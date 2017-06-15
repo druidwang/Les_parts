@@ -119,6 +119,10 @@
     <Reference Include="log4net">
       <HintPath>..\..\Lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\..\Lib\NHibernate.dll</HintPath>
     </Reference>
@@ -268,6 +272,11 @@
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
     <Compile Include="Web References\STMES0001\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\WSMes\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -429,8 +438,30 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\STMES0001\zws_stmes0001.wsdl" />
+    <None Include="Web References\WSMes\material.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\WSMes\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\WSMes\WSMes.wsdl" />
+    <None Include="Web References\WSMes\wsResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <WebReferenceUrl Include="E:\software\科尔本数据接口文档\MESService.wsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\WSMes\</RelPath>
+      <UpdateFromURL>E:\software\科尔本数据接口文档\MESService.wsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>com_Sconit_Service_SI_WSMes_WSMes</CachedSettingsPropName>
+    </WebReferenceUrl>
     <WebReferenceUrl Include="F:\wsdl\shenya\zws_ppmes0001.xml">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\PPMES0001\</RelPath>

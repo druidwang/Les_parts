@@ -57,5 +57,7 @@ namespace com.Sconit.Entity
 
 
         public static readonly string NUMBERCONTROL_PACKINGLIST = "PACKINGLIST";
+
+        public static readonly string MESMATERIALIO_SYSTEMCODE = "MESMATERIALIO_SYSTEMCODE";
     }
 }

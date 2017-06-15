@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+ 	<class name="com.Sconit.Entity.SI.MES.MES_Interface_MaterialIO, com.Sconit.Entity.SI" table="MES_Interface_MaterialIO" lazy="false">
+		<id name="Id" column="Id" type="Int32" unsaved-value="0" >
+      		<generator class="identity" />
+        </id>    
+    <property name="material_code" column="material_code" type="String" length="20"/>
+    <property name="bar_code" column="bar_code" type="String" length="50"/>
+    <property name="batch_no" column="batch_no" type="String" length="50"/>
+    <property name="quantity" column="quantity" type="String" length="50"/>	
+		<property name="warehouse_code" column="warehouse_code" type="String" length="50"/>	
+		<property name="reservoir" column="reservoir" type="String" length="50"/>	
+		<property name="user_id" column="user_id" type="String" length="50"/>
+        <property name="create_time" column="create_time" type="DateTime"/>
+		<property name="op_type" column="op_type" type="Int32"/>	
+		<property name="purchase_order_no" column="purchase_order_no" type="DateTime"/>	
+		<property name="sale_order_no" column="sale_order_no" type="String" length="505"/>	
+		<property name="sale_line_no" column="sale_line_no" type="String" length="50"/>	
+		<property name="supplier_code" column="supplier_code" type="String" length="50"/>	
+		<property name="customer_code" column="customer_code" type="String" length="50"/>
+    <property name="CreateDate" column="CreateDate" type="DateTime"/>
+		<property name="Status" column="Status" type="Int32"/>	
+		<property name="BatchNo" column="BatchNo" type="String" length="50"/>	
+		<property name="UniqueCode" column="UniqueCode" type="String" length="50"/>	
+  	</class>
+</hibernate-mapping>
