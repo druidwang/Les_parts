@@ -17,7 +17,6 @@
                 </label>
             </div>
             <div class="search-field">
-
                 @{
         Html.RenderAction("_ItemComboBox", "Common",
             new
@@ -79,6 +78,14 @@
                 @(Html.Telerik().DatePicker().Format("yyyy-MM-dd ").Name("EndDate")
             .Value(TempData["HuSearchModel"] != null ? ((HuSearchModel)TempData["HuSearchModel"]).EndDate : System.DateTime.Today.AddDays(1))
                 .HtmlAttributes(new { style = "margin-bottom: 1.3em;width:200px" }))
+            </div>
+            <div class="search-label">
+                <label>
+                    @Resources.INV.Hu.Hu_SupplierLotNo
+                </label>
+            </div>
+            <div class="search-field">
+                @Html.TextBox("SupplierLotNo", TempData["HuSearchModel"] != null ? ((HuSearchModel)TempData["HuSearchModel"]).SupplierLotNo : (string)@ViewBag.SupplierLotNo)
             </div>
         </div>
         <div class="search-footer">

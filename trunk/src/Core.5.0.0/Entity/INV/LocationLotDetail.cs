@@ -107,6 +107,8 @@ namespace com.Sconit.Entity.INV
         public PlanBill CurrentPlanBill { get; set; }
         public ActingBill CurrentActingBill { get; set; }
         public Hu CurrentHu { get; set; }
+
+        public string SupplierLotNo { get; set; }
     }
 
     public class InventoryTransaction

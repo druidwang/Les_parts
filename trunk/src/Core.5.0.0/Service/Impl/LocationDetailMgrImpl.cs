@@ -6215,6 +6215,7 @@ namespace com.Sconit.Service.Impl
                     }
 
                     inventoryIO.LotNo = huStatus.LotNo;
+                    inventoryIO.SupplierLotNo = huStatus.SupplierLotNo;
                     CreateNewLocationLotDetail(inventoryIO, inventoryTransactionList);
                     #endregion
                 }

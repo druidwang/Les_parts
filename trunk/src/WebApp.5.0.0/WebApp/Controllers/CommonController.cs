@@ -2677,7 +2677,7 @@
             partyList.AddRange(supplierList);
             partyList.AddRange(customerList);
 
-            return new JsonResult { Data = new SelectList(partyList, "Code", "CodeDescription", customerList.FirstOrDefault() == null ? string.Empty : customerList.First().Code) };
+            return new JsonResult { Data = new SelectList(partyList, "Code", "CodeDescription", partyList.FirstOrDefault() == null ? string.Empty : partyList.First().Code) };
         }
 
         #endregion

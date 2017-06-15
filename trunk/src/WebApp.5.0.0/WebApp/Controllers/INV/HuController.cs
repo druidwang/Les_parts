@@ -1566,6 +1566,8 @@ namespace com.Sconit.Web.Controllers.INV
             HqlStatementHelper.AddEqStatement("Item", searchModel.Item, "h", ref whereStatement, param);
             HqlStatementHelper.AddEqStatement("PalletCode", searchModel.PalletCode, "h", ref whereStatement, param);
 
+            HqlStatementHelper.AddEqStatement("SupplierLotNo", searchModel.SupplierLotNo, "h", ref whereStatement, param);
+
             if (searchModel.LotNo != null & searchModel.LotNoTo != null)
             {
                 HqlStatementHelper.AddBetweenStatement("LotNo", searchModel.LotNo, searchModel.LotNoTo, "h", ref whereStatement, param);
