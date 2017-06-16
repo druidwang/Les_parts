@@ -114,7 +114,9 @@
       <Name>Globalization</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Base\MES\MES_Interface_Inventory.hbm.xml" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Base\MES\MES_Interface_MaterialIO.hbm.xml" />
   </ItemGroup>
