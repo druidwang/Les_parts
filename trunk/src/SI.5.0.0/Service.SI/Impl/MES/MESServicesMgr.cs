@@ -47,7 +47,7 @@ namespace com.Sconit.Service.SI.MES.Impl
                 if (requestData == null || requestData.Count == 0)
                 {
                     this.genericMgr.FindAllWithNamedQuery<object[]>("USP_MES_GetInventory", new object[] { request.RequestId, request.Data.MaterialCode, request.Data.WarehouseCode, request.Data.BarCode, request.Data.BatchNo }).FirstOrDefault();
-                    requestData = this.genericMgr.FindAll<MES_Interface_Inventory>("from MES_Interface_Inventory m where RequestId=? and Status=0", request.RequestId, 0, 200);
+                    requestData = this.genericMgr.FindAll<MES_Interface_Inventory>("from MES_Interface_Inventory m where RequestId=? and Status=0 order by Id", request.RequestId, 0, 200);
                     if (requestData.Count < 200)
                     {
                         response.IsEnd = true;
@@ -62,6 +62,7 @@ namespace com.Sconit.Service.SI.MES.Impl
                     }
                     response.Inventorys = requestData.ToList();
                 }
+                this.genericMgr.FindAllWithNativeSql("update top(200) a set Status=1 from MES_Interface_Inventory a where RequestId=? and Status=0", request.RequestId);
                 return response;
             }
             catch (Exception)
