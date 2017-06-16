@@ -83,7 +83,7 @@ namespace com.Sconit.Service.SI.MES.Impl
                             //sapSeviceProxy.ZfunStmes0001(input);
 
                             this.genericMgr.FindAllWithNativeSql("update MES_Interface_MaterialIO set status=1 where UniqueCode=?", uniqueCode);
-                            this.SaveTransferLog(uniqueCode, "SUCCESS", "STMES0001", BusinessConstants.SAPBUSINESSDATA_SYSTEMCODE, 1, 200, transStartDate, dataFromDate, dataToDate);
+                            this.SaveTransferLog(uniqueCode, "SUCCESS", "MES_Interface_MaterialIO", BusinessConstants.MESMATERIALIO_SYSTEMCODE, 1, 200, transStartDate, dataFromDate, dataToDate);
                         }
                         catch (Exception ex)
                         {
@@ -93,7 +93,7 @@ namespace com.Sconit.Service.SI.MES.Impl
                                 Template = NVelocityTemplateRepository.TemplateEnum.ExportBusDataToSAPErrorTemplate,
                                 Message = logMessage
                             });
-                            this.SaveTransferLog(uniqueCode, logMessage, "STMES0001", BusinessConstants.SAPBUSINESSDATA_SYSTEMCODE, 2, 200, transStartDate, dataFromDate, dataToDate);
+                            this.SaveTransferLog(uniqueCode, logMessage, "STMES0001", BusinessConstants.MESMATERIALIO_SYSTEMCODE, 2, 200, transStartDate, dataFromDate, dataToDate);
                         }
                     }
                 }

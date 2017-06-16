@@ -11,6 +11,7 @@ namespace com.Sconit.Entity.SI.MES
         #region O/R Mapping Properties
 		
 		public Int32 Id { get; set; }
+        public string io_bound_no { get; set; }
 		public string material_code { get; set; }
 		public string bar_code { get; set; }
 		public string batch_no { get; set; }
@@ -19,8 +20,10 @@ namespace com.Sconit.Entity.SI.MES
 		public string reservoir { get; set; }
 		public string user_id { get; set; }
         public DateTime create_time { get; set; }
-		public int op_type { get; set; }
-		public string purchase_order_no { get; set; }
+		//public int op_type { get; set; }
+        public int io_bound_type { get; set; }
+        public int io_bound_direction { get; set; }
+        public string purchase_order_no { get; set; }
 		public string purchase_line_no { get; set; }
 		public string sale_order_no { get; set; }
 		public string sale_line_no { get; set; }
