@@ -4,14 +4,14 @@
 		<id name="Id" column="Id" type="Int32" unsaved-value="0" >
       		<generator class="identity" />
         </id>
-    <property name="ReuqestId" column="io_bound_no" type="String" length="50"/>
-    <property name="MaterialCode" column="material_code" type="String" length="50"/>
-    <property name="WarehouseCode" column="bar_code" type="String" length="50"/>
-    <property name="FactoryCode" column="batch_no" type="String" length="50"/>
-    <property name="Quantity" column="quantity" type="Decimal"/>	
-		<property name="BarCode" column="warehouse_code" type="String" length="50"/>	
-		<property name="BatchNo" column="reservoir" type="String" length="50"/>	
-    <property name="Type" column="io_bound_direction" type="Int32"/>
+    <property name="RequestId" column="RequestId" type="String" length="50"/>
+    <property name="MaterialCode" column="MaterialCode" type="String" length="50"/>
+    <property name="WarehouseCode" column="WarehouseCode" type="String" length="50"/>
+    <property name="FactoryCode" column="FactoryCode" type="String" length="50"/>
+    <property name="Quantity" column="Quantity" type="Decimal"/>	
+		<property name="BarCode" column="BarCode" type="String" length="50"/>	
+		<property name="BatchNo" column="BatchNo" type="String" length="50"/>	
+    <property name="Type" column="Type" type="Int32"/>
     <property name="CreateDate" column="CreateDate" type="DateTime"/>
 		<property name="Status" column="Status" type="Int32"/>	
   	</class>
