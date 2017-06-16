@@ -295,5 +295,7 @@
 		exec USP_MES_MaterialIO ?,?,?
 	</sql-query>
 
-	
+  <sql-query name="USP_MES_GetInventory">
+    exec USP_MES_GetInventory ?,?,?,?,?
+  </sql-query>
 </hibernate-mapping>

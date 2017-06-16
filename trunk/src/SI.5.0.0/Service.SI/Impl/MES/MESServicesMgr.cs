@@ -31,12 +31,45 @@ namespace com.Sconit.Service.SI.MES.Impl
 
         public Entity.SI.MES.InventoryResponse  GetInventory(Entity.SI.MES.InventoryRequest request)
         {
-            var response = new Entity.SI.MES.InventoryResponse();
-            response.RequestId = request.RequestId;
-            response.IsEnd = false;
-            response.Inventorys = new List<Entity.SI.MES.Inventory>();
-            response.Inventorys.Add(new Entity.SI.MES.Inventory { BarCode = "HU00000001", BatchNo = "1111111", FactoryCode = "", MaterialCode = "Item1", Quantity = 10, Type = 1, WarehouseCode = "10079" });
-            return response;
+            try
+            {
+                var response = new Entity.SI.MES.InventoryResponse();
+                response.RequestId = request.RequestId;
+                if (string.IsNullOrEmpty(request.RequestId))
+                {
+                    throw new Exception("请输入请求参数RequestId");
+                }
+                if (string.IsNullOrEmpty(request.Data.MaterialCode))
+                {
+                    throw new Exception("请输入请求参数MaterialCode");
+                }
+                var requestData = this.genericMgr.FindAll<MES_Interface_Inventory>("from MES_Interface_Inventory m where RequestId=? and Status=0", request.RequestId, 0, 200);
+                if (requestData == null || requestData.Count == 0)
+                {
+                    this.genericMgr.FindAllWithNamedQuery<object[]>("USP_MES_GetInventory", new object[] { request.RequestId, request.Data.MaterialCode, request.Data.WarehouseCode, request.Data.BarCode, request.Data.BatchNo }).FirstOrDefault();
+                    requestData = this.genericMgr.FindAll<MES_Interface_Inventory>("from MES_Interface_Inventory m where RequestId=? and Status=0", request.RequestId, 0, 200);
+                    if (requestData.Count < 200)
+                    {
+                        response.IsEnd = true;
+                    }
+                    response.Inventorys = requestData.ToList();
+                }
+                else
+                {
+                    if (requestData.Count < 200)
+                    {
+                        response.IsEnd = true;
+                    }
+                    response.Inventorys = requestData.ToList();
+                }
+                return response;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            
         }
 
 
