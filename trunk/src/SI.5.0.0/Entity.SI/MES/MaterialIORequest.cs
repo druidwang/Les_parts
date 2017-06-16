@@ -7,12 +7,12 @@ namespace com.Sconit.Entity.SI.MES
 {
     public class MaterialIORequest
     {
-        public string RequestId { get; set; }
+        public string request_id { get; set; }
 
-        public List<MES_Interface_MaterialIO> Data { get; set; }
+        public List<MES_Interface_MaterialIO> data { get; set; }
 
-        public string Requester { get; set; }
+        public string requester { get; set; }
 
-        public DateTime RequestDate { get; set; }
+        public DateTime request_date { get; set; }
     }
 }

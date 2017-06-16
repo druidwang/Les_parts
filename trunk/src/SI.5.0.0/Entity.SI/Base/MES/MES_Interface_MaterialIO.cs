@@ -21,7 +21,7 @@ namespace com.Sconit.Entity.SI.MES
 		public string user_id { get; set; }
         public DateTime create_time { get; set; }
 		//public int op_type { get; set; }
-        public int io_bound_type { get; set; }
+        public string io_bound_type { get; set; }
         public int io_bound_direction { get; set; }
         public string purchase_order_no { get; set; }
 		public string purchase_line_no { get; set; }

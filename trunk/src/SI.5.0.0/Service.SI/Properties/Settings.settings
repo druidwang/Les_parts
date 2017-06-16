@@ -57,7 +57,7 @@
       <Value Profile="(Default)">http://SHQVSAPP1.shenya.com:8001/sap/bc/srt/rfc/sap/zws_mmmes0002/800/zws_mmmes0002/zws_mmmes0002</Value>
     </Setting>
     <Setting Name="com_Sconit_Service_SI_WSMes_WSMes" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://192.168.118.102:9000/ws</Value>
+      <Value Profile="(Default)">http://10.136.3.28:9000/ws</Value>
     </Setting>
   </Settings>
 </SettingsFile>

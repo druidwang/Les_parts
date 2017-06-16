@@ -70,15 +70,15 @@ namespace com.Sconit.Service.SI.MES.Impl
                     foreach (var uniqueCode in uniqueCodeList)
                     {
                         var request = new MaterialIORequest();
-                        request.Requester = "WMS";
-                        request.RequestId = requestId;
-                        request.RequestDate = DateTime.Now;
-                        request.Data = result.Where(r => r.UniqueCode == uniqueCode).ToList();
+                        request.requester = "WMS";
+                        request.request_id = requestId;
+                        request.request_date = DateTime.Now;
+                        request.data = result.Where(r => r.UniqueCode == uniqueCode).ToList();
                         var jsonRequest = JsonConvert.SerializeObject(request);
 
                         try
                         {
-                            mesSeviceProxy.MATERIAL_IO_BOUND(jsonRequest);
+                            var response = mesSeviceProxy.MATERIAL_IO_BOUND(jsonRequest);
                             //input.ItData = sendRows.ToArray();
                             //sapSeviceProxy.ZfunStmes0001(input);
 
@@ -87,7 +87,7 @@ namespace com.Sconit.Service.SI.MES.Impl
                         }
                         catch (Exception ex)
                         {
-                            string logMessage = "传输库内移动业务数据给SAP时失败,批次号为：" + uniqueCode + "，失败信息：" + ex.Message;
+                            string logMessage = "传输业务数据给MES时失败,批次号为：" + uniqueCode + "，失败信息：" + ex.Message;
                             errorMessageList.Add(new ErrorMessage
                             {
                                 Template = NVelocityTemplateRepository.TemplateEnum.ExportBusDataToSAPErrorTemplate,
@@ -99,7 +99,7 @@ namespace com.Sconit.Service.SI.MES.Impl
                 }
                 catch (Exception ex)
                 {
-                    string logMessage = "导出输库内移动业务数据给SAP出错。";
+                    string logMessage = "传输业务数据给SAP出错。";
                     errorMessageList.Add(new ErrorMessage
                     {
                         Template = NVelocityTemplateRepository.TemplateEnum.ExportBusDataToSAPErrorTemplate,
@@ -121,7 +121,6 @@ namespace com.Sconit.Service.SI.MES.Impl
             lock (TransBusinessOrderDataLock)
             {
                 var errorMessageList = new List<ErrorMessage>();
-                string dBName = genericMgr.FindAllWithNativeSql<string>("Select DB_NAME()").FirstOrDefault();
                 DateTime? transStartDate = DateTime.Now;
                 DateTime? dataFromDate = null;
                 DateTime? dataToDate = null;
@@ -129,10 +128,9 @@ namespace com.Sconit.Service.SI.MES.Impl
                 {
                     //DateTime currDate = DateTime.Now;
                     var messages = new List<ErrorMessage>();
-                    if (dBName.ToUpper() == "SCONIT" || (dBName.ToUpper() == "SCONIT_TEST" && this.SAPService_IP == "10.166.1.92"))
-                    {
-                        messages.AddRange(ExportMaterialIO());
-                    }
+
+                    messages.AddRange(ExportMaterialIO());
+
                     //记录成功日志
                     this.SaveTransferLog("TransBusinessData", "SUCCESS", "TransBusinessData", "TransBusinessData", 1, 0, transStartDate, dataFromDate, dataToDate);
                 }

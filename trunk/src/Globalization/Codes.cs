@@ -426,8 +426,8 @@ namespace com.Sconit.CodeMaster
         ISS_INP_CCS = 509,      //让步使用出库
         RCT_INP_CCS = 510,      //让步使用入库
         //调整
-        CYC_CNT = 601,          //盘点差异出入库
-        CYC_CNT_VOID = 602,     //盘点差异出入库
+        CYC_CNT = 601,          //盘点差异出库
+        CYC_CNT_VOID = 602,     //盘点差异入库
         ISS_UNP = 603,          //计划外出库
         ISS_UNP_VOID = 604,     //计划外出库冲销
         RCT_UNP = 605,          //计划外入库

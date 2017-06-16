@@ -291,5 +291,9 @@
   <sql-query name="USP_SAP_SaveInvForSIExecution_New">
     exec USP_SAP_SaveInvForSIExecution_New ?,?,?,?
   </sql-query>
-  
+	<sql-query name="USP_MES_MaterialIO">
+		exec USP_MES_MaterialIO ?,?,?
+	</sql-query>
+
+	
 </hibernate-mapping>

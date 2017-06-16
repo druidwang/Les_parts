@@ -1,69 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://pandora.realtech.com" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="WSMes" targetNamespace="http://pandora.realtech.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:types>
-    <xs:schema targetNamespace="http://pandora.realtech.com" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-      <xs:complexType name="wsResponse">
-        <xs:sequence>
-          <xs:element name="errorCode" type="xs:int" />
-          <xs:element minOccurs="0" name="errorMsg" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="unbounded" name="failureSet" nillable="true" type="xs:anyType" />
-          <xs:element minOccurs="0" name="idFieldName" type="xs:string" />
-          <xs:element minOccurs="0" name="replier" type="xs:string" />
-          <xs:element minOccurs="0" name="replyDate" type="xs:string" />
-          <xs:element minOccurs="0" name="replyId" type="xs:string" />
-          <xs:element minOccurs="0" maxOccurs="unbounded" name="successSet" nillable="true" type="xs:anyType" />
-        </xs:sequence>
-      </xs:complexType>
-      <xs:complexType name="material">
-        <xs:sequence>
-          <xs:element minOccurs="0" name="code" type="xs:string" />
-          <xs:element minOccurs="0" name="id" type="xs:string" />
-          <xs:element minOccurs="0" name="model" type="xs:string" />
-        </xs:sequence>
-      </xs:complexType>
-    </xs:schema>
-  </wsdl:types>
-  <wsdl:message name="MATERIAL_IO_BOUNDResponse">
-    <wsdl:part name="material_io_bound_res" type="xsd:string" />
-  </wsdl:message>
-  <wsdl:message name="SYNC_SUPPLIER">
-    <wsdl:part name="supplier_doc" type="xsd:string" />
-  </wsdl:message>
-  <wsdl:message name="SYNC_CUSTOMER">
-    <wsdl:part name="customer_doc" type="xsd:string" />
-  </wsdl:message>
-  <wsdl:message name="getMaterial">
-    <wsdl:part name="material_code" type="xsd:string" />
-  </wsdl:message>
+  <wsdl:types />
   <wsdl:message name="SYNC_POResponse">
-    <wsdl:part name="sync_po_response" type="tns:wsResponse" />
+    <wsdl:part name="sync_po_res" type="xsd:string" />
   </wsdl:message>
   <wsdl:message name="SYNC_SUPPLIERResponse">
-    <wsdl:part name="sync_supplier_response" type="tns:wsResponse" />
+    <wsdl:part name="sync_supplier_res" type="xsd:string" />
   </wsdl:message>
   <wsdl:message name="SYNC_CUSTOMERResponse">
-    <wsdl:part name="sync_customer_response" type="tns:wsResponse" />
+    <wsdl:part name="sync_customer_res" type="xsd:string" />
   </wsdl:message>
   <wsdl:message name="SYNC_PO">
-    <wsdl:part name="po_doc" type="xsd:string" />
+    <wsdl:part name="sync_po_req" type="xsd:string" />
   </wsdl:message>
   <wsdl:message name="MATERIAL_IO_BOUND">
     <wsdl:part name="material_io_bound_req" type="xsd:string" />
   </wsdl:message>
-  <wsdl:message name="RELEASE_MPP">
-    <wsdl:part name="mpp_doc" type="xsd:string" />
+  <wsdl:message name="MATERIAL_IO_BOUNDResponse">
+    <wsdl:part name="material_io_bound_res" type="xsd:string" />
   </wsdl:message>
-  <wsdl:message name="getMaterialResponse">
-    <wsdl:part name="result_material" type="tns:material" />
+  <wsdl:message name="RELEASE_MPP">
+    <wsdl:part name="release_mpp_req" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="SYNC_SUPPLIER">
+    <wsdl:part name="sync_supplier_req" type="xsd:string" />
   </wsdl:message>
   <wsdl:message name="SYNC_MATERIAL">
-    <wsdl:part name="material_doc" type="xsd:string" />
+    <wsdl:part name="sync_material_req" type="xsd:string" />
   </wsdl:message>
   <wsdl:message name="RELEASE_MPPResponse">
-    <wsdl:part name="release_mpp_response" type="tns:wsResponse" />
+    <wsdl:part name="release_mpp_res" type="xsd:string" />
   </wsdl:message>
   <wsdl:message name="SYNC_MATERIALResponse">
-    <wsdl:part name="sync_material_response" type="tns:wsResponse" />
+    <wsdl:part name="sync_material_res" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="SYNC_CUSTOMER">
+    <wsdl:part name="sync_customer_req" type="xsd:string" />
   </wsdl:message>
   <wsdl:portType name="MESWebService">
     <wsdl:operation name="SYNC_PO">
@@ -89,10 +61,6 @@
     <wsdl:operation name="SYNC_CUSTOMER">
       <wsdl:input name="SYNC_CUSTOMER" message="tns:SYNC_CUSTOMER" />
       <wsdl:output name="SYNC_CUSTOMERResponse" message="tns:SYNC_CUSTOMERResponse" />
-    </wsdl:operation>
-    <wsdl:operation name="getMaterial">
-      <wsdl:input name="getMaterial" message="tns:getMaterial" />
-      <wsdl:output name="getMaterialResponse" message="tns:getMaterialResponse" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="WSMesSoapBinding" type="tns:MESWebService">
@@ -151,19 +119,10 @@
         <soap:body use="literal" namespace="http://pandora.realtech.com" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getMaterial">
-      <soap:operation soapAction="" style="rpc" />
-      <wsdl:input name="getMaterial">
-        <soap:body use="literal" namespace="http://pandora.realtech.com" />
-      </wsdl:input>
-      <wsdl:output name="getMaterialResponse">
-        <soap:body use="literal" namespace="http://pandora.realtech.com" />
-      </wsdl:output>
-    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="WSMes">
     <wsdl:port name="WSMesPort" binding="tns:WSMesSoapBinding">
-      <soap:address location="http://192.168.118.102:9000/ws" />
+      <soap:address location="http://10.136.3.28:9000/ws" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>
