@@ -501,6 +501,7 @@ namespace com.Sconit.Service.Impl
             hu.Remark = item.Remark;
             hu.HuOption = item.HuOption;
             hu.HuTemplate = item.HuTemplate;
+            hu.Remark = createUser;
             if (item.Warranty > 0)
             {
                 hu.ExpireDate = hu.ManufactureDate.AddDays(item.Warranty);
