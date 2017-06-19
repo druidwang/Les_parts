@@ -20,7 +20,7 @@ namespace com.Sconit.Service.SI.MES.Impl
             log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}开始", CustomerCode, LotNo, Item, HuId);
             //throw new NotImplementedException();
             var hu = string.Empty;
-            hu = huMgr.CreateHu(CustomerCode, CustomerName, LotNo, Item, ItemDesc, ManufactureDate, Manufacturer, OrderNo, Uom, UC, Qty, CreateUser, CreateDate, Printer, HuId).HuId;
+            hu = huMgr.CreateHu("C"+CustomerCode, CustomerName, LotNo, Item, ItemDesc, ManufactureDate, Manufacturer, OrderNo, Uom, UC, Qty, CreateUser, CreateDate, Printer, HuId).HuId;
             log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}结束", CustomerCode, LotNo, Item, HuId);
             return hu;
         }
