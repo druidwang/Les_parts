@@ -466,7 +466,7 @@ namespace com.Sconit.Service.Impl
         {
             IList<Hu> huList = new List<Hu>();
             var item = this.genericMgr.FindById<Item>(itemCode);
-            var huTempl = this.genericMgr.FindAllWithNativeSql<FlowMaster>("select fm.* from SCM_FlowMstr fm inner join SCM_FlowDet fd on fm.Code=fd.FlowCode where fm.PartyTo=? and fd.Item=?", new object[]{ customerCode, itemCode }).FirstOrDefault().HuTemplate;
+            var huTempl = this.genericMgr.FindEntityWithNativeSql<FlowMaster>("select fm.* from SCM_FlowMstr fm inner join SCM_FlowDet fd on fm.Code=fd.Flow where fm.PartyTo=? and fd.Item=?", new object[]{ customerCode, itemCode }).FirstOrDefault().HuTemplate;
             var tobeHuId = huId;
             IDictionary<string, decimal> huidDic = new Dictionary<string, decimal>();
             if (string.IsNullOrEmpty(huId))
@@ -483,25 +483,28 @@ namespace com.Sconit.Service.Impl
             hu.BaseUom = uom;
             hu.Qty = qty;
             hu.ManufactureParty = manufacturer;
+      //      hu.ManufactureDate = Convert.ToDateTime(manufactureDate);
+            hu.ExternalOrderNo = orderNo;
             var manufactureDt = DateTime.Now;
-            DateTime.TryParseExact(manufactureDate, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal, out manufactureDt);
+            DateTime.TryParseExact(manufactureDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal, out manufactureDt);
             hu.ManufactureDate = manufactureDt;
             hu.PrintCount = 0;
             hu.ConcessionCount = 0;
             hu.ReferenceItemCode = item.ReferenceCode;
             hu.UnitCount = uc;
-            hu.UnitQty = itemMgr.ConvertItemUomQty(item.Code, item.HuUom, 1, item.Uom);
-            hu.Uom = item.HuUom;
+            hu.UnitQty = 1;
+            hu.Uom = uom;
             hu.IsOdd = hu.Qty < hu.UnitCount;
             hu.SupplierLotNo = item.SupplierLotNo;
             hu.IsChangeUnitCount = true;
             hu.ContainerDesc = item.Container;
             hu.MaterialsGroup = this.GetMaterialsGroupDescrption(item.MaterialsGroup);
             hu.Direction = item.Deriction;
-            hu.Remark = item.Remark;
+           // hu.Remark = item.Remark;
             hu.HuOption = item.HuOption;
             hu.HuTemplate = item.HuTemplate;
             hu.Remark = createUser;
+          //  hu. = createDate;
             if (item.Warranty > 0)
             {
                 hu.ExpireDate = hu.ManufactureDate.AddDays(item.Warranty);
