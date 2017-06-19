@@ -466,7 +466,16 @@ namespace com.Sconit.Service.Impl
         {
             IList<Hu> huList = new List<Hu>();
             var item = this.genericMgr.FindById<Item>(itemCode);
-            var huTempl = this.genericMgr.FindEntityWithNativeSql<FlowMaster>("select fm.* from SCM_FlowMstr fm inner join SCM_FlowDet fd on fm.Code=fd.Flow where fm.PartyTo=? and fd.Item=?", new object[]{ customerCode, itemCode }).FirstOrDefault().HuTemplate;
+            Hu hu = new Hu();
+            var flowMstr = this.genericMgr.FindEntityWithNativeSql<FlowMaster>("select fm.* from SCM_FlowMstr fm inner join SCM_FlowDet fd on fm.Code=fd.Flow where fm.PartyTo=? and fd.Item=?", new object[]{ customerCode, itemCode });
+            if (flowMstr == null || flowMstr.Count ==0)
+            {
+                hu.HuTemplate = item.HuTemplate;
+            }
+            else
+            {
+                hu.HuTemplate = flowMstr.FirstOrDefault().HuTemplate;
+            }
             var tobeHuId = huId;
             IDictionary<string, decimal> huidDic = new Dictionary<string, decimal>();
             if (string.IsNullOrEmpty(huId))
@@ -475,7 +484,6 @@ namespace com.Sconit.Service.Impl
                 tobeHuId = huidDic.FirstOrDefault().Key;
             }
             
-            Hu hu = new Hu();
             hu.HuId = tobeHuId;
             hu.LotNo = lotNo;
             hu.Item = item.Code;
@@ -502,7 +510,7 @@ namespace com.Sconit.Service.Impl
             hu.Direction = item.Deriction;
            // hu.Remark = item.Remark;
             hu.HuOption = item.HuOption;
-            hu.HuTemplate = item.HuTemplate;
+            //hu.HuTemplate = item.HuTemplate;
             hu.Remark = createUser;
           //  hu. = createDate;
             if (item.Warranty > 0)

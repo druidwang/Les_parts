@@ -13,19 +13,25 @@ namespace com.Sconit.Service.SI.MES.Impl
 {
     public class MESServicesMgrImpl : com.Sconit.Service.SI.Impl.BaseMgr, IMESServicesMgr
     {
+        private static log4net.ILog log = log4net.LogManager.GetLogger("DebugLog");
+
         public string CreateHu(string CustomerCode, string CustomerName, string LotNo, string Item, string ItemDesc, string ManufactureDate, string Manufacturer, string OrderNo, string Uom, decimal UC, decimal Qty, string CreateUser, string CreateDate, string Printer, string HuId)
         {
+            log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}开始", CustomerCode, LotNo, Item, HuId);
             //throw new NotImplementedException();
             var hu = string.Empty;
-            hu = huMgr.CreateHu(CustomerCode, CustomerName, LotNo, Item, ItemDesc, ManufactureDate, Manufacturer, OrderNo, Uom, UC, Qty, CreateUser, CreateDate, Printer, HuId).HuId;
+            hu = huMgr.CreateHu("C"+CustomerCode, CustomerName, LotNo, Item, ItemDesc, ManufactureDate, Manufacturer, OrderNo, Uom, UC, Qty, CreateUser, CreateDate, Printer, HuId).HuId;
+            log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}结束", CustomerCode, LotNo, Item, HuId);
             return hu;
         }
 
 
         public string CreatePallet(List<string> BoxNos, string BoxCount, string Printer, string CreateUser, string CreateDate, string PalletId)
         {
+            log.InfoFormat("调用创建托盘方法{0}，{1}，{2}，{3}开始", BoxNos.FirstOrDefault(), BoxCount, Printer, PalletId);
             var kp = string.Empty;
             kp = huMgr.CreatePallet(BoxNos, BoxCount, Printer, CreateUser, CreateDate, PalletId);
+            log.InfoFormat("调用创建托盘方法{0}，{1}，{2}，{3}结束", BoxNos.FirstOrDefault(), BoxCount, Printer, PalletId);
             return kp;
         }
 
