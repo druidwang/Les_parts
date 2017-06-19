@@ -686,13 +686,11 @@ namespace com.Sconit.Service.Impl
 
 
         [Transaction(TransactionMode.Requires)]
-        public string CreatePallet(List<string> boxNos, string boxCount, string printer, string createUser, string createDate)
+        public string CreatePallet(List<string> boxNos, string boxCount, string printer, string createUser, string createDate,string palletId)
         {
 
-            User user = genericMgr.FindAll<User>(" u from User u where u.Code = ?", createUser).FirstOrDefault();
-
-            ////先不写了，自动创建用户
-
+            User user = genericMgr.FindAll<User>(" u from User u where u.Code = ?", "Monitor").FirstOrDefault();
+           
             string[] huidArray = boxNos.ToArray();
             if (huidArray.Count() != Convert.ToInt32(boxCount))
             {
@@ -711,7 +709,6 @@ namespace com.Sconit.Service.Impl
             }
 
 
-
             #region 托盘
             var itemList = huList.Select(p => p.Item).Distinct();
             if (itemList.Count() > 1)
@@ -719,7 +716,15 @@ namespace com.Sconit.Service.Impl
                 throw new BusinessException("箱条码对应的零件号为多个，不能打印在同一托盘");
             }
             Pallet pallet = new Pallet();
-            string palletCode = numberControlMgr.GetPalletCode();
+            string palletCode = string.Empty;
+            if (string.IsNullOrEmpty(palletId))
+            {
+                palletCode = numberControlMgr.GetPalletCode();
+            }
+            else
+            {
+                palletCode = palletId;
+            }
             pallet.Code = palletCode;
             pallet.Description = huList.First().Item + "|" + huList.First().ItemDescription + "|" + huList.Count();
             this.genericMgr.Create(pallet);
@@ -729,6 +734,9 @@ namespace com.Sconit.Service.Impl
                 PalletHu palletHu = new PalletHu();
                 palletHu.HuId = hu.HuId;
                 palletHu.PalletCode = palletCode;
+                palletHu.CreateDate = DateTime.Now;
+                palletHu.CreateUserId = user.Id;
+                palletHu.CreateUserName = createUser;
                 genericMgr.Create(palletHu);
             }
             #endregion
@@ -739,7 +747,7 @@ namespace com.Sconit.Service.Impl
                 h.PalletCode = palletCode;
                 h.LastModifyDate = DateTime.Now;
                 h.LastModifyUserId = user.Id;
-                h.LastModifyUserName = user.FullName;
+                h.LastModifyUserName = createUser;
                 genericMgr.Update(h);
             }
 
