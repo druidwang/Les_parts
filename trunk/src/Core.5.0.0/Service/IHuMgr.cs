@@ -42,5 +42,7 @@ namespace com.Sconit.Service
         string CreatePallet(List<string> boxNos, string boxCount, string printer, string createUser, string createDate);
 
 
+        Hu CreateHu(string customerCode, string customerName, string lotNo, string itemCode, string itemDesc, string manufactureDate, string manufacturer, string orderNo, string uom, decimal uc, decimal qty, string createUser, string createDate, string printer, string huId);
+
     }
 }

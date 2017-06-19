@@ -16,14 +16,16 @@ namespace com.Sconit.Service.SI.MES.Impl
         public string CreateHu(string CustomerCode, string CustomerName, string LotNo, string Item, string ItemDesc, string ManufactureDate, string Manufacturer, string OrderNo, string Uom, decimal UC, decimal Qty, string CreateUser, string CreateDate, string Printer, string HuId)
         {
             //throw new NotImplementedException();
-            var hu = "HU00000001";
+            var hu = string.Empty;
+            hu = huMgr.CreateHu(CustomerCode, CustomerName, LotNo, Item, ItemDesc, ManufactureDate, Manufacturer, OrderNo, Uom, UC, Qty, CreateUser, CreateDate, Printer, HuId).HuId;
             return hu;
         }
 
 
         public string CreatePallet(List<string> BoxNos, string BoxCount, string Printer, string CreateUser, string CreateDate, string PalletId)
         {
-            var kp = "KP00000001";
+            var kp = string.Empty;
+            kp = huMgr.CreatePallet(BoxNos, BoxCount, Printer, CreateUser, CreateDate);
             return kp;
         }
 

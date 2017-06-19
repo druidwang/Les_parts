@@ -462,63 +462,62 @@ namespace com.Sconit.Service.Impl
 
 
         [Transaction(TransactionMode.Requires)]
-        public IList<Hu> CreateHu(string customerCode, string customerName, string lotNo, string itemCode, string itemDesc, string manufactureDate, string manufacturer, string orderNo, string uom, decimal uc, decimal qty, string createUser, string createDate, string printer)
+        public Hu CreateHu(string customerCode, string customerName, string lotNo, string itemCode, string itemDesc, string manufactureDate, string manufacturer, string orderNo, string uom, decimal uc, decimal qty, string createUser, string createDate, string printer, string huId)
         {
             IList<Hu> huList = new List<Hu>();
             var item = this.genericMgr.FindById<Item>(itemCode);
             var huTempl = this.genericMgr.FindAllWithNativeSql<FlowMaster>("select fm.* from SCM_FlowMstr fm inner join SCM_FlowDet fd on fm.Code=fd.FlowCode where fm.PartyTo=? and fd.Item=?", new object[]{ customerCode, itemCode }).FirstOrDefault().HuTemplate;
-            IDictionary<string, decimal> huIdDic = numberControlMgr.GetHuId(item);
-            string palletCode = string.Empty;
-            if (huIdDic != null && huIdDic.Count > 0)
+            var tobeHuId = huId;
+            IDictionary<string, decimal> huidDic = new Dictionary<string, decimal>();
+            if (string.IsNullOrEmpty(huId))
             {
-                if (item.IsPrintPallet)
-                {
-                    palletCode = numberControlMgr.GetPalletCode();
-                }
-
-                foreach (string huId in huIdDic.Keys)
-                {
-                    Hu hu = new Hu();
-                    hu.HuId = huId;
-                    hu.LotNo = lotNo;
-                    hu.Item = item.Code;
-                    hu.ItemDescription = item.Description;
-                    hu.BaseUom = uom;
-                    hu.Qty = qty;
-                    hu.ManufactureParty = manufacturer;
-                    var manufactureDt = DateTime.Now;
-                    DateTime.TryParseExact(manufactureDate, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal, out manufactureDt);
-                    hu.ManufactureDate = manufactureDt;
-                    hu.PrintCount = 0;
-                    hu.ConcessionCount = 0;
-                    hu.ReferenceItemCode = item.ReferenceCode;
-                    hu.UnitCount = uc;
-                    hu.UnitQty = itemMgr.ConvertItemUomQty(item.Code, item.HuUom, 1, item.Uom);
-                    hu.Uom = item.HuUom;
-                    hu.IsOdd = hu.Qty < hu.UnitCount;
-                    hu.SupplierLotNo = item.SupplierLotNo;
-                    hu.IsChangeUnitCount = true;
-                    hu.ContainerDesc = item.Container;
-                    hu.MaterialsGroup = this.GetMaterialsGroupDescrption(item.MaterialsGroup);
-                    hu.Direction = item.Deriction;
-                    hu.Remark = item.Remark;
-                    hu.HuOption = item.HuOption;
-                    hu.HuTemplate = item.HuTemplate;
-                    hu.PalletCode = palletCode;
-                    if (item.Warranty > 0)
-                    {
-                        hu.ExpireDate = hu.ManufactureDate.AddDays(item.Warranty);
-                    }
-                    if (item.WarnLeadTime > 0)
-                    {
-                        hu.RemindExpireDate = hu.ManufactureDate.AddDays(item.WarnLeadTime);
-                    }
-                    this.genericMgr.Create(hu);
-                    //this.AsyncSendPrintData(hu);
-                    huList.Add(hu);
-                }
+                huidDic = numberControlMgr.GetHuId(lotNo, itemCode, manufacturer, qty, uc);
+                tobeHuId = huidDic.FirstOrDefault().Key;
             }
-            return huList;
+            
+            Hu hu = new Hu();
+            hu.HuId = tobeHuId;
+            hu.LotNo = lotNo;
+            hu.Item = item.Code;
+            hu.ItemDescription = item.Description;
+            hu.BaseUom = uom;
+            hu.Qty = qty;
+            hu.ManufactureParty = manufacturer;
+            var manufactureDt = DateTime.Now;
+            DateTime.TryParseExact(manufactureDate, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal, out manufactureDt);
+            hu.ManufactureDate = manufactureDt;
+            hu.PrintCount = 0;
+            hu.ConcessionCount = 0;
+            hu.ReferenceItemCode = item.ReferenceCode;
+            hu.UnitCount = uc;
+            hu.UnitQty = itemMgr.ConvertItemUomQty(item.Code, item.HuUom, 1, item.Uom);
+            hu.Uom = item.HuUom;
+            hu.IsOdd = hu.Qty < hu.UnitCount;
+            hu.SupplierLotNo = item.SupplierLotNo;
+            hu.IsChangeUnitCount = true;
+            hu.ContainerDesc = item.Container;
+            hu.MaterialsGroup = this.GetMaterialsGroupDescrption(item.MaterialsGroup);
+            hu.Direction = item.Deriction;
+            hu.Remark = item.Remark;
+            hu.HuOption = item.HuOption;
+            hu.HuTemplate = item.HuTemplate;
+            if (item.Warranty > 0)
+            {
+                hu.ExpireDate = hu.ManufactureDate.AddDays(item.Warranty);
+            }
+            if (item.WarnLeadTime > 0)
+            {
+                hu.RemindExpireDate = hu.ManufactureDate.AddDays(item.WarnLeadTime);
+            }
+            this.genericMgr.Create(hu);
+            if (string.IsNullOrEmpty(huId))
+            {
+                //暂时不用写
+                //this.AsyncSendPrintData(hu);
+            }
+            //this.AsyncSendPrintData(hu);
+            return hu;
+
         }
 
         [Transaction(TransactionMode.Requires)]
