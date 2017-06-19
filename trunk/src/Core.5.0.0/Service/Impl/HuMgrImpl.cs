@@ -693,7 +693,7 @@ namespace com.Sconit.Service.Impl
         public string CreatePallet(List<string> boxNos, string boxCount, string printer, string createUser, string createDate,string palletId)
         {
 
-            User user = genericMgr.FindAll<User>(" u from User u where u.Code = ?", "Monitor").FirstOrDefault();
+            User user = genericMgr.FindAll<User>("select u from User u where u.Code = ?", "Monitor").FirstOrDefault();
            
             string[] huidArray = boxNos.ToArray();
             if (huidArray.Count() != Convert.ToInt32(boxCount))
