@@ -25,7 +25,7 @@ namespace com.Sconit.Service.SI.MES.Impl
         public string CreatePallet(List<string> BoxNos, string BoxCount, string Printer, string CreateUser, string CreateDate, string PalletId)
         {
             var kp = string.Empty;
-            kp = huMgr.CreatePallet(BoxNos, BoxCount, Printer, CreateUser, CreateDate);
+            kp = huMgr.CreatePallet(BoxNos, BoxCount, Printer, CreateUser, CreateDate, PalletId);
             return kp;
         }
 
