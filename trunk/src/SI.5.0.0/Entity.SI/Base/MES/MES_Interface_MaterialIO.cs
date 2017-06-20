@@ -11,6 +11,7 @@ namespace com.Sconit.Entity.SI.MES
         #region O/R Mapping Properties
 		
 		public Int32 Id { get; set; }
+        public Int32 io_bound_id { get; set; }
         public string io_bound_no { get; set; }
 		public string material_code { get; set; }
 		public string bar_code { get; set; }
