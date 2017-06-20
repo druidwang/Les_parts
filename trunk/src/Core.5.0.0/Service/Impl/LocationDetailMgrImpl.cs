@@ -36,6 +36,7 @@ namespace com.Sconit.Service.Impl
         public IHuMgr huMgr { get; set; }
         public IItemMgr itemMgr { get; set; }
         public ISqlDao sqlDao { get; set; }
+        public INumberControlMgr numberControlMgr { get; set; }
 
 
         private static string SelectHuStatement = "from LocationLotDetail where HuId = ?";
@@ -4008,6 +4009,11 @@ namespace com.Sconit.Service.Impl
             #region 循环拆箱
             IList<InventoryTransaction> inventoryTransactionList = new List<InventoryTransaction>();
 
+            #region 做一个单号
+            string repackNo = "REPK" + numberControlMgr.GetNextSequenceo("REPK").PadLeft(9,'0');
+            #endregion
+
+
             #region 出库
             IList<InventoryTransaction> totalIssInventoryTransactionList = new List<InventoryTransaction>();
             foreach (InventoryRePack inventoryRePack in inventoryRePackOut)
@@ -4033,6 +4039,7 @@ namespace com.Sconit.Service.Impl
                 inventoryOut.OccupyReferenceNo = inventoryRePack.CurrentHu.OccupyReferenceNo;
                 inventoryOut.IsVoid = false;
                 inventoryOut.EffectiveDate = effectiveDate;
+           
                 //inventoryIO.ManufactureParty = ;
 
                 IList<InventoryTransaction> issInventoryTransactionList = RecordInventory(inventoryOut);
@@ -4043,7 +4050,7 @@ namespace com.Sconit.Service.Impl
 
                 ((List<InventoryTransaction>)totalIssInventoryTransactionList).AddRange(issInventoryTransactionList);
                 ((List<InventoryTransaction>)inventoryTransactionList).AddRange(issInventoryTransactionList);
-                RecordLocationTransaction(inventoryRePack, effectiveDate, issInventoryTransactionList, true);
+                RecordLocationTransaction(inventoryRePack, effectiveDate, issInventoryTransactionList, true, repackNo);
 
                 #region 把托盘关系去掉
                 if (!string.IsNullOrEmpty(inventoryRePack.CurrentHu.PalletCode))
@@ -4095,7 +4102,7 @@ namespace com.Sconit.Service.Impl
 
                 IList<InventoryTransaction> rctInventoryTransactionList = RecordInventory(inventoryIn);
                 ((List<InventoryTransaction>)inventoryTransactionList).AddRange(rctInventoryTransactionList);
-                RecordLocationTransaction(inventoryRePack, effectiveDate, rctInventoryTransactionList, false);
+                RecordLocationTransaction(inventoryRePack, effectiveDate, rctInventoryTransactionList, false, repackNo);
             }
             #endregion
 
@@ -4103,7 +4110,7 @@ namespace com.Sconit.Service.Impl
             #endregion
         }
 
-        private void RecordLocationTransaction(InventoryRePack inventoryRePack, DateTime effectiveDate, IList<InventoryTransaction> inventoryTransactionList, bool isIssue)
+        private void RecordLocationTransaction(InventoryRePack inventoryRePack, DateTime effectiveDate, IList<InventoryTransaction> inventoryTransactionList, bool isIssue,string orderNo = "")
         {
             DateTime dateTimeNow = DateTime.Now;
 
@@ -4148,6 +4155,9 @@ namespace com.Sconit.Service.Impl
                 //locationTransaction.ReceiptDetailSequence = 
                 //locationTransaction.SequenceNo = 
                 //locationTransaction.TraceCode = ;
+
+
+                locationTransaction.OrderNo = orderNo;
                 locationTransaction.Item = inventoryRePack.CurrentHu.Item;
                 locationTransaction.Uom = inventoryRePack.CurrentHu.Uom;
                 locationTransaction.BaseUom = inventoryRePack.CurrentHu.BaseUom;
