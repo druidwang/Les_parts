@@ -17,18 +17,24 @@ namespace com.Sconit.Entity.SI.MES
 		public string batch_no { get; set; }
 		public decimal quantity { get; set; }
 		public string warehouse_code { get; set; }
+        public string warehouse_name { get; set; }
+        
 		public string reservoir { get; set; }
-		public string user_id { get; set; }
-        public DateTime create_time { get; set; }
-		//public int op_type { get; set; }
-        public string io_bound_type { get; set; }
+        public string person_code { get; set; }
+        public string person_name { get; set; }
+        public DateTime operate_time { get; set; }
+        public string io_bound_type_code { get; set; }
+        public string io_bound_type_name { get; set; }
         public int io_bound_direction { get; set; }
         public string purchase_order_no { get; set; }
 		public string purchase_line_no { get; set; }
 		public string sale_order_no { get; set; }
 		public string sale_line_no { get; set; }
 		public string supplier_code { get; set; }
+        public string supplier_name { get; set; }
         public string customer_code { get; set; }
+        public string customer_name { get; set; }
+        public int is_sale { get; set; }
 		public DateTime CreateDate { get; set; }
 		public Int32 Status { get; set; }
 		public string BatchNo { get; set; }

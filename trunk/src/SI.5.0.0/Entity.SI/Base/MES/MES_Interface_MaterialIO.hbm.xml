@@ -12,15 +12,20 @@
     <property name="quantity" column="quantity" type="Decimal"/>	
 		<property name="warehouse_code" column="warehouse_code" type="String" length="50"/>	
 		<property name="reservoir" column="reservoir" type="String" length="50"/>	
-		<property name="user_id" column="user_id" type="String" length="50"/>
-        <property name="create_time" column="create_time" type="DateTime"/>
-		<property name="io_bound_type" column="io_bound_type" type="String" length="50"/>
+		<property name="person_code" column="person_code" type="String" length="50"/>
+    <property name="person_name" column="person_name" type="String" length="50"/>
+        <property name="operate_time" column="create_time" type="DateTime"/>
+		<property name="io_bound_type_code" column="io_bound_type_code" type="String" length="50"/>
+    <property name="io_bound_type_name" column="io_bound_type_name" type="String" length="50"/>
     <property name="io_bound_direction" column="io_bound_direction" type="Int32"/>
     <property name="purchase_order_no" column="purchase_order_no" type="String" length="50"/>	
 		<property name="sale_order_no" column="sale_order_no" type="String" length="50"/>	
 		<property name="sale_line_no" column="sale_line_no" type="String" length="50"/>	
-		<property name="supplier_code" column="supplier_code" type="String" length="50"/>	
-		<property name="customer_code" column="customer_code" type="String" length="50"/>
+		<property name="supplier_code" column="supplier_code" type="String" length="50"/>
+    <property name="supplier_name" column="supplier_name" type="String" length="50"/>
+    <property name="customer_code" column="customer_code" type="String" length="50"/>
+    <property name="customer_name" column="customer_name" type="String" length="50"/>
+    <property name="is_sale" column="is_sale" type="Int32"/>
     <property name="CreateDate" column="CreateDate" type="DateTime"/>
 		<property name="Status" column="Status" type="Int32"/>	
 		<property name="BatchNo" column="BatchNo" type="String" length="50"/>	
