@@ -42,7 +42,7 @@ namespace com.Sconit.Service.SI.MES.Impl
             try
             {
                 var response = new Entity.SI.MES.InventoryResponse();
-                response.RequestId = request.RequestId;
+                response.ReplyId = Guid.NewGuid().ToString().Replace("-", "");
                 if (string.IsNullOrEmpty(request.RequestId))
                 {
                     throw new Exception("请输入请求参数RequestId");
@@ -51,11 +51,11 @@ namespace com.Sconit.Service.SI.MES.Impl
                 {
                     throw new Exception("请输入请求参数MaterialCode");
                 }
-                var requestData = this.genericMgr.FindAll<MES_Interface_Inventory>("from MES_Interface_Inventory m where RequestId=? and Status=0", request.RequestId, 0, 200);
+                var requestData = this.genericMgr.FindAll<MES_Interface_Inventory>("from MES_Interface_Inventory m where RequestId=? and Status=0", request.RequestId, 0, 1000);
                 if (requestData == null || requestData.Count == 0)
                 {
                     this.genericMgr.FindAllWithNamedQuery<object[]>("USP_MES_GetInventory", new object[] { request.RequestId, request.Data.MaterialCode, request.Data.WarehouseCode, request.Data.BarCode, request.Data.BatchNo }).FirstOrDefault();
-                    requestData = this.genericMgr.FindAll<MES_Interface_Inventory>("from MES_Interface_Inventory m where RequestId=? and Status=0 order by Id", request.RequestId, 0, 200);
+                    requestData = this.genericMgr.FindAll<MES_Interface_Inventory>("from MES_Interface_Inventory m where RequestId=? and Status=0 order by Id", request.RequestId, 0, 1000);
                     if (requestData.Count < 200)
                     {
                         response.IsEnd = true;

@@ -8,9 +8,11 @@
     <property name="MaterialCode" column="MaterialCode" type="String" length="50"/>
     <property name="WarehouseCode" column="WarehouseCode" type="String" length="50"/>
     <property name="FactoryCode" column="FactoryCode" type="String" length="50"/>
+    <property name="Uom" column="Uom" type="String" length="50"/>
     <property name="Quantity" column="Quantity" type="Decimal"/>	
 		<property name="BarCode" column="BarCode" type="String" length="50"/>	
-		<property name="BatchNo" column="BatchNo" type="String" length="50"/>	
+		<property name="BatchNo" column="BatchNo" type="String" length="50"/>
+    <property name="Reservoir" column="Reservoir" type="String" length="50"/>
     <property name="Type" column="Type" type="Int32"/>
     <property name="CreateDate" column="CreateDate" type="DateTime"/>
 		<property name="Status" column="Status" type="Int32"/>	

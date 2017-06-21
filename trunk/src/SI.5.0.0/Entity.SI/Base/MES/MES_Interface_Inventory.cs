@@ -15,9 +15,11 @@ namespace com.Sconit.Entity.SI.MES
 		public string MaterialCode { get; set; }
 		public string WarehouseCode { get; set; }
 		public string FactoryCode { get; set; }
+        public string Uom { get; set; }
 		public decimal Quantity { get; set; }
 		public string BarCode { get; set; }
 		public string BatchNo { get; set; }
+        public string Reservoir { get; set; }
 		public int Type { get; set; }
 		public DateTime CreateDate { get; set; }
 		public Int32 Status { get; set; }

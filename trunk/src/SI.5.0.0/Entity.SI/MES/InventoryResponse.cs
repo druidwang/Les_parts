@@ -7,7 +7,11 @@ namespace com.Sconit.Entity.SI.MES
 {
     public class InventoryResponse
     {
-        public string RequestId { get; set; }
+        public string ReplyId { get; set; }
+
+        public string ErrorCode { get; set; }
+
+        public string ErrorMsg { get; set; }
 
         public bool IsEnd { get; set; }
 
