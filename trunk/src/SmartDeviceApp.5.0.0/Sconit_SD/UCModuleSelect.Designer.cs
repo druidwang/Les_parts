@@ -63,7 +63,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnExit
             // 
-            this.btnExit.Location = new System.Drawing.Point(169, 266);
+            this.btnExit.Location = new System.Drawing.Point(169, 247);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(72, 20);
             this.btnExit.TabIndex = 2;
@@ -72,7 +72,7 @@ namespace com.Sconit.SmartDevice
             // 
             // btnLogOff
             // 
-            this.btnLogOff.Location = new System.Drawing.Point(94, 266);
+            this.btnLogOff.Location = new System.Drawing.Point(94, 247);
             this.btnLogOff.Name = "btnLogOff";
             this.btnLogOff.Size = new System.Drawing.Size(72, 20);
             this.btnLogOff.TabIndex = 1;
@@ -81,7 +81,7 @@ namespace com.Sconit.SmartDevice
             // 
             // tbKeyCode
             // 
-            this.tbKeyCode.Location = new System.Drawing.Point(7, 263);
+            this.tbKeyCode.Location = new System.Drawing.Point(7, 244);
             this.tbKeyCode.Name = "tbKeyCode";
             this.tbKeyCode.Size = new System.Drawing.Size(81, 23);
             this.tbKeyCode.TabIndex = 3;
@@ -89,7 +89,7 @@ namespace com.Sconit.SmartDevice
             // 
             // lblUserStatus
             // 
-            this.lblUserStatus.Location = new System.Drawing.Point(12, 243);
+            this.lblUserStatus.Location = new System.Drawing.Point(12, 227);
             this.lblUserStatus.Name = "lblUserStatus";
             this.lblUserStatus.Size = new System.Drawing.Size(215, 17);
             this.lblUserStatus.Text = "当前用户:";
@@ -110,7 +110,7 @@ namespace com.Sconit.SmartDevice
             this.tabInventory.Controls.Add(this.btnTransfer);
             this.tabInventory.Location = new System.Drawing.Point(4, 25);
             this.tabInventory.Name = "tabInventory";
-            this.tabInventory.Size = new System.Drawing.Size(233, 195);
+            this.tabInventory.Size = new System.Drawing.Size(233, 188);
             this.tabInventory.Text = "仓库";
             // 
             // btnBindContainerOut
@@ -252,7 +252,7 @@ namespace com.Sconit.SmartDevice
             this.tabModuleSelect.Location = new System.Drawing.Point(3, 13);
             this.tabModuleSelect.Name = "tabModuleSelect";
             this.tabModuleSelect.SelectedIndex = 0;
-            this.tabModuleSelect.Size = new System.Drawing.Size(241, 224);
+            this.tabModuleSelect.Size = new System.Drawing.Size(253, 212);
             this.tabModuleSelect.TabIndex = 0;
             this.tabModuleSelect.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             this.tabModuleSelect.SelectedIndexChanged += new System.EventHandler(this.tabModuleSelect_SelectedIndexChanged);
@@ -269,7 +269,7 @@ namespace com.Sconit.SmartDevice
             this.tabProcurement.Controls.Add(this.btnReceive);
             this.tabProcurement.Location = new System.Drawing.Point(4, 25);
             this.tabProcurement.Name = "tabProcurement";
-            this.tabProcurement.Size = new System.Drawing.Size(233, 195);
+            this.tabProcurement.Size = new System.Drawing.Size(245, 183);
             this.tabProcurement.Text = "收发";
             // 
             // btnProductionReturn
@@ -370,7 +370,7 @@ namespace com.Sconit.SmartDevice
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.tabModuleSelect);
             this.Name = "UCModuleSelect";
-            this.Size = new System.Drawing.Size(273, 289);
+            this.Size = new System.Drawing.Size(280, 275);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             this.tabInventory.ResumeLayout(false);
             this.tabModuleSelect.ResumeLayout(false);

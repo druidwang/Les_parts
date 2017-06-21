@@ -44,7 +44,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(59, 45);
+            this.pictureBox1.Location = new System.Drawing.Point(90, 25);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(133, 50);
             // 
@@ -52,7 +52,7 @@
             // 
             this.lblMessage.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular);
             this.lblMessage.ForeColor = System.Drawing.Color.Red;
-            this.lblMessage.Location = new System.Drawing.Point(29, 225);
+            this.lblMessage.Location = new System.Drawing.Point(60, 205);
             this.lblMessage.Name = "lblMessage";
             this.lblMessage.Size = new System.Drawing.Size(77, 14);
             this.lblMessage.Text = "lblMessage";
@@ -60,7 +60,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(134, 187);
+            this.btnCancel.Location = new System.Drawing.Point(165, 167);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 4;
@@ -69,7 +69,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(31, 187);
+            this.btnLogin.Location = new System.Drawing.Point(62, 167);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 3;
@@ -78,7 +78,7 @@
             // 
             // tbPassword
             // 
-            this.tbPassword.Location = new System.Drawing.Point(100, 147);
+            this.tbPassword.Location = new System.Drawing.Point(131, 127);
             this.tbPassword.MaxLength = 16;
             this.tbPassword.Name = "tbPassword";
             this.tbPassword.PasswordChar = '*';
@@ -88,7 +88,7 @@
             // 
             // tbUserCode
             // 
-            this.tbUserCode.Location = new System.Drawing.Point(100, 113);
+            this.tbUserCode.Location = new System.Drawing.Point(131, 93);
             this.tbUserCode.MaxLength = 16;
             this.tbUserCode.Name = "tbUserCode";
             this.tbUserCode.Size = new System.Drawing.Size(109, 23);
@@ -97,14 +97,14 @@
             // 
             // lblPassword
             // 
-            this.lblPassword.Location = new System.Drawing.Point(24, 151);
+            this.lblPassword.Location = new System.Drawing.Point(55, 131);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(65, 19);
             this.lblPassword.Text = "密    码:";
             // 
             // lblUserCode
             // 
-            this.lblUserCode.Location = new System.Drawing.Point(24, 117);
+            this.lblUserCode.Location = new System.Drawing.Point(55, 97);
             this.lblUserCode.Name = "lblUserCode";
             this.lblUserCode.Size = new System.Drawing.Size(65, 19);
             this.lblUserCode.Text = "账    号:";
@@ -112,15 +112,15 @@
             // lblCopyRight
             // 
             this.lblCopyRight.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular);
-            this.lblCopyRight.Location = new System.Drawing.Point(48, 250);
+            this.lblCopyRight.Location = new System.Drawing.Point(79, 230);
             this.lblCopyRight.Name = "lblCopyRight";
             this.lblCopyRight.Size = new System.Drawing.Size(142, 14);
-            this.lblCopyRight.Text = "Copyright © 2012 Sconit";
+            this.lblCopyRight.Text = "Copyright © 2017 Sconit";
             // 
             // lblVersion
             // 
             this.lblVersion.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular);
-            this.lblVersion.Location = new System.Drawing.Point(12, 269);
+            this.lblVersion.Location = new System.Drawing.Point(43, 249);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(213, 14);
             this.lblVersion.Text = "Ver:";
@@ -140,7 +140,7 @@
             this.Controls.Add(this.lblUserCode);
             this.Controls.Add(this.pictureBox1);
             this.Name = "UCLogin";
-            this.Size = new System.Drawing.Size(240, 295);
+            this.Size = new System.Drawing.Size(320, 286);
             this.ResumeLayout(false);
 
         }

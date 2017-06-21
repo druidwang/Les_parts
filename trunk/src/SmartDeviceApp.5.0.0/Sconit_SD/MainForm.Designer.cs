@@ -36,7 +36,7 @@
             // 
             this.plMain.Location = new System.Drawing.Point(0, 0);
             this.plMain.Name = "plMain";
-            this.plMain.Size = new System.Drawing.Size(320, 290);
+            this.plMain.Size = new System.Drawing.Size(316, 277);
             // 
             // timerLogin
             // 
@@ -47,7 +47,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(238, 295);
+            this.ClientSize = new System.Drawing.Size(326, 286);
             this.Controls.Add(this.plMain);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

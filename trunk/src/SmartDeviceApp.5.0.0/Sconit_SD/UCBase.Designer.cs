@@ -46,7 +46,7 @@
             // btnOrder
             // 
             this.btnOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOrder.Location = new System.Drawing.Point(196, 0);
+            this.btnOrder.Location = new System.Drawing.Point(235, 0);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Size = new System.Drawing.Size(40, 20);
             this.btnOrder.TabIndex = 12;
@@ -63,7 +63,7 @@
             this.tbBarCode.Location = new System.Drawing.Point(39, 0);
             this.tbBarCode.MaxLength = 30;
             this.tbBarCode.Name = "tbBarCode";
-            this.tbBarCode.Size = new System.Drawing.Size(151, 23);
+            this.tbBarCode.Size = new System.Drawing.Size(190, 23);
             this.tbBarCode.TabIndex = 11;
             this.tbBarCode.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbBarCode_KeyUp);
             this.tbBarCode.LostFocus += new System.EventHandler(this.tbBarCode_LostFocus);
@@ -84,7 +84,7 @@
             this.dgList.Location = new System.Drawing.Point(0, 44);
             this.dgList.Name = "dgList";
             this.dgList.RowHeadersVisible = false;
-            this.dgList.Size = new System.Drawing.Size(240, 220);
+            this.dgList.Size = new System.Drawing.Size(279, 206);
             this.dgList.TabIndex = 10;
             this.dgList.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UCBase_KeyPress);
             this.dgList.GotFocus += new System.EventHandler(this.dgList_GotFocus);
@@ -100,7 +100,7 @@
             this.Controls.Add(this.lblBarCode);
             this.Controls.Add(this.dgList);
             this.Name = "UCBase";
-            this.Size = new System.Drawing.Size(240, 290);
+            this.Size = new System.Drawing.Size(279, 276);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UCBase_KeyPress);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.UCBase_KeyDown);
             this.ResumeLayout(false);

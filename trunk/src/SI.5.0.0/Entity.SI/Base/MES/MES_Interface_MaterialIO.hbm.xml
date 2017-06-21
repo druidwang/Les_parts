@@ -15,7 +15,7 @@
     <property name="reservoir" column="reservoir" type="String" length="50"/>	
 		<property name="person_code" column="person_code" type="String" length="50"/>
     <property name="person_name" column="person_name" type="String" length="200"/>
-        <property name="operate_time" column="create_time" type="DateTime"/>
+        <property name="operate_time" column="operate_time" type="DateTime"/>
 		<property name="io_bound_type_code" column="io_bound_type_code" type="String" length="50"/>
     <property name="io_bound_type_name" column="io_bound_type_name" type="String" length="200"/>
     <property name="io_bound_direction" column="io_bound_direction" type="Int32"/>

@@ -454,7 +454,7 @@ namespace com.Sconit.SmartDevice
         private void AddModule(UserControl userControl)
         {
             userControl.Location = new System.Drawing.Point(0, 0);
-            userControl.Size = new System.Drawing.Size(238, 320);
+            userControl.Size = new System.Drawing.Size(280, 320);
             this.plMain.Controls.RemoveAt(0);
             this.plMain.Controls.Add(userControl);
             this.Activate();
