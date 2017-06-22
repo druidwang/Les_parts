@@ -17,22 +17,79 @@ namespace com.Sconit.Service.SI.MES.Impl
 
         public string CreateHu(string CustomerCode, string CustomerName, string LotNo, string Item, string ItemDesc, string ManufactureDate, string Manufacturer, string OrderNo, string Uom, decimal UC, decimal Qty, string CreateUser, string CreateDate, string Printer, string HuId)
         {
-            log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}开始", CustomerCode, LotNo, Item, HuId);
-            //throw new NotImplementedException();
-            var hu = string.Empty;
-            hu = huMgr.CreateHu("C"+CustomerCode, CustomerName, LotNo, Item, ItemDesc, ManufactureDate, Manufacturer, OrderNo, Uom, UC, Qty, CreateUser, CreateDate, Printer, HuId).HuId;
-            log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}结束", CustomerCode, LotNo, Item, HuId);
-            return hu;
+            try
+            {
+                log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}开始", CustomerCode, LotNo, Item, HuId);
+                if (string.IsNullOrEmpty(Item))
+                {
+                    throw new Exception("请输入零件号！");
+                }
+                else
+                {
+                    var eItems = this.genericMgr.FindAll<com.Sconit.Entity.MD.Item>("from Item i where i.Code=?", Item);
+                    if (eItems == null || eItems.Count == 0)
+                    {
+                        throw new Exception("请输入正确的零件号！");
+                    }
+                }
+                if (!string.IsNullOrEmpty(HuId))
+                {
+                    var hus = this.genericMgr.FindAll<com.Sconit.Entity.INV.Hu>("from Hu h where h.HuId=?", HuId);
+                    if (hus != null && hus.Count > 0)
+                    {
+                        throw new Exception("条码已在WMS存在，请勿传入重复的条码号！");
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(Printer))
+                    {
+                        throw new Exception("请输入打印机！");
+                    }
+                }
+                
+                //throw new NotImplementedException();
+                var hu = string.Empty;
+                hu = huMgr.CreateHu("C"+CustomerCode, CustomerName, LotNo, Item, ItemDesc, ManufactureDate, Manufacturer, OrderNo, Uom, UC, Qty, CreateUser, CreateDate, Printer, HuId).HuId;
+                log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}结束", CustomerCode, LotNo, Item, HuId);
+                return hu;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
 
         public string CreatePallet(List<string> BoxNos, string BoxCount, string Printer, string CreateUser, string CreateDate, string PalletId)
         {
-            log.InfoFormat("调用创建托盘方法{0}，{1}，{2}，{3}开始", BoxNos.FirstOrDefault(), BoxCount, Printer, PalletId);
-            var kp = string.Empty;
-            kp = huMgr.CreatePallet(BoxNos, BoxCount, Printer, CreateUser, CreateDate, PalletId);
-            log.InfoFormat("调用创建托盘方法{0}，{1}，{2}，{3}结束", BoxNos.FirstOrDefault(), BoxCount, Printer, PalletId);
-            return kp;
+            try
+            {
+                log.InfoFormat("调用创建托盘方法{0}，{1}，{2}，{3}开始", BoxNos.FirstOrDefault(), BoxCount, Printer, PalletId);
+                if (!string.IsNullOrEmpty(PalletId))
+                {
+                    var pallets = this.genericMgr.FindAll<com.Sconit.Entity.MD.Pallet>("from Pallet p where p.Code=?", PalletId);
+                    if (pallets != null && pallets.Count > 0)
+                    {
+                        throw new Exception("拖号已在WMS存在，请勿传入重复的拖号！");
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(Printer))
+                    {
+                        throw new Exception("请输入打印机！");
+                    }
+                }
+                var kp = string.Empty;
+                kp = huMgr.CreatePallet(BoxNos, BoxCount, Printer, CreateUser, CreateDate, PalletId);
+                log.InfoFormat("调用创建托盘方法{0}，{1}，{2}，{3}结束", BoxNos.FirstOrDefault(), BoxCount, Printer, PalletId);
+                return kp;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
     
