@@ -402,4 +402,13 @@
   <data name="HU_Repacked" xml:space="preserve">
     <value>Hu Repacked</value>
   </data>
+  <data name="Hu_DevanningQty" xml:space="preserve">
+    <value>DevanningQty</value>
+  </data>
+  <data name="HU_Hu_Not_Check" xml:space="preserve">
+    <value>Hu Not Check</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
 </root>

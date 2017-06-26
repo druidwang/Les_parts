@@ -4093,6 +4093,15 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 Devanning 的本地化字符串。
+        /// </summary>
+        public static string Inventory_Hu_Devanning {
+            get {
+                return ResourceManager.GetString("Inventory_Hu_Devanning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 New 的本地化字符串。
         /// </summary>
         public static string Inventory_Hu_New {

@@ -3119,4 +3119,7 @@
   <data name="Inventory_InMiscOrder_InitInventory" xml:space="preserve">
     <value>库存初始化</value>
   </data>
+  <data name="Inventory_Hu_Devanning" xml:space="preserve">
+    <value>拆箱</value>
+  </data>
 </root>

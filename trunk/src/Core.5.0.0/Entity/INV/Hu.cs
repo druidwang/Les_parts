@@ -112,5 +112,12 @@ namespace com.Sconit.Entity.INV
         [Export(ExportName = "ShelfLifeWarning", ExportSeq = 90)]
         [Display(Name = "Hu_RemindExpireDate", ResourceType = typeof(Resources.INV.Hu))]
         public string RemindExpireDateValue { get; set; }
+
+
+        /// <summary>
+        /// ²ðÏäÊý
+        /// </summary>
+          [Display(Name = "Hu_DevanningQty", ResourceType = typeof(Resources.INV.Hu))]
+        public Decimal DevanningQty { get; set; }
     }
 }

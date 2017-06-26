@@ -142,6 +142,15 @@ namespace Resources.INV {
         }
         
         /// <summary>
+        ///   查找类似 DevanningQty 的本地化字符串。
+        /// </summary>
+        public static string Hu_DevanningQty {
+            get {
+                return ResourceManager.GetString("Hu_DevanningQty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Direction 的本地化字符串。
         /// </summary>
         public static string Hu_Direction {
@@ -201,6 +210,15 @@ namespace Resources.INV {
         public static string Hu_FlowDetail {
             get {
                 return ResourceManager.GetString("Hu_FlowDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Hu Not Check 的本地化字符串。
+        /// </summary>
+        public static string HU_Hu_Not_Check {
+            get {
+                return ResourceManager.GetString("HU_Hu_Not_Check", resourceCulture);
             }
         }
         
@@ -912,6 +930,15 @@ namespace Resources.INV {
         public static string Region {
             get {
                 return ResourceManager.GetString("Region", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似  的本地化字符串。
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }

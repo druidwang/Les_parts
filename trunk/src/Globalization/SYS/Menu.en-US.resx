@@ -3117,4 +3117,7 @@
   <data name="Inventory_InMiscOrder_InitInventory" xml:space="preserve">
     <value>InitInventory</value>
   </data>
+  <data name="Inventory_Hu_Devanning" xml:space="preserve">
+    <value>Devanning</value>
+  </data>
 </root>

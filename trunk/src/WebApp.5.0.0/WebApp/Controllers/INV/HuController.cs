@@ -533,7 +533,7 @@ namespace com.Sconit.Web.Controllers.INV
                     orderDetail.ManufactureParty = orderMaster.PartyFrom;
                     orderDetail.HuQty = orderDetail.OrderedQty;
                     orderDetail.LotNo = LotNoHelper.GenerateLotNo();
-                   // orderDetail.ManufactureDateStrFormat = DateTime.Now.ToString("yyyy-MM-dd");
+                    // orderDetail.ManufactureDateStrFormat = DateTime.Now.ToString("yyyy-MM-dd");
                     orderDetail.ManufactureDateStrFormat = orderMaster.WindowTime.ToString("yyyy-MM-dd");
                     if (!orderDetail.IsChangeUnitCount)
                     {
@@ -1348,7 +1348,7 @@ namespace com.Sconit.Web.Controllers.INV
                             hu.ManufactureDate = palletHu.ManufactureDate;
                             hu.LotNo = palletHu.LotNo;
                             hu.OrderNo = palletHu.OrderNo;
-                            hu.Qty = huList.Where(p => p.Item == ihu.Item).Sum(p=>p.Qty);
+                            hu.Qty = huList.Where(p => p.Item == ihu.Item).Sum(p => p.Qty);
                             hu.Uom = palletHu.Uom + "(" + huList.Where(p => p.Item == ihu.Item).Count() + "箱)";
                             hu.ExternalOrderNo = palletHu.ExternalOrderNo;
                             palletHuList.Add(hu);
@@ -1548,6 +1548,92 @@ namespace com.Sconit.Web.Controllers.INV
                 return Json(null);
             }
 
+        }
+
+        #endregion
+
+
+        #region devanning
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_Inventory_Hu_Devanning")]
+        public ActionResult DevanningIndex()
+        {
+            return View();
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_Inventory_Hu_Devanning")]
+        public ActionResult Devanning(GridCommand command, HuSearchModel searchModel)
+        {
+            SearchCacheModel searchCacheModel = this.ProcessSearchModel(command, searchModel);
+            if (!string.IsNullOrEmpty(searchModel.HuId))
+            {
+                TempData["_AjaxMessage"] = "";
+            }
+            else
+            {
+                SaveWarningMessage(Resources.SYS.ErrorMessage.Errors_NoConditions);
+            }
+
+            ViewBag.PageSize = base.ProcessPageSize(command.PageSize);
+            return View();
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_Inventory_Hu_Devanning")]
+        public ActionResult _AjaxDevanningHuList(GridCommand command, HuSearchModel searchModel)
+        {
+            if (string.IsNullOrEmpty(searchModel.HuId))
+            {
+                return PartialView(new GridModel(new List<OrderMaster>()));
+            }
+            else
+            {
+                IList<Hu> devanningHuList = new List<Hu>();
+                Hu h = genericMgr.FindAll<Hu>(" from Hu where HuId = ?", searchModel.HuId).FirstOrDefault();
+                devanningHuList.Add(h);
+                return PartialView(new GridModel<Hu>(devanningHuList));
+            }
+        }
+
+        [SconitAuthorize(Permissions = "Url_Inventory_Hu_New")]
+        public JsonResult DevanningHu(string HuidStr, string DevanningqtyStr)
+        {
+            try
+            {
+                IList<Hu> devanningHuList = new List<Hu>();
+                if (!string.IsNullOrEmpty(HuidStr))
+                {
+                    Hu devanningHu = genericMgr.FindById<Hu>(HuidStr);
+                    devanningHu.DevanningQty = Convert.ToDecimal(DevanningqtyStr);
+
+
+                    IList<Hu> huList = locationDetailMgr.DevanningHu(devanningHu);
+
+                    foreach (var hu in huList)
+                    {
+                        if (!string.IsNullOrEmpty(hu.ManufactureParty))
+                        {
+                            hu.ManufacturePartyDescription = queryMgr.FindById<Party>(hu.ManufactureParty).Name;
+                        }
+                        if (!string.IsNullOrWhiteSpace(hu.Direction))
+                        {
+                            hu.Direction = this.genericMgr.FindById<HuTo>(hu.Direction).CodeDescription;
+                        }
+                    }
+
+                    string printUrl = PrintHuList(huList, devanningHu.HuTemplate, false);
+                    object obj = new { SuccessMessage = string.Format(Resources.EXT.ControllerLan.Con_BarcodePrintedSuccessfully_1, huList.Count), PrintUrl = printUrl };
+                    return Json(obj);
+
+                }
+
+                return Json(null);
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
         }
 
         #endregion

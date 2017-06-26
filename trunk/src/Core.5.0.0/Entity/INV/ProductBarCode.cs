@@ -7,7 +7,7 @@ using com.Sconit.Entity.SYS;
 
 namespace com.Sconit.Entity.INV
 {
-    public partial class Hu
+    public partial class ProductBarCode
     {
         #region Non O/R Mapping Properties
        

@@ -4010,7 +4010,7 @@ namespace com.Sconit.Service.Impl
             IList<InventoryTransaction> inventoryTransactionList = new List<InventoryTransaction>();
 
             #region 做一个单号
-            string repackNo = "REPK" + numberControlMgr.GetNextSequenceo("REPK").PadLeft(9,'0');
+            string repackNo = "REPK" + numberControlMgr.GetNextSequenceo("REPK").PadLeft(9, '0');
             #endregion
 
 
@@ -4039,7 +4039,7 @@ namespace com.Sconit.Service.Impl
                 inventoryOut.OccupyReferenceNo = inventoryRePack.CurrentHu.OccupyReferenceNo;
                 inventoryOut.IsVoid = false;
                 inventoryOut.EffectiveDate = effectiveDate;
-           
+
                 //inventoryIO.ManufactureParty = ;
 
                 IList<InventoryTransaction> issInventoryTransactionList = RecordInventory(inventoryOut);
@@ -4110,7 +4110,7 @@ namespace com.Sconit.Service.Impl
             #endregion
         }
 
-        private void RecordLocationTransaction(InventoryRePack inventoryRePack, DateTime effectiveDate, IList<InventoryTransaction> inventoryTransactionList, bool isIssue,string orderNo = "")
+        private void RecordLocationTransaction(InventoryRePack inventoryRePack, DateTime effectiveDate, IList<InventoryTransaction> inventoryTransactionList, bool isIssue, string orderNo = "")
         {
             DateTime dateTimeNow = DateTime.Now;
 
@@ -5577,6 +5577,54 @@ namespace com.Sconit.Service.Impl
 
             return inventoryTransactionList;
             #endregion
+        }
+
+
+        /// <summary>
+        /// 客戶化拆箱功能
+        /// </summary>
+        /// <param name="huList"></param>
+        /// <returns></returns>
+        [Transaction(TransactionMode.Requires)]
+        public List<Hu> DevanningHu(Hu hu)
+        {
+
+            List<Hu> devanningHuList = new List<Hu>();
+
+            List<string> oldHuList = new List<string>();
+            List<string> newHuList = new List<string>();
+            Hu hu1 = huMgr.CloneHu(hu, hu.DevanningQty);
+            Hu hu2 = huMgr.CloneHu(hu, hu.Qty - hu.DevanningQty);
+
+            genericMgr.Create(hu1);
+            genericMgr.Create(hu2);
+            genericMgr.FlushSession();
+
+            oldHuList.Add(hu.HuId);
+            newHuList.Add(hu1.HuId);
+            newHuList.Add(hu2.HuId);
+
+            var inventoryPackList = new List<Entity.INV.InventoryRePack>();
+            foreach (var huId in oldHuList)
+            {
+                var inventoryUnPack = new Entity.INV.InventoryRePack();
+                inventoryUnPack.HuId = huId;
+                inventoryUnPack.Type = CodeMaster.RePackType.Out;
+                inventoryPackList.Add(inventoryUnPack);
+            }
+            foreach (var huId in newHuList)
+            {
+                var inventoryUnPack = new Entity.INV.InventoryRePack();
+                inventoryUnPack.HuId = huId;
+                inventoryUnPack.Type = CodeMaster.RePackType.In;
+                inventoryPackList.Add(inventoryUnPack);
+            }
+
+            InventoryRePack(inventoryPackList);
+            devanningHuList.Add(hu1);
+            devanningHuList.Add(hu2);
+
+            return devanningHuList;
         }
         #endregion
 

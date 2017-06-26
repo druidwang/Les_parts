@@ -130,5 +130,7 @@ namespace com.Sconit.Service
         void SettleLocaitonLotDetail(List<Int64> locationLotDetIdList);
 
         IList<Hu> Repack(string huId, IList<ProductBarCode> checkedProductBarCodeList, IList<ProductBarCode> uncheckedProductBarCodeList);
+
+        List<Hu> DevanningHu(Hu hu);
     }
 }

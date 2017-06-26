@@ -405,4 +405,10 @@
   <data name="Hu_QtyNotMatch" xml:space="preserve">
     <value>翻箱前后数量不匹配</value>
   </data>
+  <data name="Hu_DevanningQty" xml:space="preserve">
+    <value>拆箱数</value>
+  </data>
+  <data name="HU_Hu_Not_Check" xml:space="preserve">
+    <value>请选择条码</value>
+  </data>
 </root>
