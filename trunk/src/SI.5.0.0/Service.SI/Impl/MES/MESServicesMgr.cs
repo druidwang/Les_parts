@@ -19,7 +19,25 @@ namespace com.Sconit.Service.SI.MES.Impl
         {
             try
             {
-                log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}开始", CustomerCode, LotNo, Item, HuId);
+                MES_Interface_CreateHu createHu = new MES_Interface_CreateHu();
+                createHu.CreateDate = CreateDate;
+                createHu.CreateUser = CreateUser;
+                createHu.CustomerCode = CustomerCode;
+                createHu.CustomerName = CustomerName;
+                createHu.HuId = HuId;
+                createHu.Item = Item;
+                createHu.ItemDesc = ItemDesc;
+                createHu.LotNo = LotNo;
+                createHu.ManufactureDate = ManufactureDate;
+                createHu.Manufacturer = Manufacturer;
+                createHu.OrderNo = OrderNo;
+                createHu.Printer = Printer;
+                createHu.Qty = Qty;
+                createHu.UC = UC;
+                createHu.Uom = Uom;
+                this.genericMgr.Create(createHu);
+
+                //log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}开始", CustomerCode, LotNo, Item, HuId);
                 if (string.IsNullOrEmpty(Item))
                 {
                     throw new Exception("请输入零件号！");
@@ -51,7 +69,7 @@ namespace com.Sconit.Service.SI.MES.Impl
                 //throw new NotImplementedException();
                 var hu = string.Empty;
                 hu = huMgr.CreateHu("C"+CustomerCode, CustomerName, LotNo, Item, ItemDesc, ManufactureDate, Manufacturer, OrderNo, Uom, UC, Qty, CreateUser, CreateDate, Printer, HuId).HuId;
-                log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}结束", CustomerCode, LotNo, Item, HuId);
+                //log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}结束", CustomerCode, LotNo, Item, HuId);
                 return hu;
             }
             catch (Exception)
@@ -65,7 +83,21 @@ namespace com.Sconit.Service.SI.MES.Impl
         {
             try
             {
-                log.InfoFormat("调用创建托盘方法{0}，{1}，{2}，{3}开始", BoxNos.FirstOrDefault(), BoxCount, Printer, PalletId);
+                var allbox = string.Empty;
+                foreach (var boxNo in BoxNos)
+                {
+                    allbox += boxNo+",";
+                }
+
+                MES_Interface_CreatePallet createPallet = new MES_Interface_CreatePallet();
+                createPallet.CreateDate = CreateDate;
+                createPallet.CreateUser = CreateUser;
+                createPallet.BoxCount = BoxCount;
+                createPallet.BoxNos = allbox;
+                createPallet.Printer = Printer;
+                createPallet.PalletId = PalletId;
+                this.genericMgr.Create(createPallet);
+                //log.InfoFormat("调用创建托盘方法{0}，{1}，{2}，{3}开始", BoxNos.FirstOrDefault(), BoxCount, Printer, PalletId);
                 if (!string.IsNullOrEmpty(PalletId))
                 {
                     var pallets = this.genericMgr.FindAll<com.Sconit.Entity.MD.Pallet>("from Pallet p where p.Code=?", PalletId);
@@ -83,7 +115,7 @@ namespace com.Sconit.Service.SI.MES.Impl
                 }
                 var kp = string.Empty;
                 kp = huMgr.CreatePallet(BoxNos, BoxCount, Printer, CreateUser, CreateDate, PalletId);
-                log.InfoFormat("调用创建托盘方法{0}，{1}，{2}，{3}结束", BoxNos.FirstOrDefault(), BoxCount, Printer, PalletId);
+                //log.InfoFormat("调用创建托盘方法{0}，{1}，{2}，{3}结束", BoxNos.FirstOrDefault(), BoxCount, Printer, PalletId);
                 return kp;
             }
             catch (Exception)
