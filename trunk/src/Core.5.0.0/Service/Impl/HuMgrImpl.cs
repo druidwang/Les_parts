@@ -494,7 +494,7 @@ namespace com.Sconit.Service.Impl
       //      hu.ManufactureDate = Convert.ToDateTime(manufactureDate);
             hu.ExternalOrderNo = orderNo;
             var manufactureDt = DateTime.Now;
-            DateTime.TryParseExact(manufactureDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal, out manufactureDt);
+            DateTime.TryParseExact(manufactureDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal, out manufactureDt);
             hu.ManufactureDate = manufactureDt;
             hu.PrintCount = 0;
             hu.ConcessionCount = 0;
