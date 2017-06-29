@@ -156,7 +156,7 @@ namespace com.Sconit.Web.Controllers.INV
             if (searchResult != null && searchResult.Count > 0)
             {
                 #region
-                var productTypes = genericMgr.FindAll<ProductType>().ToDictionary(d => d.Code, d => d);
+                //var productTypes = genericMgr.FindAll<ProductType>().ToDictionary(d => d.Code, d => d);
                 //ld.HuId,ld.LotNo,ld.Location,ld.Bin,ld.Item,i.Desc1,i.RefCode,ld.UC,ld.OccupyType,ld.QualityType,ld.IsCS,
                 //ld.IsFreeze,ld.IsATP,ld.HuQty,ld.HuUom,ld.Qty,ld.BaseUom,hu.HuOption,ld.Direction,ht.Desc1
                 locationLotDetailList = (from tak in searchResult
@@ -184,7 +184,7 @@ namespace com.Sconit.Web.Controllers.INV
                                              DirectionDescription = (string)tak[20],
                                              MaterialsGroup = (string)tak[21],
                                              MaterialsGroupDesc = (string)tak[22],
-                                             ItemVersion = (string)tak[23] + (string.IsNullOrWhiteSpace((string)tak[23]) ? "" : "[" + productTypes.ValueOrDefault((string)tak[23]).Description + "]")
+                                             //ItemVersion = (string)tak[23] + (string.IsNullOrWhiteSpace((string)tak[23]) ? "" : "[" + productTypes.ValueOrDefault((string)tak[23]).Description + "]")
                                          }).ToList();
                 #endregion
             }
