@@ -115,7 +115,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Base\MES\MES_Interface_Inventory.hbm.xml" />
+    <EmbeddedResource Include="Base\MES\MES_Interface_CreatePallet.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Base\MES\MES_Interface_CreateHu.hbm.xml" />
+    <EmbeddedResource Include="Base\MES\MES_Interface_Inventory.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Base\MES\MES_Interface_MaterialIO.hbm.xml" />

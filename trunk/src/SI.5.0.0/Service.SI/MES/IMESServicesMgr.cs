@@ -9,9 +9,9 @@ namespace com.Sconit.Service.SI.MES
 {
     public interface IMESServicesMgr
     {
-        string CreateHu(string CustomerCode, string CustomerName, string LotNo, string Item, string ItemDesc, string ManufactureDate, string Manufacturer, string OrderNo, string Uom, decimal UC, decimal Qty, string CreateUser, string CreateDate, string Printer, string HuId);
+        MESCreateResponse CreateHu(string CustomerCode, string CustomerName, string LotNo, string Item, string ItemDesc, string ManufactureDate, string Manufacturer, string OrderNo, string Uom, decimal UC, decimal Qty, string CreateUser, string CreateDate, string Printer, string HuId);
 
-        string CreatePallet(List<string> BoxNos, string BoxCount, string Printer, string CreateUser, string CreateDate, string PalletId);
+        MESCreateResponse CreatePallet(List<string> BoxNos, string BoxCount, string Printer, string CreateUser, string CreateDate, string PalletId);
 
         InventoryResponse GetInventory(InventoryRequest request);
 
