@@ -704,10 +704,10 @@ namespace com.Sconit.Service.Impl
             User user = genericMgr.FindAll<User>("select u from User u where u.Code = ?", "Monitor").FirstOrDefault();
            
             string[] huidArray = boxNos.ToArray();
-            if (huidArray.Count() != Convert.ToInt32(boxCount))
-            {
-                throw new BusinessException("箱条码为{0},箱数为{1}", huidArray.Count().ToString(), boxCount);
-            }
+            //if (huidArray.Count() != Convert.ToInt32(boxCount))
+            //{
+            //    throw new BusinessException("箱条码为{0},箱数为{1}", huidArray.Count().ToString(), boxCount);
+            //}
 
             IList<Hu> huList = new List<Hu>();
             foreach (string huid in huidArray)
@@ -717,16 +717,20 @@ namespace com.Sconit.Service.Impl
                 {
                     throw new BusinessException("箱条码{0}不存在", huid);
                 }
+                if (string.IsNullOrEmpty(hu.PalletCode))
+                {
+                    throw new BusinessException("箱条码{0}已在托盘中", huid);
+                }
                 huList.Add(hu);
             }
 
-
-            #region 托盘
             var itemList = huList.Select(p => p.Item).Distinct();
             if (itemList.Count() > 1)
             {
                 throw new BusinessException("箱条码对应的零件号为多个，不能打印在同一托盘");
             }
+            #region 托盘
+            
             Pallet pallet = new Pallet();
             string palletCode = string.Empty;
             if (string.IsNullOrEmpty(palletId))
