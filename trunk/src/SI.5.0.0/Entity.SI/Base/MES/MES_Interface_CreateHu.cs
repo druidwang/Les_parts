@@ -26,6 +26,8 @@ namespace com.Sconit.Entity.SI.MES
         public string CreateDate { get; set; }
         public string Printer { get; set; }
         public string HuId { get; set; }
+        public Int32 Status { get; set; }
+        public string Message { get; set; }
 		
         #endregion
 
