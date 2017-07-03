@@ -76,7 +76,7 @@ namespace com.Sconit.Service.SI
 
         void DoReceiveKit(string kitNo, DateTime? effDate);
 
-        void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList);
+        void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList,bool isFifo = true);
 
         void DoPickList(List<Entity.SI.SD_ORD.PickListDetailInput> pickListDetailInputList);
 

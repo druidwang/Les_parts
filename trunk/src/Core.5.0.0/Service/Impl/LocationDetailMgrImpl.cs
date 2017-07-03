@@ -5590,19 +5590,40 @@ namespace com.Sconit.Service.Impl
         {
 
             List<Hu> devanningHuList = new List<Hu>();
-
             List<string> oldHuList = new List<string>();
             List<string> newHuList = new List<string>();
-            Hu hu1 = huMgr.CloneHu(hu, hu.DevanningQty);
-            Hu hu2 = huMgr.CloneHu(hu, hu.Qty - hu.DevanningQty);
 
-            genericMgr.Create(hu1);
-            genericMgr.Create(hu2);
-            genericMgr.FlushSession();
+           oldHuList.Add(hu.HuId);
+           decimal remainQty = hu.Qty;
+           string[] qtyStrArray = hu.DevanningQtyStr.Split(',');
 
-            oldHuList.Add(hu.HuId);
-            newHuList.Add(hu1.HuId);
-            newHuList.Add(hu2.HuId);
+           foreach (string qtyStr in qtyStrArray)
+           {
+               Hu newHu = huMgr.CloneHu(hu, Convert.ToDecimal(qtyStr));
+               genericMgr.Create(newHu);
+               newHuList.Add(newHu.HuId);
+               remainQty -= newHu.Qty;
+
+               if (remainQty < 0)
+               {
+                   throw new BusinessException("拆箱数总和大于原条码数");
+               }
+
+               devanningHuList.Add(newHu);
+           }
+
+           #region 剩余打一张条码
+           if (remainQty > 0)
+           {
+               Hu remainHu = huMgr.CloneHu(hu, remainQty);
+               genericMgr.Create(remainHu);
+               newHuList.Add(remainHu.HuId);
+               devanningHuList.Add(remainHu);
+           }
+           #endregion
+
+
+           genericMgr.FlushSession();
 
             var inventoryPackList = new List<Entity.INV.InventoryRePack>();
             foreach (var huId in oldHuList)
@@ -5621,8 +5642,7 @@ namespace com.Sconit.Service.Impl
             }
 
             InventoryRePack(inventoryPackList);
-            devanningHuList.Add(hu1);
-            devanningHuList.Add(hu2);
+
 
             return devanningHuList;
         }

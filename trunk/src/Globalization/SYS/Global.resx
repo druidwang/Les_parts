@@ -450,4 +450,7 @@
   <data name="Button_Calculate" xml:space="preserve">
     <value>Calculate</value>
   </data>
+  <data name="Button_Devanning" xml:space="preserve">
+    <value>Devanning</value>
+  </data>
 </root>

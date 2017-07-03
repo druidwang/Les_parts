@@ -571,7 +571,7 @@
         /// 移库
         /// </summary>List<Entity.SI.SD_ORD.OrderDetailInput> orderDetailInputList
         [Transaction(TransactionMode.Requires)]
-        public void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList)
+        public void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList,bool isFifo = true)
         {
             #region 按库位分多个订单
             var locCodes = flowDetailInputList.Select(p => p.LocFrom).Distinct();
@@ -693,11 +693,13 @@
                 }
 
                 #region 加一段强制先进先出
-                bool isForceFifo = bool.Parse(systemMgr.GetEntityPreferenceValue(com.Sconit.Entity.SYS.EntityPreference.CodeEnum.IsForceFIFO));
-                if (string.IsNullOrEmpty(flowMaster.Bin) && isForceFifo)
-                {
-                    orderMaster.IsShipFifo = true;
-                }
+                orderMaster.IsShipFifo = isFifo;
+
+                //bool isForceFifo = bool.Parse(systemMgr.GetEntityPreferenceValue(com.Sconit.Entity.SYS.EntityPreference.CodeEnum.IsForceFIFO));
+                //if (string.IsNullOrEmpty(flowMaster.Bin) && isForceFifo)
+                //{
+                //    orderMaster.IsShipFifo = true;
+                //}
                 #endregion
 
                 orderMaster.OrderDetails = new List<Entity.ORD.OrderDetail>();

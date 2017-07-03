@@ -411,4 +411,19 @@
   <data name="HU_Hu_Not_Check" xml:space="preserve">
     <value>请选择条码</value>
   </data>
+  <data name="Hu_DevanningQty1" xml:space="preserve">
+    <value>拆箱数1</value>
+  </data>
+  <data name="Hu_DevanningQty2" xml:space="preserve">
+    <value>拆箱数2</value>
+  </data>
+  <data name="Hu_DevanningQty3" xml:space="preserve">
+    <value>拆箱数3</value>
+  </data>
+  <data name="Hu_DevanningQty4" xml:space="preserve">
+    <value>拆箱数4</value>
+  </data>
+  <data name="Hu_DevanningSuccessfully" xml:space="preserve">
+    <value>条码拆箱成功</value>
+  </data>
 </root>

@@ -559,12 +559,12 @@
 
 
         [WebMethod]
-        public void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList, string userCode)
+        public void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList, string userCode,bool isFifo = true)
         {
             try
             {
                 SecurityContextHolder.Set(sdSecurityMgr.GetBaseUser(userCode));
-                this.orderMgr.DoTransfer(flowMaster, flowDetailInputList);
+                this.orderMgr.DoTransfer(flowMaster, flowDetailInputList,isFifo);
             }
             catch (BusinessException ex)
             {

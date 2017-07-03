@@ -151,6 +151,51 @@ namespace Resources.INV {
         }
         
         /// <summary>
+        ///   查找类似 DevanningQty1 的本地化字符串。
+        /// </summary>
+        public static string Hu_DevanningQty1 {
+            get {
+                return ResourceManager.GetString("Hu_DevanningQty1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 DevanningQty2 的本地化字符串。
+        /// </summary>
+        public static string Hu_DevanningQty2 {
+            get {
+                return ResourceManager.GetString("Hu_DevanningQty2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 DevanningQty3 的本地化字符串。
+        /// </summary>
+        public static string Hu_DevanningQty3 {
+            get {
+                return ResourceManager.GetString("Hu_DevanningQty3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 DevanningQty4 的本地化字符串。
+        /// </summary>
+        public static string Hu_DevanningQty4 {
+            get {
+                return ResourceManager.GetString("Hu_DevanningQty4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Hu Devanning Successfully 的本地化字符串。
+        /// </summary>
+        public static string Hu_DevanningSuccessfully {
+            get {
+                return ResourceManager.GetString("Hu_DevanningSuccessfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Direction 的本地化字符串。
         /// </summary>
         public static string Hu_Direction {
@@ -930,15 +975,6 @@ namespace Resources.INV {
         public static string Region {
             get {
                 return ResourceManager.GetString("Region", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似  的本地化字符串。
-        /// </summary>
-        public static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }

@@ -375,4 +375,16 @@
   <data name="HU_Hu_Not_Check" xml:space="preserve">
     <value>Hu Not Check</value>
   </data>
+  <data name="Hu_DevanningQty1" xml:space="preserve">
+    <value>DevanningQty1</value>
+  </data>
+  <data name="Hu_DevanningQty2" xml:space="preserve">
+    <value>DevanningQty2</value>
+  </data>
+  <data name="Hu_DevanningQty3" xml:space="preserve">
+    <value>DevanningQty3</value>
+  </data>
+  <data name="Hu_DevanningQty4" xml:space="preserve">
+    <value>DevanningQty4</value>
+  </data>
 </root>

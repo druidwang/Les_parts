@@ -14,10 +14,10 @@ namespace com.Sconit.SmartDevice
 {
     public class Utility
     {
-       // public static string WEBSERVICE_URL = "http://10.136.3.28/WebService/SD/SmartDeviceService.asmx";
+         public static string WEBSERVICE_URL = "http://10.136.3.28/WebService/SD/SmartDeviceService.asmx";
 
 
-        public static string WEBSERVICE_URL = "http://localhost:2015/WebService/SD/SmartDeviceService.asmx";
+         // public static string WEBSERVICE_URL = "http://localhost:2015/WebService/SD/SmartDeviceService.asmx";
 
         public static string GetBarCodeType(BarCodeType[] barCodeTypes, string barCode)
         {

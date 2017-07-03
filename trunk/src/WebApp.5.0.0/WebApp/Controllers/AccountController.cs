@@ -26,6 +26,7 @@ namespace com.Sconit.Web.Controllers
     using System.Reflection;
     using log4net;
     using com.Sconit.Entity.SYS;
+ //   using com.Sconit.Service.SI.MES;
     #endregion
 
     /// <summary>
@@ -48,7 +49,10 @@ namespace com.Sconit.Web.Controllers
         /// </summary>
         public ISecurityMgr securityMgr { get; set; }
 
+       // public IMESServicesMgr mesServiceMgr {get;set;}
         private static ILog log = LogManager.GetLogger("Log.WebAppError");
+
+
 
         /// <summary>
         /// Gets or sets the this.GenericMgr for object CRUD operator
@@ -74,6 +78,8 @@ namespace com.Sconit.Web.Controllers
         /// <returns>rediret view</returns>
         public ActionResult Login()
         {
+          //  mesServiceMgr.GenBusinessOrderData(DateTime.Now);
+          //  mesServiceMgr.TransBusinessOrderData();
             SetViewBag();
             if (CurrentUser != null)
             {
@@ -92,6 +98,7 @@ namespace com.Sconit.Web.Controllers
         [HttpPost]
         public ActionResult Login(LogOnModel model, string returnUrl)
         {
+
             var isTest = SetViewBag();
             if (ModelState.IsValid)
             {
