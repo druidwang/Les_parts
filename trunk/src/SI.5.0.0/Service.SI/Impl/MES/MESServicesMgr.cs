@@ -8,6 +8,7 @@ using com.Sconit.Entity.SI.SAP;
 using com.Sconit.Entity;
 using com.Sconit.Entity.SI.MES;
 using Newtonsoft.Json;
+using com.Sconit.Entity.Exception;
 
 namespace com.Sconit.Service.SI.MES.Impl
 {
@@ -18,7 +19,89 @@ namespace com.Sconit.Service.SI.MES.Impl
         public MESCreateResponse CreateHu(string CustomerCode, string CustomerName, string LotNo, string Item, string ItemDesc, string ManufactureDate, string Manufacturer, string OrderNo, string Uom, decimal UC, decimal Qty, string CreateUser, string CreateDate, string Printer, string HuId)
         {
             MESCreateResponse res = new MESCreateResponse();
+            res.BarCode = HuId;
             try
+            {
+
+
+                //log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}开始", CustomerCode, LotNo, Item, HuId);
+                if (string.IsNullOrEmpty(Item))
+                {
+                    res.Status = 0;
+                    res.ErrorCode = "100001";
+                    res.ErrorMesaage = "零件号为空或者零件号不存在";
+                    throw new BusinessException();
+                    //throw new Exception("请输入零件号！");
+                }
+                else
+                {
+                    var eItems = this.genericMgr.FindAll<com.Sconit.Entity.MD.Item>("from Item i where i.Code=?", Item);
+                    if (eItems == null || eItems.Count == 0)
+                    {
+                        res.Status = 0;
+                        res.ErrorCode = "100001";
+                        res.ErrorMesaage = "零件号为空或者零件号不存在";
+                        throw new BusinessException();
+                    }
+                }
+                if (string.IsNullOrEmpty(LotNo))
+                {
+                    res.Status = 0;
+                    res.ErrorCode = "100002";
+                    res.ErrorMesaage = "批次号为空";
+                    throw new BusinessException();
+                }
+                if (Qty > UC)
+                {
+                    res.Status = 0;
+                    res.ErrorCode = "100003";
+                    res.ErrorMesaage = "产品数量不可以大于包装数量";
+                    throw new BusinessException();
+                }
+                if (!string.IsNullOrEmpty(HuId))
+                {
+                    var hus = this.genericMgr.FindAll<com.Sconit.Entity.INV.Hu>("from Hu h where h.HuId=?", HuId);
+                    if (hus != null && hus.Count > 0)
+                    {
+                        res.Status = 0;
+                        res.ErrorCode = "100004";
+                        res.ErrorMesaage = "条码已在WMS存在";
+                        throw new BusinessException();
+                        //throw new Exception("条码已在WMS存在，请勿传入重复的条码号！");
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(Printer))
+                    {
+                        res.Status = 0;
+                        res.ErrorCode = "100005";
+                        res.ErrorMesaage = "请输入打印机";
+                        throw new BusinessException();
+                    }
+                }
+
+                //throw new NotImplementedException();
+                var hu = string.Empty;
+                hu = huMgr.CreateHu("C" + CustomerCode, CustomerName, LotNo, Item, ItemDesc, ManufactureDate, Manufacturer, OrderNo, Uom, UC, Qty, CreateUser, CreateDate, Printer, HuId).HuId;
+                //log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}结束", CustomerCode, LotNo, Item, HuId);
+                res.Status = 1;
+                res.BarCode = hu;
+                throw new BusinessException();
+            }
+            catch (BusinessException ex)
+            {
+
+            }
+            catch (Exception ex)
+            {
+                res.Status = 0;
+                res.ErrorCode = "100000";
+                res.ErrorMesaage = ex.Message;
+                
+                //return res;
+            }
+            finally
             {
                 MES_Interface_CreateHu createHu = new MES_Interface_CreateHu();
                 createHu.CreateDate = CreateDate;
@@ -36,86 +119,18 @@ namespace com.Sconit.Service.SI.MES.Impl
                 createHu.Qty = Qty;
                 createHu.UC = UC;
                 createHu.Uom = Uom;
+                createHu.Status = res.Status;
+                createHu.Message = res.ErrorMesaage;
                 this.genericMgr.Create(createHu);
-
-                //log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}开始", CustomerCode, LotNo, Item, HuId);
-                if (string.IsNullOrEmpty(Item))
-                {
-                    res.Status = 0;
-                    res.ErrorCode = "100001";
-                    res.ErrorMesaage = "零件号为空或者零件号不存在";
-                    return res;
-                    //throw new Exception("请输入零件号！");
-                }
-                else
-                {
-                    var eItems = this.genericMgr.FindAll<com.Sconit.Entity.MD.Item>("from Item i where i.Code=?", Item);
-                    if (eItems == null || eItems.Count == 0)
-                    {
-                        res.Status = 0;
-                        res.ErrorCode = "100001";
-                        res.ErrorMesaage = "零件号为空或者零件号不存在";
-                        return res;
-                    }
-                }
-                if (string.IsNullOrEmpty(LotNo))
-                {
-                    res.Status = 0;
-                    res.ErrorCode = "100002";
-                    res.ErrorMesaage = "批次号为空";
-                    return res;
-                }
-                if (Qty > UC)
-                {
-                    res.Status = 0;
-                    res.ErrorCode = "100003";
-                    res.ErrorMesaage = "产品数量不可以大于包装数量";
-                    return res;
-                }
-                if (!string.IsNullOrEmpty(HuId))
-                {
-                    var hus = this.genericMgr.FindAll<com.Sconit.Entity.INV.Hu>("from Hu h where h.HuId=?", HuId);
-                    if (hus != null && hus.Count > 0)
-                    {
-                        res.Status = 0;
-                        res.ErrorCode = "100004";
-                        res.ErrorMesaage = "条码已在WMS存在";
-                        return res;
-                        //throw new Exception("条码已在WMS存在，请勿传入重复的条码号！");
-                    }
-                }
-                else
-                {
-                    if (string.IsNullOrEmpty(Printer))
-                    {
-                        res.Status = 0;
-                        res.ErrorCode = "100005";
-                        res.ErrorMesaage = "请输入打印机";
-                        return res;
-                    }
-                }
-                
-                //throw new NotImplementedException();
-                var hu = string.Empty;
-                hu = huMgr.CreateHu("C"+CustomerCode, CustomerName, LotNo, Item, ItemDesc, ManufactureDate, Manufacturer, OrderNo, Uom, UC, Qty, CreateUser, CreateDate, Printer, HuId).HuId;
-                //log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}结束", CustomerCode, LotNo, Item, HuId);
-                res.Status = 1;
-                res.BarCode = hu;
-                return res;
             }
-            catch (Exception ex)
-            {
-                res.Status = 0;
-                res.ErrorCode = "100000";
-                res.ErrorMesaage = ex.Message;
-                return res;
-            }
+            return res;
         }
 
 
         public MESCreateResponse CreatePallet(List<string> BoxNos, string BoxCount, string Printer, string CreateUser, string CreateDate, string PalletId)
         {
             MESCreateResponse res = new MESCreateResponse();
+            res.BarCode = PalletId;
             try
             {
                 string[] huidArray = BoxNos.ToArray();
@@ -124,23 +139,10 @@ namespace com.Sconit.Service.SI.MES.Impl
                     res.Status = 0;
                     res.ErrorCode = "100007";
                     res.ErrorMesaage = "条码数和箱数不匹配";
-                    return res;
+                    throw new BusinessException();
+                    //return res;
                 }
-
-                var allbox = string.Empty;
-                foreach (var boxNo in BoxNos)
-                {
-                    allbox += boxNo+",";
-                }
-
-                MES_Interface_CreatePallet createPallet = new MES_Interface_CreatePallet();
-                createPallet.CreateDate = CreateDate;
-                createPallet.CreateUser = CreateUser;
-                createPallet.BoxCount = BoxCount;
-                createPallet.BoxNos = allbox;
-                createPallet.Printer = Printer;
-                createPallet.PalletId = PalletId;
-                this.genericMgr.Create(createPallet);
+                
                 //log.InfoFormat("调用创建托盘方法{0}，{1}，{2}，{3}开始", BoxNos.FirstOrDefault(), BoxCount, Printer, PalletId);
                 if (!string.IsNullOrEmpty(PalletId))
                 {
@@ -150,7 +152,8 @@ namespace com.Sconit.Service.SI.MES.Impl
                         res.Status = 0;
                         res.ErrorCode = "100004";
                         res.ErrorMesaage = "托号已在WMS存在";
-                        return res;
+                        //return res;
+                        throw new BusinessException();
                         //throw new Exception("托号已在WMS存在，请勿传入重复的托号！");
                     }
                 }
@@ -161,7 +164,8 @@ namespace com.Sconit.Service.SI.MES.Impl
                         res.Status = 0;
                         res.ErrorCode = "100005";
                         res.ErrorMesaage = "请输入打印机";
-                        return res;
+                        throw new BusinessException();
+                        //return res;
                     }
                 }
                 var kp = string.Empty;
@@ -169,17 +173,40 @@ namespace com.Sconit.Service.SI.MES.Impl
                 //log.InfoFormat("调用创建托盘方法{0}，{1}，{2}，{3}结束", BoxNos.FirstOrDefault(), BoxCount, Printer, PalletId);
                 res.Status = 1;
                 res.BarCode = kp;
-                return res;
+                
+            }
+            catch (BusinessException ex)
+            {
+
             }
             catch (Exception ex)
             {
                 res.Status = 0;
                 res.ErrorCode = "100000";
                 res.ErrorMesaage = ex.Message;
-                return res;
+                //return res;
             }
+            finally
+            {
+                var allbox = string.Empty;
+                foreach (var boxNo in BoxNos)
+                {
+                    allbox += boxNo + ",";
+                }
+                MES_Interface_CreatePallet createPallet = new MES_Interface_CreatePallet();
+                createPallet.CreateDate = CreateDate;
+                createPallet.CreateUser = CreateUser;
+                createPallet.BoxCount = BoxCount;
+                createPallet.BoxNos = allbox;
+                createPallet.Printer = Printer;
+                createPallet.PalletId = PalletId;
+                createPallet.Status = res.Status;
+                createPallet.Message = res.ErrorMesaage;
+                this.genericMgr.Create(createPallet);
+            }
+            return res;
         }
-
+        
     
 
         public Entity.SI.MES.InventoryResponse  GetInventory(Entity.SI.MES.InventoryRequest request)
