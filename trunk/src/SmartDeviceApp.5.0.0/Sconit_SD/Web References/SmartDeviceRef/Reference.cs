@@ -1389,19 +1389,21 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/DoTransfer", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public void DoTransfer(FlowMaster flowMaster, FlowDetailInput[] flowDetailInputList, string userCode) {
+        public void DoTransfer(FlowMaster flowMaster, FlowDetailInput[] flowDetailInputList, string userCode, bool isFifo) {
             this.Invoke("DoTransfer", new object[] {
                         flowMaster,
                         flowDetailInputList,
-                        userCode});
+                        userCode,
+                        isFifo});
         }
         
         /// <remarks/>
-        public System.IAsyncResult BeginDoTransfer(FlowMaster flowMaster, FlowDetailInput[] flowDetailInputList, string userCode, System.AsyncCallback callback, object asyncState) {
+        public System.IAsyncResult BeginDoTransfer(FlowMaster flowMaster, FlowDetailInput[] flowDetailInputList, string userCode, bool isFifo, System.AsyncCallback callback, object asyncState) {
             return this.BeginInvoke("DoTransfer", new object[] {
                         flowMaster,
                         flowDetailInputList,
-                        userCode}, callback, asyncState);
+                        userCode,
+                        isFifo}, callback, asyncState);
         }
         
         /// <remarks/>

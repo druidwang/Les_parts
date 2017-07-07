@@ -213,7 +213,7 @@ namespace com.Sconit.SmartDevice
                     this.tbBarCode.Focus();
                     return;
                 }
-                this.smartDeviceService.DoTransfer(flowMaster, flowDetailInputList.ToArray(), base.user.Code);
+                this.smartDeviceService.DoTransfer(flowMaster, flowDetailInputList.ToArray(), base.user.Code,true);
                 flowMaster.FlowDetails = null;
                 this.Reset();
                 base.lblMessage.Text = "移库成功";

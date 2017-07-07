@@ -20,7 +20,7 @@ namespace com.Sconit.Entity.INV
         #endregion
         [Export(ExportName = "ShelfLifeWarning", ExportSeq = 46)]
         [Export(ExportName = "OutOfExpireTimeWarning", ExportSeq = 26)]
-        [Export(ExportName = "ShelfLifeWarningSummary", ExportSeq = 40)] 
+        [Export(ExportName = "ShelfLifeWarningSummary", ExportSeq = 40)]
         [Display(Name = "Item_MaterialsGroupDesc", ResourceType = typeof(Resources.MD.Item))]
         public string MaterialsGroupDesc { get; set; }
         /// <summary>
@@ -80,7 +80,7 @@ namespace com.Sconit.Entity.INV
         [Export(ExportName = "Ageing", ExportSeq = 85, ExportTitleResourceType = typeof(Resources.INV.Hu), ExportTitle = "QualityType")]
         [com.Sconit.Entity.SYS.CodeDetailDescription(CodeMaster = com.Sconit.CodeMaster.CodeMaster.QualityType, ValueField = "QualityType")]
         [Display(Name = "QualityType", ResourceType = typeof(Resources.INV.Hu))]
-        public string QualityTypeDescription { get; set; }	
+        public string QualityTypeDescription { get; set; }
         [Export(ExportName = "AgeingSumByLocation", ExportSeq = 90)]
         [Display(Name = "LocationLotDetail_IsFreeze", ResourceType = typeof(Resources.INV.LocationLotDetail))]
         public Decimal FreezedQty { get; set; }
@@ -115,9 +115,21 @@ namespace com.Sconit.Entity.INV
 
 
         /// <summary>
-        /// ²ðÏäÊý
+        /// ²ðÏäÊý×Ö·û´®
         /// </summary>
-          [Display(Name = "Hu_DevanningQty", ResourceType = typeof(Resources.INV.Hu))]
-        public Decimal DevanningQty { get; set; }
+        [Display(Name = "Hu_DevanningQty1", ResourceType = typeof(Resources.INV.Hu))]
+        public Decimal DevanningQty1 { get; set; }
+
+        [Display(Name = "Hu_DevanningQty2", ResourceType = typeof(Resources.INV.Hu))]
+        public Decimal DevanningQty2 { get; set; }
+
+        [Display(Name = "Hu_DevanningQty3", ResourceType = typeof(Resources.INV.Hu))]
+        public Decimal DevanningQty3 { get; set; }
+
+        [Display(Name = "Hu_DevanningQty4", ResourceType = typeof(Resources.INV.Hu))]
+        public Decimal DevanningQty4 { get; set; }
+
+        [Display(Name = "Hu_DevanningQty", ResourceType = typeof(Resources.INV.Hu))]
+        public string DevanningQtyStr { get; set; }
     }
 }

@@ -1605,7 +1605,7 @@ namespace com.Sconit.Web.Controllers.INV
                 if (!string.IsNullOrEmpty(HuidStr))
                 {
                     Hu devanningHu = genericMgr.FindById<Hu>(HuidStr);
-                    devanningHu.DevanningQty = Convert.ToDecimal(DevanningqtyStr);
+                    devanningHu.DevanningQtyStr = DevanningqtyStr;
 
 
                     IList<Hu> huList = locationDetailMgr.DevanningHu(devanningHu);
@@ -1621,7 +1621,7 @@ namespace com.Sconit.Web.Controllers.INV
                             hu.Direction = this.genericMgr.FindById<HuTo>(hu.Direction).CodeDescription;
                         }
                     }
-
+                    SaveSuccessMessage(Resources.INV.Hu.Hu_DevanningSuccessfully);
                     string printUrl = PrintHuList(huList, devanningHu.HuTemplate, false);
                     object obj = new { SuccessMessage = string.Format(Resources.EXT.ControllerLan.Con_BarcodePrintedSuccessfully_1, huList.Count), PrintUrl = printUrl };
                     return Json(obj);
