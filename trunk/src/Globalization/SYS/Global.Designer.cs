@@ -772,6 +772,15 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 Test 的本地化字符串。
+        /// </summary>
+        public static string Button_Test {
+            get {
+                return ResourceManager.GetString("Button_Test", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Transfer 的本地化字符串。
         /// </summary>
         public static string Button_Transfer {

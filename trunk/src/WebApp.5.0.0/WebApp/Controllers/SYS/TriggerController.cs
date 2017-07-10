@@ -10,11 +10,14 @@ using com.Sconit.Entity.SI.BAT;
 using System.Collections.Generic;
 using com.Sconit.Service;
 using com.Sconit.Entity.SYS;
+using com.Sconit.Service.SI.MES;
 
 namespace com.Sconit.Web.Controllers.SYS
 {
     public class TriggerController : WebAppBaseController
     {
+
+        public IMESServicesMgr mesServiceMgr { get; set; }
 
         //public IGenericMgr genericMgr { get; set; }
         private static string selectCountStatement = "select count(*) from Trigger as t";
@@ -72,7 +75,7 @@ namespace com.Sconit.Web.Controllers.SYS
         [SconitAuthorize(Permissions = "Url_BAT_Trigger_View")]
         public ActionResult Index(string id, string NextFireTime, string Interval, string IntervalType, GridCommand command)
         {
-            if (string.IsNullOrWhiteSpace( NextFireTime))
+            if (string.IsNullOrWhiteSpace(NextFireTime))
             {
                 NextFireTime = DateTime.Now.ToString();
             }
@@ -116,7 +119,14 @@ namespace com.Sconit.Web.Controllers.SYS
             return RedirectToAction("Index", "Trigger");
         }
 
+        [SconitAuthorize(Permissions = "Url_BAT_Trigger_View")]
+        public ActionResult TestIOTrans()
+        {
+            mesServiceMgr.GenBusinessOrderData(DateTime.Now);
+            mesServiceMgr.TransBusinessOrderData();
 
+            return RedirectToAction("Index", "Trigger");
+        }
 
     }
 }

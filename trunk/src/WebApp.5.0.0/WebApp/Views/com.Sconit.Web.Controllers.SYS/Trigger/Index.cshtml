@@ -78,4 +78,15 @@
   .Scrollable(c => c.Enabled(false))
   .Sortable()
   )
+
+    <div class="search-footer">
+          
+            @Html.Button(Resources.SYS.Global.Button_Test, "Url_BAT_Trigger_View", new Dictionary<string, string>()
+	        {
+	            {"type", "button"},
+	            {"id", "btnTest"},
+                {"onclick","location.href='"+Url.Content("~/Trigger/TestIOTrans/") +"'"}
+	        })
+
+    </div>
 </fieldset>

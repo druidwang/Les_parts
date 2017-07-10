@@ -453,4 +453,7 @@
   <data name="Button_Devanning" xml:space="preserve">
     <value>Devanning</value>
   </data>
+  <data name="Button_Test" xml:space="preserve">
+    <value>Test</value>
+  </data>
 </root>
