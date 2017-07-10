@@ -8,7 +8,7 @@ using com.Sconit.Entity.ACC;
 using com.Sconit.Entity.MRP.TRANS;
 using com.Sconit.Entity.SI.BAT;
 using com.Sconit.Service.MRP;
-using com.Sconit.Service.SI.SAP;
+using com.Sconit.Service.SI.MES;
 
 namespace com.Sconit.Service.SI.Impl
 {
@@ -20,12 +20,8 @@ namespace com.Sconit.Service.SI.Impl
         public IMrpMgr mrpMgr { get; set; }
         public IRccpMgr rccpMgr { get; set; }
         public IOrderMgr orderMgr { get; set; }
-        public IMasterDataMgr masterDataMgr { get; set; }
-        public ISalesDistributionMgr salesDistributionMgr { get; set; }
-        public ISAPInterfaceCommonMgr sapInterfaceCommonMgr { get; set; }
-        public IMaterialManagementMgr materialManagementMgr { get; set; }
-        public IProductionPlanningMgr productionPlanningMgr { get; set; }
-        public ISAPInterfaceCommonMgr sAPInterfaceCommonMgr { get; set; }
+
+        public IMESServicesMgr mesServicesMgr { get; set; }
         
         private void RunJob(string serviceType, JobDataMap dataMap)
         {
@@ -39,72 +35,76 @@ namespace com.Sconit.Service.SI.Impl
             }
             switch (serviceType)
             {
-                case "LeanEngineJob":
-                    leanEngineMgr.RunLeanEngine();
+                case "MaterialIO":
+                    mesServicesMgr.GenBusinessOrderData(DateTime.Now);
+                    mesServicesMgr.TransBusinessOrderData();
                     break;
-                case "EdiImportJob":
-                    scheduleMgr.LoadEDI();
-                    break;
-                case "Edi2PlanJob":
-                    scheduleMgr.EDI2Plan();
-                    break;
-                case "MrpSnapShotJob":
-                    mrpMgr.GenMrpSnapShot(DateTime.Now, user, true, CodeMaster.SnapType.Mrp);
-                    break;
-                case "RccSnapShotJob":
-                    mrpMgr.GenMrpSnapShot(DateTime.Now, user, true, CodeMaster.SnapType.Rccp);
-                    break;
-                case "RunMrpPurchasePlanJob":
-                    mrpMgr.RunMrpPurchasePlan(user);
-                    break;
-                case "RccpJob":
-                    mrpMgr.GenMrpSnapShot(DateTime.Now, user, true, CodeMaster.SnapType.Rccp);
-                    rccpMgr.RunRccp((CodeMaster.TimeUnit)(int.Parse(dataMap.GetStringValue("DateType"))));
-                    break;
-                case "CleanOrderJob":
-                    if (dataMap.ContainKey("FlowCode"))
-                    {
-                        string flowCode = dataMap.GetStringValue("FlowCode");
-                        if (flowCode != null && flowCode != string.Empty)
-                        {
-                            var flowCodeList = flowCode.Split(',').ToList();
-                            orderMgr.CleanOrder(flowCodeList);
-                        }
-                    }
-                    break;
-                case "SIOfAllDataJob":
-                    masterDataMgr.GetSAPItem(null,null, false);
-                    masterDataMgr.GetSAPBom(null, null, false);
-                    masterDataMgr.GetSAPUomConv(null, null, false);
-                    masterDataMgr.GetSAPSupplier(null, null, false);
-                    masterDataMgr.GetSAPCustomer(null, null, false);
-                    masterDataMgr.GetSAPPriceList(null, null, null, false);
-                    break;
-                case "SIOfBomAndUomConvDataJob":
-                    masterDataMgr.GetSAPBom(null, null, true);
-                    masterDataMgr.GetSAPUomConv(null, null, true);
-                    break;
-                case "SIOfBusinessDataJob":
-                    curDate = sAPInterfaceCommonMgr.GenMesQtyData();
-                    sAPInterfaceCommonMgr.GenBusinessOrderData(curDate);
-                    sAPInterfaceCommonMgr.TransBusinessOrderData();
-                    break;
-                case "SIOfBusinessDataJobAdjust":
-                    //curDate = sAPInterfaceCommonMgr.GenMesQtyData();
-                    sAPInterfaceCommonMgr.GenBusinessAdjustOrderData(curDate);
-                    sAPInterfaceCommonMgr.TransBusinessOrderData();
-                    break;
-                case "SIOfBusinessDataJobAdjustTail":
-                    //curDate = sAPInterfaceCommonMgr.GenMesQtyData();
-                    sAPInterfaceCommonMgr.GenBusinessAdjustTailOrderData(curDate);
-                    sAPInterfaceCommonMgr.TransBusinessOrderData();
-                    break;
-                case "SIOfBusinessDataJobMonthEnd":
-                    curDate = sAPInterfaceCommonMgr.GenMesQtyData();
-                    curDate = DateTime.Parse(curDate.ToString("yyyy-MM-dd"));
-                    sAPInterfaceCommonMgr.GenBusinessOrderData(curDate);
-                    sAPInterfaceCommonMgr.TransBusinessOrderData();
-                    break;
+                //case "LeanEngineJob":
+                //    leanEngineMgr.RunLeanEngine();
+                //    break;
+                //case "EdiImportJob":
+                //    scheduleMgr.LoadEDI();
+                //    break;
+                //case "Edi2PlanJob":
+                //    scheduleMgr.EDI2Plan();
+                //    break;
+                //case "MrpSnapShotJob":
+                //    mrpMgr.GenMrpSnapShot(DateTime.Now, user, true, CodeMaster.SnapType.Mrp);
+                //    break;
+                //case "RccSnapShotJob":
+                //    mrpMgr.GenMrpSnapShot(DateTime.Now, user, true, CodeMaster.SnapType.Rccp);
+                //    break;
+                //case "RunMrpPurchasePlanJob":
+                //    mrpMgr.RunMrpPurchasePlan(user);
+                //    break;
+                //case "RccpJob":
+                //    mrpMgr.GenMrpSnapShot(DateTime.Now, user, true, CodeMaster.SnapType.Rccp);
+                //    rccpMgr.RunRccp((CodeMaster.TimeUnit)(int.Parse(dataMap.GetStringValue("DateType"))));
+                //    break;
+                //case "CleanOrderJob":
+                //    if (dataMap.ContainKey("FlowCode"))
+                //    {
+                //        string flowCode = dataMap.GetStringValue("FlowCode");
+                //        if (flowCode != null && flowCode != string.Empty)
+                //        {
+                //            var flowCodeList = flowCode.Split(',').ToList();
+                //            orderMgr.CleanOrder(flowCodeList);
+                //        }
+                //    }
+                //    break;
+                //case "SIOfAllDataJob":
+                //    masterDataMgr.GetSAPItem(null,null, false);
+                //    masterDataMgr.GetSAPBom(null, null, false);
+                //    masterDataMgr.GetSAPUomConv(null, null, false);
+                //    masterDataMgr.GetSAPSupplier(null, null, false);
+                //    masterDataMgr.GetSAPCustomer(null, null, false);
+                //    masterDataMgr.GetSAPPriceList(null, null, null, false);
+                //    break;
+                //case "SIOfBomAndUomConvDataJob":
+                //    masterDataMgr.GetSAPBom(null, null, true);
+                //    masterDataMgr.GetSAPUomConv(null, null, true);
+                //    break;
+                //case "SIOfBusinessDataJob":
+                //    curDate = sAPInterfaceCommonMgr.GenMesQtyData();
+                //    sAPInterfaceCommonMgr.GenBusinessOrderData(curDate);
+                //    sAPInterfaceCommonMgr.TransBusinessOrderData();
+                //    break;
+                //case "SIOfBusinessDataJobAdjust":
+                //    //curDate = sAPInterfaceCommonMgr.GenMesQtyData();
+                //    sAPInterfaceCommonMgr.GenBusinessAdjustOrderData(curDate);
+                //    sAPInterfaceCommonMgr.TransBusinessOrderData();
+                //    break;
+                //case "SIOfBusinessDataJobAdjustTail":
+                //    //curDate = sAPInterfaceCommonMgr.GenMesQtyData();
+                //    sAPInterfaceCommonMgr.GenBusinessAdjustTailOrderData(curDate);
+                //    sAPInterfaceCommonMgr.TransBusinessOrderData();
+                //    break;
+                //case "SIOfBusinessDataJobMonthEnd":
+                //    curDate = sAPInterfaceCommonMgr.GenMesQtyData();
+                //    curDate = DateTime.Parse(curDate.ToString("yyyy-MM-dd"));
+                //    sAPInterfaceCommonMgr.GenBusinessOrderData(curDate);
+                //    sAPInterfaceCommonMgr.TransBusinessOrderData();
+                //    break;
                 default:
                     break;
             }
