@@ -3759,6 +3759,11 @@ namespace com.Sconit.Service.Impl
             }
             #endregion
 
+
+            #region 做一个单号
+            string repackNo = "DEVN" + numberControlMgr.GetNextSequenceo("DEVN").PadLeft(9, '0');
+            #endregion
+
             #region 循环拆箱
             IList<InventoryTransaction> inventoryTransactionList = new List<InventoryTransaction>();
             foreach (InventoryUnPack inventoryUnPack in inventoryUnPackList)
@@ -3787,7 +3792,7 @@ namespace com.Sconit.Service.Impl
 
                 IList<InventoryTransaction> issInventoryTransactionList = RecordInventory(inventoryOut);
                 ((List<InventoryTransaction>)inventoryTransactionList).AddRange(issInventoryTransactionList);
-                RecordLocationTransaction(inventoryUnPack, effectiveDate, issInventoryTransactionList, true);
+                RecordLocationTransaction(inventoryUnPack, effectiveDate, issInventoryTransactionList, true, repackNo);
                 #endregion
 
                 #region 入库
@@ -3813,7 +3818,7 @@ namespace com.Sconit.Service.Impl
                 //inventoryIO.ManufactureParty = ;
 
                 IList<InventoryTransaction> rctInventoryTransactionList = RecordInventory(inventoryIn);
-                RecordLocationTransaction(inventoryUnPack, effectiveDate, rctInventoryTransactionList, false);
+                RecordLocationTransaction(inventoryUnPack, effectiveDate, rctInventoryTransactionList, false, repackNo);
                 ((List<InventoryTransaction>)inventoryTransactionList).AddRange(issInventoryTransactionList);
                 #endregion
             }
@@ -3822,7 +3827,7 @@ namespace com.Sconit.Service.Impl
             #endregion
         }
 
-        private void RecordLocationTransaction(InventoryUnPack inventoryUnPack, DateTime effectiveDate, IList<InventoryTransaction> inventoryTransactionList, bool isIssue)
+        private void RecordLocationTransaction(InventoryUnPack inventoryUnPack, DateTime effectiveDate, IList<InventoryTransaction> inventoryTransactionList, bool isIssue,string repackNo)
         {
             DateTime dateTimeNow = DateTime.Now;
 
@@ -3896,6 +3901,8 @@ namespace com.Sconit.Service.Impl
                 locationTransaction.EffectiveDate = effectiveDate;
                 locationTransaction.CreateUserId = SecurityContextHolder.Get().Id;
                 locationTransaction.CreateDate = dateTimeNow;
+
+                locationTransaction.OrderNo = repackNo;
 
                 this.genericMgr.Create(locationTransaction);
                 RecordLocationTransactionDetail(locationTransaction, groupedInventoryTransaction.InventoryTransactionList);
