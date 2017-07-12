@@ -18,7 +18,7 @@
     <property name="CreateUser" column="CreateUser" type="String" length="50"/>
     <property name="CreateDate" column="CreateDate" type="String" length="50"/>
     <property name="Printer" column="Printer" type="String" length="50"/>
-    <property name="HuId" column="HuId" type="String" length="50"/>
+    <property name="HuId" column="HuId" type="String" length="255"/>
     <property name="Status" column="Status" type="Int32" />
     <property name="Message" column="Message" type="String" length="200"/>
   </class>

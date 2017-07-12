@@ -58,5 +58,7 @@
 	<property name="PalletCode" column="PalletCode" type="String" length="50"/>
 	<property name="ExternalOrderNo" column="ExtOrderNo" type="String" length="50"/>
 
+	<property name="ExternalHuId" column="ExtHuId" type="String" length="255"/>
+	<property name="IsExternal" column="IsExt" type="Boolean"/>
   </class>
 </hibernate-mapping>

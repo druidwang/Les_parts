@@ -44,6 +44,28 @@ namespace com.Sconit.Service.SI.MES.Impl
                         throw new BusinessException();
                     }
                 }
+
+                if (string.IsNullOrEmpty(CustomerCode))
+                {
+                    res.Status = 0;
+                    res.ErrorCode = "100006";
+                    res.ErrorMesaage = "客户代码为空或者客户代码不存在";
+                    throw new BusinessException();
+                    //throw new Exception("请输入零件号！");
+                }
+                else
+                {
+                    var eCustomers = this.genericMgr.FindAll<com.Sconit.Entity.MD.Customer>("from Customer c where c.Code=?", "C" + CustomerCode);
+                    if (eCustomers == null || eCustomers.Count == 0)
+                    {
+                        res.Status = 0;
+                        res.ErrorCode = "100006";
+                        res.ErrorMesaage = "客户代码为空或者客户代码不存在";
+                        throw new BusinessException();
+                    }
+                }
+
+
                 if (string.IsNullOrEmpty(LotNo))
                 {
                     res.Status = 0;
@@ -60,7 +82,7 @@ namespace com.Sconit.Service.SI.MES.Impl
                 }
                 if (!string.IsNullOrEmpty(HuId))
                 {
-                    var hus = this.genericMgr.FindAll<com.Sconit.Entity.INV.Hu>("from Hu h where h.HuId=?", HuId);
+                    var hus = this.genericMgr.FindAll<com.Sconit.Entity.INV.Hu>("from Hu h where h.ExternalHuId = ?", HuId);
                     if (hus != null && hus.Count > 0)
                     {
                         res.Status = 0;
@@ -82,11 +104,12 @@ namespace com.Sconit.Service.SI.MES.Impl
                 }
 
                 //throw new NotImplementedException();
-                var hu = string.Empty;
-                hu = huMgr.CreateHu("C" + CustomerCode, CustomerName, LotNo, Item, ItemDesc, ManufactureDate, Manufacturer, OrderNo, Uom, UC, Qty, CreateUser, CreateDate, Printer, HuId).HuId;
+              
+                var hu = huMgr.CreateHu("C" + CustomerCode, CustomerName, LotNo, Item, ItemDesc, ManufactureDate, Manufacturer, OrderNo, Uom, UC, Qty, CreateUser, CreateDate, Printer, HuId);
+                var barCode = string.IsNullOrEmpty(HuId) ? hu.HuId : hu.ExternalHuId;
                 //log.InfoFormat("调用创建条码方法{0}，{1}，{2}，{3}结束", CustomerCode, LotNo, Item, HuId);
                 res.Status = 1;
-                res.BarCode = hu;
+                res.BarCode = barCode;
                 throw new BusinessException();
             }
             catch (BusinessException ex)

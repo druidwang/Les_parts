@@ -4,7 +4,7 @@
 		<id name="Id" column="Id" type="Int32" unsaved-value="0" >
       		<generator class="identity" />
         </id>
-    <property name="BoxNos" column="BoxNos" type="String" length="1000"/>
+    <property name="BoxNos" column="BoxNos" type="String" length="4000"/>
     <property name="BoxCount" column="BoxCount" type="String" length="50"/>
     <property name="CreateUser" column="CreateUser" type="String" length="50"/>
     <property name="CreateDate" column="CreateDate" type="String" length="50"/>

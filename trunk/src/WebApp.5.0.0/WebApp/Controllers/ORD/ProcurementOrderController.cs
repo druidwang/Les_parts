@@ -299,7 +299,7 @@
                 {
                     foreach (OrderDetail orderDetail in orderDetList)
                     {
-                        OrderDetail newOrderDetail = RefreshOrderDetail(flowDetailList, orderDetail, orderMaster.SubType);
+                        OrderDetail newOrderDetail = RefreshOrderDetail(flowDetailList, orderDetail, orderMaster.SubType,orderMaster);
 
                         #region 科尔本逻辑先写死强制检验
                         newOrderDetail.IsInspect = true;
@@ -334,6 +334,14 @@
                 OrderMaster newOrder = orderMgr.TransferFlow2Order(flow, null, effectiveDate, false);
                 newOrder.IsQuick = orderMaster.IsQuick;
 
+
+                if (orderMaster.SubType == com.Sconit.CodeMaster.OrderSubType.Return)
+                {
+                    newOrder.PartyFrom = orderMaster.PartyTo;
+                    newOrder.PartyFromName = genericMgr.FindById<Party>(newOrder.PartyFrom).Name;
+                    newOrder.LocationFrom = orderMaster.LocationTo;
+                    newOrder.LocationFromName = genericMgr.FindById<Location>(newOrder.LocationFrom).Name;
+                }
 
                 if (orderMaster.WindowTime == DateTime.MinValue)
                 {
@@ -1523,7 +1531,7 @@
 
         #region private method
 
-        private OrderDetail RefreshOrderDetail(IList<FlowDetail> flowDetailList, OrderDetail orderDetail, com.Sconit.CodeMaster.OrderSubType orderSubType)
+        private OrderDetail RefreshOrderDetail(IList<FlowDetail> flowDetailList, OrderDetail orderDetail, com.Sconit.CodeMaster.OrderSubType orderSubType,OrderMaster orderMaster = null)
         {
             OrderDetail newOrderDetail = new OrderDetail();
             //IList<FlowDetail> flowDetailList = flowMgr.GetFlowDetailList(flow, false, true);
@@ -1534,9 +1542,20 @@
                 Mapper.Map<FlowDetail, OrderDetail>(flowDetail, newOrderDetail);
                 if (orderSubType == Sconit.CodeMaster.OrderSubType.Return)
                 {
-                    newOrderDetail.LocationFrom = flowDetail.LocationTo;
-                    newOrderDetail.LocationTo = flowDetail.LocationFrom;
-                    newOrderDetail.IsInspect = flowDetail.IsRejectInspect && flowDetail.CurrentFlowMaster.IsRejectInspect;
+                    if (orderMaster != null && !string.IsNullOrEmpty(orderMaster.PartyTo) && !string.IsNullOrEmpty(orderMaster.LocationTo))
+                    {
+                        newOrderDetail.LocationFrom = orderMaster.LocationTo;
+                        newOrderDetail.LocationTo = orderMaster.LocationFrom;
+                        newOrderDetail.IsInspect = flowDetail.IsRejectInspect && flowDetail.CurrentFlowMaster.IsRejectInspect;
+
+                    }
+                    else
+                    {
+                        newOrderDetail.LocationFrom = flowDetail.LocationTo;
+                        newOrderDetail.LocationTo = flowDetail.LocationFrom;
+                        newOrderDetail.IsInspect = flowDetail.IsRejectInspect && flowDetail.CurrentFlowMaster.IsRejectInspect;
+                    }
+               
                 }
                 else
                 {

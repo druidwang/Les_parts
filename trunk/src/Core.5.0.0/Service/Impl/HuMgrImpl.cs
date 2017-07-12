@@ -476,15 +476,16 @@ namespace com.Sconit.Service.Impl
             {
                 hu.HuTemplate = flowMstr.FirstOrDefault().HuTemplate;
             }
-            var tobeHuId = huId;
+          //  var tobeHuId = huId;
             IDictionary<string, decimal> huidDic = new Dictionary<string, decimal>();
-            if (string.IsNullOrEmpty(huId))
-            {
-                huidDic = numberControlMgr.GetHuId(lotNo, itemCode, manufacturer, qty, uc);
-                tobeHuId = huidDic.FirstOrDefault().Key;
-            }
-            
-            hu.HuId = tobeHuId;
+           
+            huidDic = numberControlMgr.GetHuId(lotNo, itemCode, manufacturer, qty, uc);
+             //   tobeHuId = huidDic.FirstOrDefault().Key;
+
+
+            hu.HuId = huidDic.FirstOrDefault().Key;
+            hu.ExternalHuId = huId;
+            hu.IsExternal = string.IsNullOrEmpty(huId)?false:true;
             hu.LotNo = lotNo;
             hu.Item = item.Code;
             hu.ItemDescription = item.Description;
@@ -712,12 +713,16 @@ namespace com.Sconit.Service.Impl
             IList<Hu> huList = new List<Hu>();
             foreach (string huid in huidArray)
             {
-                Hu hu = genericMgr.FindById<Hu>(huid);
+                Hu hu = genericMgr.FindAll<Hu>("select h from Hu h where h.HuId = ? and h.IsExternal = 0", huid).FirstOrDefault();
                 if (hu == null)
                 {
-                    throw new BusinessException("箱条码{0}不存在", huid);
+                    hu = genericMgr.FindAll<Hu>("select h from Hu h where h.ExternalHuId = ? and h.IsExternal = 1", huid).FirstOrDefault();
+                    if (hu == null)
+                    {
+                        throw new BusinessException("箱条码{0}不存在", huid);
+                    }
                 }
-                if (string.IsNullOrEmpty(hu.PalletCode))
+                if (!string.IsNullOrEmpty(hu.PalletCode))
                 {
                     throw new BusinessException("箱条码{0}已在托盘中", huid);
                 }

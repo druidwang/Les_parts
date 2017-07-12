@@ -140,6 +140,18 @@ namespace com.Sconit.Entity.INV
         public string HuTemplate { get; set; }
         #endregion
 
+        /// <summary>
+        /// 外部条码号
+        /// </summary>
+        public string ExternalHuId { get; set; }
+
+
+        /// <summary>
+        /// 是否外部条码
+        /// </summary>
+        public Boolean IsExternal { get; set; }
+
+
         #region
 
         /// <summary>

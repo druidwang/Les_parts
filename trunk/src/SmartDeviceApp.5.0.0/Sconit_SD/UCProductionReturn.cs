@@ -107,6 +107,7 @@ namespace com.Sconit.SmartDevice
                 }
                 else
                 {
+                    hu.CurrentQty = hu.Qty;
                     hus.Add(hu);
                     this.gvHuListDataBind();
                     this.isCancel = false;

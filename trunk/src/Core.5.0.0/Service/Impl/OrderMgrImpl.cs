@@ -2973,6 +2973,36 @@ namespace com.Sconit.Service.Impl
             ipMgr.CreateIp(ipMaster, effectiveDate);
             #endregion
 
+            #region 退货自动解托盘
+            foreach (OrderMaster om in orderMasterList)
+            {
+                if (om.Type == CodeMaster.OrderType.Procurement && om.SubType == CodeMaster.OrderSubType.Return)
+                {
+                    foreach (OrderDetail od in om.OrderDetails)
+                    {
+                        #region 加一段托盘解绑的逻辑
+                        var hus = this.genericMgr.FindAllIn<Hu>(" from Hu where HuId in(?", od.OrderDetailInputs.Select(p => p.HuId));
+                        var palletHus = this.genericMgr.FindAllIn<PalletHu>(" from PalletHu where HuId in(?", od.OrderDetailInputs.Select(p => p.HuId));
+                        foreach (Hu h in hus)
+                        {
+                            if (!string.IsNullOrEmpty(h.PalletCode))
+                            {
+                                h.PalletCode = string.Empty;
+                                genericMgr.Update(h);
+
+                                var palletHu = palletHus.Where(p => p.HuId == h.HuId).FirstOrDefault();
+                                if (palletHu != null)
+                                {
+                                    genericMgr.Delete(palletHu);
+                                }
+                            }
+                        }
+                        #endregion
+                    }
+                }
+            }
+            #endregion
+
             #region 自动收货
             AutoReceiveIp(ipMaster, effectiveDate);
             #endregion
