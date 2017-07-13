@@ -127,7 +127,8 @@ namespace com.Sconit.Web.Controllers.INV
                                              MaterialsGroup = (string)tak[21],
                                              MaterialsGroupDesc = (string)tak[22],
                                              ItemVersion = (string)tak[23], //+ (string.IsNullOrWhiteSpace((string)tak[23]) ? "" : "[" + productTypes.ValueOrDefault((string)tak[23]).Description + "]")
-                                             Remark = (string)tak[24]  
+                                             Remark = (string)tak[24],
+                                             ManufactureParty = (string)tak[25]
                                          }).ToList();
                 #endregion
             }
@@ -170,7 +171,9 @@ namespace com.Sconit.Web.Controllers.INV
                                              ItemDescription = (string)tak[6],
                                              ReferenceItemCode = (string)tak[7],
                                              UnitCount = (decimal)tak[8],
+                                             //OccupyType = (string)tak[9],
                                              HuStatusOccupyTypeDescription = systemMgr.GetCodeDetailDescription(Sconit.CodeMaster.CodeMaster.OccupyType, int.Parse((tak[9]).ToString())),
+                                             //QualityType = (string)tak[10],
                                              QualityTypeDescription = systemMgr.GetCodeDetailDescription(Sconit.CodeMaster.CodeMaster.QualityType, int.Parse((tak[10]).ToString())),
                                              IsConsignment = (bool)tak[11],
                                              IsFreeze = (bool)tak[12],
@@ -184,7 +187,9 @@ namespace com.Sconit.Web.Controllers.INV
                                              DirectionDescription = (string)tak[20],
                                              MaterialsGroup = (string)tak[21],
                                              MaterialsGroupDesc = (string)tak[22],
-                                             //ItemVersion = (string)tak[23] + (string.IsNullOrWhiteSpace((string)tak[23]) ? "" : "[" + productTypes.ValueOrDefault((string)tak[23]).Description + "]")
+                                             ItemVersion = (string)tak[23], //+ (string.IsNullOrWhiteSpace((string)tak[23]) ? "" : "[" + productTypes.ValueOrDefault((string)tak[23]).Description + "]")
+                                             Remark = (string)tak[24],
+                                             ManufactureParty = (string)tak[25]
                                          }).ToList();
                 #endregion
             }
@@ -235,7 +240,7 @@ namespace com.Sconit.Web.Controllers.INV
 
         private string PrepareSqlSearchStatement(LocationLotDetailSearchModel searchModel)
         {
-            string whereStatement = @"select ld.HuId,ld.LotNo,ld.Location,ld.Bin,ld.Item,i.Desc1,i.RefCode,ld.UC,ld.OccupyType,ld.QualityType,ld.IsCS,ld.IsFreeze,ld.IsATP,ld.HuQty,ld.HuUom,ld.Qty,ld.BaseUom,hu.HuOption,ld.Direction,ht.Desc1 as DirectionDesc,ic.Code as MaterialsGroup,ic.Desc1 as MaterialsGroupDesc,hu.ItemVersion,hu.Remark
+            string whereStatement = @"select ld.HuId,ld.LotNo,ld.Location,ld.Bin,ld.Item,i.Desc1,i.RefCode,ld.UC,ld.OccupyType,ld.QualityType,ld.IsCS,ld.IsFreeze,ld.IsATP,ld.HuQty,ld.HuUom,ld.Qty,ld.BaseUom,hu.HuOption,ld.Direction,ht.Desc1 as DirectionDesc,ic.Code as MaterialsGroup,ic.Desc1 as MaterialsGroupDesc,hu.ItemVersion,hu.Remark,hu.ManufactureParty
                                     from VIEW_LocationLotDet  as ld 
                                     inner join MD_Item as i on ld.Item=i.Code
                                     inner join INV_Hu as hu on ld.HuId=hu.HuId
@@ -277,6 +282,10 @@ namespace com.Sconit.Web.Controllers.INV
             if (searchModel.QualityType != null)
             {
                 whereStatement += string.Format(" and ld.QualityType ={0}", searchModel.QualityType);
+            }
+            if (!string.IsNullOrEmpty(searchModel.ManufactureParty))
+            {
+                whereStatement += string.Format(" and hu.ManufactureParty = '{0}'", searchModel.ManufactureParty);
             }
             //if (!string.IsNullOrWhiteSpace(searchModel.HuOptionHuLot))
             //{

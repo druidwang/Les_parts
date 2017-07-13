@@ -96,6 +96,9 @@
         }
     }
 
+    function ManufactureParty_DataBinding(e) {
+    }
+
     function ExportClick() {
 
         //location.href = '/ViewLocationLotDetail/ExportXLS/?regionFrom=' + $('#regionFrom').val() + '&regionTo=' + $('#regionTo').val() + '&locationFrom=' + $('#locationFrom').val()
@@ -370,6 +373,21 @@
                 selectedValue = TempData["LocationLotDetailSearchModel"] != null ? ((LocationLotDetailSearchModel)TempData["LocationLotDetailSearchModel"]).itemTo : string.Empty
             });
                     
+                }
+            </div>
+            <div class="search-label">
+                <label>
+                    @Resources.INV.LocationLotDetail.LocationLotDetail_ManufactureParty
+                </label>
+            </div>
+            <div class="search-field">
+                @{
+                    Html.RenderAction("_ManufacturePartyComboBox", "Common", new
+                    {
+                        controlName = "ManufactureParty",
+                        selectedValue = TempData["LocationLotDetailSearchModel"] != null ? ((LocationLotDetailSearchModel)TempData["LocationLotDetailSearchModel"]).ManufactureParty : string.Empty
+
+                    });
                 }
             </div>
             @*

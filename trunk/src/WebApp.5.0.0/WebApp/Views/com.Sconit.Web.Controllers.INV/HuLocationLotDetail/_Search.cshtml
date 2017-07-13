@@ -74,6 +74,21 @@
             </div>
             <div class="search-label">
                 <label>
+                    @Resources.INV.LocationLotDetail.LocationLotDetail_ManufactureParty
+                </label>
+            </div>
+            <div class="search-field">
+                @{
+                    Html.RenderAction("_ManufacturePartyComboBox", "Common", new
+                    {
+                        controlName = "ManufactureParty",
+                        selectedValue = TempData["LocationLotDetailSearchModel"] != null ? ((LocationLotDetailSearchModel)TempData["LocationLotDetailSearchModel"]).ManufactureParty : string.Empty
+
+                    });
+                }
+            </div>
+            <div class="search-label">
+                <label>
                     @Resources.INV.Hu.Hu_HuStatusOccupyTypeDescription
                 </label>
             </div>
@@ -193,7 +208,12 @@
         });
     });
 
+    function EmptyChange(e) { 
+        
+    }
 
+    function ManufactureParty_DataBinding(e) {
+    }
 
     function getMultiRegions() {
         var m = "";

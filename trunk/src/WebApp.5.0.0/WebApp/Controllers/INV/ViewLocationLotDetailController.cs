@@ -295,7 +295,7 @@ namespace com.Sconit.Web.Controllers.INV
                 }
             }
 
-            SqlParameter[] parameters = new SqlParameter[10];
+            SqlParameter[] parameters = new SqlParameter[11];
 
             parameters[0] = new SqlParameter("@Locations", SqlDbType.VarChar, 8000);
             parameters[0].Value = location;
@@ -328,6 +328,8 @@ namespace com.Sconit.Web.Controllers.INV
             parameters[9] = new SqlParameter("@IsOnlyShowQtyInv", SqlDbType.Bit);
             parameters[9].Value = searchModel.IsOnlyShowQtyInv;
 
+            parameters[10] = new SqlParameter("@ManufactureParty", SqlDbType.VarChar, 50);
+            parameters[10].Value = searchModel.ManufactureParty;
             reportSearchStatementModel.Parameters = parameters;
 
             return reportSearchStatementModel;

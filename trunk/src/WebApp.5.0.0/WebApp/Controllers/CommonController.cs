@@ -2667,10 +2667,12 @@
 
         public ActionResult _AjaxLoadingItemManufactureParty(string text, string item)
         {
-            string shql = "select p from Supplier p where p.Code in (select distinct  m.PartyFrom from FlowMaster as m where exists (select 1 from FlowDetail as d where d.Flow=m.Code and d.Item='" + item + "') and m.Type=" + (int)com.Sconit.CodeMaster.OrderType.Procurement + ")";
+            //string shql = "select p from Supplier p where p.Code in (select distinct  m.PartyFrom from FlowMaster as m where exists (select 1 from FlowDetail as d where d.Flow=m.Code and d.Item='" + item + "') and m.Type=" + (int)com.Sconit.CodeMaster.OrderType.Procurement + ")";
+            string shql = "select p from Supplier p";            
             IList<Supplier> supplierList = genericMgr.FindAll<Supplier>(shql);
 
-            string chql = "select c from Customer c where c.Code in (select distinct  m.PartyTo from FlowMaster as m where exists (select 1 from FlowDetail as d where d.Flow=m.Code and d.Item='" + item + "') and m.Type=" + (int)com.Sconit.CodeMaster.OrderType.Distribution + ")";
+            //string chql = "select c from Customer c where c.Code in (select distinct  m.PartyTo from FlowMaster as m where exists (select 1 from FlowDetail as d where d.Flow=m.Code and d.Item='" + item + "') and m.Type=" + (int)com.Sconit.CodeMaster.OrderType.Distribution + ")";
+            string chql = "select c from Customer c";
             IList<Customer> customerList = genericMgr.FindAll<Customer>(chql);
 
             List<Party> partyList = new List<Party>();

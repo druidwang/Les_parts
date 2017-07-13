@@ -153,7 +153,7 @@
 
   <!-- 获取实时库存报表 -->
   <sql-query name="USP_Report_RealTimeLocationDet">
-    exec USP_Report_RealTimeLocationDet ?,?,?,?,?,?,?,?,?,?
+    exec USP_Report_RealTimeLocationDet ?,?,?,?,?,?,?,?,?,?,?
   </sql-query>
 
   <!-- 产生月结数据 -->

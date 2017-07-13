@@ -410,22 +410,23 @@ namespace com.Sconit.Web.Controllers.Report
         }
         #region LotNoInvReport
         [SconitAuthorize(Permissions = "Url_Inventory_InventoryLotNo")]
-        public string _GetInventoryLotNoReportView(string location, string itemFrom, string itemTo, int sortType)
+        public string _GetInventoryLotNoReportView(string location, string itemFrom, string itemTo, int sortType, string manufactureParty)
         {
             string ProcedureName = "USP_Report_GetLotNoInventory";
-            SqlParameter[] sqlParams = new SqlParameter[4];
+            SqlParameter[] sqlParams = new SqlParameter[5];
             sqlParams[0] = new SqlParameter("@Location", location);
             sqlParams[1] = new SqlParameter("@ItemFrom", itemFrom);
             sqlParams[2] = new SqlParameter("@ItemTo", itemTo);
             sqlParams[3] = new SqlParameter("@SortType", sortType);
+            sqlParams[3] = new SqlParameter("@ManufactureParty", manufactureParty);
             return GetTableHtmlByStoredProcedure(ProcedureName, sqlParams);
         }
         #endregion
         #region Export LotNoInvReport
         [SconitAuthorize(Permissions = "Url_Inventory_InventoryLotNo")]
-        public ActionResult ExportInventoryLotNoReport(string location, string itemFrom, string itemTo, int sortType)
+        public ActionResult ExportInventoryLotNoReport(string location, string itemFrom, string itemTo, int sortType, string manufactureParty)
         {
-            var table = _GetInventoryLotNoReportView(location, itemFrom, itemTo, sortType);
+            var table = _GetInventoryLotNoReportView(location, itemFrom, itemTo, sortType, manufactureParty);
             return new DownloadFileActionResult(table, "InventoryLotNoReport.xls");
         }
         #endregion
