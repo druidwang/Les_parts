@@ -491,7 +491,7 @@ namespace com.Sconit.Service.Impl
             hu.ItemDescription = item.Description;
             hu.BaseUom = uom;
             hu.Qty = qty;
-            hu.ManufactureParty = string.IsNullOrEmpty(manufacturer) ? flowMstr.FirstOrDefault().PartyTo : manufacturer;
+            hu.ManufactureParty = string.IsNullOrEmpty(customerCode) ? flowMstr.FirstOrDefault().PartyTo : customerCode;
       //      hu.ManufactureDate = Convert.ToDateTime(manufactureDate);
             hu.ExternalOrderNo = orderNo;
             var manufactureDt = DateTime.Now;

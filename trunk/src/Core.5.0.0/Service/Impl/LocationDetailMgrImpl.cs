@@ -4208,17 +4208,19 @@ namespace com.Sconit.Service.Impl
             IList<LocationLotDetail> locationLotDetailList = this.GetHuLocationLotDetails(inventoryPickList.Select(i => i.HuId).ToList());
             foreach (LocationLotDetail locationLotDetail in locationLotDetailList)
             {
-                locationLotDetail.IsPick = true;
-                RecordPickTransaction(locationLotDetail);
-                locationLotDetail.Bin = null;
-                this.genericMgr.Update(locationLotDetail);
+                if (!string.IsNullOrEmpty(locationLotDetail.Bin))
+                {
+                    locationLotDetail.IsPick = true;
+                    RecordPickTransaction(locationLotDetail);
+                    locationLotDetail.Bin = null;
+                    this.genericMgr.Update(locationLotDetail);
+                }
 
-
-                #region 条码和托盘取消关联
-                Hu hu = genericMgr.FindById<Hu>(locationLotDetail.HuId);
-                hu.PalletCode = string.Empty;
-                this.genericMgr.Update(hu);
-                #endregion
+                //#region 条码和托盘取消关联
+                //Hu hu = genericMgr.FindById<Hu>(locationLotDetail.HuId);
+                //hu.PalletCode = string.Empty;
+                //this.genericMgr.Update(hu);
+                //#endregion
             }
         }
         private void RecordPickTransaction(LocationLotDetail locationLotDetail)

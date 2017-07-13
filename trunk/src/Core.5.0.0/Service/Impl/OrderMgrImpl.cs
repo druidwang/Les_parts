@@ -2586,6 +2586,23 @@ namespace com.Sconit.Service.Impl
                         orderDetail.AddOrderDetailInput(orderDetailInput);
                     }
                 }
+
+                #region 加一段下架的逻辑
+                foreach (OrderDetail od in orderMaster.OrderDetails)
+                {
+                    var hus = this.genericMgr.FindAllIn<Hu>(" from Hu where HuId in(?", od.OrderDetailInputs.Select(p => p.HuId));
+                    foreach (Hu hu in hus)
+                    {
+                        var inventoryPickList = new List<Entity.INV.InventoryPick>();
+                        var inventoryPick = new Entity.INV.InventoryPick();
+                        inventoryPick.HuId = hu.HuId;
+                        inventoryPickList.Add(inventoryPick);
+                        this.locationDetailMgr.InventoryPick(inventoryPickList);
+
+                    }
+                }
+                #endregion
+
                 ReceiveOrder(orderMaster.OrderDetails, orderMaster.EffectiveDate.HasValue ? orderMaster.EffectiveDate.Value : DateTime.Now);
             }
             else if (!orderMaster.IsQuick && orderMaster.Type != com.Sconit.CodeMaster.OrderType.Production          //自动生成捡货单
@@ -2968,15 +2985,32 @@ namespace com.Sconit.Service.Impl
             CheckShipFiFo(orderMasterList);
             #endregion
 
-            #region 发货
-            IpMaster ipMaster = ipMgr.TransferOrder2Ip(orderMasterList);
-            ipMgr.CreateIp(ipMaster, effectiveDate);
-            #endregion
-
-            #region 退货自动解托盘
+            #region 先加一段下架
             foreach (OrderMaster om in orderMasterList)
             {
-                if (om.Type == CodeMaster.OrderType.Procurement && om.SubType == CodeMaster.OrderSubType.Return)
+                foreach (OrderDetail od in om.OrderDetails)
+                {
+                    var hus = this.genericMgr.FindAllIn<Hu>(" from Hu where HuId in(?", od.OrderDetailInputs.Select(p => p.HuId));
+                    foreach (Hu hu in hus)
+                    {
+
+                        var inventoryPickList = new List<Entity.INV.InventoryPick>();
+                        var inventoryPick = new Entity.INV.InventoryPick();
+                        inventoryPick.HuId = hu.HuId;
+                        inventoryPickList.Add(inventoryPick);
+                        this.locationDetailMgr.InventoryPick(inventoryPickList);
+
+                    }
+                }
+
+            }
+            #endregion
+
+
+            #region 退货自动解托盘,发货也解托盘
+            foreach (OrderMaster om in orderMasterList)
+            {
+                if ((om.Type == CodeMaster.OrderType.Procurement && om.SubType == CodeMaster.OrderSubType.Return) || (om.Type == CodeMaster.OrderType.Distribution && om.SubType == CodeMaster.OrderSubType.Normal))
                 {
                     foreach (OrderDetail od in om.OrderDetails)
                     {
@@ -3002,6 +3036,13 @@ namespace com.Sconit.Service.Impl
                 }
             }
             #endregion
+
+            #region 发货
+            IpMaster ipMaster = ipMgr.TransferOrder2Ip(orderMasterList);
+            ipMgr.CreateIp(ipMaster, effectiveDate);
+            #endregion
+
+
 
             #region 自动收货
             AutoReceiveIp(ipMaster, effectiveDate);
@@ -3123,6 +3164,9 @@ namespace com.Sconit.Service.Impl
                         orderDetails.Key.Item, orderDetails.First().ItemDescription, directionDesc));
                 }
             }
+            #endregion
+
+
 
             if (bussinessException.HasMessage)
             {
