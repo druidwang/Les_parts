@@ -3089,31 +3089,62 @@ namespace com.Sconit.Service.Impl
                 .Distinct();
 
             #region 查找库存
-            #region 拼SQL
+            #region 拼SQL,因为现在一个零件会发多个客户，要按照条码上客户区分库存
             string statement = string.Empty;
             IList<object> detailPara = new List<object>();
-            foreach (var itemCode in distinctItemCodes)
+
+            if (orderMaster.Type == CodeMaster.OrderType.Distribution)
             {
-                if (statement == string.Empty)
+
+                foreach (var itemCode in distinctItemCodes)
                 {
-                    statement = @"select l.Item,l.HuId, l.LotNo, l.Direction
+                    if (statement == string.Empty)
+                    {
+                        statement = @"select l.Item,l.HuId, l.LotNo, l.Direction
+                        from VIEW_LocationLotDet l where l.HuId is not null
+                        and l.Location = ? and l.QualityType = ? and l.OccupyType = ? and l.IsATP = ? and l.IsFreeze = ? and l.ManufactureParty = ?";
+                        detailPara.Add(locations.First());
+                        detailPara.Add(orderMaster.QualityType);
+                        detailPara.Add(CodeMaster.OccupyType.None);
+                        detailPara.Add(true);
+                        detailPara.Add(false);
+                        detailPara.Add(orderMaster.PartyTo);
+
+                        statement += " and l.Item in (?";
+                    }
+                    else
+                    {
+                        statement += ", ?";
+                    }
+                    detailPara.Add(itemCode);
+                }
+                statement += ") order by l.LotNo Asc ";
+            }
+            else
+            {
+                foreach (var itemCode in distinctItemCodes)
+                {
+                    if (statement == string.Empty)
+                    {
+                        statement = @"select l.Item,l.HuId, l.LotNo, l.Direction
                         from VIEW_LocationLotDet l where l.HuId is not null
                         and l.Location = ? and l.QualityType = ? and l.OccupyType = ? and l.IsATP = ? and l.IsFreeze = ?";
-                    detailPara.Add(locations.First());
-                    detailPara.Add(orderMaster.QualityType);
-                    detailPara.Add(CodeMaster.OccupyType.None);
-                    detailPara.Add(true);
-                    detailPara.Add(false);
+                        detailPara.Add(locations.First());
+                        detailPara.Add(orderMaster.QualityType);
+                        detailPara.Add(CodeMaster.OccupyType.None);
+                        detailPara.Add(true);
+                        detailPara.Add(false);
 
-                    statement += " and l.Item in (?";
+                        statement += " and l.Item in (?";
+                    }
+                    else
+                    {
+                        statement += ", ?";
+                    }
+                    detailPara.Add(itemCode);
                 }
-                else
-                {
-                    statement += ", ?";
-                }
-                detailPara.Add(itemCode);
+                statement += ") order by l.LotNo Asc ";
             }
-            statement += ") order by l.LotNo Asc ";
             #endregion
 
             var locationDetailsGroup = this.genericMgr.FindAllWithNativeSql<object[]>(statement, detailPara.ToArray())
@@ -3164,7 +3195,7 @@ namespace com.Sconit.Service.Impl
                         orderDetails.Key.Item, orderDetails.First().ItemDescription, directionDesc));
                 }
             }
-            #endregion
+
 
 
 
