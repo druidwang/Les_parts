@@ -2667,13 +2667,42 @@
 
         public ActionResult _AjaxLoadingItemManufactureParty(string text, string item)
         {
-            //string shql = "select p from Supplier p where p.Code in (select distinct  m.PartyFrom from FlowMaster as m where exists (select 1 from FlowDetail as d where d.Flow=m.Code and d.Item='" + item + "') and m.Type=" + (int)com.Sconit.CodeMaster.OrderType.Procurement + ")";
-            string shql = "select p from Supplier p";            
+            string shql = "select p from Supplier p where p.Code in (select distinct  m.PartyFrom from FlowMaster as m where m.IsActive = 1 and  exists (select 1 from FlowDetail as d where d.Flow=m.Code and d.Item='" + item + "') and m.Type=" + (int)com.Sconit.CodeMaster.OrderType.Procurement + ")";
             IList<Supplier> supplierList = genericMgr.FindAll<Supplier>(shql);
 
-            //string chql = "select c from Customer c where c.Code in (select distinct  m.PartyTo from FlowMaster as m where exists (select 1 from FlowDetail as d where d.Flow=m.Code and d.Item='" + item + "') and m.Type=" + (int)com.Sconit.CodeMaster.OrderType.Distribution + ")";
-            string chql = "select c from Customer c";
+            string chql = "select c from Customer c where c.Code in (select distinct  m.PartyTo from FlowMaster as m where m.IsActive = 1 and  exists (select 1 from FlowDetail as d where d.Flow=m.Code and d.Item='" + item + "') and m.Type=" + (int)com.Sconit.CodeMaster.OrderType.Distribution + ")";
             IList<Customer> customerList = genericMgr.FindAll<Customer>(chql);
+
+            List<Party> partyList = new List<Party>();
+            partyList.AddRange(supplierList);
+            partyList.AddRange(customerList);
+
+            return new JsonResult { Data = new SelectList(partyList, "Code", "CodeDescription", partyList.FirstOrDefault() == null ? string.Empty : partyList.First().Code) };
+        }
+
+        #endregion
+
+        #region Hu ManufactureParty
+        public ActionResult _HuManufacturePartyComboBox(string controlName, string controlId, string selectedValue, bool? enable, bool? isChange)
+        {
+            ViewBag.ControlName = controlName;
+            ViewBag.ControlId = controlId;
+            ViewBag.Enable = enable;
+            ViewBag.IsChange = isChange;
+
+
+            IList<Party> partyList = queryMgr.FindAll<Party>("from Party as p where p.IsActive = 1");
+
+
+
+            return PartialView(new SelectList(partyList, "Code", "CodeDescription", selectedValue));
+        }
+
+        public ActionResult _AjaxLoadingHuManufactureParty(string text)
+        {
+            IList<Supplier> supplierList = genericMgr.FindAll<Supplier>(" from Supplier as s where s.IsActive = 1 and  s.Code like ?", "%" + text + "%");
+
+            IList<Customer> customerList = genericMgr.FindAll<Customer>(" from Customer as c where c.IsActive = 1 and  c.Code like ?", "%" + text + "%");
 
             List<Party> partyList = new List<Party>();
             partyList.AddRange(supplierList);
@@ -2689,7 +2718,7 @@
         {
             string hql = "select p from Supplier p where p.Code in (select distinct  m.PartyFrom from FlowMaster as m where exists (select 1 from FlowDetail as d where d.Flow=m.Code and d.Item='" + item + "') and m.Type=" + (int)com.Sconit.CodeMaster.OrderType.Procurement + ")";
             IList<Supplier> supplierList = genericMgr.FindAll<Supplier>(hql);
-            return new JsonResult { Data = new SelectList(supplierList, "Code", "CodeDescription", supplierList.FirstOrDefault() == null? string.Empty:supplierList.First().Code) };
+            return new JsonResult { Data = new SelectList(supplierList, "Code", "CodeDescription", supplierList.FirstOrDefault() == null ? string.Empty : supplierList.First().Code) };
         }
 
         #endregion
@@ -2723,7 +2752,7 @@
 
         public ActionResult _AjaxLoadingManufactureParty(string text, string item)
         {
-          
+
 
             string hql = "select p from Party p where p.Code in (select distinct  m.PartyFrom from FlowMaster as m where exists (select 1 from FlowDetail as d where d.Flow=m.Code and d.Item='" + item + "') and m.Type in (" + (int)com.Sconit.CodeMaster.OrderType.Procurement + "," + (int)com.Sconit.CodeMaster.OrderType.Distribution + "))";
             IList<Party> partyList = genericMgr.FindAll<Party>(hql);

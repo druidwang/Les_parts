@@ -324,4 +324,7 @@
   <data name="LocationLotDetail_ItemVersion" xml:space="preserve">
     <value>类型</value>
   </data>
+  <data name="LocationLotDetail_IsHideManufactureParty" xml:space="preserve">
+    <value>显示制造商</value>
+  </data>
 </root>

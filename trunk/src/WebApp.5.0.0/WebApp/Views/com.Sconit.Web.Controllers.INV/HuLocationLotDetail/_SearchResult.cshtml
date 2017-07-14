@@ -17,6 +17,7 @@
             columns.Bound(o => o.Bin);
             columns.Bound(o => o.Item);
             columns.Bound(o => o.ItemFullDescription).Sortable(false);
+            columns.Bound(o => o.ManufactureParty);
             //columns.Bound(o => o.MaterialsGroup);
             //columns.Bound(o => o.MaterialsGroupDesc);
             //columns.Bound(o => o.ReferenceItemCode).Sortable(false);
@@ -67,12 +68,13 @@
                 LotNoTo: $('#LotNoTo').val(),
                 Bin: $('#Bin').val(),
                 OccupyType: $('#OccupyType').val(),
-//                IsFreeze: $("input[type=checkbox][name=IsFreeze]:checked").val(),
-//                IsConsignment: $("input[type=checkbox][name=IsConsignment]:checked").val()
+                //                IsFreeze: $("input[type=checkbox][name=IsFreeze]:checked").val(),
+                //                IsConsignment: $("input[type=checkbox][name=IsConsignment]:checked").val()
                 IsFreeze2: $('#IsFreeze2').val(),
                 IsConsignment2: $('#IsConsignment2').val(),
                 HuOptionHuLot: $('#HuOptionHuLot').val(),
-                QualityType: $('#QualityType').val()
+                QualityType: $('#QualityType').val(),
+                ManufactureParty: $('#ManufactureParty').val()
             };
         }
 
@@ -132,7 +134,7 @@
             var data = {
                 "checkedOrders": checkedOrders
             };
-            
+
             if (isExport) {
                 $.ajax({
                     type: "post",
@@ -141,7 +143,7 @@
                     data: data,
                     cache: false,
                     success: function (data, textStatus) {
-                        
+
                         if (data.Message != "OK") {
                             $message.error(data.Message)
                         }
@@ -162,7 +164,7 @@
                     cache: false,
                     success: function (data, textStatus) {
                         $message.success("条码打印成功");
-                        
+
                         for (var i = 0; i < data.PrintUrl.length; i++) {
                             PrintOrder(data.PrintUrl[i]);
                         }
@@ -181,7 +183,6 @@
 
     </script>
 </fieldset>
-
 <form id="hiddenForm" action="/Hu/SaveToClientTo" target="_blank" method="post">
-    <input id="checkedOrders" name="checkedOrders" type="hidden" />
+<input id="checkedOrders" name="checkedOrders" type="hidden" />
 </form>

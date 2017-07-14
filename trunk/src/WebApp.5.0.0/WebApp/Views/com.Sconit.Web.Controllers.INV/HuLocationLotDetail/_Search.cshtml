@@ -79,7 +79,7 @@
             </div>
             <div class="search-field">
                 @{
-                    Html.RenderAction("_ManufacturePartyComboBox", "Common", new
+                    Html.RenderAction("_HuManufacturePartyComboBox", "Common", new
                     {
                         controlName = "ManufactureParty",
                         selectedValue = TempData["LocationLotDetailSearchModel"] != null ? ((LocationLotDetailSearchModel)TempData["LocationLotDetailSearchModel"]).ManufactureParty : string.Empty
@@ -212,7 +212,7 @@
         
     }
 
-    function ManufactureParty_DataBinding(e) {
+    function HuManufactureParty_DataBinding(e) {
     }
 
     function getMultiRegions() {
@@ -243,7 +243,7 @@
             + '&OccupyType=' + $('#OccupyType').val()
             + '&IsFreeze2=' + $('#IsFreeze2').val()
             + '&IsConsignment2=' + $('#IsConsignment2').val()
-//            + '&HuOptionHuLot=' + $('#HuOptionHuLot').val()
+            + '&ManufactureParty=' + $('#ManufactureParty').val()
             + '&QualityType=' + $('#QualityType').val();
     };
 

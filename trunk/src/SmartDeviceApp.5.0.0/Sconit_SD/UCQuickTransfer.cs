@@ -216,7 +216,7 @@ namespace com.Sconit.SmartDevice
                 this.smartDeviceService.DoTransfer(flowMaster, flowDetailInputList.ToArray(), base.user.Code,true);
                 flowMaster.FlowDetails = null;
                 this.Reset();
-                base.lblMessage.Text = "移库成功";
+                base.lblMessage.Text = "车间发料成功,共" + flowDetailInputList.Count + "箱";
                 this.isMark = true;
             }
             catch (Exception ex)

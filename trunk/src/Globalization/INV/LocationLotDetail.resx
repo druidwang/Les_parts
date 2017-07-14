@@ -324,4 +324,7 @@
   <data name="LocationLotDetail_ItemVersion" xml:space="preserve">
     <value>Item Version</value>
   </data>
+  <data name="LocationLotDetail_IsHideManufactureParty" xml:space="preserve">
+    <value>IsHideManufactureParty</value>
+  </data>
 </root>

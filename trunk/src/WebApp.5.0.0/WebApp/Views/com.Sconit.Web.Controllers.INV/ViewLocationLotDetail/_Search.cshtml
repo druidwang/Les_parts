@@ -96,7 +96,7 @@
         }
     }
 
-    function ManufactureParty_DataBinding(e) {
+    function HuManufactureParty_DataBinding(e) {
     }
 
     function ExportClick() {
@@ -382,7 +382,7 @@
             </div>
             <div class="search-field">
                 @{
-                    Html.RenderAction("_ManufacturePartyComboBox", "Common", new
+        Html.RenderAction("_HuManufacturePartyComboBox", "Common", new
                     {
                         controlName = "ManufactureParty",
                         selectedValue = TempData["LocationLotDetailSearchModel"] != null ? ((LocationLotDetailSearchModel)TempData["LocationLotDetailSearchModel"]).ManufactureParty : string.Empty
@@ -390,15 +390,15 @@
                     });
                 }
             </div>
-            @*
+            
             <div class="search-label">
                 <label>
-                    @Resources.INV.LocationLotDetail.LocationLotDetail_IshideSupper
+                    @Resources.INV.LocationLotDetail.LocationLotDetail_IsHideManufactureParty
                 </label>
             </div>
             <div class="search-field">
                 @{ @Html.CheckBoxFor(model => model.hideSupper); }
-            </div>*@
+            </div>
             <div class="search-label">
                 <label>
                     @Resources.INV.LocationLotDetail.LocationLotDetail_IshideLotNo

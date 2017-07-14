@@ -129,10 +129,10 @@ namespace com.Sconit.SmartDevice
                     }
                     Hu hu = smartDeviceService.GetHu(barCode);
 
-                    if (!string.IsNullOrEmpty(hu.PalletCode))
-                    {
-                        throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
-                    }
+                    //if (!string.IsNullOrEmpty(hu.PalletCode))
+                    //{
+                    //    throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
+                    //}
 
 
                     this.MatchHu(hu);

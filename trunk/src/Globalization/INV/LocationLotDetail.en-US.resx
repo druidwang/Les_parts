@@ -201,6 +201,9 @@
   <data name="LocationLotDetail_IshideLotNo" xml:space="preserve">
     <value>IshideLotNo</value>
   </data>
+  <data name="LocationLotDetail_IsHideManufactureParty" xml:space="preserve">
+    <value>IsHideManufactureParty</value>
+  </data>
   <data name="LocationLotDetail_IshideSupper" xml:space="preserve">
     <value>IshideSupper</value>
   </data>

@@ -418,7 +418,7 @@ namespace com.Sconit.Web.Controllers.Report
             sqlParams[1] = new SqlParameter("@ItemFrom", itemFrom);
             sqlParams[2] = new SqlParameter("@ItemTo", itemTo);
             sqlParams[3] = new SqlParameter("@SortType", sortType);
-            sqlParams[3] = new SqlParameter("@ManufactureParty", manufactureParty);
+            sqlParams[4] = new SqlParameter("@ManufactureParty", manufactureParty);
             return GetTableHtmlByStoredProcedure(ProcedureName, sqlParams);
         }
         #endregion
