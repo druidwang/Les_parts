@@ -56,9 +56,15 @@ namespace com.Sconit.SmartDevice
             this.btnQuickReturn = new System.Windows.Forms.Button();
             this.btnOrderShip = new System.Windows.Forms.Button();
             this.btnReceive = new System.Windows.Forms.Button();
+            this.tabQuality = new System.Windows.Forms.TabPage();
+            this.btnUnfreeze = new System.Windows.Forms.Button();
+            this.btnFreeze = new System.Windows.Forms.Button();
+            this.btnQualify = new System.Windows.Forms.Button();
+            this.btnInspect = new System.Windows.Forms.Button();
             this.tabInventory.SuspendLayout();
             this.tabModuleSelect.SuspendLayout();
             this.tabProcurement.SuspendLayout();
+            this.tabQuality.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnExit
@@ -110,7 +116,7 @@ namespace com.Sconit.SmartDevice
             this.tabInventory.Controls.Add(this.btnTransfer);
             this.tabInventory.Location = new System.Drawing.Point(4, 25);
             this.tabInventory.Name = "tabInventory";
-            this.tabInventory.Size = new System.Drawing.Size(233, 188);
+            this.tabInventory.Size = new System.Drawing.Size(245, 183);
             this.tabInventory.Text = "仓库";
             // 
             // btnBindContainerOut
@@ -249,6 +255,7 @@ namespace com.Sconit.SmartDevice
             // 
             this.tabModuleSelect.Controls.Add(this.tabProcurement);
             this.tabModuleSelect.Controls.Add(this.tabInventory);
+            this.tabModuleSelect.Controls.Add(this.tabQuality);
             this.tabModuleSelect.Location = new System.Drawing.Point(3, 13);
             this.tabModuleSelect.Name = "tabModuleSelect";
             this.tabModuleSelect.SelectedIndex = 0;
@@ -360,6 +367,57 @@ namespace com.Sconit.SmartDevice
             this.btnReceive.Click += new System.EventHandler(this.UCModuleSelect_Click);
             this.btnReceive.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
             // 
+            // tabQuality
+            // 
+            this.tabQuality.Controls.Add(this.btnUnfreeze);
+            this.tabQuality.Controls.Add(this.btnFreeze);
+            this.tabQuality.Controls.Add(this.btnQualify);
+            this.tabQuality.Controls.Add(this.btnInspect);
+            this.tabQuality.Location = new System.Drawing.Point(4, 25);
+            this.tabQuality.Name = "tabQuality";
+            this.tabQuality.Size = new System.Drawing.Size(245, 183);
+            this.tabQuality.Text = "质量";
+            // 
+            // btnUnfreeze
+            // 
+            this.btnUnfreeze.Location = new System.Drawing.Point(130, 69);
+            this.btnUnfreeze.Name = "btnUnfreeze";
+            this.btnUnfreeze.Size = new System.Drawing.Size(90, 20);
+            this.btnUnfreeze.TabIndex = 5;
+            this.btnUnfreeze.Text = "4.解冻";
+            this.btnUnfreeze.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnUnfreeze.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnFreeze
+            // 
+            this.btnFreeze.Location = new System.Drawing.Point(22, 69);
+            this.btnFreeze.Name = "btnFreeze";
+            this.btnFreeze.Size = new System.Drawing.Size(90, 20);
+            this.btnFreeze.TabIndex = 4;
+            this.btnFreeze.Text = "3.冻结";
+            this.btnFreeze.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnFreeze.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnQualify
+            // 
+            this.btnQualify.Location = new System.Drawing.Point(130, 26);
+            this.btnQualify.Name = "btnQualify";
+            this.btnQualify.Size = new System.Drawing.Size(90, 20);
+            this.btnQualify.TabIndex = 3;
+            this.btnQualify.Text = "2.判定";
+            this.btnQualify.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnQualify.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
+            // btnInspect
+            // 
+            this.btnInspect.Location = new System.Drawing.Point(22, 26);
+            this.btnInspect.Name = "btnInspect";
+            this.btnInspect.Size = new System.Drawing.Size(90, 20);
+            this.btnInspect.TabIndex = 2;
+            this.btnInspect.Text = "1.报验";
+            this.btnInspect.Click += new System.EventHandler(this.UCModuleSelect_Click);
+            this.btnInspect.KeyUp += new System.Windows.Forms.KeyEventHandler(this.UCModuleSelect_KeyUp);
+            // 
             // UCModuleSelect
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -375,6 +433,7 @@ namespace com.Sconit.SmartDevice
             this.tabInventory.ResumeLayout(false);
             this.tabModuleSelect.ResumeLayout(false);
             this.tabProcurement.ResumeLayout(false);
+            this.tabQuality.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -408,5 +467,10 @@ namespace com.Sconit.SmartDevice
         private System.Windows.Forms.Button btnProductionReturn;
         private System.Windows.Forms.Button btnQuickTransfer;
         private System.Windows.Forms.Button btnDistributionReturn;
+        private System.Windows.Forms.TabPage tabQuality;
+        private System.Windows.Forms.Button btnUnfreeze;
+        private System.Windows.Forms.Button btnFreeze;
+        private System.Windows.Forms.Button btnQualify;
+        private System.Windows.Forms.Button btnInspect;
     }
 }
