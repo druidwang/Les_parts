@@ -275,7 +275,8 @@
                         orderDetail.Remark = Remarks[i];
                     }
 
-
+                    //把外部订单号记到明细上，现在要查询
+                    orderDetail.ExternalOrderNo = orderMaster.ExternalOrderNo;
                     orderDetList.Add(orderDetail);
                 }
 

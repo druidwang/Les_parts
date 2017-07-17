@@ -2977,7 +2977,7 @@
             {
                 hql += " and exists (select 1 from UserPermissionView as u where u.UserId =" + user.Id + "and  u.PermissionCategoryType in (" + (int)com.Sconit.CodeMaster.PermissionCategoryType.Supplier + "," + (int)com.Sconit.CodeMaster.PermissionCategoryType.Customer + "," + (int)com.Sconit.CodeMaster.PermissionCategoryType.Region + ") and u.PermissionCode = p.Code)";
             }
-            partyList = queryMgr.FindAll<Party>(hql, new object[] { true, text + "%" }, firstRow, maxRow).ToList();
+            partyList = queryMgr.FindAll<Party>(hql, new object[] { true, "%" + text + "%" }, firstRow, maxRow).ToList();
             return new JsonResult { Data = new SelectList(partyList, "Code", "CodeDescription", text) };
         }
 
@@ -3021,7 +3021,7 @@
             {
                 hql += " and exists (select 1 from UserPermissionView as u where  u.UserId =" + user.Id + "and u.PermissionCategoryType in (" + (int)com.Sconit.CodeMaster.PermissionCategoryType.Supplier + "," + (int)com.Sconit.CodeMaster.PermissionCategoryType.Customer + "," + (int)com.Sconit.CodeMaster.PermissionCategoryType.Region + ") and u.PermissionCode = p.Code)";
             }
-            partyList = queryMgr.FindAll<Party>(hql, new object[] { true, text + "%" }, firstRow, maxRow).ToList();
+            partyList = queryMgr.FindAll<Party>(hql, new object[] { true, "%" + text + "%" }, firstRow, maxRow).ToList();
             return new JsonResult { Data = new SelectList(partyList, "Code", "CodeDescription", text) };
 
         }

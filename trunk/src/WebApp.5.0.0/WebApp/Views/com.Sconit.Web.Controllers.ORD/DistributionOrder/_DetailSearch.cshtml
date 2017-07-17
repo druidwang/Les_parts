@@ -14,7 +14,7 @@
             controlName = "QueryOrderType",
             isWidth = true,
             enable = true,
-            selectedValue = TempData["OrderMasterSearchModel"] != null ? ((OrderMasterSearchModel)TempData["OrderMasterSearchModel"]).QueryOrderType : 0
+            selectedValue = TempData["OrderMasterSearchModel"] != null ? ((OrderMasterSearchModel)TempData["OrderMasterSearchModel"]).QueryOrderType : null
         });
                 }
             </div>
@@ -95,7 +95,7 @@
             new
             {
                 controlName = "PartyFrom",
-                orderType = (int)com.Sconit.CodeMaster.OrderType.Procurement,
+                orderType = (int)com.Sconit.CodeMaster.OrderType.Distribution,
                 selectedValue = TempData["OrderMasterSearchModel"] != null ? ((OrderMasterSearchModel)TempData["OrderMasterSearchModel"]).PartyFrom : string.Empty
             });
                 }
@@ -111,7 +111,7 @@
          new
          {
              controlName = "PartyTo",
-             orderType = (int)com.Sconit.CodeMaster.OrderType.Procurement,
+             orderType = (int)com.Sconit.CodeMaster.OrderType.Distribution,
              selectedValue = TempData["OrderMasterSearchModel"] != null ? ((OrderMasterSearchModel)TempData["OrderMasterSearchModel"]).PartyTo : string.Empty
          });
                 }

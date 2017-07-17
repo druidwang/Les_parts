@@ -215,6 +215,11 @@
                         od.LocationTo = LocationTos[i] == string.Empty ? null : LocationTos[i];
                     }
                     od.OrderedQty = Convert.ToDecimal(OrderedQtys[i]);
+
+
+                    //把外部订单号记到明细上，现在要查询
+                    od.ExternalOrderNo = orderMaster.ExternalOrderNo;
+
                     orderDetList.Add(od);
                 }
 

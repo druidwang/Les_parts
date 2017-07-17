@@ -23,7 +23,7 @@ namespace com.Sconit.Entity.ORD
         public com.Sconit.CodeMaster.OrderType OrderType { get; set; }
 
         [Export(ExportName = "ProcumentReturnOrderDetail", ExportSeq = 130)]
-        [Export(ExportName = "DistributionOrderDetail", ExportSeq = 130)]
+        //[Export(ExportName = "DistributionOrderDetail", ExportSeq = 130)]
         [Export(ExportName = "DistributionReturnOrderDetail", ExportSeq = 120)]
         [CodeDetailDescriptionAttribute(CodeMaster = com.Sconit.CodeMaster.CodeMaster.OrderType, ValueField = "OrderType")]
         [Display(Name = "OrderMaster_Type", ResourceType = typeof(Resources.ORD.OrderMaster))]
@@ -33,14 +33,14 @@ namespace com.Sconit.Entity.ORD
         [Export(ExportName = "OrderDetail", ExportSeq = 10)]
         [Export(ExportName = "ProcumentOrderDetail", ExportSeq = 20)]
         //[Export(ExportName = "ProcumentReturnOrderDetail", ExportSeq = 40)]
-        [Export(ExportName = "DistributionOrderDetail", ExportSeq = 30)]
+        [Export(ExportName = "DistributionOrderDetail", ExportSeq = 20)]
         [Export(ExportName = "DistributionReturnOrderDetail", ExportSeq = 30)]
         [Display(Name = "OrderDetail_Sequence", ResourceType = typeof(Resources.ORD.OrderDetail))]
         public Int32 Sequence { get; set; }
         [Export(ExportName = "OrderDetail", ExportSeq = 40)]
         [Export(ExportName = "ProcumentOrderDetail", ExportSeq = 30)]
         [Export(ExportName = "ProcumentReturnOrderDetail", ExportSeq = 30)]
-        [Export(ExportName = "DistributionOrderDetail", ExportSeq = 20)]
+        [Export(ExportName = "DistributionOrderDetail", ExportSeq = 30)]
         [Export(ExportName = "DistributionReturnOrderDetail", ExportSeq = 20)]
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "Errors_Common_FieldRequired", ErrorMessageResourceType = typeof(Resources.SYS.ErrorMessage))]
         [Display(Name = "OrderDetail_Item", ResourceType = typeof(Resources.ORD.OrderDetail))]
@@ -111,7 +111,7 @@ namespace com.Sconit.Entity.ORD
         public Decimal ShippedQty { get; set; }
         [Export(ExportName = "OrderDetail", ExportSeq = 140)]
         [Export(ExportName = "ProcumentOrderDetail", ExportSeq = 120)]
-        [Export(ExportName = "DistributionOrderDetail", ExportSeq = 120, ExportTitle = "OrderDetail_OrderedQtyReturn", ExportTitleResourceType = typeof(@Resources.ORD.OrderDetail))] 
+        [Export(ExportName = "DistributionOrderDetail", ExportSeq = 120)] 
         [Display(Name = "OrderDetail_ReceivedQty", ResourceType = typeof(Resources.ORD.OrderDetail))]
         public Decimal ReceivedQty { get; set; }
 
@@ -139,7 +139,7 @@ namespace com.Sconit.Entity.ORD
         [Export(ExportName = "ProcumentOrderDetail", ExportSeq = 80)]
         [Export(ExportName = "ProcumentReturnOrderDetail", ExportSeq = 110)]
         [Export(ExportName = "DistributionOrderDetail", ExportSeq = 80)]
-        [Export(ExportName = "DistributionReturnOrderDetail", ExportSeq = 90)]
+        //[Export(ExportName = "DistributionReturnOrderDetail", ExportSeq = 90)]
         [Display(Name = "OrderDetail_LocationTo", ResourceType = typeof(Resources.ORD.OrderDetail))]
         public string LocationTo { get; set; }
 
@@ -234,6 +234,9 @@ namespace com.Sconit.Entity.ORD
         public string ExtraDemandSource { get; set; }
 
         public Boolean IsScanHu { get; set; }
+
+        [Export(ExportName = "ProcumentOrderDetail", ExportSeq = 15)]
+        [Export(ExportName = "DistributionOrderDetail", ExportSeq = 15)]
         [Display(Name = "OrderDetail_ExternalOrderNo", ResourceType = typeof(Resources.ORD.OrderDetail))]
         public string ExternalOrderNo { get; set; }
 

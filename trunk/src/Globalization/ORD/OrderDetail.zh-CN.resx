@@ -316,7 +316,7 @@
     <value>待拣数</value>
   </data>
   <data name="OrderDetail_ExternalOrderNo" xml:space="preserve">
-    <value>交货单号</value>
+    <value>外部订单号</value>
   </data>
   <data name="OrderDetail_LocationQty" xml:space="preserve">
     <value>库存数</value>

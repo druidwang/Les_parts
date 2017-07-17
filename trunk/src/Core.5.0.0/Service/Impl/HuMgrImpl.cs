@@ -486,7 +486,8 @@ namespace com.Sconit.Service.Impl
             hu.HuId = huidDic.FirstOrDefault().Key;
             hu.ExternalHuId = huId;
             hu.IsExternal = string.IsNullOrEmpty(huId)?false:true;
-            hu.LotNo = lotNo;
+            
+            hu.SupplierLotNo = lotNo;
             hu.Item = item.Code;
             hu.ItemDescription = item.Description;
             hu.BaseUom = uom;
@@ -497,6 +498,8 @@ namespace com.Sconit.Service.Impl
             var manufactureDt = DateTime.Now;
             DateTime.TryParseExact(manufactureDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal, out manufactureDt);
             hu.ManufactureDate = manufactureDt;
+
+            hu.LotNo = Utility.LotNoHelper.GenerateLotNo(hu.ManufactureDate);
             hu.PrintCount = 0;
             hu.ConcessionCount = 0;
             hu.ReferenceItemCode = item.ReferenceCode;
@@ -504,7 +507,7 @@ namespace com.Sconit.Service.Impl
             hu.UnitQty = 1;
             hu.Uom = uom;
             hu.IsOdd = hu.Qty < hu.UnitCount;
-            hu.SupplierLotNo = item.SupplierLotNo;
+      
             hu.IsChangeUnitCount = true;
             hu.ContainerDesc = item.Container;
             hu.MaterialsGroup = this.GetMaterialsGroupDescrption(item.MaterialsGroup);

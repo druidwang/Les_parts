@@ -94,8 +94,8 @@ namespace com.Sconit.Entity.ORD
         [Display(Name = "OrderMaster_Status", ResourceType = typeof(Resources.ORD.OrderMaster))]
         public CodeMaster.OrderStatus Status { get; set; }
         [Export(ExportName = "OrderDetail", ExportSeq = 130)]
-        [Export(ExportName = "ProcumentOrderDetail", ExportSeq = 130)]
-        [Export(ExportName = "DistributionOrderDetail", ExportSeq = 130)]
+        //[Export(ExportName = "ProcumentOrderDetail", ExportSeq = 130)]
+        //[Export(ExportName = "DistributionOrderDetail", ExportSeq = 130)]
         [Export(ExportName = "DistributionReturnOrderDetail", ExportSeq = 130)]
         [CodeDetailDescriptionAttribute(CodeMaster = com.Sconit.CodeMaster.CodeMaster.OrderStatus, ValueField = "Status")]
         [Display(Name = "OrderMaster_Status", ResourceType = typeof(Resources.ORD.OrderMaster))]
