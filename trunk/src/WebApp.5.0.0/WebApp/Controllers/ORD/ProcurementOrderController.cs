@@ -338,10 +338,13 @@
 
                 if (orderMaster.SubType == com.Sconit.CodeMaster.OrderSubType.Return)
                 {
-                    newOrder.PartyFrom = orderMaster.PartyTo;
-                    newOrder.PartyFromName = genericMgr.FindById<Party>(newOrder.PartyFrom).Name;
-                    newOrder.LocationFrom = orderMaster.LocationTo;
-                    newOrder.LocationFromName = genericMgr.FindById<Location>(newOrder.LocationFrom).Name;
+                    if (!string.IsNullOrEmpty(orderMaster.PartyTo) && !string.IsNullOrEmpty(orderMaster.LocationTo))
+                    {
+                        newOrder.PartyFrom = orderMaster.PartyTo;
+                        newOrder.PartyFromName = genericMgr.FindById<Party>(newOrder.PartyFrom).Name;
+                        newOrder.LocationFrom = orderMaster.LocationTo;
+                        newOrder.LocationFromName = genericMgr.FindById<Location>(newOrder.LocationFrom).Name;
+                    }
                 }
 
                 if (orderMaster.WindowTime == DateTime.MinValue)

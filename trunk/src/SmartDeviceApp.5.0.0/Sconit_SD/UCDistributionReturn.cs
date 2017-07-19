@@ -87,39 +87,54 @@ namespace com.Sconit.SmartDevice
                     }
                     this.CheckAndMerge(orderMaster);
                 }
-                else if (base.op == CodeMaster.BarCodeType.HU.ToString())
+
+                else if (base.op == CodeMaster.BarCodeType.HU.ToString() || base.op == CodeMaster.BarCodeType.TP.ToString())
                 {
-                    if (this.orderMasters == null || this.orderMasters.Count() == 0)
+                    if (base.op == CodeMaster.BarCodeType.HU.ToString())
                     {
-                        throw new BusinessException("请先扫描销售退货单。");
+                        if (this.orderMasters == null || this.orderMasters.Count() == 0)
+                        {
+                            throw new BusinessException("请先扫描销售退货单。");
+                        }
+                        Hu hu = smartDeviceService.GetHu(barCode);
+                        if (hu == null)
+                        {
+                            throw new BusinessException("此条码不存在");
+                        }
+                        if (!hu.IsPallet)
+                        {
+                            if (!string.IsNullOrEmpty(hu.PalletCode))
+                            {
+                                throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
+                            }
+
+                            this.MatchOrderMaster(hu);
+
+                            this.isContinueScanOrder = false;
+                        }
+                        else
+                        {
+                            base.op = CodeMaster.BarCodeType.TP.ToString();
+                        }
+
                     }
-                    Hu hu = smartDeviceService.GetHu(barCode);
-                    if (!string.IsNullOrEmpty(hu.PalletCode))
+                    if (base.op == CodeMaster.BarCodeType.TP.ToString())
                     {
-                        throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
+                        if (this.orderMasters == null || this.orderMasters.Count() == 0)
+                        {
+                            throw new BusinessException("请先扫描销售退货单。");
+                        }
+                        Hu[] huArray = smartDeviceService.GetHuListByPallet(barCode);
+
+
+                        foreach (Hu hu in huArray)
+                        {
+                            this.MatchOrderMaster(hu);
+                        }
+
+                        this.isContinueScanOrder = false;
+
                     }
-
-                    this.MatchOrderMaster(hu);
-
-                    this.isContinueScanOrder = false;
-
-                }
-                else if (base.op == CodeMaster.BarCodeType.TP.ToString())
-                {
-                    if (this.orderMasters == null || this.orderMasters.Count() == 0)
-                    {
-                        throw new BusinessException("请先扫描销售退货单。");
-                    }
-                    Hu[] huArray = smartDeviceService.GetHuListByPallet(barCode);
-
-
-                    foreach (Hu hu in huArray)
-                    {
-                        this.MatchOrderMaster(hu);
-                    }
-
-                    this.isContinueScanOrder = false;
-
                 }
                 else if (base.op == CodeMaster.BarCodeType.B.ToString())
                 {

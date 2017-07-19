@@ -15,12 +15,15 @@ namespace com.Sconit.SmartDevice
         private static object obj = new object();
         private List<OrderMaster> orderMasters;
         private DateTime? effDate;
+        private bool isOpPallet;
+
 
         public UCShip(User user)
             : base(user)
         {
             this.InitializeComponent();
             base.btnOrder.Text = "发货";
+            isOpPallet = false;
         }
 
         public static UCShip GetUCShip(User user)
@@ -88,43 +91,53 @@ namespace com.Sconit.SmartDevice
 
                 this.MergeOrderMaster(orderMaster);
             }
-            else if (base.op == CodeMaster.BarCodeType.HU.ToString())
+
+            else if (op == CodeMaster.BarCodeType.HU.ToString() || op == CodeMaster.BarCodeType.TP.ToString())
             {
-                if (this.orderMasters == null || this.orderMasters.Count() == 0)
+                if (base.op == CodeMaster.BarCodeType.HU.ToString())
                 {
-                    throw new BusinessException("请先扫描订单");
-                }
-                Hu hu = smartDeviceService.GetHu(base.barCode);
-
-                //if (!string.IsNullOrEmpty(hu.PalletCode))
-                //{
-                //    throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
-                //}
-
-                foreach(OrderMaster om in orderMasters)
-                {
-                    if (hu.ManufactureParty != om.PartyTo)
+                    if (this.orderMasters == null || this.orderMasters.Count() == 0)
                     {
-                        throw new BusinessException("条码上客户与发货单客户不匹配。");
+                        throw new BusinessException("请先扫描订单");
                     }
+                    Hu hu = smartDeviceService.GetHu(base.barCode);
 
+                    if (hu == null)
+                    {
+                        throw new BusinessException("此条码不存在");
+                    }
+                    if (!hu.IsPallet)
+                    {
+                        foreach (OrderMaster om in orderMasters)
+                        {
+                            if (hu.ManufactureParty != om.PartyTo)
+                            {
+                                throw new BusinessException("条码上客户与发货单客户不匹配。");
+                            }
+
+                        }
+
+                        this.MatchHu(hu);
+                    }
+                    else
+                    {
+                        base.op = CodeMaster.BarCodeType.TP.ToString();
+                    }
                 }
-
-                this.MatchHu(hu);
-            }
-            else if (base.op == CodeMaster.BarCodeType.TP.ToString())
-            {
-                if ((this.orderMasters == null || this.orderMasters.Count() == 0))
+                if (base.op == CodeMaster.BarCodeType.TP.ToString())
                 {
-                    throw new BusinessException("请先扫描订单。");
-                }
-                Hu[] huArray = smartDeviceService.GetHuListByPallet(barCode);
+                    if ((this.orderMasters == null || this.orderMasters.Count() == 0))
+                    {
+                        throw new BusinessException("请先扫描订单。");
+                    }
+                    Hu[] huArray = smartDeviceService.GetHuListByPallet(barCode);
 
-                foreach (Hu hu in huArray)
-                {
-                    this.MatchHu(hu);
+                    foreach (Hu hu in huArray)
+                    {
+                        this.MatchHu(hu);
+                    }
+                    isOpPallet = true;
                 }
-
             }
             else if (base.op == CodeMaster.BarCodeType.DATE.ToString())
             {
@@ -227,7 +240,7 @@ namespace com.Sconit.SmartDevice
                     }
                 }
 
-                string ipNo = this.smartDeviceService.DoShipOrder(orderDetailInputList.ToArray(), this.effDate, this.user.Code);
+                string ipNo = this.smartDeviceService.DoShipOrder(orderDetailInputList.ToArray(), this.effDate, this.user.Code, isOpPallet);
                 this.Reset();
                 base.lblMessage.Text = string.Format("发货成功,送货单:{0}", ipNo);
                 this.isMark = true;

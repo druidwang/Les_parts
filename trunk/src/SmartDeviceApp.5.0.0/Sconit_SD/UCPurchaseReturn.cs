@@ -15,12 +15,15 @@ namespace com.Sconit.SmartDevice
         private static object obj = new object();
         private List<OrderMaster> orderMasters;
         private DateTime? effDate;
+        private Boolean isOpPallet;
+
 
         public UCPurchaseReturn(User user)
             : base(user)
         {
             this.InitializeComponent();
             base.btnOrder.Text = "退货";
+            isOpPallet = false;
         }
 
         public static UCPurchaseReturn GetUCPurchaseReturn(User user)
@@ -101,6 +104,8 @@ namespace com.Sconit.SmartDevice
                         this.MatchHu(hu);
                     }
                 }
+
+                isOpPallet = true;
             }
             else if (base.op == CodeMaster.BarCodeType.DATE.ToString())
             {
@@ -191,7 +196,7 @@ namespace com.Sconit.SmartDevice
                     }
                 }
 
-                string ipNo = this.smartDeviceService.DoShipOrder(orderDetailInputList.ToArray(), this.effDate, this.user.Code);
+                string ipNo = this.smartDeviceService.DoShipOrder(orderDetailInputList.ToArray(), this.effDate, this.user.Code,isOpPallet);
                 this.Reset();
                 base.lblMessage.Text = string.Format("退货成功,送货单:{0}", ipNo);
                 this.isMark = true;

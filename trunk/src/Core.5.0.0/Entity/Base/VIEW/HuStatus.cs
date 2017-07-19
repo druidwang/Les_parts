@@ -87,6 +87,10 @@ namespace com.Sconit.Entity.VIEW
         public string Direction { get; set; }
 
         public string PalletCode { get; set; }
+
+        public Boolean IsExternal { get; set; }
+        public Boolean IsPallet { get; set; }
+
         #endregion
 
 		public override int GetHashCode()

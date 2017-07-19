@@ -467,8 +467,8 @@ namespace com.Sconit.Service.Impl
             IList<Hu> huList = new List<Hu>();
             var item = this.genericMgr.FindById<Item>(itemCode);
             Hu hu = new Hu();
-            var flowMstr = this.genericMgr.FindEntityWithNativeSql<FlowMaster>("select fm.* from SCM_FlowMstr fm inner join SCM_FlowDet fd on fm.Code=fd.Flow where fm.PartyTo=? and fd.Item=?", new object[]{ customerCode, itemCode });
-            if (flowMstr == null || flowMstr.Count ==0)
+            var flowMstr = this.genericMgr.FindEntityWithNativeSql<FlowMaster>("select fm.* from SCM_FlowMstr fm inner join SCM_FlowDet fd on fm.Code=fd.Flow where fm.IsActive = 1 and fm.PartyTo=? and fd.Item=?", new object[] { customerCode, itemCode });
+            if (flowMstr == null || flowMstr.Count == 0)
             {
                 hu.HuTemplate = item.HuTemplate;
             }
@@ -476,24 +476,24 @@ namespace com.Sconit.Service.Impl
             {
                 hu.HuTemplate = flowMstr.FirstOrDefault().HuTemplate;
             }
-          //  var tobeHuId = huId;
+            //  var tobeHuId = huId;
             IDictionary<string, decimal> huidDic = new Dictionary<string, decimal>();
-           
+
             huidDic = numberControlMgr.GetHuId(lotNo, itemCode, manufacturer, qty, uc);
-             //   tobeHuId = huidDic.FirstOrDefault().Key;
+            //   tobeHuId = huidDic.FirstOrDefault().Key;
 
 
             hu.HuId = huidDic.FirstOrDefault().Key;
             hu.ExternalHuId = huId;
-            hu.IsExternal = string.IsNullOrEmpty(huId)?false:true;
-            
+            hu.IsExternal = string.IsNullOrEmpty(huId) ? false : true;
+
             hu.SupplierLotNo = lotNo;
             hu.Item = item.Code;
             hu.ItemDescription = item.Description;
             hu.BaseUom = uom;
             hu.Qty = qty;
             hu.ManufactureParty = string.IsNullOrEmpty(customerCode) ? flowMstr.FirstOrDefault().PartyTo : customerCode;
-      //      hu.ManufactureDate = Convert.ToDateTime(manufactureDate);
+            //      hu.ManufactureDate = Convert.ToDateTime(manufactureDate);
             hu.ExternalOrderNo = orderNo;
             var manufactureDt = DateTime.Now;
             DateTime.TryParseExact(manufactureDate, "yyyy-MM-dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.AdjustToUniversal, out manufactureDt);
@@ -507,16 +507,16 @@ namespace com.Sconit.Service.Impl
             hu.UnitQty = 1;
             hu.Uom = uom;
             hu.IsOdd = hu.Qty < hu.UnitCount;
-      
+
             hu.IsChangeUnitCount = true;
             hu.ContainerDesc = item.Container;
             hu.MaterialsGroup = this.GetMaterialsGroupDescrption(item.MaterialsGroup);
             hu.Direction = item.Deriction;
-           // hu.Remark = item.Remark;
+            // hu.Remark = item.Remark;
             hu.HuOption = item.HuOption;
             //hu.HuTemplate = item.HuTemplate;
             hu.Remark = createUser;
-          //  hu. = createDate;
+            //  hu. = createDate;
             if (item.Warranty > 0)
             {
                 hu.ExpireDate = hu.ManufactureDate.AddDays(item.Warranty);
@@ -702,16 +702,15 @@ namespace com.Sconit.Service.Impl
 
 
         [Transaction(TransactionMode.Requires)]
-        public string CreatePallet(List<string> boxNos, string boxCount, string printer, string createUser, string createDate,string palletId)
+        public string CreatePallet(List<string> boxNos, string boxCount, string printer, string createUser, string createDate, string palletId)
         {
 
             User user = genericMgr.FindAll<User>("select u from User u where u.Code = ?", "Monitor").FirstOrDefault();
-           
+
             string[] huidArray = boxNos.ToArray();
-            //if (huidArray.Count() != Convert.ToInt32(boxCount))
-            //{
-            //    throw new BusinessException("箱条码为{0},箱数为{1}", huidArray.Count().ToString(), boxCount);
-            //}
+
+            var huPallet =  new Hu();
+
 
             IList<Hu> huList = new List<Hu>();
             foreach (string huid in huidArray)
@@ -722,7 +721,7 @@ namespace com.Sconit.Service.Impl
                     hu = genericMgr.FindAll<Hu>("select h from Hu h where h.ExternalHuId = ? and h.IsExternal = 1", huid).FirstOrDefault();
                     if (hu == null)
                     {
-                        throw new BusinessException("箱条码{0}不存在", huid);
+                        throw new BusinessException("箱条码" + huid + "不存在" );
                     }
                 }
                 if (!string.IsNullOrEmpty(hu.PalletCode))
@@ -737,8 +736,22 @@ namespace com.Sconit.Service.Impl
             {
                 throw new BusinessException("箱条码对应的零件号为多个，不能打印在同一托盘");
             }
+
+            #region 校验数量
+            if (!string.IsNullOrEmpty(palletId) && palletId.StartsWith("HU"))
+            {
+                decimal husQty = huList.Sum(p => p.Qty);
+
+                 huPallet = genericMgr.FindById<Hu>(palletId);
+                if (huPallet.Qty != husQty)
+                {
+                    throw new BusinessException("箱条码总数与托条码数不匹配");
+                }
+            }
+            #endregion
+
             #region 托盘
-            
+
             Pallet pallet = new Pallet();
             string palletCode = string.Empty;
             if (string.IsNullOrEmpty(palletId))
@@ -769,6 +782,10 @@ namespace com.Sconit.Service.Impl
             foreach (Hu h in huList)
             {
                 h.PalletCode = palletCode;
+                if (!string.IsNullOrEmpty(palletId) && palletId.StartsWith("HU"))
+                {
+                    h.ManufactureParty = huPallet.ManufactureParty;
+                }
                 h.LastModifyDate = DateTime.Now;
                 h.LastModifyUserId = user.Id;
                 h.LastModifyUserName = createUser;
@@ -777,6 +794,14 @@ namespace com.Sconit.Service.Impl
 
             #endregion
 
+
+            #region 更新托盘
+            if (!string.IsNullOrEmpty(palletId))
+            {
+                huPallet.IsPallet = true;
+                genericMgr.Update(huPallet);
+            }
+            #endregion
 
             return palletCode;
         }

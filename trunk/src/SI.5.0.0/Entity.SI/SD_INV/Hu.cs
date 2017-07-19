@@ -49,6 +49,10 @@ namespace com.Sconit.Entity.SI.SD_INV
 
         public string PalletCode { get; set; }
 
+        public Boolean IsExternal { get; set; }
+
+        public Boolean IsPallet { get; set; }
+
         #region  ¸¨Öú×Ö¶Î
         public decimal CurrentQty { get; set; }
         public string Station { get; set; }

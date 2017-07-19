@@ -2726,19 +2726,19 @@ namespace com.Sconit.Service.Impl
 
         #region 订单发货
         [Transaction(TransactionMode.Requires)]
-        public IpMaster ShipOrder(IList<OrderDetail> orderDetailList)
+        public IpMaster ShipOrder(IList<OrderDetail> orderDetailList, bool isOpPallet = false)
         {
-            return ShipOrder(orderDetailList, DateTime.Now);
+            return ShipOrder(orderDetailList, DateTime.Now,  isOpPallet);
         }
 
         [Transaction(TransactionMode.Requires)]
-        public IpMaster ShipOrder(IList<OrderDetail> orderDetailList, DateTime effectiveDate)
+        public IpMaster ShipOrder(IList<OrderDetail> orderDetailList, DateTime effectiveDate, bool isOpPallet = false)
         {
-            return ShipOrder(orderDetailList, true, effectiveDate);
+            return ShipOrder(orderDetailList, true, effectiveDate,  isOpPallet);
         }
 
         [Transaction(TransactionMode.Requires)]
-        public IpMaster ShipOrder(IList<OrderDetail> orderDetailList, bool isCheckKitTraceItem, DateTime effectiveDate)
+        public IpMaster ShipOrder(IList<OrderDetail> orderDetailList, bool isCheckKitTraceItem, DateTime effectiveDate, bool isOpPallet = false)
         {
             #region 判断是否全0发货
             if (orderDetailList == null || orderDetailList.Count == 0)
@@ -3010,7 +3010,7 @@ namespace com.Sconit.Service.Impl
             #region 退货自动解托盘,发货也解托盘
             foreach (OrderMaster om in orderMasterList)
             {
-                if ((om.Type == CodeMaster.OrderType.Procurement && om.SubType == CodeMaster.OrderSubType.Return) || (om.Type == CodeMaster.OrderType.Distribution && om.SubType == CodeMaster.OrderSubType.Normal))
+                if (!isOpPallet)
                 {
                     foreach (OrderDetail od in om.OrderDetails)
                     {

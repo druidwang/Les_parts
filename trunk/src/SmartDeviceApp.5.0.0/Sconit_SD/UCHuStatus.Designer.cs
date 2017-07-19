@@ -106,70 +106,70 @@
             // 
             // label01
             // 
-            this.label01.Location = new System.Drawing.Point(-1, 89);
+            this.label01.Location = new System.Drawing.Point(-1, 75);
             this.label01.Name = "label01";
             this.label01.Size = new System.Drawing.Size(70, 18);
             this.label01.Text = "物料号:";
             // 
             // label02
             // 
-            this.label02.Location = new System.Drawing.Point(-1, 107);
+            this.label02.Location = new System.Drawing.Point(-1, 93);
             this.label02.Name = "label02";
             this.label02.Size = new System.Drawing.Size(70, 18);
             this.label02.Text = "参考号:";
             // 
             // label03
             // 
-            this.label03.Location = new System.Drawing.Point(-1, 125);
+            this.label03.Location = new System.Drawing.Point(-1, 111);
             this.label03.Name = "label03";
             this.label03.Size = new System.Drawing.Size(70, 18);
             this.label03.Text = "方向:";
             // 
             // label05
             // 
-            this.label05.Location = new System.Drawing.Point(-1, 161);
+            this.label05.Location = new System.Drawing.Point(-1, 147);
             this.label05.Name = "label05";
             this.label05.Size = new System.Drawing.Size(70, 18);
             this.label05.Text = "单位:";
             // 
             // label04
             // 
-            this.label04.Location = new System.Drawing.Point(-1, 143);
+            this.label04.Location = new System.Drawing.Point(-1, 129);
             this.label04.Name = "label04";
             this.label04.Size = new System.Drawing.Size(70, 18);
             this.label04.Text = "数量:";
             // 
             // label09
             // 
-            this.label09.Location = new System.Drawing.Point(-1, 233);
+            this.label09.Location = new System.Drawing.Point(-1, 219);
             this.label09.Name = "label09";
             this.label09.Size = new System.Drawing.Size(70, 18);
             this.label09.Text = "制造时间:";
             // 
             // label10
             // 
-            this.label10.Location = new System.Drawing.Point(-1, 251);
+            this.label10.Location = new System.Drawing.Point(-1, 237);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(70, 18);
             this.label10.Text = "条码选项:";
             // 
             // label08
             // 
-            this.label08.Location = new System.Drawing.Point(-1, 215);
+            this.label08.Location = new System.Drawing.Point(-1, 201);
             this.label08.Name = "label08";
             this.label08.Size = new System.Drawing.Size(70, 18);
             this.label08.Text = "状态:";
             // 
             // label06
             // 
-            this.label06.Location = new System.Drawing.Point(-1, 179);
+            this.label06.Location = new System.Drawing.Point(-1, 165);
             this.label06.Name = "label06";
             this.label06.Size = new System.Drawing.Size(70, 18);
             this.label06.Text = "库位:";
             // 
             // label07
             // 
-            this.label07.Location = new System.Drawing.Point(-1, 197);
+            this.label07.Location = new System.Drawing.Point(-1, 183);
             this.label07.Name = "label07";
             this.label07.Size = new System.Drawing.Size(70, 18);
             this.label07.Text = "库格:";
@@ -187,82 +187,82 @@
             this.lblItemDescInfo.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular);
             this.lblItemDescInfo.Location = new System.Drawing.Point(40, 45);
             this.lblItemDescInfo.Name = "lblItemDescInfo";
-            this.lblItemDescInfo.Size = new System.Drawing.Size(197, 43);
+            this.lblItemDescInfo.Size = new System.Drawing.Size(197, 30);
             this.lblItemDescInfo.Text = "新大康平顶驾驶室总成K10(上柴电喷,软轴)金属漆-玫瑰红色52449（老产品专用)";
             // 
             // lbl03
             // 
-            this.lbl03.Location = new System.Drawing.Point(75, 125);
+            this.lbl03.Location = new System.Drawing.Point(75, 111);
             this.lbl03.Name = "lbl03";
             this.lbl03.Size = new System.Drawing.Size(162, 16);
             this.lbl03.Text = "20100211";
             // 
             // lbl01
             // 
-            this.lbl01.Location = new System.Drawing.Point(75, 89);
+            this.lbl01.Location = new System.Drawing.Point(75, 75);
             this.lbl01.Name = "lbl01";
             this.lbl01.Size = new System.Drawing.Size(162, 16);
             this.lbl01.Text = "5801333266_50000";
             // 
             // lbl02
             // 
-            this.lbl02.Location = new System.Drawing.Point(75, 107);
+            this.lbl02.Location = new System.Drawing.Point(75, 93);
             this.lbl02.Name = "lbl02";
             this.lbl02.Size = new System.Drawing.Size(162, 16);
             this.lbl02.Text = "5000-17010D";
             // 
             // lbl04
             // 
-            this.lbl04.Location = new System.Drawing.Point(75, 143);
+            this.lbl04.Location = new System.Drawing.Point(75, 129);
             this.lbl04.Name = "lbl04";
             this.lbl04.Size = new System.Drawing.Size(162, 16);
             this.lbl04.Text = "20000";
             // 
             // lbl06
             // 
-            this.lbl06.Location = new System.Drawing.Point(75, 179);
+            this.lbl06.Location = new System.Drawing.Point(75, 165);
             this.lbl06.Name = "lbl06";
             this.lbl06.Size = new System.Drawing.Size(162, 16);
             this.lbl06.Text = "AA03";
             // 
             // lbl07
             // 
-            this.lbl07.Location = new System.Drawing.Point(75, 197);
+            this.lbl07.Location = new System.Drawing.Point(75, 183);
             this.lbl07.Name = "lbl07";
             this.lbl07.Size = new System.Drawing.Size(162, 16);
             this.lbl07.Text = "AA03L";
             // 
             // lbl08
             // 
-            this.lbl08.Location = new System.Drawing.Point(75, 215);
+            this.lbl08.Location = new System.Drawing.Point(75, 201);
             this.lbl08.Name = "lbl08";
             this.lbl08.Size = new System.Drawing.Size(162, 16);
             this.lbl08.Text = "发运在途";
             // 
             // lbl09
             // 
-            this.lbl09.Location = new System.Drawing.Point(75, 233);
+            this.lbl09.Location = new System.Drawing.Point(75, 219);
             this.lbl09.Name = "lbl09";
             this.lbl09.Size = new System.Drawing.Size(162, 16);
             this.lbl09.Text = "2012-10-20";
             // 
             // lbl10
             // 
-            this.lbl10.Location = new System.Drawing.Point(75, 251);
+            this.lbl10.Location = new System.Drawing.Point(75, 237);
             this.lbl10.Name = "lbl10";
             this.lbl10.Size = new System.Drawing.Size(162, 16);
             this.lbl10.Text = "无";
             // 
             // lbl05
             // 
-            this.lbl05.Location = new System.Drawing.Point(75, 161);
+            this.lbl05.Location = new System.Drawing.Point(75, 147);
             this.lbl05.Name = "lbl05";
             this.lbl05.Size = new System.Drawing.Size(162, 16);
             this.lbl05.Text = "ST";
             // 
             // btnMore1
             // 
-            this.btnMore1.Location = new System.Drawing.Point(16, 269);
+            this.btnMore1.Location = new System.Drawing.Point(16, 255);
             this.btnMore1.Name = "btnMore1";
             this.btnMore1.Size = new System.Drawing.Size(48, 20);
             this.btnMore1.TabIndex = 42;
@@ -271,7 +271,7 @@
             // 
             // btnMore2
             // 
-            this.btnMore2.Location = new System.Drawing.Point(70, 269);
+            this.btnMore2.Location = new System.Drawing.Point(70, 255);
             this.btnMore2.Name = "btnMore2";
             this.btnMore2.Size = new System.Drawing.Size(48, 20);
             this.btnMore2.TabIndex = 42;
@@ -280,7 +280,7 @@
             // 
             // btnMore3
             // 
-            this.btnMore3.Location = new System.Drawing.Point(124, 269);
+            this.btnMore3.Location = new System.Drawing.Point(124, 255);
             this.btnMore3.Name = "btnMore3";
             this.btnMore3.Size = new System.Drawing.Size(48, 20);
             this.btnMore3.TabIndex = 42;
@@ -289,7 +289,7 @@
             // 
             // btnBack
             // 
-            this.btnBack.Location = new System.Drawing.Point(178, 269);
+            this.btnBack.Location = new System.Drawing.Point(178, 255);
             this.btnBack.Name = "btnBack";
             this.btnBack.Size = new System.Drawing.Size(48, 20);
             this.btnBack.TabIndex = 42;

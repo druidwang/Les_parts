@@ -76,77 +76,96 @@ namespace com.Sconit.SmartDevice
                 }
             }
 
-            else if (op == CodeMaster.BarCodeType.HU.ToString())
+              else if (op == CodeMaster.BarCodeType.HU.ToString() || op == CodeMaster.BarCodeType.TP.ToString())
             {
-                if (hus.Where(h => h.HuId == barCode).ToList().Count > 0)
+                if (op == CodeMaster.BarCodeType.HU.ToString())
                 {
-                    throw new BusinessException("请不要重复扫描条码");
-                }
-                Hu hu = this.smartDeviceService.GetHu(barCode);
-                if (hu == null)
-                {
-                    throw new BusinessException("此条码不存在");
-                }
-                if (!string.IsNullOrEmpty(hu.PalletCode))
-                {
-                    throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
-                }
-                else if (hu.Status != HuStatus.Location)
-                {
-                    throw new BusinessException("条码不在库存中,不能出库");
-                }
-                else if (hu.IsFreeze)
-                {
-                    throw new BusinessException("条码被冻结,不能出库");
-                }
-            
-              
-                else if (hu.OccupyType != OccupyType.None)
-                {
-                    throw new BusinessException("条码被{0}占用!", hu.OccupyReferenceNo);
-                }
-                else
-                {
-                    hu.CurrentQty = hu.Qty;
-                    hus.Add(hu);
-                    this.gvHuListDataBind();
-                    this.isCancel = false;
-                }
-            }
-
-            else if (op == CodeMaster.BarCodeType.TP.ToString())
-            {
-
-                Hu[] huArray = smartDeviceService.GetHuListByPallet(barCode);
-                foreach (Hu hu in huArray)
-                {
-                    if (hus.Where(h => h.HuId == hu.HuId).ToList().Count > 0)
+                    if (hus.Where(h => h.HuId == barCode).ToList().Count > 0)
                     {
                         throw new BusinessException("请不要重复扫描条码");
                     }
+                    Hu hu = this.smartDeviceService.GetHu(barCode);
 
-                    else if (hu.Status != HuStatus.Location)
+                    if (hu == null)
                     {
-                        throw new BusinessException("条码不在库存中,不能出库");
+                        throw new BusinessException("此条码不存在");
                     }
-                    else if (hu.IsFreeze)
+
+                    if (!hu.IsPallet)
                     {
-                        throw new BusinessException("条码被冻结,不能出库");
-                    }
-                 
-               
-                    else if (hu.OccupyType != OccupyType.None)
-                    {
-                        throw new BusinessException("条码被{0}占用!", hu.OccupyReferenceNo);
+                        if (!string.IsNullOrEmpty(hu.PalletCode))
+                        {
+                            throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
+                        }
+                        else if (hu.IsExternal)
+                        {
+                            throw new BusinessException("外部条码请扫描托盘入库冲销。");
+                        }
+                        else if (hu.Status != HuStatus.Location)
+                        {
+                            throw new BusinessException("条码不在库存中,不能出库");
+                        }
+                        else if (hu.IsFreeze)
+                        {
+                            throw new BusinessException("条码被冻结,不能出库");
+                        }
+
+
+                        else if (hu.OccupyType != OccupyType.None)
+                        {
+                            throw new BusinessException("条码被{0}占用!", hu.OccupyReferenceNo);
+                        }
+                        else
+                        {
+                            hu.CurrentQty = hu.Qty;
+                            hus.Add(hu);
+                            this.gvHuListDataBind();
+                            this.isCancel = false;
+                        }
                     }
                     else
                     {
-                        hus.Add(hu);
-                        this.gvHuListDataBind();
-                        this.isCancel = false;
+                        op = CodeMaster.BarCodeType.TP.ToString();
                     }
                 }
+
+                if (op == CodeMaster.BarCodeType.TP.ToString())
+                {
+
+                    Hu[] huArray = smartDeviceService.GetHuListByPallet(barCode);
+                    foreach (Hu hu in huArray)
+                    {
+                        if (hus.Where(h => h.HuId == hu.HuId).ToList().Count > 0)
+                        {
+                            throw new BusinessException("请不要重复扫描条码");
+                        }
+
+                        else if (hu.Status != HuStatus.Location)
+                        {
+                            throw new BusinessException("条码不在库存中,不能出库");
+                        }
+                        else if (hu.IsFreeze)
+                        {
+                            throw new BusinessException("条码被冻结,不能出库");
+                        }
+
+
+                        else if (hu.OccupyType != OccupyType.None)
+                        {
+                            throw new BusinessException("条码被{0}占用!", hu.OccupyReferenceNo);
+                        }
+                        else
+                        {
+                            hus.Add(hu);
+                            this.gvHuListDataBind();
+                            this.isCancel = false;
+                        }
+                    }
+                }
+
             }
+
+          
             else
             {
                 throw new BusinessException("条码格式不合法");

@@ -12,6 +12,7 @@ namespace com.Sconit.SmartDevice
         private FlowMaster flowMaster;
         private DateTime? effDate;
 
+
         private static UCQuickTransfer ucQuickTransfer;
         private static object obj = new object();
 
@@ -20,6 +21,7 @@ namespace com.Sconit.SmartDevice
         {
             this.InitializeComponent();
             base.btnOrder.Text = "移库";
+       
         }
 
         public static UCQuickTransfer GetUCQuickTransfer(User user)
@@ -213,7 +215,7 @@ namespace com.Sconit.SmartDevice
                     this.tbBarCode.Focus();
                     return;
                 }
-                this.smartDeviceService.DoTransfer(flowMaster, flowDetailInputList.ToArray(), base.user.Code,true);
+                this.smartDeviceService.DoTransfer(flowMaster, flowDetailInputList.ToArray(), base.user.Code,true,false);
                 flowMaster.FlowDetails = null;
                 this.Reset();
                 base.lblMessage.Text = "车间发料成功,共" + flowDetailInputList.Count + "箱";

@@ -29,7 +29,7 @@ namespace com.Sconit.Service.SI
 
         void ConfirmMiscOrder(string miscOrderNo, IList<string> addHuIdList);
 
-        void QuickCreateMiscOrder(IList<string> addHuIdList,string locationCode,string binCode, int type);
+        void QuickCreateMiscOrder(IList<string> addHuIdList, string locationCode, string binCode, int type);
 
         void StartVanOrder(string orderNo, string location, IList<com.Sconit.Entity.SI.SD_INV.Hu> feedHuList);
 
@@ -68,7 +68,7 @@ namespace com.Sconit.Service.SI
 
         void ReturnProdLineRawMaterial(string productLine, string productLineFacility, string[][] huDetails, DateTime? effectiveDate);
 
-        string DoShipOrder(List<Entity.SI.SD_ORD.OrderDetailInput> orderDetailInputList, DateTime? effDate);
+        string DoShipOrder(List<Entity.SI.SD_ORD.OrderDetailInput> orderDetailInputList, DateTime? effDate, bool isOpPallet = false);
 
         string DoReceiveOrder(List<Entity.SI.SD_ORD.OrderDetailInput> orderDetailInputList, DateTime? effDate);
 
@@ -76,7 +76,7 @@ namespace com.Sconit.Service.SI
 
         void DoReceiveKit(string kitNo, DateTime? effDate);
 
-        void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList,bool isFifo = true);
+        void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList, bool isFifo = true, bool isOpPallet = false);
 
         void DoPickList(List<Entity.SI.SD_ORD.PickListDetailInput> pickListDetailInputList);
 

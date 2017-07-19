@@ -78,9 +78,9 @@ namespace com.Sconit.Service
         #endregion
 
         #region 订单发货
-        IpMaster ShipOrder(IList<OrderDetail> orderDetailList);
-        IpMaster ShipOrder(IList<OrderDetail> orderDetailList, DateTime effectiveDate);
-        IpMaster ShipOrder(IList<OrderDetail> orderDetailList, bool isCheckKitTraceItem, DateTime effectiveDate);
+        IpMaster ShipOrder(IList<OrderDetail> orderDetailList, bool isOpPallet = false);
+        IpMaster ShipOrder(IList<OrderDetail> orderDetailList, DateTime effectiveDate, bool isOpPallet = false);
+        IpMaster ShipOrder(IList<OrderDetail> orderDetailList, bool isCheckKitTraceItem, DateTime effectiveDate, bool isOpPallet = false);
         #endregion
 
         #region 拣货单发货

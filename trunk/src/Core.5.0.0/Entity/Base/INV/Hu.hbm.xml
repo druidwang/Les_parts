@@ -60,5 +60,6 @@
 
 	<property name="ExternalHuId" column="ExtHuId" type="String" length="255"/>
 	<property name="IsExternal" column="IsExt" type="Boolean"/>
+	<property name="IsPallet" column="IsPallet" type="Boolean"/>
   </class>
 </hibernate-mapping>

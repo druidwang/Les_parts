@@ -45,7 +45,8 @@
         .EnableCustomBinding(true)
         .Sortable()
         .DataBinding(dataBinding => dataBinding.Ajax().Select("_AjaxList", "HuLocationLotDetail"))
-        .ClientEvents(events => events.OnDataBinding("HuLocationLotDetailGrid_OnDataBinding"))
+        .ClientEvents(events => events.OnDataBinding("HuLocationLotDetailGrid_OnDataBinding")
+                          .OnRowDataBound("HuLocationLotDetailGrid_OnRowDataBinding"))
         .Pageable(settings =>
         {
             settings.Total(ViewBag.Total != null ? ViewBag.Total : 0);
@@ -76,6 +77,22 @@
                 QualityType: $('#QualityType').val(),
                 ManufactureParty: $('#ManufactureParty').val()
             };
+        }
+
+
+        function HuLocationLotDetailGrid_OnRowDataBinding(e) {
+           
+            var row = $(e.row.childNodes);
+            if (e.dataItem.QualityTypeDescription == "不合格") {
+                $(row[12]).css("background-color", "red");
+            }
+            else if (e.dataItem.QualityTypeDescription == "待验") {
+                $(row[12]).css("background-color", "yellow");
+            }
+            else {
+                $(row[12]).css("background-color", "green");
+            }
+         
         }
 
         $(function () {

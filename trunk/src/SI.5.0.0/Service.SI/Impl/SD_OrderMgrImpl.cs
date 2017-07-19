@@ -318,7 +318,7 @@
         /// 发货
         /// </summary>
         [Transaction(TransactionMode.Requires)]
-        public string DoShipOrder(List<Entity.SI.SD_ORD.OrderDetailInput> orderDetailInputList, DateTime? effDate)
+        public string DoShipOrder(List<Entity.SI.SD_ORD.OrderDetailInput> orderDetailInputList, DateTime? effDate, bool isOpPallet)
         {
             if (orderDetailInputList == null || orderDetailInputList.Count == 0)
             {
@@ -349,11 +349,11 @@
 
             if (effDate.HasValue)
             {
-                return this.orderMgr.ShipOrder(baseOrderDetailList, effDate.Value).IpNo;
+                return this.orderMgr.ShipOrder(baseOrderDetailList, effDate.Value, isOpPallet).IpNo;
             }
             else
             {
-                return this.orderMgr.ShipOrder(baseOrderDetailList).IpNo;
+                return this.orderMgr.ShipOrder(baseOrderDetailList, isOpPallet).IpNo;
             }
         }
 
@@ -571,7 +571,7 @@
         /// 移库
         /// </summary>List<Entity.SI.SD_ORD.OrderDetailInput> orderDetailInputList
         [Transaction(TransactionMode.Requires)]
-        public void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList,bool isFifo = true)
+        public void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList,bool isFifo = true,bool isOpPallet = false)
         {
             #region 按库位分多个订单
             var locCodes = flowDetailInputList.Select(p => p.LocFrom).Distinct();
@@ -743,19 +743,22 @@
                 this.orderMgr.CreateOrder(orderMaster);
 
                 #region 加一段托盘解绑的逻辑
-                var hus = this.genericMgr.FindAllIn<Hu>(" from Hu where HuId in(?", matchedFlowDetailInputList.Select(p => p.HuId));
-                var palletHus = this.genericMgr.FindAllIn<PalletHu>(" from PalletHu where HuId in(?", matchedFlowDetailInputList.Select(p => p.HuId));
-                foreach (Hu h in hus)
+                if (!isOpPallet)
                 {
-                    if (!string.IsNullOrEmpty(h.PalletCode))
+                    var hus = this.genericMgr.FindAllIn<Hu>(" from Hu where HuId in(?", matchedFlowDetailInputList.Select(p => p.HuId));
+                    var palletHus = this.genericMgr.FindAllIn<PalletHu>(" from PalletHu where HuId in(?", matchedFlowDetailInputList.Select(p => p.HuId));
+                    foreach (Hu h in hus)
                     {
-                        h.PalletCode = string.Empty;
-                        genericMgr.Update(h);
-
-                        var palletHu = palletHus.Where(p => p.HuId == h.HuId).FirstOrDefault();
-                        if (palletHu != null)
+                        if (!string.IsNullOrEmpty(h.PalletCode) && !h.IsExternal)
                         {
-                            genericMgr.Delete(palletHu);
+                            h.PalletCode = string.Empty;
+                            genericMgr.Update(h);
+
+                            var palletHu = palletHus.Where(p => p.HuId == h.HuId).FirstOrDefault();
+                            if (palletHu != null)
+                            {
+                                genericMgr.Delete(palletHu);
+                            }
                         }
                     }
                 }

@@ -152,6 +152,12 @@ namespace com.Sconit.Entity.INV
         public Boolean IsExternal { get; set; }
 
 
+        /// <summary>
+        ///  «∑ÒÕ–≈Ã
+        /// </summary>
+        public Boolean IsPallet { get; set; }
+
+
         #region
 
         /// <summary>

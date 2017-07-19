@@ -97,7 +97,7 @@ namespace com.Sconit.SmartDevice
             this.tbBarCode.Focus();
             this.label01.Text = "物料号:";
             this.label02.Text = "参考号:";
-            this.label03.Text = "方向:";
+            this.label03.Text = "质量状态:";
             this.label04.Text = "数量:";
             this.label05.Text = "单位:";
             this.label06.Text = "库位:";
@@ -123,7 +123,7 @@ namespace com.Sconit.SmartDevice
         {
             this.label01.Text = "物料号:";
             this.label02.Text = "参考号:";
-            this.label03.Text = "方向:";
+            this.label03.Text = "质量状态:";
             this.label04.Text = "数量:";
             this.label05.Text = "单位:";
             this.label06.Text = "库位:";
@@ -136,7 +136,23 @@ namespace com.Sconit.SmartDevice
             {
                 this.lbl01.Text = this.hu.Item;
                 this.lbl02.Text = this.hu.ReferenceItemCode;
-                this.lbl03.Text = this.hu.Direction;
+
+                if (this.hu.QualityType == QualityType.Inspect)
+                {
+                    this.lbl03.Text = "待检验";
+                    this.lbl03.BackColor = Color.Yellow;
+                }
+                else if (this.hu.QualityType == QualityType.Qualified)
+                {
+                    this.lbl03.Text = "合格";
+                    this.lbl03.BackColor = Color.Green;
+                }
+                else if (this.hu.QualityType == QualityType.Reject)
+                {
+                    this.lbl03.Text = "不合格";
+                    this.lbl03.BackColor = Color.Red;
+                }
+
                 this.lbl04.Text = this.hu.Qty.ToString("0.########");
                 this.lbl05.Text = this.hu.Uom;
                 this.lbl06.Text = this.hu.Location;
@@ -195,7 +211,7 @@ namespace com.Sconit.SmartDevice
             this.label04.Text = "过期时间:";
             this.label05.Text = "初次入库:";
             this.label06.Text = "打印次数:";
-            this.label07.Text = "质量状态:";
+            this.label07.Text = "方向:";
             this.label08.Text = "创建用户:";
             this.label09.Text = "创建时间:";
             this.label10.Text = "区域";
@@ -208,18 +224,8 @@ namespace com.Sconit.SmartDevice
                 this.lbl04.Text = this.hu.ExpireDate.HasValue ? this.hu.ExpireDate.Value.ToString("yyyy-MM-dd HH:mm") : string.Empty;
                 this.lbl05.Text = this.hu.FirstInventoryDate.HasValue ? this.hu.FirstInventoryDate.Value.ToString("yyyy-MM-dd HH:mm") : string.Empty;
                 this.lbl06.Text = this.hu.PrintCount.ToString();
-                if (this.hu.QualityType == QualityType.Inspect)
-                {
-                    this.lbl07.Text = "待检验";
-                }
-                else if (this.hu.QualityType == QualityType.Qualified)
-                {
-                    this.lbl07.Text = "合格";
-                }
-                else if (this.hu.QualityType == QualityType.Reject)
-                {
-                    this.lbl07.Text = "不合格";
-                }
+
+                this.lbl07.Text = this.hu.Direction;
                 this.lbl08.Text = this.hu.CreateUserName;
                 this.lbl09.Text = this.hu.CreateDate.ToString("yyyy-MM-dd");
                 this.lbl10.Text = this.hu.Region;

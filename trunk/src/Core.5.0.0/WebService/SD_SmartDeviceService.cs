@@ -264,12 +264,12 @@
 
         #region Do
         [WebMethod]
-        public string DoShipOrder(List<Entity.SI.SD_ORD.OrderDetailInput> orderDetailInputList, DateTime? effDate, string userCode)
+        public string DoShipOrder(List<Entity.SI.SD_ORD.OrderDetailInput> orderDetailInputList, DateTime? effDate, string userCode,bool isOpPallet)
         {
             try
             {
                 SecurityContextHolder.Set(sdSecurityMgr.GetBaseUser(userCode));
-                return this.orderMgr.DoShipOrder(orderDetailInputList, effDate);
+                return this.orderMgr.DoShipOrder(orderDetailInputList, effDate,isOpPallet);
             }
             catch (BusinessException ex)
             {
@@ -559,12 +559,12 @@
 
 
         [WebMethod]
-        public void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList, string userCode,bool isFifo = true)
+        public void DoTransfer(Entity.SI.SD_SCM.FlowMaster flowMaster, List<Entity.SI.SD_SCM.FlowDetailInput> flowDetailInputList, string userCode,bool isFifo = true,bool isOpPallet = false)
         {
             try
             {
                 SecurityContextHolder.Set(sdSecurityMgr.GetBaseUser(userCode));
-                this.orderMgr.DoTransfer(flowMaster, flowDetailInputList,isFifo);
+                this.orderMgr.DoTransfer(flowMaster, flowDetailInputList, isFifo, isOpPallet);
             }
             catch (BusinessException ex)
             {

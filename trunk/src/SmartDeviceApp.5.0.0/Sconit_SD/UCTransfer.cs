@@ -11,6 +11,7 @@ namespace com.Sconit.SmartDevice
     {
         private FlowMaster flowMaster;
         private DateTime? effDate;
+        private Boolean isOpPallet;
 
         private static UCTransfer ucTransfer;
         private static object obj = new object();
@@ -20,6 +21,7 @@ namespace com.Sconit.SmartDevice
         {
             this.InitializeComponent();
             base.btnOrder.Text = "移库";
+            isOpPallet = false;
         }
 
         public static UCTransfer GetUCTransfer(User user)
@@ -121,36 +123,60 @@ namespace com.Sconit.SmartDevice
             }
             else
             {
-                if (base.op == CodeMaster.BarCodeType.HU.ToString())
+
+                if (op == CodeMaster.BarCodeType.HU.ToString() || op == CodeMaster.BarCodeType.TP.ToString())
                 {
-                    if (this.flowMaster == null)
+                    if (base.op == CodeMaster.BarCodeType.HU.ToString())
                     {
-                        throw new BusinessException("请先扫描路线或库位或库格");
+                        if (this.flowMaster == null)
+                        {
+                            throw new BusinessException("请先扫描路线或库位或库格");
+                        }
+                        Hu hu = smartDeviceService.GetHu(barCode);
+
+                        //if (!string.IsNullOrEmpty(hu.PalletCode))
+                        //{
+                        //    throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
+                        //}
+
+                        if (hu == null)
+                        {
+                            throw new BusinessException("此条码不存在");
+                        }
+                        if (hu.IsExternal)
+                        {
+                            throw new BusinessException("外部条码请扫描托盘移库。");
+                        }
+
+                        if (!hu.IsPallet)
+                        {
+
+                            this.MatchHu(hu);
+                        }
+                        else
+                        {
+                            base.op = CodeMaster.BarCodeType.TP.ToString();
+                        }
+
+
                     }
-                    Hu hu = smartDeviceService.GetHu(barCode);
 
-                    //if (!string.IsNullOrEmpty(hu.PalletCode))
-                    //{
-                    //    throw new BusinessException("条码已与托盘绑定，请扫描托盘。");
-                    //}
-
-
-                    this.MatchHu(hu);
-                }
-
-                else if (base.op == CodeMaster.BarCodeType.TP.ToString())
-                {
-                    if (this.flowMaster == null)
+                    if (base.op == CodeMaster.BarCodeType.TP.ToString())
                     {
-                        throw new BusinessException("请先扫描路线或库位或库格");
-                    }
-                    Hu[] huArray = smartDeviceService.GetHuListByPallet(barCode);
+                        if (this.flowMaster == null)
+                        {
+                            throw new BusinessException("请先扫描路线或库位或库格");
+                        }
+                        Hu[] huArray = smartDeviceService.GetHuListByPallet(barCode);
 
-                    foreach (Hu hu in huArray)
-                    {
-                        this.MatchHu(hu);
-                    }
+                        foreach (Hu hu in huArray)
+                        {
+                            this.MatchHu(hu);
+                        }
 
+                        isOpPallet = true;
+
+                    }
                 }
                 else if (base.op == CodeMaster.BarCodeType.DATE.ToString())
                 {
@@ -235,7 +261,7 @@ namespace com.Sconit.SmartDevice
                     this.tbBarCode.Focus();
                     return;
                 }
-                this.smartDeviceService.DoTransfer(flowMaster, flowDetailInputList.ToArray(), base.user.Code,false);
+                this.smartDeviceService.DoTransfer(flowMaster, flowDetailInputList.ToArray(), base.user.Code, false,isOpPallet);
                 flowMaster.FlowDetails = null;
                 this.Reset();
                 base.lblMessage.Text = "移库成功";
