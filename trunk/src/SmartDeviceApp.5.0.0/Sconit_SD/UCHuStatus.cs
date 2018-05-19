@@ -140,17 +140,17 @@ namespace com.Sconit.SmartDevice
                 if (this.hu.QualityType == QualityType.Inspect)
                 {
                     this.lbl03.Text = "待检验";
-                    this.lbl03.BackColor = Color.Yellow;
+                    this.lbl03.ForeColor = Color.Yellow;
                 }
                 else if (this.hu.QualityType == QualityType.Qualified)
                 {
                     this.lbl03.Text = "合格";
-                    this.lbl03.BackColor = Color.Green;
+                    this.lbl03.ForeColor = Color.Green;
                 }
                 else if (this.hu.QualityType == QualityType.Reject)
                 {
                     this.lbl03.Text = "不合格";
-                    this.lbl03.BackColor = Color.Red;
+                    this.lbl03.ForeColor = Color.Red;
                 }
 
                 this.lbl04.Text = this.hu.Qty.ToString("0.########");
@@ -221,6 +221,8 @@ namespace com.Sconit.SmartDevice
                 this.lbl01.Text = this.hu.BaseUom;
                 this.lbl02.Text = this.hu.UnitCount.ToString("0.########");
                 this.lbl03.Text = this.hu.Flow;
+                this.lbl03.ForeColor = Color.Black;
+
                 this.lbl04.Text = this.hu.ExpireDate.HasValue ? this.hu.ExpireDate.Value.ToString("yyyy-MM-dd HH:mm") : string.Empty;
                 this.lbl05.Text = this.hu.FirstInventoryDate.HasValue ? this.hu.FirstInventoryDate.Value.ToString("yyyy-MM-dd HH:mm") : string.Empty;
                 this.lbl06.Text = this.hu.PrintCount.ToString();
@@ -255,6 +257,7 @@ namespace com.Sconit.SmartDevice
                 this.lbl01.Text = this.hu.IsFreeze ? "是" : "否";
                 this.lbl02.Text = this.hu.IsConsignment ? "是" : "否";
                 this.lbl03.Text = this.hu.IsATP ? "是" : "否";
+                this.lbl03.ForeColor = Color.Black;
                 this.lbl04.Text = this.hu.LocationFrom;
                 this.lbl05.Text = this.hu.LocationTo;
                 if (this.hu.OccupyType== OccupyType.Inspect)

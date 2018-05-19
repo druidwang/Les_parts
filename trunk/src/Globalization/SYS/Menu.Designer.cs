@@ -61,24 +61,6 @@ namespace Resources.SYS {
         }
         
         /// <summary>
-        ///   查找类似 Application Mangt. 的本地化字符串。
-        /// </summary>
-        public static string Application {
-            get {
-                return ResourceManager.GetString("Application", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Access Control 的本地化字符串。
-        /// </summary>
-        public static string Application_Access_Control {
-            get {
-                return ResourceManager.GetString("Application_Access_Control", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Address Mangt. 的本地化字符串。
         /// </summary>
         public static string Application_Address {
@@ -133,15 +115,6 @@ namespace Resources.SYS {
         }
         
         /// <summary>
-        ///   查找类似 Finance Calendar  的本地化字符串。
-        /// </summary>
-        public static string Application_FinanceCalendar_Close {
-            get {
-                return ResourceManager.GetString("Application_FinanceCalendar_Close", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Item mangt. 的本地化字符串。
         /// </summary>
         public static string Application_Item {
@@ -151,7 +124,7 @@ namespace Resources.SYS {
         }
         
         /// <summary>
-        ///   查找类似 ItemCategory mangt. 的本地化字符串。
+        ///   查找类似 ItemCategory Mangt. 的本地化字符串。
         /// </summary>
         public static string Application_ItemCategory {
             get {
@@ -205,15 +178,6 @@ namespace Resources.SYS {
         }
         
         /// <summary>
-        ///   查找类似 Role Mangt. 的本地化字符串。
-        /// </summary>
-        public static string Application_Role {
-            get {
-                return ResourceManager.GetString("Application_Role", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   查找类似 Routing Mangt. 的本地化字符串。
         /// </summary>
         public static string Application_Routing {
@@ -237,24 +201,6 @@ namespace Resources.SYS {
         public static string Application_Uom {
             get {
                 return ResourceManager.GetString("Application_Uom", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 User Mangt. 的本地化字符串。
-        /// </summary>
-        public static string Application_User {
-            get {
-                return ResourceManager.GetString("Application_User", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 Userfavorite mangt. 的本地化字符串。
-        /// </summary>
-        public static string Application_UserFav {
-            get {
-                return ResourceManager.GetString("Application_UserFav", resourceCulture);
             }
         }
         
@@ -7945,6 +7891,15 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 ActingBill 的本地化字符串。
+        /// </summary>
+        public static string Procurement_ActingBill {
+            get {
+                return ResourceManager.GetString("Procurement_ActingBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 CustomerGoods Flow 的本地化字符串。
         /// </summary>
         public static string Procurement_CustomerGoodsFlow {
@@ -8026,7 +7981,7 @@ namespace Resources.SYS {
         }
         
         /// <summary>
-        ///   查找类似 Procurement OrderMstr 的本地化字符串。
+        ///   查找类似 OrderMstr 的本地化字符串。
         /// </summary>
         public static string Procurement_OrderMstr {
             get {
@@ -8818,6 +8773,798 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 Procurement-Trans-OrderMstr-Return 的本地化字符串。
+        /// </summary>
+        public static string Tile_Procurement_OrderMstr_Return {
+            get {
+                return ResourceManager.GetString("Tile_Procurement_OrderMstr_Return", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-AccessControl 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_AccessControl {
+            get {
+                return ResourceManager.GetString("Title_Application_AccessControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-BatchJob 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_BatchJob {
+            get {
+                return ResourceManager.GetString("Title_Application_BatchJob", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-CodeMaster 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_CodeMaster {
+            get {
+                return ResourceManager.GetString("Title_Application_CodeMaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-DocumentCodeRule 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_DocumentCodeRule {
+            get {
+                return ResourceManager.GetString("Title_Application_DocumentCodeRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-EntityPreference 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_EntityPreference {
+            get {
+                return ResourceManager.GetString("Title_Application_EntityPreference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-FinanceCalendar 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_FinanceCalendarClose {
+            get {
+                return ResourceManager.GetString("Title_Application_FinanceCalendarClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-PermissionGroup 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_PermissionGroup {
+            get {
+                return ResourceManager.GetString("Title_Application_PermissionGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-PermissionReport 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_PermissionReport {
+            get {
+                return ResourceManager.GetString("Title_Application_PermissionReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-PrintSetup 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_PrintSetup {
+            get {
+                return ResourceManager.GetString("Title_Application_PrintSetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-Role 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_Role {
+            get {
+                return ResourceManager.GetString("Title_Application_Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-ShowLog 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_ShowLog {
+            get {
+                return ResourceManager.GetString("Title_Application_ShowLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-SNRule 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_SNRule {
+            get {
+                return ResourceManager.GetString("Title_Application_SNRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-SpecialBarCode 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_SpecialBarCode {
+            get {
+                return ResourceManager.GetString("Title_Application_SpecialBarCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-SubPrintOrder 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_SubPrintOrder {
+            get {
+                return ResourceManager.GetString("Title_Application_SubPrintOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-User 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_User {
+            get {
+                return ResourceManager.GetString("Title_Application_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application-UserFavorite 的本地化字符串。
+        /// </summary>
+        public static string Title_Application_UserFavorite {
+            get {
+                return ResourceManager.GetString("Title_Application_UserFavorite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Container 的本地化字符串。
+        /// </summary>
+        public static string Title_Container {
+            get {
+                return ResourceManager.GetString("Title_Container", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Distribution 的本地化字符串。
+        /// </summary>
+        public static string Title_Distribution {
+            get {
+                return ResourceManager.GetString("Title_Distribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Facility 的本地化字符串。
+        /// </summary>
+        public static string Title_FMS {
+            get {
+                return ResourceManager.GetString("Title_FMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Inventory 的本地化字符串。
+        /// </summary>
+        public static string Title_Inventory {
+            get {
+                return ResourceManager.GetString("Title_Inventory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MasterData 的本地化字符串。
+        /// </summary>
+        public static string Title_MasterData {
+            get {
+                return ResourceManager.GetString("Title_MasterData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MasterData-Address 的本地化字符串。
+        /// </summary>
+        public static string Title_MasterData_Address {
+            get {
+                return ResourceManager.GetString("Title_MasterData_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MasterData-Currency 的本地化字符串。
+        /// </summary>
+        public static string Title_MasterData_Currency {
+            get {
+                return ResourceManager.GetString("Title_MasterData_Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MasterData-FinanceCalendar 的本地化字符串。
+        /// </summary>
+        public static string Title_MasterData_FinanceCalendar {
+            get {
+                return ResourceManager.GetString("Title_MasterData_FinanceCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MasterData-Item 的本地化字符串。
+        /// </summary>
+        public static string Title_MasterData_Item {
+            get {
+                return ResourceManager.GetString("Title_MasterData_Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MasterData-ItemCategory 的本地化字符串。
+        /// </summary>
+        public static string Title_MasterData_ItemCategory {
+            get {
+                return ResourceManager.GetString("Title_MasterData_ItemCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MasterData-ItemDiscontinue 的本地化字符串。
+        /// </summary>
+        public static string Title_MasterData_ItemDiscontinue {
+            get {
+                return ResourceManager.GetString("Title_MasterData_ItemDiscontinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MasterData-Location 的本地化字符串。
+        /// </summary>
+        public static string Title_MasterData_Location {
+            get {
+                return ResourceManager.GetString("Title_MasterData_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MasterData-Region 的本地化字符串。
+        /// </summary>
+        public static string Title_MasterData_Region {
+            get {
+                return ResourceManager.GetString("Title_MasterData_Region", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MasterData-Uom 的本地化字符串。
+        /// </summary>
+        public static string Title_MasterData_Uom {
+            get {
+                return ResourceManager.GetString("Title_MasterData_Uom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 MasterData-WorkingCalendar 的本地化字符串。
+        /// </summary>
+        public static string Title_MasterData_WorkingCalendar {
+            get {
+                return ResourceManager.GetString("Title_MasterData_WorkingCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement 的本地化字符串。
+        /// </summary>
+        public static string Title_Procurement {
+            get {
+                return ResourceManager.GetString("Title_Procurement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ActingBill 的本地化字符串。
+        /// </summary>
+        public static string Title_Procurement_ActingBill {
+            get {
+                return ResourceManager.GetString("Title_Procurement_ActingBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Setup-CustomerGoodsFlow 的本地化字符串。
+        /// </summary>
+        public static string Title_Procurement_CustomerGoodsFlow {
+            get {
+                return ResourceManager.GetString("Title_Procurement_CustomerGoodsFlow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-IpGap 的本地化字符串。
+        /// </summary>
+        public static string Title_Procurement_IpGap {
+            get {
+                return ResourceManager.GetString("Title_Procurement_IpGap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-IpMaster 的本地化字符串。
+        /// </summary>
+        public static string Title_Procurement_IpMaster {
+            get {
+                return ResourceManager.GetString("Title_Procurement_IpMaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-OrderMstr 的本地化字符串。
+        /// </summary>
+        public static string Title_Procurement_OrderMstr {
+            get {
+                return ResourceManager.GetString("Title_Procurement_OrderMstr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Setup-PriceList 的本地化字符串。
+        /// </summary>
+        public static string Title_Procurement_PriceList {
+            get {
+                return ResourceManager.GetString("Title_Procurement_PriceList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Setup-ProcurementFlow 的本地化字符串。
+        /// </summary>
+        public static string Title_Procurement_ProcurementFlow {
+            get {
+                return ResourceManager.GetString("Title_Procurement_ProcurementFlow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-Receipt 的本地化字符串。
+        /// </summary>
+        public static string Title_Procurement_Receipt {
+            get {
+                return ResourceManager.GetString("Title_Procurement_Receipt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Setup-SubconctractingFlow 的本地化字符串。
+        /// </summary>
+        public static string Title_Procurement_SubconctractingFlow {
+            get {
+                return ResourceManager.GetString("Title_Procurement_SubconctractingFlow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Setup-Supplier 的本地化字符串。
+        /// </summary>
+        public static string Title_Procurement_Supplier {
+            get {
+                return ResourceManager.GetString("Title_Procurement_Supplier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ProcurementBill-New 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementActingBill_New {
+            get {
+                return ResourceManager.GetString("Title_ProcurementActingBill_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ProcurementBill-ReCalculate 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementActingBill_ReCalculate {
+            get {
+                return ResourceManager.GetString("Title_ProcurementActingBill_ReCalculate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ProcurementBill-Settle 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementActingBill_Settle {
+            get {
+                return ResourceManager.GetString("Title_ProcurementActingBill_Settle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ProcurementBill-UnBilled 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementActingBill_UnBilledActingBill {
+            get {
+                return ResourceManager.GetString("Title_ProcurementActingBill_UnBilledActingBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ProcurementBill-View 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementActingBill_View {
+            get {
+                return ResourceManager.GetString("Title_ProcurementActingBill_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-IpGap-Adjust 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementIpGap_Adjust {
+            get {
+                return ResourceManager.GetString("Title_ProcurementIpGap_Adjust", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-IpGap-Search 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementIpGap_Search {
+            get {
+                return ResourceManager.GetString("Title_ProcurementIpGap_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-IpMaster-Receive 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementIpMaster_Receive {
+            get {
+                return ResourceManager.GetString("Title_ProcurementIpMaster_Receive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-IpMaster-Search 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementIpMaster_Search {
+            get {
+                return ResourceManager.GetString("Title_ProcurementIpMaster_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-IpMaster-SearchDetail 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementIpMaster_SearchDetail {
+            get {
+                return ResourceManager.GetString("Title_ProcurementIpMaster_SearchDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-IpMaster-UpdatePrice 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementIpMaster_UpdatePrice {
+            get {
+                return ResourceManager.GetString("Title_ProcurementIpMaster_UpdatePrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ProcurementOrder-BatchProcess 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementOrder_BatchProcess {
+            get {
+                return ResourceManager.GetString("Title_ProcurementOrder_BatchProcess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ProcurementOrder-New 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementOrder_New {
+            get {
+                return ResourceManager.GetString("Title_ProcurementOrder_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ProcurementOrder-Receive 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementOrder_Receive {
+            get {
+                return ResourceManager.GetString("Title_ProcurementOrder_Receive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ReturnOrder-New 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementOrder_Return_New {
+            get {
+                return ResourceManager.GetString("Title_ProcurementOrder_Return_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ReturnOrder-Search 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementOrder_Return_Search {
+            get {
+                return ResourceManager.GetString("Title_ProcurementOrder_Return_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ReturnOrder-SearchDetail 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementOrder_Return_SearchDetail {
+            get {
+                return ResourceManager.GetString("Title_ProcurementOrder_Return_SearchDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ProcurementOrder-Search 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementOrder_Search {
+            get {
+                return ResourceManager.GetString("Title_ProcurementOrder_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ProcurementOrder-SearchDetail 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementOrder_SearchDetail {
+            get {
+                return ResourceManager.GetString("Title_ProcurementOrder_SearchDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-ProcurementOrder-UpdatePrice 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementOrder_UpdatePrice {
+            get {
+                return ResourceManager.GetString("Title_ProcurementOrder_UpdatePrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-Receipt-Search 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementReceipt_Search {
+            get {
+                return ResourceManager.GetString("Title_ProcurementReceipt_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement-Trans-Receipt-SearchDetail 的本地化字符串。
+        /// </summary>
+        public static string Title_ProcurementReceipt_SearchDetail {
+            get {
+                return ResourceManager.GetString("Title_ProcurementReceipt_SearchDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Production 的本地化字符串。
+        /// </summary>
+        public static string Title_Production {
+            get {
+                return ResourceManager.GetString("Title_Production", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Quality 的本地化字符串。
+        /// </summary>
+        public static string Title_Quality {
+            get {
+                return ResourceManager.GetString("Title_Quality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 SupplierMenu 的本地化字符串。
+        /// </summary>
+        public static string Title_SupplierMenu {
+            get {
+                return ResourceManager.GetString("Title_SupplierMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Transport 的本地化字符串。
+        /// </summary>
+        public static string Title_TMS {
+            get {
+                return ResourceManager.GetString("Title_TMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Visualization 的本地化字符串。
+        /// </summary>
+        public static string Title_Visualization {
+            get {
+                return ResourceManager.GetString("Title_Visualization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Warehouse 的本地化字符串。
+        /// </summary>
+        public static string Title_WMS {
+            get {
+                return ResourceManager.GetString("Title_WMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Application Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_Application {
+            get {
+                return ResourceManager.GetString("URL_Application", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Access Control 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_AccessControl {
+            get {
+                return ResourceManager.GetString("URL_Application_AccessControl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 BatchJob 的本地化字符串。
+        /// </summary>
+        public static string Url_Application_BatchJob {
+            get {
+                return ResourceManager.GetString("Url_Application_BatchJob", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 CodeMaster 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_CodeMaster {
+            get {
+                return ResourceManager.GetString("URL_Application_CodeMaster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 EntityPreference 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_EntityPreference {
+            get {
+                return ResourceManager.GetString("URL_Application_EntityPreference", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Finance Calendar  的本地化字符串。
+        /// </summary>
+        public static string URL_Application_FinanceCalendarClose {
+            get {
+                return ResourceManager.GetString("URL_Application_FinanceCalendarClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 PermissionGroup 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_PermissionGroup {
+            get {
+                return ResourceManager.GetString("URL_Application_PermissionGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 PermissionReport 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_PermissionReport {
+            get {
+                return ResourceManager.GetString("URL_Application_PermissionReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 PrintSetup 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_PrintSetup {
+            get {
+                return ResourceManager.GetString("URL_Application_PrintSetup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Role Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_Role {
+            get {
+                return ResourceManager.GetString("URL_Application_Role", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ShowLog 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_ShowLog {
+            get {
+                return ResourceManager.GetString("URL_Application_ShowLog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 SNRule 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_SNRule {
+            get {
+                return ResourceManager.GetString("URL_Application_SNRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 SpecialBarCode 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_SpecialBarCode {
+            get {
+                return ResourceManager.GetString("URL_Application_SpecialBarCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 SubPrintOrder 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_SubPrintOrder {
+            get {
+                return ResourceManager.GetString("URL_Application_SubPrintOrder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 User Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_User {
+            get {
+                return ResourceManager.GetString("URL_Application_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 UserFavorite Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_Application_UserFavorite {
+            get {
+                return ResourceManager.GetString("URL_Application_UserFavorite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Container Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_Container {
+            get {
+                return ResourceManager.GetString("URL_Container", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Custodian 的本地化字符串。
         /// </summary>
         public static string Url_Custodian {
@@ -8841,6 +9588,15 @@ namespace Resources.SYS {
         public static string Url_DeferredFeedCounter_View {
             get {
                 return ResourceManager.GetString("Url_DeferredFeedCounter_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Distribution Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_Distribution {
+            get {
+                return ResourceManager.GetString("URL_Distribution", resourceCulture);
             }
         }
         
@@ -8872,6 +9628,24 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 Facility Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_FMS {
+            get {
+                return ResourceManager.GetString("URL_FMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Information 的本地化字符串。
+        /// </summary>
+        public static string URL_Info {
+            get {
+                return ResourceManager.GetString("URL_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 New Inspection Order 的本地化字符串。
         /// </summary>
         public static string Url_InspectionOrder_New {
@@ -8886,6 +9660,15 @@ namespace Resources.SYS {
         public static string Url_InspectionOrder_View {
             get {
                 return ResourceManager.GetString("Url_InspectionOrder_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Inventory Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_Inventory {
+            get {
+                return ResourceManager.GetString("URL_Inventory", resourceCulture);
             }
         }
         
@@ -8917,7 +9700,7 @@ namespace Resources.SYS {
         }
         
         /// <summary>
-        ///   查找类似 IpMaster_UpdateDetailUnitPriceView 的本地化字符串。
+        ///   查找类似 UpdatePrice 的本地化字符串。
         /// </summary>
         public static string Url_IpMaster_UpdateDetailUnitPriceView {
             get {
@@ -8953,11 +9736,155 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 MasterData Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_MasterData {
+            get {
+                return ResourceManager.GetString("URL_MasterData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Address 的本地化字符串。
+        /// </summary>
+        public static string URL_MasterData_Address {
+            get {
+                return ResourceManager.GetString("URL_MasterData_Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Currency 的本地化字符串。
+        /// </summary>
+        public static string URL_MasterData_Currency {
+            get {
+                return ResourceManager.GetString("URL_MasterData_Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 FinanceCalendar 的本地化字符串。
+        /// </summary>
+        public static string URL_MasterData_FinanceCalendar {
+            get {
+                return ResourceManager.GetString("URL_MasterData_FinanceCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Item 的本地化字符串。
+        /// </summary>
+        public static string URL_MasterData_Item {
+            get {
+                return ResourceManager.GetString("URL_MasterData_Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ItemCategory 的本地化字符串。
+        /// </summary>
+        public static string URL_MasterData_ItemCategory {
+            get {
+                return ResourceManager.GetString("URL_MasterData_ItemCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ItemDiscontinue 的本地化字符串。
+        /// </summary>
+        public static string URL_MasterData_ItemDiscontinue {
+            get {
+                return ResourceManager.GetString("URL_MasterData_ItemDiscontinue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Location 的本地化字符串。
+        /// </summary>
+        public static string URL_MasterData_Location {
+            get {
+                return ResourceManager.GetString("URL_MasterData_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Region 的本地化字符串。
+        /// </summary>
+        public static string URL_MasterData_Region {
+            get {
+                return ResourceManager.GetString("URL_MasterData_Region", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 SwitchTrading 的本地化字符串。
+        /// </summary>
+        public static string URL_MasterData_SwitchTrading {
+            get {
+                return ResourceManager.GetString("URL_MasterData_SwitchTrading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Uom 的本地化字符串。
+        /// </summary>
+        public static string URL_MasterData_Uom {
+            get {
+                return ResourceManager.GetString("URL_MasterData_Uom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 WorkingCalendar 的本地化字符串。
+        /// </summary>
+        public static string URL_MasterData_WorkingCalendar {
+            get {
+                return ResourceManager.GetString("URL_MasterData_WorkingCalendar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 New 的本地化字符串。
+        /// </summary>
+        public static string URL_New {
+            get {
+                return ResourceManager.GetString("URL_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 OrderMstr_Procurement_Import 的本地化字符串。
         /// </summary>
         public static string Url_OrderMstr_Procurement_Import {
             get {
                 return ResourceManager.GetString("Url_OrderMstr_Procurement_Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Procurement Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_Procurement {
+            get {
+                return ResourceManager.GetString("URL_Procurement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 ProcurementFlow 的本地化字符串。
+        /// </summary>
+        public static string URL_Procurement_Flow {
+            get {
+                return ResourceManager.GetString("URL_Procurement_Flow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Supplier 的本地化字符串。
+        /// </summary>
+        public static string URL_Procurement_Supplier {
+            get {
+                return ResourceManager.GetString("URL_Procurement_Supplier", resourceCulture);
             }
         }
         
@@ -8989,6 +9916,15 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 Settle 的本地化字符串。
+        /// </summary>
+        public static string Url_ProcurementBill_Settle {
+            get {
+                return ResourceManager.GetString("Url_ProcurementBill_Settle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 ReCalculateMaster 的本地化字符串。
         /// </summary>
         public static string Url_ProcurementBill_ToCalculateMaster {
@@ -8998,11 +9934,38 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 UnBilledActingBill 的本地化字符串。
+        /// </summary>
+        public static string Url_ProcurementBill_UnBilledActingBill {
+            get {
+                return ResourceManager.GetString("Url_ProcurementBill_UnBilledActingBill", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Search 的本地化字符串。
         /// </summary>
         public static string Url_ProcurementBill_View {
             get {
                 return ResourceManager.GetString("Url_ProcurementBill_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Production Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_Production {
+            get {
+                return ResourceManager.GetString("URL_Production", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Quality Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_Quality {
+            get {
+                return ResourceManager.GetString("URL_Quality", resourceCulture);
             }
         }
         
@@ -9043,6 +10006,33 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 Search 的本地化字符串。
+        /// </summary>
+        public static string URL_Search {
+            get {
+                return ResourceManager.GetString("URL_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 SearchDetail 的本地化字符串。
+        /// </summary>
+        public static string URL_SearchDetail {
+            get {
+                return ResourceManager.GetString("URL_SearchDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Setup 的本地化字符串。
+        /// </summary>
+        public static string URL_Setup {
+            get {
+                return ResourceManager.GetString("URL_Setup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Url_ShipmentMaster_Close 的本地化字符串。
         /// </summary>
         public static string Url_ShipmentMaster_Close {
@@ -9075,6 +10065,51 @@ namespace Resources.SYS {
         public static string Url_Supplier_View {
             get {
                 return ResourceManager.GetString("Url_Supplier_View", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 SupplierMenu Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_SupplierMenu {
+            get {
+                return ResourceManager.GetString("URL_SupplierMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Transport Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_TMS {
+            get {
+                return ResourceManager.GetString("URL_TMS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Transcation 的本地化字符串。
+        /// </summary>
+        public static string URL_Trans {
+            get {
+                return ResourceManager.GetString("URL_Trans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Visualization Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_Visualization {
+            get {
+                return ResourceManager.GetString("URL_Visualization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Warehouse Mangt. 的本地化字符串。
+        /// </summary>
+        public static string URL_WMS {
+            get {
+                return ResourceManager.GetString("URL_WMS", resourceCulture);
             }
         }
     }

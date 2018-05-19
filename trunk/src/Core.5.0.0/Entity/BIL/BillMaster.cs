@@ -18,7 +18,7 @@ namespace com.Sconit.Entity.BIL
         [Export(ExportName = "ProcurementBillSearch", ExportSeq = 60)]
         [Export(ExportName = "SaleBillSearch", ExportSeq = 60)]
         [CodeDetailDescriptionAttribute(CodeMaster = com.Sconit.CodeMaster.CodeMaster.BillStatus, ValueField = "Status")]
-        [Display(Name = "TransportBillMaster_Status", ResourceType = typeof(Resources.BIL.TransportBillMaster))]
+        [Display(Name = "TransportBillMaster_Status", ResourceType = typeof(Resources.BIL.BillMstr))]
         public string StatusDescription { get; set; }
 
 

@@ -10,7 +10,7 @@
     <property name="FactoryCode" column="FactoryCode" type="String" length="50"/>
     <property name="Uom" column="Uom" type="String" length="50"/>
     <property name="Quantity" column="Quantity" type="Decimal"/>	
-		<property name="BarCode" column="BarCode" type="String" length="50"/>	
+		<property name="BarCode" column="BarCode" type="String" length="100"/>	
 		<property name="BatchNo" column="BatchNo" type="String" length="50"/>
     <property name="Reservoir" column="Reservoir" type="String" length="50"/>
     <property name="Type" column="Type" type="Int32"/>

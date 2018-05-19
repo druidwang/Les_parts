@@ -28,117 +28,7 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         public SD_SmartDeviceService() {
-            this.Url = "http://localhost:2015/WebService/SD/SmartDeviceService.asmx";
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/OffBin", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool OffBin(string[] huIds, string userCode) {
-            object[] results = this.Invoke("OffBin", new object[] {
-                        huIds,
-                        userCode});
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginOffBin(string[] huIds, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("OffBin", new object[] {
-                        huIds,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public bool EndOffBin(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInContainer", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool IsHuInContainer(string huId) {
-            object[] results = this.Invoke("IsHuInContainer", new object[] {
-                        huId});
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginIsHuInContainer(string huId, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("IsHuInContainer", new object[] {
-                        huId}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public bool EndIsHuInContainer(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInPallet", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool IsHuInPallet(string huId) {
-            object[] results = this.Invoke("IsHuInPallet", new object[] {
-                        huId});
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginIsHuInPallet(string huId, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("IsHuInPallet", new object[] {
-                        huId}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public bool EndIsHuInPallet(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/PalletBind", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool PalletBind(string palletCode, string huId, string userCode) {
-            object[] results = this.Invoke("PalletBind", new object[] {
-                        palletCode,
-                        huId,
-                        userCode});
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginPalletBind(string palletCode, string huId, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("PalletBind", new object[] {
-                        palletCode,
-                        huId,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public bool EndPalletBind(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/PalletUnBind", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public bool PalletUnBind(string containerId, string huId, string userCode) {
-            object[] results = this.Invoke("PalletUnBind", new object[] {
-                        containerId,
-                        huId,
-                        userCode});
-            return ((bool)(results[0]));
-        }
-        
-        /// <remarks/>
-        public System.IAsyncResult BeginPalletUnBind(string containerId, string huId, string userCode, System.AsyncCallback callback, object asyncState) {
-            return this.BeginInvoke("PalletUnBind", new object[] {
-                        containerId,
-                        huId,
-                        userCode}, callback, asyncState);
-        }
-        
-        /// <remarks/>
-        public bool EndPalletUnBind(System.IAsyncResult asyncResult) {
-            object[] results = this.EndInvoke(asyncResult);
-            return ((bool)(results[0]));
+            this.Url = "http://123.206.115.117/WebService/SD/SmartDeviceService.asmx";
         }
         
         /// <remarks/>
@@ -1833,6 +1723,116 @@ namespace com.Sconit.SmartDevice.SmartDeviceRef {
         
         /// <remarks/>
         public bool EndOnBin(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/OffBin", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool OffBin(string[] huIds, string userCode) {
+            object[] results = this.Invoke("OffBin", new object[] {
+                        huIds,
+                        userCode});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginOffBin(string[] huIds, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("OffBin", new object[] {
+                        huIds,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndOffBin(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInContainer", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool IsHuInContainer(string huId) {
+            object[] results = this.Invoke("IsHuInContainer", new object[] {
+                        huId});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginIsHuInContainer(string huId, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("IsHuInContainer", new object[] {
+                        huId}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndIsHuInContainer(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInPallet", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool IsHuInPallet(string huId) {
+            object[] results = this.Invoke("IsHuInPallet", new object[] {
+                        huId});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginIsHuInPallet(string huId, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("IsHuInPallet", new object[] {
+                        huId}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndIsHuInPallet(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/PalletBind", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool PalletBind(string palletCode, string huId, string userCode) {
+            object[] results = this.Invoke("PalletBind", new object[] {
+                        palletCode,
+                        huId,
+                        userCode});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginPalletBind(string palletCode, string huId, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("PalletBind", new object[] {
+                        palletCode,
+                        huId,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndPalletBind(System.IAsyncResult asyncResult) {
+            object[] results = this.EndInvoke(asyncResult);
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://com.Sconit.WebService.SD.SmartDeviceService/PalletUnBind", RequestNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", ResponseNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public bool PalletUnBind(string containerId, string huId, string userCode) {
+            object[] results = this.Invoke("PalletUnBind", new object[] {
+                        containerId,
+                        huId,
+                        userCode});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public System.IAsyncResult BeginPalletUnBind(string containerId, string huId, string userCode, System.AsyncCallback callback, object asyncState) {
+            return this.BeginInvoke("PalletUnBind", new object[] {
+                        containerId,
+                        huId,
+                        userCode}, callback, asyncState);
+        }
+        
+        /// <remarks/>
+        public bool EndPalletUnBind(System.IAsyncResult asyncResult) {
             object[] results = this.EndInvoke(asyncResult);
             return ((bool)(results[0]));
         }

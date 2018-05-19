@@ -44,7 +44,7 @@ namespace com.Sconit.Entity.ORD
 
         public override bool Equals(object obj)
         {
-            ShipmentDetail another = obj as ShipmentDetail;
+            ProductionTrace another = obj as ProductionTrace;
 
             if (another == null)
             {

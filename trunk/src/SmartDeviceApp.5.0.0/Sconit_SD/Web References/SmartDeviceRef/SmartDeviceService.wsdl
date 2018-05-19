@@ -2,86 +2,6 @@
 <wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://com.Sconit.WebService.SD.SmartDeviceService/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://com.Sconit.WebService.SD.SmartDeviceService/">
-      <s:element name="OffBin">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huIds" type="tns:ArrayOfString" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:complexType name="ArrayOfString">
-        <s:sequence>
-          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
-        </s:sequence>
-      </s:complexType>
-      <s:element name="OffBinResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="OffBinResult" type="s:boolean" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="IsHuInContainer">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="IsHuInContainerResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="IsHuInContainerResult" type="s:boolean" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="IsHuInPallet">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="IsHuInPalletResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="IsHuInPalletResult" type="s:boolean" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="PalletBind">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="palletCode" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="PalletBindResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="PalletBindResult" type="s:boolean" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="PalletUnBind">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="containerId" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
-      <s:element name="PalletUnBindResponse">
-        <s:complexType>
-          <s:sequence>
-            <s:element minOccurs="1" maxOccurs="1" name="PalletUnBindResult" type="s:boolean" />
-          </s:sequence>
-        </s:complexType>
-      </s:element>
       <s:element name="GetUser">
         <s:complexType>
           <s:sequence>
@@ -666,6 +586,11 @@
           <s:element minOccurs="1" maxOccurs="1" name="CurrentQty" type="s:decimal" />
           <s:element minOccurs="1" maxOccurs="1" name="Carton" type="s:int" />
           <s:element minOccurs="1" maxOccurs="1" name="RemainShippedQty" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:complexType name="ArrayOfPickListDetailInput">
@@ -2131,38 +2056,83 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="OffBin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huIds" type="tns:ArrayOfString" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OffBinResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="OffBinResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsHuInContainer">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsHuInContainerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsHuInContainerResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsHuInPallet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsHuInPalletResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsHuInPalletResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PalletBind">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="palletCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PalletBindResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PalletBindResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PalletUnBind">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="containerId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="huId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PalletUnBindResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PalletUnBindResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
-  <wsdl:message name="OffBinSoapIn">
-    <wsdl:part name="parameters" element="tns:OffBin" />
-  </wsdl:message>
-  <wsdl:message name="OffBinSoapOut">
-    <wsdl:part name="parameters" element="tns:OffBinResponse" />
-  </wsdl:message>
-  <wsdl:message name="IsHuInContainerSoapIn">
-    <wsdl:part name="parameters" element="tns:IsHuInContainer" />
-  </wsdl:message>
-  <wsdl:message name="IsHuInContainerSoapOut">
-    <wsdl:part name="parameters" element="tns:IsHuInContainerResponse" />
-  </wsdl:message>
-  <wsdl:message name="IsHuInPalletSoapIn">
-    <wsdl:part name="parameters" element="tns:IsHuInPallet" />
-  </wsdl:message>
-  <wsdl:message name="IsHuInPalletSoapOut">
-    <wsdl:part name="parameters" element="tns:IsHuInPalletResponse" />
-  </wsdl:message>
-  <wsdl:message name="PalletBindSoapIn">
-    <wsdl:part name="parameters" element="tns:PalletBind" />
-  </wsdl:message>
-  <wsdl:message name="PalletBindSoapOut">
-    <wsdl:part name="parameters" element="tns:PalletBindResponse" />
-  </wsdl:message>
-  <wsdl:message name="PalletUnBindSoapIn">
-    <wsdl:part name="parameters" element="tns:PalletUnBind" />
-  </wsdl:message>
-  <wsdl:message name="PalletUnBindSoapOut">
-    <wsdl:part name="parameters" element="tns:PalletUnBindResponse" />
-  </wsdl:message>
   <wsdl:message name="GetUserSoapIn">
     <wsdl:part name="parameters" element="tns:GetUser" />
   </wsdl:message>
@@ -2619,27 +2589,37 @@
   <wsdl:message name="OnBinSoapOut">
     <wsdl:part name="parameters" element="tns:OnBinResponse" />
   </wsdl:message>
+  <wsdl:message name="OffBinSoapIn">
+    <wsdl:part name="parameters" element="tns:OffBin" />
+  </wsdl:message>
+  <wsdl:message name="OffBinSoapOut">
+    <wsdl:part name="parameters" element="tns:OffBinResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsHuInContainerSoapIn">
+    <wsdl:part name="parameters" element="tns:IsHuInContainer" />
+  </wsdl:message>
+  <wsdl:message name="IsHuInContainerSoapOut">
+    <wsdl:part name="parameters" element="tns:IsHuInContainerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsHuInPalletSoapIn">
+    <wsdl:part name="parameters" element="tns:IsHuInPallet" />
+  </wsdl:message>
+  <wsdl:message name="IsHuInPalletSoapOut">
+    <wsdl:part name="parameters" element="tns:IsHuInPalletResponse" />
+  </wsdl:message>
+  <wsdl:message name="PalletBindSoapIn">
+    <wsdl:part name="parameters" element="tns:PalletBind" />
+  </wsdl:message>
+  <wsdl:message name="PalletBindSoapOut">
+    <wsdl:part name="parameters" element="tns:PalletBindResponse" />
+  </wsdl:message>
+  <wsdl:message name="PalletUnBindSoapIn">
+    <wsdl:part name="parameters" element="tns:PalletUnBind" />
+  </wsdl:message>
+  <wsdl:message name="PalletUnBindSoapOut">
+    <wsdl:part name="parameters" element="tns:PalletUnBindResponse" />
+  </wsdl:message>
   <wsdl:portType name="SD_SmartDeviceServiceSoap">
-    <wsdl:operation name="OffBin">
-      <wsdl:input message="tns:OffBinSoapIn" />
-      <wsdl:output message="tns:OffBinSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="IsHuInContainer">
-      <wsdl:input message="tns:IsHuInContainerSoapIn" />
-      <wsdl:output message="tns:IsHuInContainerSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="IsHuInPallet">
-      <wsdl:input message="tns:IsHuInPalletSoapIn" />
-      <wsdl:output message="tns:IsHuInPalletSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="PalletBind">
-      <wsdl:input message="tns:PalletBindSoapIn" />
-      <wsdl:output message="tns:PalletBindSoapOut" />
-    </wsdl:operation>
-    <wsdl:operation name="PalletUnBind">
-      <wsdl:input message="tns:PalletUnBindSoapIn" />
-      <wsdl:output message="tns:PalletUnBindSoapOut" />
-    </wsdl:operation>
     <wsdl:operation name="GetUser">
       <wsdl:input message="tns:GetUserSoapIn" />
       <wsdl:output message="tns:GetUserSoapOut" />
@@ -2944,54 +2924,29 @@
       <wsdl:input message="tns:OnBinSoapIn" />
       <wsdl:output message="tns:OnBinSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="OffBin">
+      <wsdl:input message="tns:OffBinSoapIn" />
+      <wsdl:output message="tns:OffBinSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsHuInContainer">
+      <wsdl:input message="tns:IsHuInContainerSoapIn" />
+      <wsdl:output message="tns:IsHuInContainerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsHuInPallet">
+      <wsdl:input message="tns:IsHuInPalletSoapIn" />
+      <wsdl:output message="tns:IsHuInPalletSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PalletBind">
+      <wsdl:input message="tns:PalletBindSoapIn" />
+      <wsdl:output message="tns:PalletBindSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PalletUnBind">
+      <wsdl:input message="tns:PalletUnBindSoapIn" />
+      <wsdl:output message="tns:PalletUnBindSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="SD_SmartDeviceServiceSoap" type="tns:SD_SmartDeviceServiceSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="OffBin">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/OffBin" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="IsHuInContainer">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInContainer" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="IsHuInPallet">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInPallet" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="PalletBind">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/PalletBind" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="PalletUnBind">
-      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/PalletUnBind" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetUser">
       <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetUser" style="document" />
       <wsdl:input>
@@ -3676,54 +3631,54 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:binding name="SD_SmartDeviceServiceSoap12" type="tns:SD_SmartDeviceServiceSoap">
-    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="OffBin">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/OffBin" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/OffBin" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="IsHuInContainer">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInContainer" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInContainer" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="IsHuInPallet">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInPallet" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInPallet" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="PalletBind">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/PalletBind" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/PalletBind" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="PalletUnBind">
-      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/PalletUnBind" style="document" />
+      <soap:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/PalletUnBind" style="document" />
       <wsdl:input>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <soap12:body use="literal" />
+        <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SD_SmartDeviceServiceSoap12" type="tns:SD_SmartDeviceServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetUser">
       <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/GetUser" style="document" />
       <wsdl:input>
@@ -4408,13 +4363,58 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="OffBin">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/OffBin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsHuInContainer">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInContainer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsHuInPallet">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/IsHuInPallet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PalletBind">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/PalletBind" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PalletUnBind">
+      <soap12:operation soapAction="http://com.Sconit.WebService.SD.SmartDeviceService/PalletUnBind" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="SD_SmartDeviceService">
     <wsdl:port name="SD_SmartDeviceServiceSoap" binding="tns:SD_SmartDeviceServiceSoap">
-      <soap:address location="http://localhost:2015/WebService/SD/SmartDeviceService.asmx" />
+      <soap:address location="http://123.206.115.117/WebService/SD/SmartDeviceService.asmx" />
     </wsdl:port>
     <wsdl:port name="SD_SmartDeviceServiceSoap12" binding="tns:SD_SmartDeviceServiceSoap12">
-      <soap12:address location="http://localhost:2015/WebService/SD/SmartDeviceService.asmx" />
+      <soap12:address location="http://123.206.115.117/WebService/SD/SmartDeviceService.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

@@ -844,6 +844,15 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 Code 的本地化字符串。
+        /// </summary>
+        public static string Common_Code {
+            get {
+                return ResourceManager.GetString("Common_Code", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Create Date 的本地化字符串。
         /// </summary>
         public static string Common_CreateDate {

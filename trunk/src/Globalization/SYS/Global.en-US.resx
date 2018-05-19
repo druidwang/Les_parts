@@ -435,4 +435,7 @@
   <data name="Button_Test" xml:space="preserve">
     <value>Test</value>
   </data>
+  <data name="Common_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
 </root>

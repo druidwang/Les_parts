@@ -32,25 +32,16 @@ namespace com.Sconit.SmartDevice
             #region Object Dictionary
             Dictionary<CodeMaster.TerminalPermission, List<object>> dicObject = new Dictionary<CodeMaster.TerminalPermission, List<object>>();
             //收发
-
-            dicObject.Add(CodeMaster.TerminalPermission.Client_Receive, new List<object> { this.btnReceive, 0, Keys.D1, Keys.NumPad1 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_PurchaseReturn, new List<object> { this.btnPurchaseReturn, 0, Keys.D2, Keys.NumPad2 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_QuickTransfer, new List<object> { this.btnQuickTransfer, 0, Keys.D3, Keys.NumPad3 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_QuickReturn, new List<object> { this.btnQuickReturn, 0, Keys.D4, Keys.NumPad4 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_ProductionReceive, new List<object> { this.btnProductionReceive, 0, Keys.D5, Keys.NumPad5 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_ProductionReturn, new List<object> { this.btnProductionReturn, 0, Keys.D6, Keys.NumPad6 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_OrderShip, new List<object> { this.btnOrderShip, 0, Keys.D7, Keys.NumPad7 });
-            dicObject.Add(CodeMaster.TerminalPermission.Client_DistributionReturn, new List<object> { this.btnDistributionReturn, 0, Keys.D8, Keys.NumPad8 });
-
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_PickListOnline, new List<object> { this.btnPickListOnline, 0, Keys.D6, Keys.NumPad6 });
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_PickList, new List<object> { this.btnPickList, 0, Keys.D7, Keys.NumPad7 });
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_PickListShip, new List<object> { this.btnPickListShip, 0, Keys.D8, Keys.NumPad8 });
-
-
+            dicObject.Add(CodeMaster.TerminalPermission.Client_PickListOnline, new List<object> { this.btnPickListOnline, 0, Keys.D1, Keys.NumPad1 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_PickList, new List<object> { this.btnPickList, 0, Keys.D2, Keys.NumPad2 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_PickListShip, new List<object> { this.btnPickListShip, 0, Keys.D3, Keys.NumPad3 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_OrderShip, new List<object> { this.btnOrderShip, 0, Keys.D4, Keys.NumPad4 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_Receive, new List<object> { this.btnReceive, 0, Keys.D5, Keys.NumPad5 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_QuickReturn, new List<object> { this.btnQuickReturn, 0, Keys.D6, Keys.NumPad6 });
             //生产
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_Filter, new List<object> { this.btnFilter, 1, Keys.D1, Keys.NumPad1 });
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_StartAging, new List<object> { this.btnStartAging, 1, Keys.D2, Keys.NumPad2 });
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_Aging, new List<object> { this.btnAging, 1, Keys.D3, Keys.NumPad3 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_Filter, new List<object> { this.btnFilter, 1, Keys.D1, Keys.NumPad1 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_StartAging, new List<object> { this.btnStartAging, 1, Keys.D2, Keys.NumPad2 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_Aging, new List<object> { this.btnAging, 1, Keys.D3, Keys.NumPad3 });
             //dicObject.Add(CodeMaster.TerminalPermission.Client_ProductionOnline, new List<object> { this.btnProductionOnline, 1, Keys.D1, Keys.NumPad1 });
             //dicObject.Add(CodeMaster.TerminalPermission.Client_ProductionOffline, new List<object> { this.btnProdutionOffline, 1, Keys.D2, Keys.NumPad2 });
             //dicObject.Add(CodeMaster.TerminalPermission.Client_MaterialIn, new List<object> { this.btnMaterialIn, 1, Keys.D3, Keys.NumPad3 });
@@ -58,8 +49,8 @@ namespace com.Sconit.SmartDevice
             //dicObject.Add(CodeMaster.TerminalPermission.Client_AnDon, new List<object> { this.btnAnDon, 1, Keys.D3, Keys.NumPad3 });
             //dicObject.Add(CodeMaster.TerminalPermission.Client_ForceMaterialIn, new List<object> { this.btnForceMaterialIn, 1, Keys.D5, Keys.NumPad5 });
             //dicObject.Add(CodeMaster.TerminalPermission.Client_SeqPack, new List<object> { this.btnSeqPack, 1, Keys.D6, Keys.NumPad6 });
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_FiReceipt, new List<object> { this.btnFiReceipt, 1, Keys.D0, Keys.NumPad0 });
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_SparePartChk, new List<object> { this.btnSpChk, 1, Keys.D4, Keys.NumPad4 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_FiReceipt, new List<object> { this.btnFiReceipt, 1, Keys.D0, Keys.NumPad0 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_SparePartChk, new List<object> { this.btnSpChk, 1, Keys.D4, Keys.NumPad4 });
 
             //仓库
             dicObject.Add(CodeMaster.TerminalPermission.Client_Transfer, new List<object> { this.btnTransfer, 2, Keys.D1, Keys.NumPad1 });
@@ -84,12 +75,12 @@ namespace com.Sconit.SmartDevice
             //dicObject.Add(CodeMaster.TerminalPermission.Client_Reject, new List<object> { this.btnReject, 3, Keys.D3, Keys.NumPad3 });
 
             //高级仓库
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_WMSPickGoods, new List<object> { this.btnWMSPickGoods, 4, Keys.D1, Keys.NumPad1 });
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_WMSDeliverBarCode, new List<object> { this.btnWMSDeliverBarCode, 4, Keys.D2, Keys.NumPad2 });
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_WMSPickGoodsQty, new List<object> { this.btnWMSPickGoodsQty, 4, Keys.D3, Keys.NumPad3 });
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_WMSTransfer, new List<object> { this.btnWMSTransfer, 4, Keys.D4, Keys.NumPad4 });
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_WMSShip, new List<object> { this.btnWMSShip, 4, Keys.D5, Keys.NumPad5 });
-            //dicObject.Add(CodeMaster.TerminalPermission.Client_WMSRepack, new List<object> { this.btnWMSRepack, 4, Keys.D6, Keys.NumPad6 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_WMSPickGoods, new List<object> { this.btnWMSPickGoods, 4, Keys.D1, Keys.NumPad1 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_WMSDeliverBarCode, new List<object> { this.btnWMSDeliverBarCode, 4, Keys.D2, Keys.NumPad2 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_WMSPickGoodsQty, new List<object> { this.btnWMSPickGoodsQty, 4, Keys.D3, Keys.NumPad3 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_WMSTransfer, new List<object> { this.btnWMSTransfer, 4, Keys.D4, Keys.NumPad4 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_WMSShip, new List<object> { this.btnWMSShip, 4, Keys.D5, Keys.NumPad5 });
+            dicObject.Add(CodeMaster.TerminalPermission.Client_WMSRepack, new List<object> { this.btnWMSRepack, 4, Keys.D6, Keys.NumPad6 });
 
             #endregion
 
@@ -98,29 +89,26 @@ namespace com.Sconit.SmartDevice
 
             foreach (var keyValuePair in dicObject)
             {
-                //dicModule.Add(keyValuePair.Key, keyValuePair.Value);
+                dicModule.Add(keyValuePair.Key, keyValuePair.Value);
                 //((Button)((keyValuePair.Value)[0])).Enabled = false;
-                if (permissionList != null)
-                {
-                    foreach (string permission in permissionList)
-                    {
-                        if (permission == keyValuePair.Key.ToString())
-                        {
-                            if (!dicModule.ContainsKey(keyValuePair.Key))
-                            {
-                                ((Button)((keyValuePair.Value)[0])).Enabled = true;
-                                dicModule.Add(keyValuePair.Key, keyValuePair.Value);
-                                break;
-                            }
-                        }
-                        //if (permission == CodeMaster.TerminalPermission.Client_Qualify.ToString() && dicModule.All(d => d.Key.ToString() != "Client_Reject"))
-                        //{
-                        //    this.btnReject.Enabled = true;
-                        //    dicModule.Add(CodeMaster.TerminalPermission.Client_Reject, new List<object> { this.btnReject, 3, Keys.D3, Keys.NumPad3 });
-                        //    break;
-                        //}
-                    }
-                }
+                //if (permissionList != null)
+                //{
+                //    foreach (string permission in permissionList)
+                //    {
+                //        if (permission == keyValuePair.Key.ToString())
+                //        {
+                //            ((Button)((keyValuePair.Value)[0])).Enabled = true;
+                //            dicModule.Add(keyValuePair.Key, keyValuePair.Value);
+                //            break;
+                //        }
+                //        //if (permission == CodeMaster.TerminalPermission.Client_Qualify.ToString() && dicModule.All(d => d.Key.ToString() != "Client_Reject"))
+                //        //{
+                //        //    this.btnReject.Enabled = true;
+                //        //    dicModule.Add(CodeMaster.TerminalPermission.Client_Reject, new List<object> { this.btnReject, 3, Keys.D3, Keys.NumPad3 });
+                //        //    break;
+                //        //}
+                //    }
+                //}
             }
         }
 

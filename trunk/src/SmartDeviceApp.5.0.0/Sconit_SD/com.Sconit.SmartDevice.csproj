@@ -590,10 +590,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:2015/WebService/SD/SmartDeviceService.asmx">
+    <WebReferenceUrl Include="http://123.206.115.117/WebService/SD/SmartDeviceService.asmx">
       <UrlBehavior>Static</UrlBehavior>
       <RelPath>Web References\SmartDeviceRef\</RelPath>
-      <UpdateFromURL>http://localhost:2015/WebService/SD/SmartDeviceService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://123.206.115.117/WebService/SD/SmartDeviceService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

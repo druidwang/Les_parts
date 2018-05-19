@@ -6,7 +6,7 @@
         </id>
     <property name="io_bound_id" column="io_bound_id" type="Int32"/>
     <property name="io_bound_no" column="io_bound_no" type="String" length="50"/>
-    <property name="material_code" column="material_code" type="String" length="50"/>
+    <property name="material_code" column="material_code" type="String" length="100"/>
     <property name="bar_code" column="bar_code" type="String" length="50"/>
     <property name="batch_no" column="batch_no" type="String" length="50"/>
     <property name="quantity" column="quantity" type="Decimal"/>	

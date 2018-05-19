@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Application" xml:space="preserve">
+  <data name="URL_Application" xml:space="preserve">
     <value>应用管理</value>
   </data>
-  <data name="Application_Access_Control" xml:space="preserve">
+  <data name="URL_Application_AccessControl" xml:space="preserve">
     <value>访问控制</value>
   </data>
   <data name="Application_Address" xml:space="preserve">
@@ -132,13 +132,13 @@
   <data name="Application_Location" xml:space="preserve">
     <value>库位</value>
   </data>
-  <data name="Application_Role" xml:space="preserve">
+  <data name="URL_Application_Role" xml:space="preserve">
     <value>角色</value>
   </data>
   <data name="Application_Uom" xml:space="preserve">
     <value>计量单位</value>
   </data>
-  <data name="Application_User" xml:space="preserve">
+  <data name="URL_Application_User" xml:space="preserve">
     <value>用户</value>
   </data>
   <data name="Application_Currency" xml:space="preserve">
@@ -156,7 +156,7 @@
   <data name="Application_Item" xml:space="preserve">
     <value>物料</value>
   </data>
-  <data name="Application_UserFav" xml:space="preserve">
+  <data name="URL_Application_UserFavorite" xml:space="preserve">
     <value>用户偏好</value>
   </data>
   <data name="Application_EntityPreference" xml:space="preserve">
@@ -347,7 +347,7 @@
   <data name="Application_Region" xml:space="preserve">
     <value>区域</value>
   </data>
-  <data name="Application_CodeMaster" xml:space="preserve">
+  <data name="URL_Application_CodeMaster" xml:space="preserve">
     <value>数据字典</value>
   </data>
   <data name="Procurement_OrderMstr_QuickNew" xml:space="preserve">
@@ -371,7 +371,7 @@
   <data name="Production_ProductLine_Pause" xml:space="preserve">
     <value>生产线暂停/恢复</value>
   </data>
-  <data name="Application_FinanceCalendar_Close" xml:space="preserve">
+  <data name="URL_Application_FinanceCalendarClose" xml:space="preserve">
     <value>月结</value>
   </data>
   <data name="Procurement_SequenceOrder" xml:space="preserve">
@@ -1943,7 +1943,7 @@
   <data name="Description_Url_Supplier_Print_Query" xml:space="preserve">
     <value>供应商-条码-查询</value>
   </data>
-  <data name="Description_Url_Supplier_View" xml:space="preserve">
+  <data name="Title_Procurement_Supplier" xml:space="preserve">
     <value>供货管理-设置-供应商</value>
   </data>
   <data name="Description_Url_SwitchTrading_View" xml:space="preserve">
@@ -3121,5 +3121,326 @@
   </data>
   <data name="Inventory_Hu_Devanning" xml:space="preserve">
     <value>拆箱</value>
+  </data>
+  <data name="Title_Application_AccessControl" xml:space="preserve">
+    <value>应用管理-访问控制</value>
+  </data>
+  <data name="Title_Application_BatchJob" xml:space="preserve">
+    <value>应用管理-作业调度</value>
+  </data>
+  <data name="Title_Application_CodeMaster" xml:space="preserve">
+    <value>应用管理-数据字典</value>
+  </data>
+  <data name="Title_Application_DocumentCodeRule" xml:space="preserve">
+    <value>应用管理-单据号码规则</value>
+  </data>
+  <data name="Title_Application_EntityPreference" xml:space="preserve">
+    <value>应用管理-企业选项</value>
+  </data>
+  <data name="Title_Application_FinanceCalendarClose" xml:space="preserve">
+    <value>应用管理-月结</value>
+  </data>
+  <data name="Title_Application_PermissionGroup" xml:space="preserve">
+    <value>应用管理-访问控制-权限组</value>
+  </data>
+  <data name="Title_Application_PermissionReport" xml:space="preserve">
+    <value>应用管理-访问控制-权限报表</value>
+  </data>
+  <data name="Title_Application_PrintSetup" xml:space="preserve">
+    <value>应用管理-打印监控</value>
+  </data>
+  <data name="Title_Application_Role" xml:space="preserve">
+    <value>应用管理-访问控制-角色</value>
+  </data>
+  <data name="Title_Application_ShowLog" xml:space="preserve">
+    <value>应用管理-查看日志</value>
+  </data>
+  <data name="Title_Application_SNRule" xml:space="preserve">
+    <value>应用管理-单据号码规则</value>
+  </data>
+  <data name="Title_Application_SpecialBarCode" xml:space="preserve">
+    <value>应用管理-特殊条码打印</value>
+  </data>
+  <data name="Title_Application_SubPrintOrder" xml:space="preserve">
+    <value>应用管理-打印订阅</value>
+  </data>
+  <data name="Title_Application_User" xml:space="preserve">
+    <value>应用管理-访问控制-用户</value>
+  </data>
+  <data name="Title_Application_UserFavorite" xml:space="preserve">
+    <value>应用管理-用户偏好</value>
+  </data>
+  <data name="Url_Application_BatchJob" xml:space="preserve">
+    <value>作业调度</value>
+  </data>
+  <data name="URL_Application_EntityPreference" xml:space="preserve">
+    <value>企业选项</value>
+  </data>
+  <data name="URL_Application_PermissionGroup" xml:space="preserve">
+    <value>权限组</value>
+  </data>
+  <data name="URL_Application_PermissionReport" xml:space="preserve">
+    <value>权限报表</value>
+  </data>
+  <data name="URL_Application_PrintSetup" xml:space="preserve">
+    <value>打印监控</value>
+  </data>
+  <data name="URL_Application_ShowLog" xml:space="preserve">
+    <value>查看日志</value>
+  </data>
+  <data name="URL_Application_SNRule" xml:space="preserve">
+    <value>单据号码规则</value>
+  </data>
+  <data name="URL_Application_SpecialBarCode" xml:space="preserve">
+    <value>特殊条码打印</value>
+  </data>
+  <data name="URL_Application_SubPrintOrder" xml:space="preserve">
+    <value>打印订阅</value>
+  </data>
+  <data name="URL_Info" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="URL_New" xml:space="preserve">
+    <value>新建</value>
+  </data>
+  <data name="URL_Search" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="URL_SearchDetail" xml:space="preserve">
+    <value>查询明细</value>
+  </data>
+  <data name="URL_Setup" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="URL_Trans" xml:space="preserve">
+    <value>事务</value>
+  </data>
+  <data name="Title_Container" xml:space="preserve">
+    <value>容器管理</value>
+  </data>
+  <data name="Title_Distribution" xml:space="preserve">
+    <value>发货管理</value>
+  </data>
+  <data name="Title_FMS" xml:space="preserve">
+    <value>设施管理</value>
+  </data>
+  <data name="Title_Inventory" xml:space="preserve">
+    <value>库存管理</value>
+  </data>
+  <data name="Title_MasterData" xml:space="preserve">
+    <value>基础数据</value>
+  </data>
+  <data name="Title_MasterData_Address" xml:space="preserve">
+    <value>基础数据-地址</value>
+  </data>
+  <data name="Title_MasterData_Currency" xml:space="preserve">
+    <value>基础数据-币种</value>
+  </data>
+  <data name="Title_MasterData_FinanceCalendar" xml:space="preserve">
+    <value>基础数据-会计期间</value>
+  </data>
+  <data name="Title_MasterData_Item" xml:space="preserve">
+    <value>基础数据-物料</value>
+  </data>
+  <data name="Title_MasterData_ItemCategory" xml:space="preserve">
+    <value>基础数据-物料分类</value>
+  </data>
+  <data name="Title_MasterData_ItemDiscontinue" xml:space="preserve">
+    <value>基础数据-后续物料</value>
+  </data>
+  <data name="Title_MasterData_Location" xml:space="preserve">
+    <value>基础数据-库位</value>
+  </data>
+  <data name="Title_MasterData_Region" xml:space="preserve">
+    <value>基础数据-区域</value>
+  </data>
+  <data name="Title_MasterData_Uom" xml:space="preserve">
+    <value>基础数据-计量单位</value>
+  </data>
+  <data name="Title_MasterData_WorkingCalendar" xml:space="preserve">
+    <value>基础数据-工作日历</value>
+  </data>
+  <data name="Title_Procurement" xml:space="preserve">
+    <value>供货管理</value>
+  </data>
+  <data name="Title_ProcurementActingBill_New" xml:space="preserve">
+    <value>供货管理-事务-采购账单-新建账单</value>
+  </data>
+  <data name="Title_ProcurementActingBill_ReCalculate" xml:space="preserve">
+    <value>供货管理-事务-采购账单-重新计价</value>
+  </data>
+  <data name="Title_ProcurementActingBill_Settle" xml:space="preserve">
+    <value>供货管理-事务-采购账单-供应商寄售结算</value>
+  </data>
+  <data name="Title_ProcurementActingBill_UnBilledActingBill" xml:space="preserve">
+    <value>供货管理-事务-采购账单-采购未开票</value>
+  </data>
+  <data name="Title_ProcurementActingBill_View" xml:space="preserve">
+    <value>供货管理-事务-采购账单-查询账单</value>
+  </data>
+  <data name="Title_ProcurementIpGap_Adjust" xml:space="preserve">
+    <value>供货管理-事务-收发差异-调整</value>
+  </data>
+  <data name="Title_ProcurementIpGap_Search" xml:space="preserve">
+    <value>供货管理-事务-收发差异-查询</value>
+  </data>
+  <data name="Title_ProcurementIpMaster_Receive" xml:space="preserve">
+    <value>供货管理-事务-送货单-收货</value>
+  </data>
+  <data name="Title_ProcurementIpMaster_Search" xml:space="preserve">
+    <value>供货管理-事务-送货单-查询</value>
+  </data>
+  <data name="Title_ProcurementIpMaster_SearchDetail" xml:space="preserve">
+    <value>供货管理-事务-送货单-明细查询</value>
+  </data>
+  <data name="Title_ProcurementIpMaster_UpdatePrice" xml:space="preserve">
+    <value>供货管理-事务-送货单-修改价格</value>
+  </data>
+  <data name="Title_ProcurementOrder_BatchProcess" xml:space="preserve">
+    <value>供货管理-事务-要货单-批量处理</value>
+  </data>
+  <data name="Title_ProcurementOrder_New" xml:space="preserve">
+    <value>供货管理-事务-要货单-新建</value>
+  </data>
+  <data name="Title_ProcurementOrder_Receive" xml:space="preserve">
+    <value>供货管理-事务-要货单-收货</value>
+  </data>
+  <data name="Title_ProcurementOrder_Return_New" xml:space="preserve">
+    <value>供货管理-事务-退货单-新建</value>
+  </data>
+  <data name="Title_ProcurementOrder_Return_Search" xml:space="preserve">
+    <value>供货管理-事务-退货单-查询</value>
+  </data>
+  <data name="Title_ProcurementOrder_Return_SearchDetail" xml:space="preserve">
+    <value>供货管理-事务-退货单-明细查询</value>
+  </data>
+  <data name="Title_ProcurementOrder_Search" xml:space="preserve">
+    <value>供货管理-事务-要货单-查询</value>
+  </data>
+  <data name="Title_ProcurementOrder_SearchDetail" xml:space="preserve">
+    <value>供货管理-事务-要货单-明细查询</value>
+  </data>
+  <data name="Title_ProcurementOrder_UpdatePrice" xml:space="preserve">
+    <value>供货管理-事务-要货单-修改价格</value>
+  </data>
+  <data name="Title_ProcurementReceipt_Search" xml:space="preserve">
+    <value>供货管理-事务-收货单-查询</value>
+  </data>
+  <data name="Title_ProcurementReceipt_SearchDetail" xml:space="preserve">
+    <value>供货管理-事务-收货单-明细查询</value>
+  </data>
+  <data name="Title_Procurement_CustomerGoodsFlow" xml:space="preserve">
+    <value>供货管理-设置-客供品路线</value>
+  </data>
+  <data name="Title_Procurement_PriceList" xml:space="preserve">
+    <value>供货管理-设置-采购价格单</value>
+  </data>
+  <data name="Title_Procurement_ProcurementFlow" xml:space="preserve">
+    <value>供货管理-设置-采购路线</value>
+  </data>
+  <data name="Title_Procurement_SubconctractingFlow" xml:space="preserve">
+    <value>供货管理-设置-委外路线</value>
+  </data>
+  <data name="Title_Production" xml:space="preserve">
+    <value>生产管理</value>
+  </data>
+  <data name="Title_Quality" xml:space="preserve">
+    <value>质量管理</value>
+  </data>
+  <data name="Title_SupplierMenu" xml:space="preserve">
+    <value>供应商</value>
+  </data>
+  <data name="Title_Supplier_View" xml:space="preserve">
+    <value>供货管理-设置-供应商</value>
+  </data>
+  <data name="Title_TMS" xml:space="preserve">
+    <value>运输管理</value>
+  </data>
+  <data name="Title_Visualization" xml:space="preserve">
+    <value>目视管理</value>
+  </data>
+  <data name="Title_WMS" xml:space="preserve">
+    <value>高级仓库</value>
+  </data>
+  <data name="URL_Container" xml:space="preserve">
+    <value>容器管理</value>
+  </data>
+  <data name="URL_Distribution" xml:space="preserve">
+    <value>发货管理</value>
+  </data>
+  <data name="URL_FMS" xml:space="preserve">
+    <value>设施管理</value>
+  </data>
+  <data name="URL_Inventory" xml:space="preserve">
+    <value>库存管理</value>
+  </data>
+  <data name="URL_MasterData" xml:space="preserve">
+    <value>基础数据</value>
+  </data>
+  <data name="URL_MasterData_Address" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="URL_MasterData_Currency" xml:space="preserve">
+    <value>币种</value>
+  </data>
+  <data name="URL_MasterData_FinanceCalendar" xml:space="preserve">
+    <value>会计期间</value>
+  </data>
+  <data name="URL_MasterData_Item" xml:space="preserve">
+    <value>物料</value>
+  </data>
+  <data name="URL_MasterData_ItemCategory" xml:space="preserve">
+    <value>物料分类</value>
+  </data>
+  <data name="URL_MasterData_ItemDiscontinue" xml:space="preserve">
+    <value>后续物料</value>
+  </data>
+  <data name="URL_MasterData_Location" xml:space="preserve">
+    <value>库位</value>
+  </data>
+  <data name="URL_MasterData_Region" xml:space="preserve">
+    <value>区域</value>
+  </data>
+  <data name="URL_MasterData_SwitchTrading" xml:space="preserve">
+    <value>特殊路线关系对照</value>
+  </data>
+  <data name="URL_MasterData_Uom" xml:space="preserve">
+    <value>计量单位</value>
+  </data>
+  <data name="URL_MasterData_WorkingCalendar" xml:space="preserve">
+    <value>工作日历</value>
+  </data>
+  <data name="URL_Procurement" xml:space="preserve">
+    <value>供货管理</value>
+  </data>
+  <data name="Url_ProcurementBill_Settle" xml:space="preserve">
+    <value>供应商寄售结算</value>
+  </data>
+  <data name="Url_ProcurementBill_UnBilledActingBill" xml:space="preserve">
+    <value>采购未开票</value>
+  </data>
+  <data name="URL_Procurement_Flow" xml:space="preserve">
+    <value>采购路线</value>
+  </data>
+  <data name="URL_Procurement_Supplier" xml:space="preserve">
+    <value>供应商</value>
+  </data>
+  <data name="URL_Production" xml:space="preserve">
+    <value>生产管理</value>
+  </data>
+  <data name="URL_Quality" xml:space="preserve">
+    <value>质量管理</value>
+  </data>
+  <data name="URL_SupplierMenu" xml:space="preserve">
+    <value>供应商</value>
+  </data>
+  <data name="URL_TMS" xml:space="preserve">
+    <value>运输管理</value>
+  </data>
+  <data name="URL_Visualization" xml:space="preserve">
+    <value>目视管理</value>
+  </data>
+  <data name="URL_WMS" xml:space="preserve">
+    <value>高级仓库</value>
   </data>
 </root>

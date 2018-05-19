@@ -372,4 +372,7 @@
   <data name="True" xml:space="preserve">
     <value>是</value>
   </data>
+  <data name="Common_Code" xml:space="preserve">
+    <value>代码</value>
+  </data>
 </root>

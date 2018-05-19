@@ -10,7 +10,7 @@
         {
             columns.Bound(o => o.BillNo).ClientTemplate(Html.ActionLink("<#= BillNo #>", "Edit", "DistributionBill", new { BillNo = "<#= BillNo #>", groupOrDetail = "0" }, null).ToString());
           
-            columns.Bound(o => o.PartyName).Title(@Resources.BIL.TransportBillMaster.TransportBillMaster_PartyName_Distribution);
+            columns.Bound(o => o.PartyName).Title(@Resources.BIL.BillMstr.BillMstr_PartyName_Distribution);
             columns.Bound(o => o.ExternalBillNo);
             columns.Bound(o => o.InvoiceNo);
             columns.Bound(o => o.CreateDate);

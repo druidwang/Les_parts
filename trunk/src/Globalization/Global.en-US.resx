@@ -402,4 +402,7 @@
   <data name="True" xml:space="preserve">
     <value>True</value>
   </data>
+  <data name="Common_Code" xml:space="preserve">
+    <value>Code</value>
+  </data>
 </root>

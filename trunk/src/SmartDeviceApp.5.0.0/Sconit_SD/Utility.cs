@@ -14,10 +14,10 @@ namespace com.Sconit.SmartDevice
 {
     public class Utility
     {
-         public static string WEBSERVICE_URL = "http://10.136.3.28/WebService/SD/SmartDeviceService.asmx";
+        public static string WEBSERVICE_URL = "http://123.206.115.117/WebService/SD/SmartDeviceService.asmx";
 
 
-        //  public static string WEBSERVICE_URL = "http://localhost:2015/WebService/SD/SmartDeviceService.asmx";
+       // public static string WEBSERVICE_URL = "http://localhost:2015/WebService/SD/SmartDeviceService.asmx";
 
         public static string GetBarCodeType(BarCodeType[] barCodeTypes, string barCode)
         {
@@ -53,7 +53,7 @@ namespace com.Sconit.SmartDevice
             {
                 return CodeMaster.BarCodeType.COT.ToString();
             }
-            else if (barCode.StartsWith("TP") || barCode.StartsWith("UN"))
+            else if (barCode.StartsWith("TP") || (barCode.StartsWith("UN")))
             {
                 return CodeMaster.BarCodeType.TP.ToString();
             }

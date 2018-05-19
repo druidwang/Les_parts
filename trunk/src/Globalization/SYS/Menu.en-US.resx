@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Application" xml:space="preserve">
+  <data name="URL_Application" xml:space="preserve">
     <value>Application Mangt.</value>
   </data>
-  <data name="Application_Access_Control" xml:space="preserve">
+  <data name="URL_Application_AccessControl" xml:space="preserve">
     <value>Access Control</value>
   </data>
   <data name="Application_Address" xml:space="preserve">
@@ -141,7 +141,7 @@
   <data name="Application_FinanceCalendar" xml:space="preserve">
     <value>FinanceCalendar</value>
   </data>
-  <data name="Application_FinanceCalendar_Close" xml:space="preserve">
+  <data name="URL_Application_FinanceCalendarClose" xml:space="preserve">
     <value>Finance Calendar </value>
   </data>
   <data name="Application_Item" xml:space="preserve">
@@ -165,7 +165,7 @@
   <data name="Application_Region" xml:space="preserve">
     <value>Region</value>
   </data>
-  <data name="Application_Role" xml:space="preserve">
+  <data name="URL_Application_Role" xml:space="preserve">
     <value>Role Mangt.</value>
   </data>
   <data name="Application_Routing" xml:space="preserve">
@@ -177,14 +177,14 @@
   <data name="Application_Uom" xml:space="preserve">
     <value>Uom Mangt.</value>
   </data>
-  <data name="Application_User" xml:space="preserve">
+  <data name="URL_Application_User" xml:space="preserve">
     <value>User Mangt.</value>
   </data>
-  <data name="Application_UserFav" xml:space="preserve">
-    <value>Userfavorite mangt.</value>
+  <data name="URL_Application_UserFav" xml:space="preserve">
+    <value>UserFavorite Mangt.</value>
   </data>
   <data name="Application_WorkingCalendar" xml:space="preserve">
-    <value>WorkingCalendar mangt.</value>
+    <value>WorkingCalendar Mangt.</value>
   </data>
   <data name="Button_Resume" xml:space="preserve">
     <value>Resume</value>
@@ -484,7 +484,7 @@
     <value>Search</value>
   </data>
   <data name="Procurement_OrderMstr" xml:space="preserve">
-    <value>Procurement OrderMstr</value>
+    <value>OrderMstr</value>
   </data>
   <data name="Procurement_OrderMstr_BatchProcess" xml:space="preserve">
     <value>Batch Process</value>
@@ -778,7 +778,7 @@
     <value>BillIOB</value>
   </data>
   <data name="Url_IpMaster_UpdateDetailUnitPriceView" xml:space="preserve">
-    <value>IpMaster_UpdateDetailUnitPriceView</value>
+    <value>UpdatePrice</value>
   </data>
   <data name="Url_IssueLevel_View" xml:space="preserve">
     <value>IssueLevel</value>
@@ -3119,5 +3119,299 @@
   </data>
   <data name="Inventory_Hu_Devanning" xml:space="preserve">
     <value>Devanning</value>
+  </data>
+  <data name="Title_Application_AccessControl" xml:space="preserve">
+    <value>Application-AccessControl</value>
+  </data>
+  <data name="Title_Application_BatchJob" xml:space="preserve">
+    <value>Application-BatchJob</value>
+  </data>
+  <data name="Title_Application_CodeMaster" xml:space="preserve">
+    <value>Application-CodeMaster</value>
+  </data>
+  <data name="Title_Application_DocumentCodeRule" xml:space="preserve">
+    <value>Application-DocumentCodeRule</value>
+  </data>
+  <data name="Title_Application_EntityPreference" xml:space="preserve">
+    <value>Application-EntityPreference</value>
+  </data>
+  <data name="Title_Application_FinanceCalendarClose" xml:space="preserve">
+    <value>Application-FinanceCalendar</value>
+  </data>
+  <data name="Title_Application_PrintSetup" xml:space="preserve">
+    <value>Application-PrintSetup</value>
+  </data>
+  <data name="Title_Application_Role" xml:space="preserve">
+    <value>Application-Role</value>
+  </data>
+  <data name="Title_Application_ShowLog" xml:space="preserve">
+    <value>Application-ShowLog</value>
+  </data>
+  <data name="Title_Application_SNRule" xml:space="preserve">
+    <value>Application-SNRule</value>
+  </data>
+  <data name="Title_Application_SpecialBarCode" xml:space="preserve">
+    <value>Application-SpecialBarCode</value>
+  </data>
+  <data name="Title_Application_SubPrintOrder" xml:space="preserve">
+    <value>Application-SubPrintOrder</value>
+  </data>
+  <data name="Title_Application_User" xml:space="preserve">
+    <value>Application-User</value>
+  </data>
+  <data name="Title_Application_UserFavorite" xml:space="preserve">
+    <value>Application-UserFavorite</value>
+  </data>
+  <data name="Url_Application_BatchJob" xml:space="preserve">
+    <value>BatchJob</value>
+  </data>
+  <data name="URL_Application_CodeMaster" xml:space="preserve">
+    <value>CodeMaster</value>
+  </data>
+  <data name="URL_Application_EntityPreference" xml:space="preserve">
+    <value>EntityPreference</value>
+  </data>
+  <data name="URL_Application_PermissionGroup" xml:space="preserve">
+    <value>PermissionGroup</value>
+  </data>
+  <data name="URL_Application_PermissionReport" xml:space="preserve">
+    <value>PermissionReport</value>
+  </data>
+  <data name="URL_Application_PrintSetup" xml:space="preserve">
+    <value>PrintSetup</value>
+  </data>
+  <data name="URL_Application_ShowLog" xml:space="preserve">
+    <value>ShowLog</value>
+  </data>
+  <data name="URL_Application_SNRule" xml:space="preserve">
+    <value>SNRule</value>
+  </data>
+  <data name="URL_Application_SpecialBarCode" xml:space="preserve">
+    <value>SpecialBarCode</value>
+  </data>
+  <data name="URL_Application_SubPrintOrder" xml:space="preserve">
+    <value>SubPrintOrder</value>
+  </data>
+  <data name="URL_Info" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="URL_New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="URL_Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="URL_SearchDetail" xml:space="preserve">
+    <value>SearchDetail</value>
+  </data>
+  <data name="URL_Setup" xml:space="preserve">
+    <value>Setup</value>
+  </data>
+  <data name="URL_Trans" xml:space="preserve">
+    <value>Transcation</value>
+  </data>
+  <data name="Procurement_ActingBill" xml:space="preserve">
+    <value>ActingBill</value>
+  </data>
+  <data name="Tile_Procurement_OrderMstr_Return" xml:space="preserve">
+    <value>Procurement-Trans-OrderMstr-Return</value>
+  </data>
+  <data name="Title_Container" xml:space="preserve">
+    <value>Container</value>
+  </data>
+  <data name="Title_Distribution" xml:space="preserve">
+    <value>Distribution</value>
+  </data>
+  <data name="Title_FMS" xml:space="preserve">
+    <value>Facility</value>
+  </data>
+  <data name="Title_Inventory" xml:space="preserve">
+    <value>Inventory</value>
+  </data>
+  <data name="Title_Procurement" xml:space="preserve">
+    <value>Procurement</value>
+  </data>
+  <data name="Title_ProcurementActingBill_New" xml:space="preserve">
+    <value>Procurement-Trans-ProcurementBill-New</value>
+  </data>
+  <data name="Title_ProcurementActingBill_ReCalculate" xml:space="preserve">
+    <value>Procurement-Trans-ProcurementBill-ReCalculate</value>
+  </data>
+  <data name="Title_ProcurementActingBill_Settle" xml:space="preserve">
+    <value>Procurement-Trans-ProcurementBill-Settle</value>
+  </data>
+  <data name="Title_ProcurementActingBill_UnBilledActingBill" xml:space="preserve">
+    <value>Procurement-Trans-ProcurementBill-UnBilled</value>
+  </data>
+  <data name="Title_ProcurementActingBill_View" xml:space="preserve">
+    <value>Procurement-Trans-ProcurementBill-View</value>
+  </data>
+  <data name="Title_ProcurementIpGap_Adjust" xml:space="preserve">
+    <value>Procurement-Trans-IpGap-Adjust</value>
+  </data>
+  <data name="Title_ProcurementIpGap_Search" xml:space="preserve">
+    <value>Procurement-Trans-IpGap-Search</value>
+  </data>
+  <data name="Title_ProcurementIpMaster_Receive" xml:space="preserve">
+    <value>Procurement-Trans-IpMaster-Receive</value>
+  </data>
+  <data name="Title_ProcurementIpMaster_Search" xml:space="preserve">
+    <value>Procurement-Trans-IpMaster-Search</value>
+  </data>
+  <data name="Title_ProcurementIpMaster_SearchDetail" xml:space="preserve">
+    <value>Procurement-Trans-IpMaster-SearchDetail</value>
+  </data>
+  <data name="Title_ProcurementIpMaster_UpdatePrice" xml:space="preserve">
+    <value>Procurement-Trans-IpMaster-UpdatePrice</value>
+  </data>
+  <data name="Title_ProcurementOrder_BatchProcess" xml:space="preserve">
+    <value>Procurement-Trans-ProcurementOrder-BatchProcess</value>
+  </data>
+  <data name="Title_ProcurementOrder_New" xml:space="preserve">
+    <value>Procurement-Trans-ProcurementOrder-New</value>
+  </data>
+  <data name="Title_ProcurementOrder_Receive" xml:space="preserve">
+    <value>Procurement-Trans-ProcurementOrder-Receive</value>
+  </data>
+  <data name="Title_ProcurementOrder_Return_New" xml:space="preserve">
+    <value>Procurement-Trans-ReturnOrder-New</value>
+  </data>
+  <data name="Title_ProcurementOrder_Return_Search" xml:space="preserve">
+    <value>Procurement-Trans-ReturnOrder-Search</value>
+  </data>
+  <data name="Title_ProcurementOrder_Return_SearchDetail" xml:space="preserve">
+    <value>Procurement-Trans-ReturnOrder-SearchDetail</value>
+  </data>
+  <data name="Title_ProcurementOrder_Search" xml:space="preserve">
+    <value>Procurement-Trans-ProcurementOrder-Search</value>
+  </data>
+  <data name="Title_ProcurementOrder_SearchDetail" xml:space="preserve">
+    <value>Procurement-Trans-ProcurementOrder-SearchDetail</value>
+  </data>
+  <data name="Title_ProcurementOrder_UpdatePrice" xml:space="preserve">
+    <value>Procurement-Trans-ProcurementOrder-UpdatePrice</value>
+  </data>
+  <data name="Title_ProcurementReceipt_Search" xml:space="preserve">
+    <value>Procurement-Trans-Receipt-Search</value>
+  </data>
+  <data name="Title_ProcurementReceipt_SearchDetail" xml:space="preserve">
+    <value>Procurement-Trans-Receipt-SearchDetail</value>
+  </data>
+  <data name="Title_Procurement_ActingBill" xml:space="preserve">
+    <value>Procurement-Trans-ActingBill</value>
+  </data>
+  <data name="Title_Procurement_IpGap" xml:space="preserve">
+    <value>Procurement-Trans-IpGap</value>
+  </data>
+  <data name="Title_Procurement_IpMaster" xml:space="preserve">
+    <value>Procurement-Trans-IpMaster</value>
+  </data>
+  <data name="Title_Procurement_OrderMstr" xml:space="preserve">
+    <value>Procurement-Trans-OrderMstr</value>
+  </data>
+  <data name="Title_Procurement_Receipt" xml:space="preserve">
+    <value>Procurement-Trans-Receipt</value>
+  </data>
+  <data name="Title_Production" xml:space="preserve">
+    <value>Production</value>
+  </data>
+  <data name="Title_Quality" xml:space="preserve">
+    <value>Quality</value>
+  </data>
+  <data name="Title_SupplierMenu" xml:space="preserve">
+    <value>SupplierMenu</value>
+  </data>
+  <data name="Title_TMS" xml:space="preserve">
+    <value>Transport</value>
+  </data>
+  <data name="Title_Visualization" xml:space="preserve">
+    <value>Visualization</value>
+  </data>
+  <data name="Title_WMS" xml:space="preserve">
+    <value>Warehouse</value>
+  </data>
+  <data name="URL_Container" xml:space="preserve">
+    <value>Container Mangt.</value>
+  </data>
+  <data name="URL_Distribution" xml:space="preserve">
+    <value>Distribution Mangt.</value>
+  </data>
+  <data name="URL_FMS" xml:space="preserve">
+    <value>Facility Mangt.</value>
+  </data>
+  <data name="URL_Inventory" xml:space="preserve">
+    <value>Inventory Mangt.</value>
+  </data>
+  <data name="URL_MasterData" xml:space="preserve">
+    <value>MasterData Mangt.</value>
+  </data>
+  <data name="URL_MasterData_Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="URL_MasterData_Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="URL_MasterData_FinanceCalendar" xml:space="preserve">
+    <value>FinanceCalendar</value>
+  </data>
+  <data name="URL_MasterData_Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="URL_MasterData_ItemCategory" xml:space="preserve">
+    <value>ItemCategory</value>
+  </data>
+  <data name="URL_MasterData_ItemDiscontinue" xml:space="preserve">
+    <value>ItemDiscontinue</value>
+  </data>
+  <data name="URL_MasterData_Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="URL_MasterData_Region" xml:space="preserve">
+    <value>Region</value>
+  </data>
+  <data name="URL_MasterData_SwitchTrading" xml:space="preserve">
+    <value>SwitchTrading</value>
+  </data>
+  <data name="URL_MasterData_Uom" xml:space="preserve">
+    <value>Uom</value>
+  </data>
+  <data name="URL_MasterData_WorkingCalendar" xml:space="preserve">
+    <value>WorkingCalendar</value>
+  </data>
+  <data name="URL_Procurement" xml:space="preserve">
+    <value>Procurement Mangt.</value>
+  </data>
+  <data name="Url_ProcurementBill_Settle" xml:space="preserve">
+    <value>Settle</value>
+  </data>
+  <data name="Url_ProcurementBill_UnBilledActingBill" xml:space="preserve">
+    <value>UnBilledActingBill</value>
+  </data>
+  <data name="URL_Procurement_Flow" xml:space="preserve">
+    <value>ProcurementFlow</value>
+  </data>
+  <data name="URL_Procurement_Supplier" xml:space="preserve">
+    <value>Supplier</value>
+  </data>
+  <data name="URL_Production" xml:space="preserve">
+    <value>Production Mangt.</value>
+  </data>
+  <data name="URL_Quality" xml:space="preserve">
+    <value>Quality Mangt.</value>
+  </data>
+  <data name="URL_SupplierMenu" xml:space="preserve">
+    <value>SupplierMenu Mangt.</value>
+  </data>
+  <data name="URL_TMS" xml:space="preserve">
+    <value>Transport Mangt.</value>
+  </data>
+  <data name="URL_Visualization" xml:space="preserve">
+    <value>Visualization Mangt.</value>
+  </data>
+  <data name="URL_WMS" xml:space="preserve">
+    <value>Warehouse Mangt.</value>
+  </data>
+  <data name="Title_Procurement_Supplier" xml:space="preserve">
+    <value>Procurement-Setup-Supplier</value>
   </data>
 </root>

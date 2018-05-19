@@ -20,6 +20,8 @@ namespace com.Sconit.Web.Controllers.FMS
     using com.Sconit.Web.Models.SearchModels.FMS;
     using com.Sconit.Entity.FMS;
     using com.Sconit.Entity.ACC;
+
+
     #endregion
 
     /// <summary>
@@ -67,7 +69,7 @@ namespace com.Sconit.Web.Controllers.FMS
         private static string selectFacilityTransCountStatement = "select count(*) from FacilityTrans as f";
 
 
-        #region public actions
+        #region facility master
         /// <summary>
         /// Index action for FacilityMaster controller
         /// </summary>
@@ -229,6 +231,96 @@ namespace com.Sconit.Web.Controllers.FMS
         }
         #endregion
 
+        #region facility apply
+       /// <summary>
+       /// 
+       /// </summary>
+       /// <returns></returns>
+        [SconitAuthorize(Permissions = "Url_FacilityMaster_Apply")]
+        public ActionResult Apply()
+        {
+           
+            return View();
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_FacilityMaster_Apply")]
+        public ActionResult ApplyList(GridCommand command, FacilityMasterSearchModel searchModel)
+        {
+            SearchCacheModel searchCacheModel = this.ProcessSearchModel(command, searchModel);
+            if (searchCacheModel.isBack == true)
+            {
+                ViewBag.Page = searchCacheModel.Command.Page == 0 ? 1 : searchCacheModel.Command.Page;
+            }
+            ViewBag.PageSize = base.ProcessPageSize(command.PageSize);
+            return View();
+        }
+
+        [GridAction(EnableCustomBinding = true)]
+        [SconitAuthorize(Permissions = "Url_FacilityMaster_Apply")]
+        public ActionResult _ApplyAjaxList(GridCommand command, FacilityMasterSearchModel searchModel)
+        {
+            this.GetCommand(ref command, searchModel);
+            SearchStatementModel searchStatementModel = this.PrepareApplySearchStatement(command, searchModel);
+            return PartialView(GetAjaxPageData<FacilityMaster>(searchStatementModel, command));
+        }
+
+
+        [HttpGet]
+        [SconitAuthorize(Permissions = "Url_FacilityMaster_Apply")]
+        public ActionResult ApplyEdit(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View("Edit", string.Empty, id);
+            }
+        }
+
+   
+        [HttpGet]
+        [SconitAuthorize(Permissions = "Url_FacilityMaster_Apply")]
+        public ActionResult _ApplyEdit(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                FacilityMaster facilityMaster = this.genericMgr.FindById<FacilityMaster>(id);
+                return PartialView(facilityMaster);
+            }
+        }
+
+   
+        [SconitAuthorize(Permissions = "Url_FacilityMaster_Apply")]
+        public ActionResult _ApplyEdit(FacilityMaster facilityMaster)
+        {
+            if (ModelState.IsValid)
+            {
+              //  facilityMaster.Category = "DZ_SB4";
+                facilityMaster.CurrChargePersonName = genericMgr.FindById<User>(facilityMaster.CurrChargePersonId).FullName;
+                this.genericMgr.UpdateWithTrim(facilityMaster);
+                SaveSuccessMessage(Resources.FMS.FacilityMaster.FacilityMaster_Updated);
+            }
+
+            //  return View(facilityMaster);
+
+
+            TempData["TabIndex"] = 0;
+            return new RedirectToRouteResult(new RouteValueDictionary  
+                                                   { 
+                                                       { "action", "_Edit" }, 
+                                                       { "controller", "FacilityMaster" } ,
+                                                       { "Id", facilityMaster.FCID }
+                                                   });
+        }
+
+        #endregion
 
         #region FacilityMaintainPlan
       
@@ -495,7 +587,8 @@ namespace com.Sconit.Web.Controllers.FMS
         }
         #endregion
 
-      
+
+        #region private search
         private SearchStatementModel PrepareSearchStatement(GridCommand command, FacilityMasterSearchModel searchModel)
         {
             string whereStatement = string.Empty;
@@ -512,6 +605,41 @@ namespace com.Sconit.Web.Controllers.FMS
             HqlStatementHelper.AddEqStatement("MaintainGroup", searchModel.MaintainGroup, "f", ref whereStatement, param);
             HqlStatementHelper.AddLikeStatement("OwnerDescription", searchModel.OwnerDescription, HqlStatementHelper.LikeMatchMode.Anywhere, "f", ref whereStatement, param);
 
+
+            string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
+
+            SearchStatementModel searchStatementModel = new SearchStatementModel();
+            searchStatementModel.SelectCountStatement = selectCountStatement;
+            searchStatementModel.SelectStatement = selectStatement;
+            searchStatementModel.WhereStatement = whereStatement;
+            searchStatementModel.SortingStatement = sortingStatement;
+            searchStatementModel.Parameters = param.ToArray<object>();
+
+            return searchStatementModel;
+        }
+
+        private SearchStatementModel PrepareApplySearchStatement(GridCommand command, FacilityMasterSearchModel searchModel)
+        {
+            string whereStatement = string.Empty;
+
+            IList<object> param = new List<object>();
+
+            List<string> statusList =  new List<string>();
+
+         
+            statusList.Add(((int)com.Sconit.CodeMaster.FacilityStatus.Idle).ToString());
+
+
+            HqlStatementHelper.AddLikeStatement("FCID", searchModel.FCID, HqlStatementHelper.LikeMatchMode.Start, "f", ref whereStatement, param);
+            HqlStatementHelper.AddLikeStatement("Name", searchModel.Name, HqlStatementHelper.LikeMatchMode.Anywhere, "f", ref whereStatement, param);
+            HqlStatementHelper.AddInStatement("Status", statusList.ToArray(), "f", ref whereStatement, param);
+
+
+            HqlStatementHelper.AddEqStatement("ChargePerson", searchModel.ChargePerson, "f", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("ChargeSite", searchModel.ChargeSite, "f", ref whereStatement, param);
+            HqlStatementHelper.AddEqStatement("ChargeOrganization", searchModel.ChargeOrganization, "f", ref whereStatement, param);
+            HqlStatementHelper.AddLikeStatement("RefenceCode", searchModel.RefenceCode, HqlStatementHelper.LikeMatchMode.Anywhere, "f", ref whereStatement, param);
+          
 
             string sortingStatement = HqlStatementHelper.GetSortingStatement(command.SortDescriptors);
 
@@ -561,6 +689,6 @@ namespace com.Sconit.Web.Controllers.FMS
             return searchStatementModel;
         }
 
-
+        #endregion
     }
 }
