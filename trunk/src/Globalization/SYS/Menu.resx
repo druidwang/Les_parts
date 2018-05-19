@@ -3471,4 +3471,34 @@
   <data name="URL_WMS" xml:space="preserve">
     <value>Warehouse Mangt.</value>
   </data>
+  <data name="Description_Url_Production_BindTraceCode" xml:space="preserve">
+    <value>Production-Transaction-BindTraceCode</value>
+  </data>
+  <data name="Description_Url_Production_BindTraceCodeToHu" xml:space="preserve">
+    <value>Production-Transaction-BindTraceCodeToHu</value>
+  </data>
+  <data name="Description_Url_Production_FacilityStatus" xml:space="preserve">
+    <value>Production-Information-FacilityStatus</value>
+  </data>
+  <data name="Description_Url_Production_SearchTraceCode" xml:space="preserve">
+    <value>Production-Transaction-SearchTraceCode</value>
+  </data>
+  <data name="Description_Url_Production_StartOrder" xml:space="preserve">
+    <value>Production-Transaction-StartOrder</value>
+  </data>
+  <data name="Name_Url_Production_BindTraceCode" xml:space="preserve">
+    <value>BindTraceCode</value>
+  </data>
+  <data name="Name_Url_Production_BindTraceCodeToHu" xml:space="preserve">
+    <value>BindTraceCodeToHu</value>
+  </data>
+  <data name="Name_Url_Production_FacilityStatus" xml:space="preserve">
+    <value>FacilityStatus</value>
+  </data>
+  <data name="Name_Url_Production_SearchTraceCode" xml:space="preserve">
+    <value>SearchTraceCode</value>
+  </data>
+  <data name="Name_Url_Production_StartOrder" xml:space="preserve">
+    <value>StartOrder</value>
+  </data>
 </root>

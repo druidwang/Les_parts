@@ -3443,4 +3443,34 @@
   <data name="URL_WMS" xml:space="preserve">
     <value>高级仓库</value>
   </data>
+  <data name="Description_Url_Production_BindTraceCode" xml:space="preserve">
+    <value>生产管理-事务-追溯码绑定</value>
+  </data>
+  <data name="Description_Url_Production_BindTraceCodeToHu" xml:space="preserve">
+    <value>生产管理-事务-追溯码装箱</value>
+  </data>
+  <data name="Description_Url_Production_FacilityStatus" xml:space="preserve">
+    <value>生产管理-信息-设备状态报表</value>
+  </data>
+  <data name="Description_Url_Production_SearchTraceCode" xml:space="preserve">
+    <value>生产管理-事务-追溯码查询</value>
+  </data>
+  <data name="Description_Url_Production_StartOrder" xml:space="preserve">
+    <value>生产管理-事务-生产单上线</value>
+  </data>
+  <data name="Name_Url_Production_BindTraceCode" xml:space="preserve">
+    <value>追溯码绑定</value>
+  </data>
+  <data name="Name_Url_Production_BindTraceCodeToHu" xml:space="preserve">
+    <value>追溯码装箱</value>
+  </data>
+  <data name="Name_Url_Production_FacilityStatus" xml:space="preserve">
+    <value>设备状态报表</value>
+  </data>
+  <data name="Name_Url_Production_SearchTraceCode" xml:space="preserve">
+    <value>追溯码查询</value>
+  </data>
+  <data name="Name_Url_Production_StartOrder" xml:space="preserve">
+    <value>生产单上线</value>
+  </data>
 </root>

@@ -2824,6 +2824,33 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 Production-Transaction-BindTraceCode 的本地化字符串。
+        /// </summary>
+        public static string Description_Url_Production_BindTraceCode {
+            get {
+                return ResourceManager.GetString("Description_Url_Production_BindTraceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Production-Transaction-BindTraceCodeToHu 的本地化字符串。
+        /// </summary>
+        public static string Description_Url_Production_BindTraceCodeToHu {
+            get {
+                return ResourceManager.GetString("Description_Url_Production_BindTraceCodeToHu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Production-Information-FacilityStatus 的本地化字符串。
+        /// </summary>
+        public static string Description_Url_Production_FacilityStatus {
+            get {
+                return ResourceManager.GetString("Description_Url_Production_FacilityStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Production-Information-O/I Report(New)-Force-materail 的本地化字符串。
         /// </summary>
         public static string Description_Url_Production_ForceMaterial {
@@ -2874,6 +2901,24 @@ namespace Resources.SYS {
         public static string Description_Url_Production_ProdIOMI {
             get {
                 return ResourceManager.GetString("Description_Url_Production_ProdIOMI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Production-Transaction-SearchTraceCode 的本地化字符串。
+        /// </summary>
+        public static string Description_Url_Production_SearchTraceCode {
+            get {
+                return ResourceManager.GetString("Description_Url_Production_SearchTraceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 Production-Transaction-StartOrder 的本地化字符串。
+        /// </summary>
+        public static string Description_Url_Production_StartOrder {
+            get {
+                return ResourceManager.GetString("Description_Url_Production_StartOrder", resourceCulture);
             }
         }
         
@@ -6928,6 +6973,33 @@ namespace Resources.SYS {
         }
         
         /// <summary>
+        ///   查找类似 BindTraceCode 的本地化字符串。
+        /// </summary>
+        public static string Name_Url_Production_BindTraceCode {
+            get {
+                return ResourceManager.GetString("Name_Url_Production_BindTraceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 BindTraceCodeToHu 的本地化字符串。
+        /// </summary>
+        public static string Name_Url_Production_BindTraceCodeToHu {
+            get {
+                return ResourceManager.GetString("Name_Url_Production_BindTraceCodeToHu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 FacilityStatus 的本地化字符串。
+        /// </summary>
+        public static string Name_Url_Production_FacilityStatus {
+            get {
+                return ResourceManager.GetString("Name_Url_Production_FacilityStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 Force-materail 的本地化字符串。
         /// </summary>
         public static string Name_Url_Production_ForceMaterial {
@@ -6978,6 +7050,24 @@ namespace Resources.SYS {
         public static string Name_Url_Production_ProdIOMI {
             get {
                 return ResourceManager.GetString("Name_Url_Production_ProdIOMI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 SearchTraceCode 的本地化字符串。
+        /// </summary>
+        public static string Name_Url_Production_SearchTraceCode {
+            get {
+                return ResourceManager.GetString("Name_Url_Production_SearchTraceCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 StartOrder 的本地化字符串。
+        /// </summary>
+        public static string Name_Url_Production_StartOrder {
+            get {
+                return ResourceManager.GetString("Name_Url_Production_StartOrder", resourceCulture);
             }
         }
         
