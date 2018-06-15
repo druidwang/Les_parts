@@ -48,7 +48,8 @@
         {
             try
             {
-                var user = sdSecurityMgr.GetUser(userCode, hashedPassword, Context.Request.UserHostAddress);
+                var user = sdSecurityMgr.GetUser(userCode, hashedPassword, Context.Request.UserHostAddress,true);
+
                 AccessLog accessLog = new AccessLog();
                 accessLog.CreateDate = DateTime.Now;
                 accessLog.CsBrowser = "SmartDevice";

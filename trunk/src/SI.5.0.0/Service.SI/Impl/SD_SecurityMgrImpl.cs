@@ -8,7 +8,7 @@
 
     public class SD_SecurityMgrImpl : BaseMgr, com.Sconit.Service.SI.ISD_SecurityMgr
     {
-        public Entity.SI.SD_ACC.User GetUser(string userCode, string hashedPassword, string ipAddress)
+        public Entity.SI.SD_ACC.User GetUser(string userCode, string hashedPassword, string ipAddress, bool isTerminal = false)
         {
             Entity.ACC.User user = securityMgr.GetUserWithPermissions(userCode);
             if (user == null)
@@ -36,7 +36,15 @@
             }
             if (user.Permissions != null)
             {
-                user.Permissions = user.Permissions.Where(p => p.PermissionCategoryType != Sconit.CodeMaster.PermissionCategoryType.Url).ToList();
+                if (!isTerminal)
+                {
+                    user.Permissions = user.Permissions.Where(p => p.PermissionCategoryType != Sconit.CodeMaster.PermissionCategoryType.Url).ToList();
+                }
+                else
+                {
+                    user.Permissions = user.Permissions.Where(p => p.PermissionCategoryType == Sconit.CodeMaster.PermissionCategoryType.Terminal).ToList();
+                }
+
                 sdUser.Permissions = Mapper.Map<IList<Entity.VIEW.UserPermissionView>, List<Entity.SI.SD_ACC.Permission>>(user.Permissions);
 
             }

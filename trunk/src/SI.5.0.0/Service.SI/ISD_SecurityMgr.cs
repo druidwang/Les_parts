@@ -4,7 +4,7 @@
 
     public interface ISD_SecurityMgr
     {
-        Entity.SI.SD_ACC.User GetUser(string userCode, string hashedPassword, string ipAddress);
+        Entity.SI.SD_ACC.User GetUser(string userCode, string hashedPassword, string ipAddress,bool isTerminal = false);
 
         Entity.ACC.User GetBaseUser(string userCode, bool withPermissions = false);
 
