@@ -42,7 +42,7 @@
                 }
                 else
                 {
-                    user.Permissions = user.Permissions.Where(p => p.PermissionCategoryType == Sconit.CodeMaster.PermissionCategoryType.Terminal).ToList();
+                    user.Permissions = user.Permissions.Where(p => p.PermissionCategoryType == Sconit.CodeMaster.PermissionCategoryType.Terminal || p.PermissionCategoryType == Sconit.CodeMaster.PermissionCategoryType.OrderType || p.PermissionCategoryType == Sconit.CodeMaster.PermissionCategoryType.Region).ToList();
                 }
 
                 sdUser.Permissions = Mapper.Map<IList<Entity.VIEW.UserPermissionView>, List<Entity.SI.SD_ACC.Permission>>(user.Permissions);
